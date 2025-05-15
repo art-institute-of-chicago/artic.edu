@@ -12,7 +12,6 @@
 
 @endphp
 <div class="m-custom-banner-block {{ $theme ? 'custom-banner-block--'.$theme : '' }} {{ $variation ? 'custom-banner-block--variation-'.$variation : '' }}">
-    <span class="hr"></span>
     <div class="content-wrapper">
         <div class="background-wrapper">
             @if($bgType == 'background_color')
