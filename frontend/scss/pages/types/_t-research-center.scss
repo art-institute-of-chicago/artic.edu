@@ -161,7 +161,7 @@
     .text-wrapper {
       align-items: end;
       display: flex;
-      gap: 60px;
+      gap: 75px;
 
       @include breakpoint('small-') {
         gap: 20px;
@@ -199,6 +199,7 @@
         font-size: 17px;
         line-height: 28px;
         margin: unset;
+        min-height: 124px;
       }
     }
 
