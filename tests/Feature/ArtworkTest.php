@@ -13,11 +13,10 @@ class ArtworkTest extends BaseTestCase
     use MockApi;
     use WithFaker;
 
-    protected $seed = true;
-
     public function setUp(): void
     {
         parent::setUp();
+        $this->seed();
         // Artworks require at least six default related items.
         // See `App\Models\Behaviors\HasFeatureRelated::targetItemCount`.
         Article::factory()->count(6)->published()->visible()->notUnlisted()->create();
