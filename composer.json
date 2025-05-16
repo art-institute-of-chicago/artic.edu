@@ -1,4 +1,5 @@
 {
+    "$schema": "https://getcomposer.org/schema.json",
     "name": "aic/website",
     "description": "Art Institute of Chicago website – artic.edu",
     "keywords": [
@@ -50,7 +51,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "aic/data-hub-foundation": "^3.0",
+        "aic/data-hub-foundation": "^4.0",
         "area17/twill": "^3.0",
         "chillerlan/php-qrcode": "^5.0",
         "eluceo/ical": "2.0",
@@ -58,7 +59,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/httpauth": "^4.0",
         "kalnoy/nestedset": "^6.0",
-        "laravel/framework": "^10.0",
+        "laravel/framework": "^11.0",
         "laravel/tinker": "^2.0",
         "league/csv": "^9.0",
         "michelf/php-smartypants": "^1.8",
@@ -73,15 +74,14 @@
         "yeslogic/prince-php-wrapper": "^1.5"
     },
     "require-dev": {
-        "brianium/paratest": "^7.0",
         "fakerphp/faker": "^1.0",
         "itsgoingd/clockwork": "^5.0",
         "laravel/sail": "^1.0",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^7.0",
+        "nunomaduro/collision": "^8.1",
         "orchestra/testbench": "^7.8 || ^8.0 || ^9.0",
         "phpstan/phpstan": "^2.0",
-        "phpunit/phpunit": "^10.0",
+        "phpunit/phpunit": "^11.0",
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
@@ -108,7 +108,13 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\""
         ],
         "lint": [
             "@putenv COMPOSER=vendor/aic/data-hub-foundation/composer.json",

@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
-use App\Models\Hour;
 use Aic\Hub\Foundation\Library\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\EmbedConverterService;
 use App\Libraries\DamsImageService;
@@ -13,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
         $this->registerEmbedConverterService();
         $this->registerClosureService();
         $this->registerPrintService();
+        $this->registerDebugMethod();
+        $this->registerVendorClasses();
+        $this->registerAliases();
         $this->composeTemplatesViews();
         File::observe(FileObserver::class);
         $this->extendBlade();
@@ -86,7 +89,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerApiClient(): void
     {
-        $this->app->singleton('ApiClient', function ($app) {
+        $this->app->singleton('ApiClient', function () {
             return new GuzzleApiConsumer([
                 'base_uri' => config('api.base_uri'),
                 'exceptions' => false,
@@ -97,21 +100,21 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerEmbedConverterService(): void
     {
-        $this->app->singleton('embedconverterservice', function ($app) {
+        $this->app->singleton('embedconverterservice', function () {
             return new EmbedConverterService();
         });
     }
 
     public function registerDamsImageService(): void
     {
-        $this->app->singleton('damsimageservice', function ($app) {
+        $this->app->singleton('damsimageservice', function () {
             return new DamsImageService();
         });
     }
 
     public function registerClosureService(): void
     {
-        $this->app->singleton('closureservice', function ($app) {
+        $this->app->singleton('closureservice', function () {
             return new class () {
                 private $checkedForClosure = false;
 
@@ -132,7 +135,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerPrintService(): void
     {
-        $this->app->singleton('printservice', function ($app) {
+        $this->app->singleton('printservice', function () {
             return new class () {
                 private $isPrintMode;
 
@@ -147,6 +150,61 @@ class AppServiceProvider extends ServiceProvider
                 }
             };
         });
+    }
+
+    /*
+     * Usage:
+     *   app('debug')->log(class_basename(get_called_class()), $key, true);
+     *   app('debug')->getOutput();
+     */
+    public function registerDebugMethod(): void
+    {
+        $this->app->singleton('debug', function () {
+            return new class () {
+                private $output = [];
+
+                public function log($class, $field, $mutator = false)
+                {
+                    $class = $class . ($mutator ? ' as mutator' : '');
+
+                    if (!isset($this->output[$class])) {
+                        $this->output[$class] = [];
+                    }
+
+                    if (!in_array($field, $this->output[$class])) {
+                        $this->output[$class][] = $field;
+                    }
+                }
+
+                public function getOutput()
+                {
+                    return $this->output;
+                }
+            };
+        });
+    }
+
+    public function registerVendorClasses(): void
+    {
+        $this->app->bind(\A17\Twill\Models\Block::class, \App\Models\Vendor\Block::class);
+    }
+
+    public function registerAliases(): void
+    {
+        $loader = AliasLoader::getInstance();
+
+        $loader->alias('DamsImageService', \App\Facades\DamsImageServiceFacade::class);
+        $loader->alias('EmbedConverter', \App\Facades\EmbedConverterFacade::class);
+        $loader->alias('SmartyPants', \App\Libraries\SmartyPants::class);
+        $loader->alias('FrontendHelpers', \App\Helpers\FrontendHelpers::class);
+        $loader->alias('BlockHelpers', \App\Helpers\BlockHelpers::class);
+        $loader->alias('ColorHelpers', \App\Helpers\ColorHelpers::class);
+        $loader->alias('DateHelpers', \App\Helpers\DateHelpers::class);
+        $loader->alias('ImageHelpers', \App\Helpers\ImageHelpers::class);
+        $loader->alias('NavHelpers', \App\Helpers\NavHelpers::class);
+        $loader->alias('UrlHelpers', \App\Helpers\UrlHelpers::class);
+        $loader->alias('QueryHelpers', \App\Helpers\QueryHelpers::class);
+        $loader->alias('StringHelpers', \App\Helpers\StringHelpers::class);
     }
 
     /**
