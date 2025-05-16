@@ -14,7 +14,7 @@ return new class () extends Migration {
     {
         Schema::table('articles', function (Blueprint $table) {
             if (env('APP_ENV') != 'testing') {
-                $table->text('heading')->change();
+                $table->text('heading')->nullable()->change();
             }
         });
     }
