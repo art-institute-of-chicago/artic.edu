@@ -47,7 +47,7 @@ class DigitalPublicationController extends BaseController
                 ->sortable()
                 ->optional()
                 ->hide()
-                ->customRender(fn ($isUnlisted) => $isUnlisted ? 'Listed' : 'Unisted')
+                ->customRender(fn ($digitalPublication) => $digitalPublication->is_unlisted ? 'Unlisted' : 'Listed')
         );
 
         return $columns->merge($afterFirstColumn);
