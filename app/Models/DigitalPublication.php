@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use PDO;
-use Illuminate\Support\Facades\DB;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -11,20 +9,24 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Behaviors\HasUnlisted;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
+use PDO;
 
 class DigitalPublication extends AbstractModel
 {
     use HasBlocks;
-    use HasSlug;
-    use HasMedias;
-    use HasFiles;
-    use HasRevisions;
-    use HasMediasEloquent;
-    use Transformable;
-    use HasRelated;
     use HasFactory;
+    use HasFiles;
+    use HasMedias;
+    use HasMediasEloquent;
+    use HasRelated;
+    use HasRevisions;
+    use HasSlug;
+    use HasUnlisted;
+    use Transformable;
 
     protected $fillable = [
         'listing_description',
@@ -39,6 +41,7 @@ class DigitalPublication extends AbstractModel
         'meta_title',
         'meta_description',
         'is_dsc_stub',
+        'is_unlisted',
         'sponsor_display',
         'welcome_note_display',
         'cite_as',
@@ -60,6 +63,7 @@ class DigitalPublication extends AbstractModel
         'published' => 'boolean',
         'public' => 'boolean',
         'is_dsc_stub' => 'boolean',
+        'is_unlisted' => 'boolean',
         'toggle_autorelated' => 'boolean',
     ];
 
@@ -67,6 +71,7 @@ class DigitalPublication extends AbstractModel
         'published' => false,
         'public' => false,
         'is_dsc_stub' => false,
+        'is_unlisted' => false,
         'toggle_autorelated' => false,
     ];
 
