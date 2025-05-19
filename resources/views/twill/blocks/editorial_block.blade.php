@@ -72,6 +72,7 @@
     field-name='theme'
     :field-values="['default', 'conservation-and-science', 'research-center']"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
     <x-twill::select
         name='variation'
@@ -123,6 +124,7 @@
         field-name='variation'
         :field-values="['feature-5-side', 'feature-5-top', '3-across', '4-across']"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
         <x-twill::multi-select
             name='categories'
@@ -137,6 +139,7 @@
         field-name='variation'
         :field-values="['feature-5-side', 'feature-5-top']"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
         <x-twill::browser
             name='stories'
@@ -151,6 +154,7 @@
         field-name='variation'
         field-values="video"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -185,6 +189,7 @@
         field-name='variation'
         field-values="3-across"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
         <x-twill::browser
             name='stories'
@@ -199,6 +204,7 @@
         field-name='variation'
         field-values="4-across"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -228,6 +234,7 @@
         field-name='variation'
         field-values="1-and-2"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -258,6 +265,7 @@
     field-name='theme'
     field-values="publications"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
     {{-- Hidden variation field that's pre-selected as feature-5-side and disabled --}}
     <x-twill::select
@@ -297,6 +305,7 @@
     field-name='theme'
     :field-values="['educator-resources']"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
     <x-twill::select
         name='variation'
@@ -338,6 +347,7 @@
         field-name='variation'
         :field-values="['quick-look']"
         :render-for-blocks='true'
+        :keep-alive='true'
         >
 
         <x-twill::formColumns>
@@ -380,6 +390,7 @@
         field-name='variation'
         :field-values="['feature-5-side']"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
         <x-twill::browser
             name='stories'
@@ -399,6 +410,7 @@
         field-name='variation'
         field-values="video"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
