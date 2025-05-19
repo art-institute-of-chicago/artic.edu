@@ -100,6 +100,13 @@
 
             .stories-listing {
                 width: 100%;
+
+                .m-listing__meta {
+                    @include breakpoint('large+') {
+                        min-height: 0;
+                        margin-bottom: 30px;
+                    }
+                }
             }
         }
 
