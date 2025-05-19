@@ -20,7 +20,7 @@ class DigitalPublicationsController extends BaseScopedController
 
     public function index(Request $request)
     {
-        $items = DigitalPublication::published()->ordered()->paginate();
+        $items = DigitalPublication::published()->notUnlisted()->ordered()->paginate();
 
         $title = 'Digital Publications';
 
@@ -67,6 +67,10 @@ class DigitalPublicationsController extends BaseScopedController
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?? $item->listing_description);
         $this->seo->setImage($item->imageFront('listing'));
+        if ($item->is_unlisted) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
 
         if ($item->is_dsc_stub) {
             return $this->showDscStub($item);
