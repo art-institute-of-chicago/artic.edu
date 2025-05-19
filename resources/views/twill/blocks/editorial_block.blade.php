@@ -72,7 +72,6 @@
     field-name='theme'
     :field-values="['default', 'conservation-and-science', 'research-center']"
     :render-for-blocks='true'
-    :keep-alive='true'
 >
     <x-twill::select
         name='variation'
@@ -152,7 +151,6 @@
         field-name='variation'
         field-values="video"
         :render-for-blocks='true'
-        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -201,7 +199,6 @@
         field-name='variation'
         field-values="4-across"
         :render-for-blocks='true'
-        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -231,7 +228,6 @@
         field-name='variation'
         field-values="1-and-2"
         :render-for-blocks='true'
-        :keep-alive='true'
     >
         <x-twill::formColumns>
             <x-slot:left>
@@ -262,7 +258,6 @@
     field-name='theme'
     field-values="publications"
     :render-for-blocks='true'
-    :keep-alive='true'
 >
     {{-- Hidden variation field that's pre-selected as feature-5-side and disabled --}}
     <x-twill::select
