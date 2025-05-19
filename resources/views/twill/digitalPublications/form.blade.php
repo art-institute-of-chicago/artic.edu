@@ -9,6 +9,13 @@
     </style>
 @endPush
 
+@section('sideFieldset')
+    <x-twill::checkbox
+        name='is_unlisted'
+        label="Don't show this digital publication in listings"
+    />
+@endsection
+
 @section('contentFields')
     <div class="articles-index-link">
         <a href="{{ route('twill.collection.articlesPublications.digitalPublications.articles.index', [$item->id]) }}">
