@@ -85,7 +85,7 @@
                     @slot('tag', 'div')
                     @slot('font', 'f-secondary')
                     @slot('variation', 'showcase-callout')
-                    {!! StringHelpers::addLinkArrows($callout) !!}
+                    {!! $callout !!}
                 @endcomponent
             @endif
             @if ($linkLabel || $linkUrl)
