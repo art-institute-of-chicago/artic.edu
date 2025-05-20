@@ -45,6 +45,11 @@ class DigitalPublicationArticleController extends FrontController
             $this->seo->citationOnlineDate = $item->date->toDateString();
         }
 
+        if ($item->digitalPublication->is_unlisted) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
+
         return view('site.digitalPublicationArticleDetail', [
             'item' => $item,
             'contrastHeader' => false,
