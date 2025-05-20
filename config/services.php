@@ -52,7 +52,7 @@ return [
     'cloudflare' => [
         'enabled' => (bool) env('CLOUDFLARE_ENABLED', false),
         'key' => env('CLOUDFLARE_KEY'),
-        'zone_id' => env('CLOUDFRONT_ZONE_ID'),
+        'zone_id' => env('CLOUDFLARE_ZONE_ID'),
     ],
 
 ];
