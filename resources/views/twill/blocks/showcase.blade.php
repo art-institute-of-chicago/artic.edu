@@ -25,6 +25,7 @@
     field-name='theme'
     field-values="default"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
 
     <x-twill::select
@@ -78,6 +79,7 @@
         field-name='variation'
         :field-values="['default, about-the-rlc, rlc-secondary']"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
 
         @if (count($mediaTypes) > 1)
@@ -103,6 +105,7 @@
                 field-name='media_type'
                 field-values="image"
                 :render-for-blocks='true'
+                :keep-alive='true'
             >
                 <x-twill::medias
                     name='image'
@@ -117,6 +120,7 @@
                 field-name='media_type'
                 field-values="video"
                 :render-for-blocks='true'
+                :keep-alive='true'
             >
                 <x-twill::medias
                     name='image'
@@ -155,6 +159,7 @@
             field-name='theme'
             field-values="rlc"
             :render-for-blocks='true'
+            :keep-alive='true'
         >
             <x-twill::input
                 name='date'
@@ -216,6 +221,7 @@
         field-name='variation'
         field-values='default'
         :render-for-blocks='true'
+        :keep-alive='true'
     >
 
     @if (count($mediaTypes) > 1)
@@ -241,6 +247,7 @@
             field-name='media_type'
             field-values="image"
             :render-for-blocks='true'
+            :keep-alive='true'
         >
             <x-twill::medias
                 name='image'
@@ -255,6 +262,7 @@
             field-name='media_type'
             field-values="video"
             :render-for-blocks='true'
+            :keep-alive='true'
         >
             <x-twill::medias
                 name='image'
@@ -323,6 +331,7 @@
     field-name='theme'
     field-values="rlc"
     :render-for-blocks='true'
+    :keep-alive='true'
 >
     <x-twill::input
         name='date'
