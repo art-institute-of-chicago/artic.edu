@@ -64,8 +64,23 @@ const rangedAccordion = function(container) {
     };
 
     function _init() {
-        container.addEventListener('click', _toggleAccordion);
+      let trigger = container.querySelector('.o-accordion__trigger');
+
+      if (trigger) {
+        trigger.addEventListener('click', _toggleAccordion);
+      }
     }
+
+    this.destroy = function() {
+      let trigger = container.querySelector('.o-accordion__trigger');
+
+      if (trigger) {
+        trigger.removeEventListener('click', _toggleAccordion);
+      }
+
+      // Remove properties of this behavior
+      A17.Helpers.purgeProperties(this);
+    };
 
     this.init = function() {
         _init();
