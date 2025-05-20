@@ -49,4 +49,10 @@ return [
         'id' => env('GTM_ID', '')
     ],
 
+    'cloudflare' => [
+        'enabled' => (bool) env('CLOUDFLARE_ENABLED', false),
+        'key' => env('CLOUDFLARE_KEY'),
+        'zone_id' => env('CLOUDFRONT_ZONE_ID'),
+    ],
+
 ];
