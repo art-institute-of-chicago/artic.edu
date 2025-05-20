@@ -2,19 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\API\Behaviors\HideUnlisted;
+
 class DigitalPublicationsController extends BaseController
 {
+    use HideUnlisted;
+
     protected $model = \App\Models\DigitalPublication::class;
     protected $transformer = \App\Http\Transformers\DigitalPublicationTransformer::class;
-
-    /**
-     * Exclude unlisted digital publications.
-     *
-     * @param int $limit
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
-    protected function paginate($limit)
-    {
-        return ($this->model)::notUnlisted()->paginate($limit);
-    }
 }
