@@ -397,4 +397,14 @@
       margin-top: 100px;
     }
   }
+
+  #faqs.m-title-bar {
+    &, & > * {
+      margin-top: unset;
+    }
+
+    &::before {
+      display: none;
+    }
+  }
 }
