@@ -34,6 +34,14 @@
         />
     </x-twill::formFieldset>
     <x-twill::formFieldset title="FAQs" id="researchCenter-faq">
+        <x:twill::input
+            name='labels.faq_link_label'
+            label='Link Label'
+        />
+        <x:twill::input
+            name='labels.faq_link_url'
+            label='Link URL'
+        />
         <x-twill::repeater
             type='faqs'
         />

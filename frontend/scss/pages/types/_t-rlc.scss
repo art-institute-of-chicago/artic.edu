@@ -527,4 +527,14 @@
   .m-aside-newsletter {
     margin-top: 1px;
   }
+
+  #faqs.m-title-bar {
+    &, & > * {
+      margin-top: unset;
+    }
+
+    &::before {
+      display: none;
+    }
+  }
 }
