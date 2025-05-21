@@ -370,4 +370,14 @@
       }
     }
   }
+
+  #faqs.m-title-bar {
+    &, & > * {
+      margin-top: unset;
+    }
+
+    &::before {
+      display: none;
+    }
+  }
 }

@@ -3,11 +3,7 @@
         @slot('faqs', $item->faqs)
         @slot('active', $item['active'])
         @slot('gtmAttributes', $item['gtmAttributes'])
-
-        <div class="spacer-container">
-            <div class="spacer">
-                <div class="semicircle left-hemisphere"></div>
-            </div>
-        </div>
+        @slot('headerLinkUrl', $item->labels['faq_link_url'])
+        @slot('headerLinkLabel', $item->labels['faq_link_label'])
     @endcomponent
 </div>
