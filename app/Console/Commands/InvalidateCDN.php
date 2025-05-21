@@ -20,8 +20,7 @@ class InvalidateCDN extends Command
             }
 
             $this->info('Cloudflare invalidation request sent!');
-        }
-        elseif (config('services.cloudfront.enabled')) {
+        } elseif (config('services.cloudfront.enabled')) {
             if (!empty($this->argument('urls'))) {
                 app(CloudfrontCacheService::class)->invalidate($this->argument('urls'));
             }
