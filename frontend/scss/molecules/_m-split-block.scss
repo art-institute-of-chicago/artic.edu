@@ -1,7 +1,7 @@
 .m-split-block {
 
   display: flex;
-  flex-flow: row;
+  flex-flow: row wrap;
   margin-top: 28px;
 
   @include breakpoint('small+') {
