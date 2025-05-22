@@ -313,6 +313,14 @@
     &.editorial-block--educator-resources {
         border-bottom: 2px solid #1c1c1c;
         padding-bottom: 20px;
+
+        &.editorial-block--variation-feature-5-side {
+            .editorial-block__list {
+                .stories-listing, .stories-custom-listing {
+                    margin-bottom: 32px !important;
+                }
+            }
+        }
     }
 
     // Variations

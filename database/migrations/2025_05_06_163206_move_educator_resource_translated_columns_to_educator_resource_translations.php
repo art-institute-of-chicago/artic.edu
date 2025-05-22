@@ -165,8 +165,6 @@ return new class () extends Migration {
                                 // Set the entire content attribute
                                 $block['content'] = $content;
                                 $block->save();
-
-                                dump($block->type . ': ' . json_encode($block['content'][$field]));
                             }
                         }
                     }
@@ -299,8 +297,6 @@ return new class () extends Migration {
                             // Update the field in the content array
                             $content[$field] = $translatedContent;
                             $changed = true;
-
-                            dump("Updated $field in English {$enBlock->type} at position $position");
                         }
                     }
 
@@ -335,8 +331,6 @@ return new class () extends Migration {
                             // Update the field in the content array
                             $content[$field] = $translatedContent;
                             $changed = true;
-
-                            dump("Added Spanish-only {$esBlock->type} at position $position");
                         }
                     }
 
