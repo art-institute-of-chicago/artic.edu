@@ -58,7 +58,7 @@ class GeneratePdfs extends Command
             $urls = $models->pluck('pdf_download_path')->all();
 
             if (!empty($urls)) {
-                $this->call('cache:invalidate-cloudfront', [
+                $this->call('cache:invalidate-cdn', [
                     'urls' => $urls,
                 ]);
             }
