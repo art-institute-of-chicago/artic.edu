@@ -1351,7 +1351,7 @@ const layeredImageViewer = function(container) {
       };
 
       container.style.width = `${containerDimensions.width}px`;
-      container.style.height = `${containerDimensions.height}px`;
+      container.style.maxHeight = `${containerDimensions.height}px`;
       container.style.backgroundColor = '#f5f5f5';
     }
   };
