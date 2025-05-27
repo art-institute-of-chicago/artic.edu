@@ -48,24 +48,24 @@ return [
                 '#282829',
             ],
             'digital_publications' => [
-                '#282829',
-                '#422E22',
-                '#284725',
-                '#1E3F49',
-                '#1C2454',
-                '#35295A',
-                '#711F2A',
-                '#983820',
-                '#E19E26',
-                '#9D9FA2',
-                '#A39282',
-                '#A1B981',
-                '#75B4BA',
-                '#77A8D5',
-                '#8C8FBE',
-                '#D58FA2',
-                '#EC9E6C',
-                '#F8EB83',
+                '#1E2753', // darkest blue
+                '#1E3D47', // darkest teal
+                '#282829', // darkest gray
+                '#2D3E23', // darkest green
+                '#3A254F', // darkest purple
+                '#3F2D22', // darkest brown
+                '#620C17', // darkest red
+                '#8E351F', // darkest orange
+                '#91C8CD', // light teal
+                '#A0B8E8', // light blue
+                '#ADC47C', // light green
+                '#AE96D0', // light purple
+                '#C3AEA1', // light brown
+                '#C6C3C5', // light gray
+                '#CE8D19', // darkest yellow
+                '#DF98AC', // light red
+                '#FFA66E', // light orange
+                '#FFF181', // light yellow
             ],
             'research_center' => [
                 '#CED8EE',
