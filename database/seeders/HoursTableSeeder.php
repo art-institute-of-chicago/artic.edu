@@ -11,6 +11,7 @@ class HoursTableSeeder extends Seeder
     {
         $hours = new \App\Models\Hour();
         $hours->valid_from = Carbon::yesterday();
+        $hours->type = 0;
         $hours->title = 'Hours';
         $hours->url = '/visit';
         $hours->monday_is_closed = false;
