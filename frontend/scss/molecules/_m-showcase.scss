@@ -328,6 +328,19 @@
         padding: 0;
         width: 100%;
 
+        .m-showcase-block__text-wrapper {
+            &:not(:has(.showcase-tag + .title)) {
+                .title {
+                    @include untuck();
+                    margin-top: 0;
+                }
+            }
+
+            .showcase-button {
+                margin: 42px 0 24px 0;
+            }
+        }
+
         .showcase-callout {
             a {
                 color: $color__link--accent;
