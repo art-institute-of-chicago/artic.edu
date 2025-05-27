@@ -8,8 +8,12 @@
         default:
             $pallet = 'general';
     }
-    $backgroundColors = collect(config("aic.branding.colors.$pallet"))
-        ->mapWithKeys(fn ($hexColor) => [$hexColor => $hexColor]);
+    $colorCodes = config("aic.branding.colors.$pallet");
+    if (array_is_list($colorCodes)) {
+        $backgroundColors = collect($colorCodes)->mapWithKeys(fn ($hexColor) => [$hexColor => $hexColor])->sort();
+    } else {
+        $backgroundColors = collect($colorCodes)->sort();
+    }
 @endphp
 
 @twillBlockTitle('Custom Banner')
