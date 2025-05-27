@@ -41,7 +41,7 @@ class BuildingClosure extends AbstractModel
         'title',
     ];
 
-    public function scopetoday($query): Builder
+    public function scopeToday($query): Builder
     {
         $today = Carbon::today();
 
