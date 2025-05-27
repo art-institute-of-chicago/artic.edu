@@ -1,14 +1,6 @@
 @extends('twill::layouts.form', ['contentFieldsetLabel' => 'Edit closure'])
 
 @section('contentFields')
-    <x-twill::select
-        name='type'
-        label='Type'
-        placeholder='Select a type'
-        :required='true'
-        :options='$typesList'
-    />
-
     <x-twill::date-picker
         name='date_start'
         label='Start Date'
@@ -34,7 +26,7 @@
 
 @push('vuexStore')
     window['{{ config('twill.js_namespace') }}'].STORE.form.fields.push({
-        name: 'cmsFormTitle',
-        value: '{{ $item->presentAdmin()->presentType }} closure'
+        name: 'title',
+        value: '{{ $item->title }} closure'
     })
 @endpush

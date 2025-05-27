@@ -19,17 +19,8 @@ class BuildingClosure extends AbstractModel
         'date_start',
         'date_end',
         'closure_copy',
-        'type',
         'hour_id'
     ];
-
-    public static $types = [
-        0 => 'Museum',
-        1 => 'Shop',
-        2 => 'Library',
-    ];
-
-    public $nullable = [];
 
     public $casts = [
         'published' => 'boolean',
@@ -47,22 +38,21 @@ class BuildingClosure extends AbstractModel
     ];
 
     protected $appends = [
-        'presentType',
+        'title',
     ];
 
-    public function scopeToday($query, $type = 0): Builder
+    public function scopetoday($query): Builder
     {
         $today = Carbon::today();
 
         return $query->published()
-            ->where('type', $type)
             ->where('date_start', '<=', $today)
             ->where('date_end', '>=', $today);
     }
 
-    public function getPresentTypeAttribute()
+    public function getTitleAttribute()
     {
-        return self::$types[$this->type];
+        return (new Carbon($this->attributes['date_start']))->diffForHumans();
     }
 
     protected function transformMappingInternal()
@@ -98,14 +88,6 @@ class BuildingClosure extends AbstractModel
                 'type' => 'text',
                 'value' => function () {
                     return $this->closure_copy;
-                },
-            ],
-            [
-                'name' => 'type',
-                'doc' => 'Type of Closure',
-                'type' => 'number',
-                'value' => function () {
-                    return $this->type;
                 },
             ],
         ];
