@@ -1,12 +1,4 @@
 @if(!isset($item))
-    <x-twill::select
-        name='"type"'
-        label='"Type"'
-        placeholder='Select a type'
-        :options='$typesList'
-        :required='true'
-    />
-
     <x-twill::date-picker
         name='date_start'
         label='Start date'

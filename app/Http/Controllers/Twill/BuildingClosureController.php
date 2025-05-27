@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Services\Listings\Columns\Text;
-use A17\Twill\Services\Listings\Filters\BasicFilter;
-use A17\Twill\Services\Listings\Filters\TableFilters;
 use A17\Twill\Services\Listings\TableColumns;
 use App\Models\BuildingClosure;
-use Illuminate\Database\Eloquent\Builder;
 
 class BuildingClosureController extends BaseController
 {
@@ -15,24 +12,16 @@ class BuildingClosureController extends BaseController
     {
         $this->setModuleName('buildingClosures');
         $this->setSearchColumns(['closure_copy']);
-        $this->setTitleColumnKey('presentType');
-        $this->setTitleColumnLabel('Type');
-        $this->setTitleFormKey('cmsFormTitle');
+        $this->setTitleColumnLabel('Closure');
+        $this->setTitleFormKey('title');
     }
 
-    public function filters(): TableFilters
+    public function getIndexTableColumns(): TableColumns
     {
-        $tableFilters = parent::filters();
-        $tableFilters->add(
-            BasicFilter::make()
-                ->queryString('types')
-                ->options(collect(BuildingClosure::$types))
-                ->apply(function (Builder $builder, mixed $value) {
-                    $builder->where('type', '=', $value);
-                })
-        );
-
-        return $tableFilters;
+        $columns = parent::getIndexTableColumns();
+        $titleColumn = $columns->slice(1, 1)->first();
+        $titleColumn->sortKey('date_start');
+        return $columns;
     }
 
     public function additionalIndexTableColumns(): TableColumns
@@ -70,20 +59,5 @@ class BuildingClosureController extends BaseController
         );
 
         return $columns;
-    }
-
-    protected function indexData($request)
-    {
-        return [
-            'typesList' => collect(BuildingClosure::$types),
-        ];
-    }
-
-    protected function formData($request)
-    {
-        return [
-            'typesList' => collect(BuildingClosure::$types),
-            'editableTitle' => false,
-        ];
     }
 }

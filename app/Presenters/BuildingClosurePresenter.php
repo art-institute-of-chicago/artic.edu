@@ -2,8 +2,6 @@
 
 namespace App\Presenters;
 
-use App\Models\BuildingClosure;
-
 class BuildingClosurePresenter extends BasePresenter
 {
     public function presentStartDate()
@@ -18,11 +16,6 @@ class BuildingClosurePresenter extends BasePresenter
         if ($this->entity->date_end) {
             return $this->entity->date_end->format('M j, Y');
         }
-    }
-
-    public function presentType()
-    {
-        return BuildingClosure::$types[$this->entity->type];
     }
 
     public function closureCopy()
