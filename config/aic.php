@@ -67,6 +67,9 @@ return [
                 '#FFA66E' => 'Light Orange',
                 '#FFF181' => 'Light Yellow',
             ],
+            'research_center' => [
+                '#CED8EE',
+            ],
         ]
     ],
 ];
