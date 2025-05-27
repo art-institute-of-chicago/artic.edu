@@ -48,24 +48,24 @@ return [
                 '#282829',
             ],
             'digital_publications' => [
-                '#1E2753', // darkest blue
-                '#1E3D47', // darkest teal
-                '#282829', // darkest gray
-                '#2D3E23', // darkest green
-                '#3A254F', // darkest purple
-                '#3F2D22', // darkest brown
-                '#620C17', // darkest red
-                '#8E351F', // darkest orange
-                '#91C8CD', // light teal
-                '#A0B8E8', // light blue
-                '#ADC47C', // light green
-                '#AE96D0', // light purple
-                '#C3AEA1', // light brown
-                '#C6C3C5', // light gray
-                '#CE8D19', // darkest yellow
-                '#DF98AC', // light red
-                '#FFA66E', // light orange
-                '#FFF181', // light yellow
+                '#1E2753' => 'Darkest Blue',
+                '#1E3D47' => 'Darkest Teal',
+                '#282829' => 'Darkest Gray',
+                '#2D3E23' => 'Darkest Green',
+                '#3A254F' => 'Darkest Purple',
+                '#3F2D22' => 'Darkest Brown',
+                '#620C17' => 'Darkest Red',
+                '#8E351F' => 'Darkest Orange',
+                '#91C8CD' => 'Light Teal',
+                '#A0B8E8' => 'Light Blue',
+                '#ADC47C' => 'Light Green',
+                '#AE96D0' => 'Light Purple',
+                '#C3AEA1' => 'Light Brown',
+                '#C6C3C5' => 'Light Gray',
+                '#CE8D19' => 'Darkest Yellow',
+                '#DF98AC' => 'Light Red',
+                '#FFA66E' => 'Light Orange',
+                '#FFF181' => 'Light Yellow',
             ],
         ]
     ],
