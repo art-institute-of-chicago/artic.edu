@@ -21,7 +21,6 @@ class BuildingClosureFactory extends Factory
     {
         return [
             'published' => true,
-            'type' => 0,
             'date_start' => today(),
             'date_end' => today(),
             'closure_copy' => 'The museum is closed',

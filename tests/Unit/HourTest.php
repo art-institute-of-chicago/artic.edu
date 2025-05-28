@@ -54,7 +54,6 @@ class HourTest extends BaseTestCase
             'date_start' => Carbon::now()->next('Thursday'),
             'date_end' => Carbon::now()->next('Thursday'),
             'closure_copy' => 'The museum is closed on Thursday',
-            'type' => 0,
         ]));
 
         $this->hourAllClosed = Hour::factory()->make([
