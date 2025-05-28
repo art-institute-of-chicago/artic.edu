@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Vendor\Block;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         // A previous migration only updated the structure of these blocks on content referenced by `educatorResource`s.
