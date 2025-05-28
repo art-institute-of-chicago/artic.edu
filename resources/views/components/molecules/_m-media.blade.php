@@ -12,6 +12,7 @@
     $manifest = isset($item['manifest']) ? $item['manifest'] : false;
     $default_view = isset($item['default_view']) ? $item['default_view'] : 'single';
 
+    $hideCaption = (isset($item['hideCaption']) && $item['hideCaption']) ? true : false;
     $fitCaptionTitle = $type === 'artist';
     $type = $type === 'artist' ? 'image' : $type;
 
@@ -307,37 +308,39 @@
         @if ($headerVariation === 'cta')
             <div class="header-cta">
                 <div>
-                    <strong class="title f-display-1 header-cta-title">{!! $item['ctaTitle'] !!}</strong>
-                    {!! $item['ctaDescription']
-                        ? '<span class="header-cta-description">'. $item['ctaDescription'] . '</span>' : '' !!}
-                    {!! ($item['ctaButtonLink'] && $item['ctaButtonLabel'])
-                        ? '<a href="' . $item['ctaButtonLink'] . '" class="header-cta-button f-buttons btn btn--secondary">' . $item['ctaButtonLabel'] . '</a>'
-                        : '' !!}
-                  </div>
+                  <strong class="title f-display-1 header-cta-title">{!! $item['ctaTitle'] !!}</strong>
+                  {!! $item['ctaDescription']
+                      ? '<span class="header-cta-description">'. $item['ctaDescription'] . '</span>' : '' !!}
+                  {!! ($item['ctaButtonLink'] && $item['ctaButtonLabel'])
+                      ? '<a href="' . $item['ctaButtonLink'] . '" class="header-cta-button f-buttons btn btn--secondary">' . $item['ctaButtonLabel'] . '</a>'
+                      : '' !!}
+                </div>
             </div>
         @endif
     </div>
-    @if ((!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption'])) and (isset($item['caption']) or isset($item['captionTitle'])))
-    <figcaption>
-        @if (isset($item['captionTitle']))
-            <div class="{{ $size !== 'gallery' || isset($item['caption']) ? 'f-caption-title' : 'f-caption' }}"><div>
-                @if(isset($item['urlTitle']) && $item['urlTitle'])
-                    <a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a>
-                @else
-                    {!! $item['captionTitle'] !!}
-                @endif
-            </div></div> <br>
-        @endif
-        @if (isset($item['caption']) && $item['caption'])
-            <div class="{{ $fitCaptionTitle ? 'f-fit-text' : '' }} f-caption">{!! $item['caption'] !!}</div>
-        @endif
-        @if (isset($item['linkLabel']) && $item['linkLabel'] && isset($item['linkUrl']) && $item['linkUrl'])
-            <a href="{!! $item['linkUrl'] !!}">
-                <span class="f-link">
-                    {!! $item['linkLabel'] !!} <svg class='icon--arrow'><use xlink:href='#icon--arrow'></use></svg>
-                </span>
-            </a>
-        @endif
-    </figcaption>
+    @if (!$hideCaption && (isset($item['caption']) && !empty($item['caption'])) || (isset($item['captionTitle']) && !empty($item['captionTitle'])))
+        <figcaption>
+            @if (isset($item['captionTitle']))
+                <div class="{{ $size !== 'gallery' || isset($item['caption']) ? 'f-caption-title' : 'f-caption' }}">
+                    <div>
+                        @if(isset($item['urlTitle']) && $item['urlTitle'])
+                            <a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a>
+                        @else
+                            {!! $item['captionTitle'] !!}
+                        @endif
+                    </div>
+                </div> <br>
+            @endif
+            @if (isset($item['caption']) && $item['caption'])
+                <div class="{{ $fitCaptionTitle ? 'f-fit-text' : '' }} f-caption">{!! $item['caption'] !!}</div>
+            @endif
+            @if ((isset($item['linkLabel']) && $item['linkLabel']) && (!empty($item['linkUrl']) && $item['linkUrl']))
+                <a href="{!! $item['linkUrl'] !!}">
+                    <span class="f-link">
+                        {!! $item['linkLabel'] !!} <svg class='icon--arrow'><use xlink:href='#icon--arrow'></use></svg>
+                    </span>
+                </a>
+            @endif
+        </figcaption>
     @endif
 </{{ $tag ?? 'figure' }}>
