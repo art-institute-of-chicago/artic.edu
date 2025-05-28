@@ -28,6 +28,7 @@
                     'media' => $media,
                     'loop' => true,
                     'loop_or_once' => 'loop',
+                    'hideCaption' => true
                 ])
             @endcomponent
         @else

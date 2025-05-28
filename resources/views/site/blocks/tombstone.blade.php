@@ -6,7 +6,7 @@
     @component('components.atoms._title')
         @slot('font', 'f-secondary')
         @slot('tag', 'div')
-            {{ $block->input('heading') }}
+            {{ $block->present()->input('heading') }}
     @endcomponent
 
     @component('components.atoms._short-description')
