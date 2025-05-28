@@ -8,7 +8,7 @@ class BuildingClosureRequest extends Request
 {
     public function rules(): array
     {
-        $rules = ['type' => 'required'];
+        $rules = [];
 
         if (!empty($this->input('date_end'))) {
             $rules['date_start'] = 'required|before_or_equal:date_end';
