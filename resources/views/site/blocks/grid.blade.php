@@ -1,5 +1,5 @@
 @php
-    $gridTitle = $block->input('heading');
+    $gridTitle = $block->present()->input('heading');
     $gridDescription = $block->input('description');
     $gridLinkLabel = $block->input('grid_link_label');
     $gridLinkHref = $block->input('grid_link_href');
