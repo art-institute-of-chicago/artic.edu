@@ -3,7 +3,7 @@
     $bgColor = $block->input('bgcolor');
     $btnType = $block->input('button_type');
 
-    $heading = $block->input('heading');
+    $heading = $block->present()->input('heading');
     $title = $block->input('title');
     $body = $block->input('body');
 

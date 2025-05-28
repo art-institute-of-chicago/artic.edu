@@ -2,7 +2,7 @@
 
     // Persistent fields from CMS
     $feature_heading = $block->input('feature_heading');
-    $heading = $block->input('heading');
+    $heading = $block->present()->input('heading');
     $body = $block->input('body') ?? null;
     $browseLabel = $block->input('browse_label');
     $browseLink = $block->input('browse_link');

@@ -95,7 +95,7 @@
                     'media' => $item->imageAsArray('gallery_item', 'conservation_and_science'),
                     'videoUrl' => $item->input('videoUrl'),
                     'linkUrl' => $item->input('linkUrl'),
-                    'linkLabel' => $item->input('linkLabel'),
+                    'linkLabel' => $item->present()->input('linkLabel'),
                 ]);
                 if (($block->input('is_gallery_zoomable') ?? false) || $item->input('is_zoomable')) {
                     if (isset($mediaItem['media'])) {
