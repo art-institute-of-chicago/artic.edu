@@ -314,17 +314,16 @@
         padding-top: 40px;
 
         .title {
-          font-size: 38px;
-          line-height: 44px;
+          font-size: 22px;
+          line-height: 28px;
         }
 
-        .author {
-          text-align: center;
+        .author, .type {
+          display: none;
         }
 
         .intro {
           color: $color__black--81;
-          font-family: $serif-font--loaded;
           font-size: 19px;
           line-height: 28px;
         }
@@ -359,6 +358,10 @@
           &::before {
             display: none;
           }
+        }
+
+        .author, .type {
+          display: none;
         }
 
         .intro {
