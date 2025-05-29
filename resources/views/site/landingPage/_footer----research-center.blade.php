@@ -3,7 +3,7 @@
         @slot('faqs', $item->faqs)
         @slot('active', $item['active'])
         @slot('gtmAttributes', $item['gtmAttributes'])
-        @slot('headerLinkUrl', $item->labels['faq_link_url'])
-        @slot('headerLinkLabel', $item->labels['faq_link_label'])
+        @slot('headerLinkUrl', $item->labels['faq_link_url'] ?? null)
+        @slot('headerLinkLabel', $item->labels['faq_link_label'] ?? null)
     @endcomponent
 </div>
