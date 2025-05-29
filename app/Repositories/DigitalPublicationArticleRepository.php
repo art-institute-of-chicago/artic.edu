@@ -47,4 +47,12 @@ class DigitalPublicationArticleRepository extends ModuleRepository
 
         return $results;
     }
+
+    public function getShowData($item, $slug = null, $previewPage = null)
+    {
+        return [
+            'contrastHeader' => $item->present()->contrastHeader,
+            'item' => $item,
+        ];
+    }
 }

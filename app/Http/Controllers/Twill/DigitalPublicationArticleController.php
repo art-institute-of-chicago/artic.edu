@@ -6,6 +6,7 @@ use A17\Twill\Http\Controllers\Admin\NestedModuleController;
 use A17\Twill\Services\Listings\Columns\Presenter;
 use A17\Twill\Services\Listings\TableColumns;
 use App\Http\Controllers\Twill\Behaviors\IsNestedModule;
+use App\Models\DigitalPublication;
 use App\Repositories\DigitalPublicationRepository;
 
 class DigitalPublicationArticleController extends NestedModuleController
@@ -16,6 +17,7 @@ class DigitalPublicationArticleController extends NestedModuleController
 
     protected function setUpController(): void
     {
+        $this->eagerLoadFormRelationCounts(['revisions']);
         $this->enableReorder();
         $this->setModelName('DigitalPublicationArticle');
         $this->setModuleName('digitalPublications.articles');
@@ -160,5 +162,19 @@ class DigitalPublicationArticleController extends NestedModuleController
                 ];
             }),
         ];
+    }
+
+    protected function previewData($item)
+    {
+      $item = $this->repository->getById(request('article') ?? request('id'));
+      $digPub = app(DigitalPublicationRepository::class)->getById(request('digitalPublication'));
+
+      return [
+        'item' => $item,
+        'contrastHeader' => false,
+        'borderlessHeader' => false,
+        'unstickyHeader' => true,
+        'bgcolor' => $digPub->bgcolor,
+      ];
     }
 }
