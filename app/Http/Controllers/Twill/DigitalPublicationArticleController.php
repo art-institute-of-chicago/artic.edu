@@ -166,15 +166,15 @@ class DigitalPublicationArticleController extends NestedModuleController
 
     protected function previewData($item)
     {
-      $item = $this->repository->getById(request('article') ?? request('id'));
-      $digPub = app(DigitalPublicationRepository::class)->getById(request('digitalPublication'));
+        $item = $this->repository->getById(request('article') ?? request('id'));
+        $digPub = app(DigitalPublicationRepository::class)->getById(request('digitalPublication'));
 
-      return [
+        return [
         'item' => $item,
         'contrastHeader' => false,
         'borderlessHeader' => false,
         'unstickyHeader' => true,
         'bgcolor' => $digPub->bgcolor,
-      ];
+        ];
     }
 }
