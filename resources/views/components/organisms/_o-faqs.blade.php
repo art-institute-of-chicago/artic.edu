@@ -1,7 +1,14 @@
 <div class="f-faqs m-prefooter-section">
     <div class="m-prefooter-section-background">
         <div class="m-prefooter-section-wrapper">
-            <h3 id="faqs" class="faq-header title f-module-title-2">FAQs</h3>
+            @component('components.molecules._m-title-bar')
+                @slot('id', 'faqs')
+                @slot('titleFont', 'faq-header f-module-title-2')
+                @if(isset($headerLinkUrl) && isset($headerLinkLabel))
+                    @slot('links', [['href' => $headerLinkUrl, 'label' => $headerLinkLabel]])
+                @endif
+                FAQs
+            @endcomponent
             <div class="o-accordion" data-behavior="accordion">
                 @foreach ($faqs as $faq)
                 <h3>
