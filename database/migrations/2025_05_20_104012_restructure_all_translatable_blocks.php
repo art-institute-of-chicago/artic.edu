@@ -77,9 +77,16 @@ return new class () extends Migration {
                     foreach ($fields as $field) {
                         if (!empty($block['content'][$field] ?? '')) {
                             $content = $block['content'];
+                            $fieldValue = $content[$field];
+
+                            // Check if the field is already an array (already translated)
+                            if (is_array($fieldValue)) {
+                                continue;
+                            }
+
                             $translatedContent = [
                                 'es' => null,
-                                'en' => $content[$field]
+                                'en' => $fieldValue
                             ];
                             // Update the field in the content array
                             $content[$field] = $translatedContent;
