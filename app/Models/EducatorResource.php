@@ -89,7 +89,45 @@ class EducatorResource extends AbstractModel
 
     public function categories()
     {
-        return $this->belongsToMany('App\Models\ResourceCategory');
+        return $this->belongsToMany('App\Models\ResourceCategory', 'educator_resource_resource_category', 'educator_resource_id');
+    }
+
+    public function getHasFileAttribute()
+    {
+        if ($this->blocks) {
+            $linkBlocks = $this->blocks()->where('type', 'link')->get();
+
+            foreach ($linkBlocks as $linkBlock) {
+                if ($linkBlock->file('attachment')) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function getLocalizedFiles()
+    {
+        if ($this->hasFile) {
+
+            // [WEB-3095] Maybe use config'd locales here?
+            $localizedFiles = [
+                'en' => null,
+                'es' => null
+            ];
+
+            $linkBlocks = $this->blocks()->where('type', 'link')->get();
+
+            foreach ($linkBlocks as $linkBlock) {
+                $localizedFiles['en'] = $linkBlock->file('attachment', 'en') ?? null;
+                $localizedFiles['es'] = $linkBlock->file('attachment', 'es') ?? null;
+            }
+
+            return $localizedFiles;
+        }
+
+        return null;
     }
 
     /**
@@ -107,7 +145,7 @@ class EducatorResource extends AbstractModel
 
     public function getTypeAttribute()
     {
-        return 'educator_resources';
+        return 'educator_resource';
     }
 
     public function getUrlWithoutSlugAttribute()
@@ -115,9 +153,15 @@ class EducatorResource extends AbstractModel
         return route('collection.resources.educator-resources.show', $this->id);
     }
 
-    public function getUrlAttribute()
+    public function getUrlAttribute($locale = null)
     {
-        return url(route('collection.resources.educator-resources.show', $this->id_slug));
+        $url = url(route('collection.resources.educator-resources.show', $this->id_slug));
+
+        if ($locale && $locale !== app()->getLocale()) {
+            $url .= '?locale=' . $locale;
+        }
+
+        return $url;
     }
 
     public function getAdminEditUrlAttribute()
