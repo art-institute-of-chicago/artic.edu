@@ -3,6 +3,8 @@
 namespace App\Presenters;
 
 use App\Libraries\SmartyPants;
+use Illuminate\Support\Str;
+use DomDocument;
 
 abstract class BasePresenter
 {
@@ -25,7 +27,27 @@ abstract class BasePresenter
         }
 
         if (is_string($return)) {
-            return $return ? SmartyPants::defaultTransform($return) : null;
+            if (method_exists($this->entity, 'translatedAttribute') && $this->entity->translatedAttribute($property)) {
+                $translatedField = $this->entity->translatedAttribute($property)->toArray();
+                $return = $this->getLocalizedField($translatedField);
+
+                $oldInternalErrors = libxml_use_internal_errors(true);
+                $dom = new DomDocument();
+                $dom->loadHTML('<?xml encoding="utf-8" ?>' . $return, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+                $content = $dom->saveHTML($dom);
+                $prefix = '<?xml encoding="utf-8" ?>';
+                if (Str::startsWith($content, $prefix)) {
+                    $content = Str::substr($content, Str::length($prefix));
+                }
+
+                libxml_clear_errors();
+                libxml_use_internal_errors($oldInternalErrors);
+
+                return $return ? SmartyPants::defaultTransform($return) : null;
+            } else {
+                return $return ? SmartyPants::defaultTransform($return) : null;
+            }
         }
 
         return $return;
