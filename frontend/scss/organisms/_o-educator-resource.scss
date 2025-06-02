@@ -1,0 +1,64 @@
+.o-educator-resources {
+    .m-header-block {
+        &::before {
+            display: none;
+        }
+
+        padding-top: 0 !important;
+    }
+
+    .m-article-header {
+        min-height: 0;
+    }
+
+    .m-article-header__text {
+        padding: 30px;
+    }
+
+    .m-links-bar__item--primary {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-right: 0;
+        padding-left: 0;
+        padding-bottom: 30px;
+
+        .dropdown__container {
+            width: 28%;
+            padding-right: 24px;
+
+            .dropdown {
+                width: 100%;
+
+                &::before {
+                    display: block;
+                    content: '';
+                    padding-top: 8px;
+                }
+            }
+
+            &::before {
+                display: none;
+            }
+        }
+
+        .checkbox {
+            .f-secondary::before {
+                padding-top: 22px;
+            }
+        }
+    }
+}
+
+.o-educator-resource__body {
+    margin: auto;
+    @include breakpoint('medium') {
+      width: colspan(58, 'medium');
+    }
+    @include breakpoint('large') {
+      width: colspan(38, 'large');
+    }
+    @include breakpoint('xlarge') {
+      width: colspan(38, 'xlarge');
+    }
+}
