@@ -53,7 +53,10 @@
 
 @endphp
 
-<div id="{{ $heading }}" class="m-editorial-block {{ $theme ? 'editorial-block--'.$theme : '' }} {{ $variation ? 'editorial-block--variation-'.$variation : '' }}">
+<div
+    id="{{ StringHelpers::getUtf8Slug($heading) }}"
+    class="m-editorial-block {{ $theme ? 'editorial-block--'.$theme : '' }} {{ $variation ? 'editorial-block--variation-'.$variation : '' }}"
+>
     @switch($variation)
         @case('video')
             <div class="editorial-block__video-wrapper">
