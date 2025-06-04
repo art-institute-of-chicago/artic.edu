@@ -15,6 +15,7 @@ class EventOccurrenceTransformer extends ApiTransformer
             'image_url' => $item->present()->imageUrl() ?? null,
             'image_caption' => $item->hero_caption,
             'is_private' => (bool) $item->is_private,
+            'is_ticketed' => (bool) $item->is_ticketed,
             'location' => $item->location,
             'start_at' => $this->getStartAt($item),
             'end_at' => $this->getEndAt($item),
