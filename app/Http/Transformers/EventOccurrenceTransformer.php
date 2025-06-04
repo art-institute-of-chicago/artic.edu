@@ -16,6 +16,8 @@ class EventOccurrenceTransformer extends ApiTransformer
             'image_caption' => $item->hero_caption,
             'is_private' => (bool) $item->is_private,
             'is_ticketed' => (bool) $item->is_ticketed,
+            'is_sales_button_hidden' => (bool) $item->is_sales_button_hidden,
+            'ticketed_event_id' => (int) $item->ticketedEvent?->first()?->datahub_id ?: null,
             'location' => $item->location,
             'start_at' => $this->getStartAt($item),
             'end_at' => $this->getEndAt($item),
