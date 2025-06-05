@@ -325,22 +325,10 @@
                                                 })->sortBy('position') as $child)
                                                     @component('components.molecules._m-listing----digital-publication-article-entry')
                                                         @slot('href', $child->present()->url)
-                                                        @slot('image', $child->imageFront('grouping_hero') ?? $child->imageFront('hero'))
+                                                        @slot('image', $child->imageFront('hero', 'square'))
                                                         @slot('title', $child->present()->title)
                                                         @slot('title_display', $child->present()->title_display)
                                                         @slot('label', $child->present()->label)
-                                                        @slot('imageSettings', array(
-                                                            'fit' => 'crop',
-                                                            'ratio' => '16:9',
-                                                            'srcset' => array(200,400,600),
-                                                            'sizes' => ImageHelpers::aic_imageSizes(array(
-                                                                'xsmall' => '216px',
-                                                                'small' => '216px',
-                                                                'medium' => '18',
-                                                                'large' => '13',
-                                                                'xlarge' => '13',
-                                                            )),
-                                                        ))
                                                     @endcomponent
                                                 @endforeach
 
