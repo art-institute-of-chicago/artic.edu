@@ -1,16 +1,9 @@
+import { getOffsetTop } from "../../functions/core";
+
 const stickyDigitalPublicationHeader = function(container) {
   const MIN_CONTAINER_HEIGHT = 180; // in px
   const HEADER_IS_STICKY = 's-sticky-digital-publication-header';
   const HEADER_IS_SHRINKING = 's-shrinking-digital-publication-header';
-
-  const getOffsetTop = element => {
-    let offsetTop = 0;
-    while(element) {
-      offsetTop += element.offsetTop;
-      element = element.offsetParent;
-    }
-    return offsetTop;
-  };
 
   const setState = targetState => {
     let classList = document.documentElement.classList;
