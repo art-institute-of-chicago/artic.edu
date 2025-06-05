@@ -1,4 +1,5 @@
 import { setFocusOnTarget, scrollToY, getOffset, triggerCustomEvent } from '@area17/a17-helpers';
+import { getOffsetTop } from '../core';
 
 const anchorLinksScroll = function(container) {
 
@@ -49,7 +50,13 @@ const anchorLinksScroll = function(container) {
     if (window.location.hash) {
       let hash = window.location.hash.replace('#','');
       target = document.getElementById(hash);
-      offsetTarget = getOffset(target).top - 20;
+      offsetTarget = getOffsetTop(target);
+      const headerFeature = document.querySelectorAll('.m-article-header--digital-publication')[0];
+      if (headerFeature) {
+          const headerHeight = headerFeature.getBoundingClientRect().height;
+          // Add the height to the scroll position
+          offsetTarget -= headerHeight + 60;
+      }
     }
     scrollToY({
       el: document,

@@ -1,15 +1,6 @@
+import { getOffsetTop } from "../core"
+
 const headerAwareScroll = function(container) {
-
-    // Function to get the scroll position of an element
-    function getOffsetTop(element) {
-        let offsetTop = 0;
-        while (element) {
-            offsetTop += element.offsetTop;
-            element = element.offsetParent;
-        }
-        return offsetTop;
-    }
-
     // Get the current URL hash
     const hash = window.location.hash;
 
