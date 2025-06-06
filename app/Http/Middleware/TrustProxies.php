@@ -33,20 +33,19 @@ class TrustProxies extends Middleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $ips = Cache::remember('list-cloudfront-ips', 60 * 60, function () {
-            if (Storage::exists('list-cloudfront-ips.json')) {
-                return Storage::get('list-cloudfront-ips.json');
+        $ips = Cache::remember('list-cdn-ips', 60 * 60, function () {
+            if (Storage::exists('list-cdn-ips.json')) {
+                return Storage::get('list-cdn-ips.json');
             }
 
-            return '{"CLOUDFRONT_GLOBAL_IP_LIST": [], "CLOUDFRONT_REGIONAL_EDGE_IP_LIST": []}';
+            return '{"result": {"ipv4_cidrs": []}}';
         });
 
         $ips = json_decode($ips);
 
         $this->proxies = array_merge(
             $this->proxies,
-            $ips->{'CLOUDFRONT_GLOBAL_IP_LIST'},
-            $ips->{'CLOUDFRONT_REGIONAL_EDGE_IP_LIST'}
+            $ips->{'result'}->{'ipv4_cidrs'} ?? [],
         );
 
         array_push($this->proxies, $request->server->get('REMOTE_ADDR'));
