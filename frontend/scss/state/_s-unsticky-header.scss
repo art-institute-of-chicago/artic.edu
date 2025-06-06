@@ -19,6 +19,17 @@ For those times when you just don't want the navigation to get in the way of the
       &:has(a[role="menuitem"][aria-expanded="true"]) {
         position: fixed;
 
+        &:has(.m-notification--header) {
+          & ~ main#content {
+            @include breakpoint('small+') {
+              padding-top: 176px;
+            }
+            @include breakpoint('medium+') {
+              padding-top: 188px;
+            }
+          }
+        }
+
         & ~ main#content {
           @include breakpoint('small+') {
             padding-top: 128px;

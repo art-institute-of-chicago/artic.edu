@@ -1,5 +1,5 @@
 import { triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
-import { mediaQuery } from '../../functions/core';
+import { getOffsetTop, mediaQuery } from '../../functions/core';
 
 const stickySidebar = function(container){
   const isDigitalPublicationArticle = document.documentElement.classList.contains('p-digitalpublicationarticle-show');
@@ -17,15 +17,6 @@ const stickySidebar = function(container){
   let overlayActive = document.documentElement.classList.contains(sidebarOverlayState);
   let savedFocus;
   let savedScroll;
-
-  const getOffsetTop = element => {
-    let offsetTop = 0;
-    while(element) {
-      offsetTop += element.offsetTop;
-      element = element.offsetParent;
-    }
-    return offsetTop;
-  }
 
   function _getPaddingTop(node) {
     let style = window.getComputedStyle(node);

@@ -1140,6 +1140,7 @@
     white-space: normal;
 
     >a:hover {
+      color: $color__white;
       text-decoration: underline !important;
     }
 

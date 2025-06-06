@@ -1,13 +1,6 @@
-const fixedOnScroll = function(container) {
-  const getOffsetTop = element => {
-    let offsetTop = 0;
-    while(element) {
-      offsetTop += element.offsetTop;
-      element = element.offsetParent;
-    }
-    return offsetTop;
-  }
+import { getOffsetTop } from "../../functions/core";
 
+const fixedOnScroll = function(container) {
   let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   let containerHeight = container.offsetHeight;
   let containerTop = getOffsetTop(container) + document.body.scrollTop;
