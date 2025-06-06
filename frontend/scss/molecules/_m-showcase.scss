@@ -331,8 +331,9 @@
         .m-showcase-block__text-wrapper {
             &:not(:has(.showcase-tag + .title)) {
                 .title {
-                    @include untuck();
                     margin-top: 0;
+
+                    @include untuck();
                 }
             }
 
