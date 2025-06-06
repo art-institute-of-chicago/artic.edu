@@ -1,5 +1,5 @@
 import { setFocusOnTarget, scrollToY, getOffset, triggerCustomEvent } from '@area17/a17-helpers';
-import { getOffsetTop } from '../core';
+import { getOffsetTop } from '.';
 
 const anchorLinksScroll = function(container) {
 

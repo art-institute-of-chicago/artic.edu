@@ -84,8 +84,8 @@ const setScrollDirection = function() {
 
       if (topLink.getBoundingClientRect().y <= 0 && !allowTopLink){
         if (articleBody) {
-          let marginTop = parseInt(window.getComputedStyle(articleBody).getPropertyValue('margin-top'), 10);
-          let styling = `margin-top: ${marginTop + topLink.offsetHeight}px !important;`
+          const marginTop = parseInt(window.getComputedStyle(articleBody).getPropertyValue('margin-top'), 10);
+          const styling = `margin-top: ${marginTop + topLink.offsetHeight}px !important;`
           articleBody.style.cssText += styling;
         }
         dE.classList.add('s-allow-top-link');
