@@ -1,6 +1,6 @@
-import { getOffsetTop } from "../core"
+import { getOffsetTop } from '.';
 
-const headerAwareScroll = function(container) {
+const headerAwareScroll = function() {
     // Get the current URL hash
     const hash = window.location.hash;
 
