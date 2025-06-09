@@ -75,9 +75,16 @@ Intended for very simple m-tables..
     }
   }
 
+  &.m-table--l {
+    @include breakpoint('large+') {
+      width: 100% !important;
+    }
+  }
+
   table {
-    width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
   }
 
   caption {
@@ -160,6 +167,10 @@ Intended for very simple m-tables..
     & {
       display: inline-block;
       font-style: normal;
+    }
+
+    a {
+      text-decoration: underline;
     }
   }
 
