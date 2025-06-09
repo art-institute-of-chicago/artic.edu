@@ -53,7 +53,7 @@ return new class () extends Migration {
                 ->get();
 
             foreach ($blocks as $block) {
-                $content = json_decode($block->content, true);
+                $content = is_array($block->content) ? $block->content : json_decode($block->content, true);
 
                 if (isset($content['paragraph'])) {
                     $originalParagraph = $content['paragraph'];
