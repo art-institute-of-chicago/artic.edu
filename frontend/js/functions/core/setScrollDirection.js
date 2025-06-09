@@ -92,7 +92,7 @@ const setScrollDirection = function() {
         allowTopLink = true;
       } else if (sT <= header.offsetHeight && allowTopLink) {
         if (articleBody) {
-          articleBody.style.marginTop = 'unset';
+          articleBody.style.cssText = '';
         }
         dE.classList.remove('s-allow-top-link');
         allowTopLink = false;
