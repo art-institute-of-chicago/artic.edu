@@ -60,7 +60,6 @@ Intended for very simple m-tables..
 
 .m-table {
   overflow-x: auto;
-  table-layout: fixed;
   -webkit-overflow-scrolling: touch;
 
   // mirror default .m-title-bar margins
@@ -77,8 +76,9 @@ Intended for very simple m-tables..
   }
 
   table {
-    width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
   }
 
   caption {
