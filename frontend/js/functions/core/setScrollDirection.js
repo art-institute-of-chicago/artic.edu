@@ -2,6 +2,9 @@ import { triggerCustomEvent } from '@area17/a17-helpers';
 
 const setScrollDirection = function() {
   const dE = document.documentElement;
+  const header = document.getElementsByClassName('g-header')[0];
+  const topLink = document.getElementsByClassName('m-sidebar-toggle')[0];
+  const articleBody = document.getElementsByClassName('o-article__body')[0];
 
   let lastScrollTop = 0;
   let scrollDirection = false;
@@ -79,10 +82,18 @@ const setScrollDirection = function() {
         hideHeader = false;
       }
 
-      if (sT > 500 && !allowTopLink){
+      if (topLink.getBoundingClientRect().y <= 0 && !allowTopLink){
+        if (articleBody) {
+          const marginTop = parseInt(window.getComputedStyle(articleBody).getPropertyValue('margin-top'), 10);
+          const styling = `margin-top: ${marginTop + topLink.offsetHeight}px !important;`
+          articleBody.style.cssText += styling;
+        }
         dE.classList.add('s-allow-top-link');
         allowTopLink = true;
-      } else if (sT <= 500 && allowTopLink) {
+      } else if (sT <= header.offsetHeight && allowTopLink) {
+        if (articleBody) {
+          articleBody.style.cssText = '';
+        }
         dE.classList.remove('s-allow-top-link');
         allowTopLink = false;
       }
