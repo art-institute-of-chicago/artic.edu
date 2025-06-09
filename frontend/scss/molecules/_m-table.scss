@@ -75,6 +75,12 @@ Intended for very simple m-tables..
     }
   }
 
+  &.m-table--l {
+    @include breakpoint('large+') {
+      width: 100% !important;
+    }
+  }
+
   table {
     border-collapse: collapse;
     table-layout: fixed;
