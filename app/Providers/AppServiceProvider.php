@@ -187,6 +187,7 @@ class AppServiceProvider extends ServiceProvider
     public function registerVendorClasses(): void
     {
         $this->app->bind(\A17\Twill\Models\Block::class, \App\Models\Vendor\Block::class);
+        $this->app->bind(\A17\Twill\Repositories\BlockRepository::class, \App\Repositories\BlockRepository::class);
     }
 
     public function registerAliases(): void
