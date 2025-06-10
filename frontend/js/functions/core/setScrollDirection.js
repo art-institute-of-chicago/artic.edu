@@ -82,7 +82,7 @@ const setScrollDirection = function() {
         hideHeader = false;
       }
 
-      if (topLink.getBoundingClientRect().y <= 0 && !allowTopLink){
+      if (topLink && topLink.getBoundingClientRect().y <= 0 && !allowTopLink){
         if (articleBody) {
           const marginTop = parseInt(window.getComputedStyle(articleBody).getPropertyValue('margin-top'), 10);
           const styling = `margin-top: ${marginTop + topLink.offsetHeight}px !important;`
