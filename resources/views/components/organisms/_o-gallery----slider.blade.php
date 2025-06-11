@@ -26,8 +26,7 @@
         <button class="b-drag-scroll__btn-next btn btn--transparent f-buttons arrow-link f-link"><svg class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow--24"></use></svg></button>
     </div>
     <div class="o-gallery__media-wrapper">
-        <div class="o-gallery__media" data-behavior="dragScroll">
-            @component('site.shared._mediaitems')
+      <div class="o-gallery__media" data-behavior="dragScroll"{!! (isset($itemType) && $itemType == 'digital-publication-article') ? ' data-scroll-extended' : '' !!}>            @component('site.shared._mediaitems')
                 @slot('items', $items)
                 @slot('imageSettings', $imageSettings ?? array(
                     'srcset' => array(200,400,600,1000,1500,3000),
