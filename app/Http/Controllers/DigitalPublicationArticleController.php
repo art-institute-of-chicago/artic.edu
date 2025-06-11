@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\DigitalPublicationArticleRepository;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\View;
 
 class DigitalPublicationArticleController extends FrontController
 {
@@ -50,6 +52,7 @@ class DigitalPublicationArticleController extends FrontController
             $this->seo->noindex = true;
         }
 
+        View::share('itemType', Str::slug(title: $item->type));
         return view('site.digitalPublicationArticleDetail', [
             'item' => $item,
             'contrastHeader' => false,
