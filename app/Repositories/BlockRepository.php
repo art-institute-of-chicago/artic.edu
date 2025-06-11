@@ -21,7 +21,7 @@ class BlockRepository extends TwillBlockRepository
         return parent::update($id, $fields);
     }
 
-    private function cleanBlockContent(array $fields): array
+    public function cleanBlockContent(array $fields): array
     {
         // Only clean the content field for blocks
         if (isset($fields['content']) && (is_array($fields['content']) || is_object($fields['content']))) {
@@ -48,7 +48,7 @@ class BlockRepository extends TwillBlockRepository
         return $fields;
     }
 
-    private function cleanNonSubstantialContent(string $content): string
+    public function cleanNonSubstantialContent(string $content): string
     {
         // Trim whitespace
         $content = trim($content);
