@@ -489,7 +489,7 @@ top: -100%;
       & {
         width: max-content;
         max-width: 100%;
-        max-height: 450px;
+        max-height: 600px;
         overflow: hidden !important;
         text-align: left !important;
         background-image: unset !important;
@@ -497,7 +497,7 @@ top: -100%;
 
       img {
         position: relative !important;
-        max-height: 450px !important;
+        max-height: 600px !important;
         width: 100% !important;
         object-fit: contain !important;
         display: block !important;
@@ -746,6 +746,10 @@ Styling related specifically to digital publications
 
       .o-gallery--slider__controls {
         top: 0px !important;
+      }
+
+      &.o-gallery--mosaic > .o-gallery__media {
+        margin-top: 0 !important;
       }
     }
 
