@@ -42,26 +42,33 @@ return [
 
     // Branding
     'branding' => [
-        'digital_publications' => [
-            'colors' => [
-                '#282829',
-                '#422E22',
-                '#284725',
+        'colors' => [
+            'general' => [
                 '#1E3F49',
-                '#1C2454',
-                '#35295A',
-                '#711F2A',
-                '#983820',
-                '#E19E26',
-                '#9D9FA2',
-                '#A39282',
-                '#A1B981',
-                '#75B4BA',
-                '#77A8D5',
-                '#8C8FBE',
-                '#D58FA2',
-                '#EC9E6C',
-                '#F8EB83',
+                '#282829',
+            ],
+            'digital_publications' => [
+                '#1E2753' => 'Darkest Blue',
+                '#1E3D47' => 'Darkest Teal',
+                '#282829' => 'Darkest Gray',
+                '#2D3E23' => 'Darkest Green',
+                '#3A254F' => 'Darkest Purple',
+                '#3F2D22' => 'Darkest Brown',
+                '#620C17' => 'Darkest Red',
+                '#8E351F' => 'Darkest Orange',
+                '#91C8CD' => 'Light Teal',
+                '#A0B8E8' => 'Light Blue',
+                '#ADC47C' => 'Light Green',
+                '#AE96D0' => 'Light Purple',
+                '#C3AEA1' => 'Light Brown',
+                '#C6C3C5' => 'Light Gray',
+                '#CE8D19' => 'Darkest Yellow',
+                '#DF98AC' => 'Light Red',
+                '#FFA66E' => 'Light Orange',
+                '#FFF181' => 'Light Yellow',
+            ],
+            'research_center' => [
+                '#CED8EE',
             ],
         ]
     ],

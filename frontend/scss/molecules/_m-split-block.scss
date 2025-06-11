@@ -40,6 +40,11 @@
 
 }
 
+.m-split-block .o-blocks>h4:not([class*='f-']) {
+  margin-bottom: unset;
+  margin-top: unset;
+}
+
 // Removes baseline adjustments
 .m-split-block p {
 

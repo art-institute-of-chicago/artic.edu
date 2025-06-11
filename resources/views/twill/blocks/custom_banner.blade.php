@@ -1,6 +1,19 @@
 @php
     $currentUrl = explode('/', request()->url());
     $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
+    switch ($type) {
+        case 'Research Center':
+            $pallet = 'research_center';
+            break;
+        default:
+            $pallet = 'general';
+    }
+    $colorCodes = config("aic.branding.colors.$pallet");
+    if (array_is_list($colorCodes)) {
+        $backgroundColors = collect($colorCodes)->mapWithKeys(fn ($hexColor) => [$hexColor => $hexColor])->sort();
+    } else {
+        $backgroundColors = collect($colorCodes)->sort();
+    }
 @endphp
 
 @twillBlockTitle('Custom Banner')

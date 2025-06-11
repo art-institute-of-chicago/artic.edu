@@ -13,7 +13,7 @@ class EventTest extends BaseTestCase
 
     public function test_event_page_displays_events(): void
     {
-        $this->markTestSkipped('Flakey test; revisit to find out why');
+        $this->markTestSkipped('This flakey test occassionally fails');
         $response = $this->get(route('events'));
         $response->assertSee(Event::get()->pluck('title_display')->all());
     }

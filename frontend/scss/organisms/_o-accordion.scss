@@ -17,6 +17,9 @@
       h4 {
         margin-bottom: 12px !important;
       }
+      &:not(:has(h4)) {
+        margin-top: 28px;
+      }
     }
 
     h3 {

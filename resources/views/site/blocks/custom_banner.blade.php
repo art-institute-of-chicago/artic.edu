@@ -1,15 +1,10 @@
 @php
+    $bgType = $block->input('background_type');
+    $bgColor = $block->input('bgcolor');
+    $btnType = $block->input('button_type');
 
-    $bg_type = $block->input('background_type');
-    $btn_type = $block->input('button_type');
-
-    $categories = collect($block->input('categories'))->take(12);
-    $tags = \App\Models\Category::whereIn('id', $categories)->get();
-
-    $link_label = $block->input('link_label');
-    $link_url = $block->input('link_url');
-
-    $heading = $block->input('title');
+    $heading = $block->input('heading');
+    $title = $block->input('title');
     $body = $block->input('body');
 
     $theme = $block->input('theme');
@@ -47,25 +42,20 @@
                 @endcomponent
             </div>
             <div class="button-wrapper">
-                @if ($theme =='editorial' && $variation == 'cloud')
-                    <div class="tag-cloud">
-                        @foreach ($tags as $tag)
-                            <a class="tag f-tag" href="{{ route('articles', ['category' => $tag->id]) }}">{{ $tag->name }}</a>                    
-                        @endforeach
+                @if($btnType == 'mobile_app')
+                    <div class="banner-apps">
+                        <a class="app-store" target=”_blank” href="https://apps.apple.com/us/app/art-institute-of-chicago-app/id1130366814?itsct=apps_box_badge&amp;itscg=30200"><img src="{{FrontendHelpers::revAsset('images/icon_app-store.svg')}}" alt="Download on the App Store"></a>
+                        <a class="google-play" target=”_blank” href='https://play.google.com/store/apps/details?id=edu.artic&hl=en_US&gl=US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src="{{FrontendHelpers::revAsset('images/icon_google-play.svg')}}"/></a>
                     </div>
-                    @if ($link_label && $link_url)
-                        <a class="tag-cloud__link f-tag" href="{{ $link_url }}">{{ $link_label }}
-                            <svg class='icon--arrow'><use xlink:href='#icon--arrow'></use></svg>
-                        </a>
-                    @endif
-                @else
-                    @if($btn_type == 'mobile_app')
-                        <div class="banner-apps">
-                            <a class="app-store" target=”_blank” href="https://apps.apple.com/us/app/art-institute-of-chicago-app/id1130366814?itsct=apps_box_badge&amp;itscg=30200"><img src="{{FrontendHelpers::revAsset('images/icon_app-store.svg')}}" alt="Download on the App Store"></a>
-                            <a class="google-play" target=”_blank” href='https://play.google.com/store/apps/details?id=edu.artic&hl=en_US&gl=US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src="{{FrontendHelpers::revAsset('images/icon_google-play.svg')}}"/></a>
-                        </div>
-                    @endif
-                    @if($btn_type == 'custom')
+                @endif
+                @if($btnType == 'custom')
+                    @component('components.atoms._btn')
+                        @slot('variation', 'primary')
+                        @slot('tag', 'a')
+                        @slot('href', $block->input('button_url'))
+                        {!! SmartyPants::defaultTransform($block->input('button_text')) !!}
+                    @endcomponent
+                    @if($block->input('second_button_url'))
                         @component('components.atoms._btn')
                             @slot('variation', 'primary')
                             @slot('tag', 'a')

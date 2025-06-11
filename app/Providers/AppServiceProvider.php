@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -146,6 +147,62 @@ class AppServiceProvider extends ServiceProvider
                 }
             };
         });
+    }
+
+    /*
+     * Usage:
+     *   app('debug')->log(class_basename(get_called_class()), $key, true);
+     *   app('debug')->getOutput();
+     */
+    public function registerDebugMethod(): void
+    {
+        $this->app->singleton('debug', function () {
+            return new class () {
+                private $output = [];
+
+                public function log($class, $field, $mutator = false)
+                {
+                    $class = $class . ($mutator ? ' as mutator' : '');
+
+                    if (!isset($this->output[$class])) {
+                        $this->output[$class] = [];
+                    }
+
+                    if (!in_array($field, $this->output[$class])) {
+                        $this->output[$class][] = $field;
+                    }
+                }
+
+                public function getOutput()
+                {
+                    return $this->output;
+                }
+            };
+        });
+    }
+
+    public function registerVendorClasses(): void
+    {
+        $this->app->bind(\A17\Twill\Models\Block::class, \App\Models\Vendor\Block::class);
+        $this->app->bind(\A17\Twill\Repositories\BlockRepository::class, \App\Repositories\BlockRepository::class);
+    }
+
+    public function registerAliases(): void
+    {
+        $loader = AliasLoader::getInstance();
+
+        $loader->alias('DamsImageService', \App\Facades\DamsImageServiceFacade::class);
+        $loader->alias('EmbedConverter', \App\Facades\EmbedConverterFacade::class);
+        $loader->alias('SmartyPants', \App\Libraries\SmartyPants::class);
+        $loader->alias('FrontendHelpers', \App\Helpers\FrontendHelpers::class);
+        $loader->alias('BlockHelpers', \App\Helpers\BlockHelpers::class);
+        $loader->alias('ColorHelpers', \App\Helpers\ColorHelpers::class);
+        $loader->alias('DateHelpers', \App\Helpers\DateHelpers::class);
+        $loader->alias('ImageHelpers', \App\Helpers\ImageHelpers::class);
+        $loader->alias('NavHelpers', \App\Helpers\NavHelpers::class);
+        $loader->alias('UrlHelpers', \App\Helpers\UrlHelpers::class);
+        $loader->alias('QueryHelpers', \App\Helpers\QueryHelpers::class);
+        $loader->alias('StringHelpers', \App\Helpers\StringHelpers::class);
     }
 
     /**
