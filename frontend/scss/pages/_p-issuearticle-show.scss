@@ -739,6 +739,16 @@ Styling related specifically to digital publications
   }
 
   .o-article__body.o-blocks>.o-gallery {
+    &:first-child {
+      .o-gallery__title {
+        margin-top: 15px !important;
+      }
+
+      .o-gallery--slider__controls {
+        top: 0px !important;
+      }
+    }
+
     >.o-gallery__media-wrapper {
       margin: 0 !important;
     }
