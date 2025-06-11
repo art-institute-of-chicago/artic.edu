@@ -33,7 +33,7 @@ class BlockRepository extends TwillBlockRepository
 
                     foreach ($nestedContent as $langKey => $langValue) {
                         if (is_string($langValue) && preg_match('/<[^>]+>/', $langValue)) {
-                            $cleanedValue = $this->cleanNonSubstantialContent($langValue);
+                            $cleanedValue = $this->cleanInsubstantialContent($langValue);
                             $nestedContent[$langKey] = $cleanedValue;
                         }
                     }
@@ -48,7 +48,7 @@ class BlockRepository extends TwillBlockRepository
         return $fields;
     }
 
-    public function cleanNonSubstantialContent(string $content): string
+    public function cleanInsubstantialContent(string $content): string
     {
         // Trim whitespace
         $content = trim($content);
@@ -58,29 +58,15 @@ class BlockRepository extends TwillBlockRepository
             return '';
         }
 
-        // Remove empty paragraphs with just breaks or softbreaks
-        $content = preg_replace('/<p>\s*<br[^>]*>\s*<\/p>/', '', $content);
-        $content = preg_replace('/<p>\s*<br[^>]*class=["\']softbreak["\'][^>]*>\s*<\/p>/', '', $content);
-        $content = preg_replace('/<p>\s*<\/p>/', '', $content);
+        // Remove all types of empty/whitespace-only paragraphs
+        $content = preg_replace('/<p>\s*(<br[^>]*>)?\s*<\/p>/', '', $content);
 
-        // Check if there's substantial content left
-        $strippedContent = preg_replace('/<p>\s*(<br[^>]*>)?\s*<\/p>/', '', $content);
-        $strippedContent = preg_replace('/<br[^>]*>/', '', $strippedContent);
-        $strippedContent = preg_replace('/<div[^>]*>\s*<\/div>/', '', $strippedContent);
-        $strippedContent = trim(strip_tags($strippedContent));
-
-        // If no substantial content remains, return empty string
-        if (empty($strippedContent)) {
-            return '';
-        }
-
-        // Clean up trailing softbreak paragraphs at the end
+        // Remove trailing softbreak paragraphs
         $content = preg_replace('/(<p>\s*<br[^>]*class=["\']softbreak["\'][^>]*>\s*<\/p>\s*)+$/', '', $content);
 
-        // Final trim
-        $content = trim($content);
+        // Check if substantial content remains
+        $stripped = trim(strip_tags(preg_replace('/<br[^>]*>|<div[^>]*>\s*<\/div>/', '', $content)));
 
-        // Return cleaned content or empty string if nothing substantial
-        return empty($content) ? '' : $content;
+        return empty($stripped) ? '' : trim($content);
     }
 }

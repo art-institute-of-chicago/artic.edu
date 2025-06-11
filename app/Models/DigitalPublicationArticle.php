@@ -162,6 +162,11 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         return join('/', [$this->id, $this->getSlug()]);
     }
 
+    public function getTypeAttribute()
+    {
+        return 'digital_publication_article';
+    }
+
     public function getUrlAttribute()
     {
         return $this->present()->getCanonicalUrl();
