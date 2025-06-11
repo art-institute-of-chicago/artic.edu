@@ -14,7 +14,64 @@ const dragScroll = function(container) {
 
   const percentOfContainerToScrollPerClick = 0.5;
 
+  function _extendParentToViewport() {
+    const hasAttribute = container.hasAttribute('data-scroll-extended');
+
+    if (hasAttribute) {
+      const parent = container.parentElement;
+      const parentRect = parent.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const distanceToRightEdge = viewportWidth - parentRect.left;
+
+      // Set the parent width to extend to viewport edge
+      parent.style.width = `${distanceToRightEdge}px`;
+
+      return distanceToRightEdge;
+    }
+
+    return container.clientWidth;
+  }
+
+  function _adjustLastChildMargin() {
+    const hasAttribute = container.hasAttribute('data-scroll-extended');
+
+    if (hasAttribute) {
+      const children = container.children;
+
+      if (children.length > 1) {
+        const firstChild = children[0];
+        const lastChild = children[children.length - 1];
+
+        // Get the width of the first child including margins
+        const firstChildStyles = getComputedStyle(firstChild);
+        const firstChildWidth = firstChild.offsetWidth;
+        const firstChildMarginLeft = parseFloat(firstChildStyles.marginLeft) || 0;
+        const firstChildMarginRight = parseFloat(firstChildStyles.marginRight) || 0;
+        const totalFirstChildWidth = firstChildWidth + firstChildMarginLeft + firstChildMarginRight;
+
+        // Set margin-right on last child to match first child's total width
+        lastChild.style.marginRight = `${totalFirstChildWidth}px`;
+
+        return totalFirstChildWidth;
+      }
+    }
+
+    return 0;
+  }
+
+  function _getEffectiveWidth() {
+    const hasAttribute = container.hasAttribute('data-scroll-extended');
+    const effectiveWidth = hasAttribute ?
+      container.parentElement.clientWidth :
+      container.clientWidth;
+
+    return effectiveWidth;
+  }
+
   function _wideEnoughToScroll() {
+    _extendParentToViewport();
+    _adjustLastChildMargin();
+
     allow = allowedOnce || container.scrollWidth > container.clientWidth;
     if (allow) {
       container.classList.add('s-scrollable');
@@ -144,7 +201,8 @@ const dragScroll = function(container) {
         }
       }
 
-      if (container.clientWidth + lastScrollLeft >= container.scrollWidth){
+      const effectiveWidth = _getEffectiveWidth();
+      if (effectiveWidth + lastScrollLeft >= container.scrollWidth){
         container.parentElement.classList.add('s-scroll-end');
         if (nextBtnEl) {
           nextBtnEl.disabled = true;
@@ -159,17 +217,23 @@ const dragScroll = function(container) {
   }
 
   function _scrollPrev(event) {
+    const effectiveWidth = _getEffectiveWidth();
+    const scrollAmount = effectiveWidth * percentOfContainerToScrollPerClick;
+
     container.scrollTo({
       top: 0,
-      left: Math.max(container.scrollLeft - container.clientWidth * percentOfContainerToScrollPerClick, 0),
+      left: Math.max(container.scrollLeft - scrollAmount, 0),
       behavior: 'smooth',
     });
   }
 
   function _scrollNext(event) {
+    const effectiveWidth = _getEffectiveWidth();
+    const scrollAmount = effectiveWidth * percentOfContainerToScrollPerClick;
+
     container.scrollTo({
       top: 0,
-      left: Math.min(container.scrollLeft + container.clientWidth * percentOfContainerToScrollPerClick, container.scrollWidth),
+      left: Math.min(container.scrollLeft + scrollAmount, container.scrollWidth),
       behavior: 'smooth',
     });
   }
@@ -181,6 +245,11 @@ const dragScroll = function(container) {
     window.addEventListener('mouseup', _mouseUp, false);
     window.addEventListener('mousemove', _mouseMove, false);
     window.addEventListener('resized', _wideEnoughToScroll, false);
+
+    window.addEventListener('resize', function() {
+      _extendParentToViewport();
+      _adjustLastChildMargin();
+    }, false);
 
     // @see `lazyLoad` in @area17/a17-helpers
     imgChildEls = container.querySelectorAll('img,iframe');
@@ -220,13 +289,19 @@ const dragScroll = function(container) {
     window.removeEventListener('mouseup', _mouseUp);
     window.removeEventListener('mousemove', _mouseMove);
     window.removeEventListener('resized', _wideEnoughToScroll);
+    window.removeEventListener('resize', _extendParentToViewport);
 
     for (let i = 0; i < imgChildEls.length; i++) {
       imgChildEls[i].removeEventListener('load', _wideEnoughToScroll);
     }
 
-    prevBtnEl.removeEventListener('click', _scrollPrev);
-    nextBtnEl.removeEventListener('click', _scrollNext);
+    if (prevBtnEl) {
+      prevBtnEl.removeEventListener('click', _scrollPrev);
+    }
+
+    if (nextBtnEl) {
+      nextBtnEl.removeEventListener('click', _scrollNext);
+    }
 
     // Remove properties of this behavior
     A17.Helpers.purgeProperties(this);
