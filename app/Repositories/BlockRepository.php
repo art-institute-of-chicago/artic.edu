@@ -33,7 +33,7 @@ class BlockRepository extends TwillBlockRepository
 
                     foreach ($nestedContent as $langKey => $langValue) {
                         if (is_string($langValue) && preg_match('/<[^>]+>/', $langValue)) {
-                            $cleanedValue = $this->cleanNonSubstantialContent($langValue);
+                            $cleanedValue = $this->cleanInsubstantialContent($langValue);
                             $nestedContent[$langKey] = $cleanedValue;
                         }
                     }
@@ -48,7 +48,7 @@ class BlockRepository extends TwillBlockRepository
         return $fields;
     }
 
-    public function cleanNonSubstantialContent(string $content): string
+    private function cleanInsubstantialContent(string $content): string
     {
         // Trim whitespace
         $content = trim($content);
