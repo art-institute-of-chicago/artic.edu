@@ -10,16 +10,17 @@
     $theme = $block->input('theme');
     $variation = $block->input('variation');
 
+
 @endphp
 <div class="m-custom-banner-block {{ $theme ? 'custom-banner-block--'.$theme : '' }} {{ $variation ? 'custom-banner-block--variation-'.$variation : '' }}">
     <span class="hr"></span>
     <div class="content-wrapper">
         <div class="background-wrapper">
-            @if($bg_type == 'background_color')
+            @if($bgType == 'background_color')
                 <div class="background_color" {{ $block->input('bgcolor') ? 'style="background-color: ' . $block->input('bgcolor') . '"' : '' }}></div>
             @endif
 
-            @if($bg_type == 'background_image')
+            @if($bgType == 'background_image')
                 @component('components.atoms._img')
                     @slot('image', $block->imageAsArray('image', 'desktop'))
                     @slot('settings', $imageSettings ?? '')
