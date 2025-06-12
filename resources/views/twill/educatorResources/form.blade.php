@@ -38,7 +38,7 @@
     />
 
     <x-twill::files
-        name='file'
+        name='pdf'
         label='PDF download'
         note='Upload a .pdf file'
         :translated='true'
