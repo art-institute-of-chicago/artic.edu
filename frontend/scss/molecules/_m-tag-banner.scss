@@ -1,0 +1,162 @@
+.m-tag-banner-block {
+  border-top: 1px solid $color__black--20;
+  margin-top: 50px;
+  padding-top: 50px;
+
+  .content-wrapper {
+    display: flex;
+    height: fit-content !important;
+    position: relative;
+    width: 100%;
+
+    @include breakpoint('medium-') {
+      height: 300px;
+    }
+  }
+
+  .background-wrapper {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+
+    &::before {
+      background: $color__cold-white;
+      bottom: 0;
+      content: "";
+      display: block;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .background_color {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .body-wrapper {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    height: unset;
+    justify-content: space-between;
+    left: 0;
+    margin: auto;
+    padding: 56px;
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    @include breakpoint('medium-') {
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 50px;
+    }
+
+    @include breakpoint('xsmall') {
+      padding: 30px;
+    }
+  }
+
+  .text-wrapper {
+    align-self: baseline;
+
+    .tag-banner-title {
+      color: $color__black--90 !important;
+      font-family: $sans-serif-font--loaded;
+      font-size: 21px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      line-height: 28px;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    .tag-banner-body {
+      color: $color__black--90 !important;
+      display: block;
+      font-family: $serif-font--loaded;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: -0.005em;
+      line-height: 28px;
+      margin-right: 20px;
+      margin-top: 20px;
+      text-align: left;
+
+      &::before {
+        padding: 16px 0 0 0 !important;
+      }
+    }
+  }
+
+  .tag-wrapper {
+    .m-tag-banner {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .tag {
+        background-color: $color__white;
+        border-radius: 2px;
+        border: 1px solid $color__black--20;
+        color: $color__black;
+        font-family: $sans-serif-font--loaded;
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.14em;
+        line-height: 16px;
+        margin: 6px;
+        padding: 6px 12px;
+      }
+    }
+  }
+
+  &.tag-banner-block--educator-resources {
+    .body-wrapper {
+      padding: 56px 0;
+    }
+
+    .background-wrapper {
+      &::before {
+        background: transparent !important;
+      }
+    }
+  }
+
+  &.tag-banner-block--variation-categories {
+    @include breakpoint('medium-') {
+      .m-tag-banner {
+        display: none;
+      }
+    }
+
+    .tag-banner-link {
+      color: $color__rules--brand;
+      display: block;
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 0.0001em;
+      line-height: 28px;
+      margin: auto;
+      padding-top: 17px;
+      text-align: center;
+      text-transform: none;
+      white-space: nowrap;
+    }
+  }
+}

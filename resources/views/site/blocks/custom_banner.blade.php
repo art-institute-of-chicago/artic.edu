@@ -3,17 +3,15 @@
     $bgColor = $block->input('bgcolor');
     $btnType = $block->input('button_type');
 
-    $heading = $block->input('heading');
+    $heading = $block->present()->input('heading');
     $title = $block->input('title');
     $body = $block->input('body');
 
     $theme = $block->input('theme');
     $variation = $block->input('variation');
 
-
 @endphp
 <div class="m-custom-banner-block {{ $theme ? 'custom-banner-block--'.$theme : '' }} {{ $variation ? 'custom-banner-block--variation-'.$variation : '' }}">
-    <span class="hr"></span>
     <div class="content-wrapper">
         <div class="background-wrapper">
             @if($bgType == 'background_color')
@@ -42,7 +40,7 @@
                 @component('components.atoms._title')
                     @slot('font', 'f-headline-editorial')
                     @slot('variation', 'custom-banner-title')
-                    @slot('title', $heading)
+                    @slot('title', $title)
                 @endcomponent
 
                 @component('components.atoms._title')
