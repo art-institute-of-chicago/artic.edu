@@ -1,44 +1,37 @@
-@php
-  $files = $item->getLocalizedFiles();
-@endphp
-
 @extends('layouts.app')
 
 @section('content')
 
 <article class="o-educator-resource">
 
-    {{-- @component('components.molecules._m-article-header')
+    @component('components.molecules._m-article-header')
         @slot('headerType', 'generic')
         @slot('breadcrumb', $breadcrumb ?? null)
-    @endcomponent --}}
+    @endcomponent
 
     <div class="o-educator-resource__body">
       <h1 class="title f-headline">{{$item->present()->title}}</h1>
-      <p>{!! $item->present()->listing_description !!}</p>
+      <div class="intro">{!! $item->present()->listing_description !!}</div>
+
+        @if ((request()->getDefaultLocale() == 'en' && empty(request('locale'))) && $item->file('pdf', 'en'))
+          <div class="m-show__secondary-action__links">
+              <a class="btn f-buttons f-tertiary" href="{{$item->file('pdf', 'en')}}" download="{{Str::slug($item->title) . '.pdf'}}">Download (.pdf)</a>
+              <a class="f-link f-tertiary" target="_blank" href="{{$item->file('pdf', 'en')}}">Preview <svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
+              <a class="f-link" data-behavior="sharePage">Share <svg class="icon--share--24"><use xlink:href="#icon--share--24"></use></svg></a>
+          </div>
+        @endif
+        @if ((request('locale') == 'es' || request()->getDefaultLocale() == 'es') && $item->file('pdf', 'es'))
+          <div class="m-show__secondary-action__links">
+            <a class="btn f-buttons f-tertiary" href="{{$item->file('pdf', 'es')}}" download="{{Str::slug($item->title) . '.pdf'}}">Download (.pdf)</a>
+            <a class="f-link" target="_blank" href="{{$item->file('pdf', 'es')}}">Preview <svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
+            <a class="f-link" data-behavior="sharePage">Share <svg class="icon--share--24"><use xlink:href="#icon--share--24"></use></svg></a>
+          </div>
+        @endif
 
       <div class="o-blocks">
         {!! $item->renderBlocks() !!}
       </div>
 
-                  @if (isset($files['en']))
-                <div class="m-listing__secondary-action__links">
-                    <span class="f-secondary">English:</span>
-                    <a class="f-link f-tertiary" href="{{$item->url}}">View</a>
-                    @if (isset($files['en']) && $files['en'])
-                        <a class="f-link f-tertiary" href="{{$files['en']}}" download>Download</a>
-                    @endif
-                </div>
-            @endif
-            @if ($item->hasTranslation('es'))
-                <div class="m-listing__secondary-action__links">
-                    <span class="f-secondary">Español:</span>
-                    <a class="f-link f-tertiary" href="{{$item->getUrlAttribute('es')}}">View</a>
-                    @if (isset($files['es']) && $files['es'])
-                        <a class="f-link f-tertiary" href="{{$files['es']}}" download>Download</a>
-                    @endif
-                </div>
-            @endif
     </div>
 
 </article>

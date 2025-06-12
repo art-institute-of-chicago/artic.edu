@@ -41,20 +41,26 @@ class EducatorResourcesController extends BaseScopedController
         $items = EducatorResource::published()->get();
 
         $contentOptions = ResourceCategory::where('type', 'content')
-        ->get()
-        ->map(function ($category) {
-            return [
+          ->get()
+          ->map(function ($category) {
+              return [
                 'label' => $category->name,
-                'value' => Str::kebab(Str::lower($category->name))
-            ];
-        });
+                'active' => null,
+                'ajaxScrollTarget' => null,
+                'id' => null,
+                'data-button-value' => Str::kebab(Str::lower($category->name))
+              ];
+          });
 
         $audienceOptions = ResourceCategory::where('type', 'audience')
             ->get()
             ->map(function ($category) {
                 return [
-                    'label' => $category->name,
-                    'value' => Str::kebab(Str::lower($category->name))
+                  'label' => $category->name,
+                  'active' => null,
+                  'ajaxScrollTarget' => null,
+                  'id' => null,
+                  'data-button-value' => Str::kebab(Str::lower($category->name))
                 ];
             });
 
@@ -62,23 +68,33 @@ class EducatorResourcesController extends BaseScopedController
             ->get()
             ->map(function ($category) {
                 return [
-                    'label' => $category->name,
-                    'value' => Str::kebab(Str::lower($category->name))
+                  'label' => $category->name,
+                  'active' => null,
+                  'ajaxScrollTarget' => null,
+                  'id' => null,
+                  'data-button-value' => Str::kebab(Str::lower($category->name))
                 ];
             });
 
-        $landingPage = LandingPage::where('type_id', collect(LandingPage::TYPES)->search('Educator Resources'))->first() ?? null;
 
         $crumbs = [
-            [
-                'label' => $landingPage ? $landingPage->title : 'Educator Resources',
-                'href' => $landingPage ? $landingPage->getUrl() : '/educator-resources'
-            ],
             [
                 'label' => 'Educator Resources',
                 'href' => ''
             ]
         ];
+
+        $landingPage = LandingPage::where('type_id', collect(LandingPage::TYPES)->search('Educator Resources'))->first() ?? null;
+
+        if ($landingPage) {
+          array_unshift(
+            $crumbs,
+            [
+                'label' => $landingPage->title,
+                'href' => $landingPage->getUrl()
+            ]
+          );
+        }
 
         $view_data = [
             'title' => 'Educator Resources',
@@ -112,10 +128,28 @@ class EducatorResourcesController extends BaseScopedController
         $this->seo->setImage($item->imageFront('listing'));
 
         $crumbs = [
-            ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Educator Resources', 'href' => route('collection.resources.educator-resources')],
-            ['label' => $item->title, 'href' => '']
+            [
+                'label' => 'Educator Resources',
+                'href' => '/educator-resources'
+            ],
+            [
+                'label' => $item->title,
+                'href' => ''
+            ]
         ];
+
+
+        $landingPage = LandingPage::where('type_id', collect(LandingPage::TYPES)->search('Educator Resources'))->first() ?? null;
+
+        if ($landingPage) {
+          array_unshift(
+            $crumbs,
+            [
+                'label' => $landingPage->title,
+                'href' => $landingPage->getUrl()
+            ]
+          );
+        }
 
         return view('site.educatorResources.show', [
             'borderlessHeader' => !(empty($item->imageFront('banner'))),
