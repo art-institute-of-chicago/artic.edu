@@ -1,6 +1,5 @@
 @php
     $itemCategories = isset($item) && isset($item->categories) ? collect($item->categories->pluck('name'))->values() : collect([]);
-    $files = $item->getLocalizedFiles();
 @endphp
 
 <{{ $tag ?? 'li' }}
@@ -76,23 +75,23 @@
             @endif
         </div>
     </a>
-    @if ($files && (isset($isIndex) && $isIndex))
+    @if ($item->file('pdf') && (isset($isIndex) && $isIndex))
         <div class="m-listing__secondary-actions">
-            @if (isset($files['en']))
+            @if ($item->file('pdf', 'en'))
                 <div class="m-listing__secondary-action__links">
                     <span class="f-secondary">English:</span>
                     <a class="f-link f-tertiary" href="{{$item->url}}">View</a>
-                    @if (isset($files['en']) && $files['en'])
-                        <a class="f-link f-tertiary" href="{{$files['en']}}" download>Download</a>
+                    @if ($item->file('pdf', 'en'))
+                        <a class="f-link f-tertiary" href="{{$item->file('pdf', 'en')}}" download={{$item->title . '.pdf'}}>Download</a>
                     @endif
                 </div>
             @endif
-            @if ($item->hasTranslation('es'))
+            @if ($item->file('pdf', 'es'))
                 <div class="m-listing__secondary-action__links">
                     <span class="f-secondary">Español:</span>
-                    <a class="f-link f-tertiary" href="{{$item->getUrlAttribute('es')}}">View</a>
-                    @if (isset($files['es']) && $files['es'])
-                        <a class="f-link f-tertiary" href="{{$files['es']}}" download>Download</a>
+                    <a class="f-link f-tertiary" href="{{$item->url . '?locale=es'}}">View</a>
+                    @if ($item->file('pdf', 'es'))
+                        <a class="f-link f-tertiary" href="{{$item->file('pdf', 'es')}}" download={{$item->title . '.pdf'}}>Download</a>
                     @endif
                 </div>
             @endif

@@ -87,47 +87,11 @@ class EducatorResource extends AbstractModel
         ],
     ];
 
+    public $filesParams = ['pdf'];
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\ResourceCategory', 'educator_resource_resource_category', 'educator_resource_id');
-    }
-
-    public function getHasFileAttribute()
-    {
-        if ($this->blocks) {
-            $linkBlocks = $this->blocks()->where('type', 'link')->get();
-
-            foreach ($linkBlocks as $linkBlock) {
-                if ($linkBlock->file('attachment')) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public function getLocalizedFiles()
-    {
-        if ($this->hasFile) {
-
-            // [WEB-3095] Maybe use config'd locales here?
-            $localizedFiles = [
-                'en' => null,
-                'es' => null
-            ];
-
-            $linkBlocks = $this->blocks()->where('type', 'link')->get();
-
-            foreach ($linkBlocks as $linkBlock) {
-                $localizedFiles['en'] = $linkBlock->file('attachment', 'en') ?? null;
-                $localizedFiles['es'] = $linkBlock->file('attachment', 'es') ?? null;
-            }
-
-            return $localizedFiles;
-        }
-
-        return null;
     }
 
     /**
