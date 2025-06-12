@@ -50,15 +50,69 @@
     }
 }
 
-.o-educator-resource__body {
-    margin: auto;
-    @include breakpoint('medium') {
-      width: colspan(58, 'medium');
+.o-educator-resource {
+
+    @include breakpoint('small-') {
+      .m-article-header {
+        display: none
+      }
+
+      .o-educator-resource__body {
+        padding-top: 32px;
+      }
     }
-    @include breakpoint('large') {
-      width: colspan(38, 'large');
-    }
-    @include breakpoint('xlarge') {
-      width: colspan(38, 'xlarge');
-    }
+
+  .o-educator-resource__body {
+      margin: auto;
+      @include breakpoint('medium') {
+        width: colspan(58, 'medium');
+      }
+      @include breakpoint('large') {
+        width: colspan(38, 'large');
+      }
+      @include breakpoint('xlarge') {
+        width: colspan(38, 'xlarge');
+      }
+
+      .title {
+        font-size: 38px;
+        font-weight: 300;
+        line-height: 44px;
+      }
+
+      .intro {
+        * {
+          margin-top: 24px;
+          font-size: 28px;
+          font-family: $serif-font;
+          font-weight: 300;
+          line-height: 36px;
+          padding-bottom: 40px;
+        }
+      }
+
+      .m-show__secondary-action__links {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+
+        > * {
+          padding-left: 27px;
+          padding-right: 27px;
+          margin-right: 12px;
+          min-width: 110px;
+
+          &:not(.btn) {
+            color: $color__red--100;
+          }
+        }
+      }
+
+      .o-blocks {
+        padding-top: 56px;
+        margin-top: 56px;
+        border-top: 1px solid $color__black--20 !important;
+      }
+  }
+
 }
