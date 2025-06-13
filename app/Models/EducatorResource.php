@@ -87,9 +87,11 @@ class EducatorResource extends AbstractModel
         ],
     ];
 
+    public $filesParams = ['pdf'];
+
     public function categories()
     {
-        return $this->belongsToMany('App\Models\ResourceCategory');
+        return $this->belongsToMany('App\Models\ResourceCategory', 'educator_resource_resource_category', 'educator_resource_id');
     }
 
     /**
@@ -107,7 +109,7 @@ class EducatorResource extends AbstractModel
 
     public function getTypeAttribute()
     {
-        return 'educator_resources';
+        return 'educator_resource';
     }
 
     public function getUrlWithoutSlugAttribute()
@@ -115,9 +117,15 @@ class EducatorResource extends AbstractModel
         return route('collection.resources.educator-resources.show', $this->id);
     }
 
-    public function getUrlAttribute()
+    public function getUrlAttribute($locale = null)
     {
-        return url(route('collection.resources.educator-resources.show', $this->id_slug));
+        $url = url(route('collection.resources.educator-resources.show', $this->id_slug));
+
+        if ($locale && $locale !== app()->getLocale()) {
+            $url .= '?locale=' . $locale;
+        }
+
+        return $url;
     }
 
     public function getAdminEditUrlAttribute()
