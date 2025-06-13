@@ -87,13 +87,13 @@ class EducatorResourcesController extends BaseScopedController
         $landingPage = LandingPage::where('type_id', collect(LandingPage::TYPES)->search('Educator Resources'))->first() ?? null;
 
         if ($landingPage) {
-          array_unshift(
-            $crumbs,
-            [
+            array_unshift(
+                $crumbs,
+                [
                 'label' => $landingPage->title,
                 'href' => $landingPage->getUrl()
-            ]
-          );
+                ]
+            );
         }
 
         $view_data = [
@@ -142,13 +142,13 @@ class EducatorResourcesController extends BaseScopedController
         $landingPage = LandingPage::where('type_id', collect(LandingPage::TYPES)->search('Educator Resources'))->first() ?? null;
 
         if ($landingPage) {
-          array_unshift(
-            $crumbs,
-            [
+            array_unshift(
+                $crumbs,
+                [
                 'label' => $landingPage->title,
                 'href' => $landingPage->getUrl()
-            ]
-          );
+                ]
+            );
         }
 
         return view('site.educatorResources.show', [
