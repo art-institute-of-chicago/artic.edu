@@ -36,7 +36,7 @@ class GeneratePdfsOne extends GeneratePdfs
                     return 1;
                 }
 
-                $this->call('cache:invalidate-cloudfront', [
+                $this->call('cache:invalidate-cdn', [
                     'urls' => [
                         $model->pdf_download_path,
                     ],
