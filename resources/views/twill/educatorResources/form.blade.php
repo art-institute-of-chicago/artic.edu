@@ -37,6 +37,13 @@
         :translated='true'
     />
 
+    <x-twill::files
+        name='pdf'
+        label='PDF download'
+        note='Upload a .pdf file'
+        :translated='true'
+    />
+
     <x-twill::multi-select
         name='categories'
         label='Categories'

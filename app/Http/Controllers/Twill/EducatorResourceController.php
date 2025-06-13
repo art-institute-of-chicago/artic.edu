@@ -14,11 +14,12 @@ class EducatorResourceController extends BaseController
 
     protected function formData($request)
     {
-        $baseUrl = config('app.url') . '/collection/resources/educator-resources/';
+        $item = $this->repository->getById(request('educatorResource') ?? request('id'));
+        $baseUrl = config('app.url') . '/educator-resources/' . $item->id . '/';
 
         return [
             'categoriesList' => app(ResourceCategoryRepository::class)->listAll('name'),
-            'baseUrl' => $baseUrl,
+            'baseUrl' => $baseUrl
         ];
     }
 
