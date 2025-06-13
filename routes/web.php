@@ -78,8 +78,8 @@ Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPubli
 Route::get('/collection/research_resources', [ResearchController::class, 'index'])->name('collection.research_resources');
 
 // Collection Resources Educator Resources
-Route::get('/learn-with-us/educators/tools-for-my-classroom/resource-finder', [EducatorResourcesController::class, 'index'])->name('collection.resources.educator-resources');
-Route::get('/collection/resources/educator-resources/{id}', [EducatorResourcesController::class, 'show'])->name('collection.resources.educator-resources.show');
+Route::get('/educator-resources', [EducatorResourcesController::class, 'index'])->name('collection.resources.educator-resources');
+Route::get('/educator-resources/{id}/{slug?}', [EducatorResourcesController::class, 'show'])->name('collection.resources.educator-resources.show');
 
 // Newsletter subscription
 Route::post('/subscribe', [SubscribeController::class, 'store'])->name('subscribe');

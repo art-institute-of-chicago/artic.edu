@@ -119,3 +119,24 @@
   position: relative;
   top: -1px;
 }
+
+.m-filters__dropdown-down-arrow {
+
+  .dropdown__trigger {
+    padding-right: 8px;
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .icon--arrow {
+    margin-left: auto;
+    transform: rotate(90deg);
+    transform-origin: 8px 8px;
+  }
+}
