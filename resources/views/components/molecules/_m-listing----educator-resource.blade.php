@@ -75,26 +75,45 @@
             @endif
         </div>
     </a>
-    @if ($item->file('pdf') && (isset($isIndex) && $isIndex))
-        <div class="m-listing__secondary-actions">
-            @if ($item->file('pdf', 'en'))
-                <div class="m-listing__secondary-action__links">
-                    <span class="f-secondary">English:</span>
-                    <a class="f-link f-tertiary" href="{{$item->url}}">View</a>
-                    @if ($item->file('pdf', 'en'))
-                        <a class="f-link f-tertiary" href="{{$item->file('pdf', 'en')}}" download={{$item->title . '.pdf'}}>Download</a>
-                    @endif
-                </div>
-            @endif
-            @if ($item->file('pdf', 'es'))
-                <div class="m-listing__secondary-action__links">
-                    <span class="f-secondary">Español:</span>
-                    <a class="f-link f-tertiary" href="{{$item->url . '?locale=es'}}">View</a>
-                    @if ($item->file('pdf', 'es'))
-                        <a class="f-link f-tertiary" href="{{$item->file('pdf', 'es')}}" download={{$item->title . '.pdf'}}>Download</a>
-                    @endif
-                </div>
-            @endif
-        </div>
+    @if ((isset($isIndex) && $isIndex))
+        @php
+            // Check if we have any content for either English or Spanish
+            $hasEnglishContent = $item->hasActiveTranslation('en') || $item->file('pdf', 'en');
+            $hasSpanishContent = $item->hasActiveTranslation('es') || $item->file('pdf', 'es');
+        @endphp
+
+        @if ($hasEnglishContent || $hasSpanishContent)
+            <div class="m-listing__secondary-actions">
+
+                @if ($hasEnglishContent)
+                    <div class="m-listing__secondary-action__links">
+                        <span class="f-secondary">English:</span>
+
+                        @if ($item->hasActiveTranslation('en'))
+                            <a class="f-link f-tertiary" href="{{ $item->url }}">View</a>
+                        @endif
+
+                        @if ($item->file('pdf', 'en'))
+                            <a class="f-link f-tertiary" href="{{ $item->file('pdf', 'en') }}" download="{{ $item->title . '.pdf' }}">Download</a>
+                        @endif
+                    </div>
+                @endif
+
+                @if ($hasSpanishContent)
+                    <div class="m-listing__secondary-action__links">
+                        <span class="f-secondary">Español:</span>
+
+                        @if ($item->hasActiveTranslation('es'))
+                            <a class="f-link f-tertiary" href="{{ $item->url . '?locale=es' }}">View</a>
+                        @endif
+
+                        @if ($item->file('pdf', 'es'))
+                            <a class="f-link f-tertiary" href="{{ $item->file('pdf', 'es') }}" download="{{ $item->title . '.pdf' }}">Download</a>
+                        @endif
+                    </div>
+                @endif
+
+            </div>
+        @endif
     @endif
 </{{ $tag ?? 'li' }}>
