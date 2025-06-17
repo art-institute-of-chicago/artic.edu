@@ -1,10 +1,9 @@
+// dynamicFilterCheckbox.js
 import { triggerCustomEvent } from '@area17/a17-helpers';
 import generateComponentId from '../../functions/core/generateComponentId';
 
 const dynamicFilterCheckbox = function(container) {
-
   const id = generateComponentId();
-
   container.setAttribute("data-filter-id", id);
 
   let initialized = false;
@@ -62,11 +61,11 @@ const dynamicFilterCheckbox = function(container) {
 
   function _filterRegister() {
     triggerCustomEvent(document, 'filter:register', {
-        id: id,
-        parameter: filterType,
-        value: checkboxValue,
-        label: filterLabel,
-        persist: isPersistent
+      id: id,
+      parameter: filterType,
+      value: checkboxValue,
+      label: filterLabel,
+      persist: isPersistent
     });
   }
 
@@ -123,6 +122,15 @@ const dynamicFilterCheckbox = function(container) {
       }
     });
 
+    // ADD: Listen for clear events to reset checkbox
+    document.addEventListener('filter:cleared', function(event) {
+      // Reset checkbox to default state when clearing happens
+      // Do this silently without triggering updates
+      isChecked = false;
+      container.classList.remove('s-checked');
+      container.classList.remove('s-active');
+    });
+
     initialized = true;
   }
 
@@ -132,6 +140,7 @@ const dynamicFilterCheckbox = function(container) {
     document.removeEventListener('filter:updated', resetFilter);
     document.removeEventListener('filter:castUpdate', null);
     document.removeEventListener('filter:clearPersistent', null);
+    document.removeEventListener('filter:cleared', null);
   };
 
   this.init = function() {

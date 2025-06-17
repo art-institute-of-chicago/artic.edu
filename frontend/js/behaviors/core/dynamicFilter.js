@@ -1,4 +1,3 @@
-// dynamicFilter.js
 import { forEach, triggerCustomEvent } from "@area17/a17-helpers";
 import getStringSimilarity from '../../functions/core/getStringSimilarity';
 
@@ -10,6 +9,7 @@ const dynamicFilter = function(container) {
   let registeredParameters = [];
   let noResultsElement = null;
   let castParameters = [];
+  let isClearing = false;
 
   // Check if the container has persistence enabled
   const isPersistenceEnabled = container.hasAttribute('data-filter-persist');
@@ -20,11 +20,82 @@ const dynamicFilter = function(container) {
     }
   }
 
+  function getVisibleItemsCount() {
+    if (!listingItems.length) return { visible: 0, total: 0 };
+
+    const visibleItems = Array.from(listingItems).filter(item =>
+      item.style.display !== 'none'
+    );
+
+    return {
+      visible: visibleItems.length,
+      total: listingItems.length
+    };
+  }
+
+  function clearFilters() {
+    console.log('Clearing all filters');
+
+    // Set clearing flag to prevent components from interfering
+    isClearing = true;
+
+    const url = new URL(window.location.href);
+    const systemParams = ['page', 'filter', 'clear', 'count', 'pageItemLimit', 'totalPages'];
+
+    registeredParameters.forEach(param => {
+      if (systemParams.includes(param.parameter)) return;
+
+      url.searchParams.delete(param.parameter);
+      if (param.label && param.label !== param.parameter) {
+        url.searchParams.delete(param.label);
+      }
+    });
+
+    // Also clear any remaining filter-related parameters that might exist
+    // This handles cases where the URL might have extra parameters
+    const allParams = Array.from(url.searchParams.keys());
+    allParams.forEach(key => {
+      if (!systemParams.includes(key) && key !== 'filter') {
+        // Check if this parameter belongs to any registered component
+        const belongsToComponent = registeredParameters.some(param =>
+          param.parameter === key || param.label === key
+        );
+        if (belongsToComponent) {
+          url.searchParams.delete(key);
+        }
+      }
+    });
+
+    // Reset parameters
+    url.searchParams.set('filter', 'all');
+    url.searchParams.set('page', '1');
+    window.history.pushState({}, '', url);
+
+    console.log('URL after clear:', url.href);
+
+    const activeFilters = getActiveFiltersFromURL();
+    applyAllFilters(activeFilters);
+
+    triggerCustomEvent(document, 'filter:cleared');
+
+    setTimeout(() => {
+      initFromUrl();
+      isClearing = false;
+    }, 10);
+
+    console.log('Filter clearing complete');
+  }
+
   function initFromUrl() {
     const url = new URL(window.location.href);
     let urlModified = false;
 
-    if (!url.searchParams.get('filter')) {
+    // Check if we have any filter-related parameters (either 'filter' or any registered labels)
+    const hasFilterParameters = url.searchParams.get('filter') ||
+      registeredParameters.some(item => url.searchParams.get(item.label));
+
+    // Only add filter=all if there are no filter-related parameters at all
+    if (!hasFilterParameters) {
       url.searchParams.set('filter', 'all');
       urlModified = true;
     }
@@ -49,10 +120,6 @@ const dynamicFilter = function(container) {
           originalLabel: true,
           persist: item.persist || false
         });
-
-        url.searchParams.set(item.parameter, labelValue);
-        url.searchParams.delete(item.label);
-        urlModified = true;
       }
       else if (paramValue !== null && paramValue !== undefined) {
         castParameters.push({
@@ -65,6 +132,7 @@ const dynamicFilter = function(container) {
       }
     });
 
+    // Only modify URL to clean up if we added missing parameters
     if (urlModified) {
       window.history.pushState({}, '', url);
     }
@@ -234,20 +302,16 @@ const dynamicFilter = function(container) {
   function getActiveFiltersFromURL() {
     const url = new URL(window.location.href);
     const activeFilters = [];
+    const processedComponents = new Set(); // Track which components we've already processed
 
     registeredParameters.forEach(item => {
-      const paramValue = url.searchParams.get(item.parameter);
-      if (paramValue) {
-        activeFilters.push({
-          parameter: item.parameter,
-          value: paramValue,
-          label: item.label,
-          persist: item.persist || false
-        });
-      }
+      if (processedComponents.has(item.id)) return;
 
+      const paramValue = url.searchParams.get(item.parameter);
       const labelValue = url.searchParams.get(item.label);
-      if (labelValue) {
+
+      // Prioritize label value over parameter value if both exist
+      if (labelValue !== null && labelValue !== undefined) {
         activeFilters.push({
           parameter: item.parameter,
           value: labelValue,
@@ -255,6 +319,15 @@ const dynamicFilter = function(container) {
           originalLabel: true,
           persist: item.persist || false
         });
+        processedComponents.add(item.id);
+      } else if (paramValue !== null && paramValue !== undefined) {
+        activeFilters.push({
+          parameter: item.parameter,
+          value: paramValue,
+          label: item.label,
+          persist: item.persist || false
+        });
+        processedComponents.add(item.id);
       }
     });
 
@@ -297,6 +370,14 @@ const dynamicFilter = function(container) {
     }
 
     checkForNoResults();
+
+    // Update count displays
+    const counts = getVisibleItemsCount();
+    triggerCustomEvent(document, 'filter:countUpdate', {
+      target: 'all',
+      visible: counts.visible,
+      total: counts.total
+    });
   }
 
   function checkForNoResults() {
@@ -476,6 +557,13 @@ const dynamicFilter = function(container) {
                   return item.style.display !== 'none';
               });
               const pageItemLimit = registeredParameters.find(item => item.parameter === "pageItemLimit");
+
+              // Add null check for pageItemLimit
+              if (!pageItemLimit || !pageItemLimit.value) {
+                console.warn('pageItemLimit not found in registered parameters, skipping pagination');
+                return;
+              }
+
               const pages = Math.ceil(itemsArray.length / pageItemLimit.value);
 
               const currentPage = parseInt(value) || 1;
@@ -491,13 +579,17 @@ const dynamicFilter = function(container) {
               }
 
               const totalPages = registeredParameters.find(item => item.parameter === "totalPages");
-              totalPages.value = pages;
 
-              triggerCustomEvent(document, "filter:castUpdate", {
-                id: totalPages.id,
-                parameter: totalPages.parameter,
-                value: totalPages.value
-              });
+              // Add null check for totalPages
+              if (totalPages) {
+                totalPages.value = pages;
+
+                triggerCustomEvent(document, "filter:castUpdate", {
+                  id: totalPages.id,
+                  parameter: totalPages.parameter,
+                  value: totalPages.value
+                });
+              }
           }
           break;
 
@@ -515,9 +607,33 @@ const dynamicFilter = function(container) {
 
     document.addEventListener('filter:updated', function(event) {
       console.log(event);
+
+      if (isClearing) {
+        console.log('Ignoring filter update during clearing process');
+        return;
+      }
+
       const useLabel = event.data.useLabel || false;
       const forceClear = event.data.forceClear || false;
       updateFilter(event.data.parameter, event.data.value, useLabel, event.data.label ?? null, forceClear);
+    });
+
+    document.addEventListener('filter:clear', function(event) {
+      clearFilters();
+    });
+
+    document.addEventListener('filter:requestCount', function(event) {
+      if (event.data && event.data.callback) {
+        const counts = getVisibleItemsCount();
+        event.data.callback(counts);
+      }
+    });
+
+    document.addEventListener('filter:requestActiveFilters', function(event) {
+      if (event.data && event.data.callback) {
+        const activeFilters = getActiveFiltersFromURL();
+        event.data.callback(activeFilters);
+      }
     });
   }
 
@@ -539,6 +655,12 @@ const dynamicFilter = function(container) {
       persist: shouldPersist
     });
 
+    console.log('Registered component:', {
+      id: filterData.id,
+      parameter: filterData.parameter,
+      persist: shouldPersist
+    });
+
     setup = true;
   }
 
@@ -552,6 +674,9 @@ const dynamicFilter = function(container) {
     window.removeEventListener('popstate', initFromUrl);
     document.removeEventListener('filter:register', _registerComponent);
     document.removeEventListener('filter:updated', updateFilter);
+    document.removeEventListener('filter:clear', null);
+    document.removeEventListener('filter:requestCount', null);
+    document.removeEventListener('filter:requestActiveFilters', null);
 
     if (noResultsElement && noResultsElement.parentNode) {
       noResultsElement.parentNode.removeChild(noResultsElement);
