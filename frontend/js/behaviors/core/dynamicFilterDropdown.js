@@ -13,8 +13,11 @@ const dynamicFilterDropdown = function(container) {
   let initialTitle = '';
   let initialized = false;
 
-  // Fallback to data-behavior if data-filter-behavior is not present
   const filterType = container.getAttribute('data-filter-behavior');
+  const filterLabel = container.getAttribute('data-filter-label');
+  const filterPersist = container.getAttribute('data-filter-persist') ?? null;
+  const isPersistent = filterPersist !== null; // Check if this component should persist
+
   const trigger = container.querySelector('.dropdown__trigger');
   const button = trigger ? trigger.querySelector('button') : null;
   const dropdownList = container.querySelector('.dropdown__list');
@@ -40,32 +43,51 @@ const dynamicFilterDropdown = function(container) {
       let selectedValue = selectedItem.closest('[data-button-value]').getAttribute('data-button-value');
       let value = null;
 
+      let wasToggedOff = false;
+
       dropdownItems.forEach(item => {
         if ((item.getAttribute('data-button-value') === selectedValue) && selectedItem.closest('[data-button-value]').classList.contains('s-active')) {
+          // Toggle off behavior - remove active state
           item.classList.remove('s-active');
+          wasToggedOff = true;
         } else if (item.getAttribute('data-button-value') === selectedValue) {
+          // Activate this item
           item.classList.add('s-active');
           value = selectedValue;
         } else {
+          // Always remove other active states for single selection behavior
           item.classList.remove('s-active');
         }
       });
 
       if (value) {
         trigger.classList.add('s-active');
+
         updateButtonText(selectedItem.innerText);
+
+        // Send filter update event with persistence information
         triggerCustomEvent(document, 'filter:updated', {
           id: id,
           parameter: filterType,
-          value: value
+          value: value,
+          label: filterLabel,
+          useLabel: !!filterLabel,
+          persist: isPersistent
         });
       } else {
+        // Handle clearing the filter - this happens when toggling off
         trigger.classList.remove('s-active');
         updateButtonText(initialTitle);
+
+        // Send filter update event with null value and force clear flag if explicitly toggled off
         triggerCustomEvent(document, 'filter:updated', {
           id: id,
           parameter: filterType,
-          value: null
+          value: null,
+          label: filterLabel,
+          useLabel: !!filterLabel,
+          persist: isPersistent,
+          forceClear: wasToggedOff // Indicate this was an explicit toggle off
         });
       }
 
@@ -79,12 +101,16 @@ const dynamicFilterDropdown = function(container) {
   }
 
   function resetFilter(event) {
-    if (event.data.parameter === filterType && event.data.id !== id){
-      updateButtonText(initialTitle);
-      trigger.classList.remove('s-active');
-      dropdownItems.forEach(item => {
-        item.classList.remove('s-active');
-      });
+    // For persistent filters, don't reset unless explicitly told to
+    if (event.data.parameter === filterType && event.data.id !== id) {
+      if (!isPersistent) {
+        updateButtonText(initialTitle);
+        trigger.classList.remove('s-active');
+        dropdownItems.forEach(item => {
+          item.classList.remove('s-active');
+        });
+      }
+      // Persistent filters maintain their state when other filters change
     }
   }
 
@@ -117,13 +143,39 @@ const dynamicFilterDropdown = function(container) {
   }
 
   function _filterRegister() {
+    // Register with persistence information
     triggerCustomEvent(document, 'filter:register', {
         id: id,
         parameter: filterType,
         values: Array.from(dropdownItems).map(item =>
           item.getAttribute('data-button-value')
-        )
-    })
+        ),
+        label: filterLabel,
+        persist: isPersistent // Include persistence flag
+    });
+  }
+
+  // Add method to manually clear persistent filter
+  function clearPersistentFilter() {
+    if (isPersistent) {
+      dropdownItems.forEach(item => {
+        item.classList.remove('s-active');
+      });
+
+      trigger.classList.remove('s-active');
+      updateButtonText(initialTitle);
+
+      // Send clear event
+      triggerCustomEvent(document, 'filter:updated', {
+        id: id,
+        parameter: filterType,
+        value: null,
+        label: filterLabel,
+        useLabel: !!filterLabel,
+        persist: isPersistent,
+        forceClear: true // Flag to indicate this is a forced clear
+      });
+    }
   }
 
   function _init() {
@@ -132,17 +184,47 @@ const dynamicFilterDropdown = function(container) {
 
     document.addEventListener('filter:init', _filterRegister);
     document.addEventListener('filter:updated', resetFilter);
+
+    // Add event listener for clearing persistent filters
+    document.addEventListener('filter:clearPersistent', function(event) {
+      if (event.data && event.data.id === id) {
+        clearPersistentFilter();
+      }
+    });
+
     document.addEventListener('filter:castUpdate', function(event) {
-      if (event.data.id === id) {
+      // Only process cast updates that are meant for this specific filter instance
+      if (event.data.id !== id) {
+        return; // Exit early if this update isn't for this filter
+      }
 
-        const matchingItem = Array.from(dropdownItems).find(item =>
-          item.getAttribute('data-button-value') === event.data.value
-        );
+      // Handle cast updates, which may come from either parameter or label
+      const isLabelCast = event.data.isLabelCast;
 
-        if (matchingItem) {
-          trigger.classList.add('s-active');
-          matchingItem.classList.add('s-active');
-          updateButtonText(matchingItem.innerText);
+      const matchingItem = Array.from(dropdownItems).find(item =>
+        item.getAttribute('data-button-value') === event.data.value
+      );
+
+      if (matchingItem) {
+        trigger.classList.add('s-active');
+
+        // All dropdowns use single selection behavior within themselves
+        dropdownItems.forEach(item => {
+          if (item === matchingItem) {
+            item.classList.add('s-active');
+          } else {
+            item.classList.remove('s-active');
+          }
+        });
+        updateButtonText(matchingItem.innerText);
+      } else if (event.data.value === null || event.data.value === '') {
+        // Handle clearing the filter - only clear if not persistent or forced
+        if (!isPersistent || event.data.forceClear) {
+          dropdownItems.forEach(item => {
+            item.classList.remove('s-active');
+          });
+          trigger.classList.remove('s-active');
+          updateButtonText(initialTitle);
         }
       }
     });
@@ -154,13 +236,30 @@ const dynamicFilterDropdown = function(container) {
     container.removeEventListener('click', _clicks);
     document.removeEventListener('filter:init', _filterRegister);
     document.removeEventListener('filter:updated', resetFilter);
-    document.removeEventListener('filter:castUpdate')
+    document.removeEventListener('filter:castUpdate', null);
+    document.removeEventListener('filter:clearPersistent', null);
   };
 
   this.init = function() {
     if (!initialized) {
       _init();
     }
+  };
+
+  // Expose method to manually clear persistent filters
+  this.clearPersistent = function() {
+    clearPersistentFilter();
+  };
+
+  // Expose method to check if filter is persistent
+  this.isPersistent = function() {
+    return isPersistent;
+  };
+
+  // Expose method to get active values (should only be one for single selection)
+  this.getActiveValues = function() {
+    const activeItems = Array.from(dropdownItems).filter(item => item.classList.contains('s-active'));
+    return activeItems.map(item => item.getAttribute('data-button-value'));
   };
 };
 

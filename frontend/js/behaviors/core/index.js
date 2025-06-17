@@ -69,6 +69,7 @@ export { default as stickyDigitalPublicationHeader } from './stickyDigitalPublic
 export { default as contrastText } from './contrastText';
 export { default as dynamicFilter } from './dynamicFilter';
 export { default as dynamicFilterButton } from './dynamicFilterButton';
+export { default as dynamicFilterCheckbox } from './dynamicFilterCheckbox';
 export { default as dynamicFilterDropdown } from './dynamicFilterDropdown';
 export { default as dynamicFilterPagination } from './dynamicFilterPagination';
 export { default as dynamicFilterSearch } from './dynamicFilterSearch';
