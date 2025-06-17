@@ -49,12 +49,11 @@ const dynamicFilterPagination = function(container) {
       });
     }
     window.requestAnimationFrame(() => {
-        window.scrollTo({
-            top: (document.querySelector('[data-filter-target]').offsetTop - 400),
-            behavior: 'smooth'
-        });
+      window.scrollTo({
+        top: (document.querySelector('[data-filter-target]').offsetTop - 400),
+        behavior: 'smooth'
+      });
     });
-
   }
 
   function _updateFilter(event) {
@@ -115,7 +114,6 @@ const dynamicFilterPagination = function(container) {
 
     // Setting total pages from update
     if ((event.data.id === id[2]) && (event.data.parameter === parameters[2])) {
-
       // Handle different data types for value
       let totalPagesValue = event.data.value;
 
@@ -245,6 +243,30 @@ const dynamicFilterPagination = function(container) {
     document.addEventListener('filter:castUpdate', _updateFilter);
     document.addEventListener('filter:updated', _updateFilter);
     document.addEventListener('filter:init', _filterRegister);
+
+    document.addEventListener('filter:cleared', function(event) {
+      // Reset pagination to page 1 when clearing happens
+      // Do this silently without triggering updates
+      pageNumber = 1;
+
+      // Update visual state to show page 1
+      const currentPageText = container.querySelector('.m-paginator__current-page');
+      if (currentPageText) {
+        currentPageText.textContent = 'Page 1';
+      }
+
+      // Remove active state from all page buttons
+      const allPageButtons = container.querySelectorAll('[data-button-paginate]');
+      allPageButtons.forEach(button => {
+        button.closest('li')?.classList.remove('s-active');
+      });
+
+      // Add active state to page 1 button
+      const page1Button = container.querySelector('[data-button-paginate="1"]');
+      if (page1Button) {
+        page1Button.closest('li')?.classList.add('s-active');
+      }
+    });
   }
 
   this.destroy = function() {
@@ -252,6 +274,7 @@ const dynamicFilterPagination = function(container) {
     document.removeEventListener('filter:init', _filterRegister);
     document.removeEventListener('filter:castUpdate', _updateFilter);
     document.removeEventListener('filter:updated', _updateFilter);
+    document.removeEventListener('filter:cleared', null);
   };
 
   this.init = function() {
