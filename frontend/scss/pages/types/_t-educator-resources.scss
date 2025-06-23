@@ -1,50 +1,52 @@
-.o-grid-block {
-    margin-left: 0 !important;
+.o-educator-resources {
+    .o-grid-block {
+        margin-left: 0 !important;
 
-    .m-title-bar {
-        margin-top: 0;
-        &::before {
-            display: none;
+        .m-title-bar {
+            margin-top: 0;
+            &::before {
+                display: none;
+            }
+            .title {
+                margin-top: -32px;
+                width: 100%;
+            }
         }
-        .title {
-            margin-top: -32px;
+
+        .o-grid-block__title {
+            display: block;
             width: 100%;
-        }
-    }
-
-    .o-grid-block__title {
-        display: block;
-        width: 100%;
-        text-transform: none !important;
-        font-family: $serif-font--loaded;
-        font-size: 38px;
-        letter-spacing: 0 !important;
-        margin-bottom: 18px;
-        line-height: 38px;
-    }
-
-    .o-grid-block__description {
-        display: block;
-        width: 100%;
-        text-transform: none !important;
-        font-family: $sans-serif-font--loaded;
-        color: $color__black--75;
-        font-size: 17px;
-        font-weight: 200;
-        letter-spacing: 0 !important;
-    }
-
-    .hr {
-        border-top: none !important;
-    }
-
-    li.m-listing {
-        &::before {
-            display: none !important;
+            text-transform: none !important;
+            font-family: $serif-font--loaded;
+            font-size: 38px;
+            letter-spacing: 0 !important;
+            margin-bottom: 18px;
+            line-height: 38px;
         }
 
-        &::after {
-            display: none !important;
+        .o-grid-block__description {
+            display: block;
+            width: 100%;
+            text-transform: none !important;
+            font-family: $sans-serif-font--loaded;
+            color: $color__black--75;
+            font-size: 17px;
+            font-weight: 200;
+            letter-spacing: 0 !important;
+        }
+
+        .hr {
+            border-top: none !important;
+        }
+
+        li.m-listing {
+            &::before {
+                display: none !important;
+            }
+
+            &::after {
+                display: none !important;
+            }
         }
     }
 }
