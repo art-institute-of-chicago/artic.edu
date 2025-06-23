@@ -1,10 +1,10 @@
 .o-educator-resources {
     .m-header-block {
+        padding-top: 0 !important;
+
         &::before {
             display: none;
         }
-
-        padding-top: 0 !important;
     }
 
     .m-article-header {
