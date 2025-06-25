@@ -28,7 +28,6 @@ use App\Http\Controllers\MyMuseumTourController;
 use App\Http\Controllers\PressReleasesController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\PrintedPublicationsController;
-use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
@@ -40,8 +39,6 @@ use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
 use App\Models\Slugs\LandingPageSlug;
 
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
-
-Route::get('/today', [RedirectController::class, 'today'])->name('today');
 
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 
