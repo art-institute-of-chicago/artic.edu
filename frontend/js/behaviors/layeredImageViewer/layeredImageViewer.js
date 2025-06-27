@@ -1377,6 +1377,8 @@ const layeredImageViewer = function(container) {
     // Set up resize observer
     setupResizeObserver();
 
+    document.addEventListener('accordion:toggled', updateDimensions);
+
     // Create new IntersectionObserver
     observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1424,6 +1426,8 @@ const layeredImageViewer = function(container) {
       LayeredImageViewer.destroy(container);
       viewer = null;
     }
+
+    document.removeEventListener('accordion:toggled');
 
     // Reset container styles
     container.style.width = '';
