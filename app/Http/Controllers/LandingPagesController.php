@@ -402,7 +402,8 @@ class LandingPagesController extends FrontController
 
             case $types->search('Research Center'):
                 $viewData = [
-                    'subnav' => collect(BlockHelpers::getHeadings($item->blocks)),
+                    'subnav' => collect(BlockHelpers::getHeadings($item->blocks))
+                        ->concat([['label' => 'FAQs', 'target' => '#faqs']]),
                 ];
                 break;
 
