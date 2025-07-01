@@ -1359,6 +1359,11 @@ const layeredImageViewer = function(container) {
       container.style.width = `${width}px`;
       container.style.height = `${height}px`;
       container.style.backgroundColor = '#f5f5f5';
+
+      // Hide the figure element initially
+      if (figure) {
+          figure.style.display = '';
+      }
     }
   };
 
@@ -1439,7 +1444,6 @@ const layeredImageViewer = function(container) {
 
   const setupResizeObserver = () => {
     if (resizeObserver) return;
-
     resizeObserver = new ResizeObserver(() => {
       updateDimensions();
     });
@@ -1489,7 +1493,7 @@ const layeredImageViewer = function(container) {
   };
 
   this.init = function() {
-    this.setupObserver();
+      this.setupObserver();
   };
 
   this.destroy = function() {
@@ -1538,5 +1542,4 @@ const layeredImageViewer = function(container) {
     }
   };
 };
-
 export default layeredImageViewer;
