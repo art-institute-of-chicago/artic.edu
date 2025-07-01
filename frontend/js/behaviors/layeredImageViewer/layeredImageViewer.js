@@ -1339,110 +1339,147 @@ const layeredImageViewer = function(container) {
       const maxWidth = container.dataset.maxWidth || parentWidth;
       const width = Math.min(parentWidth, maxWidth);
 
-      // Get aspect ratio from data attribute or compute from existing dimensions
-      const aspect = container.dataset.aspect ||
-                     (containerDimensions ? containerDimensions.aspect : 1);
+      const figure = container.querySelector('figure');
+      let height = 1;
+      let aspect = 0;
+
+      // Calculate dimensions based on figure if available
+      if (figure) {
+        // Get aspect ratio from figure dimensions or data attribute
+        const figureWidth = figure.offsetWidth || figure.naturalWidth || width;
+        const figureHeight = figure.offsetHeight || figure.naturalHeight;
+
+        if (figureHeight && figureWidth) {
+          aspect = figureWidth / figureHeight;
+          height = width / aspect;
+        } else {
+          // Fallback to data attribute or previous dimensions
+          aspect = parseFloat(container.dataset.aspect ||
+              (containerDimensions ? containerDimensions.aspect : 1));
+          height = width / aspect;
+        }
+      } else {
+        // Fallback when no figure element
+        aspect = parseFloat(container.dataset.aspect ||
+            (containerDimensions ? containerDimensions.aspect : 1));
+        height = width / aspect;
+      }
 
       // Store updated dimensions
       containerDimensions = {
-        width: width,
-        height: width / parseFloat(aspect),
-        aspect: parseFloat(aspect)
+          width,
+          height,
+          aspect
       };
 
       container.style.width = `${containerDimensions.width}px`;
-      container.style.maxHeight = `${containerDimensions.height}px`;
+      container.style.height = `${containerDimensions.height}px`;
       container.style.backgroundColor = '#f5f5f5';
+
+      // Hide the figure element initially
+      if (figure) {
+          figure.style.display = '';
+      }
     }
   };
 
   // Function to set up resize observer
   const setupResizeObserver = () => {
     if (resizeObserver) return;
-
     resizeObserver = new ResizeObserver(() => {
       // Update dimensions when parent container resizes
       updateDimensions();
     });
-
     // Observe the parent element to detect layout changes
     resizeObserver.observe(container.parentElement);
   };
 
   // Function to check if element is visible in viewport
   this.setupObserver = function() {
-    // Set initial dimensions
-    updateDimensions();
+      // Set initial dimensions
+      updateDimensions();
+      // Set up resize observer
+      setupResizeObserver();
+      document.addEventListener('accordion:toggled', updateDimensions);
 
-    // Set up resize observer
-    setupResizeObserver();
+      // Create new IntersectionObserver
+      observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              const figure = container.querySelector('figure');
 
-    document.addEventListener('accordion:toggled', updateDimensions);
-
-    // Create new IntersectionObserver
-    observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        // If container is visible and viewer doesn't exist
-        if (entry.isIntersecting && !viewer) {
-          console.log('Viewer in viewport - initializing');
-          // Initialize viewer with current dimensions
-          viewer = new LayeredImageViewer(container);
-          container.style.backgroundColor = '';
-        }
-        // If container is not visible and viewer exists
-        else if (!entry.isIntersecting && viewer) {
-          console.log('Viewer out of viewport - destroying');
-          LayeredImageViewer.destroy(container);
-          viewer = null;
-          // Reapply dimensions after destruction
-          updateDimensions();
-        }
+              // If container is visible and viewer doesn't exist
+              if (entry.isIntersecting && !viewer) {
+                  // Show the figure element
+                  if (figure) {
+                      figure.style.display = 'block';
+                  }
+                  // Initialize viewer with current dimensions
+                  viewer = new LayeredImageViewer(container);
+                  container.style.backgroundColor = '';
+              }
+              // If container is not visible and viewer exists
+              else if (!entry.isIntersecting && viewer) {
+                  // Hide the figure element
+                  if (figure) {
+                      figure.style.display = '';
+                  }
+                  LayeredImageViewer.destroy(container);
+                  viewer = null;
+                  // Reapply dimensions after destruction
+                  updateDimensions();
+              }
+          });
+      }, {
+          rootMargin: '200px 0px',
+          threshold: 0.01
       });
-    }, {
-      rootMargin: '200px 0px',
-      threshold: 0.01
-    });
-
-    // Start observing the container
-    observer.observe(container);
+      // Start observing the container
+      observer.observe(container);
   };
 
   this.init = function() {
-    this.setupObserver();
+      this.setupObserver();
   };
 
   this.destroy = function() {
-    if (observer) {
-      observer.disconnect();
-      observer = null;
-    }
+      if (observer) {
+          observer.disconnect();
+          observer = null;
+      }
+      if (resizeObserver) {
+          resizeObserver.disconnect();
+          resizeObserver = null;
+      }
+      if (viewer) {
+          LayeredImageViewer.destroy(container);
+          viewer = null;
+      }
+      document.removeEventListener('accordion:toggled');
 
-    if (resizeObserver) {
-      resizeObserver.disconnect();
-      resizeObserver = null;
-    }
+      // Reset container styles
+      container.style.width = '';
+      container.style.height = '';
+      container.style.backgroundColor = '';
 
-    if (viewer) {
-      LayeredImageViewer.destroy(container);
-      viewer = null;
-    }
+      // Reset figure display
+      const figure = container.querySelector('figure');
+      if (figure) {
+          figure.style.display = '';
+      }
 
-    document.removeEventListener('accordion:toggled');
-
-    // Reset container styles
-    container.style.width = '';
-    container.style.height = '';
-    container.style.backgroundColor = '';
-    containerDimensions = null;
+      containerDimensions = null;
   };
 
   // Force initialization
   this.forceInit = function() {
-    if (!viewer) {
-      viewer = new LayeredImageViewer(container);
-      container.style.backgroundColor = '';
-    }
+      if (!viewer) {
+          const figure = container.querySelector('figure');
+          if (figure) {
+              figure.style.display = 'block';
+          }
+          viewer = new LayeredImageViewer(container);
+          container.style.backgroundColor = '';
+      }
   };
 };
-
 export default layeredImageViewer;
