@@ -147,11 +147,11 @@
 
     @formField('block_editor', [
         'blocks' => BlockHelpers::getBlocksForEditor([
+            '360_embed',
+            '360_modal',
             '3d_embed',
             '3d_model',
             '3d_tour',
-            '360_embed',
-            '360_modal',
             'artwork',
             'audio_player',
             'button',
@@ -167,7 +167,6 @@
             'image',
             'image_slider',
             'media_embed',
-            'membership_banner',
             'mirador_embed',
             'mirador_modal',
             'paragraph',
