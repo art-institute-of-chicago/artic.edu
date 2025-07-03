@@ -1350,7 +1350,7 @@ const layeredImageViewer = function(container) {
       } else {
         // LayeredImageViewer not initialized yet - use reasonable default
         const defaultAspect = 3/4; // Default aspect ratio
-        height = Math.min(width * defaultAspect, 650); // Max 600px height
+        height = Math.min(width * defaultAspect, 600); // Max 600px height
         aspect = width / height;
       }
 
@@ -1359,11 +1359,6 @@ const layeredImageViewer = function(container) {
       container.style.width = `${width}px`;
       container.style.height = `${height}px`;
       container.style.backgroundColor = '#f5f5f5';
-
-      // Hide the figure element initially
-      if (figure) {
-          figure.style.display = '';
-      }
     }
   };
 
@@ -1444,6 +1439,7 @@ const layeredImageViewer = function(container) {
 
   const setupResizeObserver = () => {
     if (resizeObserver) return;
+
     resizeObserver = new ResizeObserver(() => {
       updateDimensions();
     });
@@ -1493,7 +1489,7 @@ const layeredImageViewer = function(container) {
   };
 
   this.init = function() {
-      this.setupObserver();
+    this.setupObserver();
   };
 
   this.destroy = function() {
