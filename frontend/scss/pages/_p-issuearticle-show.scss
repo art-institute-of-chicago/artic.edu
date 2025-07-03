@@ -407,7 +407,6 @@ top: -100%;
   .o-layered-image-viewer {
     .m-media.o-blocks__block {
       .m-media__img {
-        max-height: unset !important;
         width: 100% !important;
 
         img {
@@ -444,6 +443,8 @@ top: -100%;
       max-height: unset !important;
       width: 100% !important;
       .m-media__img {
+        max-height: 650px;
+        aspect-ratio: 4 / 3 auto;
         width: 100% !important;
       }
     }
