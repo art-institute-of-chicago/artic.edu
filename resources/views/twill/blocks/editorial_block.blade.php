@@ -427,16 +427,8 @@
             </x-slot>
         </x-twill::formColumns>
 
-        <x-twill::browser
-            name='videos'
-            label='Items'
-            :max='6'
-            :endpoints="[
-                [
-                    'label' => 'Educator Resources',
-                    'value' => '/collection/researchResources/educatorResources/browser?published=true&is_published=true'
-                ]
-            ]"
+        <x-twill::repeater
+          type='media_items'
         />
     </x-twill::formConnectedFields>
 
