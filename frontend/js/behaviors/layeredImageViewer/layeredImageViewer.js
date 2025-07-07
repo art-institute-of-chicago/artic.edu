@@ -1350,7 +1350,7 @@ const layeredImageViewer = function(container) {
       } else {
         // LayeredImageViewer not initialized yet - use reasonable default
         const defaultAspect = 3/4; // Default aspect ratio
-        height = Math.min(width * defaultAspect, 600); // Max 600px height
+        height = Math.min(width * defaultAspect, 650); // Max 600px height
         aspect = width / height;
       }
 
