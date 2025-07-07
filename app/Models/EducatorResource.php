@@ -119,7 +119,7 @@ class EducatorResource extends AbstractModel
 
     public function getUrlAttribute($locale = null)
     {
-        $url = url(route('collection.resources.educator-resources.show', $this->id_slug));
+        $url = url(route('collection.resources.educator-resources.show', [$this->id, $this->slug]));
 
         if ($locale && $locale !== app()->getLocale()) {
             $url .= '?locale=' . $locale;
