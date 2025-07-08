@@ -10,7 +10,7 @@
         if ($theme == 'educator-resources') {
             $tags = \App\Models\ResourceCategory::whereIn('id', $categories)->get()->transform(function ($category) {
                 return (object) [
-                    'url' => route('articles', ['category' => $category->id]), // fix this route for edu resources
+                    'url' =>  '/educator-resources?'.$category->type.'='.Str::lower(Str::slug($category->name)),
                     'label' => $category->name,
                 ];
             });
