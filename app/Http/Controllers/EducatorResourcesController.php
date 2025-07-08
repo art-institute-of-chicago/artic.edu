@@ -36,9 +36,7 @@ class EducatorResourcesController extends BaseScopedController
 
     public function index(Request $request)
     {
-
-
-        $items = EducatorResource::published()->get();
+        $items = EducatorResource::published()->orderBy('publish_start_date', 'desc')->get();
 
         $contentOptions = ResourceCategory::where('type', 'content')
           ->get()
