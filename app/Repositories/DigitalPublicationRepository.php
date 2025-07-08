@@ -49,6 +49,7 @@ class DigitalPublicationRepository extends ModuleRepository
             'breadcrumb' => [],
             'blocks' => null,
             'page' => $item,
+            'showAll' => false,
         ];
     }
 
