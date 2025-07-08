@@ -11,6 +11,10 @@
             'label' => 'Video',
             'value' => '/collection/articlesPublications/videos/browser?published=true&is_published=true'
         ],
+        [
+            'label' => 'Educator Resources',
+            'value' => '/collection/researchResources/educatorResources/browser?published=true&is_published=true'
+        ]
     ];
 
     $params = [
@@ -36,6 +40,10 @@
                     'label' => 'Video',
                     'value' => '/collection/articlesPublications/videos/browser?published=true&is_published=true'
                 ],
+                [
+                    'label' => 'Educator Resources',
+                    'value' => '/collection/researchResources/educatorResources/browser?published=true&is_published=true'
+                ]
             ]"
             :params='$params'
         />
