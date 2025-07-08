@@ -17,7 +17,7 @@ class DigitalPublicationController extends BaseController
     {
         $this->disablePermalink();
         $this->setModuleName('digitalPublications');
-        $this->setPreviewView('site.genericPage.show');
+        $this->setPreviewView('site.digitalPublicationDetail');
     }
 
     public function quickFilters(): QuickFilters
