@@ -1,3 +1,4 @@
+// Index/listing page
 .o-educator-resources {
     .m-header-block {
         padding-top: 0 !important;
@@ -65,7 +66,7 @@
     }
 
     .filter-controls {
-      min-height: 38px;
+      min-height: 48px;
       padding-top: 20px;
       margin-bottom: 56px;
 
@@ -128,7 +129,12 @@
     }
 }
 
+// Detail page
 .o-educator-resource {
+
+  .m-article-header {
+    min-height: 72px;
+  }
 
     @include breakpoint('small-') {
       .m-article-header {
