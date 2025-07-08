@@ -1,55 +1,52 @@
 @php
-    $theme = $block->present()->input('theme');
-    $variation = $block->input('variation');
 
-    $heading = $block->present()->input('heading');
-    $body = $block->present()->input('body');
+  $theme = $block->present()->input('theme');
+  $variation = $block->input('variation');
 
-    $browse_link = $block->present()->input('browse_link') ?? null;
-    $browse_label = $block->present()->input('browse_label') ?? null;
+  $heading = $block->present()->input('heading');
+  $body = $block->present()->input('body');
 
-    $categories = collect($block->present()->input('categories'))->take(12);
-    $tags = \App\Models\Category::whereIn('id', $categories)->get();
+  $browse_link = $block->present()->input('browse_link') ?? null;
+  $browse_label = $block->present()->input('browse_label') ?? null;
 
-    $videos = $block->getRelated('videos');
+  $categories = collect($block->present()->input('categories'))->take(12);
+  $tags = \App\Models\Category::whereIn('id', $categories)->get();
 
-    if ($block->children->isNotEmpty()) {
-        $stories = collect();
-        foreach ($block->children as $child) {
-            if ($child->getRelated('publication_item')->isNotEmpty()) {
-                $childStories = $child->getRelated('publication_item')->map(function ($item) use ($child) {
-                    $item->type = 'augmented';
-                    $item->image = $child->hasImage('listing_image')
-                        ? $child->imageAsArray('listing_image', 'default')
-                        : ($item->hasImage('publications_listing')
-                            ? $item->imageAsArray('publications_listing', 'default')
-                            : $item->imageAsArray('listing', 'listing'));
-                    $item->title = $child->input('title') ?? $item->title;
-                    $item->label = $child->input('label') ?? $item->type;
-                    $item->url_without_slug = $child->input('linkUrl') ?? $item->url_without_slug;
-                    $item->list_description = $child->input('description') ?? $item->list_description;
+  if ($block->children->isNotEmpty()) {
+      $stories = $block->children->flatMap(function ($child) {
+          $relatedItems = $child->getRelated('publication_item')->isNotEmpty()
+              ? $child->getRelated('publication_item')
+              : $child->getRelated('media_item');
 
-                    return $item;
-                });
+          return $relatedItems->isNotEmpty()
+              ? $relatedItems->map(function ($item) use ($child) {
+                  $item->type = 'augmented';
+                  $item->image = $child->hasImage('listing_image')
+                      ? $child->imageAsArray('listing_image', 'default')
+                      : ($item->hasImage('publications_listing')
+                          ? $item->imageAsArray('publications_listing', 'default')
+                          : $item->imageAsArray('listing', 'listing'));
+                  $item->title = $child->input('title') ?? $item->title;
+                  $item->label = $child->input('label') ?? $item->type;
+                  $item->url_without_slug = $child->input('linkUrl') ?? $item->url_without_slug;
+                  $item->list_description = $child->input('description') ?? $item->list_description;
+                  $item->listing_description = $child->input('description') ?? $item->list_description;
+                  return $item;
+              })
+              : collect([(object) [
+                  'type' => 'custom',
+                  'image' => $child->hasImage('listing_image') ? $child->imageAsArray('listing_image') : null,
+                  'title' => $child->input('title') ?? null,
+                  'label' => $child->input('label') ?? null,
+                  'url_without_slug' => $child->input('linkUrl') ?? null,
+                  'list_description' => $child->input('description') ?? null,
+              ]]);
+      });
+  } else {
+      $stories = $block->getRelated('stories');
+  }
 
-            } else {
-                $childStories = collect([
-                    (object) [
-                        'type' => 'custom',
-                        'image' => $child->hasImage('listing_image') ? $child->imageAsArray('listing_image') : null,
-                        'title' => $child->input('title') ?? null,
-                        'label' => $child->input('label') ?? null,
-                        'url_without_slug' => $child->input('linkUrl') ?? null,
-                        'list_description' => $child->input('description') ?? null,
-                    ]
-                ]);
-
-            }
-            $stories = $stories->merge($childStories);
-        }
-    } else {
-        $stories = $block->getRelated('stories');
-    }
+  $videos = (count($block->getRelated('videos')) > 0) ? $block->getRelated('videos') : $stories;
 
 @endphp
 
@@ -166,7 +163,7 @@
                         @else
                             @component('components.molecules._m-listing----stories-listing')
                                 @slot('variation', 'm-listing editorial-block__video')
-                                @slot('showDescription', false)
+                                @slot('showDescription', true)
                                 @slot('isFeatured', false)
                                 @slot('item', $item)
                                 @slot('fullscreen', false)
