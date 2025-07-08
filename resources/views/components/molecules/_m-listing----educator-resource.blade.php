@@ -11,7 +11,7 @@
             return $lower;
         })->values()->implode(',')
     }},{{
-        $item->hasTranslation('es') ? 'es' : ''
+        $item->hasActiveTranslation('es') ? 'es' : ''
     }}"
     data-filter-date="{{
         isset($item) && isset($item->publish_start_date) ? date('d-m-Y', strtotime($item->publish_start_date)) : ''
