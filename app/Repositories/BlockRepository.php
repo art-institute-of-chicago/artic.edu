@@ -48,7 +48,7 @@ class BlockRepository extends TwillBlockRepository
         return $fields;
     }
 
-    private function cleanInsubstantialContent(string $content): string
+    public function cleanInsubstantialContent(string $content): string
     {
         // Trim whitespace
         $content = trim($content);
