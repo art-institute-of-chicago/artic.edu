@@ -321,9 +321,8 @@ Update the colour of any fill/stroke that you want to control with the CSS to `c
 
 The cloud front server caches icons, if you add a new icon, or edit an icon, you may need to:
 
-* open the AWS console
-* head to cloudfront for staging or production
-* create an invalidation for the icons.svg URL (public/dist/icons/icons.svg)
+* head to cloudflare
+* purge the icons.svg URL (public/dist/icons/icons.svg)
 
 ***/
 
@@ -781,4 +780,3 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
   width: 24px;
   height: 24px;
 }
-
