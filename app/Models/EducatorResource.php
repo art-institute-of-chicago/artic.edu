@@ -133,6 +133,11 @@ class EducatorResource extends AbstractModel
         return route('twill.collection.researchResources.educatorResources.edit', $this->id);
     }
 
+    public function hasFileForLocale($role, $locale)
+    {
+        return $this->files()->where('role', $role)->where('locale', $locale)->exists();
+    }
+
     public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);
