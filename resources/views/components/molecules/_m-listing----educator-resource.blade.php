@@ -12,6 +12,8 @@
         })->values()->implode(',')
     }},{{
         $item->hasActiveTranslation('es') ? 'es' : ''
+    }},{{
+        $item->has_media_content ? 'has-media' : ''
     }}"
     data-filter-date="{{
         isset($item) && isset($item->publish_start_date) ? date('d-m-Y', strtotime($item->publish_start_date)) : ''
@@ -20,7 +22,7 @@
         isset($item) && isset($item->title) ? htmlspecialchars($item->title) : ''
     }}"
 >
-    <a href="{!! route(($module ?? 'collection.resources.educator-resources') .'.show', ($routeParameters ?? $item)) !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
+    <a href="{{$item->url}}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @if (!isset($hideImage) || (isset($hideImage) && !($hideImage)))
             <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront) ? ' m-listing__img--video' : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-blur-img' : '' }}>
                 @if (isset($image) || $item->imageFront('hero') || $item->imageFront('listing'))
@@ -49,7 +51,7 @@
                     <span class="default-img"></span>
                 @endif
                 <div class="m-listing__img__overlay" style="display: block">
-                    @if ($item->hasMediaContent)
+                    @if ($item->has_media_content)
                         <svg class="icon--play--{!! (isset($isFeatured) && $isFeatured) ? '64' : '48' !!}">
                             <use xlink:href="#icon--play--{!! (isset($isFeatured) && $isFeatured) ? '64' : '48' !!}"></use>
                         </svg>
@@ -76,16 +78,10 @@
         </div>
     </a>
     @if ((isset($isIndex) && $isIndex))
-        @php
-            // Check if we have any content for either English or Spanish
-            $hasEnglishContent = $item->hasActiveTranslation('en') || $item->file('pdf', 'en');
-            $hasSpanishContent = $item->hasActiveTranslation('es') || $item->file('pdf', 'es');
-        @endphp
-
-        @if ($hasEnglishContent || $hasSpanishContent)
+        @if ($item->hasActiveTranslation('en') || $item->hasActiveTranslation('es'))
             <div class="m-listing__secondary-actions">
 
-                @if ($hasEnglishContent)
+                @if ($item->hasActiveTranslation('en') || $item->hasFileForLocale('pdf', 'en'))
                     <div class="m-listing__secondary-action__links">
                         <span class="f-secondary">English:</span>
 
@@ -93,13 +89,13 @@
                             <a class="f-link f-tertiary" href="{{ $item->url }}">View</a>
                         @endif
 
-                        @if ($item->file('pdf', 'en'))
+                        @if ($item->hasActiveTranslation('en') && $item->hasFileForLocale('pdf', 'en'))
                             <a class="f-link f-tertiary" href="{{ $item->file('pdf', 'en') }}" download="{{ $item->title . '.pdf' }}">Download</a>
                         @endif
                     </div>
                 @endif
 
-                @if ($hasSpanishContent)
+                @if ($item->hasActiveTranslation('es') || $item->hasFileForLocale('pdf', 'es'))
                     <div class="m-listing__secondary-action__links">
                         <span class="f-secondary">Español:</span>
 
@@ -107,7 +103,7 @@
                             <a class="f-link f-tertiary" href="{{ $item->url . '?locale=es' }}">View</a>
                         @endif
 
-                        @if ($item->file('pdf', 'es'))
+                        @if ($item->hasActiveTranslation('es') && $item->hasFileForLocale('pdf', 'es'))
                             <a class="f-link f-tertiary" href="{{ $item->file('pdf', 'es') }}" download="{{ $item->title . '.pdf' }}">Download</a>
                         @endif
                     </div>
