@@ -278,7 +278,7 @@
                 'mirador_embed',
                 'mirador_modal',
                 'mobile_app',
-                'my_museum_tour_grid'
+                'my_museum_tour_grid',
                 'paragraph',
                 'quote',
                 'showcase',
