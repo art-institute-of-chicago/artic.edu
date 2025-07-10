@@ -10,7 +10,7 @@
     @endcomponent
 
     <div class="o-educator-resource__body">
-      <h1 class="title f-headline">{{$item->present()->title}}</h1>
+      <h1 class="title f-headline">{!! $item->present()->title !!}</h1>
       <div class="intro">{!! $item->present()->listing_description !!}</div>
 
         @if ((request()->getDefaultLocale() == 'en' && empty(request('locale'))) && $item->file('pdf', 'en'))
