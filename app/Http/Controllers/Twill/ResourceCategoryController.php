@@ -21,6 +21,14 @@ class ResourceCategoryController extends BaseController
     protected function additionalIndexTableColumns(): TableColumns
     {
         $columns = TableColumns::make();
+
+        $columns->add(
+            Text::make()
+                ->field('position')
+                ->title('Position')
+                ->sortable()
+        );
+
         $columns->add(
             Text::make()
                 ->field('type')
@@ -28,5 +36,10 @@ class ResourceCategoryController extends BaseController
         );
 
         return $columns;
+    }
+
+    protected function indexQuery($query)
+    {
+        return $query->orderBy('position', 'asc');
     }
 }

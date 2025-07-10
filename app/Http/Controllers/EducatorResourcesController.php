@@ -36,11 +36,10 @@ class EducatorResourcesController extends BaseScopedController
 
     public function index(Request $request)
     {
-
-
-        $items = EducatorResource::published()->get();
+        $items = EducatorResource::published()->orderBy('publish_start_date', 'desc')->get();
 
         $contentOptions = ResourceCategory::where('type', 'content')
+          ->orderBy('position')
           ->get()
           ->map(function ($category) {
               return [
@@ -53,28 +52,30 @@ class EducatorResourcesController extends BaseScopedController
           });
 
         $audienceOptions = ResourceCategory::where('type', 'audience')
-            ->get()
-            ->map(function ($category) {
-                return [
-                  'label' => $category->name,
-                  'active' => null,
-                  'ajaxScrollTarget' => null,
-                  'id' => null,
-                  'data-button-value' => Str::kebab(Str::lower($category->name))
-                ];
-            });
+          ->orderBy('position')
+          ->get()
+          ->map(function ($category) {
+              return [
+                'label' => $category->name,
+                'active' => null,
+                'ajaxScrollTarget' => null,
+                'id' => null,
+                'data-button-value' => Str::kebab(Str::lower($category->name))
+              ];
+          });
 
         $topicOptions = ResourceCategory::where('type', 'topic')
-            ->get()
-            ->map(function ($category) {
-                return [
-                  'label' => $category->name,
-                  'active' => null,
-                  'ajaxScrollTarget' => null,
-                  'id' => null,
-                  'data-button-value' => Str::kebab(Str::lower($category->name))
-                ];
-            });
+          ->orderBy('position')
+          ->get()
+          ->map(function ($category) {
+              return [
+                'label' => $category->name,
+                'active' => null,
+                'ajaxScrollTarget' => null,
+                'id' => null,
+                'data-button-value' => Str::kebab(Str::lower($category->name))
+              ];
+          });
 
 
         $crumbs = [
