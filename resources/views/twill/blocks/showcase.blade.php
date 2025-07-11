@@ -23,12 +23,6 @@
 
 @includeIf('twill.blocks.showcase.' . str($type)->slug())
 
-<x-twill::input
-    name='tag'
-    label='Tag'
-    :maxlength='100'
-/>
-
 <x-twill::wysiwyg
     name='title'
     label='Title'

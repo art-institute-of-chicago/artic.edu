@@ -10,6 +10,7 @@
 />
 
 <x-twill::input
-    name='heading'
-    label='Heading'
+    name='tag'
+    label='Tag'
+    :maxlength='100'
 />
