@@ -23,6 +23,20 @@
 
 @includeIf('twill.blocks.showcase.' . str($type)->slug())
 
+<x-twill::wysiwyg
+    name='title'
+    label='Title'
+    :maxlength='100'
+    :required='true'
+    :toolbar-options="[ 'italic' ]"
+/>
+
+<x-twill::wysiwyg
+    name='description'
+    label='Description'
+    :required='true'
+/>
+
 @if (count($mediaTypes) > 1)
     @php
         $options = collect($mediaTypes)->map(function($media) {
