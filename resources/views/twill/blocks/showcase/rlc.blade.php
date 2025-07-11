@@ -23,26 +23,6 @@
 />
 
 <x-twill::input
-    name='tag'
-    label='Tag'
-    :maxlength='100'
-/>
-
-<x-twill::wysiwyg
-    name='title'
-    label='Title'
-    :maxlength='100'
-    :required='true'
-    :toolbar-options="[ 'italic' ]"
-/>
-
-<x-twill::wysiwyg
-    name='description'
-    label='Description'
-    :required='true'
-/>
-
-<x-twill::input
     name='date'
     label='Date'
 />
