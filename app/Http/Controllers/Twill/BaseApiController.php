@@ -242,9 +242,9 @@ class BaseApiController extends ModuleController
             ->title($title);
         if ($this->getIndexOption('edit')) {
             $titleColumn->linkCell(function (TwillModelContract $model) {
-                if ($model->is_augmented) {
+                if ($augmentedModel = $model->getAugmentedModel()) {
                     $action = 'edit';
-                    $id = $model->getAugmentedModel()->id;
+                    $id = $augmentedModel->id;
                 } else {
                     $action = 'augment';
                     $id = $model->id;
