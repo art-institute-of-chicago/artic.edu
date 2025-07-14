@@ -7,9 +7,9 @@ use App\Models\ResourceCategory;
 return new class () extends Migration {
     public function up(): void
     {
-      ResourceCategory::query()->delete();
+        ResourceCategory::query()->delete();
 
-      $resourceCategories = [
+        $resourceCategories = [
           ['name' => 'Student Activities', 'type' => 'category', 'resource_ids' => [151, 150, 149, 148, 144, 143, 123, 121, 114, 110, 109, 107, 105, 101, 99, 40, 34]],
           ['name' => 'Artmaking Activities', 'type' => 'category', 'resource_ids' => [156, 155, 154, 153, 152, 143, 141, 139, 138, 137, 136, 135, 134, 132, 131, 130, 129, 128, 127, 126, 124, 123, 122, 120, 119, 118, 110, 109, 107, 105, 40, 36, 33, 23, 17, 13, 12, 160, 161, 158, 159]],
           ['name' => 'Lessons/Teaching Plans', 'type' => 'category', 'resource_ids' => [125, 123, 122, 120, 119, 118, 117]],
@@ -33,7 +33,7 @@ return new class () extends Migration {
           ['name' => 'Migration/Immigration', 'type' => 'topic', 'resource_ids' => [153, 152, 128, 127, 122, 120, 119, 118, 117, 113, 33, 13, 160, 161, 158]],
           ['name' => 'Activism', 'type' => 'topic', 'resource_ids' => [155, 154, 137, 136, 132, 131, 128, 127, 123, 113, 107, 101, 48, 23, 13, 12, 160, 161]],
           ['name' => 'Woman Artist', 'type' => 'topic', 'resource_ids' => [155, 154, 132, 131, 130, 129, 128, 127, 123, 119, 113, 112, 107, 48, 46, 36, 17, 160, 161]]
-      ];
+        ];
 
         $position = 1;
         foreach ($resourceCategories as $categoryData) {
