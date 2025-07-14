@@ -392,16 +392,8 @@
         :render-for-blocks='true'
         :keep-alive='true'
     >
-        <x-twill::browser
-            name='stories'
-            label="{{ $type == 'Editorial' ? 'Stories' : 'Items' }}"
-            :max='5'
-            :endpoints="[
-                [
-                    'label' => 'Educator Resources',
-                    'value' => '/collection/researchResources/educatorResources/browser?published=true&is_published=true'
-                ]
-            ]"
+        <x-twill::repeater
+          type='educator_resource_items'
         />
     </x-twill::formConnectedFields>
 

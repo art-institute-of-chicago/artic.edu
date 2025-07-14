@@ -162,5 +162,10 @@
           line-height: 38px;
         }
       }
+        .stories-custom-listing {
+          .type.f-tag, .author {
+            display: none !important;
+          }
+        }
     }
-  }
+}

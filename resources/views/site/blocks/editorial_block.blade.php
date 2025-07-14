@@ -14,18 +14,32 @@
 
   if ($block->children->isNotEmpty()) {
       $stories = $block->children->flatMap(function ($child) {
-          $relatedItems = $child->getRelated('publication_item')->isNotEmpty()
-              ? $child->getRelated('publication_item')
-              : $child->getRelated('media_item');
+          $relatedItems = collect(['publication_item', 'media_item', 'educator_resource_item'])
+              ->map(fn($type) => $child->getRelated($type))
+              ->first(fn($items) => $items->isNotEmpty()) ?? collect();
 
           return $relatedItems->isNotEmpty()
               ? $relatedItems->map(function ($item) use ($child) {
                   $item->type = 'augmented';
-                  $item->image = $child->hasImage('listing_image')
-                      ? $child->imageAsArray('listing_image', 'default')
-                      : ($item->hasImage('publications_listing')
-                          ? $item->imageAsArray('publications_listing', 'default')
-                          : $item->imageAsArray('listing', 'listing'));
+                  $getImageFallback = function($item, $child) {
+                      $imageFallbacks = [
+                          ['listing_image', 'default', $child],
+                          ['publications_listing', 'default', $item],
+                          ['listing', 'default', $item],
+                          ['listing', 'listing', $item],
+                          ['hero', 'default', $item],
+                      ];
+
+                      foreach ($imageFallbacks as [$field, $crop, $source]) {
+                          if ($source->hasImage($field)) {
+                              return $source->imageAsArray($field, $crop);
+                          }
+                      }
+
+                      return null;
+                  };
+
+                  $item->image = $getImageFallback($item, $child);
                   $item->title = $child->input('title') ?? $item->title;
                   $item->label = $child->input('label') ?? $item->type;
                   $item->url_without_slug = $child->input('linkUrl') ?? $item->url_without_slug;
