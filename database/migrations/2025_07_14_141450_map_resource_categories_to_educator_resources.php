@@ -50,10 +50,8 @@ return new class () extends Migration {
             foreach ($categoryData['resource_ids'] as $resourceId) {
                 $educatorResource = EducatorResource::find($resourceId);
 
-                if ($educatorResource) {
-                    if (!$educatorResource->categories()->where('resource_category_id', $category->id)->exists()) {
-                        $educatorResource->categories()->attach($category->id);
-                    }
+                if ($educatorResource && !$educatorResource->categories()->where('resource_category_id', $category->id)->exists()) {
+                    $educatorResource->categories()->attach($category->id);
                 }
             }
         }
