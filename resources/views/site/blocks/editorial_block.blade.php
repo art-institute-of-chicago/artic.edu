@@ -153,7 +153,7 @@
             @case($variation == 'video')
                 @if ($theme == 'educator-resources')
                     @foreach ($videos as $item)
-                        @if ($item->has_media_content)
+                        @if (isset($item) && property_exists($item, 'has_media_content') && $item->has_media_content)
                             @component('components.molecules._m-listing----media')
                                 @slot('item', $item)
                                 @slot('fullscreen', true)
