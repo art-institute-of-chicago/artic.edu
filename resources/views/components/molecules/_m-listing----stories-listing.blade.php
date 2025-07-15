@@ -1,7 +1,16 @@
 @if ($item->url_without_slug)
-    <{{ $tag ?? 'li' }} class="stories-listing m-listing--article{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}>
-        <a href="{{ method_exists($item, 'getUrl') ? $item->getUrl() : $item->url_without_slug }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
-            <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront) ? ' m-listing__img--video' : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-blur-img' : '' }}>
+    <{{ $tag ?? 'li' }}
+        class="stories-listing m-listing--article{{ (isset($variation)) ? ' '.$variation : '' }}"
+        {!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}
+    >
+        <a
+            href="{{ method_exists($item, 'getUrl') ? $item->getUrl() : $item->url_without_slug }}"
+            class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}
+        >
+            <span
+                class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront) ? ' m-listing__img--video' : '' }}"
+                {{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-blur-img' : '' }}
+            >
                 @if (isset($image) || $item->imageFront('hero') || $item->imageFront('listing'))
                     @if ($isHero ?? false)
                         @component('components.atoms._img')
@@ -22,7 +31,7 @@
                     @endif
                     @component('components.molecules._m-listing-video')
                         @slot('item', $item)
-                        @slot('image', $image ?? null)
+                        @slot('image', $image ?? $item->imageFront('hero') ?? $item->imageFront('listing'))
                     @endcomponent
                 @else
                     <span class="default-img"></span>
@@ -54,12 +63,13 @@
                             by ⁠{!! $item->author_display !!}
                         @elseif (count($item->authors) > 0)
                             <span class="author__name">
-                                by {{StringHelpers::summation($item->authors->pluck('title')->all())}}                                </span>
+                                by {{StringHelpers::summation($item->authors->pluck('title')->all())}}
+                            </span>
                         @endif
                     </div>
                 @endif
-                @if (isset($showDescription) && $showDescription && $item->present()->list_description)
-                    <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description !!}</div>
+                @if (isset($showDescription) && $showDescription && ($item->present()->list_description ?? $item->present()->listing_description))
+                    <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description ?? $item->present()->listing_description !!}</div>
                 @endif
             </div>
         </a>

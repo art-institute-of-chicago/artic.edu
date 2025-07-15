@@ -31,7 +31,6 @@ Route::group(['prefix' => 'visit'], function () {
     TwillRoutes::module('feeCategories');
     TwillRoutes::module('fees');
     TwillRoutes::module('shopItems');
-    TwillRoutes::module('virtualTours');
     TwillRoutes::module('myMuseumTourItems');
 });
 
@@ -122,4 +121,5 @@ Route::group(['prefix' => 'general'], function () {
     TwillRoutes::module('eventPrograms');
     TwillRoutes::module('tourStops');
     TwillRoutes::module('vanityRedirects');
+    TwillRoutes::module('illuminatedLinks');
 });

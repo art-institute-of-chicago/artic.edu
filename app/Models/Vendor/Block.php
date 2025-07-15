@@ -2,11 +2,12 @@
 
 namespace App\Models\Vendor;
 
-use App\Models\Behaviors\LintsAttributes;
-use App\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Block as BaseModel;
+use App\Models\Behaviors\HasMedias;
+use App\Models\Behaviors\LintsAttributes;
 use App\Models\SeamlessImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Collection;
 
 class Block extends BaseModel
 {
@@ -50,5 +51,13 @@ class Block extends BaseModel
     public function getMorphClass()
     {
         return 'blocks';
+    }
+
+    /**
+     * Retrieve the repeaters of the given type from the children of the block.
+     */
+    public function repeater(string $type): Collection
+    {
+        return $this->children()->where('type', $type)->get()->map(fn ($item) => (object) $item->content);
     }
 }

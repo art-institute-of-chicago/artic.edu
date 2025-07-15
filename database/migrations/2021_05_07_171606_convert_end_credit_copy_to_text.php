@@ -13,7 +13,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('slides', function (Blueprint $table) {
-            $table->text('end_credit_copy')->change();
+            $table->text('end_credit_copy')->nullable()->change();
         });
     }
 
@@ -25,7 +25,7 @@ return new class () extends Migration {
     public function down(): void
     {
         Schema::table('slides', function (Blueprint $table) {
-            $table->string('end_credit_copy')->change();
+            $table->string('end_credit_copy')->nullable()->change();
         });
     }
 };

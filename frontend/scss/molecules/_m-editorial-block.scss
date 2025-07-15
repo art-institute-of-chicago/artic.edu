@@ -1,9 +1,13 @@
+
 .m-editorial-block {
     width: 100%;
     margin: 56px 0;
     display: flex;
     flex-direction: column;
     max-width: 1500px;
+
+    @import './m-editorial-block----quick-look';
+
 
     .editorial-block__header {
         width: 100%;
@@ -302,6 +306,19 @@
             .stories-listing:not(.editorial-block__featured > *),
             .stories-custom-listing:not(.editorial-block__featured > *) {
                 width: 50%;
+            }
+        }
+    }
+
+    &.editorial-block--educator-resources {
+        border-bottom: 2px solid #1c1c1c;
+        padding-bottom: 20px;
+
+        &.editorial-block--variation-feature-5-side {
+            .editorial-block__list {
+                .stories-listing, .stories-custom-listing {
+                    margin-bottom: 32px !important;
+                }
             }
         }
     }
@@ -838,7 +855,6 @@
                 }
 
                 .m-listing__img {
-                    aspect-ratio: 1;
                     max-height: fit-content;
                 }
 

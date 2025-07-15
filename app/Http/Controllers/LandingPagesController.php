@@ -10,6 +10,7 @@ use App\Models\Hour;
 use App\Models\Lightbox;
 use App\Models\LandingPage;
 use App\Models\PrintedPublication;
+use App\Models\ResourceCategory;
 use App\Repositories\LandingPageRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -121,6 +122,7 @@ class LandingPagesController extends FrontController
                 'hideCaption' => true,
                 'style' => $item->header_variation,
                 'ctaTitle' => $item->header_cta_title,
+                'ctaDescription' => $item->header_cta_description,
                 'ctaButtonLabel' => $item->header_cta_button_label,
                 'ctaButtonLink' => $item->header_cta_button_link
             ];
@@ -134,6 +136,7 @@ class LandingPagesController extends FrontController
                 'hideCaption' => true,
                 'style' => $item->header_variation,
                 'ctaTitle' => $item->header_cta_title,
+                'ctaDescription' => $item->header_cta_description,
                 'ctaButtonLabel' => $item->header_cta_button_label,
                 'ctaButtonLink' => $item->header_cta_button_link
             ];
@@ -370,9 +373,37 @@ class LandingPagesController extends FrontController
                 ];
                 break;
 
+            case $types->search('Educator Resources'):
+                $contentCategories = collect(ResourceCategory::where('type', 'content')->get());
+                $audienceCategories = collect(ResourceCategory::where('type', 'audience')->get());
+
+                $viewData = [
+                    'contrastHeader' => true,
+                    'contentSortOptions' => $contentCategories->map(function ($category) {
+                        return [
+                            'label' => $category->name,
+                            'active' => null,
+                            'ajaxScrollTarget' => null,
+                            'id' => null,
+                            'data-button-value' => $category->name
+                        ];
+                    }),
+                    'audienceSortOptions' => $audienceCategories->map(function ($category) {
+                        return [
+                            'label' => $category->name,
+                            'active' => null,
+                            'ajaxScrollTarget' => null,
+                            'id' => null,
+                            'data-button-value' => $category->name
+                        ];
+                    }),
+                ];
+                break;
+
             case $types->search('Research Center'):
                 $viewData = [
-                    'subnav' => collect(BlockHelpers::getHeadings($item->blocks)),
+                    'subnav' => collect(BlockHelpers::getHeadings($item->blocks))
+                        ->concat([['label' => 'FAQs', 'target' => '#faqs']]),
                 ];
                 break;
 

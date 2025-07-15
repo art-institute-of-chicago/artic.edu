@@ -17,7 +17,7 @@ class DigitalPublicationController extends BaseController
     {
         $this->disablePermalink();
         $this->setModuleName('digitalPublications');
-        $this->setPreviewView('site.genericPage.show');
+        $this->setPreviewView('site.digitalPublicationDetail');
     }
 
     public function quickFilters(): QuickFilters
@@ -28,8 +28,8 @@ class DigitalPublicationController extends BaseController
             QuickFilter::make()
                 ->queryString('is_unlisted')
                 ->label('Unlisted')
-                ->amount(fn() => $this->repository->where('is_unlisted', true)->count())
-                ->apply(fn(Builder $builder) => $builder->where('is_unlisted', true))
+                ->amount(fn () => $this->repository->where('is_unlisted', true)->count())
+                ->apply(fn (Builder $builder) => $builder->where('is_unlisted', true))
         );
 
         return $filters->merge($afterThirdFilter);

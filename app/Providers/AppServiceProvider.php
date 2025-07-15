@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
-use App\Models\Hour;
 use Aic\Hub\Foundation\Library\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\EmbedConverterService;
 use App\Libraries\DamsImageService;
@@ -30,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
         $this->registerEmbedConverterService();
         $this->registerClosureService();
         $this->registerPrintService();
+        $this->registerDebugMethod();
+        $this->registerVendorClasses();
+        $this->registerAliases();
         $this->composeTemplatesViews();
         File::observe(FileObserver::class);
         $this->extendBlade();
@@ -81,12 +83,13 @@ class AppServiceProvider extends ServiceProvider
             'exhibitionPressRooms' => 'App\Models\ExhibitionPressRoom',
             'departments' => 'App\Models\Department',
             'blocks' => 'A17\Twill\Models\Block',
+            'illuminatedLinks' => 'App\Models\IlluminatedLink',
         ]);
     }
 
     public function registerApiClient(): void
     {
-        $this->app->singleton('ApiClient', function ($app) {
+        $this->app->singleton('ApiClient', function () {
             return new GuzzleApiConsumer([
                 'base_uri' => config('api.base_uri'),
                 'exceptions' => false,
@@ -97,21 +100,21 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerEmbedConverterService(): void
     {
-        $this->app->singleton('embedconverterservice', function ($app) {
+        $this->app->singleton('embedconverterservice', function () {
             return new EmbedConverterService();
         });
     }
 
     public function registerDamsImageService(): void
     {
-        $this->app->singleton('damsimageservice', function ($app) {
+        $this->app->singleton('damsimageservice', function () {
             return new DamsImageService();
         });
     }
 
     public function registerClosureService(): void
     {
-        $this->app->singleton('closureservice', function ($app) {
+        $this->app->singleton('closureservice', function () {
             return new class () {
                 private $checkedForClosure = false;
 
@@ -132,7 +135,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerPrintService(): void
     {
-        $this->app->singleton('printservice', function ($app) {
+        $this->app->singleton('printservice', function () {
             return new class () {
                 private $isPrintMode;
 

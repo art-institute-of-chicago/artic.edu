@@ -2310,6 +2310,83 @@ a:focus:hover .btn--magazine {
   }
 }
 
+.m-listing--educator-resource__index {
+  padding: 20px;
+
+  .m-listing__link {
+    flex-flow: row wrap;
+    flex-direction: row-reverse;
+  }
+
+  .m-listing__img {
+    width: 25%;
+    height: max-content;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+  }
+
+  .m-listing__meta {
+    width: 75%;
+    padding-right: 12px;
+    padding-bottom: 18px;
+
+    .title {
+      padding-top: 0;
+      margin-top: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  .m-listing__secondary-actions {
+    margin-top: auto;
+    width: 75%;
+    min-height: 78px;
+    display: flex;
+    flex-direction: column;
+
+    .m-listing__secondary-action__links {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+
+      @include untuck;
+
+      * {
+        padding-right: 12px;
+      }
+
+      .f-secondary {
+        width: 100px;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-family: $sans-serif-font--loaded;
+
+        @include untuck;
+      }
+
+      .f-link {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        font-size: 16px;
+        font-weight: 400;
+        color: $color__rules--brand;
+      }
+
+      .f-link + .f-link {
+          border-left: 1px solid $color__black--20;
+          padding-left: 12px;
+      }
+    }
+  }
+}
+
 .m-listing--digital-publication-article {
   &.m-listing {
 

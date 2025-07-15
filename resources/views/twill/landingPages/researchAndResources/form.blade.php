@@ -97,6 +97,14 @@
 
 </x-twill::formConnectedFields>
 
+<x-twill::wysiwyg
+    name='listing_description'
+    label='Listing description'
+    note='Max 255 characters'
+    :maxlength="255"
+    :toolbar-options="[ 'italic' ]"
+/>
+
 @stop
 
 @section('fieldsets')
@@ -149,7 +157,34 @@
 
     @php
         $blocks = BlockHelpers::getBlocksForEditor([
-            'paragraph', 'image', 'image', 'hr', 'hr', 'artwork', 'split_block', 'split_block', 'gallery_new', 'video', 'video', 'quote', 'quote', 'tour_stop', 'tour_stop', 'media_embed', 'media_embed', 'list', 'grid', 'grid', 'image_slider', 'button', 'audio_player', '360_embed', 'mirador_embed', '3d_embed', 'membership_banner', 'membership_banner', 'showcase', '3d_tour', '3d_model', 'stories_block', 'citation', 'mobile_app', 'mirador_modal', 'digital_label', '360_modal'
+            '360_embed',
+            '360_modal'
+            '3d_embed',
+            '3d_model',
+            '3d_tour',
+            'artwork',
+            'audio_player',
+            'button',
+            'citation',
+            'custom_banner',
+            'digital_label',
+            'gallery_new',
+            'grid',
+            'hr',
+            'image',
+            'image_slider',
+            'list',
+            'media_embed',
+            'mirador_embed',
+            'mirador_modal',
+            'mobile_app',
+            'paragraph',
+            'quote',
+            'showcase',
+            'split_block',
+            'stories_block',
+            'tour_stop',
+            'video',
         ]);
     @endphp
 

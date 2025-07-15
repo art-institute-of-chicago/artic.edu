@@ -21,85 +21,23 @@
 
 @include('twill.partials.theme', ['types' => [$type]])
 
-<x-twill::formConnectedFields
-    field-name='theme'
-    field-values="default"
-    :render-for-blocks='true'
->
+@includeIf('twill.blocks.showcase.' . str($type)->slug())
 
-    <x-twill::select
-        name='variation'
-        label='Variation'
-        :options="[
-            [
-                'value' => 'default',
-                'label' => 'Default',
-            ],
-            [
-                'value' => '1e3f49',
-                'label' => 'Dark Teal',
-            ],
-        ]"
-    />
-</x-twill::formConnectedFields>
+<x-twill::wysiwyg
+    name='title'
+    label='Title'
+    :maxlength='100'
+    :required='true'
+    :toolbar-options="[ 'italic' ]"
+/>
 
-<x-twill::formConnectedFields
-    field-name='theme'
-    field-values="rlc"
-    :render-for-blocks='true'
-    :keep-alive='true'
->
-
-    <x-twill::select
-        name='variation'
-        label='Variation'
-        :options="[
-            [
-                'value' => 'default',
-                'label' => 'Default',
-            ],
-            [
-                'value' => 'about-the-rlc',
-                'label' => 'About the RLC',
-            ],
-            [
-                'value' => 'rlc-secondary',
-                'label' => 'RLC secondary (teal)',
-            ],
-        ]"
-    />
-
-    <x-twill::input
-        name='heading'
-        label='Heading'
-    />
-</x-twill::formConnectedFields>
-
-<x-twill::formConnectedFields
-    field-name='theme'
-    :field-values="['publications', 'conservation-and-science', 'research-center']"
-    :render-for-blocks='true'
-    :keep-alive='true'
->
-    <x-twill::select
-        name='variation'
-        label='Variation'
-        :options="[
-            [
-                'value' => 'default',
-                'label' => 'Default',
-            ],
-        ]"
-    />
-
-    <x-twill::input
-        name='heading'
-        label='Heading'
-    />
-</x-twill::formConnectedFields>
+<x-twill::wysiwyg
+    name='description'
+    label='Description'
+    :required='true'
+/>
 
 @if (count($mediaTypes) > 1)
-
     @php
         $options = collect($mediaTypes)->map(function($media) {
                 return [
@@ -121,6 +59,7 @@
         field-name='media_type'
         field-values="image"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
         <x-twill::medias
             name='image'
@@ -135,6 +74,7 @@
         field-name='media_type'
         field-values="video"
         :render-for-blocks='true'
+        :keep-alive='true'
     >
         <x-twill::medias
             name='image'
@@ -154,37 +94,6 @@
         :required='true'
     />
 @endif
-
-<x-twill::input
-    name='tag'
-    label='Tag'
-    :maxlength='100'
-/>
-
-<x-twill::wysiwyg
-    name='title'
-    label='Title'
-    :maxlength='100'
-    :required='true'
-    :toolbar-options="[ 'italic' ]"
-/>
-
-<x-twill::wysiwyg
-    name='description'
-    label='Description'
-    :required='true'
-/>
-
-<x-twill::formConnectedFields
-    field-name='theme'
-    field-values="rlc"
-    :render-for-blocks='true'
->
-    <x-twill::input
-        name='date'
-        label='Date'
-    />
-</x-twill::formConnectedFields>
 
 <x-twill::formColumns>
     <x-slot:left>

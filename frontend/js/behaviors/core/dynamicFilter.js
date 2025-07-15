@@ -1,53 +1,142 @@
-// dynamicFilter.js
 import { forEach, triggerCustomEvent } from "@area17/a17-helpers";
 import getStringSimilarity from '../../functions/core/getStringSimilarity';
-
 
 const dynamicFilter = function(container) {
   const listingContainer = container.querySelector('[data-filter-target]');
   let listingItems = listingContainer ? listingContainer.querySelectorAll('.m-listing') : [];
 
-  let setup = false; // State tracking of if setup is done so we don't reflow calling and looping the components
-  let registeredParameters = []; // Parameters pulled from components to evaluate and update
-  let noResultsElement = null; // Element to show when no results are found
+  let setup = false;
+  let registeredParameters = [];
+  let noResultsElement = null;
   let castParameters = [];
+  let isClearing = false;
 
-  // Helper function to refresh the current listingItems
+  // Check if the container has persistence enabled
+  const isPersistenceEnabled = container.hasAttribute('data-filter-persist');
+
   function refreshListingItems() {
     if (listingContainer) {
       listingItems = listingContainer.querySelectorAll('.m-listing');
     }
   }
 
+  function getVisibleItemsCount() {
+    if (!listingItems.length) return { visible: 0, total: 0 };
+
+    const visibleItems = Array.from(listingItems).filter(item =>
+      item.style.display !== 'none'
+    );
+
+    return {
+      visible: visibleItems.length,
+      total: listingItems.length
+    };
+  }
+
+  function clearFilters() {
+    console.log('Clearing all filters');
+
+    // Set clearing flag to prevent components from interfering
+    isClearing = true;
+
+    const url = new URL(window.location.href);
+    const systemParams = ['page', 'filter', 'clear', 'count', 'pageItemLimit', 'totalPages'];
+
+    registeredParameters.forEach(param => {
+      if (systemParams.includes(param.parameter)) return;
+
+      url.searchParams.delete(param.parameter);
+      if (param.label && param.label !== param.parameter) {
+        url.searchParams.delete(param.label);
+      }
+    });
+
+    // Also clear any remaining filter-related parameters that might exist
+    // This handles cases where the URL might have extra parameters
+    const allParams = Array.from(url.searchParams.keys());
+    allParams.forEach(key => {
+      if (!systemParams.includes(key) && key !== 'filter') {
+        // Check if this parameter belongs to any registered component
+        const belongsToComponent = registeredParameters.some(param =>
+          param.parameter === key || param.label === key
+        );
+        if (belongsToComponent) {
+          url.searchParams.delete(key);
+        }
+      }
+    });
+
+    // Reset parameters
+    url.searchParams.set('filter', 'all');
+    url.searchParams.set('page', '1');
+    window.history.pushState({}, '', url);
+
+    console.log('URL after clear:', url.href);
+
+    const activeFilters = getActiveFiltersFromURL();
+    applyAllFilters(activeFilters);
+
+    triggerCustomEvent(document, 'filter:cleared');
+
+    setTimeout(() => {
+      initFromUrl();
+      isClearing = false;
+    }, 10);
+
+    console.log('Filter clearing complete');
+  }
+
   function initFromUrl() {
     const url = new URL(window.location.href);
+    let urlModified = false;
 
-    if (!url.searchParams.get('filter')) {
+    // Check if we have any filter-related parameters (either 'filter' or any registered labels)
+    const hasFilterParameters = url.searchParams.get('filter') ||
+      registeredParameters.some(item => url.searchParams.get(item.label));
+
+    // Only add filter=all if there are no filter-related parameters at all
+    if (!hasFilterParameters) {
       url.searchParams.set('filter', 'all');
-      window.history.pushState({}, '', url);
+      urlModified = true;
     }
 
     if (!url.searchParams.get('page')) {
       url.searchParams.set('page', 1);
-      window.history.pushState({}, '', url);
+      urlModified = true;
     }
 
-    registeredParameters.forEach(item => {
-      const paramValue = url.searchParams.get(item.parameter);
+    castParameters = [];
 
-      if (paramValue !== null || paramValue == "" || typeof paramValue == "number") {
+    registeredParameters.forEach(item => {
+      let paramValue = url.searchParams.get(item.parameter);
+      let labelValue = url.searchParams.get(item.label);
+
+      if (labelValue !== null && labelValue !== undefined) {
         castParameters.push({
           id: item.id,
           parameter: item.parameter,
-          value: paramValue
+          value: labelValue,
+          label: item.label,
+          originalLabel: true,
+          persist: item.persist || false
+        });
+      }
+      else if (paramValue !== null && paramValue !== undefined) {
+        castParameters.push({
+          id: item.id,
+          parameter: item.parameter,
+          value: paramValue,
+          label: item.label,
+          persist: item.persist || false
         });
       }
     });
 
-    // Sort the cast parameters to ensure they're processed in the right order:
-    // 1. filter (categories) first
-    // 2. search second
-    // 3. sort last
+    // Only modify URL to clean up if we added missing parameters
+    if (urlModified) {
+      window.history.pushState({}, '', url);
+    }
+
     if (castParameters.length > 0) {
       const parameterPriority = {
         'filter': 1,
@@ -57,25 +146,27 @@ const dynamicFilter = function(container) {
         'page': 5
       };
 
-      // Sort the parameters based on priority
       castParameters.sort((a, b) => {
-        const priorityA = parameterPriority[a.parameter] || 999; // Default high number for unknown parameters
+        const priorityA = parameterPriority[a.parameter] || 999;
         const priorityB = parameterPriority[b.parameter] || 999;
         return priorityA - priorityB;
       });
 
-      // Apply all filters at once instead of individually
       applyAllFilters(castParameters);
 
-      // Update the UI to reflect the filter state for each parameter
       castParameters.forEach(item => {
-        castFilterUpdate(item.id, item.parameter, item.value);
+        castFilterUpdate(
+          item.id,
+          item.parameter,
+          item.label,
+          item.value,
+          item.originalLabel || false
+        );
       });
 
       triggerCustomEvent(document, 'resized');
 
       if (url.searchParams.get('filter') !== 'all' && url.searchParams.get('page') !== '1') {
-        // Scroll to container only after non-default filters
         window.requestAnimationFrame(() => {
           window.scrollTo({
             top: container.offsetTop - 200,
@@ -88,15 +179,17 @@ const dynamicFilter = function(container) {
     setup = true;
   }
 
-  function castFilterUpdate(id, parameter, value) {
+  function castFilterUpdate(id, parameter, label, value, isLabelCast = false) {
     triggerCustomEvent(document, 'filter:castUpdate', {
       id: id,
       parameter: parameter,
       value: value,
+      label: label,
+      isLabelCast: isLabelCast
     });
   }
 
-  function updateFilter(parameter, value) {
+  function updateFilter(parameter, value, useLabel = false, label = null, forceClear = false) {
     const url = new URL(window.location.href);
 
     // Reset page to 1 when any filter other than 'page' is changed
@@ -110,37 +203,90 @@ const dynamicFilter = function(container) {
         return;
     }
 
-    // If value is undefined, null, empty string, or setup is false, remove the parameter
-    if (value === undefined || value === null || value === '' || !setup) {
-        url.searchParams.delete(parameter);
+    // Enhanced parameter details determination
+    let parameterDetails = null;
 
-        // Reset page to 1 when removing a filter
+    if (useLabel && label) {
+        parameterDetails = registeredParameters.find(item => item.label === label);
+    } else if (label && !useLabel) {
+        const labelExists = registeredParameters.find(item => item.label === label);
+        if (labelExists) {
+            parameterDetails = labelExists;
+        } else {
+            parameterDetails = registeredParameters.find(item => item.parameter === parameter);
+        }
+    } else {
+        parameterDetails = registeredParameters.find(item => item.parameter === parameter);
+    }
+
+    if (!parameterDetails) {
+        parameterDetails = registeredParameters.find(item =>
+            item.parameter === parameter || item.label === parameter
+        );
+    }
+
+    console.log('Parameter Details:', {
+        parameter,
+        value,
+        useLabel,
+        label,
+        parameterDetails,
+        hasLabel: parameterDetails?.label ? true : false,
+        actualParameter: parameterDetails?.parameter,
+        willUseLabel: useLabel && parameterDetails?.label,
+        isPersistent: parameterDetails?.persist || false,
+        forceClear
+    });
+
+    const urlParam = (useLabel && parameterDetails && parameterDetails.label)
+      ? parameterDetails.label
+      : parameter;
+
+    // Check if this is a persistent filter
+    const isPersistent = parameterDetails?.persist || false;
+
+    if (value === undefined || value === null || value === '' || !setup) {
+        // For persistent filters, only remove if explicitly toggled off or forced clear
+        if (isPersistent && isPersistenceEnabled && !forceClear) {
+            // Don't remove persistent filters automatically, but still apply current filters
+            const activeFilters = getActiveFiltersFromURL();
+            applyAllFilters(activeFilters);
+            return;
+        }
+
+        // Clear the filter from URL
+        url.searchParams.delete(parameter);
+        if (parameterDetails && parameterDetails.label) {
+            url.searchParams.delete(parameterDetails.label);
+        }
+
         if (parameter !== 'page') {
             url.searchParams.set('page', 1);
         }
 
         window.history.pushState({}, '', url);
 
-        // Get all remaining active filters from URL
         const activeFilters = getActiveFiltersFromURL();
         applyAllFilters(activeFilters);
     } else {
-        // Get the current value (if any)
-        const currentValue = url.searchParams.get(parameter);
+        const currentValue = url.searchParams.get(urlParam);
 
-        // If the current value is the same as the new value, remove it (toggle behavior)
+        // Handle toggle behavior for persistent vs non-persistent filters
         if (currentValue === value) {
-            url.searchParams.delete(parameter);
+            // Toggle off - remove from URL
+            url.searchParams.delete(urlParam);
 
-            // Reset page to 1 when toggling off a filter
+            if (urlParam !== parameter) {
+                url.searchParams.delete(parameter);
+            }
+
             if (parameter !== 'page') {
                 url.searchParams.set('page', 1);
             }
         } else {
-            // Otherwise set the new value (replaces any existing value)
-            url.searchParams.set(parameter, value);
+            // Set new value
+            url.searchParams.set(urlParam, value);
 
-            // Reset page to 1 when changing a filter value
             if (parameter !== 'page') {
                 url.searchParams.set('page', 1);
             }
@@ -148,107 +294,110 @@ const dynamicFilter = function(container) {
 
         window.history.pushState({}, '', url);
 
-        // Get all active filters from URL after update
         const activeFilters = getActiveFiltersFromURL();
         applyAllFilters(activeFilters);
     }
-}
+  }
 
-  // Helper function to get all active filters from URL
   function getActiveFiltersFromURL() {
     const url = new URL(window.location.href);
     const activeFilters = [];
+    const processedComponents = new Set(); // Track which components we've already processed
 
-    // Always include 'filter' param (default to 'all' if not present)
-    const filterValue = url.searchParams.get('filter') || 'all';
-    activeFilters.push({parameter: 'filter', value: filterValue});
+    registeredParameters.forEach(item => {
+      if (processedComponents.has(item.id)) return;
 
-    // Check for search parameter
-    const searchValue = url.searchParams.get('search');
-    if (searchValue) {
-      activeFilters.push({parameter: 'search', value: searchValue});
+      const paramValue = url.searchParams.get(item.parameter);
+      const labelValue = url.searchParams.get(item.label);
+
+      // Prioritize label value over parameter value if both exist
+      if (labelValue !== null && labelValue !== undefined) {
+        activeFilters.push({
+          parameter: item.parameter,
+          value: labelValue,
+          label: item.label,
+          originalLabel: true,
+          persist: item.persist || false
+        });
+        processedComponents.add(item.id);
+      } else if (paramValue !== null && paramValue !== undefined) {
+        activeFilters.push({
+          parameter: item.parameter,
+          value: paramValue,
+          label: item.label,
+          persist: item.persist || false
+        });
+        processedComponents.add(item.id);
+      }
+    });
+
+    if (!activeFilters.some(f => f.parameter === 'filter')) {
+      activeFilters.push({parameter: 'filter', value: 'all'});
     }
 
-    // Check for sort parameter
-    const sortValue = url.searchParams.get('sort');
-    if (sortValue) {
-      activeFilters.push({parameter: 'sort', value: sortValue});
-    }
-
-    const pageValue = url.searchParams.get('page');
-    if (pageValue) {
-      activeFilters.push({parameter: 'page', value: pageValue});
+    if (!activeFilters.some(f => f.parameter === 'page')) {
+      activeFilters.push({parameter: 'page', value: '1'});
     }
 
     return activeFilters;
   }
 
-  // Apply all filters in the correct order
   function applyAllFilters(filters) {
-    // Refresh the listing items first to get the current state
     refreshListingItems();
 
-    // First, reset all items to visible
     listingItems.forEach(item => {
       item.style.display = '';
     });
 
-    // Extract sort and page filters
     const sortFilter = filters.find(f => f.parameter === 'sort');
     const pageFilter = filters.find(f => f.parameter === 'page');
 
-    // Filter out sort and page filters for initial processing
     const initialFilters = filters.filter(f => f.parameter !== 'sort' && f.parameter !== 'page');
 
-    // Apply category and search filters first
     initialFilters.forEach(filter => {
       filterItems(filter.parameter, filter.value);
-      // Refresh listing items after each filter
       refreshListingItems();
     });
 
-    // Apply sort filter if present
     if (sortFilter) {
       filterItems(sortFilter.parameter, sortFilter.value);
-      // Refresh listing items after sorting
       refreshListingItems();
     }
 
-    // Apply pagination last if present
     if (pageFilter) {
       filterItems(pageFilter.parameter, pageFilter.value);
-      // Refresh listing items after pagination
       refreshListingItems();
     }
 
-    // Check for no results after all filters are applied
     checkForNoResults();
+
+    // Update count displays
+    const counts = getVisibleItemsCount();
+    triggerCustomEvent(document, 'filter:countUpdate', {
+      target: 'all',
+      visible: counts.visible,
+      total: counts.total
+    });
   }
 
-  // Helper function to check if there are any visible results
   function checkForNoResults() {
     if (!listingContainer) return;
 
-    // Count visible items
     const visibleItems = Array.from(listingItems).filter(item =>
       item.style.display !== 'none'
     );
 
-    // If no visible items, show the "no results" message
     if (visibleItems.length === 0) {
-      // Create the no results element if it doesn't exist
       if (!noResultsElement) {
         noResultsElement = document.createElement('div');
         noResultsElement.className = 'm-no-results';
         noResultsElement.innerHTML = '<h2 class="title f-list-3">Sorry, we couldn\'t find any results matching your criteria.</h2>';
       }
 
-      // Only append if it's not already in the DOM
       if (!noResultsElement.parentNode) {
         listingContainer.appendChild(noResultsElement);
       }
     } else {
-      // Remove the no results message if it exists and there are results
       if (noResultsElement && noResultsElement.parentNode) {
         noResultsElement.parentNode.removeChild(noResultsElement);
       }
@@ -263,23 +412,14 @@ const dynamicFilter = function(container) {
     if (parameter) {
       switch(parameter) {
         case "filter":
-          // Filter by category
           if (value !== 'all') {
             const normalizedValue = value.toLowerCase().replace(/[_\s-]+/g, '-');
-
-            // Loop through all items
             listingItems.forEach(item => {
-              // Skip already hidden items
               if (item.style.display === 'none') return;
-
               const filterValues = item.getAttribute('data-filter-values');
               let showItem = false;
-
               if (filterValues) {
-                // Parse the item's filter values
                 const itemFilterValues = filterValues.split(',').map(val => val.trim().toLowerCase());
-
-                // Check if this item matches the active filter
                 for (const itemValue of itemFilterValues) {
                   const normalizedItemValue = itemValue.replace(/[_\s-]+/g, '-');
                   if (normalizedItemValue === normalizedValue) {
@@ -288,20 +428,21 @@ const dynamicFilter = function(container) {
                   }
                 }
               }
-
-              // Show or hide item
               if (!showItem) {
                 item.style.display = 'none';
               }
             });
           }
+
+          listingContainer.style.display = 'none';
+          listingContainer.offsetHeight; // Trigger reflow
+          listingContainer.style.display = '';
+
           break;
 
         case "sort":
-          // Sort items
           if (!listingContainer) break;
 
-          // Only collect items that are currently visible (not display:none)
           const itemsArray = Array.from(listingItems).filter(item => {
             return item.style.display !== 'none';
           });
@@ -309,7 +450,6 @@ const dynamicFilter = function(container) {
           const container = listingItems.length > 0 ? listingItems[0].parentNode : null;
           if (!container) break;
 
-          // Sort based on value parameter
           switch(value) {
             case "titledesc":
               itemsArray.sort((a, b) => {
@@ -322,10 +462,8 @@ const dynamicFilter = function(container) {
               itemsArray.sort((a, b) => {
                 const dateStrA = a.getAttribute('data-filter-date') || '';
                 const dateStrB = b.getAttribute('data-filter-date') || '';
-                // Parse dates from DD-MM-YYYY format
                 const [dayA, monthA, yearA] = (dateStrA || '').split('-');
                 const [dayB, monthB, yearB] = (dateStrB || '').split('-');
-                // Create date objects for comparison
                 const dateA = dateStrA ? new Date(yearA, monthA - 1, dayA) : new Date(0);
                 const dateB = dateStrB ? new Date(yearB, monthB - 1, dayB) : new Date(0);
                 return dateA - dateB;
@@ -335,10 +473,8 @@ const dynamicFilter = function(container) {
               itemsArray.sort((a, b) => {
                 const dateStrA = a.getAttribute('data-filter-date') || '';
                 const dateStrB = b.getAttribute('data-filter-date') || '';
-                // Parse dates from DD-MM-YYYY format
                 const [dayA, monthA, yearA] = (dateStrA || '').split('-');
                 const [dayB, monthB, yearB] = (dateStrB || '').split('-');
-                // Create date objects for comparison
                 const dateA = dateStrA ? new Date(yearA, monthA - 1, dayA) : new Date(0);
                 const dateB = dateStrB ? new Date(yearB, monthB - 1, dayB) : new Date(0);
                 return dateB - dateA;
@@ -352,41 +488,25 @@ const dynamicFilter = function(container) {
               });
           }
 
-          // Reorder without changing visibility
-          // This uses the DocumentFragment API for better performance
           const fragment = document.createDocumentFragment();
-
-          // Append to fragment in sorted order
           itemsArray.forEach(item => {
             fragment.appendChild(item);
           });
-
-          // Append fragment to container
           container.appendChild(fragment);
-
-          // Force reflow
           container.offsetHeight;
-
-          // Update the listing items array to reflect the new order
           refreshListingItems();
           break;
 
         case "search":
-          // Search by text
           if (value) {
             const searchText = value.trim();
 
-            // Loop through all items
             listingItems.forEach(item => {
-              // Skip already hidden items
               if (item.style.display === 'none') return;
 
               let showItem = false;
-
-              // First try to get the title from data attribute
               let itemTitle = item.getAttribute('data-filter-title');
 
-              // If no data-title attribute, try to find a title element
               if (!itemTitle) {
                 const titleElement = item.querySelector('.title, h2, h3, h4');
                 if (titleElement) {
@@ -394,7 +514,6 @@ const dynamicFilter = function(container) {
                 }
               }
 
-              // If still no title found, use any text content
               if (!itemTitle) {
                 itemTitle = item.textContent;
               }
@@ -402,28 +521,21 @@ const dynamicFilter = function(container) {
               if (itemTitle) {
                 itemTitle = itemTitle.trim();
 
-                // Exact match
                 if (itemTitle.toLowerCase().includes(searchText.toLowerCase())) {
                   showItem = true;
                 } else if (searchText.length <= 3) {
-                  // For short search terms (2-3 chars), require exact substring match
                   showItem = itemTitle.toLowerCase().includes(searchText.toLowerCase());
                 } else {
-                  // For longer search terms, use fuzzy matching
                   const words = itemTitle.split(/\s+/);
 
-                  // Check each word
                   for (const word of words) {
-                    // Calculate similarity
                     const similarity = getStringSimilarity(word, searchText);
 
-                    // Allow matches with distance less than 1/3 of the search text length
                     if (similarity <= Math.ceil(searchText.length / 3)) {
                       showItem = true;
                       break;
                     }
 
-                    // Also check if any word in the title starts with the search text
                     if (word.toLowerCase().startsWith(searchText.toLowerCase())) {
                       showItem = true;
                       break;
@@ -432,7 +544,6 @@ const dynamicFilter = function(container) {
                 }
               }
 
-              // Hide item if it doesn't match search
               if (!showItem) {
                 item.style.display = 'none';
               }
@@ -446,36 +557,43 @@ const dynamicFilter = function(container) {
                   return item.style.display !== 'none';
               });
               const pageItemLimit = registeredParameters.find(item => item.parameter === "pageItemLimit");
+
+              // Add null check for pageItemLimit
+              if (!pageItemLimit || !pageItemLimit.value) {
+                console.warn('pageItemLimit not found in registered parameters, skipping pagination');
+                return;
+              }
+
               const pages = Math.ceil(itemsArray.length / pageItemLimit.value);
 
-              // Calculate current page boundaries
               const currentPage = parseInt(value) || 1;
               const startIndex = (currentPage - 1) * pageItemLimit.value;
               const endIndex = startIndex + pageItemLimit.value;
 
-              // Hide all items first
               itemsArray.forEach(item => {
                   item.style.display = 'none';
               });
 
-              // Show only items for the current page
               for (let i = startIndex; i < endIndex && i < itemsArray.length; i++) {
                   itemsArray[i].style.display = '';
               }
 
               const totalPages = registeredParameters.find(item => item.parameter === "totalPages");
-              totalPages.value = pages;
 
-              triggerCustomEvent(document, "filter:castUpdate", {
-                id: totalPages.id,
-                parameter: totalPages.parameter,
-                value: totalPages.value
-              });
+              // Add null check for totalPages
+              if (totalPages) {
+                totalPages.value = pages;
+
+                triggerCustomEvent(document, "filter:castUpdate", {
+                  id: totalPages.id,
+                  parameter: totalPages.parameter,
+                  value: totalPages.value
+                });
+              }
           }
           break;
 
         default:
-        // Default case: no filtering
         break;
       }
     }
@@ -488,7 +606,34 @@ const dynamicFilter = function(container) {
     }
 
     document.addEventListener('filter:updated', function(event) {
-      updateFilter(event.data.parameter, event.data.value);
+      console.log(event);
+
+      if (isClearing) {
+        console.log('Ignoring filter update during clearing process');
+        return;
+      }
+
+      const useLabel = event.data.useLabel || false;
+      const forceClear = event.data.forceClear || false;
+      updateFilter(event.data.parameter, event.data.value, useLabel, event.data.label ?? null, forceClear);
+    });
+
+    document.addEventListener('filter:clear', function(event) {
+      clearFilters();
+    });
+
+    document.addEventListener('filter:requestCount', function(event) {
+      if (event.data && event.data.callback) {
+        const counts = getVisibleItemsCount();
+        event.data.callback(counts);
+      }
+    });
+
+    document.addEventListener('filter:requestActiveFilters', function(event) {
+      if (event.data && event.data.callback) {
+        const activeFilters = getActiveFiltersFromURL();
+        event.data.callback(activeFilters);
+      }
     });
   }
 
@@ -499,10 +644,21 @@ const dynamicFilter = function(container) {
 
     let filterData = event.data;
 
+    // Check if this component should be persistent
+    const shouldPersist = filterData.persist || false;
+
     registeredParameters.push({
       id: filterData.id,
       parameter: filterData.parameter,
-      value: filterData.value !== undefined ? filterData.value : filterData.values
+      value: filterData.value !== undefined ? filterData.value : filterData.values,
+      label: filterData.label,
+      persist: shouldPersist
+    });
+
+    console.log('Registered component:', {
+      id: filterData.id,
+      parameter: filterData.parameter,
+      persist: shouldPersist
     });
 
     setup = true;
@@ -517,6 +673,10 @@ const dynamicFilter = function(container) {
   this.destroy = function() {
     window.removeEventListener('popstate', initFromUrl);
     document.removeEventListener('filter:register', _registerComponent);
+    document.removeEventListener('filter:updated', updateFilter);
+    document.removeEventListener('filter:clear', null);
+    document.removeEventListener('filter:requestCount', null);
+    document.removeEventListener('filter:requestActiveFilters', null);
 
     if (noResultsElement && noResultsElement.parentNode) {
       noResultsElement.parentNode.removeChild(noResultsElement);

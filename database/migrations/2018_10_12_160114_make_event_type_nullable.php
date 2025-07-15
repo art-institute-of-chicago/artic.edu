@@ -13,7 +13,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->integer('event_type')->default(null)->nullable()->change();
+            $table->integer('event_type')->unsigned()->default(null)->nullable()->change();
         });
     }
 
@@ -26,7 +26,7 @@ return new class () extends Migration {
     {
         Schema::table('events', function (Blueprint $table) {
             // This'll fail if there's null data in there, so... it's nullable forever now
-            $table->integer('event_type')->default(1)->nullable(false)->change();
+            $table->integer('event_type')->unsigned()->default(1)->nullable(false)->change();
         });
     }
 };

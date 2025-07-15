@@ -3,6 +3,8 @@
 namespace App\Presenters;
 
 use App\Libraries\SmartyPants;
+use Illuminate\Support\Str;
+use DomDocument;
 
 abstract class BasePresenter
 {
@@ -25,7 +27,27 @@ abstract class BasePresenter
         }
 
         if (is_string($return)) {
-            return $return ? SmartyPants::defaultTransform($return) : null;
+            if (method_exists($this->entity, 'translatedAttribute') && $this->entity->translatedAttribute($property)) {
+                $translatedField = $this->entity->translatedAttribute($property)->toArray();
+                $return = $this->getLocalizedField($translatedField);
+
+                $oldInternalErrors = libxml_use_internal_errors(true);
+                $dom = new DomDocument();
+                $dom->loadHTML('<?xml encoding="utf-8" ?>' . $return, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+                $content = $dom->saveHTML($dom);
+                $prefix = '<?xml encoding="utf-8" ?>';
+                if (Str::startsWith($content, $prefix)) {
+                    $content = Str::substr($content, Str::length($prefix));
+                }
+
+                libxml_clear_errors();
+                libxml_use_internal_errors($oldInternalErrors);
+
+                return $return ? SmartyPants::defaultTransform($return) : null;
+            } else {
+                return $return ? SmartyPants::defaultTransform($return) : null;
+            }
         }
 
         return $return;
@@ -36,7 +58,7 @@ abstract class BasePresenter
      */
     public function input($name)
     {
-        return $this->{$name};
+        return $this->getLocalizedField($this->{$name});
     }
 
     public function contrastHeader()
@@ -69,7 +91,7 @@ abstract class BasePresenter
 
     public function copy()
     {
-        return $this->entity->blocks()->where('type', '=', 'paragraph')->pluck('content')->implode('paragraph', '');
+        return $this->entity->blocks()->where('type', '=', 'paragraph')->pluck('content')->implode('paragraph.en', '');
     }
 
     public function presentPublishStartDate()
@@ -108,5 +130,38 @@ abstract class BasePresenter
     public function headerType()
     {
         return null;
+    }
+
+    public function getLocalizedField($name = null)
+    {
+        $field = $name;
+
+        // If it's not an array return
+        if (!is_array($field)) {
+            return $field;
+        }
+
+        if (empty($field)) {
+            return '';
+        }
+
+        $requestLocale = app('request')->input('locale');
+
+        if ($requestLocale && isset($field[$requestLocale]) && !empty($field[$requestLocale])) {
+            return $field[$requestLocale];
+        }
+
+        $currentLocale = app()->getLocale();
+        if (isset($field[$currentLocale]) && !empty($field[$currentLocale])) {
+            return $field[$currentLocale];
+        }
+
+        $fallbackLocale = config('app.fallback_locale', 'en');
+        if (isset($field[$fallbackLocale]) && !empty($field[$fallbackLocale])) {
+            return $field[$fallbackLocale];
+        }
+
+        // Last resort return any locale we have
+        return collect($field)->filter()->first() ?? '';
     }
 }

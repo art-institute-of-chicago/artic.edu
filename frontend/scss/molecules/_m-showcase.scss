@@ -98,6 +98,11 @@
             margin: 18px 0 0 0;
         }
 
+        .showcase-button {
+            width: max-content;
+            margin: 18px 0 0 0;
+        }
+
         .showcase-link {
             color: $color__text--secondary;
             margin: 18px 0 0 0;
@@ -315,6 +320,32 @@
         .showcase-tag,
         .showcase-title {
             color: $color__white;
+        }
+    }
+    &.showcase--educator-resources {
+        margin: 50px auto;
+        background-color: unset !important;
+        padding: 0;
+        width: 100%;
+
+        .m-showcase-block__text-wrapper {
+            &:not(:has(.showcase-tag + .title)) {
+                .title {
+                    margin-top: 0;
+
+                    @include untuck();
+                }
+            }
+
+            .showcase-button {
+                margin: 42px 0 24px 0;
+            }
+        }
+
+        .showcase-callout {
+            a {
+                color: $color__link--accent;
+            }
         }
     }
 }

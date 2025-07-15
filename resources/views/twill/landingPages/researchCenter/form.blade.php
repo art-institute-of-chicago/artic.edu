@@ -5,6 +5,15 @@
         name='title'
         label='Title'
     />
+
+    <x-twill::wysiwyg
+        name='listing_description'
+        label='Listing description'
+        note='Max 255 characters'
+        :maxlength="255"
+        :toolbar-options="[ 'italic' ]"
+    />
+
 @stop
 
 @section('fieldsets')
@@ -25,6 +34,14 @@
         />
     </x-twill::formFieldset>
     <x-twill::formFieldset title="FAQs" id="researchCenter-faq">
+        <x:twill::input
+            name='labels.faq_link_label'
+            label='Link Label'
+        />
+        <x:twill::input
+            name='labels.faq_link_url'
+            label='Link URL'
+        />
         <x-twill::repeater
             type='faqs'
         />

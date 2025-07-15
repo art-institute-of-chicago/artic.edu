@@ -13,9 +13,9 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('exhibitions', function (Blueprint $table) {
-            $table->text('exhibition_message')->change();
-            $table->text('meta_title')->change();
-            $table->text('hero_caption')->change();
+            $table->text('exhibition_message')->nullable()->change();
+            $table->text('meta_title')->nullable()->change();
+            $table->text('hero_caption')->nullable()->change();
         });
     }
 
@@ -27,9 +27,9 @@ return new class () extends Migration {
     public function down(): void
     {
         Schema::table('exhibitions', function (Blueprint $table) {
-            $table->string('exhibition_message')->change();
-            $table->string('meta_title')->change();
-            $table->string('hero_caption')->change();
+            $table->string('exhibition_message')->nullable()->change();
+            $table->string('meta_title')->nullable()->change();
+            $table->string('hero_caption')->nullable()->change();
         });
     }
 };

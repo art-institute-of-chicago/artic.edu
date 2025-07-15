@@ -28,7 +28,6 @@ use App\Http\Controllers\MyMuseumTourController;
 use App\Http\Controllers\PressReleasesController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\PrintedPublicationsController;
-use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
@@ -39,20 +38,7 @@ use App\Http\Controllers\Forms\EmailSubscriptionsController;
 use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
 use App\Models\Slugs\LandingPageSlug;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
-
-Route::get('/today', [RedirectController::class, 'today'])->name('today');
 
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 
@@ -89,8 +75,8 @@ Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPubli
 Route::get('/collection/research_resources', [ResearchController::class, 'index'])->name('collection.research_resources');
 
 // Collection Resources Educator Resources
-Route::get('/learn-with-us/educators/tools-for-my-classroom/resource-finder', [EducatorResourcesController::class, 'index'])->name('collection.resources.educator-resources');
-Route::get('/collection/resources/educator-resources/{id}', [EducatorResourcesController::class, 'show'])->name('collection.resources.educator-resources.show');
+Route::get('/educator-resources', [EducatorResourcesController::class, 'index'])->name('collection.resources.educator-resources');
+Route::get('/educator-resources/{id}/{slug?}', [EducatorResourcesController::class, 'show'])->name('collection.resources.educator-resources.show');
 
 // Newsletter subscription
 Route::post('/subscribe', [SubscribeController::class, 'store'])->name('subscribe');

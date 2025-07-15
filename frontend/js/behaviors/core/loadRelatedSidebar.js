@@ -36,6 +36,7 @@ const loadRelatedSidebar = function(container) {
         }
     }
     function getDistanceBetweenElements(element1, element2) {
+      if (element1 && element2) {
         const rect1 = element1.getBoundingClientRect();
         const rect2 = element2.getBoundingClientRect();
 
@@ -45,6 +46,9 @@ const loadRelatedSidebar = function(container) {
         const distance = rect2top - rect1bottom;
 
         return distance;
+      }
+
+      return null;
     }
 
     function _inject(data)

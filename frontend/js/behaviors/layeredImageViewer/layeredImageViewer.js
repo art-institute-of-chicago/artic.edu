@@ -1538,5 +1538,4 @@ const layeredImageViewer = function(container) {
     }
   };
 };
-
 export default layeredImageViewer;

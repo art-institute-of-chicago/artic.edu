@@ -1,0 +1,202 @@
+// Index/listing page
+.o-educator-resources {
+    .m-header-block {
+        padding-top: 0 !important;
+
+        &::before {
+            display: none;
+        }
+    }
+
+    .m-article-header {
+        min-height: 0;
+    }
+
+    .m-article-header__text {
+        padding: 30px;
+    }
+
+    .m-links-bar__item--primary {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        margin-right: 0;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+
+        @include breakpoint('small-') {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .dropdown__container {
+            width: 28%;
+            padding-right: 24px;
+
+            @include breakpoint('small-') {
+              width: 100%;
+              padding-right: 0;
+            }
+
+            .dropdown {
+                width: 100%;
+
+                &::before {
+                    display: block;
+                    content: '';
+                    padding-top: 8px;
+                }
+            }
+
+            &::before {
+                display: none;
+            }
+        }
+
+        .checkbox {
+          height: 42px;
+            .f-secondary::before {
+                padding-top: 22px;
+            }
+
+            @include breakpoint('small-') {
+              margin-top: 12px;
+            }
+        }
+    }
+
+    .filter-controls {
+      min-height: 48px;
+      padding-top: 20px;
+      margin-bottom: 56px;
+
+      @include breakpoint('small-') {
+        min-height: 26px;
+        padding-top: 0px;
+        margin-bottom: 32px;
+      }
+    }
+
+    .filter-results {
+      border-top: 1px solid $color__rules--primary;
+      padding-top: 56px;
+      margin-bottom: 33px;
+    }
+
+    .o-educator-resources__listing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 30px;
+      width: 100%;
+      overflow: hidden;
+      border-top: 1px solid $color__rules--primary;
+
+      @include breakpoint('small') {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+      }
+
+      @include breakpoint('xsmall') {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: $color__rules--primary;
+        z-index: 2;
+      }
+    }
+
+    .m-listing {
+      padding: 20px 0;
+      border-top: 1px solid $color__rules--primary;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        right: -15px;
+        bottom: -30px;
+        height: 200%;
+        background-color: $color__rules--primary;
+        z-index: 2;
+      }
+    }
+}
+
+// Detail page
+.o-educator-resource {
+
+  .m-article-header {
+    min-height: 72px;
+  }
+
+    @include breakpoint('small-') {
+      .m-article-header {
+        display: none
+      }
+
+      .o-educator-resource__body {
+        padding-top: 32px;
+      }
+    }
+
+  .o-educator-resource__body {
+      margin: auto;
+      @include breakpoint('medium') {
+        width: colspan(58, 'medium');
+      }
+      @include breakpoint('large') {
+        width: colspan(38, 'large');
+      }
+      @include breakpoint('xlarge') {
+        width: colspan(38, 'xlarge');
+      }
+
+      .title {
+        font-size: 38px;
+        font-weight: 300;
+        line-height: 44px;
+      }
+
+      .intro {
+        * {
+          margin-top: 24px;
+          font-size: 28px;
+          font-family: $serif-font;
+          font-weight: 300;
+          line-height: 36px;
+          padding-bottom: 40px;
+        }
+      }
+
+      .m-show__secondary-action__links {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+
+        > * {
+          padding-left: 27px;
+          padding-right: 27px;
+          margin-right: 12px;
+          min-width: 110px;
+
+          &:not(.btn) {
+            color: $color__red--100;
+          }
+        }
+      }
+
+      .o-blocks {
+        padding-top: 56px;
+        margin-top: 56px;
+        border-top: 1px solid $color__black--20 !important;
+      }
+  }
+
+}

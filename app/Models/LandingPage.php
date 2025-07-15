@@ -53,6 +53,7 @@ class LandingPage extends AbstractModel implements Sortable
        12 => 'Publications',
        13 => 'Conservation and Science',
        14 => 'Research Center',
+       15 => 'Educator Resources',
        99 => 'Custom',
     ];
 
@@ -68,6 +69,7 @@ class LandingPage extends AbstractModel implements Sortable
         'type_id',
         'title',
         'intro',
+        'listing_description',
         'meta_title',
         'meta_description',
         'search_tags',
@@ -75,6 +77,7 @@ class LandingPage extends AbstractModel implements Sortable
         'header_cta_button_link',
         'header_cta_button_label',
         'header_cta_title',
+        'header_cta_description',
         'hide_hours',
         'hour_intro',
         'hour_image_caption',
@@ -391,6 +394,7 @@ class LandingPage extends AbstractModel implements Sortable
 
     protected function transformMappingInternal()
     {
+
         return [
             [
                 'name' => 'published',
@@ -402,16 +406,16 @@ class LandingPage extends AbstractModel implements Sortable
             ],
 
             [
-                'name' => 'page_types',
-                'doc' => 'Page Types',
-                'type' => 'array',
+                'name' => 'type_id',
+                'doc' => 'Type of Page',
+                'type' => 'integer',
                 'value' => function () {
-                    return self::TYPES;
-                }
+                    return $this->type_id;
+                },
             ],
 
             [
-                'name' => 'type',
+                'name' => 'type_title',
                 'doc' => 'Type of Page',
                 'type' => 'integer',
                 'value' => function () {
@@ -420,29 +424,29 @@ class LandingPage extends AbstractModel implements Sortable
             ],
 
             [
-                'name' => 'home_intro',
-                'doc' => 'Home Intro',
+                'name' => 'title',
+                'doc' => 'Title',
                 'type' => 'string',
                 'value' => function () {
-                    return $this->home_intro;
+                    return $this->title;
+                }
+            ],
+
+            [
+                'name' => 'intro',
+                'doc' => 'Intro',
+                'type' => 'string',
+                'value' => function () {
+                    return $this->intro;
                 },
             ],
 
             [
-                'name' => 'exhibition_intro',
-                'doc' => 'Exhibition Intro',
+                'name' => 'labels',
+                'doc' => 'Labels',
                 'type' => 'string',
                 'value' => function () {
-                    return $this->exhibition_intro;
-                },
-            ],
-
-            [
-                'name' => 'art_intro',
-                'doc' => 'Art Intro',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->art_intro;
+                    return $this->labels;
                 },
             ],
 
@@ -456,96 +460,6 @@ class LandingPage extends AbstractModel implements Sortable
             ],
 
             [
-                'name' => 'exhibition_history_sub_heading',
-                'doc' => 'exhibition_history_sub_heading',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->exhibition_history_sub_heading;
-                },
-            ],
-
-            [
-                'name' => 'exhibition_history_intro_copy',
-                'doc' => 'exhibition_history_intro_copy',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->exhibition_history_intro_copy;
-                },
-            ],
-
-            [
-                'name' => 'exhibition_history_popup_copy',
-                'doc' => 'exhibition_history_popup_copy',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->exhibition_history_popup_copy;
-                },
-            ],
-
-            [
-                'name' => 'exhibition_intro',
-                'doc' => 'exhibition_intro',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->exhibition_intro;
-                },
-            ],
-
-            [
-                'name' => 'visit_intro',
-                'doc' => 'visit_intro',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_intro;
-                },
-            ],
-
-            [
-                'name' => 'visit_hour_header',
-                'doc' => 'visit_hour_header',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_hour_header;
-                },
-            ],
-
-            [
-                'name' => 'visit_hour_subheader',
-                'doc' => 'visit_hour_subheader',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_hour_subheader;
-                },
-            ],
-
-            [
-                'name' => 'visit_city_pass_title',
-                'doc' => 'visit_city_pass_title',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_city_pass_title;
-                },
-            ],
-
-            [
-                'name' => 'visit_city_pass_text',
-                'doc' => 'visit_city_pass_text',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_city_pass_text;
-                },
-            ],
-
-            [
-                'name' => 'visit_admission_description',
-                'doc' => 'visit_admission_description',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_admission_description;
-                },
-            ],
-
-            [
                 'name' => 'content',
                 'doc' => 'content',
                 'type' => 'string',
@@ -555,6 +469,11 @@ class LandingPage extends AbstractModel implements Sortable
             ],
 
         ];
+    }
+
+    public function getUrlAttribute()
+    {
+        return $this->getUrl();
     }
 
     public function getUrl($prefix = '')
