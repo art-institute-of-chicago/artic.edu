@@ -7,7 +7,7 @@
     $date = $block->present()->input('date');
     $tag = $block->input('tag');
     $buttonLabel = $block->input('button_label');
-    $buttonLink = $block->input('button_link');
+    $buttonLink = $block->input('button_url');
     $callout = $block->input('callout');
     $linkLabel = $block->present()->input('link_label');
     $linkUrl = $block->input('link_url');
