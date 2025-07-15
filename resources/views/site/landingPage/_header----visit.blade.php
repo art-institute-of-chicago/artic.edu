@@ -175,8 +175,18 @@
                                                     {!! $ageGroup['description'] !!}
                                                 </span>
 
-                                                <a href="{{ $ageGroup['link_url'] }}" class="btn btn--tertiary btn--w-icon f-buttons">
-                                                    {{ $ageGroup['link_label'] }} <svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
+                                                @php
+                                                    $externalLink = !str($ageGroup['link_url'])->contains(config('app.url'), ignoreCase: true);
+                                                @endphp
+                                                <a
+                                                    @if ($externalLink) target="_blank" @endif
+                                                    href="{{ $ageGroup['link_url'] }}"
+                                                    class="btn btn--tertiary btn--w-icon f-buttons"
+                                                >
+                                                    {{ $ageGroup['link_label'] }}
+                                                    @if ($externalLink)
+                                                        <svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
+                                                    @endif
                                                 </a>
                                             </td>
                                         </tr>
