@@ -24,6 +24,7 @@ const dynamicFilterSearchBuilder = function(container) {
   }
 
   function _init() {
+    container.href = baseUrl;
     document.addEventListener('filter:updated', handleFilterUpdate);
   }
 
