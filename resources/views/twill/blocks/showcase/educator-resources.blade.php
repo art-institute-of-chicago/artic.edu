@@ -23,20 +23,6 @@
     />
 
     <x-twill::wysiwyg
-    name='title'
-    label='Title'
-    :maxlength='100'
-    :required='true'
-    :toolbar-options="[ 'italic' ]"
-    />
-
-    <x-twill::wysiwyg
-    name='description'
-    label='Description'
-    :required='true'
-    />
-
-    <x-twill::wysiwyg
         name='callout'
         label='Callout'
     />
