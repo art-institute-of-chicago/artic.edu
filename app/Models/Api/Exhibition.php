@@ -55,6 +55,17 @@ class Exhibition extends BaseApiModel
         return 'exhibition';
     }
 
+    public function getUrlWithoutSlugAttribute()
+    {
+        if (method_exists($this, 'getAugmentedModel') && $augmentedModel = $this->getAugmentedModel()) {
+            if ($augmentedModel->getOriginal('url_without_slug')) {
+                return $augmentedModel->getOriginal('url_without_slug');
+            }
+        }
+
+        return route('exhibitions.show', ['id' => $this->id]);
+    }
+
     private function commonStatusChecks()
     {
         // If the start and end dates are overriden, don't consider this exhibition as closed
