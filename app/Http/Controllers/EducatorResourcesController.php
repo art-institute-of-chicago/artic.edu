@@ -124,6 +124,12 @@ class EducatorResourcesController extends BaseScopedController
             }
         }
 
+        $canonicalPath = route('collection.resources.educator-resources.show', ['id' => $item->id, 'slug' => $item->slug]);
+
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
+            return $canonicalRedirect;
+        }
+
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->listing_description);
         $this->seo->setImage($item->imageFront('listing'));
@@ -163,6 +169,7 @@ class EducatorResourcesController extends BaseScopedController
             'breadcrumb' => $crumbs,
             'blocks' => null,
             'item' => $item,
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 
