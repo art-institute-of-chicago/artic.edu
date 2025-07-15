@@ -221,7 +221,7 @@ class Exhibition extends BaseApiModel
             ) && (
                 !empty($paragraph) && $paragraph = $paragraph->content['paragraph']
             ) && (
-                !empty($paragraph) && $paragraph = strip_tags($paragraph)
+                !empty($paragraph) && $paragraph = strip_tags($this->present()->getLocalizedField($paragraph))
             )
         ) {
             return $paragraph;
