@@ -60,7 +60,7 @@
             </span>
         @endif
         <div class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
-            @if (isset($item->subtype) && !$isIndex)
+            @if (isset($item->subtype) && (isset($isIndex) && !$isIndex))
                 <em class="type f-tag">{!! $subtype ?? $item->present()->subtype !!}</em>
                 <br>
             @endif
