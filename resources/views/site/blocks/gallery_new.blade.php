@@ -63,8 +63,8 @@
                     $caption = '<p>' . $artwork->present()->place_of_origin . '</p>';
                 }
 
-                if (!empty($item->input('captionAddendum'))) {
-                    $caption .= $item->input('captionAddendum');
+                if (!empty($item->present()->input('captionAddendum'))) {
+                    $caption .= $item->present()->input('captionAddendum');
                 }
 
                 $urlTitle = route('artworks.show', $artwork);

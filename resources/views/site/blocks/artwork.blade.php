@@ -27,7 +27,7 @@
         }
 
         $captionAddendum = '';
-        if (!empty($block->input('captionAddendum'))) {
+        if (!empty($block->present()->input('captionAddendum'))) {
             $captionAddendum .= $block->present()->input('captionAddendum');
         }
 
