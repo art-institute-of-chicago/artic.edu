@@ -112,6 +112,11 @@ class EducatorResource extends AbstractModel
         return 'educator_resource';
     }
 
+    public function getSubtypeAttribute()
+    {
+        return 'Educator Resource';
+    }
+
     public function getUrlWithoutSlugAttribute()
     {
         return route('collection.resources.educator-resources.show', $this->id);
