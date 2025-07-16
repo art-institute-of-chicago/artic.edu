@@ -54,7 +54,7 @@
                data-filter-label="locale"
                data-filter-value="es"
                data-filter-persist>
-                Espanol
+                Español
             </a>
         </div>
 
