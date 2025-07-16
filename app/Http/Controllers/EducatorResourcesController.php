@@ -87,6 +87,9 @@ class EducatorResourcesController extends BaseScopedController
 
         $landingPage = LandingPage::where('type_id', collect(LandingPage::TYPES)->search('Educator Resources'))->first() ?? null;
 
+        $this->seo->setTitle('Educator Resources');
+        $this->seo->setImage($landingPage->imageFront('hero'));
+
         if ($landingPage) {
             array_unshift(
                 $crumbs,
