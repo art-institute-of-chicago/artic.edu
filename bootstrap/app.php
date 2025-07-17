@@ -8,7 +8,6 @@ use Sentry\Laravel\Integration;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__ . '/../routes/web.php',
         api: __DIR__ . '/../routes/api.php',
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
@@ -23,6 +22,16 @@ return Application::configure(basePath: dirname(__DIR__))
                     ->domain($domain)
                     ->group(base_path('routes/kiosk.php'));
             }
+
+            // Web routes
+            // These routes all receive session state, CSRF protection, etc.
+            $allowedDomains = config('app.allowed_domains') ?? [config('app.url')];
+            $host = request()->getHttpHost();
+            $domain = in_array($host, $allowedDomains) ? $host : config('app.url');
+
+            Route::middleware('web')
+                ->domain($domain)
+                ->group(base_path('routes/web.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
@@ -38,7 +47,9 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         ]);
 
-        $middleware->trustHosts(function () { return config('aic.trust_hosts'); });
+        $middleware->trustHosts(function () {
+            return config('aic.trust_hosts');
+        });
 
         $middleware->web(append: [
             \App\Http\Middleware\RedirectVanityPaths::class,
