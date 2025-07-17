@@ -38,7 +38,7 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         ]);
 
-        $middleware->trustHosts(config('aic.trust_hosts'));
+        $middleware->trustHosts(function () { return config('aic.trust_hosts'); });
 
         $middleware->web(append: [
             \App\Http\Middleware\RedirectVanityPaths::class,
