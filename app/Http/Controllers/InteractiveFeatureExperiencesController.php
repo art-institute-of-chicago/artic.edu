@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Experience;
 use App\Repositories\ExperienceRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class InteractiveFeatureExperiencesController extends FrontController
 {
@@ -84,11 +85,8 @@ class InteractiveFeatureExperiencesController extends FrontController
 
     protected function show($slug)
     {
-        if (in_array('kiosk', request()->segments())) {
-            return redirect()->action(
-                [self::class, 'showKiosk'],
-                ['slug' => $slug]
-            );
+        if (Str::startsWith(request()->host(), 'kiosk')) {
+            return $this->showKiosk($slug);
         }
 
         $experience = $this->repository->forSlug($slug);
