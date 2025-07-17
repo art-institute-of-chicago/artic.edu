@@ -27,6 +27,8 @@ return [
     'hide_objects_from_tours' => env('HIDE_OBJECTS_FROM_TOURS'),
     'hide_galleries_from_tours' => env('HIDE_GALLERIES_FROM_TOURS'),
 
+    'trust_hosts' => explode(',', env('TRUST_HOSTS')),
+
     // Feature flags
     'is_preview_mode' => (bool) env('ALWAYS_PREVIEW_MODE', false),
     'show_design_grids' => (bool) env('SHOW_DESIGN_GRIDS', false),
