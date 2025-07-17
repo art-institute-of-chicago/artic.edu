@@ -112,6 +112,12 @@
   .o-article__primary-actions {
     padding-top: 0;
 
+    @include breakpoint('small-') {
+      &~.o-article__secondary-actions {
+        display: none;
+      }
+    }
+
     @include breakpoint('medium-') {
       @include background-fill;
 
