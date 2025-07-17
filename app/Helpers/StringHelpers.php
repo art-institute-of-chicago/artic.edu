@@ -10,19 +10,20 @@ class StringHelpers
      */
     public static function getUtf8Slug($str, $options = [])
     {
-        // Make sure string is in UTF-8 and strip invalid UTF-8 characters
-        $str = mb_convert_encoding((string) $str, 'UTF-8', mb_list_encodings());
-
         $defaults = [
             'delimiter' => '-',
             'limit' => null,
             'lowercase' => true,
             'replacements' => [],
             'transliterate' => true,
+            'from_encoding' => null,
         ];
 
         // Merge options
         $options = array_merge($defaults, $options);
+
+        // Make sure string is in UTF-8 and strip invalid UTF-8 characters
+        $str = mb_convert_encoding((string) $str, 'UTF-8', $options['from_encoding']);
 
         $char_map = [
             // Latin
