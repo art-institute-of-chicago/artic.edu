@@ -55,15 +55,13 @@ class BlockHelpers
     public static function getHeadings(Collection $blocks): Collection
     {
         return $blocks
-          ->filter(function ($block) {
-              return isset($block->content['heading']);
-          })
+          ->filter(fn ($block) => strlen(strip_tags($block->content['heading'] ?? '')))
           ->map(function ($block) {
-              $heading = strip_tags($block->present()->input('heading'));
-              return [
-                  'label' => $heading,
-                  'target' => '#' . Str::slug($heading)
-              ];
+                $heading = strip_tags($block->present()->input('heading'));
+                return [
+                    'label' => $heading,
+                    'target' => '#' . Str::slug($heading)
+                ];
           });
     }
 }
