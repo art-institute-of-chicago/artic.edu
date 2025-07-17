@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\AllowIPForHealthCheck;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,10 +13,6 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
         then: function () {
-            Route::get('/health-check', function () {
-                return response('OK', 200);
-            })->middleware(AllowIPForHealthCheck::class);
-
             // Kiosk routes
             // These routes are typically stateless
             $domains = config('app.kiosk_domain');
@@ -43,11 +38,10 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         ]);
 
-        $middleware->trustHosts();
+        $middleware->trustHosts(config('aic.trust_hosts'));
 
         $middleware->web(append: [
             \App\Http\Middleware\RedirectVanityPaths::class,
-            \App\Http\Middleware\AllowIPForHealthCheck::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
