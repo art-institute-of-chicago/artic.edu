@@ -41,7 +41,7 @@
     @endif
     @if (empty($hidePrint))
         @if (empty($articleType) or (isset($articleType) and $articleType !== 'exhibition' and $articleType !== 'exhibitionHistory' and $articleType !== 'video'))
-        <li class="m-article-actions__action u-hide@small-">
+        <li class="m-article-actions__action">
             @component('components.atoms._btn')
                 @slot('variation', 'btn--quaternary btn--icon')
                 @slot('font', '')
