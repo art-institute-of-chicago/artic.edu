@@ -414,6 +414,11 @@
   }
 
   .m-media--m {
+    &.o-layered-image-viewer__osd {
+      width: 100%;
+      flex-flow: column !important;
+    }
+
     @include breakpoint('large+') {
       display: flex;
       flex-flow: row nowrap;
@@ -429,6 +434,19 @@
 
     @include breakpoint('xlarge') {
       width: colspan(28, xlarge);
+    }
+  }
+
+  .m-media--m {
+    &.o-layered-image-viewer__osd {
+      figcaption {
+        width: 100% !important;
+        margin-left: 0 !important;
+
+        &::before {
+          display: none;
+        }
+      }
     }
   }
 

@@ -407,6 +407,7 @@ top: -100%;
   .o-layered-image-viewer {
     .m-media.o-blocks__block {
       .m-media__img {
+        max-height: 650px !important;
         width: 100% !important;
 
         img {
