@@ -39,10 +39,15 @@
 
     .m-showcase-wrapper {
       flex-direction: row-reverse;
+      gap: 18px 38px;
     }
 
     .showcase-header {
-      display: none;
+      color: $color__black--54;
+      font-family: $sans-serif-font--loaded;
+      font-size: 13px;
+      line-height: 16px;
+      text-transform: uppercase;
     }
 
     .showcase-title {
