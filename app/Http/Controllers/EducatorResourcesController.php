@@ -111,9 +111,10 @@ class EducatorResourcesController extends BaseScopedController
         }
 
         $this->seo->setTitle($title);
-        $this->seo->setImage($landingPage->imageFront('hero'));
 
         if ($landingPage) {
+            $this->seo->setImage($landingPage->imageFront('hero' ?? null));
+
             array_unshift(
                 $crumbs,
                 [
