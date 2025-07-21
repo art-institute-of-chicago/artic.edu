@@ -148,7 +148,7 @@
         }
     }
 
-    &.custom-banner-block--default, &.custom-banner-block--educator-resources {
+    &.custom-banner-block--default, &.custom-banner-block--home, &.custom-banner-block--educator-resources {
         .custom-banner-body {
             font-size: 24px;
             font-family: $serif-font--loaded !important;
