@@ -87,10 +87,34 @@ class EducatorResourcesController extends BaseScopedController
 
         $landingPage = LandingPage::where('type_id', collect(LandingPage::TYPES)->search('Educator Resources'))->first() ?? null;
 
-        $this->seo->setTitle('Educator Resources');
-        $this->seo->setImage($landingPage->imageFront('hero'));
+        $title = 'Educator Resources';
+        $filters = [];
+
+        $filterKeys = ['audience', 'topic', 'content', 'filter', 'locale'];
+
+        foreach ($filterKeys as $key) {
+            $value = $request->input($key);
+
+            if (empty($value) || $value === 'all') {
+                continue;
+            }
+
+            if ($value === 'es') {
+                $filters[] = 'Español';
+            } else {
+                $filters[] = Str::title(str_replace('-', ' ', $value));
+            }
+        }
+
+        if (!empty($filters)) {
+            $title .= ', ' . implode(', ', $filters);
+        }
+
+        $this->seo->setTitle($title);
 
         if ($landingPage) {
+            $this->seo->setImage($landingPage->imageFront('hero' ?? null));
+
             array_unshift(
                 $crumbs,
                 [
@@ -101,7 +125,7 @@ class EducatorResourcesController extends BaseScopedController
         }
 
         $view_data = [
-            'title' => 'Educator Resources',
+            'title' => $title,
             'breadcrumb' => $crumbs,
             'wideBody' => true,
             'filters' => $this->getFilters(),
