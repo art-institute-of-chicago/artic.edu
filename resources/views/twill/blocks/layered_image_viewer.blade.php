@@ -20,11 +20,18 @@
     :toolbar-options="[ 'italic', 'link' ]"
 />
 
-<x-twill::select
-    name='size'
-    label='Size'
-    placeholder='Select size'
-    :options="[
+@php
+
+    if ($type === 'digitalPublications') {
+      $options = [
+        [
+            'value' => 'm',
+            'label' => 'Medium'
+        ],
+      ];
+
+    } else {
+      $options = [
         [
             'value' => 's',
             'label' => 'Small'
@@ -37,7 +44,16 @@
             'value' => 'l',
             'label' => 'Large'
         ]
-    ]"
+      ];
+    }
+@endphp
+
+<x-twill::select
+    name='size'
+    label='Size'
+    placeholder='Select size'
+    :options='$options'
+    :required='true'
 />
 
 <x-twill::repeater
