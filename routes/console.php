@@ -11,7 +11,7 @@ Artisan::command('inspire', function () {
 Schedule::command('cache:prune-stale-tags')->hourly();
 Schedule::command('sitemap:generate')->twiceDaily();
 Schedule::command('update:links')->daily();
-Schedule::command('update:cloudfront-ips')->hourly();
+Schedule::command('update:cdn-ips')->hourly();
 Schedule::command('fix:galleries')->everyMinute();
 Schedule::command('send:confirmations')->everyTwoMinutes()->withoutOverlapping();
 Schedule::command('exhibitions:featured')->dailyAt('00:00');
