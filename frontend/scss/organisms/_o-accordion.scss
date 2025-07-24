@@ -13,6 +13,12 @@
       margin-top: 40px;
     }
 
+    &:has(.o-accordion__trigger[aria-expanded="true"]) {
+      .o-accordion__panel {
+        overflow: visible !important;
+      }
+    }
+
     .o-accordion__panel-content {
       h4 {
         margin-bottom: 12px !important;
@@ -22,7 +28,7 @@
       }
     }
 
-    h3 {
+    >h3 {
       border-top: 1px solid $color__rules--primary;
       padding: 16px 0 !important;
     }
