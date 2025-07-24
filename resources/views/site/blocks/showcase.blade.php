@@ -31,6 +31,15 @@
                     'hideCaption' => true
                 ])
             @endcomponent
+        @elseif ($mediaType == 'slideshow')
+            @component('components.molecules._m-slideshow')
+                @slot('variation', 'm-showcase-media')
+                @slot('slides', $block->imagesAsArrays('showcase_slides', 'default'))
+                @slot('imagesSettings', [
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                ])
+            @endcomponent
         @else
             <div class="m-showcase-media">
                 @component('components.atoms._img')
