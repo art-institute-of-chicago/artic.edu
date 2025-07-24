@@ -1,8 +1,8 @@
 const CAROUSEL_CLASS = 'slideshow-carousel';
 const POSITION_CLASS = 'slideshow-position';
-const POSITION_INDEX_PREFIX =  `${POSITION_CLASS}-`;
+const POSITION_INDEX_PREFIX = `${POSITION_CLASS}-`;
 const CURRENT_POSITION_CLASS = `${POSITION_INDEX_PREFIX}current`;
-const DISPLAY_INTERVAL_MILLISECONDS = 5000; //  5 seconds
+const DISPLAY_INTERVAL_MILLISECONDS = 5000; // 5 seconds
 
 const slideshow = function(container) {
   const carousel = container.querySelector(`.${CAROUSEL_CLASS}`);
@@ -30,11 +30,11 @@ const slideshow = function(container) {
   }
 
   function changePosition(currentPosition, nextPosition) {
-    nextPosition.classList.add(CURRENT_POSITION_CLASS);
     currentPosition.classList.remove(CURRENT_POSITION_CLASS);
+    nextPosition.classList.add(CURRENT_POSITION_CLASS);
     const positionIndex = getPositionIndex(nextPosition);
     // Move the carousel horizontally to display the adjacent slide.
-    // For example, `translateX(-100%)` moves the carousel 100% of it's parent
+    // For example, `translateX(-100%)` moves the carousel 100% of its parent
     // element's width (one slide's width) to the left.
     carousel.style.transform = `translateX(-${positionIndex * 100}%)`;
   }
@@ -50,6 +50,7 @@ const slideshow = function(container) {
   };
 
   this.destroy = function() {
+    clearInterval(displayInterval);
     positions.forEach(pip => pip.removeEventListener('click', selectSlide));
     A17.Helpers.purgeProperties(this);
   };
