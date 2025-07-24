@@ -153,10 +153,6 @@ class FrontController extends BaseController
         $modelAlias = request()->query('model');
         $itemModelClass = in_array($modelAlias, $apiModels) ? $modelAlias : Relation::getMorphedModel($modelAlias);
 
-        if (!$itemModelClass) {
-            return response()->json(['error' => 'Invalid model specified.'], 400);
-        }
-
         try {
             $itemModel = app($itemModelClass);
         } catch (\Exception $e) {
