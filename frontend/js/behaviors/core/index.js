@@ -76,3 +76,4 @@ export { default as dynamicFilterDropdown } from './dynamicFilterDropdown';
 export { default as dynamicFilterPagination } from './dynamicFilterPagination';
 export { default as dynamicFilterSearch } from './dynamicFilterSearch';
 export { default as dynamicFilterSearchBuilder } from './dynamicFilterSearchBuilder';
+export { default as slideshow } from './slideshow';
