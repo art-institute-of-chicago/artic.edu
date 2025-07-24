@@ -18,7 +18,7 @@
         @foreach ($slides as $index => $slide)
             <button
                 id="slideshow-position-{{ $index }}"
-                class="slideshow-position-pip @if($index == 0) slideshow-current-position @endif"
+                class="slideshow-position-pip @if($index == 0) slideshow-position-current @endif"
             ></button>
         @endforeach
     </div>
