@@ -1,0 +1,35 @@
+.m-slideshow {
+  .slideshow-display {
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .slideshow-carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    @supports (-moz-appearance: none) {
+      display: inline-block;
+      font-size: 0px;
+    }
+  }
+  .slideshow-position {
+    column-gap: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    transition: 0.5s ease-in-out;
+    width: 100%;
+  }
+  .slideshow-position-pip {
+    background-color: $color__black--15;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    height: 10px;
+    padding: 0;
+    width: 10px;
+  }
+  .slideshow-position-current {
+    background-color: $color__black;
+  }
+}
