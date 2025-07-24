@@ -1,3 +1,5 @@
+import { purgeProperties } from '@area17/a17-helpers';
+
 const CAROUSEL_CLASS = 'slideshow-carousel';
 const POSITION_CLASS = 'slideshow-position';
 const POSITION_INDEX_PREFIX = `${POSITION_CLASS}-`;
@@ -8,14 +10,14 @@ const slideshow = function(container) {
   const carousel = container.querySelector(`.${CAROUSEL_CLASS}`);
   const positions = Array.from(container.querySelector(`.${POSITION_CLASS}`).children);
 
-  let displayInterval;
+  let displayInterval = null;
 
   function automaticallyAdvanceSlide() {
     const currentPosition = container.querySelector(`.${CURRENT_POSITION_CLASS}`);
     const currentIndex = getPositionIndex(currentPosition);
     let nextIndex = currentIndex + 1;
     // Reset the index if the current position is the end of the slideshow.
-    if (nextIndex == positions.length) {
+    if (nextIndex === positions.length) {
       nextIndex = 0;
     }
     const nextPosition = container.querySelector(`#${POSITION_INDEX_PREFIX}${nextIndex}`)
@@ -52,7 +54,7 @@ const slideshow = function(container) {
   this.destroy = function() {
     clearInterval(displayInterval);
     positions.forEach(pip => pip.removeEventListener('click', selectSlide));
-    A17.Helpers.purgeProperties(this);
+    purgeProperties(this);
   };
 }
 
