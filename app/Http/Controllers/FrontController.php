@@ -7,6 +7,7 @@ use App\Http\Controllers\Helpers\Seo;
 use A17\Twill\Http\Controllers\Front\Controller as BaseController;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Models\Hour;
 use Carbon\Carbon;
 
@@ -147,8 +148,17 @@ class FrontController extends BaseController
 
     protected function getRelatedSidebarItemsData()
     {
+        $apiModels = ['App\\Models\\Api\\Artist', 'App\\Models\\Api\\Artwork', 'App\\Models\\Api\\Exhibition'];
+
+        $modelAlias = request()->query('model');
+        $itemModelClass = in_array($modelAlias, $apiModels) ? $modelAlias : Relation::getMorphedModel($modelAlias);
+
+        if (!$itemModelClass) {
+            return response()->json(['error' => 'Invalid model specified.'], 400);
+        }
+
         try {
-            $itemModel = app(request()->query('model'));
+            $itemModel = app($itemModelClass);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Unable to retrieve model'], 400);
         }
