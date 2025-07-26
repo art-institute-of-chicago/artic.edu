@@ -129,7 +129,8 @@ class Artwork extends AbstractModel
         return $this->default_view;
     }
 
-    public function getSemanticSearchDescriptionAttribute() {
+    public function getSemanticSearchDescriptionAttribute()
+    {
         return $this->textEmbeddingData->data['description'];
     }
 
