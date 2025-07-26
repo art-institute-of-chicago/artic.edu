@@ -9,7 +9,10 @@ use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasAutoRelated;
 use App\Models\Behaviors\HasMedias;
+use App\Models\Api\TextEmbedding;
+use App\Models\Api\ImageEmbedding;
 use App\Helpers\StringHelpers;
+use Illuminate\Support\Facades\DB;
 
 class Artwork extends AbstractModel
 {
@@ -126,6 +129,21 @@ class Artwork extends AbstractModel
         return $this->default_view;
     }
 
+    public function getSemanticSearchDescriptionAttribute() {
+        return $this->textEmbeddingData->data['description'];
+    }
+
+    public function imageEmbeddingData()
+    {
+        return $this->hasOne(ImageEmbedding::class, 'model_id', 'datahub_id')
+                    ->where('model_name', 'artworks');
+    }
+
+    public function textEmbeddingData()
+    {
+        return $this->hasOne(TextEmbedding::class, 'model_id', 'datahub_id')
+                    ->where('model_name', 'artworks');
+    }
     protected function transformMappingInternal()
     {
         return [
