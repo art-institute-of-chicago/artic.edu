@@ -4,6 +4,8 @@ namespace App\Models\Api;
 
 use Illuminate\Database\Eloquent\Model;
 use Pgvector\Laravel\Vector;
+
+// TODO: Utilize Embedding weights
 // use TextEmbeddingWeight;
 
 class TextEmbedding extends Model
@@ -42,6 +44,8 @@ class TextEmbedding extends Model
     {
         return $this->morphTo('artwork', 'model_name', 'model_id');
     }
+
+    // TODO: Create Embedding weight models
 
     /**
      * Get the weights for the text embedding.
