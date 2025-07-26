@@ -4,6 +4,7 @@ namespace App\Models\Api;
 
 use Illuminate\Database\Eloquent\Model;
 use Pgvector\Laravel\Vector;
+
 // use ImageEmbeddingWeight;
 
 class ImageEmbedding extends Model
