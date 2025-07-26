@@ -46,7 +46,6 @@ class ArtworkRepository extends BaseApiRepository
                 [
                     'model_name' => 'artworks',
                     'model_id'   => $object->datahub_id,
-                    'updated_at' => now()
                 ],
                 [
                     'data' => [],
