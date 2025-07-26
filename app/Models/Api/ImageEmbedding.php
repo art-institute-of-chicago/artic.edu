@@ -5,6 +5,7 @@ namespace App\Models\Api;
 use Illuminate\Database\Eloquent\Model;
 use Pgvector\Laravel\Vector;
 
+// TODO: Utilize Embedding weights
 // use ImageEmbeddingWeight;
 
 class ImageEmbedding extends Model
@@ -43,6 +44,8 @@ class ImageEmbedding extends Model
     {
         return $this->morphTo('artwork', 'model_name', 'model_id');
     }
+
+    // TODO: Create Embedding weight models
 
     /**
      * Get the weights for the image embedding.
