@@ -9,7 +9,7 @@ const rangedAccordion = function(container) {
         event.preventDefault();
 
         // Get the associated panel
-        let panel = container.querySelector('#panel_' + trigger.id);
+        let panel = container.querySelector(`#panel_${trigger.id}`);
 
         // Get the current scroll position
         const currentScrollY = window.scrollY;
