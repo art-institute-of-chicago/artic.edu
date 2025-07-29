@@ -15,7 +15,7 @@ const queryParams = params => Object.keys(params).map(function(key) {
     if( !hashes ) return false;
 
     let params = {}
-    hashes.map(hash => {
+    hashes.forEach(hash => {
       let [key, val] = hash.split('=')
       params[key] = decodeURIComponent(val)
     })
