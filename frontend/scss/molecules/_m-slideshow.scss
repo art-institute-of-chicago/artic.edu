@@ -1,0 +1,33 @@
+.m-slideshow {
+  .slideshow-display {
+    overflow: hidden;
+  }
+  .slideshow-carousel {
+    transition: transform 0.5s ease-in-out;
+    white-space: nowrap;
+  }
+  .slideshow-slide {
+    display: contents;
+    font-size: 0;
+  }
+  .slideshow-position {
+    column-gap: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    transition: 0.5s ease-in-out;
+    width: 100%;
+  }
+  .slideshow-position-pip {
+    background-color: $color__black--15;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    height: 10px;
+    padding: 0;
+    width: 10px;
+  }
+  .slideshow-position-current {
+    background-color: $color__black;
+  }
+}
