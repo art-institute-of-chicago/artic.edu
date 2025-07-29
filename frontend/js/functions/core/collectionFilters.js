@@ -22,7 +22,7 @@ const collectionFilters = function(container) {
       });
       window.requestAnimationFrame(function(){
         document.documentElement.classList.add('s-collection-filters-active');
-        let container = document.getElementById('collectionFilters');
+        container = document.getElementById('collectionFilters');
         if (container) {
           setTimeout(function(){ setFocusOnTarget(container); }, 0)
           triggerCustomEvent(document, 'focus:trap', {

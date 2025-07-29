@@ -131,8 +131,8 @@ const imageSlider = function(container) {
         trackDragShared(event.changedTouches[0].pageX);
       }
 
-      function trackDragShared(pageX) {
-        var leftValue = pageX + xPosition - dragWidth;
+      function trackDragShared(dragX) {
+        var leftValue = dragX + xPosition - dragWidth;
 
         //constrain the draggable element to move inside its container
         leftValue = Math.max(leftValue, minLeft);

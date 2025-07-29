@@ -1408,7 +1408,7 @@ const layeredImageViewer = function(container) {
         }
 
         let timeoutId;
-        const observer = new MutationObserver((mutations) => {
+        observer = new MutationObserver((mutations) => {
           for (const mutation of mutations) {
             for (const node of mutation.addedNodes) {
               if (node.nodeType === Node.ELEMENT_NODE) {

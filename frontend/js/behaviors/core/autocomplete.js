@@ -278,13 +278,12 @@ const autocomplete = function(container) {
    */
   function _arrayQueryStringHandler(formdata) {
     var value
-    var key
     var tmp = []
     var argSeparator = '&'
 
-    var _httpBuildQueryHelper = function (key, val, argSeparator) {
+    var _httpBuildQueryHelper = function (key, val) {
       var k
-      var tmp = []
+      tmp = []
       if (val === true) {
         val = '1'
       } else if (val === false) {
@@ -294,7 +293,7 @@ const autocomplete = function(container) {
         if (typeof val === 'object') {
           for (k in val) {
             if (val[k] !== null) {
-              tmp.push(_httpBuildQueryHelper(key + '[' + k + ']', val[k], argSeparator))
+              tmp.push(_httpBuildQueryHelper(key + '[' + k + ']', val[k]))
             }
           }
           return tmp.join(argSeparator)
@@ -308,9 +307,9 @@ const autocomplete = function(container) {
       }
     }
 
-    for (key in formdata) {
+    for (var key in formdata) {
       value = formdata[key]
-      var query = _httpBuildQueryHelper(key, value, argSeparator)
+      var query = _httpBuildQueryHelper(key, value)
       if (query !== '') {
         tmp.push(query)
       }

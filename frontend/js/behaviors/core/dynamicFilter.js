@@ -410,6 +410,7 @@ const dynamicFilter = function(container) {
     }
 
     if (parameter) {
+      let itemsArray = [];
       switch(parameter) {
         case "filter":
           if (value !== 'all') {
@@ -443,11 +444,11 @@ const dynamicFilter = function(container) {
         case "sort":
           if (!listingContainer) break;
 
-          const itemsArray = Array.from(listingItems).filter(item => {
+          itemsArray = Array.from(listingItems).filter(item => {
             return item.style.display !== 'none';
           });
 
-          const container = listingItems.length > 0 ? listingItems[0].parentNode : null;
+          container = listingItems.length > 0 ? listingItems[0].parentNode : null;
           if (!container) break;
 
           switch(value) {
@@ -553,7 +554,7 @@ const dynamicFilter = function(container) {
 
         case "page":
           if (value) {
-              const itemsArray = Array.from(listingItems).filter(item => {
+              itemsArray = Array.from(listingItems).filter(item => {
                   return item.style.display !== 'none';
               });
               const pageItemLimit = registeredParameters.find(item => item.parameter === "pageItemLimit");
