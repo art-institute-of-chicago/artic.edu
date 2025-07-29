@@ -219,7 +219,7 @@
             }
         },
         dragStop(event) {
-            if (this.isDragging = true) {
+            if (this.isDragging === true) {
                 this.isDragging = false;
                 this.calculateTranslate();
             }
@@ -297,7 +297,7 @@
             }
         },
         deleteCurrentHotspot: function () {
-            console.log('delteing');
+            console.log('deleting');
             this.hotspots = this.hotspots.filter(function (hotspot) {
                 return hotspot !== this.currentHotspot;
             }, this)
