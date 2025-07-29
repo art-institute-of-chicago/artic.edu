@@ -56,7 +56,7 @@
       setTimeout(insSvg,9);
     } else {
       var db = d.body;
-      var s = d.createElement('div');
+      s = d.createElement('div');
       s.className = 'svg-sprite';
       s.innerHTML = a.responseText;
       db.insertBefore(s, db.childNodes[0]);
