@@ -1,17 +1,15 @@
-import { triggerCustomEvent } from '@area17/a17-helpers';
+import { purgeProperties, triggerCustomEvent } from '@area17/a17-helpers';
 
 const rangedAccordion = function(container) {
+    const trigger = container.querySelector('.o-accordion__trigger');
 
     function _toggleAccordion(event) {
 
         // Prevent default behavior
         event.preventDefault();
 
-        // Get the trigger element
-        let trigger = container.querySelector('.o-accordion__trigger');
-
         // Get the associated panel
-        let panel = document.getElementById('panel_' + trigger.id);
+        let panel = container.querySelector(`#panel_${trigger.id}`);
 
         // Get the current scroll position
         const currentScrollY = window.scrollY;
@@ -63,27 +61,19 @@ const rangedAccordion = function(container) {
         }
     };
 
-    function _init() {
-      let trigger = container.querySelector('.o-accordion__trigger');
-
-      if (trigger) {
-        trigger.addEventListener('click', _toggleAccordion);
-      }
-    }
-
     this.destroy = function() {
-      let trigger = container.querySelector('.o-accordion__trigger');
-
       if (trigger) {
         trigger.removeEventListener('click', _toggleAccordion);
       }
 
       // Remove properties of this behavior
-      A17.Helpers.purgeProperties(this);
+      purgeProperties(this);
     };
 
     this.init = function() {
-        _init();
+      if (trigger) {
+        trigger.addEventListener('click', _toggleAccordion);
+      }
     };
 }
 
