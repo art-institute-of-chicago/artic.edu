@@ -12,6 +12,7 @@ use App\Repositories\Behaviors\Handle3DModel;
 use App\Repositories\Api\BaseApiRepository;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
+use Illuminate\Support\Facades\DB;
 
 class ArtworkRepository extends BaseApiRepository
 {
@@ -41,7 +42,6 @@ class ArtworkRepository extends BaseApiRepository
 
         if (isset($fields['semantic_search_description'])) {
             $description = $fields['semantic_search_description'];
-
             $embedding = TextEmbedding::firstOrCreate(
                 [
                     'model_name' => 'artworks',
@@ -56,6 +56,15 @@ class ArtworkRepository extends BaseApiRepository
             $newData = array_merge($currentData, ['description' => $description]);
 
             $embedding->update(['data' => $newData]);
+
+            DB::connection('vectors')->table('embedding_updates')->insert(
+              [
+                'created_at' => now(),
+                'embedding_type' => 'text',
+                'model_name' => 'artworks',
+                'model_id' => $object->datahub_id,
+              ]
+            );
         }
 
         parent::afterSave($object, $fields);
@@ -68,7 +77,7 @@ class ArtworkRepository extends BaseApiRepository
         $fields = $this->getFormFieldsFor3DModel($object, $fields);
 
         if (request()->input('showAIData') === 'true') {
-            $object->semantic_search_description = $object->semantic_search_description ?? $object->getSemanticSearchDescriptionAttribute();
+            $object->semantic_search_description = $object->getSemanticSearchDescriptionAttribute();
         }
 
         return $fields;
