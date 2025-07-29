@@ -28,11 +28,11 @@
             ],
             [
                 'label' => 'Digital Publication',
-                'value' => '/collection/articlesPublication/digitalPublications/browser'
+                'value' => '/collection/articlesPublications/digitalPublications/browser'
             ],
             [
                 'label' => 'Digital Publication Article',
-                'value' => '/collection/articlesPublications/digitalPublications/articles/browserbrowser'
+                'value' => '/collection/articlesPublications/digitalPublicationsBrowser/articles/browser'
             ],
             [
                 'label' => 'Video',
