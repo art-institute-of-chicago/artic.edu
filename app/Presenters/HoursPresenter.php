@@ -290,14 +290,6 @@ class HoursPresenter extends BasePresenter
         return $isHoursClosed || $isBuildingClosureClosed->isNotEmpty();
     }
 
-    private function isBeforePublicOpen($when)
-    {
-        $publicOpen = $this->getWhenFields($when)['public_open'];
-
-        return !empty($publicOpen)
-            && $when->lessThanOrEqualTo($this->getDateTime($publicOpen, $when));
-    }
-
     private function isAfterPublicOpen($when)
     {
         $publicOpen = $this->getWhenFields($when)['public_open'];
@@ -306,26 +298,12 @@ class HoursPresenter extends BasePresenter
             && $when->greaterThanOrEqualTo($this->getDateTime($publicOpen, $when));
     }
 
-    private function isBeforePublicClose($when)
-    {
-        $publicClose = $this->getWhenFields($when)['public_close'];
-
-        return !empty($publicClose)
-            && $when->lessThanOrEqualTo($this->getDateTime($publicClose, $when));
-    }
-
     private function isAfterPublicClose($when)
     {
         $publicClose = $this->getWhenFields($when)['public_close'];
 
         return !empty($publicClose)
             && $when->greaterThanOrEqualTo($this->getDateTime($publicClose, $when));
-    }
-
-    private function isDuringPublicHours($when)
-    {
-        return $this->isAfterPublicOpen($when)
-            && $this->isBeforePublicClose($when);
     }
 
     private function getNextOpen($when, string $prefix)
@@ -346,13 +324,6 @@ class HoursPresenter extends BasePresenter
         return $prefix . ', next open ' . (
             $tries == 1 ? 'tomorrow' : $nextWhen->englishDayOfWeek
         ) . '.';
-    }
-
-    private function getClosingHour($when)
-    {
-        $publicClose = $this->getWhenFields($when)['public_close'];
-
-        return $this->getHourDisplay($publicClose);
     }
 
     private function getHourDisplay(string $serializedDateInterval)
