@@ -2,14 +2,16 @@
     <div class="slideshow-display">
         <div class="slideshow-carousel">
             @foreach ($slides as $index => $slide)
-                @component('components.atoms._img')
-                    @slot('id', "slideshow-slide-$index")
-                    @slot('class', 'm-showcase-image slideshow-slide')
-                    @slot('image', $slide)
-                    @if ($imagesSettings ?? false)
-                        @slot('settings', $imagesSettings)
-                    @endif
-                @endcomponent
+                <div class="slideshow-slide">
+                    @component('components.atoms._img')
+                        @slot('id', "slideshow-slide-$index")
+                        @slot('class', 'm-showcase-image')
+                        @slot('image', $slide)
+                        @if ($imagesSettings ?? false)
+                            @slot('settings', $imagesSettings)
+                        @endif
+                    @endcomponent
+                </div>
             @endforeach
         </div>
     </div>
