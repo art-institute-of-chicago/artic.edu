@@ -30,19 +30,6 @@ const imageSlider = function(container) {
     }
   }
 
-  function imagesClip() {
-    var rox = rightImage.viewerElementToImageCoordinates(middle).x;
-    var lox = leftImage.viewerElementToImageCoordinates(middle).x;
-
-    rightRect.x = rox;
-    rightRect.width = rightImage.getContentSize().x - rox;
-
-    leftRect.width = lox;
-
-    leftImage.setClip(leftRect);
-    rightImage.setClip(rightRect);
-  }
-
   var oldSpringX = 0.5;
 
   function imagesClipAggressive() {
