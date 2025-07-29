@@ -85,6 +85,21 @@
         />
     </x-twill::formConnectedFields>
 
+    <x-twill::formConnectedFields
+        field-name='media_type'
+        field-values='slideshow'
+        :render-for-blocks='true'
+        :keep-alie='true'
+    >
+        <x-twill::medias
+            name='showcase_slides'
+            label='Slides'
+            :min='2'
+            :max='5'
+            :withVideoUrl='false'
+            :required='true'
+        />
+    </x-twill::formConnectedFields>
 @else
     <x-twill::medias
         name='image'
