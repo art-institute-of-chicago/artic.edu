@@ -11,7 +11,7 @@ const rangedAccordion = function(container) {
         let trigger = container.querySelector('.o-accordion__trigger');
 
         // Get the associated panel
-        let panel = document.getElementById('panel_' + trigger.id);
+        let panel = container.querySelector('#panel_' + trigger.id);
 
         // Get the current scroll position
         const currentScrollY = window.scrollY;
