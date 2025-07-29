@@ -15,7 +15,7 @@ import { queryStringHandler } from '@area17/a17-helpers';
  *
  * Spec: https://xhr.spec.whatwg.org/#the-responseurl-attribute
  */
-var ajaxRequestCustom = function(settings) {
+const ajaxRequestCustom = function(settings) {
   // @see Doc: https://code.area17.com/a17/a17-helpers/wikis/ajaxRequest
 
   var options = settings;
