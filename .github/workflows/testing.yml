@@ -17,23 +17,16 @@ jobs:
                   node-version: lts/iron
             - name: Install Postgres
               id: postgres-testing
-              uses: ikalnytskyi/action-setup-postgres@v4
+              uses: ikalnytskyi/action-setup-postgres@v7
               with:
                   username: homestead
                   password: secret
                   database: testing
                   port: 5432
-
-            - name: Create vectors db
-              env:
-                PGPASSWORD: secret
-              run: |
-                psql -U homestead -d testing -h localhost -c "CREATE DATABASE vectors;"
+                  postgres-version: 16
 
             - name: Install pgvector
-              run: |
-                sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
-                sudo apt-get install postgresql-16-pgvector
+              run: sudo apt-get install -y postgresql-16-pgvector
 
             - name: Install Prince
               run: |
