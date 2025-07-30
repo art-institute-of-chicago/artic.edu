@@ -12,7 +12,7 @@ const slideshow = function(container) {
 
   let displayInterval = null;
 
-  function automaticallyAdvanceSlide() {
+  function advanceSlide() {
     const currentPosition = container.querySelector(`.${CURRENT_POSITION_CLASS}`);
     const currentIndex = getPositionIndex(currentPosition);
     let nextIndex = currentIndex + 1;
@@ -26,7 +26,7 @@ const slideshow = function(container) {
 
   function selectSlide(event) {
     clearInterval(displayInterval);
-    displayInterval = setInterval(automaticallyAdvanceSlide, DISPLAY_INTERVAL_MILLISECONDS);
+    displayInterval = setInterval(advanceSlide, DISPLAY_INTERVAL_MILLISECONDS);
     const currentPosition = container.querySelector(`.${CURRENT_POSITION_CLASS}`);
     changePosition(currentPosition, event.target);
   }
@@ -47,7 +47,7 @@ const slideshow = function(container) {
   }
 
   this.init = function() {
-    displayInterval = setInterval(automaticallyAdvanceSlide, DISPLAY_INTERVAL_MILLISECONDS);
+    displayInterval = setInterval(advanceSlide, DISPLAY_INTERVAL_MILLISECONDS);
     positions.forEach(pip => pip.addEventListener('click', selectSlide));
   };
 
