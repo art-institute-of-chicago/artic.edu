@@ -2,15 +2,18 @@
 
 namespace App\Repositories;
 
-use App\Models\Artwork;
 use App\Jobs\TileMedia;
+use App\Models\Artwork;
+use App\Models\Api\EmbeddingUpdate;
+use App\Models\Api\TextEmbedding;
 use A17\Twill\Models\Media;
 use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Repositories\Behaviors\Handle3DModel;
-use A17\Twill\Repositories\Behaviors\HandleMedias;
 use App\Repositories\Api\BaseApiRepository;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
+use A17\Twill\Repositories\Behaviors\HandleMedias;
+use Illuminate\Support\Facades\DB;
 
 class ArtworkRepository extends BaseApiRepository
 {
@@ -38,6 +41,33 @@ class ArtworkRepository extends BaseApiRepository
             }
         }
 
+        if (isset($fields['semantic_search_description'])) {
+            $description = $fields['semantic_search_description'];
+            $embedding = TextEmbedding::firstOrCreate(
+                [
+                    'model_name' => 'artworks',
+                    'model_id'   => $object->datahub_id,
+                ],
+                [
+                    'data' => [],
+                ]
+            );
+
+            $currentData = $embedding->data ?? [];
+            $newData = array_merge($currentData, ['description' => $description]);
+
+            $embedding->update(['data' => $newData]);
+
+            EmbeddingUpdate::create(
+              [
+                'created_at' => now(),
+                'embedding_type' => 'text',
+                'model_name' => 'artworks',
+                'model_id' => $object->datahub_id,
+              ]
+            );
+        }
+
         parent::afterSave($object, $fields);
     }
 
@@ -46,6 +76,10 @@ class ArtworkRepository extends BaseApiRepository
         $fields = parent::getFormFields($object);
 
         $fields = $this->getFormFieldsFor3DModel($object, $fields);
+
+        if (request()->input('showAIData') === 'true') {
+            $object->semantic_search_description = $object->getSemanticSearchDescriptionAttribute();
+        }
 
         return $fields;
     }

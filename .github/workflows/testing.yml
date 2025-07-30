@@ -16,13 +16,18 @@ jobs:
               with:
                   node-version: lts/iron
             - name: Install Postgres
-              id: postgres
-              uses: ikalnytskyi/action-setup-postgres@v4
+              id: postgres-testing
+              uses: ikalnytskyi/action-setup-postgres@v7
               with:
                   username: homestead
                   password: secret
                   database: testing
                   port: 5432
+                  postgres-version: 16
+
+            - name: Install pgvector
+              run: sudo apt-get install -y postgresql-16-pgvector
+
             - name: Install Prince
               run: |
                   TEMP_PRINCE="$(mktemp)"

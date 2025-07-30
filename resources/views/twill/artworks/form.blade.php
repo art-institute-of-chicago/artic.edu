@@ -11,6 +11,14 @@
 @section('contentFields')
     {{-- This section will always be shown --}}
     <p>Artwork content is defined in CITI.</p>
+
+    @if (request()->input('showAIData') === 'true')
+      <x-twill::input
+          name='semantic_search_description'
+          label='Semantic Search Description'
+          type='textarea'
+      />
+    @endif
 @stop
 
 @section('fieldsets')

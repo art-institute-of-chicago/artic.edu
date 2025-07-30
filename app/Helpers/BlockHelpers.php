@@ -57,11 +57,11 @@ class BlockHelpers
         return $blocks
           ->filter(fn ($block) => strlen(strip_tags($block->present()->input('heading') ?? '')))
           ->map(function ($block) {
-                $heading = strip_tags($block->present()->input('heading'));
-                return [
-                    'label' => $heading,
-                    'target' => '#' . Str::slug($heading)
-                ];
+              $heading = strip_tags($block->present()->input('heading'));
+              return [
+                  'label' => $heading,
+                  'target' => '#' . Str::slug($heading)
+              ];
           });
     }
 }
