@@ -4,7 +4,7 @@ namespace App\Libraries;
 
 class ShortcodeService
 {
-    // Regex101 reference: https://regex101.com/r/mfPWWB/1/
+    // Regex101 reference: https://regex101.com/r/5dOPYU/1
     public const REF_REGEXP = "/(?P<shortcode>(?:(?:\s?\[))(?P<name>ref)(?:\])(?:(?P<content>.*)(?:\[\/ref\])))/uU";
 
     // Regex101 reference: https://regex101.com/r/sZ7wP0
