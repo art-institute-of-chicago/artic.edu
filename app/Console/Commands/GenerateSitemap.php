@@ -173,10 +173,6 @@ class GenerateSitemap extends Command
         }, ['datahub_id']);
     }
 
-    private function addRemoteModels(&$sitemap)
-    {
-    }
-
     /**
      * Add a URL by module
      * Anything paginated and CMS-native of format `/resources/{id}/{slug}`

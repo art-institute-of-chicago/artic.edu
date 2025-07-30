@@ -115,7 +115,7 @@ const rangeSlider = function(container){
     var toExists = _findInArray(rangeValues, toValueRaw) > -1;
 
     if( fromValueRaw.indexOf(bcText) > -1 ){
-      var fromValue = fromValue * -1;
+      fromValue = fromValue * -1;
     }
 
     // toValue cannot be lower than fromValue

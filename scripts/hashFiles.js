@@ -83,12 +83,7 @@ function hashFiles (inputPath) {
     const files = fs.readdirSync(inputPath);
     files.forEach((file) => {
       const filePath = path.resolve(inputPath, file);
-      const stat = fs.statSync(filePath);
-      if (stat.isDirectory()) {
-        hashFiles(filePath);
-      } else {
-        hashFile(filePath);
-      }
+      hashFiles(filePath);
     });
   }
   catch (err) {
