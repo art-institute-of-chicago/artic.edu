@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Jobs\TileMedia;
 use App\Models\Artwork;
+use App\Models\Api\EmbeddingUpdate;
 use App\Models\Api\TextEmbedding;
 use A17\Twill\Models\Media;
 use A17\Twill\Models\Contracts\TwillModelContract;
@@ -57,13 +58,13 @@ class ArtworkRepository extends BaseApiRepository
 
             $embedding->update(['data' => $newData]);
 
-            DB::connection('vectors')->table('embedding_updates')->insert(
-                [
+            EmbeddingUpdate::create(
+              [
                 'created_at' => now(),
                 'embedding_type' => 'text',
                 'model_name' => 'artworks',
                 'model_id' => $object->datahub_id,
-                ]
+              ]
             );
         }
 
