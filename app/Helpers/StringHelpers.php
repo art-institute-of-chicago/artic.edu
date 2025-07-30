@@ -197,6 +197,12 @@ class StringHelpers
 
         // Fallback for other cases
         if (empty($lastWord)) {
+            // Check if we have HTML tags
+            if (preg_match('/<[^>]+>/', $originalText)) {
+                // Contains HTML tags, don't split
+                return [$originalText, ''];
+            }
+
             // Match the very last character/punctuation
             preg_match('/(.*)(.)$/', $originalText, $textAndPunctuation);
             $beforeLastWord = $textAndPunctuation[1] ?? $originalText;
