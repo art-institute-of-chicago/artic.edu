@@ -281,7 +281,7 @@ const autocomplete = function(container) {
     var tmp = []
     var argSeparator = '&'
 
-    var _httpBuildQueryHelper = function (key, val) {
+    const _httpBuildQueryHelper = function (key, val) {
       var k
       tmp = []
       if (val === true) {
@@ -307,9 +307,9 @@ const autocomplete = function(container) {
       }
     }
 
-    for (let key in formdata) {
+    for (const key in formdata) {
       value = formdata[key]
-      let query = _httpBuildQueryHelper(key, value)
+      const query = _httpBuildQueryHelper(key, value)
       if (query !== '') {
         tmp.push(query)
       }
