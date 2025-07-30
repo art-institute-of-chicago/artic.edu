@@ -30,19 +30,6 @@ const imageSlider = function(container) {
     }
   }
 
-  function imagesClip() {
-    var rox = rightImage.viewerElementToImageCoordinates(middle).x;
-    var lox = leftImage.viewerElementToImageCoordinates(middle).x;
-
-    rightRect.x = rox;
-    rightRect.width = rightImage.getContentSize().x - rox;
-
-    leftRect.width = lox;
-
-    leftImage.setClip(leftRect);
-    rightImage.setClip(rightRect);
-  }
-
   var oldSpringX = 0.5;
 
   function imagesClipAggressive() {
@@ -144,8 +131,8 @@ const imageSlider = function(container) {
         trackDragShared(event.changedTouches[0].pageX);
       }
 
-      function trackDragShared(pageX) {
-        var leftValue = pageX + xPosition - dragWidth;
+      function trackDragShared(dragX) {
+        var leftValue = dragX + xPosition - dragWidth;
 
         //constrain the draggable element to move inside its container
         leftValue = Math.max(leftValue, minLeft);

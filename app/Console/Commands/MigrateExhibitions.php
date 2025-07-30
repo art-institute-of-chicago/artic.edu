@@ -15,9 +15,6 @@ class MigrateExhibitions extends Command
 
     protected $description = 'Copy `short_description` to new website';
 
-    private $apiRepository;
-    private $augmentedRepository;
-
     public function handle()
     {
         ini_set('memory_limit', '-1');

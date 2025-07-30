@@ -37,8 +37,8 @@ const viewer360 = function(container) {
 	input360.setAttribute('max', frames360.length-1);
 
 	//get index to find image to show
-	function update360(curFrame) {
-		const closestFrame = findClosestFrame(loadedFrameIndexes, curFrame);
+	function update360(toCurFrame) {
+		const closestFrame = findClosestFrame(loadedFrameIndexes, toCurFrame);
 		const image360 = loadedFrames[closestFrame];
 		if (typeof image360 != 'undefined') {
 			wrapper.classList.remove('loader');

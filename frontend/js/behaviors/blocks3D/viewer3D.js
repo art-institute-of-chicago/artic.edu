@@ -143,7 +143,7 @@ const viewer3D = function(container) {
             var duration = 0.2, factor = 0.5;
 
             if(hasZoom) {
-              apiConst.zoom = function(factor, duration) {
+              apiConst.zoom = function(toFactor, toDuration) {
                 apiConst.getCameraLookAt(function(err, camera) {
                   if(!err) {
                     var currentPos = camera.position,
@@ -162,7 +162,7 @@ const viewer3D = function(container) {
 
                     if(rho < minRadius && factor < 1) {
                       rho = minRadius;
-                    } else if (rho > maxRadius && factor > 1) {
+                    } else if (rho > maxRadius && toFactor > 1) {
                       rho = maxRadius;
                     }
 
@@ -171,7 +171,7 @@ const viewer3D = function(container) {
                     x = (rho * Math.sin(theta) * Math.cos(phi));
                     y = (rho * Math.sin(theta) * Math.sin(phi));
                     z = (rho * Math.cos(theta));
-                    apiConst.setCameraLookAt([x, y, z], target, duration);
+                    apiConst.setCameraLookAt([x, y, z], target, toDuration);
                   }
                 });
               };

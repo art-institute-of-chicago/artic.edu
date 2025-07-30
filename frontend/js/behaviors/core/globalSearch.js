@@ -91,7 +91,7 @@ const globalSearch = function(container) {
         onSuccess: function(data){
           _clearAutocomplete();
           try {
-            _showAutocomplete(data,timestamp,textInput.value);
+            _showAutocomplete(data, timestamp);
           } catch (err) {
             console.error('Error updating autocomplete: '+ err);
             triggerCustomEvent(document, 'globalSearch:close');
