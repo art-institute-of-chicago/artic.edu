@@ -59,12 +59,12 @@ class ArtworkRepository extends BaseApiRepository
             $embedding->update(['data' => $newData]);
 
             EmbeddingUpdate::create(
-              [
+                [
                 'created_at' => now(),
                 'embedding_type' => 'text',
                 'model_name' => 'artworks',
                 'model_id' => $object->datahub_id,
-              ]
+                ]
             );
         }
 
