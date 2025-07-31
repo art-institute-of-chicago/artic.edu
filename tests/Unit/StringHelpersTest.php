@@ -37,6 +37,52 @@ class StringHelpersTest extends BaseTestCase
         $this->assertEquals('.', $lastWord);
     }
 
+    public function test_convertReferenceLinks(): void
+    {
+        $refs = [
+            '[ref]Reference 1.[/ref]',
+            '[ref]Reference 2.[/ref]',
+        ];
+        $htmlWithRefs = "<p>Text before reference one $refs[0]. Text before reference two$refs[1]</p>";
+
+        [$convertedHtml, $collectedRefs] = StringHelpers::convertReferenceLinks($htmlWithRefs, []);
+        foreach ($refs as $index => $ref) {
+            $id = $index + 1;
+
+            $this->assertStringNotContainsString(
+                $ref,
+                $convertedHtml,
+                'The [ref]...[/ref] shortcode tag has been removed',
+            );
+            $this->assertStringContainsString(
+                "<sup id=\"ref_cite-$id\">",
+                $convertedHtml,
+                'The reference has a citation id',
+            );
+            $this->assertStringContainsString(
+                "<a href=\"#ref_note-$id\">",
+                $convertedHtml,
+                'The reference has a footnote link',
+            );
+            $this->assertStringContainsString(
+                "[$id]",
+                $convertedHtml,
+                'The reference has a number'
+            );
+
+            $this->assertEquals(
+                $id,
+                $collectedRefs[$index]['id'],
+                'The collected reference has an id',
+            );
+            $this->assertStringContainsString(
+                $collectedRefs[$index]['reference'],
+                $ref,
+                'The collected reference contains the [ref]...[/ref] contents',
+            );
+        }
+    }
+
     public static function htmlEntities(): array
     {
         return array_map(
