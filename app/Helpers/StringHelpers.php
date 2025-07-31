@@ -182,9 +182,11 @@ class StringHelpers
             return [$entityMatch[1], $entityMatch[2]];
         }
 
-        // Check if the string ends with styled text, e.g., "<em>Paris Street; Rainy Day</em>"
-        if (preg_match('/(.*)(<([a-z]+)>[^<]+<\/\3>)$/u', $originalText, $entityMatch)) {
-            // If it ends with styled text, use that whole element
+        // Check if the string ends with an HTML element, for examples:
+        // "<em>Paris Street; Rainy Day</em>"
+        // "<a href="/path">Link</a>"
+        if (preg_match('/(.*)(<([a-z]+)[^>]*>[^<]+<\/\3>)$/u', $originalText, $entityMatch)) {
+            // If it ends with an element, use that whole element
             return [$entityMatch[1], $entityMatch[2]];
         }
 
@@ -197,12 +199,6 @@ class StringHelpers
 
         // Fallback for other cases
         if (empty($lastWord)) {
-            // Check if we have HTML tags
-            if (preg_match('/<[^>]+>/', $originalText)) {
-                // Contains HTML tags, don't split
-                return [$originalText, ''];
-            }
-
             // Match the very last character/punctuation
             preg_match('/(.*)(.)$/', $originalText, $textAndPunctuation);
             $beforeLastWord = $textAndPunctuation[1] ?? $originalText;
