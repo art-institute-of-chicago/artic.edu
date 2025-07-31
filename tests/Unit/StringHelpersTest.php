@@ -23,6 +23,13 @@ class StringHelpersTest extends BaseTestCase
         $this->assertEquals('<em>Text in ending tag</em>', $lastWord);
     }
 
+    public function test_getLastWord_finds_last_tag_with_attributes(): void
+    {
+        [$beforeLastWord, $lastWord] = StringHelpers::getLastWord('Text not in a link <a id="id" href="/path">Text in a link</a>');
+        $this->assertEquals('Text not in a link ', $beforeLastWord);
+        $this->assertEquals('<a id="id" href="/path">Text in a link</a>', $lastWord);
+    }
+
     public function test_getLastWord_finds_non_html_non_space_character(): void
     {
         [$beforeLastWord, $lastWord] = StringHelpers::getLastWord('Text ending with a non-html, non-space character. ');
