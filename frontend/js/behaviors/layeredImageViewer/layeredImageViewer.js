@@ -1335,6 +1335,7 @@ const layeredImageViewer = function(container) {
   const updateDimensions = () => {
     // Only update if we don't have an active viewer
     if (!viewer) {
+      container.style.height = 'maxcontent';
       const parentWidth = container.parentElement.offsetWidth;
       const maxWidth = container.dataset.maxWidth || parentWidth;
       const width = Math.min(parentWidth, maxWidth);
