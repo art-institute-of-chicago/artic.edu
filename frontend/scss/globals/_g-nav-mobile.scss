@@ -1,6 +1,7 @@
+@use "sass:map";
 .g-nav-mobile {
   position: fixed;
-  z-index: map-get($zindexs, 'mobileNav');
+  z-index: map.get($zindexs, 'mobileNav');
   left: 0;
   right: 0;
   top: 0;
@@ -43,7 +44,7 @@
 .g-nav-mobile__close {
   position: absolute;
   z-index: 10;
-  right: map-get($outer-gutters, 'xsmall');
+  right: map.get($outer-gutters, 'xsmall');
   top: 16px;
   padding: 0;
   border: 0 none;
@@ -96,10 +97,10 @@
 }
 
 .g-nav-mobile__nav-wrapper {
-  margin-right: - map-get($outer-gutters, 'xsmall');
-  margin-left: - map-get($outer-gutters, 'xsmall');
-  padding-right: map-get($outer-gutters, 'xsmall');
-  padding-left: map-get($outer-gutters, 'xsmall');
+  margin-right: - map.get($outer-gutters, 'xsmall');
+  margin-left: - map.get($outer-gutters, 'xsmall');
+  padding-right: map.get($outer-gutters, 'xsmall');
+  padding-left: map.get($outer-gutters, 'xsmall');
   border-top: 1px solid $color__rules--primary;
 }
 
@@ -110,9 +111,9 @@
 }
 
 .g-nav-mobile__nav li {
-  margin-right: - map-get($outer-gutters, 'xsmall');
-  margin-left: - map-get($outer-gutters, 'xsmall');
-  padding-left: map-get($outer-gutters, 'xsmall');
+  margin-right: - map.get($outer-gutters, 'xsmall');
+  margin-left: - map.get($outer-gutters, 'xsmall');
+  padding-left: map.get($outer-gutters, 'xsmall');
   border-bottom: 1px solid $color__rules--tertiary;
   color: $color__text--title;
 }
@@ -161,8 +162,8 @@
 }
 
 .g-nav-mobile__nav .details__container>a {
-  padding-right: map-get($outer-gutters, 'xsmall');
-  padding-left: map-get($outer-gutters, 'xsmall');
+  padding-right: map.get($outer-gutters, 'xsmall');
+  padding-left: map.get($outer-gutters, 'xsmall');
 }
 
 .g-nav-mobile__nav .g-nav-collapse-icon,
@@ -171,8 +172,8 @@
   @include untuck;
 
   & {
-    margin-right: - map-get($outer-gutters, 'xsmall');
-    margin-left: - map-get($outer-gutters, 'xsmall');
+    margin-right: - map.get($outer-gutters, 'xsmall');
+    margin-left: - map.get($outer-gutters, 'xsmall');
     background-color: $color__bg--footer;
     color: $color__text--title-contrast;
     line-height: 56px;
@@ -195,8 +196,8 @@
   top: 0;
   bottom: 0;
   margin: 0;
-  padding-right: map-get($outer-gutters, 'xsmall');
-  padding-left: map-get($outer-gutters, 'xsmall');
+  padding-right: map.get($outer-gutters, 'xsmall');
+  padding-left: map.get($outer-gutters, 'xsmall');
   overflow-x: hidden;
   overflow-y: scroll;
   background: $color__bg;
@@ -266,10 +267,10 @@
 }
 
 .g-nav-mobile .g-header {
-  z-index: map-get($zindexs, 'mobileHeader');
+  z-index: map.get($zindexs, 'mobileHeader');
   position: relative;
-  padding-right: map-get($outer-gutters, 'xsmall');
-  padding-left: map-get($outer-gutters, 'xsmall');
+  padding-right: map.get($outer-gutters, 'xsmall');
+  padding-left: map.get($outer-gutters, 'xsmall');
   border-bottom: 1px solid $color__rules--primary;
   transform: translateY(0);
 

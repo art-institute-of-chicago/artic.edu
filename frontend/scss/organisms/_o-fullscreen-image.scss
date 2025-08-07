@@ -1,8 +1,9 @@
+@use "sass:map";
 
 .o-fullscreen-image {
   display: none;
   position: fixed;
-  z-index: map-get($zindexs, 'fullscreenImage');
+  z-index: map.get($zindexs, 'fullscreenImage');
   left: 0;
   top: 0;
   width: 100vw;

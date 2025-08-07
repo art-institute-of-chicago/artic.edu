@@ -1,3 +1,4 @@
+@use "sass:map";
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -117,7 +118,7 @@ $point in $breakpoints {
       }
 
       & {
-        padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+        padding-top: colspan(map.get($grid-padding-tops, $name), #{$name});
       }
     }
 
@@ -135,8 +136,8 @@ $point in $breakpoints {
       flex: 0 0 auto;
 
       @if ($name=='xsmall') {
-        margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
-        padding-top: #{map-get($pinboard-grid-padding-tops, $name)}px;
+        margin-top: #{map.get($pinboard-grid-margin-tops, $name)}px;
+        padding-top: #{map.get($pinboard-grid-padding-tops, $name)}px;
       }
 
       @else if ($name=='small') {
@@ -146,8 +147,8 @@ $point in $breakpoints {
       }
 
       @else {
-        margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
-        padding-top: #{map-get($pinboard-grid-padding-tops, $name) - 1}px;
+        margin-top: #{map.get($pinboard-grid-margin-tops, $name)}px;
+        padding-top: #{map.get($pinboard-grid-padding-tops, $name) - 1}px;
         border-top: 1px solid $color__rules--primary;
       }
 

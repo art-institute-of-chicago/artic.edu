@@ -1,3 +1,4 @@
+@use "sass:map";
 
 
 .o-collapsing-nav {
@@ -60,7 +61,7 @@
   @extend %styled-scrollbars;
   display: none;
   position: absolute;
-  z-index: map-get($zindexs, 'dropdown');
+  z-index: map.get($zindexs, 'dropdown');
   left: colspan(3,'xsmall',0,true);
   right: colspan(3,'xsmall',0,true);
   top: 100%;

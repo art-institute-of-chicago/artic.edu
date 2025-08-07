@@ -1,3 +1,4 @@
+@use "sass:map";
 /***
 
 Fixed sidebar
@@ -99,13 +100,13 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
     @include breakpoint('small') {
       .o-sticky-sidebar__sticker {
         height: 100vh;
-        width: calc(colspan(19, 'small') + map-get($outer-gutters, 'small'));
+        width: calc(colspan(19, 'small') + map.get($outer-gutters, 'small'));
       }
     }
     @include breakpoint('medium') {
       .o-sticky-sidebar__sticker {
         height: 100vh;
-        width: calc(colspan(19, 'medium') + map-get($outer-gutters, 'medium'));
+        width: calc(colspan(19, 'medium') + map.get($outer-gutters, 'medium'));
       }
     }
   }
@@ -216,7 +217,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         opacity: 1;
         position: fixed;
         top: 0;
-        z-index: map-get($zindexs, 'header');
+        z-index: map.get($zindexs, 'header');
 
         &::before {
           left: 0;

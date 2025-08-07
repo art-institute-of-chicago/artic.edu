@@ -1,3 +1,4 @@
+@use "sass:map";
 
 
 .o-feature-plus-4 {
@@ -37,8 +38,8 @@
   position: relative;
   flex: 0 0 auto;
   width: 100%;
-  margin-top: #{map-get($grid-margin-tops, xsmall)}px;
-  padding-top: #{map-get($grid-margin-tops, xsmall)}px;
+  margin-top: #{map.get($grid-margin-tops, xsmall)}px;
+  padding-top: #{map.get($grid-margin-tops, xsmall)}px;
 }
 
 .o-feature-plus-4__items-1 > *::before,
@@ -62,7 +63,7 @@
   .o-feature-plus-4__items-1 > *,
   .o-feature-plus-4__items-2 > * {
     width: colspan(28, small);
-    margin-top: #{map-get($grid-margin-tops, small)}px;
+    margin-top: #{map.get($grid-margin-tops, small)}px;
     padding-top: colspan(1.5, small);
   }
 
@@ -101,7 +102,7 @@
   }
 
   .o-feature-plus-4__items-2 > *:first-child::after {
-    top: #{map-get($grid-margin-tops, small) * -1}px;
+    top: #{map.get($grid-margin-tops, small) * -1}px;
   }
 }
 
@@ -109,7 +110,7 @@
 @include breakpoint('medium') {
   .o-feature-plus-4__items-1 > *,
   .o-feature-plus-4__items-2 > * {
-    margin-top: #{map-get($grid-margin-tops, medium)}px;
+    margin-top: #{map.get($grid-margin-tops, medium)}px;
   }
 
   .o-feature-plus-4__items-1 {
@@ -146,7 +147,7 @@
     content: '';
     position: absolute;
     left: colspan(19, medium);
-    top: #{map-get($grid-margin-tops, xsmall)}px;
+    top: #{map.get($grid-margin-tops, xsmall)}px;
     bottom: 0;
     width: 1px;
     background-color: $color__rules--primary;
@@ -181,7 +182,7 @@
 
   .o-feature-plus-4__items-1 > *,
   .o-feature-plus-4__items-2 > * {
-    margin-top: #{map-get($grid-margin-tops, large)}px;
+    margin-top: #{map.get($grid-margin-tops, large)}px;
   }
 
   .o-feature-plus-4__items-1 > *:first-child,
@@ -217,7 +218,7 @@
   }
   .o-feature-plus-4__items-1 > *,
   .o-feature-plus-4__items-2 > * {
-    margin-top: #{map-get($grid-margin-tops, xlarge)}px;
+    margin-top: #{map.get($grid-margin-tops, xlarge)}px;
   }
 
   .o-feature-plus-4__items-1 > *:first-child,
@@ -256,27 +257,27 @@ hr + .o-feature-plus-4,
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       margin-top: 0;
-      padding-top: #{map-get($grid-margin-tops, $name)}px;
+      padding-top: #{map.get($grid-margin-tops, $name)}px;
     }
   }
 
   @include breakpoint('medium') {
     .o-feature-plus-4__items-1::before {
-      top: #{map-get($grid-margin-tops, 'medium') * -1}px;
+      top: #{map.get($grid-margin-tops, 'medium') * -1}px;
     }
   }
 
   @include breakpoint('large') {
     .o-feature-plus-4__items-1::after,
     .o-feature-plus-4__items-2::after {
-      top: #{map-get($grid-margin-tops, 'large') * -1}px;
+      top: #{map.get($grid-margin-tops, 'large') * -1}px;
     }
   }
 
   @include breakpoint('xlarge') {
     .o-feature-plus-4__items-1::after,
     .o-feature-plus-4__items-2::after {
-      top: #{map-get($grid-margin-tops, 'xlarge') * -1}px;
+      top: #{map.get($grid-margin-tops, 'xlarge') * -1}px;
     }
   }
 }

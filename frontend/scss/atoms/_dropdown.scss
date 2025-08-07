@@ -1,3 +1,4 @@
+@use "sass:map";
 /***
 
 dropdown
@@ -105,7 +106,7 @@ Demonstrated in **statics/toybox**
   content: '' !important;
   display: block !important;
   position: fixed;
-  z-index: map-get($zindexs, 'dropdown');
+  z-index: map.get($zindexs, 'dropdown');
   left: 0;
   right: 0;
   top: 0;
@@ -164,7 +165,7 @@ Demonstrated in **statics/toybox**
   & {
     display: none;
     position: absolute;
-    z-index: map-get($zindexs, 'dropdown');
+    z-index: map.get($zindexs, 'dropdown');
     left: 0;
     top: 100%;
     min-width: 100%;

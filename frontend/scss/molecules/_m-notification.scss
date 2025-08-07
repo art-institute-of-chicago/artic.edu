@@ -1,3 +1,4 @@
+@use "sass:color";
 /***
 
 ```
@@ -60,7 +61,7 @@
 
 .m-notification--header {
   padding-right: 0px;
-  background-color: transparentize($color__error, 0.03);
+  background-color: color.adjust($color__error, $alpha: -0.03);
 
   // Wait until cookie has been confirmed
   display: none;

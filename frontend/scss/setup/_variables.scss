@@ -1,3 +1,4 @@
+@use "sass:meta";
 // Baseline grid height
 @use "sass:math";
 
@@ -138,7 +139,7 @@ $sans-serif-font--loaded: 'Ideal Sans A', 'Ideal Sans B', #{$sans-serif-font};
 $serif-font-loaded-class: 's-serif-loaded';
 $sans-serif-font-loaded-class: 's-sans-serif-loaded';
 
-@if variable-exists('disable-font-loading') and $disable-font-loading {
+@if meta.variable-exists('disable-font-loading') and $disable-font-loading {
     $serif-font: $serif-font--loaded;
     $sans-serif-font: $sans-serif-font--loaded;
 }

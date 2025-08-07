@@ -244,7 +244,7 @@
     content: '';
     display: block;
     height: 0;
-    padding-bottom: percentage(math.div(10, 16));
+    padding-bottom: math.percentage(math.div(10, 16));
   }
 
   .m-media--m.m-media--contain .m-media__contain--spacer,
@@ -260,7 +260,7 @@
   }
 
   &.m-media__img--video::before {
-    padding-bottom: percentage(math.div(9, 16));
+    padding-bottom: math.percentage(math.div(9, 16));
   }
 
   .m-media--soundcloud & {

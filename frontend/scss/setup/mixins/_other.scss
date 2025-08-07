@@ -1,3 +1,5 @@
+@use "sass:map";
+@use "sass:string";
 // @mixin float-clear
 @use "sass:math";
 
@@ -119,10 +121,10 @@ Creates a load spinner.
 }
 
 @function str-replace($string, $search, $replace: '') {
-  $index: str-index($string, $search);
+  $index: string.index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1)+$replace+str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return string.slice($string, 1, $index - 1)+$replace+str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
   }
 
   @return $string;
@@ -138,7 +140,7 @@ Creates a load spinner.
   $new-push: 0;
 
   @if $font-obj {
-    $settings: map-get($font-obj, settings);
+    $settings: map.get($font-obj, settings);
   }
 
   @if $settings {
@@ -147,21 +149,21 @@ Creates a load spinner.
     $point in $breakpoints-with-directions {
 
       // First see if font settings has a line height for this breakpoint
-      @if map-has-key($settings, $name) {
-        $settings-at-breakpoint: map-get($settings, $name);
+      @if map.has-key($settings, $name) {
+        $settings-at-breakpoint: map.get($settings, $name);
 
-        @if map-has-key($settings-at-breakpoint, line-height) {
-          $new-line-height: map-get($settings-at-breakpoint, line-height);
+        @if map.has-key($settings-at-breakpoint, line-height) {
+          $new-line-height: map.get($settings-at-breakpoint, line-height);
         }
 
-        @if map-has-key($settings-at-breakpoint, push) {
-          $new-push: map-get($settings-at-breakpoint, push);
+        @if map.has-key($settings-at-breakpoint, push) {
+          $new-push: map.get($settings-at-breakpoint, push);
         }
       }
 
       // Now see if a margin was specified for this breakpoint
-      @if map-has-key($distances, $name) {
-        $new-margin: map-get($distances, $name);
+      @if map.has-key($distances, $name) {
+        $new-margin: map.get($distances, $name);
       }
 
       // Now set the margin top
@@ -190,7 +192,7 @@ Creates a load spinner.
   $new-pull: 0;
 
   @if $font-obj {
-    $settings: map-get($font-obj, settings);
+    $settings: map.get($font-obj, settings);
   }
 
   @if $settings {
@@ -199,18 +201,18 @@ Creates a load spinner.
     $point in $breakpoints-with-directions {
 
       // First see if font settings has a line height for this breakpoint
-      @if map-has-key($settings, $name) {
-        $settings-at-breakpoint: map-get($settings, $name);
+      @if map.has-key($settings, $name) {
+        $settings-at-breakpoint: map.get($settings, $name);
 
-        @if map-has-key($settings-at-breakpoint, pull) {
-          $new-pull: map-get($settings-at-breakpoint, pull);
+        @if map.has-key($settings-at-breakpoint, pull) {
+          $new-pull: map.get($settings-at-breakpoint, pull);
         }
       }
 
       // Now set the margin top
       @if ($new-pull !=$pull) {
         $pull: $new-pull;
-        $base-height-into-pull: floor(math.div($pull, $base-height)); // round or floor? erm
+        $base-height-into-pull: math.floor(math.div($pull, $base-height)); // round or floor? erm
         // Round will be closer but has the risk of drawing too much negative margin
         $margin-top: 0 - ($base-height-into-pull * $base-height);
 
