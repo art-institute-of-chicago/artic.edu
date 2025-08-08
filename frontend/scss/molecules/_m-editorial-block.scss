@@ -158,7 +158,6 @@
                 position: relative;
                 max-height: 1000px;
                 display: flex;
-                flex-direction: column;
                 grid-auto-flow: dense;
                 align-items: center; /* This prevents stretching to match tallest item */
                 flex-wrap: wrap;
@@ -201,22 +200,6 @@
                     width: 50%;
 
                     @include breakpoint('medium+') {
-
-                        &:nth-child(1) {
-                            order: 1;
-                        }
-
-                        &:nth-child(2) {
-                            order: 3;
-                        }
-
-                        &:nth-child(3) {
-                            order: 2;
-                        }
-
-                        &:nth-child(4) {
-                            order: 4;
-                        }
 
                         .m-listing__img {
                             width: 100% !important;
