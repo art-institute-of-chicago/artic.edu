@@ -42,6 +42,7 @@ abstract class ModuleRepository extends BaseModuleRepository
         // Remove trailing newlines from fields
         foreach ($fields as $key => $field) {
             $fields[$key] = StringHelpers::rightTrim($field, '<p><br class="softbreak"></p>');
+            $fields[$key] = StringHelpers::rightTrim($field, '<p></p>');
         }
 
         // Remove trailing newlines from block content (for `HasBlocks` only)
