@@ -25,8 +25,8 @@
                       $imageFallbacks = [
                           ['listing_image', 'default', $child],
                           ['publications_listing', 'default', $item],
-                          ['listing', 'default', $item],
                           ['listing', 'listing', $item],
+                          ['listing', 'default', $item],
                           ['hero', 'default', $item],
                       ];
 
