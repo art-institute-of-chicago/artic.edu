@@ -11,7 +11,7 @@ class ShortcodeService
     public static function parse_ref($text)
     {
         preg_match_all(self::REF_REGEXP, $text, $matches, PREG_SET_ORDER);
-        $filter = fn($captureGroup) => is_string($captureGroup);
+        $filter = fn ($captureGroup) => is_string($captureGroup);
         return array_map(fn ($match) => array_filter($match, $filter, ARRAY_FILTER_USE_KEY), $matches);
     }
 }
