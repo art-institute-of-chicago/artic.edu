@@ -129,6 +129,11 @@ class PrintedPublication extends AbstractModel
         return 'printed_publication';
     }
 
+    public function getSubtypeAttribute()
+    {
+        return 'Printed Publication';
+    }
+
     public function getIdSlugAttribute()
     {
         return join('-', [$this->id, $this->getSlug()]);
