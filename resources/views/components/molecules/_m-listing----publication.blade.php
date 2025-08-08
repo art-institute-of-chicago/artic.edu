@@ -1,21 +1,26 @@
 @php
-    $itemCategories = isset($item) && isset($item->categories) ? collect($item->categories->pluck('name')) : collect([]);
+ $itemCategories = isset($item) && isset($item->categories) ? $item->categories->pluck('name') : collect([]);
+ $filterValues = '';
+
+ if (isset($item) && isset($item->type)) {
+     $filterValues .= str_replace('_', '-', $item->type);
+ }
+
+ if ($itemCategories->count() > 0) {
+     if (!empty($filterValues)) {
+         $filterValues .= ',';
+     }
+     $filterValues .= $itemCategories->map(function($name) {
+         return Str::lower(Str::slug($name));
+     })->implode(',');
+ }
 @endphp
+
 <{{ $tag ?? 'li' }}
-    class="m-listing m-listing--publication m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}"
-    data-filter-values="{{
-        isset($item) && isset($item->type) ? str_replace('_', '-', $item->type) : '' .
-        (isset($item) && isset($item->categories) && count($item->categories) > 0 ? ',' : '') .
-        (isset($itemCategories) ? $itemCategories->map(function($name) {
-            return Str::lower(Str::slug($name));
-        })->implode(',') : '')
-    }}"
-    data-filter-date="{{
-        isset($item) && isset($item->publish_start_date) ? date('d-m-Y', strtotime($item->publish_start_date)) : ''
-    }}"
-    data-filter-title="{{
-        isset($item) && isset($item->title) ? htmlspecialchars($item->title) : ''
-    }}"
+  class="m-listing m-listing--publication m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}"
+  data-filter-values="{{ $filterValues }}"
+  data-filter-date="{{ isset($item) && isset($item->publish_start_date) ? date('d-m-Y', strtotime($item->publish_start_date)) : '' }}"
+  data-filter-title="{{ isset($item) && isset($item->title) ? htmlspecialchars($item->title) : '' }}"
 >
     <a href="{{ $href ?? '' }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         <span class="m-listing__img">
