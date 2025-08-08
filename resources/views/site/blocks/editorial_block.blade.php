@@ -41,7 +41,7 @@
 
                   $item->image = $getImageFallback($item, $child);
                   $item->title = $child->input('title') ?? $item->title;
-                  $item->label = $child->input('label') ?? $item->type;
+                  $item->label = $child->input('label') ?? $item->subtype;
                   $item->url_without_slug = $child->input('linkUrl') ?? $item->url_without_slug;
                   $item->list_description = $child->input('description') ?? $item->list_description;
                   $item->listing_description = $child->input('description') ?? $item->list_description;
