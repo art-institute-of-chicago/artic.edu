@@ -233,16 +233,6 @@
   }
 }
 
-.o-article__inline-header {
-
-  @each $name,
-  $point in ('medium') {
-    @include breakpoint('#{$name}') {
-      margin-right: colspan(20, $name);
-    }
-  }
-}
-
 .o-article__intro {
   @include breakpoint('large+') {
     padding-top: 11px;
