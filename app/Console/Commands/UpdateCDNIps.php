@@ -28,8 +28,7 @@ class UpdateCDNIps extends Command
             if ($contents === false) {
                 return 0;
             }
-        }
-        elseif (config('services.cloudfront.enabled')) {
+        } elseif (config('services.cloudfront.enabled')) {
             // This throws an exception if the URL is unreachable
             $contents = file_get_contents('http://d7uri8nf7uskq.cloudfront.net/tools/list-cloudfront-ips');
 
