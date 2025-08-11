@@ -1,3 +1,6 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+
 .o-menu-bar {
   display: flex;
   flex-direction: row;
@@ -6,14 +9,14 @@
   margin-top: 32px;
   padding-top: 18px;
   padding-bottom: 18px;
-  border-top: 1px solid $color__input-border;
-  border-bottom: 1px solid $color__input-border;
-  @include breakpoint('medium') {
+  border-top: 1px solid colors.$color__input-border;
+  border-bottom: 1px solid colors.$color__input-border;
+  @include breakpoint.breakpoint('medium') {
     .f-buttons {
       width: auto;
     }
   }
-  @include breakpoint('small') {
+  @include breakpoint.breakpoint('small') {
     padding: none;
     border: none;
     flex-direction: column;
@@ -23,11 +26,11 @@
       overflow: scroll;
       width: 100%;
       padding: 18px 0;
-      border-top: 1px solid $color__input-border ;
-      border-bottom: 1px solid $color__input-border ;
+      border-top: 1px solid colors.$color__input-border ;
+      border-bottom: 1px solid colors.$color__input-border ;
     }
   }
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     padding: none;
     border: none;
     flex-direction: column;
@@ -37,8 +40,8 @@
       overflow: scroll;
       width: 100%;
       padding: 18px 0;
-      border-top: 1px solid $color__input-border ;
-      border-bottom: 1px solid $color__input-border ;
+      border-top: 1px solid colors.$color__input-border ;
+      border-bottom: 1px solid colors.$color__input-border ;
     }
   }
 
@@ -48,7 +51,7 @@
 
   li {
     padding-top: 0;
-    color: $color__text;
+    color: colors.$color__text;
   }
 
   a::before {
@@ -56,6 +59,6 @@
   }
 
   ul li a {
-    color: $color__text !important;
+    color: colors.$color__text !important;
   }
 }

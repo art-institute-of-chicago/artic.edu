@@ -2,32 +2,32 @@ $include-icons: false; // @see icons.scss!
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ load fonts
 
-@import 'setup/fonts';
+@use 'setup/fonts';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ reset
 
-@import 'setup/resets';
+@use 'setup/resets';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ variables */
 
-@import 'setup/variables';
+@use 'setup/variables';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ colors */
 
-@import 'setup/colors';
+@use 'setup/colors';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ functions/mixins
 
-@import 'setup/mixins';
-@import 'state/s-sticky-sidebar'; // refactor?
+@use 'setup/mixins';
+@use 'state/s-sticky-sidebar'; // refactor?
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ typography */
 
-@import 'setup/typography';
+@use 'setup/typography';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ grid overlay */
 
-@import 'setup/design-grids';
+@use 'setup/design-grids';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ icons image-map */
 
@@ -35,13 +35,13 @@ $include-icons: false; // @see icons.scss!
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ icon classes */
 
-@import 'setup/icons';
+@use 'setup/icons';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ placeholders */
 
-@import 'setup/placeholders';
+@use 'setup/placeholders';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ vendors */
 
-@import 'vendor/nouislider';
-@import 'vendor/nouislider-custom';
+@use 'vendor/nouislider';
+@use 'vendor/nouislider-custom';

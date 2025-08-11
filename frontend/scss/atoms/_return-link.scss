@@ -1,3 +1,5 @@
+@use "../setup/colors";
+
 /***
 
 return-link
@@ -17,15 +19,15 @@ Used in article references, demo'd inside a list:
 
 .return-link {
   position: relative;
-  color: $color__blue;
+  color: colors.$color__blue;
 
   &:hover,
   &:focus:hover {
-    color: $color__blue--hover;
+    color: colors.$color__blue--hover;
   }
 
   &:active:hover {
-    color: $color__blue--active;
+    color: colors.$color__blue--active;
   }
 
   .o-blocks >.f-secondary & {
@@ -49,14 +51,14 @@ Used in article references, demo'd inside a list:
 }
 
 .o-article--editorial .return-link {
-  color: $color__link--editorial;
+  color: colors.$color__link--editorial;
 
   &:hover,
   &:focus:hover {
-    color: $color__link--editorial-hover;
+    color: colors.$color__link--editorial-hover;
   }
 
   &:active:hover {
-    color: $color__link--editorial-active;
+    color: colors.$color__link--editorial-active;
   }
 }

@@ -1,3 +1,6 @@
+@use "../setup/colors";
+@use "../setup/variables";
+
 /***
 
 progress-bar
@@ -30,15 +33,15 @@ The ajax page loads progress bar is controlled by the `ajaxPageLoad` function an
   top: 0;
   bottom: 0;
   width: 0%;
-  background-color: $color__red--100;
-  transition: all .25s $bezier--ease-out-circ;
+  background-color: colors.$color__red--100;
+  transition: all .25s variables.$bezier--ease-out-circ;
 }
 
 .progress-bar--standalone {
   position: relative;
   max-width: 300px;
   margin: 24px auto 0;
-  background-color: $color__rules--primary;
+  background-color: colors.$color__rules--primary;
 }
 
 

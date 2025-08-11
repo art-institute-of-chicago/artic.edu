@@ -1,3 +1,9 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/mixins/typography";
+@use "../setup/variables";
+
 @use "sass:map";
 $slider-edge-spacing: 48px;
 $btn-close-padding: 12px;
@@ -26,8 +32,8 @@ $btn-close-size: 20px;
 .g-slider {
   display: none;
   position: fixed;
-  z-index: map.get($zindexs, 'modal');
-  background-color: $color__white;
+  z-index: map.get(variables.$zindexs, 'modal');
+  background-color: colors.$color__white;
 
   max-height: 100vh;
   overflow-y: auto;
@@ -51,12 +57,12 @@ $btn-close-size: 20px;
   }
 
   .g-slider__msg {
-    @include untuck;
+    @include typography.untuck;
 
     & {
       display: none;
-      background-color: $color__link;
-      color: $color__white;
+      background-color: colors.$color__link;
+      color: colors.$color__white;
       font-style: normal;
     }
 
@@ -64,23 +70,23 @@ $btn-close-size: 20px;
       padding-top: 11px;
       padding-bottom: 13px;
 
-      @include breakpoint('medium+') {
+      @include breakpoint.breakpoint('medium+') {
         padding-top: 10px;
         padding-bottom: 14px;
       }
     }
 
     &.g-slider__msg--error {
-      background-color: $color__error;
+      background-color: colors.$color__error;
     }
 
     .g-slider__msg__content {
       margin: auto;
 
       @each $name,
-      $point in $breakpoints {
-        @include breakpoint('#{$name}') {
-          width: colspan(58, $name);
+      $point in variables.$breakpoints {
+        @include breakpoint.breakpoint('#{$name}') {
+          width: grid.colspan(58, $name);
         }
       }
     }
@@ -92,9 +98,9 @@ $btn-close-size: 20px;
     padding: $slider-edge-spacing 0;
 
     @each $name,
-    $point in $breakpoints {
-      @include breakpoint('#{$name}') {
-        width: colspan(58, $name);
+    $point in variables.$breakpoints {
+      @include breakpoint.breakpoint('#{$name}') {
+        width: grid.colspan(58, $name);
       }
     }
 
@@ -105,11 +111,11 @@ $btn-close-size: 20px;
       padding: 0;
       border: 0 none;
       background: transparent;
-      color: $color__text--forms;
+      color: colors.$color__text--forms;
       cursor: pointer;
 
       &:hover {
-        color: $color__text;
+        color: colors.$color__text;
       }
 
       .icon--close {
@@ -121,15 +127,15 @@ $btn-close-size: 20px;
 
   // TODO: Make link styles more consistent! Here, we mirror .btn color conventions.
   a {
-    color: $color__link--accent;
+    color: colors.$color__link--accent;
 
     &:hover,
     &:focus:hover {
-      color: $color__link--accent-hover;
+      color: colors.$color__link--accent-hover;
     }
 
     &:active:hover {
-      color: $color__link--accent-active;
+      color: colors.$color__link--accent-active;
     }
   }
 }
@@ -138,7 +144,7 @@ $btn-close-size: 20px;
 
   .g-slider__content {
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       display: flex;
       flex-wrap: nowrap;
       justify-content: space-between;
@@ -148,7 +154,7 @@ $btn-close-size: 20px;
     .g-slider__main {
 
       .g-slider__title {
-        @include untuck;
+        @include typography.untuck;
 
         & {
           margin-bottom: $slider-edge-spacing * 0.5;
@@ -156,14 +162,14 @@ $btn-close-size: 20px;
       }
 
       .g-slider__intro {
-        @include untuck;
+        @include typography.untuck;
 
         & {
           margin-bottom: $slider-edge-spacing * 0.5;
-          color: $color__text--secondary;
+          color: colors.$color__text--secondary;
         }
 
-        @include breakpoint('small+') {
+        @include breakpoint.breakpoint('small+') {
           margin-bottom: 0;
         }
       }
@@ -171,7 +177,7 @@ $btn-close-size: 20px;
 
     .g-slider__form {
 
-      @include breakpoint('small+') {
+      @include breakpoint.breakpoint('small+') {
         margin-left: $slider-edge-spacing;
       }
 
@@ -202,23 +208,23 @@ $btn-close-size: 20px;
 
   .g-slider__content {
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       flex-wrap: wrap;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       flex-wrap: nowrap;
     }
 
     .g-slider__main {
 
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         flex-basis: 100%;
       }
 
       .g-slider__intro {
 
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
           margin-bottom: $slider-edge-spacing * 0.5;
         }
       }
@@ -226,12 +232,12 @@ $btn-close-size: 20px;
 
     .g-slider__form {
 
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         flex-basis: 100%;
         margin-left: 0;
       }
 
-      @include breakpoint('small+') {
+      @include breakpoint.breakpoint('small+') {
         display: flex;
         flex-wrap: nowrap;
         align-items: flex-end;
@@ -239,7 +245,7 @@ $btn-close-size: 20px;
 
       .g-slider__form-row {
 
-        @include breakpoint('small+') {
+        @include breakpoint.breakpoint('small+') {
           margin-left: $slider-edge-spacing * 0.5;
           margin-bottom: 0;
         }
@@ -265,7 +271,7 @@ $btn-close-size: 20px;
 
   .g-slider__content {
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       align-items: flex-start;
     }
 

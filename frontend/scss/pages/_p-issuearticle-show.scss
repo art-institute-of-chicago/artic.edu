@@ -1,3 +1,10 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/mixins/typography" as mixins-typography;
+@use "../setup/typography" as setup-typography;
+@use "../setup/variables";
+
 @use "sass:map";
 .p-issuearticle-show,
 .p-issuearticle-preview,
@@ -6,9 +13,9 @@
   @extend %sticky-sidebar;
 
   @each $name in ('xsmall', 'small', 'medium') {
-    @include breakpoint('#{$name}') {
+    @include breakpoint.breakpoint('#{$name}') {
       .g-header {
-        border-bottom: 1px solid $color__rules--primary;
+        border-bottom: 1px solid colors.$color__rules--primary;
       }
 
       .g-header__inner {
@@ -18,24 +25,24 @@
   }
 
   .m-article-header__text {
-    @include breakpoint('medium-') {
+    @include breakpoint.breakpoint('medium-') {
       width: 100% !important;
     }
   }
 
   .o-article__body::before {
     position: absolute;
-    background-color: $color__rules--primary;
+    background-color: colors.$color__rules--primary;
     width: 1px;
     z-index: 1;
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       content: '';
     }
 
     @each $name in ('large', 'xlarge') {
-      @include breakpoint('#{$name}') {
-        left: #{- colspan(1, '#{$name}')};
+      @include breakpoint.breakpoint('#{$name}') {
+        left: #{- grid.colspan(1, '#{$name}')};
 top: -100%;
         height: 200%;
       }
@@ -51,11 +58,11 @@ top: -100%;
   }
 
   .o-blocks:not(.o-blocks--bibliographic) > p {
-    @include f-body;
+    @include setup-typography.f-body;
   }
 
   .o-blocks>p {
-    @include untuck();
+    @include mixins-typography.untuck();
   }
 
   &.s-sans-serif-loaded .o-blocks>p:not([class*=f-]),
@@ -67,7 +74,7 @@ top: -100%;
   .o-blocks>p:not([class*=f-]),
   .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
   .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
-    font-family: $serif-font;
+    font-family: variables.$serif-font;
 
     // PUB-140: Emulate %f-deck for bold?
     strong,
@@ -87,16 +94,16 @@ top: -100%;
   &.s-serif-loaded .o-blocks>p:not([class*=f-]) em,
   &.s-serif-loaded .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) em,
   &.s-serif-loaded .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) em {
-    font-family: $serif-font--loaded;
+    font-family: variables.$serif-font--loaded;
   }
 
   &.s-sans-serif-loaded .o-blocks--bibliographic>p,
   &.s-sans-serif-loaded .o-blocks--bibliographic>ol:not([class*=o-]):not([class*=m-]),
   &.s-sans-serif-loaded .o-blocks--bibliographic>ul:not([class*=o-]):not([class*=m-]) {
-    font-family: $sans-serif-font--loaded;
+    font-family: variables.$sans-serif-font--loaded;
   }
 
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     &.is-sidebar-overlay:not(.s-header-hide) .o-article>.o-article__primary-actions {
       .o-accordion--publication-sidebar {
         display: block;
@@ -121,9 +128,9 @@ top: -100%;
 
   .m-article-actions--publication__logo {
     margin-top: 15px;
-    color: $color__white;
+    color: colors.$color__white;
 
-    @include breakpoint('medium-') {
+    @include breakpoint.breakpoint('medium-') {
       width: 100%;
       display: flex;
       align-items: center;
@@ -142,20 +149,20 @@ top: -100%;
       margin-left: calc(-600px + 50%);
 
       @each $name in ('large', 'xlarge') {
-        @include breakpoint('#{$name}') {
-          width: calc(#{colspan(14, '#{$name}')} * 2 + (#{colspan(1, '#{$name}')} * 2) + 30vw);
-          padding-right: calc(#{colspan(1, '#{$name}')} * 2);
-          margin-left: calc((#{colspan(14, '#{$name}')} * -1) + (#{colspan(1, '#{$name}')} * -1) - 30vw);
-          margin-right: colspan(2, #{$name});
+        @include breakpoint.breakpoint('#{$name}') {
+          width: calc(#{grid.colspan(14, '#{$name}')} * 2 + (#{grid.colspan(1, '#{$name}')} * 2) + 30vw);
+          padding-right: calc(#{grid.colspan(1, '#{$name}')} * 2);
+          margin-left: calc((#{grid.colspan(14, '#{$name}')} * -1) + (#{grid.colspan(1, '#{$name}')} * -1) - 30vw);
+          margin-right: grid.colspan(2, #{$name});
         }
       }
     }
 
-    @include font-styles-untuck(generate-font-obj(
+    @include mixins-typography.font-styles-untuck(mixins-typography.generate-font-obj(
       (
-        font-family: $serif-font,
-        font-family-loaded: $serif-font--loaded,
-        font-loaded-class: $serif-font-loaded-class,
+        font-family: variables.$serif-font,
+        font-family-loaded: variables.$serif-font--loaded,
+        font-loaded-class: variables.$serif-font-loaded-class,
         settings: (
           'xlarge': (font-size: 20, line-height: 26, push: 0),
           'large': (font-size: 20, line-height: 26, push: 0),
@@ -170,7 +177,7 @@ top: -100%;
           .o-article {
             padding-bottom: 0;
 
-            @include breakpoint('xsmall') {
+            @include breakpoint.breakpoint('xsmall') {
               display: flex;
               flex-direction: column;
 
@@ -208,16 +215,16 @@ top: -100%;
     padding-top: 0;
     margin-top: 60px;
 
-    @include breakpoint('medium') {
-      width: colspan(58, 'medium');
+    @include breakpoint.breakpoint('medium') {
+      width: grid.colspan(58, 'medium');
     }
-    @include breakpoint('large') {
-      margin-left: colspan(20, 'large');
-      width: colspan(38, 'large');
+    @include breakpoint.breakpoint('large') {
+      margin-left: grid.colspan(20, 'large');
+      width: grid.colspan(38, 'large');
     }
-    @include breakpoint('xlarge') {
-      margin-left: colspan(20, 'xlarge');
-      width: colspan(38, 'xlarge');
+    @include breakpoint.breakpoint('xlarge') {
+      margin-left: grid.colspan(20, 'xlarge');
+      width: grid.colspan(38, 'xlarge');
     }
 
     &>blockquote.quote,
@@ -230,27 +237,27 @@ top: -100%;
     &>h3,
     &>h4,
     &>p:not(.p--linked) {
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         width: 100%;
       }
-      @include breakpoint('small') {
-        width: colspan(52, 'small');
+      @include breakpoint.breakpoint('small') {
+        width: grid.colspan(52, 'small');
       }
-      @include breakpoint('medium') {
-        width: colspan(38, 'medium');
+      @include breakpoint.breakpoint('medium') {
+        width: grid.colspan(38, 'medium');
       }
-      @include breakpoint('large') {
-        width: colspan(28, 'large');
+      @include breakpoint.breakpoint('large') {
+        width: grid.colspan(28, 'large');
       }
-      @include breakpoint('xlarge') {
-        width: colspan(25, 'xlarge');
+      @include breakpoint.breakpoint('xlarge') {
+        width: grid.colspan(25, 'xlarge');
       }
     }
   }
 
   .o-article>.m-article-header__text {
     .f-headline-editorial {
-      @include breakpoint('large+') {
+      @include breakpoint.breakpoint('large+') {
         font-size: 28px;
         line-height: 32px;
         z-index: 100;
@@ -260,11 +267,11 @@ top: -100%;
 
   .o-article__body>.m-article-header__text {
     .f-headline-editorial {
-      @include breakpoint('small-') {
+      @include breakpoint.breakpoint('small-') {
         font-size: 22px;
         line-height: 28px;
       }
-      @include breakpoint('medium') {
+      @include breakpoint.breakpoint('medium') {
         font-size: 28px;
         line-height: 32px;
       }
@@ -272,7 +279,7 @@ top: -100%;
   }
 
   .o-article__body .p--linked {
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       padding-right: 0;
       .p--linked__text {
         width: 100%;
@@ -281,38 +288,38 @@ top: -100%;
         display: none;
       }
     }
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       padding-right: 0;
       .p--linked__text {
-        width: colspan(52, 'small');
+        width: grid.colspan(52, 'small');
       }
       .p--linked__ref {
         display: none;
       }
     }
-    @include breakpoint('medium') {
+    @include breakpoint.breakpoint('medium') {
       .p--linked__text {
-        width: colspan(38, 'medium');
+        width: grid.colspan(38, 'medium');
       }
     }
-    @include breakpoint('large') {
+    @include breakpoint.breakpoint('large') {
       .p--linked__text {
-        width: colspan(28, 'large');
+        width: grid.colspan(28, 'large');
       }
     }
-    @include breakpoint('xlarge') {
+    @include breakpoint.breakpoint('xlarge') {
       .p--linked__text {
-        width: colspan(25, 'xlarge');
+        width: grid.colspan(25, 'xlarge');
       }
     }
   }
 
   .o-article__primary-actions--digital-publication {
-    @include breakpoint('large') {
-      width: colspan(18, 'large');
+    @include breakpoint.breakpoint('large') {
+      width: grid.colspan(18, 'large');
     }
-    @include breakpoint('xlarge') {
-      width: colspan(18, 'xlarge');
+    @include breakpoint.breakpoint('xlarge') {
+      width: grid.colspan(18, 'xlarge');
     }
   }
 
@@ -329,18 +336,18 @@ top: -100%;
             .m-article-header__text {
               width: 100vw;
 
-              margin-left: -#{map.get($outer-gutters, medium)};
+              margin-left: -#{map.get(variables.$outer-gutters, medium)};
 
-              @include breakpoint('large') {
+              @include breakpoint.breakpoint('large') {
                 // full width - one gutter - (left sidebar width)
-                width: 100vw - map.get($outer-gutters, large) - (colspan(13, large) + colspan(1, large));
-                margin-left: -#{colspan(1, large)};
+                width: 100vw - map.get(variables.$outer-gutters, large) - (grid.colspan(13, large) + grid.colspan(1, large));
+                margin-left: -#{grid.colspan(1, large)};
               }
 
-              @include breakpoint('xlarge') {
+              @include breakpoint.breakpoint('xlarge') {
                 // (main column width - left sidebar width) + (right gutter width)
-                width: calc(#{map.get($main-col-widths, xlarge) - (colspan(13, xlarge) + colspan(1, xlarge))} + (100vw - #{map.get($main-col-widths, xlarge)}) / 2);
-                margin-left: -#{colspan(1, xlarge)};
+                width: calc(#{map.get(variables.$main-col-widths, xlarge) - (grid.colspan(13, xlarge) + grid.colspan(1, xlarge))} + (100vw - #{map.get(variables.$main-col-widths, xlarge)}) / 2);
+                margin-left: -#{grid.colspan(1, xlarge)};
               }
             }
 
@@ -374,24 +381,24 @@ top: -100%;
               background-color: rgba(255, 255, 255, 0.75);
 
               h1 {
-                @include untuck;
+                @include mixins-typography.untuck;
 
                 & {
                   margin-top: 0;
                 }
 
                 @each $name, $point in ('xsmall', 'small', 'medium') {
-                  @include breakpoint('#{$name}') {
-                    padding-left: map.get($outer-gutters, $name);
-                    padding-right: map.get($outer-gutters, $name);
+                  @include breakpoint.breakpoint('#{$name}') {
+                    padding-left: map.get(variables.$outer-gutters, $name);
+                    padding-right: map.get(variables.$outer-gutters, $name);
                   }
                 }
 
                 @each $name, $point in ('large', 'xlarge') {
-                  @include breakpoint('#{$name}') {
-                    padding-left: colspan(1, $name);
-                    padding-right: colspan(1, $name);
-                    width: colspan(30, $name);
+                  @include breakpoint.breakpoint('#{$name}') {
+                    padding-left: grid.colspan(1, $name);
+                    padding-right: grid.colspan(1, $name);
+                    width: grid.colspan(30, $name);
                   }
                 }
               }
@@ -457,20 +464,20 @@ top: -100%;
     }
 
     &:has(.m-media__img--video) {
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         width: 100% !important;
       }
-      @include breakpoint('small') {
-        width: colspan(52, 'small') !important;
+      @include breakpoint.breakpoint('small') {
+        width: grid.colspan(52, 'small') !important;
       }
-      @include breakpoint('medium') {
-        width: colspan(38, 'medium') !important;
+      @include breakpoint.breakpoint('medium') {
+        width: grid.colspan(38, 'medium') !important;
       }
-      @include breakpoint('large') {
-        width: colspan(28, 'large') !important;
+      @include breakpoint.breakpoint('large') {
+        width: grid.colspan(28, 'large') !important;
       }
-      @include breakpoint('xlarge') {
-        width: colspan(25, 'xlarge') !important;
+      @include breakpoint.breakpoint('xlarge') {
+        width: grid.colspan(25, 'xlarge') !important;
       }
 
       .m-media__img.m-media__img--video {
@@ -517,22 +524,22 @@ top: -100%;
   }
 
   .m-media--s.o-blocks__block figcaption {
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       padding-right: 0;
       width: 100%;
     }
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       padding-right: 0;
-      width: colspan(52, 'small');
+      width: grid.colspan(52, 'small');
     }
-    @include breakpoint('medium') {
-      width: colspan(38, 'medium');
+    @include breakpoint.breakpoint('medium') {
+      width: grid.colspan(38, 'medium');
     }
-    @include breakpoint('large') {
-      width: colspan(28, 'large');
+    @include breakpoint.breakpoint('large') {
+      width: grid.colspan(28, 'large');
     }
-    @include breakpoint('xlarge') {
-      width: colspan(25, 'xlarge');
+    @include breakpoint.breakpoint('xlarge') {
+      width: grid.colspan(25, 'xlarge');
     }
   }
 
@@ -546,10 +553,10 @@ top: -100%;
           }
 
           .m-title-bar > .f-list-3 {
-            @include untuck();
+            @include mixins-typography.untuck();
 
             & {
-              font-family: $sans-serif-font--loaded;
+              font-family: variables.$sans-serif-font--loaded;
               font-size: 24px;
               font-weight: 400;
               padding: 28px 0;
@@ -558,7 +565,7 @@ top: -100%;
           }
 
           .o-blocks--bibliographic .f-secondary {
-            @include untuck();
+            @include mixins-typography.untuck();
 
             &:not(:first-child) {
               margin-top: 8px;
@@ -578,7 +585,7 @@ top: -100%;
       margin-bottom: 16px;
 
       .m-media .m-media__img {
-        background-color: $color__white;
+        background-color: colors.$color__white;
 
         img {
           max-height: 180px !important;
@@ -605,25 +612,25 @@ top: -100%;
 
       &>*:not(p),
       &>p>*:not(.p--linked__ref) {
-        @include breakpoint('xsmall') {
-          width: colspan(38, 'small');
+        @include breakpoint.breakpoint('xsmall') {
+          width: grid.colspan(38, 'small');
         }
-        @include breakpoint('small') {
-          width: colspan(38, 'small');
+        @include breakpoint.breakpoint('small') {
+          width: grid.colspan(38, 'small');
         }
-        @include breakpoint('medium') {
-          width: colspan(28, 'medium');
+        @include breakpoint.breakpoint('medium') {
+          width: grid.colspan(28, 'medium');
         }
-        @include breakpoint('large') {
-          width: colspan(22, 'large');
+        @include breakpoint.breakpoint('large') {
+          width: grid.colspan(22, 'large');
         }
-        @include breakpoint('xlarge') {
-          width: colspan(19, 'xlarge');
+        @include breakpoint.breakpoint('xlarge') {
+          width: grid.colspan(19, 'xlarge');
         }
       }
     }
 
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       &:first-child {
         flex-basis: 25%;
       }
@@ -632,7 +639,7 @@ top: -100%;
         width: 72%;
       }
     }
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       &:first-child {
         flex-basis: 25%;
       }
@@ -654,25 +661,25 @@ top: -100%;
 
       &>*:not(p),
       &>p>*:not(.p--linked__ref) {
-        @include breakpoint('xsmall') {
-          width: colspan(25, 'small');
+        @include breakpoint.breakpoint('xsmall') {
+          width: grid.colspan(25, 'small');
         }
-        @include breakpoint('small') {
-          width: colspan(25, 'small');
+        @include breakpoint.breakpoint('small') {
+          width: grid.colspan(25, 'small');
         }
-        @include breakpoint('medium') {
-          width: colspan(18, 'medium');
+        @include breakpoint.breakpoint('medium') {
+          width: grid.colspan(18, 'medium');
         }
-        @include breakpoint('large') {
-          width: colspan(14, 'large');
+        @include breakpoint.breakpoint('large') {
+          width: grid.colspan(14, 'large');
         }
-        @include breakpoint('xlarge') {
-          width: colspan(18, 'xlarge');
+        @include breakpoint.breakpoint('xlarge') {
+          width: grid.colspan(18, 'xlarge');
         }
       }
     }
 
-    @include breakpoint('large') {
+    @include breakpoint.breakpoint('large') {
       &:first-child {
         flex-basis: 33%;
       }
@@ -682,7 +689,7 @@ top: -100%;
       }
     }
 
-    @include breakpoint('medium') {
+    @include breakpoint.breakpoint('medium') {
       &:first-child {
         flex-basis: 35%;
       }
@@ -692,7 +699,7 @@ top: -100%;
       }
     }
 
-    @include breakpoint('small-') {
+    @include breakpoint.breakpoint('small-') {
       &:first-child {
         flex-basis: 50%;
       }
@@ -718,16 +725,16 @@ Styling related specifically to digital publications
       margin: 60px 0 28px;
 
       a {
-        color: $color__link--accent;
+        color: colors.$color__link--accent;
       }
 
               a:hover {
-                color: $color__link--accent-hover;
+                color: colors.$color__link--accent-hover;
                 text-decoration: underline;
               }
 
               a:active {
-                color: $color__link--accent-active;
+                color: colors.$color__link--accent-active;
               }
             }
 
@@ -768,7 +775,7 @@ Styling related specifically to digital publications
 
   .o-article__body.o-blocks {
     & > h2 {
-      font-family: $sans-serif-font--loaded;
+      font-family: variables.$sans-serif-font--loaded;
       font-size: 21px;
       font-weight: 400;
       letter-spacing: .08rem;
@@ -776,13 +783,13 @@ Styling related specifically to digital publications
       text-transform: uppercase;
     }
     & > h3 {
-      font-family: $serif-font--loaded;
+      font-family: variables.$serif-font--loaded;
       font-size: 22px;
       font-weight: 400;
       line-height: 28px;
     }
     & > h4 {
-      font-family: $sans-serif-font--loaded;
+      font-family: variables.$sans-serif-font--loaded;
       font-size: 18px;
       font-weight: 500;
       line-height: 28px;
@@ -801,7 +808,7 @@ Styling related specifically to digital publications
           .o-blocks.f-body > p,
           .o-blocks.f-body > ol,
           .o-blocks.f-body > ul {
-            font-family: $sans-serif-font--loaded;
+            font-family: variables.$sans-serif-font--loaded;
             font-weight: 300;
           }
 
@@ -816,7 +823,7 @@ Styling related specifically to digital publications
           }
 
   &:not(.is-sidebar-overlay) .o-article > .o-article__primary-actions--digital-publication {
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       display: none;
     }
   }
@@ -825,15 +832,15 @@ Styling related specifically to digital publications
     display: none;
   }
 
-  @include breakpoint('large') {
+  @include breakpoint.breakpoint('large') {
     .o-gallery--small-mosaic .o-pinboard--3-col\@large > * {
-      width: colspan(grid-cols-to-colspan(4, 52), 'large');
+      width: grid.colspan(grid.grid-cols-to-colspan(4, 52), 'large');
     }
   }
 
-  @include breakpoint('xlarge') {
+  @include breakpoint.breakpoint('xlarge') {
     .o-gallery--small-mosaic .o-pinboard--3-col\@xlarge > * {
-      width: colspan(grid-cols-to-colspan(4, 52), 'xlarge');
+      width: grid.colspan(grid.grid-cols-to-colspan(4, 52), 'xlarge');
     }
   }
 }
@@ -856,7 +863,7 @@ Styling related specifically to digital publications
 
             .m-article-actions--publication__logo {
               a {
-                color: $color__text--title;
+                color: colors.$color__text--title;
               }
             }
 

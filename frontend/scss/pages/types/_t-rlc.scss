@@ -1,3 +1,9 @@
+@use "../../setup/colors";
+@use "../../setup/mixins/breakpoint";
+@use "../../setup/mixins/other";
+@use "../../setup/typography";
+@use "../../themes/rlc";
+
 .rlc {
   --sans-serif: 'Ideal Sans A', 'Ideal Sans B', sans-serif;
   --serif: 'Sabon', serif;
@@ -41,30 +47,30 @@
   .o-info-grid .title,
   .showcase-header,
   .m-prefooter-section .title {
-    color: $color__black--90;
+    color: colors.$color__black--90;
     font-family: var(--sans-serif);
     font-size: 21px;
     font-weight: 400;
     text-transform: uppercase;
   }
   .o-info-grid {
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: 32px;
       .spacer {
         position: relative;
         top: 57px;
       }
     }
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       margin-top: 0;
     }
     .semicircle {
-      background-color: $color__rlc__myrtle_green;
+      background-color: rlc.$color__rlc__myrtle_green;
     }
   }
   .o-info-grid .row:last-child > .col:first-child {
     border: none;
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       margin-left: calc(50% - 50vw);
       padding-left: 15px;
     }
@@ -72,49 +78,49 @@
   .o-info-grid .row {
     margin-top: 0;
     &:first-child {
-      @include breakpoint('small+') {
+      @include breakpoint.breakpoint('small+') {
         margin-bottom: 0;
         padding-bottom: 60px;
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         border-bottom: none;
         padding-bottom: 0;
       }
     }
     &:last-child {
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         margin-top: 0;
       }
     }
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       flex-direction: row;
     }
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       flex-direction: column;
     }
     .col {
       width: 100%;
       &:nth-child(1) {
-        @include breakpoint('small+') {
+        @include breakpoint.breakpoint('small+') {
           width: 15%;
           margin-top: 0;
         }
       }
       &:nth-child(2) {
-        @include breakpoint('small+') {
+        @include breakpoint.breakpoint('small+') {
           width: 30%;
           margin-top: 0;
         }
       }
       &:nth-child(3) {
-        @include breakpoint('small+') {
+        @include breakpoint.breakpoint('small+') {
           width: 50%;
           margin-top: 0;
         }
       }
       &:last-child {
-        @include breakpoint('xsmall') {
-          border-top: 1px solid $color__black--20;
+        @include breakpoint.breakpoint('xsmall') {
+          border-top: 1px solid colors.$color__black--20;
           margin-top: 0;
           padding-top: 32px
         }
@@ -132,7 +138,7 @@
   }
   .spacer {
     display: inline-block;
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       --spacing: calc(100vw / 4);
       --max-spacing: 350px;
       height: var(--spacing);
@@ -140,7 +146,7 @@
       max-width: calc(var(--max-spacing) / 2);
       width: calc(var(--spacing) / 2);
     }
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       --spacing: calc(100vw / 2);
       height: var(--spacing);
       left: -15px;
@@ -148,7 +154,7 @@
       width: calc(var(--spacing) * 2);
     }
     .semicircle {
-      @include breakpoint('small+') {
+      @include breakpoint.breakpoint('small+') {
         height: 100%;
         max-height: var(--max-spacing);
         max-width: calc(var(--max-spacing) / 2);
@@ -162,7 +168,7 @@
           border-bottom-right-radius: var(--spacing);
         }
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         border-bottom-left-radius: var(--spacing);
         border-bottom-right-radius: var(--spacing);
         min-height: var(--spacing);
@@ -174,7 +180,7 @@
     border: none;
   }
   div.location .location-image {
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       width: 50%;
     }
     &>img {
@@ -183,21 +189,21 @@
       object-fit: contain;
     }
     .role-mobile {
-      @include breakpoint('medium+') {
+      @include breakpoint.breakpoint('medium+') {
         display: none;
       }
     }
     .role-default {
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         display: none;
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         display: none;
       }
     }
   }
   .location-information>div{
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       margin-top: 20px;
     }
   }
@@ -209,7 +215,7 @@
     width: 100%;
   }
   .directions-link .f-link {
-    color: $color__rules--brand;
+    color: colors.$color__rules--brand;
   }
   .visit-button {
     display: flex;
@@ -217,7 +223,7 @@
     padding-top: 20px;
     .f-buttons {
       align-self: end;
-      color: $color__text--secondary;
+      color: colors.$color__text--secondary;
       font-family: var(--sans-serif);
       font-weight: 325;
       width: 100%;
@@ -228,19 +234,19 @@
   .m-showcase-background,
   .m-prefooter-section-background {
     margin-top: 0;
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       padding: 0;
     }
   }
   .m-showcase-block,
   .m-showcase-multiple-block>.m-showcase-background,
   .m-prefooter-section>.m-prefooter-section-background {
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       padding: 60px;
     }
     .m-showcase-wrapper {
       gap: 36px;
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         gap: 15px;
         margin-left: 4.6875vw;
         margin-right: 4.6875vw;
@@ -256,7 +262,7 @@
     }
     .m-showcase-media, .m-showcase-block__text-wrapper {
       margin: 0;
-      @include breakpoint('small+') {
+      @include breakpoint.breakpoint('small+') {
         width: 100%;
       }
     }
@@ -264,10 +270,10 @@
       margin: auto;
       position: relative;
       figcaption {
-        @include breakpoint('small+') {
+        @include breakpoint.breakpoint('small+') {
           bottom: 0;
         }
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           bottom: 20px;
         }
         & {
@@ -303,27 +309,27 @@
         line-height: 28px;
         a {
           &:link {
-            color: $color__rlc__myrtle_green;
+            color: rlc.$color__rlc__myrtle_green;
           }
           &:visited {
-            color: $color__link;
+            color: colors.$color__link;
           }
           &:active:hover {
-            color: $color__link--active;
+            color: colors.$color__link--active;
           }
           &:focus:hover, &:hover {
-            color: $color__link--hover;
+            color: colors.$color__link--hover;
           }
         }
         p {
-          @include tucked-margin-top($f-body, ('xsmall': 40, 'small+': 56));
+          @include other.tucked-margin-top(typography.$f-body, ('xsmall': 40, 'small+': 56));
         }
       }
     }
     .m-showcase-block__header-wrapper,
     .m-showcase-block__text-wrapper,
     .m-showcase-media {
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         padding-bottom: 21px;
       }
     }
@@ -338,7 +344,7 @@
       .m-showcase-media, .m-showcase-block__text-wrapper {
         flex: 1 1;
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         flex-direction: column;
         .showcase-header {
           flex-basis: fit-content;
@@ -357,7 +363,7 @@
       .m-showcase-media {
         margin-top: 0;
         min-width: unset;
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           min-width: 100%;
         }
         img, video {
@@ -371,7 +377,7 @@
     margin-left: calc(50% - 50vw);
     width: 100vw;
     &>.m-prefooter-section-background {
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         padding: 15px;
       }
     }
@@ -382,7 +388,7 @@
   }
   .f-contact {
     &>.m-prefooter-section-background {
-      background-color: $color__rlc__sunglow;
+      background-color: rlc.$color__rlc__sunglow;
     }
     .contact-intro {
       font-family: var(--sans-serif);
@@ -392,21 +398,21 @@
       margin-top: 8px;
     }
     .f-contact-blocks {
-      border-top: 1px solid $color__black--42;
+      border-top: 1px solid colors.$color__black--42;
       display: flex;
       margin-top: 28px;
       width: auto;
-      @include breakpoint('small+') {
+      @include breakpoint.breakpoint('small+') {
         column-gap: 24px;
         &>* {
-          border-right: 1px solid $color__black--42;
+          border-right: 1px solid colors.$color__black--42;
           flex-basis: 33%;
         }
         &>*:last-child {
           border-right: none;
         }
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         flex-direction: column;
       }
       h2, h4 {
@@ -422,8 +428,8 @@
         font-size: 17px;
         font-weight: 300;
         line-height: 28px;
-        @include breakpoint('xsmall') {
-          border-bottom: 1px solid $color__black--42;
+        @include breakpoint.breakpoint('xsmall') {
+          border-bottom: 1px solid colors.$color__black--42;
           padding-bottom: 24px;
         }
         p {
@@ -431,7 +437,7 @@
           padding-right: 24px;
         }
         a {
-          color: $color__rlc__myrtle_green;
+          color: rlc.$color__rlc__myrtle_green;
         }
       }
       .o-blocks__block {
@@ -442,17 +448,17 @@
           padding-top: 0;
         }
         input[type="email"] {
-          border: 1px solid $color__black--80;
+          border: 1px solid colors.$color__black--80;
           &::placeholder {
-            color: $color__black--80;
+            color: colors.$color__black--80;
           }
-          @include breakpoint('xsmall') {
+          @include breakpoint.breakpoint('xsmall') {
             width: 67%;
           }
         }
         button {
-          border: 1px solid $color__black--80;
-          @include breakpoint('xsmall') {
+          border: 1px solid colors.$color__black--80;
+          @include breakpoint.breakpoint('xsmall') {
             margin: 0;
             padding: 0;
             text-align: center;
@@ -462,7 +468,7 @@
         .m-aside-newsletter__also {
           text-align: left;
           .subtitle {
-            color: $color__black--80;
+            color: colors.$color__black--80;
           }
         }
       }
@@ -470,7 +476,7 @@
   }
   .f-faqs {
     &>.m-prefooter-section-background {
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         padding-top: 0;
       }
     }
@@ -479,20 +485,20 @@
       flex-wrap: wrap;
       .faq-header {
         flex-basis: 100%;
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           order: 2;
         }
       }
       .o-accordion {
         flex: 2;
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           order: 3;
         }
       }
       .spacer-container {
         flex: 1;
         text-align: right;
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           order: 1;
         }
       }
@@ -500,7 +506,7 @@
     .o-accordion__trigger.f-list-3 {
       border: none;
     }
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       .spacer {
         --spacing: calc(100vw / 2);
         --max-spacing: 650px;
@@ -512,16 +518,16 @@
       }
     }
     .semicircle {
-      background-color: $color__rlc__fire_opal;
+      background-color: rlc.$color__rlc__fire_opal;
     }
   }
   .f-donors {
-    color: $color__white;
+    color: colors.$color__white;
     font-family: var(--sans-serif);
     font-size: 17px;
     font-weight: 300;
     &>.m-prefooter-section-background {
-      background-color: $color__rlc__myrtle_green;
+      background-color: rlc.$color__rlc__myrtle_green;
     }
   }
   .m-aside-newsletter {

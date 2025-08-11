@@ -1,3 +1,8 @@
+@use "../colors";
+@use "../typography";
+@use "breakpoint";
+@use "other";
+
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
@@ -56,16 +61,16 @@ $f-ui: (
   @if $font-family-comma-index {
     // Get the primary font from the font family
     $font: string.slice(#{$font}, 0, $font-family-comma-index - 1);
-    $font: str-replace($font, '"', '');
+    $font: other.str-replace($font, '"', '');
   }
 
   @return $font;
 }
 
 @function calc-pull($font, $font-size, $line-height, $push) {
-  @if map.has-key($cap-heights, $font) {
+  @if map.has-key(typography.$cap-heights, $font) {
     // Adjust cap height for this font size
-    $cap-height: $font-size * map.get($cap-heights, $font);
+    $cap-height: $font-size * map.get(typography.$cap-heights, $font);
 
     // Check push isn't null
     @if ($push==null) {
@@ -277,7 +282,7 @@ $f-ui: (
     $font-info in $settings {
 
       // Check this is a valid breakpoint
-      @if map.has-key($breakpoints-with-directions, $breakpoint) {
+      @if map.has-key(breakpoint.$breakpoints-with-directions, $breakpoint) {
 
         // Get font info for this breakpoint
         @if map.has-key($font-info, font-size) {
@@ -314,7 +319,7 @@ $f-ui: (
         }
 
         @else {
-          @include breakpoint(#{$breakpoint}) {
+          @include breakpoint.breakpoint(#{$breakpoint}) {
             $pre-tucked: true;
 
             @if $untuck {
@@ -374,7 +379,7 @@ $f-ui: (
     $font-info in $settings {
 
       // Check this is a valid breakpoint
-      @if map.has-key($breakpoints-with-directions, $breakpoint) {
+      @if map.has-key(breakpoint.$breakpoints-with-directions, $breakpoint) {
 
         // Get font info for this breakpoint
         @if map.has-key($font-info, font-size) {
@@ -397,7 +402,7 @@ $f-ui: (
         }
 
         @else {
-          @include breakpoint(#{$breakpoint}) {
+          @include breakpoint.breakpoint(#{$breakpoint}) {
             @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform);
           }
         }
@@ -443,7 +448,7 @@ $f-ui: (
   $background - color
   $pos - vertical position
 */
-@mixin text-underline($pos: .85em, $underline: $color__text, $background: $color__white) {
+@mixin text-underline($pos: .85em, $underline: colors.$color__text, $background: colors.$color__white) {
   text-decoration: underline !important;
 }
 

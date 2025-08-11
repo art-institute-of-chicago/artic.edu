@@ -1,3 +1,5 @@
+@use "../setup/colors";
+
 .m-tombstone-block {
     margin-top: 40px;
 
@@ -8,7 +10,7 @@
     }
 
     .short-description {
-        color: $color__black;
+        color: colors.$color__black;
         margin-top: 20px;
     }
 }

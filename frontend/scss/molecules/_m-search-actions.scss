@@ -1,9 +1,12 @@
+@use "../setup/colors";
+@use "../setup/mixins/typography";
+
 .m-search-actions {
   display: flex;
   flex: 0 0 auto;
   flex-flow: row nowrap;
   margin-top: 36px;
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 }
 
 .m-search-actions>li {
@@ -24,7 +27,7 @@
 
 .m-search-actions span,
 .m-search-actions button {
-  @include untuck;
+  @include typography.untuck;
 
   & {
     padding: 0;
@@ -35,16 +38,16 @@
 
 .m-search-actions a,
 .m-search-actions button {
-  color: $color__link;
+  color: colors.$color__link;
   cursor: pointer;
 
   &:hover,
   &:focus:hover {
-    color: $color__link--hover;
+    color: colors.$color__link--hover;
   }
 
   &:active:hover {
-    color: $color__link--active;
+    color: colors.$color__link--active;
   }
 }
 

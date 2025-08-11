@@ -1,3 +1,5 @@
+@use "../setup/variables";
+
 /***
 
 Scroll direction
@@ -21,7 +23,7 @@ If we're scrolling down, hide the header.
 .s-scroll-direction-up.s-allow-top-link {
   .top-link {
     bottom: 40px;
-    transition-timing-function: $bezier--ease-out-circ;
+    transition-timing-function: variables.$bezier--ease-out-circ;
   }
 }
 

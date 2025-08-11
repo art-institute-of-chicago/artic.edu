@@ -1,9 +1,12 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
 
 
 .m-date-listing {
   position: relative;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: flex;
     flex-flow: row nowrap;
   }
@@ -16,37 +19,37 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: colors.$color__rules--primary;
 }
 
 .m-date-listing .day {
   margin-top: 0;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     flex: 0 0 auto;
     align-self: flex-start;
-    width: colspan(11, medium);
+    width: grid.colspan(11, medium);
   }
 
-  @include breakpoint('large+') {
-    width: colspan(11, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(11, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(11, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(11, xlarge);
   }
 }
 
 .m-date-listing__listings {
   margin-top: 20px;
   padding-top: 16px;
-  border-top: 1px solid $color__rules--primary;
+  border-top: 1px solid colors.$color__rules--primary;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     padding-top: 19px;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     flex: 1;
     width: auto;
     margin-top: 0;
@@ -57,13 +60,13 @@
 .m-date-listing__listings-title {
   margin-top: 24px;
   padding-top: 8px;
-  border-top: 1px solid $color__rules--primary;
+  border-top: 1px solid colors.$color__rules--primary;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-top: 20px;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-top: 24px;
   }
 }
@@ -74,11 +77,11 @@
   .m-date-listing__listings-title + & {
     margin-top: 36px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: 32px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-top: 36px;
     }
   }

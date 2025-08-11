@@ -1,3 +1,8 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/variables";
+
 @use "sass:map";
 
 
@@ -10,17 +15,17 @@
   flex: 0 0 auto;
   width: 100%;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     flex-grow: 1;
-    width: colspan(38, medium);
+    width: grid.colspan(38, medium);
   }
 
-  @include breakpoint('large+') {
-    width: colspan(28, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(28, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(28, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(28, xlarge);
   }
 }
 
@@ -38,8 +43,8 @@
   position: relative;
   flex: 0 0 auto;
   width: 100%;
-  margin-top: #{map.get($grid-margin-tops, xsmall)}px;
-  padding-top: #{map.get($grid-margin-tops, xsmall)}px;
+  margin-top: #{map.get(variables.$grid-margin-tops, xsmall)}px;
+  padding-top: #{map.get(variables.$grid-margin-tops, xsmall)}px;
 }
 
 .o-feature-plus-4__items-1 > *::before,
@@ -50,11 +55,11 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: colors.$color__rules--primary;
   pointer-events: none;
 }
 
-@include breakpoint('small') {
+@include breakpoint.breakpoint('small') {
 
   .o-feature-plus-4__feature {
     padding-bottom: 32px;
@@ -62,14 +67,14 @@
 
   .o-feature-plus-4__items-1 > *,
   .o-feature-plus-4__items-2 > * {
-    width: colspan(28, small);
-    margin-top: #{map.get($grid-margin-tops, small)}px;
-    padding-top: colspan(1.5, small);
+    width: grid.colspan(28, small);
+    margin-top: #{map.get(variables.$grid-margin-tops, small)}px;
+    padding-top: grid.colspan(1.5, small);
   }
 
   .o-feature-plus-4__items-1 > *:not(:first-child),
   .o-feature-plus-4__items-2 > *:not(:first-child) {
-    margin-left: colspan(2, small);
+    margin-left: grid.colspan(2, small);
   }
 
   .o-feature-plus-4__items-1 > *:first-child::before,
@@ -78,9 +83,9 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: colspan(58, small, 0);
+    width: grid.colspan(58, small, 0);
     height: 1px;
-    background-color: $color__rules--primary;
+    background-color: colors.$color__rules--primary;
     pointer-events: none;
   }
 
@@ -93,39 +98,39 @@
   .o-feature-plus-4__items-2 > *:first-child::after {
     content: '';
     position: absolute;
-    right: colspan(1, small, 0, true);
+    right: grid.colspan(1, small, 0, true);
     top: 0;
     bottom: 0;
     width: 1px;
-    background-color: $color__rules--primary;
+    background-color: colors.$color__rules--primary;
     pointer-events: none;
   }
 
   .o-feature-plus-4__items-2 > *:first-child::after {
-    top: #{map.get($grid-margin-tops, small) * -1}px;
+    top: #{map.get(variables.$grid-margin-tops, small) * -1}px;
   }
 }
 
 
-@include breakpoint('medium') {
+@include breakpoint.breakpoint('medium') {
   .o-feature-plus-4__items-1 > *,
   .o-feature-plus-4__items-2 > * {
-    margin-top: #{map.get($grid-margin-tops, medium)}px;
+    margin-top: #{map.get(variables.$grid-margin-tops, medium)}px;
   }
 
   .o-feature-plus-4__items-1 {
-    width: colspan(18, medium);
-    margin-left: colspan(2, medium)
+    width: grid.colspan(18, medium);
+    margin-left: grid.colspan(2, medium)
   }
 
   .o-feature-plus-4__items-1::before {
     content: '';
     position: absolute;
-    left: colspan(1, medium, 0, true);
+    left: grid.colspan(1, medium, 0, true);
     top: 0;
     bottom: 0;
     width: 1px;
-    background-color: $color__rules--primary;
+    background-color: colors.$color__rules--primary;
   }
 
   .o-feature-plus-4__items-1 > *:first-child {
@@ -146,43 +151,43 @@
   .o-feature-plus-4__items-2::after {
     content: '';
     position: absolute;
-    left: colspan(19, medium);
-    top: #{map.get($grid-margin-tops, xsmall)}px;
+    left: grid.colspan(19, medium);
+    top: #{map.get(variables.$grid-margin-tops, xsmall)}px;
     bottom: 0;
     width: 1px;
-    background-color: $color__rules--primary;
+    background-color: colors.$color__rules--primary;
   }
 
   .o-feature-plus-4__items-2::after {
-    left: colspan(39, medium);
+    left: grid.colspan(39, medium);
     top: 0;
   }
 
   .o-feature-plus-4__items-2 > * {
-    width: colspan(18, medium);
+    width: grid.colspan(18, medium);
   }
 
   .o-feature-plus-4__items-2 > *:not(:first-child) {
-    margin-left: colspan(2, medium)
+    margin-left: grid.colspan(2, medium)
   }
 
   .o-feature-plus-4__items-2 > *:first-child::before {
     right: auto;
-    width: colspan(38, medium, 0);
+    width: grid.colspan(38, medium, 0);
   }
 }
 
 
-@include breakpoint('large') {
+@include breakpoint.breakpoint('large') {
   .o-feature-plus-4__items-1,
   .o-feature-plus-4__items-2 {
-    width: colspan(13, large);
-    margin-left: colspan(2, large)
+    width: grid.colspan(13, large);
+    margin-left: grid.colspan(2, large)
   }
 
   .o-feature-plus-4__items-1 > *,
   .o-feature-plus-4__items-2 > * {
-    margin-top: #{map.get($grid-margin-tops, large)}px;
+    margin-top: #{map.get(variables.$grid-margin-tops, large)}px;
   }
 
   .o-feature-plus-4__items-1 > *:first-child,
@@ -201,24 +206,24 @@
   .o-feature-plus-4__items-2::after {
     content: '';
     position: absolute;
-    left: colspan(1, large, 0, true);
+    left: grid.colspan(1, large, 0, true);
     top: 0;
     bottom: 0;
     width: 1px;
-    background-color: $color__rules--primary;
+    background-color: colors.$color__rules--primary;
     pointer-events: none;
   }
 }
 
-@include breakpoint('xlarge') {
+@include breakpoint.breakpoint('xlarge') {
   .o-feature-plus-4__items-1,
   .o-feature-plus-4__items-2 {
-    width: colspan(13, xlarge);
-    margin-left: colspan(2, xlarge)
+    width: grid.colspan(13, xlarge);
+    margin-left: grid.colspan(2, xlarge)
   }
   .o-feature-plus-4__items-1 > *,
   .o-feature-plus-4__items-2 > * {
-    margin-top: #{map.get($grid-margin-tops, xlarge)}px;
+    margin-top: #{map.get(variables.$grid-margin-tops, xlarge)}px;
   }
 
   .o-feature-plus-4__items-1 > *:first-child,
@@ -237,11 +242,11 @@
   .o-feature-plus-4__items-2::after {
     content: '';
     position: absolute;
-    left: colspan(1, xlarge, 0, true);
+    left: grid.colspan(1, xlarge, 0, true);
     top: 0;
     bottom: 0;
     width: 1px;
-    background-color: $color__rules--primary;
+    background-color: colors.$color__rules--primary;
     pointer-events: none;
   }
 }
@@ -254,30 +259,30 @@ Following a <hr> or <tag class="hr"></tag>
 
 hr + .o-feature-plus-4,
 .hr + .o-feature-plus-4 {
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
+  @each $name, $point in variables.$breakpoints {
+    @include breakpoint.breakpoint('#{$name}') {
       margin-top: 0;
-      padding-top: #{map.get($grid-margin-tops, $name)}px;
+      padding-top: #{map.get(variables.$grid-margin-tops, $name)}px;
     }
   }
 
-  @include breakpoint('medium') {
+  @include breakpoint.breakpoint('medium') {
     .o-feature-plus-4__items-1::before {
-      top: #{map.get($grid-margin-tops, 'medium') * -1}px;
+      top: #{map.get(variables.$grid-margin-tops, 'medium') * -1}px;
     }
   }
 
-  @include breakpoint('large') {
+  @include breakpoint.breakpoint('large') {
     .o-feature-plus-4__items-1::after,
     .o-feature-plus-4__items-2::after {
-      top: #{map.get($grid-margin-tops, 'large') * -1}px;
+      top: #{map.get(variables.$grid-margin-tops, 'large') * -1}px;
     }
   }
 
-  @include breakpoint('xlarge') {
+  @include breakpoint.breakpoint('xlarge') {
     .o-feature-plus-4__items-1::after,
     .o-feature-plus-4__items-2::after {
-      top: #{map.get($grid-margin-tops, 'xlarge') * -1}px;
+      top: #{map.get(variables.$grid-margin-tops, 'xlarge') * -1}px;
     }
   }
 }

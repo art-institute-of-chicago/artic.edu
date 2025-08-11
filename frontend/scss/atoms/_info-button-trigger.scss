@@ -1,3 +1,5 @@
+@use "../setup/colors";
+
 /***
 
 info-button-trigger
@@ -23,17 +25,17 @@ Triggers the display of `info-button-info`. The content of the `span` is fed int
   padding: 0;
   border: 0 none;
   background: transparent;
-  color: $color__text--tertiary;
+  color: colors.$color__text--tertiary;
   cursor: pointer;
   vertical-align: text-bottom;
 
   &:hover,
   &:focus:hover {
-    color: $color__text--secondary;
+    color: colors.$color__text--secondary;
   }
 
   &:active:hover {
-    color: $color__text--tertiary;
+    color: colors.$color__text--tertiary;
   }
 }
 

@@ -1,13 +1,17 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/variables";
+
 .m-collection-block {
     width: 100vw;
     margin-top: 50px;
     margin-left: calc(50% - 50vw);
     display: flex;
     flex-direction: row;
-    background-color: $color__bg--secondary;
+    background-color: colors.$color__bg--secondary;
     padding: 4.6875vw;
 
-    @include breakpoint('small-') {
+    @include breakpoint.breakpoint('small-') {
         margin-left: calc(50% - 50vw);
         padding: 25px;
     }
@@ -28,7 +32,7 @@
         margin-bottom: 50px;
         align-items: baseline;
 
-        @include breakpoint('small-') {
+        @include breakpoint.breakpoint('small-') {
             flex-direction: column;
             margin-bottom: 24px;
         }
@@ -37,7 +41,7 @@
             display: flex;
             flex-direction: row;
 
-            @include breakpoint('small-') {
+            @include breakpoint.breakpoint('small-') {
                 margin-top: 20px;
             }
 
@@ -54,7 +58,7 @@
             }
 
             .btn:first-of-type {
-                @include breakpoint('small-') {
+                @include breakpoint.breakpoint('small-') {
                     padding-left: 0 !important;
                 }
             }
@@ -68,7 +72,7 @@
                 -o-transform: scale(1.5);
                 transform: scale(1.5);
 
-                @include breakpoint('medium+') {
+                @include breakpoint.breakpoint('medium+') {
                     -webkit-transform: scale(2);
                     -o-transform: scale(2);
                     transform: scale(2);
@@ -81,7 +85,7 @@
                 transform: scale(1.5) rotate(180deg);
 
 
-                @include breakpoint('medium+') {
+                @include breakpoint.breakpoint('medium+') {
                     -webkit-transform: scale(2) rotate(180deg);
                     -o-transform: scale(2) rotate(180deg);
                     transform: scale(2) rotate(180deg);
@@ -94,7 +98,7 @@
         display: flex;
         flex-direction: column-reverse;
 
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
             flex-direction: column;
         }
 
@@ -110,7 +114,7 @@
             margin-left: -50px;
             padding-left: 50px;
 
-            @include breakpoint('small-') {
+            @include breakpoint.breakpoint('small-') {
                 height: 290px;
             }
 
@@ -122,7 +126,7 @@
             .m-collection-row {
                 height: 300px;
 
-                @include breakpoint('small-') {
+                @include breakpoint.breakpoint('small-') {
                     height: 135px;
                 }
             }
@@ -131,7 +135,7 @@
                 height: 300px;
                 width: auto;
 
-                @include breakpoint('small-') {
+                @include breakpoint.breakpoint('small-') {
                     height: 135px;
                 }
             }
@@ -142,7 +146,7 @@
                 object-fit: contain;
                 margin-right: 40px;
 
-                @include breakpoint('small-') {
+                @include breakpoint.breakpoint('small-') {
                     margin-right: 20px;
                     height: 135px;
                 }
@@ -173,17 +177,17 @@
             width: 100%;
             justify-content: space-between;
 
-            @include breakpoint('medium-') {
+            @include breakpoint.breakpoint('medium-') {
                 margin-bottom: 32px;
             }
 
-            @include breakpoint('small-') {
+            @include breakpoint.breakpoint('small-') {
                 flex-direction: column;
                 margin-top: 0;
                 margin-bottom: 32px;
             }
 
-            @include breakpoint('xsmall') {
+            @include breakpoint.breakpoint('xsmall') {
                 flex-direction: column;
                 margin-top: 24px;
                 margin-bottom: 0;
@@ -191,12 +195,12 @@
 
             .collection-desc {
                 width: 65%;
-                font-family: $serif-font--loaded;
-                color: $color__black--54;
+                font-family: variables.$serif-font--loaded;
+                color: colors.$color__black--54;
                 line-height: 36px;
                 font-size: 28px;
 
-                @include breakpoint('small-') {
+                @include breakpoint.breakpoint('small-') {
                     font-size: 22px;
                     width: 100%;
                 }
@@ -205,7 +209,7 @@
             .collection-btns {
                 width: 30%;
 
-                @include breakpoint('small-') {
+                @include breakpoint.breakpoint('small-') {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
@@ -213,7 +217,7 @@
                     width: 100%;
                 }
 
-                @include breakpoint('xsmall') {
+                @include breakpoint.breakpoint('xsmall') {
                     flex-direction: column;
                     margin-top: 0;
                 }
@@ -222,12 +226,12 @@
                     margin: 0 0 20px 0;
                     width: 100%;
 
-                    @include breakpoint('small-') {
+                    @include breakpoint.breakpoint('small-') {
                         width: 48%;
                         margin: 0;
                     }
 
-                    @include breakpoint('xsmall') {
+                    @include breakpoint.breakpoint('xsmall') {
                         margin-top: 16px;
                         width: 100%;
                     }
