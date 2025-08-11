@@ -1,3 +1,4 @@
+@use "sass:map";
 $f-search-input: generate-font-obj((font-family: $serif-font,
     font-family-loaded: $serif-font--loaded,
     font-loaded-class: $serif-font-loaded-class,
@@ -18,7 +19,7 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
   top: 0;
   left: 0;
   right: 0;
-  z-index: map-get($zindexs, 'searchForm');
+  z-index: map.get($zindexs, 'searchForm');
   background-color: rgba($color__black--90, 0.96);
   display: none;
   transform: translateY(-100%);

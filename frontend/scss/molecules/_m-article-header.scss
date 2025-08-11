@@ -1,3 +1,4 @@
+@use "sass:map";
 .m-article-header {
   display: flex;
   position: relative;
@@ -353,9 +354,9 @@
     $point in $breakpoints-with-directions {
 
       // First see if font settings has a line height for this breakpoint
-      @if map-has-key($settings, $name) {
-        $settings-at-breakpoint: map-get($settings, $name);
-        $line-height: map-get($settings-at-breakpoint, line-height);
+      @if map.has-key($settings, $name) {
+        $settings-at-breakpoint: map.get($settings, $name);
+        $line-height: map.get($settings-at-breakpoint, line-height);
       }
     }
   }
@@ -751,7 +752,7 @@
   @each $name,
   $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      margin-bottom: #{map-get($journal-header-margin-bottom, $name)};
+      margin-bottom: #{map.get($journal-header-margin-bottom, $name)};
     }
   }
 
@@ -867,7 +868,7 @@
     @each $name,
     $point in $breakpoints {
       @include breakpoint('#{$name}') {
-        height: calc(100% - #{map-get($journal-header-padding, $name) * 2});
+        height: calc(100% - #{map.get($journal-header-padding, $name) * 2});
         width: colspan(58, $name);
       }
     }
@@ -878,7 +879,7 @@
     @each $name,
     $point in $breakpoints {
       @include breakpoint('#{$name}') {
-        padding: calc(#{colspan(2, $name)} + #{map-get($journal-header-padding, $name)}) colspan(2, $name);
+        padding: calc(#{colspan(2, $name)} + #{map.get($journal-header-padding, $name)}) colspan(2, $name);
       }
     }
 
@@ -927,7 +928,7 @@
     @each $name,
     $point in $breakpoints {
       @include breakpoint('#{$name}') {
-        padding: calc(#{colspan(2, $name)} + #{map-get($journal-header-padding, $name)}) colspan(2, $name) calc(#{colspan(2, $name)} + #{map-get($journal-header-padding, $name)} + 28px);
+        padding: calc(#{colspan(2, $name)} + #{map.get($journal-header-padding, $name)}) colspan(2, $name) calc(#{colspan(2, $name)} + #{map.get($journal-header-padding, $name)} + 28px);
       }
     }
 
@@ -938,7 +939,7 @@
       $point in $breakpoints {
         @include breakpoint('#{$name}') {
           right: colspan(1, $name);
-          bottom: calc(#{colspan(1, $name)} + #{map-get($journal-header-padding, $name)});
+          bottom: calc(#{colspan(1, $name)} + #{map.get($journal-header-padding, $name)});
         }
       }
     }
@@ -950,7 +951,7 @@
       $point in $breakpoints {
         @include breakpoint('#{$name}') {
           right: colspan(1, $name);
-          bottom: calc(#{colspan(1, $name)} + #{map-get($journal-header-padding, $name)} + #{$button-vertical-offset});
+          bottom: calc(#{colspan(1, $name)} + #{map.get($journal-header-padding, $name)} + #{$button-vertical-offset});
         }
       }
     }
@@ -983,7 +984,7 @@
     @each $name,
     $point in $breakpoints {
       @include breakpoint('#{$name}') {
-        padding: #{map-get($journal-header-padding, $name)} 0;
+        padding: #{map.get($journal-header-padding, $name)} 0;
       }
     }
 
@@ -1034,8 +1035,8 @@
       @each $name,
       $point in $breakpoints {
         @include breakpoint('#{$name}') {
-          width: map-get($magazine-intro-width, $name);
-          margin-right: calc(#{map-get($magazine-intro-width-basis, $name)} - #{map-get($magazine-intro-width, $name)});
+          width: map.get($magazine-intro-width, $name);
+          margin-right: calc(#{map.get($magazine-intro-width-basis, $name)} - #{map.get($magazine-intro-width, $name)});
         }
       }
 
@@ -1055,15 +1056,15 @@
       user-select: none;
 
       @include breakpoint('xsmall') {
-        top: map-get($journal-header-padding, xsmall);
+        top: map.get($journal-header-padding, xsmall);
         right: colspan(1, xsmall);
       }
 
       @each $name,
       $point in ('small', 'medium', 'large', 'xlarge') {
         @include breakpoint('#{$name}') {
-          left: calc(100% - #{map-get($magazine-intro-width-basis, $name)});
-          bottom: #{map-get($journal-header-padding, $name) + $magazine-controls-offset};
+          left: calc(100% - #{map.get($magazine-intro-width-basis, $name)});
+          bottom: #{map.get($journal-header-padding, $name) + $magazine-controls-offset};
         }
       }
 
@@ -1090,8 +1091,8 @@
     @each $name,
     $point in $breakpoints {
       @include breakpoint('#{$name}') {
-        padding-top: #{map-get($journal-header-padding, $name)};
-        padding-bottom: #{map-get($journal-header-padding, $name) + 28px};
+        padding-top: #{map.get($journal-header-padding, $name)};
+        padding-bottom: #{map.get($journal-header-padding, $name) + 28px};
       }
     }
 
@@ -1100,7 +1101,7 @@
       @each $name,
       $point in ('small', 'medium', 'large', 'xlarge') {
         @include breakpoint('#{$name}') {
-          bottom: #{map-get($journal-header-padding, $name) + 20px + $magazine-controls-offset};
+          bottom: #{map.get($journal-header-padding, $name) + 20px + $magazine-controls-offset};
         }
       }
     }
@@ -1111,7 +1112,7 @@
       @each $name,
       $point in $breakpoints {
         @include breakpoint('#{$name}') {
-          bottom: #{map-get($journal-header-padding, $name) + 20px};
+          bottom: #{map.get($journal-header-padding, $name) + 20px};
         }
       }
     }
@@ -1122,7 +1123,7 @@
       @each $name,
       $point in $breakpoints {
         @include breakpoint('#{$name}') {
-          bottom: #{map-get($journal-header-padding, $name) + 20px + $button-vertical-offset};
+          bottom: #{map.get($journal-header-padding, $name) + 20px + $button-vertical-offset};
         }
       }
     }
@@ -1188,7 +1189,7 @@
       height: 300px;
 
       img {
-        z-index: map-get($zindexs, 'header');
+        z-index: map.get($zindexs, 'header');
       }
     }
 
@@ -1345,7 +1346,7 @@
     position: fixed !important;
     top: 0;
     width: 100vw;
-    z-index: map-get($zindexs, 'header');
+    z-index: map.get($zindexs, 'header');
 
     &::before {
       left: 0;
@@ -1404,7 +1405,7 @@
     .m-sidebar-toggle {
       top: 0;
       width: 100vw;
-      z-index: map-get($zindexs, 'header');
+      z-index: map.get($zindexs, 'header');
 
       &::before {
         left: 0;
@@ -1422,7 +1423,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      z-index: map-get($zindexs, 'header');
+      z-index: map.get($zindexs, 'header');
 
       .m-article-header__text::before {
         left: -40vw;

@@ -1,8 +1,9 @@
+@use "sass:map";
 
 .o-collection-search {
   display: none;
   position: fixed;
-  z-index: map-get($zindexs, 'searchForm');
+  z-index: map.get($zindexs, 'searchForm');
   left: 0;
   top: 0;
   bottom: 0;

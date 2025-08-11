@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "sass:math";
 
 .o-gallery {
@@ -510,7 +511,7 @@
     @each $name,
     $point in $breakpoints {
       @include breakpoint('#{$name}') {
-        max-width: colspan(map-get((xsmall: 48,
+        max-width: colspan(map.get((xsmall: 48,
                 small: 36,
                 medium: 24,
                 large: 24,
@@ -561,7 +562,7 @@
     @each $name,
     $point in $breakpoints {
       @include breakpoint('#{$name}') {
-        width: colspan(map-get($mediaColWidth, $name), $name);
+        width: colspan(map.get($mediaColWidth, $name), $name);
       }
     }
   }
@@ -583,7 +584,7 @@
       @each $name,
       $point in $breakpoints {
         @include breakpoint('#{$name}') {
-          height: math.div(colspan(map-get($mediaColWidth, $name), $name) * 9, 16);
+          height: math.div(colspan(map.get($mediaColWidth, $name), $name) * 9, 16);
           max-height: none;
         }
       }

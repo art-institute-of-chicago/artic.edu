@@ -1,3 +1,4 @@
+@use "sass:map";
 .p-issuearticle-show,
 .p-issuearticle-preview,
 .p-digitalpublicationarticle-show,
@@ -328,17 +329,17 @@ top: -100%;
             .m-article-header__text {
               width: 100vw;
 
-              margin-left: -#{map-get($outer-gutters, medium)};
+              margin-left: -#{map.get($outer-gutters, medium)};
 
               @include breakpoint('large') {
                 // full width - one gutter - (left sidebar width)
-                width: 100vw - map-get($outer-gutters, large) - (colspan(13, large) + colspan(1, large));
+                width: 100vw - map.get($outer-gutters, large) - (colspan(13, large) + colspan(1, large));
                 margin-left: -#{colspan(1, large)};
               }
 
               @include breakpoint('xlarge') {
                 // (main column width - left sidebar width) + (right gutter width)
-                width: calc(#{map-get($main-col-widths, xlarge) - (colspan(13, xlarge) + colspan(1, xlarge))} + (100vw - #{map-get($main-col-widths, xlarge)}) / 2);
+                width: calc(#{map.get($main-col-widths, xlarge) - (colspan(13, xlarge) + colspan(1, xlarge))} + (100vw - #{map.get($main-col-widths, xlarge)}) / 2);
                 margin-left: -#{colspan(1, xlarge)};
               }
             }
@@ -381,8 +382,8 @@ top: -100%;
 
                 @each $name, $point in ('xsmall', 'small', 'medium') {
                   @include breakpoint('#{$name}') {
-                    padding-left: map-get($outer-gutters, $name);
-                    padding-right: map-get($outer-gutters, $name);
+                    padding-left: map.get($outer-gutters, $name);
+                    padding-right: map.get($outer-gutters, $name);
                   }
                 }
 

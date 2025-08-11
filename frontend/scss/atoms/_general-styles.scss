@@ -1,3 +1,4 @@
+@use "sass:map";
 /***
 
 General Styles
@@ -298,7 +299,7 @@ Why not just scale the SVG you might ask? The different sizes are carefully plac
 [data-behavior="dragScroll"].s-scrollable.s-dragging::before {
   content: '';
   position: fixed;
-  z-index: map-get($zindexs, 'dragScrollLock');
+  z-index: map.get($zindexs, 'dragScrollLock');
   left: 0;
   right: 0;
   top: 0;

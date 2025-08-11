@@ -1,3 +1,4 @@
+@use "sass:map";
 $slider-edge-spacing: 48px;
 $btn-close-padding: 12px;
 $btn-close-size: 20px;
@@ -25,7 +26,7 @@ $btn-close-size: 20px;
 .g-slider {
   display: none;
   position: fixed;
-  z-index: map-get($zindexs, 'modal');
+  z-index: map.get($zindexs, 'modal');
   background-color: $color__white;
 
   max-height: 100vh;

@@ -1,3 +1,4 @@
+@use "sass:map";
 /***
 
 info-button-info
@@ -16,7 +17,7 @@ Image credit for hero images - content is filled out by `infoButtonInfo.js`
 
 .info-button-info {
   position: absolute;
-  z-index: map-get($zindexs, 'infoBubbleInfo');
+  z-index: map.get($zindexs, 'infoBubbleInfo');
   min-width: 80px;
   max-width: 180px;
   padding: 8px 16px 16px;

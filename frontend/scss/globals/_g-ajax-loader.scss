@@ -1,8 +1,9 @@
+@use "sass:map";
 
 .g-ajax-loader {
   content: '';
   position: fixed;
-  z-index: map-get($zindexs, 'ajaxLoader');
+  z-index: map.get($zindexs, 'ajaxLoader');
   left: -50%;
   top: -50%;
   width: 80px;

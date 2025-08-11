@@ -1,3 +1,4 @@
+@use "sass:map";
 #a17:has(.level-1>[aria-expanded="true"])+.g-mask {
   background-color: rgba($color__black--80, 50%);
   bottom: 0;
@@ -13,7 +14,7 @@
 
 .g-header {
   position: fixed;
-  z-index: map-get($zindexs, 'header');
+  z-index: map.get($zindexs, 'header');
   left: 0;
   right: 0;
   top: 0;
@@ -33,7 +34,7 @@
 }
 
 .g-header:has([aria-expanded="true"]) {
-  z-index: map-get($zindexs, 'header');
+  z-index: map.get($zindexs, 'header');
   background-color: rgba($color__white, 1);
   transition: background-color .6s ease-in;
 

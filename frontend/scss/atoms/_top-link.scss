@@ -1,3 +1,4 @@
+@use "sass:map";
 /***
 
 top-link
@@ -17,7 +18,7 @@ The top link - on the site it hides and shows as you scroll up and down on mediu
 .top-link {
   display: none;
   position: fixed;
-  z-index: map-get($zindexs, 'articleTopLink');
+  z-index: map.get($zindexs, 'articleTopLink');
   right: 40px;
   bottom: -48px;
   width: 48px;

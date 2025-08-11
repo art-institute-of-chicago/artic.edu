@@ -1,9 +1,10 @@
+@use "sass:map";
 
 
 .o-collection-filters {
   display: none;
   position: fixed;
-  z-index: map-get($zindexs, 'searchFilters');
+  z-index: map.get($zindexs, 'searchFilters');
   left: 0;
   top: 0;
   bottom: 0;

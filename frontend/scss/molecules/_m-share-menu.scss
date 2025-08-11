@@ -1,8 +1,9 @@
+@use "sass:map";
 .m-share-menu {
   @extend %styled-scrollbars;
   display: none;
   position: fixed;
-  z-index: map-get($zindexs, 'shareMenu');
+  z-index: map.get($zindexs, 'shareMenu');
   left: colspan(3, xsmall);
   right: colspan(3, xsmall);
   top: 50%;

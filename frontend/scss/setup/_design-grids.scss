@@ -1,3 +1,4 @@
+@use "sass:map";
 .design-grid-toggles {
   position: fixed;
   z-index: 9999;
@@ -127,10 +128,10 @@
 
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      @if (map-get($main-col-widths, $name) == 'fluid') {
-        width: calc(100vw - #{map-get($outer-gutters, $name) * 2});
+      @if (map.get($main-col-widths, $name) == 'fluid') {
+        width: calc(100vw - #{map.get($outer-gutters, $name) * 2});
       } @else {
-        width: map-get($main-col-widths, $name);
+        width: map.get($main-col-widths, $name);
       }
       background: repeating-linear-gradient(
         90deg,

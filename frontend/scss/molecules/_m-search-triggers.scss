@@ -1,7 +1,8 @@
+@use "sass:map";
 .m-search-triggers {
   display: flex;
   position: fixed;
-  z-index: map-get($zindexs, 'searchTriggers');
+  z-index: map.get($zindexs, 'searchTriggers');
   left: 0;
   right: 0;
   bottom: 40px;

@@ -1,3 +1,5 @@
+@use "sass:map";
+@use "sass:string";
 /*
   @function get-breakpoint-directions
 
@@ -11,21 +13,21 @@
 @function get-breakpoint-directions() {
   $_bps: ();
   @each $k, $bp in $breakpoints {
-    $_bps: map-merge($_bps, ($k: $bp));
-    $start: map-get($bp, start);
-    $end: map-get($bp, end);
+    $_bps: map.merge($_bps, ($k: $bp));
+    $start: map.get($bp, start);
+    $end: map.get($bp, end);
 
     @if $end != null and $start != null {
-      $down-key: unquote($k + '-');
-      $_bps: map-merge($_bps, ($down-key: (
+      $down-key: string.unquote($k + '-');
+      $_bps: map.merge($_bps, ($down-key: (
         start: null,
         end: $end
       )));
     }
 
     @if $start != null and $end != null {
-      $up-key: unquote($k) + '+';
-      $_bps: map-merge($_bps, ($up-key: (
+      $up-key: string.unquote($k) + '+';
+      $_bps: map.merge($_bps, ($up-key: (
         start: $start,
         end: null
       )));
@@ -53,11 +55,11 @@ $breakpoints-with-directions: get-breakpoint-directions();
 */
 
 @mixin breakpoint($name) {
-  $points: map-get($breakpoints-with-directions, $name);
+  $points: map.get($breakpoints-with-directions, $name);
   @if $points {
     $media: get-media($points);
-    $start: map-get($media, 'start');
-    $end: map-get($media, 'end');
+    $start: map.get($media, 'start');
+    $end: map.get($media, 'end');
     $str: 'screen and (';
     @if($start != null) {
       $str: $str + 'min-width: ' + ($start * 1px);
@@ -92,8 +94,8 @@ $breakpoints-with-directions: get-breakpoint-directions();
   $start: null;
   $end: null;
 
-  $bp-start: map-get($bp, 'start');
-  $bp-end: map-get($bp, 'end');
+  $bp-start: map.get($bp, 'start');
+  $bp-end: map.get($bp, 'end');
   @if($bp-start != null and ($start == null or $bp-start < $start)) {
     $start: $bp-start;
   }

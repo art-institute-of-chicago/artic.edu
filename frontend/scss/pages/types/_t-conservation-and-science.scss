@@ -1,3 +1,4 @@
+@use "sass:map";
 .conservation-and-science-subnav {
     border-bottom: 1px solid $color__black--10;
     border-top: 1px solid $color__black--10;
@@ -336,7 +337,7 @@
     @each $name, $point in $breakpoints {
       @include breakpoint('#{$name}') {
         .hr {
-          margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+          margin-top: colspan(map.get($grid-padding-tops, $name), #{$name});
         }
       }
     }

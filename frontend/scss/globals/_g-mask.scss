@@ -1,6 +1,7 @@
+@use "sass:map";
 .g-mask {
   position: fixed;
-  z-index: map-get($zindexs, 'mask');
+  z-index: map.get($zindexs, 'mask');
   left: 0;
   right: 100%;
   top: 0;
