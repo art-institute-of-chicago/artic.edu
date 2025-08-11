@@ -1,3 +1,5 @@
+@use "../setup/colors";
+
 /***
 
 external-link
@@ -17,6 +19,6 @@ With external link icon
 
 .external-link svg {
   margin-left: 8px;
-  outline: 8px solid $color__bg;
-  background: $color__bg;
+  outline: 8px solid colors.$color__bg;
+  background: colors.$color__bg;
 }

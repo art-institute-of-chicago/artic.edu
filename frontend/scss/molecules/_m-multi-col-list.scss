@@ -1,3 +1,8 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/variables";
+
 /***
 
 ```
@@ -34,7 +39,7 @@
   top: 0;
   width: 100%;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: colors.$color__rules--primary;
 }
 
 .m-multi-col-list > li {
@@ -43,23 +48,23 @@
   break-inside: avoid;
 }
 
-@each $name, $point in $breakpoints {
-  @include breakpoint('#{$name}') {
+@each $name, $point in variables.$breakpoints {
+  @include breakpoint.breakpoint('#{$name}') {
     .m-multi-col-list[class*="col@#{$name}"] {
       column-fill: auto;
-      column-gap: colspan(2,$name);
-      column-rule: 1px solid $color__rules--primary;
+      column-gap: grid.colspan(2,$name);
+      column-rule: 1px solid colors.$color__rules--primary;
     }
   }
 }
 
-@include breakpoint('xsmall') {
+@include breakpoint.breakpoint('xsmall') {
   .m-multi-col-list--2-col\@xsmall {
     column-count: 2;
   }
 }
 
-@include breakpoint('small') {
+@include breakpoint.breakpoint('small') {
   .m-multi-col-list--2-col\@small {
     column-count: 2;
   }
@@ -69,7 +74,7 @@
   }
 }
 
-@include breakpoint('medium') {
+@include breakpoint.breakpoint('medium') {
   .m-multi-col-list--2-col\@medium {
     column-count: 2;
   }
@@ -83,7 +88,7 @@
   }
 }
 
-@include breakpoint('large') {
+@include breakpoint.breakpoint('large') {
   .m-multi-col-list--2-col\@large {
     column-count: 2;
   }
@@ -97,7 +102,7 @@
   }
 }
 
-@include breakpoint('xlarge') {
+@include breakpoint.breakpoint('xlarge') {
   .m-multi-col-list--2-col\@xlarge {
     column-count: 2;
   }

@@ -1,3 +1,8 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/other";
+@use "../setup/typography";
+
 .m-title-bar {
   display: flex;
   position: relative;
@@ -6,22 +11,22 @@
   margin-top: 48px;
   padding-top: .02px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-top: 60px;
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     margin-top: 72px;
   }
 
   &.m-title-bar--compact {
     margin-top: 24px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: 30px;
     }
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       margin-top: 36px;
     }
   }
@@ -44,11 +49,11 @@
   &+.m-results-title {
     margin-top: 28px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: 36px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-top: 40px;
     }
   }
@@ -56,11 +61,11 @@
   &+.o-artist-bio {
     margin-top: 36px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: 60px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-top: 72px;
     }
   }
@@ -90,7 +95,7 @@
         }
       }
   
-      @include breakpoint('medium-') {
+      @include breakpoint.breakpoint('medium-') {
         flex-direction: column !important;
       }
     }
@@ -123,12 +128,12 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--quaternary;
+  background-color: colors.$color__rules--quaternary;
 }
 
 // Simulates a thinner <hr/>, which is lighter, but taller
 .m-title-bar--light::before {
-  background-color: $color__rules--primary;
+  background-color: colors.$color__rules--primary;
 }
 
 .m-title-bar .title {
@@ -142,19 +147,19 @@
 }
 
 .m-title-bar .title.f-module-title-2 {
-  @include tucked-margin-top($f-module-title-2, ('xsmall': 60, 'small+': 68, 'medium+': 80));
+  @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 60, 'small+': 68, 'medium+': 80));
 }
 
 .m-title-bar.m-title-bar--compact .title.f-module-title-2 {
-  @include tucked-margin-top($f-module-title-2, ('xsmall': 32, 'small+': 40, 'medium+': 40));
+  @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 32, 'small+': 40, 'medium+': 40));
 }
 
 .m-title-bar .title.f-numeral-date {
-  @include tucked-margin-top($f-numeral-date, ('xsmall': 60, 'small+': 68, 'medium+': 80));
+  @include other.tucked-margin-top(typography.$f-numeral-date, ('xsmall': 60, 'small+': 68, 'medium+': 80));
 }
 
 .m-title-bar .title.f-display-1 {
-  @include tucked-margin-top($f-display-1, ('xsmall': 60, 'small+': 68, 'medium+': 80));
+  @include other.tucked-margin-top(typography.$f-display-1, ('xsmall': 60, 'small+': 68, 'medium+': 80));
 }
 
 .m-title-bar__links {
@@ -164,7 +169,7 @@
   margin-top: 0;
   margin-left: auto;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     display: flex;
     margin-top: auto;
     align-self: flex-end;
@@ -177,18 +182,18 @@
 }
 
 .m-title-bar__links a {
-  color: $color__link;
+  color: colors.$color__link;
 
   &:hover,
   &:focus:hover {
-    color: $color__link--hover;
+    color: colors.$color__link--hover;
   }
 
   &:active:hover {
-    color: $color__link--active;
+    color: colors.$color__link--active;
   }
 }
 
 .m-title-bar__links span {
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 }

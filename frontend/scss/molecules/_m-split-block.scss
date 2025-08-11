@@ -1,10 +1,12 @@
+@use "../setup/mixins/breakpoint";
+
 .m-split-block {
 
   display: flex;
   flex-flow: row wrap;
   margin-top: 28px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     flex-flow: row nowrap;
   }
 
@@ -14,7 +16,7 @@
 
   margin: 16px 0;
 
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     &:last-child {
       margin-right: 0;
       margin-left: 4px;
@@ -26,7 +28,7 @@
     }
   }
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     &:last-child {
       margin-right: 0;
       margin-left: 8px;
@@ -57,7 +59,7 @@
 .m-split-block--half div {
   flex-basis: 100%;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     flex-basis: 50%;
   }
 
@@ -70,12 +72,12 @@
     flex-basis: 25%;
   }
 
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     &:last-child {
       flex-basis: 72%;
     }
   }
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     &:last-child {
       flex-basis: 75%;
     }

@@ -1,3 +1,7 @@
+@use "../setup/colors";
+@use "../setup/mixins/forms";
+@use "../setup/variables";
+
 /***
 
 select
@@ -21,27 +25,27 @@ Form selects, partially styled using [select-css](https://github.com/filamentgro
 
 
 .select__select {
-  @include styled-select;
+  @include forms.styled-select;
 
   & {
-    border: 1px solid $color__input-border;
-    border-radius: $border-radius;
-    background-color: $color__white;
+    border: 1px solid colors.$color__input-border;
+    border-radius: variables.$border-radius;
+    background-color: colors.$color__white;
     cursor: pointer;
 
     &:hover {
-      border-color: $color__input-border--hover;
+      border-color: colors.$color__input-border--hover;
     }
   }
 
   &:focus:hover,
   &.s-focus {
     //@extend %default-focus-style;
-    border-color: $color__input-border--focus;
+    border-color: colors.$color__input-border--focus;
   }
 
   .s-error & {
-    border-color: $color__input-border--error;
+    border-color: colors.$color__input-border--error;
   }
 
   label+& {
@@ -53,8 +57,8 @@ Form selects, partially styled using [select-css](https://github.com/filamentgro
   height: 46px;
   padding: 0 35px 2px 15px;
   border: 0 none;
-  border-radius: $border-radius;
-  color: $color__input-text;
+  border-radius: variables.$border-radius;
+  color: colors.$color__input-text;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -69,7 +73,7 @@ Form selects, partially styled using [select-css](https://github.com/filamentgro
 }
 
 .select__select:hover select {
-  color: $color__input-text--hover;
+  color: colors.$color__input-text--hover;
 }
 
 .select__select select:focus {

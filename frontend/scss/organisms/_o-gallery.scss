@@ -1,30 +1,38 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/mixins/other";
+@use "../setup/mixins/typography" as mixins-typography;
+@use "../setup/typography" as setup-typography;
+@use "../setup/variables";
+
 @use "sass:map";
 @use "sass:math";
 
 .o-gallery {
-  @include background-fill;
+  @include other.background-fill;
 
   & {
     padding-top: .02px;
-    background-color: $color__bg--gallery;
-    color: $color__text--contrast;
+    background-color: colors.$color__bg--gallery;
+    color: colors.$color__text--contrast;
     transform: translateZ(0);
     margin-top: 48px;
   }
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-top: 60px;
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     margin-top: 72px;
   }
 }
 
 .o-gallery__title {
-  @include untuck();
+  @include mixins-typography.untuck();
 
-  @include breakpoint('xlarge') {
+  @include breakpoint.breakpoint('xlarge') {
     flex: 0 0 auto;
     width: 100%;
   }
@@ -38,11 +46,11 @@
   position: relative;
   margin-top: 32px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-top: 36px;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-top: 40px;
   }
 }
@@ -55,21 +63,21 @@
 .o-gallery__title,
 .o-gallery figcaption,
 .o-gallery .m-media figcaption .f-caption-title {
-  color: $color__text--title-contrast;
+  color: colors.$color__text--title-contrast;
 }
 
 .o-gallery .m-media figcaption a {
-  color: $color__text--title-contrast;
+  color: colors.$color__text--title-contrast;
 }
 
 .o-gallery .m-media figcaption a:hover,
 .o-gallery .m-media a.m-media__img:hover+figcaption a {
-  @include text-underline(1.05em, $color__text--title-contrast, $color__bg--gallery);
+  @include mixins-typography.text-underline(1.05em, colors.$color__text--title-contrast, colors.$color__bg--gallery);
 }
 
 .o-gallery .m-media figcaption a:active {
   background-image: none;
-  color: $color__text--title-contrast;
+  color: colors.$color__text--title-contrast;
   text-shadow: 0;
 }
 
@@ -80,7 +88,7 @@
 .o-gallery hr,
 .o-gallery .hr {
   margin-top: 0;
-  border-top-color: $color__rules--contrast;
+  border-top-color: colors.$color__rules--contrast;
 }
 
 .o-gallery__all-link {
@@ -90,7 +98,7 @@
   top: 44px;
   margin-top: 0;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: block;
   }
 }
@@ -99,7 +107,7 @@
   margin-top: 0;
   padding-bottom: 32px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: none;
   }
 }
@@ -113,14 +121,14 @@
   display: block;
   margin-top: 20px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     position: absolute;
     right: 0;
     top: 12px;
     margin-top: 0;
   }
 
-  @include breakpoint('xlarge') {
+  @include breakpoint.breakpoint('xlarge') {
     position: static;
     margin-top: 24px;
   }
@@ -133,11 +141,11 @@
 
 
 .o-gallery__title.f-module-title-2 {
-  @include tucked-margin-top($f-module-title-2, ('xsmall': 56, 'small+': 68, 'medium+': 80));
+  @include other.tucked-margin-top(setup-typography.$f-module-title-2, ('xsmall': 56, 'small+': 68, 'medium+': 80));
 }
 
 .o-gallery__caption .f-caption {
-  @include untuck();
+  @include mixins-typography.untuck();
 
   & {
     margin-top: 24px;
@@ -150,48 +158,48 @@
   .o-gallery__media,
   .o-gallery__title,
   .o-gallery__caption {
-    @include breakpoint('large+') {
-      margin-left: colspan(6, large);
-      margin-right: colspan(6, large);
+    @include breakpoint.breakpoint('large+') {
+      margin-left: grid.colspan(6, large);
+      margin-right: grid.colspan(6, large);
 
-      column-gap: colspan(1, large);
-      width: colspan(46, large);
+      column-gap: grid.colspan(1, large);
+      width: grid.colspan(46, large);
     }
 
-    @include breakpoint('xlarge') {
-      margin-left: colspan(6, xlarge);
-      margin-right: colspan(6, xlarge);
+    @include breakpoint.breakpoint('xlarge') {
+      margin-left: grid.colspan(6, xlarge);
+      margin-right: grid.colspan(6, xlarge);
 
-      column-gap: colspan(1, xlarge);
-      width: colspan(46, xlarge);
+      column-gap: grid.colspan(1, xlarge);
+      width: grid.colspan(46, xlarge);
     }
   }
 
   .o-gallery__title,
   .o-gallery__caption {
-    width: colspan(58, xsmall);
+    width: grid.colspan(58, xsmall);
 
-    @include breakpoint('small+') {
-      width: colspan(46, small);
+    @include breakpoint.breakpoint('small+') {
+      width: grid.colspan(46, small);
     }
 
-    @include breakpoint('medium+') {
-      width: colspan(36, medium);
+    @include breakpoint.breakpoint('medium+') {
+      width: grid.colspan(36, medium);
     }
 
-    @include breakpoint('large+') {
-      width: colspan(36, large);
+    @include breakpoint.breakpoint('large+') {
+      width: grid.colspan(36, large);
     }
 
-    @include breakpoint('xlarge') {
-      width: colspan(36, xlarge);
+    @include breakpoint.breakpoint('xlarge') {
+      width: grid.colspan(36, xlarge);
     }
   }
 
   .o-gallery__media {
     padding-bottom: 56px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       display: flex;
       flex-flow: row wrap;
       align-items: flex-start;
@@ -199,34 +207,34 @@
       padding-bottom: 64px - 48px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       padding-bottom: 84px - 48px;
-      column-gap: colspan(2, medium);
+      column-gap: grid.colspan(2, medium);
     }
   }
 
   .o-gallery__media>* {
     margin-top: 48px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       left: 0;
       top: 0;
       flex: 0 0 auto;
-      width: colspan(28, small);
+      width: grid.colspan(28, small);
       opacity: 0;
       transition: opacity .25s;
     }
 
-    @include breakpoint('medium+') {
-      width: colspan(28, medium);
+    @include breakpoint.breakpoint('medium+') {
+      width: grid.colspan(28, medium);
     }
 
-    @include breakpoint('large+') {
-      width: colspan(22, large);
+    @include breakpoint.breakpoint('large+') {
+      width: grid.colspan(22, large);
     }
 
-    @include breakpoint('xlarge') {
-      width: colspan(22, xlarge);
+    @include breakpoint.breakpoint('xlarge') {
+      width: grid.colspan(22, xlarge);
     }
   }
 
@@ -235,7 +243,7 @@
     z-index: 1;
     flex: none;
     opacity: 1;
-    transition: opacity .25s, top .3s $bezier--marius-mosaic, left .3s $bezier--marius-mosaic, height .3s $bezier--marius-mosaic;
+    transition: opacity .25s, top .3s variables.$bezier--marius-mosaic, left .3s variables.$bezier--marius-mosaic, height .3s variables.$bezier--marius-mosaic;
   }
 
   .o-gallery__media>*.s-positioned:not(.s-repositioning) {
@@ -275,23 +283,23 @@
   }
 
   .m-media__img img {
-    max-height: #{math.div(colspan(58, xsmall) * 4, 3)};
+    max-height: #{math.div(grid.colspan(58, xsmall) * 4, 3)};
     object-fit: contain;
 
-    @include breakpoint('small+') {
-      max-height: #{math.div(colspan(28, small) * 4, 3)};
+    @include breakpoint.breakpoint('small+') {
+      max-height: #{math.div(grid.colspan(28, small) * 4, 3)};
     }
 
-    @include breakpoint('medium+') {
-      max-height: #{math.div(colspan(28, medium) * 4, 3)};
+    @include breakpoint.breakpoint('medium+') {
+      max-height: #{math.div(grid.colspan(28, medium) * 4, 3)};
     }
 
-    @include breakpoint('large+') {
-      max-height: #{math.div(colspan(22, large) * 4, 3)};
+    @include breakpoint.breakpoint('large+') {
+      max-height: #{math.div(grid.colspan(22, large) * 4, 3)};
     }
 
-    @include breakpoint('xlarge') {
-      max-height: #{math.div(colspan(22, xlarge) * 4, 3)};
+    @include breakpoint.breakpoint('xlarge') {
+      max-height: #{math.div(grid.colspan(22, xlarge) * 4, 3)};
     }
   }
 
@@ -303,7 +311,7 @@
   .o-gallery__all-link-btn {
     margin-top: -28px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: -32px;
     }
   }
@@ -315,22 +323,22 @@
 
   .o-gallery__title,
   .o-gallery__caption {
-    width: colspan(58, xsmall);
+    width: grid.colspan(58, xsmall);
 
-    @include breakpoint('small+') {
-      width: colspan(46, small);
+    @include breakpoint.breakpoint('small+') {
+      width: grid.colspan(46, small);
     }
 
-    @include breakpoint('medium+') {
-      width: colspan(36, medium);
+    @include breakpoint.breakpoint('medium+') {
+      width: grid.colspan(36, medium);
     }
 
-    @include breakpoint('large+') {
-      width: colspan(36, large);
+    @include breakpoint.breakpoint('large+') {
+      width: grid.colspan(36, large);
     }
 
-    @include breakpoint('xlarge') {
-      width: colspan(36, xlarge);
+    @include breakpoint.breakpoint('xlarge') {
+      width: grid.colspan(36, xlarge);
     }
   }
 
@@ -345,13 +353,13 @@
       transform: scale(2) rotate(180deg);
     }
 
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       position: relative;
       margin-top: 32px;
       margin-left: -36px;
     }
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       position: absolute;
       right: 0;
       top: 32px;
@@ -359,12 +367,12 @@
       margin-right: -36px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       top: 46px;
     }
 
     .btn {
-      color: $color__text--title-contrast;
+      color: colors.$color__text--title-contrast;
     }
   }
 
@@ -372,7 +380,7 @@
   &.o-gallery----theme-3 {
     .o-gallery--slider__controls {
       .btn {
-        color: $color__text--title;
+        color: colors.$color__text--title;
       }
     }
   }
@@ -381,7 +389,7 @@
     .o-gallery--slider__controls {
       margin-bottom: 32px;
 
-      @include breakpoint('small+') {
+      @include breakpoint.breakpoint('small+') {
         position: relative;
         margin-left: -36px;
         margin-right: 0;
@@ -389,14 +397,14 @@
     }
 
     .o-gallery__media-wrapper {
-      @include breakpoint('xlarge') {
+      @include breakpoint.breakpoint('xlarge') {
         width: auto;
       }
     }
   }
 
   .o-gallery__media-wrapper {
-    margin-right: colspan(3, xsmall, 0, true);
+    margin-right: grid.colspan(3, xsmall, 0, true);
     margin-bottom: 24px;
     padding-bottom: 32px;
 
@@ -405,26 +413,26 @@
     // Allow more space for the navigation arrows
     padding-top: 32px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       padding-top: 55px;
     }
 
-    @include breakpoint('small+') {
-      margin-right: colspan(3, small, 0, true);
+    @include breakpoint.breakpoint('small+') {
+      margin-right: grid.colspan(3, small, 0, true);
       margin-bottom: 32px;
     }
 
-    @include breakpoint('medium+') {
-      margin-right: colspan(3, medium, 0, true);
+    @include breakpoint.breakpoint('medium+') {
+      margin-right: grid.colspan(3, medium, 0, true);
       margin-bottom: 52px;
     }
 
-    @include breakpoint('large+') {
-      margin-right: colspan(3, large, 0, true);
+    @include breakpoint.breakpoint('large+') {
+      margin-right: grid.colspan(3, large, 0, true);
     }
 
-    @include breakpoint('xlarge') {
-      margin-right: colspan(3, xlarge, 0, true);
+    @include breakpoint.breakpoint('xlarge') {
+      margin-right: grid.colspan(3, xlarge, 0, true);
     }
   }
 
@@ -445,24 +453,24 @@
       content: '';
       display: block;
       flex: 0 0 auto;
-      width: colspan(1, xsmall);
+      width: grid.colspan(1, xsmall);
       height: 1px;
 
-      @include breakpoint('small+') {
-        width: colspan(1, small);
+      @include breakpoint.breakpoint('small+') {
+        width: grid.colspan(1, small);
       }
 
-      @include breakpoint('medium+') {
-        width: colspan(1, medium);
+      @include breakpoint.breakpoint('medium+') {
+        width: grid.colspan(1, medium);
       }
 
-      @include breakpoint('large+') {
-        width: colspan(1, large);
+      @include breakpoint.breakpoint('large+') {
+        width: grid.colspan(1, large);
       }
 
-      @include breakpoint('xlarge') {
+      @include breakpoint.breakpoint('xlarge') {
         //width: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
-        width: colspan(1, xlarge);
+        width: grid.colspan(1, xlarge);
       }
     }
   }
@@ -470,48 +478,48 @@
   .o-gallery__media>* {
     flex: 0 0 auto;
     margin-top: 0;
-    margin-left: colspan(2, xsmall);
+    margin-left: grid.colspan(2, xsmall);
 
     &:first-child {
       margin-left: 0;
 
-      @include breakpoint('small+') {
+      @include breakpoint.breakpoint('small+') {
         margin-left: 0;
       }
 
-      @include breakpoint('medium+') {
+      @include breakpoint.breakpoint('medium+') {
         margin-left: 0;
       }
 
-      @include breakpoint('large+') {
+      @include breakpoint.breakpoint('large+') {
         margin-left: 0;
       }
     }
 
-    @include breakpoint('small+') {
-      margin-left: colspan(1, small);
+    @include breakpoint.breakpoint('small+') {
+      margin-left: grid.colspan(1, small);
     }
 
-    @include breakpoint('medium+') {
-      margin-left: colspan(1, medium);
+    @include breakpoint.breakpoint('medium+') {
+      margin-left: grid.colspan(1, medium);
     }
 
-    @include breakpoint('large+') {
-      margin-left: colspan(1, large);
+    @include breakpoint.breakpoint('large+') {
+      margin-left: grid.colspan(1, large);
     }
 
-    @include breakpoint('xlarge') {
-      max-width: colspan(18, xlarge);
-      margin-left: colspan(1, xlarge);
+    @include breakpoint.breakpoint('xlarge') {
+      max-width: grid.colspan(18, xlarge);
+      margin-left: grid.colspan(1, xlarge);
     }
   }
 
   figcaption {
 
     @each $name,
-    $point in $breakpoints {
-      @include breakpoint('#{$name}') {
-        max-width: colspan(map.get((xsmall: 48,
+    $point in variables.$breakpoints {
+      @include breakpoint.breakpoint('#{$name}') {
+        max-width: grid.colspan(map.get((xsmall: 48,
                 small: 36,
                 medium: 24,
                 large: 24,
@@ -529,22 +537,22 @@
     object-position: left top;
     margin: initial;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       max-height: 480px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       max-height: 420px;
     }
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       max-height: 480px;
     }
 
-    @include breakpoint('xlarge') {
+    @include breakpoint.breakpoint('xlarge') {
       width: 100%;
       max-width: unset;
-      max-height: #{math.div(colspan(18, xlarge) * 4, 3)};
+      max-height: #{math.div(grid.colspan(18, xlarge) * 4, 3)};
     }
   }
 
@@ -560,9 +568,9 @@
     flex: 0 0 auto;
 
     @each $name,
-    $point in $breakpoints {
-      @include breakpoint('#{$name}') {
-        width: colspan(map.get($mediaColWidth, $name), $name);
+    $point in variables.$breakpoints {
+      @include breakpoint.breakpoint('#{$name}') {
+        width: grid.colspan(map.get($mediaColWidth, $name), $name);
       }
     }
   }
@@ -582,9 +590,9 @@
       min-width: none;
 
       @each $name,
-      $point in $breakpoints {
-        @include breakpoint('#{$name}') {
-          height: math.div(colspan(map.get($mediaColWidth, $name), $name) * 9, 16);
+      $point in variables.$breakpoints {
+        @include breakpoint.breakpoint('#{$name}') {
+          height: math.div(grid.colspan(map.get($mediaColWidth, $name), $name) * 9, 16);
           max-height: none;
         }
       }
@@ -594,29 +602,29 @@
   .m-media--soundcloud .m-media__img--video,
   .m-media--soundcloud .m-media__img--video img,
   .m-media--soundcloud .m-media__img--video iframe {
-    height: math.div(colspan(50, xsmall) * 2, 9);
+    height: math.div(grid.colspan(50, xsmall) * 2, 9);
 
-    @include breakpoint('small+') {
-      height: math.div(colspan(35, small) * 2, 9);
+    @include breakpoint.breakpoint('small+') {
+      height: math.div(grid.colspan(35, small) * 2, 9);
     }
 
-    @include breakpoint('medium+') {
-      height: math.div(colspan(23, medium) * 2, 9);
+    @include breakpoint.breakpoint('medium+') {
+      height: math.div(grid.colspan(23, medium) * 2, 9);
     }
 
-    @include breakpoint('large+') {
-      height: math.div(colspan(23, large) * 2, 9);
+    @include breakpoint.breakpoint('large+') {
+      height: math.div(grid.colspan(23, large) * 2, 9);
     }
 
-    @include breakpoint('xlarge') {
-      height: #{math.div(colspan(18, xlarge) * 2, 9)};
+    @include breakpoint.breakpoint('xlarge') {
+      height: #{math.div(grid.colspan(18, xlarge) * 2, 9)};
     }
   }
 
   .o-gallery__all-link-btn {
     margin-top: -24px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: -32px;
     }
   }
@@ -627,44 +635,44 @@
  */
 .o-gallery.o-gallery----theme-2,
 .o-gallery.o-gallery----theme-3 {
-  background-color: $color__bg--primary;
-  color: $color__text;
+  background-color: colors.$color__bg--primary;
+  color: colors.$color__text;
 
   .o-gallery__title,
   figcaption strong,
   .m-media figcaption .f-caption-title {
-    color: $color__text--title;
+    color: colors.$color__text--title;
   }
 
   .m-media figcaption a {
-    color: $color__text--accent;
+    color: colors.$color__text--accent;
   }
 
   .m-media figcaption a:hover,
   .m-media a.m-media__img:hover+figcaption a {
-    @include text-underline(1.05em, $color__text--title, $color__bg--primary);
+    @include mixins-typography.text-underline(1.05em, colors.$color__text--title, colors.$color__bg--primary);
   }
 
   .m-media figcaption a:active {
     background-image: none;
-    color: $color__text--title;
+    color: colors.$color__text--title;
     text-shadow: 0;
   }
 
   hr,
   .hr {
-    border-top-color: $color__rules--secondary;
+    border-top-color: colors.$color__rules--secondary;
   }
 
   .o-gallery--slider__controls {
     .btn {
-      color: $color__text--title;
+      color: colors.$color__text--title;
     }
   }
 }
 
 .o-gallery.o-gallery----theme-3 {
-  background: $color__bg;
+  background: colors.$color__bg;
 }
 
 /**
@@ -683,7 +691,7 @@
     position: relative;
 
     .m-media__img {
-      background-color: $color__black;
+      background-color: colors.$color__black;
 
       img {
         opacity: 0.8;
@@ -709,18 +717,18 @@
       .f-caption,
       .f-caption-title div {
         color: white;
-        text-shadow: 0 0 6px rgba($color__black, .5);
+        text-shadow: 0 0 6px rgba(colors.$color__black, .5);
         display: block;
         margin-bottom: 20px;
 
-        @include breakpoint('medium+') {
+        @include breakpoint.breakpoint('medium+') {
           margin-bottom: 15px;
         }
 
-        @include untuck;
-        @include font-styles-untuck(generate-font-obj((font-family: $serif-font,
-              font-family-loaded: $serif-font--loaded,
-              font-loaded-class: $serif-font-loaded-class,
+        @include mixins-typography.untuck;
+        @include mixins-typography.font-styles-untuck(mixins-typography.generate-font-obj((font-family: variables.$serif-font,
+              font-family-loaded: variables.$serif-font--loaded,
+              font-loaded-class: variables.$serif-font-loaded-class,
               settings: ('xsmall': (font-size: 17, line-height: 21, text-transform: uppercase, letter-spacing: 0.1em, push: 0),
                 'small+': (font-size: 17, line-height: 21, push: -2),
                 'medium+': (font-size: 20, line-height: 26, push: -1),
@@ -737,11 +745,11 @@
 .o-gallery--small-mosaic .o-gallery__caption .f-caption {
   margin-bottom: 32px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-bottom: 36px;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-bottom: 40px;
   }
 }

@@ -1,3 +1,7 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/typography";
+
 .m-filters__whittle-down {
   position: relative;
 }
@@ -9,7 +13,7 @@
     pointer-events: none;
     left: auto;
     right: 12px;
-    background-color: $color__white;
+    background-color: colors.$color__white;
   }
 }
 
@@ -37,7 +41,7 @@
   width: 48px;
   border: 0 none;
   background: transparent;
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 }
 
 
@@ -46,7 +50,7 @@
   padding-top: 11px;
   padding-bottom: 1px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-top: 12px;
     padding-bottom: 0;
   }
@@ -55,7 +59,7 @@
     padding-top: 7px;
     padding-bottom: 1px;
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       padding-top: 4px;
       padding-bottom: 0;
     }
@@ -65,7 +69,7 @@
 .m-filters__list>li {
   margin-top: 8px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-top: 4px;
   }
 }
@@ -77,7 +81,7 @@
 
 
 .m-filters__show-more-toggle {
-  @include untuck;
+  @include typography.untuck;
 
   & {
     display: block;
@@ -87,17 +91,17 @@
     border: 0 none;
     background: transparent;
     text-align: left;
-    color: $color__link;
+    color: colors.$color__link;
     cursor: pointer;
   }
 
   &:hover,
   &:focus:hover {
-    color: $color__link--hover;
+    color: colors.$color__link--hover;
   }
 
   &:active:hover {
-    color: $color__link--active;
+    color: colors.$color__link--active;
   }
 }
 

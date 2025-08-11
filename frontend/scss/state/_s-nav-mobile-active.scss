@@ -1,3 +1,5 @@
+@use "../setup/variables";
+
 /***
 
 Nav mobile active
@@ -13,6 +15,6 @@ Show the burger nav.
   .g-nav-mobile {
     opacity: 1;
     display: block;
-    transition: opacity .2s $bezier--ease-in-out;
+    transition: opacity .2s variables.$bezier--ease-in-out;
   }
 }

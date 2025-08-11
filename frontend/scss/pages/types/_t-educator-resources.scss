@@ -1,3 +1,7 @@
+@use "../../setup/colors";
+@use "../../setup/mixins/breakpoint";
+@use "../../setup/variables";
+
 .educator-resources {
     .o-grid-block {
         margin-left: 0 !important;
@@ -17,7 +21,7 @@
             display: block;
             width: 100%;
             text-transform: none !important;
-            font-family: $serif-font--loaded !important;
+            font-family: variables.$serif-font--loaded !important;
             font-size: 38px;
             letter-spacing: 0 !important;
             margin-bottom: 18px;
@@ -28,8 +32,8 @@
             display: block;
             width: 100%;
             text-transform: none !important;
-            font-family: $sans-serif-font--loaded;
-            color: $color__black--75;
+            font-family: variables.$sans-serif-font--loaded;
+            color: colors.$color__black--75;
             font-size: 17px;
             font-weight: 200;
             letter-spacing: 0 !important;
@@ -58,7 +62,7 @@
     justify-content: space-between;
     gap: 38px;
 
-    @include breakpoint('small-') {
+    @include breakpoint.breakpoint('small-') {
         flex-direction: column;
     }
 
@@ -68,20 +72,20 @@
         justify-content: flex-start;
         width: 50%;
 
-        @include breakpoint('small-') {
+        @include breakpoint.breakpoint('small-') {
             width: 100%;
         }
 
         h2 {
-            color: $color__black;
-            font-family: $serif-font--loaded;
+            color: colors.$color__black;
+            font-family: variables.$serif-font--loaded;
             font-size: 28px;
             margin-bottom: 11px;
         }
 
         p {
-            color: $color__black;
-            font-family: $serif-font--loaded;
+            color: colors.$color__black;
+            font-family: variables.$serif-font--loaded;
             font-size: 17px;
             font-weight: 200;
             margin-bottom: 16px;
@@ -89,8 +93,8 @@
         }
 
         a {
-            color: $color__rules--brand;
-            font-family: $sans-serif-font--loaded;
+            color: colors.$color__rules--brand;
+            font-family: variables.$sans-serif-font--loaded;
             font-size: 17px;
             font-weight: 200;
         }
@@ -102,7 +106,7 @@
         width: 50%;
         justify-content: flex-start;
 
-        @include breakpoint('small-') {
+        @include breakpoint.breakpoint('small-') {
             width: 100%;
 
             a > button {
@@ -111,10 +115,10 @@
         }
 
         h3 {
-            color: $color__black--80;
+            color: colors.$color__black--80;
             font-weight: 200;
             font-size: 17px;
-            font-family: $sans-serif-font--loaded;
+            font-family: variables.$sans-serif-font--loaded;
             margin-bottom: 8px;
         }
 
@@ -154,7 +158,7 @@
 .o-landingpage__body.o-blocks.educator-resources {
     .m-editorial-block {
       &:has(+ .m-custom-banner-block) {
-        border-bottom: 1px solid $color__black--20 !important;
+        border-bottom: 1px solid colors.$color__black--20 !important;
       }
 
       .editorial-block__featured {

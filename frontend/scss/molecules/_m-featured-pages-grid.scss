@@ -1,3 +1,5 @@
+@use "../setup/mixins/breakpoint";
+
 .featured-pages-grid {
     display: flex;
     justify-content: space-between;
@@ -8,7 +10,7 @@
         justify-content: space-between;
         width: 100%;
 
-        @include breakpoint('medium') {
+        @include breakpoint.breakpoint('medium') {
 
             flex-wrap: wrap;
 
@@ -34,7 +36,7 @@
             }
         }
 
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
 
             flex-wrap: wrap;
 
@@ -60,7 +62,7 @@
             }
         }
 
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
             flex-direction: column;
         }
 
@@ -80,11 +82,11 @@
     .featured-pages-grid_row:first-child {
         border-top: 1px solid #e6e6e6;
 
-        @include breakpoint('small-') {
+        @include breakpoint.breakpoint('small-') {
             border-top: none;
         }
 
-        @include breakpoint('medium') {
+        @include breakpoint.breakpoint('medium') {
             .featured-pages-grid_card:nth-child(1)>.featured-pages-grid_details {
                 border-top: none;
                 padding-top: 0;
@@ -98,7 +100,7 @@
             }
         }
 
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
             .featured-pages-grid_card:nth-child(1)>.featured-pages-grid_details {
                 border-top: none;
                 padding-top: 0;
@@ -112,7 +114,7 @@
             }
         }
 
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
             border-top: none;
         }
     }
@@ -121,7 +123,7 @@
         padding-bottom: 20px;
         border-bottom: 1px solid #e6e6e6;
 
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
             padding-bottom: 0;
             border-bottom: 0;
         }
@@ -129,7 +131,7 @@
         .featured-pages-grid_card {
             padding-top: 0;
 
-            @include breakpoint('xsmall') {
+            @include breakpoint.breakpoint('xsmall') {
                 padding-top: 20px;
                 padding-left: 0;
                 padding-right: 0;
@@ -140,7 +142,7 @@
                 border-top: 1px solid #e6e6e6;
                 padding-top: 20px;
 
-                @include breakpoint('xsmall') {
+                @include breakpoint.breakpoint('xsmall') {
                     padding-top: 0;
                     border-top: 0;
                 }
@@ -151,7 +153,7 @@
             .featured-pages-grid_details {
                 border-top: 1px solid #e6e6e6;
 
-                @include breakpoint('xsmall') {
+                @include breakpoint.breakpoint('xsmall') {
                     border-top: 0;
                 }
             }
@@ -167,15 +169,15 @@
         padding-bottom: 40px;
         border-right: 1px solid #e6e6e6;
 
-        @include breakpoint('medium') {
+        @include breakpoint.breakpoint('medium') {
             width: 50%;
         }
 
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
             width: 50%;
         }
 
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
             width: 100%;
             padding-top: 20px;
             padding-left: 0;
@@ -189,15 +191,15 @@
             margin: auto;
             display: inline-block;
 
-            @include breakpoint('medium') {
+            @include breakpoint.breakpoint('medium') {
                 padding-top: 20px;
             }
 
-            @include breakpoint('small') {
+            @include breakpoint.breakpoint('small') {
                 padding-top: 20px;
             }
 
-            @include breakpoint('xsmall') {
+            @include breakpoint.breakpoint('xsmall') {
                 padding-top: 0;
             }
 
@@ -208,7 +210,7 @@
                 width: 100%;
                 margin-bottom: 12px;
 
-                @include breakpoint('xsmall') {
+                @include breakpoint.breakpoint('xsmall') {
                     display: none;
                 }
             }
@@ -228,19 +230,19 @@
         width: 20px;
         height: 20px;
 
-        @include breakpoint('large') {
+        @include breakpoint.breakpoint('large') {
             display: none;
         }
 
-        @include breakpoint('medium') {
+        @include breakpoint.breakpoint('medium') {
             display: none;
         }
 
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
             display: none;
         }
 
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
             display: inline-block !important;
         }
     }

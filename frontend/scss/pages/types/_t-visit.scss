@@ -1,3 +1,9 @@
+@use "../../setup/colors";
+@use "../../setup/mixins/breakpoint";
+@use "../../setup/mixins/other";
+@use "../../setup/typography";
+@use "../../setup/variables";
+
 .visit {
 
   .admission-info-button-trigger {
@@ -8,17 +14,17 @@
     padding: 0;
     border: 0 none;
     background: transparent;
-    color: $color__text--tertiary;
+    color: colors.$color__text--tertiary;
     cursor: pointer;
     vertical-align: text-bottom;
 
     &:hover,
     &:focus:hover {
-      color: $color__text--secondary;
+      color: colors.$color__text--secondary;
     }
 
     &:active:hover {
-      color: $color__text--tertiary;
+      color: colors.$color__text--tertiary;
     }
   }
 
@@ -44,19 +50,19 @@
       position: absolute;
       width: 200px;
       padding: 8px 16px 16px;
-      background-color: $color__white;
-      box-shadow: $shadow;
+      background-color: colors.$color__white;
+      box-shadow: variables.$shadow;
       white-space: initial;
       transition: opacity .25s;
       display: none;
 
-      @include breakpoint('small+') {
+      @include breakpoint.breakpoint('small+') {
         width: 250px;
       }
   }
 
   .admission-info-button-info .f-caption {
-    @include tucked-align-top($f-caption);
+    @include other.tucked-align-top(typography.$f-caption);
   }
 
   .m-title-bar {
@@ -64,7 +70,7 @@
   }
 
   .m-title-bar::before {
-    background-color: $color__input-border;
+    background-color: colors.$color__input-border;
   }
 
   .o-blocks .hr {
@@ -72,7 +78,7 @@
   }
 
   .select__select select {
-    font-family: $sans-serif-font--loaded;
+    font-family: variables.$sans-serif-font--loaded;
   }
 
   .m-landing-header {
@@ -82,20 +88,20 @@
   }
 
   .btn:not(.btn--icon) {
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       margin-top: 18px;
       width: 100%;
     }
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       margin-top: 18px;
       width: 100%;
     }
   }
   .btn+.btn {
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       margin-left: 0;
     }
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       margin-left: 0;
     }
   }
@@ -115,14 +121,14 @@
 
   .img-hero-desktop {
     display: none;
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       display: block;
     }
   }
 
   .img-hero-mobile {
     display: block;
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       display: none;
     }
   }
@@ -135,14 +141,14 @@
     margin-top: 32px;
     padding-top: 18px;
     padding-bottom: 18px;
-    border-top: 1px solid $color__input-border;
-    border-bottom: 1px solid $color__input-border;
-    @include breakpoint('medium') {
+    border-top: 1px solid colors.$color__input-border;
+    border-bottom: 1px solid colors.$color__input-border;
+    @include breakpoint.breakpoint('medium') {
       .f-buttons {
         width: auto;
       }
     }
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       padding: none;
       border: none;
       flex-direction: column;
@@ -151,11 +157,11 @@
         overflow: scroll;
         width: 100%;
         padding: 18px 0;
-        border-top: 1px solid $color__input-border ;
-        border-bottom: 1px solid $color__input-border ;
+        border-top: 1px solid colors.$color__input-border ;
+        border-bottom: 1px solid colors.$color__input-border ;
       }
     }
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       padding: none;
       border: none;
       flex-direction: column;
@@ -164,8 +170,8 @@
         overflow: scroll;
         width: 100%;
         padding: 18px 0;
-        border-top: 1px solid $color__input-border ;
-        border-bottom: 1px solid $color__input-border ;
+        border-top: 1px solid colors.$color__input-border ;
+        border-bottom: 1px solid colors.$color__input-border ;
       }
     }
   }
@@ -176,7 +182,7 @@
 
   .menu-links li {
     padding-top: 0;
-    color: $color__text;
+    color: colors.$color__text;
   }
 
   .menu-links a::before {
@@ -184,11 +190,11 @@
   }
 
   .menu-links ul li a {
-    color: $color__text !important;
+    color: colors.$color__text !important;
   }
 
   .f-buttons {
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       width: 225px;
     }
   }
@@ -200,28 +206,28 @@
 
     .row:first-child {
       padding-bottom: 18px;
-      border-bottom: 1px solid $color__rules--primary, ;
+      border-bottom: 1px solid colors.$color__rules--primary, ;
       margin-bottom: 50px;
     }
 
     .row:last-child {
       margin-top: 32px;
-      @include breakpoint('medium') {
+      @include breakpoint.breakpoint('medium') {
         margin-top: 32px;
       }
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         margin-top: 32px;
       }
 
       > .col:first-child {
-        border-right: 1px solid $color__rules--primary;
-        @include breakpoint('medium') {
+        border-right: 1px solid colors.$color__rules--primary;
+        @include breakpoint.breakpoint('medium') {
           border-right: none;
         }
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
           border-right: none;
         }
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           border-right: none;
         }
       }
@@ -232,40 +238,40 @@
       flex-direction: row;
       align-items: top;
       justify-content: space-between;
-      @include breakpoint('medium') {
+      @include breakpoint.breakpoint('medium') {
         flex-direction: column;
       }
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         flex-direction: column;
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         flex-direction: column;
       }
 
       .col:first-child {
         padding-right: 20px;
-        @include breakpoint('medium') {
+        @include breakpoint.breakpoint('medium') {
           padding-right: 0;
         }
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
           padding-right: 0;
         }
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           padding-right: 0;
         }
       }
 
       .col:nth-child(2) {
         padding-left: 20px;
-        @include breakpoint('medium') {
+        @include breakpoint.breakpoint('medium') {
           padding-left: 0;
           margin-top: 32px;
         }
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
           padding-left: 0;
           margin-top: 32px;
         }
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           padding-left: 0;
           margin-top: 32px;
         }
@@ -278,13 +284,13 @@
 
     .col {
       width: 50%;
-      @include breakpoint('medium') {
+      @include breakpoint.breakpoint('medium') {
         width: 100%;
       }
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         width: 100%;
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         width: 100%;
       }
 
@@ -310,7 +316,7 @@
 
       tr {
         padding: 6px;
-        border-bottom: 1px solid $color__rules--primary ;
+        border-bottom: 1px solid colors.$color__rules--primary ;
       }
 
       tbody >tr:last-child {
@@ -318,7 +324,7 @@
       }
 
       .closed {
-        color: $color__text--secondary;
+        color: colors.$color__text--secondary;
       }
     }
 
@@ -335,7 +341,7 @@
         margin-top: 16px;
       }
 
-      @include breakpoint('large+') {
+      @include breakpoint.breakpoint('large+') {
         div > .parking_label{
           display: block;
         }
@@ -343,7 +349,7 @@
           display: none;
         }
       }
-      @include breakpoint('medium') {
+      @include breakpoint.breakpoint('medium') {
         border-bottom: none;
         margin-bottom: 0;
         div > .parking_label{
@@ -354,7 +360,7 @@
           display: none;
         }
       }
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         border-bottom: none;
         margin-bottom: 0;
         div > .parking_label {
@@ -364,7 +370,7 @@
           display: none;
         }
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         margin-bottom: 0;
         border-bottom: none;
         flex-direction: column;
@@ -377,11 +383,11 @@
       }
 
       .parking_label {
-        color: $color__text--title;
+        color: colors.$color__text--title;
       }
 
       a {
-        color: $color__rules--brand;
+        color: colors.$color__rules--brand;
       }
 
       img {
@@ -389,17 +395,17 @@
         width: 100%;
         object-fit: contain;
       }
-      @include breakpoint('xlarge') {
+      @include breakpoint.breakpoint('xlarge') {
         >div {
           width: 48%;
         }
       }
-      @include breakpoint('large') {
+      @include breakpoint.breakpoint('large') {
         >div {
           width: 48%;
         }
       }
-      @include breakpoint('medium') {
+      @include breakpoint.breakpoint('medium') {
         >div:first-child {
           width: 50%
         }
@@ -407,7 +413,7 @@
           width: 40%;
         }
       }
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         >div:first-child {
           width: 50%
         }
@@ -415,7 +421,7 @@
           width: 40%;
         }
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         >div:first-child {
           width: 100%
         }
@@ -442,7 +448,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       flex-direction: column;
     }
 
@@ -451,13 +457,13 @@
         width: 45%;
         align-items: center;
         margin: 12px 0 12px 0;
-        @include breakpoint('medium') {
+        @include breakpoint.breakpoint('medium') {
           width: 48%;
         }
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
           width: 48%;
         }
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           display: none;
         }
 
@@ -475,19 +481,19 @@
         td{
           padding: 10px 18px 18px;
           width: 100%;
-          color: $color__text--secondary;
+          color: colors.$color__text--secondary;
           display: flex;
           flex-direction: row;
           justify-content: space-between;
           align-items: self-end;
 
           span {
-            color: $color__text--secondary;
+            color: colors.$color__text--secondary;
           }
         }
 
         tr.selected {
-          background-color: $color__bg--secondary;
+          background-color: colors.$color__bg--secondary;
           border-top: none;
           border-bottom: none;
 
@@ -498,8 +504,8 @@
 
         tr {
           padding: 6px;
-          border-bottom: 1px solid $color__rules--primary ;
-          border-top: 1px solid $color__rules--primary ;
+          border-bottom: 1px solid colors.$color__rules--primary ;
+          border-top: 1px solid colors.$color__rules--primary ;
           cursor: pointer;
           user-select: none;
         }
@@ -517,7 +523,7 @@
         width: 100%;
         display: none;
         margin-top: 18px;
-        @include breakpoint('small+') {
+        @include breakpoint.breakpoint('small+') {
           display: none !important;
         }
       }
@@ -529,7 +535,7 @@
       .visit-fee-category-select, .select__select {
         width: 100%;
         display: none;
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           display: block;
         }
       }
@@ -537,8 +543,8 @@
       .visit-separator {
         width: 0;
         min-height: 100%;
-        border-right: 1px solid $color__rules--primary;
-        @include breakpoint('xsmall') {
+        border-right: 1px solid colors.$color__rules--primary;
+        @include breakpoint.breakpoint('xsmall') {
           display: none;
         }
       }
@@ -548,13 +554,13 @@
         width: 45%;
         align-items: center;
         margin: 12px 0 12px 0;
-        @include breakpoint('medium') {
+        @include breakpoint.breakpoint('medium') {
           width: 48%;
         }
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
           width: 48%;
         }
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           width: 100%;
         }
 
@@ -579,24 +585,24 @@
           flex-direction: row;
           justify-content: space-between;
           align-items: baseline;
-          @include breakpoint('small') {
+          @include breakpoint.breakpoint('small') {
             width: 95%;
             margin-right: auto;
           }
-          @include breakpoint('xsmall') {
+          @include breakpoint.breakpoint('xsmall') {
             width: 85%;
             margin-right: auto;
           }
 
           span:last-child {
             font-weight: 300;
-            color: $color__text--secondary;
+            color: colors.$color__text--secondary;
           }
         }
 
         tr {
           padding: 6px;
-          border-bottom: 1px solid $color__rules--primary ;
+          border-bottom: 1px solid colors.$color__rules--primary ;
         }
 
         tbody >tr:last-child {
@@ -607,7 +613,7 @@
           text-align: left;
           display: block;
           font-weight: 300;
-          color: $color__text--secondary;
+          color: colors.$color__text--secondary;
         }
 
         tbody.admission-description .btn {
@@ -628,7 +634,7 @@
           content: "";
         }
         a {
-          color: $color__rules--brand;
+          color: colors.$color__rules--brand;
         }
       }
     }

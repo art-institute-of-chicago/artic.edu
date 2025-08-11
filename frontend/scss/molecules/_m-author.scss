@@ -1,3 +1,9 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/other";
+@use "../setup/mixins/typography" as mixins-typography;
+@use "../setup/typography" as setup-typography;
+
 /***
 
 ```
@@ -11,7 +17,7 @@
   position: relative;
   flex-flow: row nowrap;
 
-  @include breakpoint('xlarge') {
+  @include breakpoint.breakpoint('xlarge') {
     flex-flow: column nowrap;
   }
 }
@@ -27,7 +33,7 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: colors.$color__rules--primary;
 }
 
 
@@ -38,7 +44,7 @@
   height: 40px;
   margin-right: 12px;
 
-  @include breakpoint('xlarge') {
+  @include breakpoint.breakpoint('xlarge') {
     width: 88px;
     height: 88px;
     margin-right: 0;
@@ -47,7 +53,7 @@
 }
 
 .m-author__img img {
-  @include objectFitFix;
+  @include other.objectFitFix;
 
   & {
     position: absolute;
@@ -63,7 +69,7 @@
 }
 
 .m-author .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 12, 'medium+': 12));
+  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 12, 'medium+': 12));
 
   & {
     flex: 0 0 auto;
@@ -76,43 +82,43 @@
 }
 
 .m-author a {
-  color: $color__link--accent;
+  color: colors.$color__link--accent;
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__link--accent-hover);
+    @include mixins-typography.text-underline(1.02em, colors.$color__link--accent-hover);
 
     & {
-      color: $color__link--accent-hover;
+      color: colors.$color__link--accent-hover;
     }
   }
 
   &:active:hover {
-    @include text-underline(1.02em, $color__link--accent-active);
+    @include mixins-typography.text-underline(1.02em, colors.$color__link--accent-active);
 
     & {
-      color: $color__link--accent-active;
+      color: colors.$color__link--accent-active;
     }
   }
 }
 
 .m-author--editorial a {
-  color: $color__link--editorial;
+  color: colors.$color__link--editorial;
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__link--editorial-hover);
+    @include mixins-typography.text-underline(1.02em, colors.$color__link--editorial-hover);
 
     & {
-      color: $color__link--editorial-hover;
+      color: colors.$color__link--editorial-hover;
     }
   }
 
   &:active:hover {
-    @include text-underline(1.02em, $color__link--editorial-active);
+    @include mixins-typography.text-underline(1.02em, colors.$color__link--editorial-active);
 
     & {
-      color: $color__link--editorial-active;
+      color: colors.$color__link--editorial-active;
     }
   }
 }

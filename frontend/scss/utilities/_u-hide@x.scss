@@ -1,3 +1,5 @@
+@use "../setup/mixins/breakpoint";
+
 /***
 
 ```
@@ -19,68 +21,68 @@
   display: none;
 }
 
-@include breakpoint('xsmall') {
+@include breakpoint.breakpoint('xsmall') {
   .u-hide\@xsmall {
     display: none;
   }
 }
 
-@include breakpoint('small') {
+@include breakpoint.breakpoint('small') {
   .u-hide\@small {
     display: none;
   }
 }
 
-@include breakpoint('medium') {
+@include breakpoint.breakpoint('medium') {
   .u-hide\@medium {
     display: none;
   }
 }
 
-@include breakpoint('large') {
+@include breakpoint.breakpoint('large') {
   .u-hide\@large {
     display: none;
   }
 }
 
-@include breakpoint('xlarge') {
+@include breakpoint.breakpoint('xlarge') {
   .u-hide\@xlarge {
     display: none;
   }
 }
 
 
-@include breakpoint('small-') {
+@include breakpoint.breakpoint('small-') {
   .u-hide\@small\- {
     display: none;
   }
 }
 
-@include breakpoint('medium-') {
+@include breakpoint.breakpoint('medium-') {
   .u-hide\@medium\- {
     display: none;
   }
 }
 
-@include breakpoint('large-') {
+@include breakpoint.breakpoint('large-') {
   .u-hide\@large\- {
     display: none;
   }
 }
 
-@include breakpoint('small+') {
+@include breakpoint.breakpoint('small+') {
   .u-hide\@small\+ {
     display: none;
   }
 }
 
-@include breakpoint('medium+') {
+@include breakpoint.breakpoint('medium+') {
   .u-hide\@medium\+ {
     display: none;
   }
 }
 
-@include breakpoint('large+') {
+@include breakpoint.breakpoint('large+') {
   .u-hide\@large\+ {
     display: none;
   }

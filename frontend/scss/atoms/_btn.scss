@@ -1,3 +1,8 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/typography";
+@use "../setup/variables";
+
 /***
 
 btn
@@ -78,9 +83,9 @@ Example usage:
   padding-right: 27px;
   padding-left: 27px;
   border: 1px solid transparent;
-  border-radius: $border-radius;
-  background-color: $color__link--accent;
-  color: $color__white;
+  border-radius: variables.$border-radius;
+  background-color: colors.$color__link--accent;
+  color: colors.$color__white;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
@@ -95,8 +100,8 @@ Example usage:
   &:focus:hover,
   &.s-active,
   &:active:hover {
-    background-color: $color__link--accent-hover;
-    color: $color__white;
+    background-color: colors.$color__link--accent-hover;
+    color: colors.$color__white;
   }
 
   &.s-hidden {
@@ -105,14 +110,14 @@ Example usage:
 }
 
 .btn[class*=f-] {
-  @include untuck;
+  @include typography.untuck;
 }
 
 .btn.f-buttons {
   padding-top: 10px;
   padding-bottom: 12px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-top: 11px;
     padding-bottom: 11px;
   }
@@ -122,243 +127,243 @@ Example usage:
   padding-top: 6px;
   padding-bottom: 8px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-top: 7px;
     padding-bottom: 7px;
   }
 }
 
 .btn--secondary {
-  border-color: $color__rules--secondary;
-  background-color: $color__white;
-  color: $color__text--title;
+  border-color: colors.$color__rules--secondary;
+  background-color: colors.$color__white;
+  color: colors.$color__text--title;
 
   &:hover,
   &:focus:hover {
-    border-color: $color__input-border--hover;
-    background-color: $color__white;
-    color: $color__text--title;
+    border-color: colors.$color__input-border--hover;
+    background-color: colors.$color__white;
+    color: colors.$color__text--title;
   }
 
   &.s-active,
   &:active:hover {
-    border-color: $color__input-border--focus;
-    background-color: $color__white;
-    color: $color__text--title;
+    border-color: colors.$color__input-border--focus;
+    background-color: colors.$color__white;
+    color: colors.$color__text--title;
   }
 }
 
 .btn--tertiary {
-  background-color: $color__link;
+  background-color: colors.$color__link;
 
   &:hover,
   &:focus:hover {
-    background-color: $color__link--hover;
+    background-color: colors.$color__link--hover;
   }
 
   &.s-active,
   &:active:hover {
-    background-color: $color__link--active;
+    background-color: colors.$color__link--active;
   }
 }
 
 .btn--quaternary {
-  background-color: $color__black--90;
+  background-color: colors.$color__black--90;
 
   &:hover,
   &:focus:hover {
-    background-color: $color__black--80;
+    background-color: colors.$color__black--80;
   }
 
   &.s-active,
   &:active:hover {
-    background-color: $color__black--90;
+    background-color: colors.$color__black--90;
   }
 }
 
 .btn--quinary {
-  background-color: $color__black--5;
-  color: $color__text--title;
+  background-color: colors.$color__black--5;
+  color: colors.$color__text--title;
 
   &:hover,
   &:focus:hover {
-    background-color: $color__black--10;
-    color: $color__text--title;
+    background-color: colors.$color__black--10;
+    color: colors.$color__text--title;
   }
 
   &.s-active,
   &:active:hover {
-    background-color: $color__black--5;
-    color: $color__text--title;
+    background-color: colors.$color__black--5;
+    color: colors.$color__text--title;
   }
 }
 
 .btn--senary {
-  background-color: $color__blue;
-  color: $color__white;
+  background-color: colors.$color__blue;
+  color: colors.$color__white;
 
   &:hover,
   &:focus:hover {
-    background-color: $color__blue--hover;
-    color: $color__white;
+    background-color: colors.$color__blue--hover;
+    color: colors.$color__white;
   }
 
   &.s-active,
   &:active:hover {
-    background-color: $color__blue--active;
-    color: $color__white;
+    background-color: colors.$color__blue--active;
+    color: colors.$color__white;
   }
 }
 
 .btn--septenary {
-  background-color: rgba($color__black, .5);
-  color: $color__white;
+  background-color: rgba(colors.$color__black, .5);
+  color: colors.$color__white;
 
   &:hover,
   &:focus:hover {
-    background-color: rgba($color__black, .6);
-    color: $color__white;
+    background-color: rgba(colors.$color__black, .6);
+    color: colors.$color__white;
   }
 
   &.s-active,
   &:active:hover {
-    background-color: rgba($color__black, .7);
-    color: $color__white;
+    background-color: rgba(colors.$color__black, .7);
+    color: colors.$color__white;
   }
 
   &.btn:disabled,
   &.btn:disabled:hover,
   &.btn:disabled:focus:hover,
   &.btn:disabled:active:hover {
-    background-color: rgba($color__black, .5);
-    color: rgba($color__white, .2);
+    background-color: rgba(colors.$color__black, .5);
+    color: rgba(colors.$color__white, .2);
     opacity: 1;
   }
 }
 
 .btn--octonary {
-  background-color: rgba($color__black, .2);
-  color: $color__white;
+  background-color: rgba(colors.$color__black, .2);
+  color: colors.$color__white;
 
   &:hover,
   &:focus:hover {
-    background-color: rgba($color__black, .3);
-    color: $color__white;
+    background-color: rgba(colors.$color__black, .3);
+    color: colors.$color__white;
   }
 
   &.s-active,
   &:active:hover {
-    background-color: rgba($color__black, .4);
-    color: $color__white;
+    background-color: rgba(colors.$color__black, .4);
+    color: colors.$color__white;
   }
 
   &.btn:disabled,
   &.btn:disabled:hover,
   &.btn:disabled:focus:hover,
   &.btn:disabled:active:hover {
-    background-color: rgba($color__black, .2);
-    color: rgba($color__white, .2);
+    background-color: rgba(colors.$color__black, .2);
+    color: rgba(colors.$color__white, .2);
     opacity: 1;
   }
 }
 
 .btn--nonary {
-  background-color: rgba($color__black, .2);
-  color: $color__white;
+  background-color: rgba(colors.$color__black, .2);
+  color: colors.$color__white;
 
   &:hover,
   &:focus:hover {
-    background-color: rgba($color__black, .5);
-    color: $color__white;
+    background-color: rgba(colors.$color__black, .5);
+    color: colors.$color__white;
   }
 
   &.s-active,
   &:active:hover {
-    background-color: rgba($color__black, .75);
-    color: $color__white;
+    background-color: rgba(colors.$color__black, .75);
+    color: colors.$color__white;
   }
 
   &.btn:disabled,
   &.btn:disabled:hover,
   &.btn:disabled:focus:hover,
   &.btn:disabled:active:hover {
-    background-color: rgba($color__black, .2);
-    color: rgba($color__white, .2);
+    background-color: rgba(colors.$color__black, .2);
+    color: rgba(colors.$color__white, .2);
     opacity: 1;
   }
 }
 
 .btn--contrast {
-  border-color: rgba($color__white, .2);
+  border-color: rgba(colors.$color__white, .2);
   background-color: transparent;
-  color: $color__text--title-contrast;
+  color: colors.$color__text--title-contrast;
 
   &:hover,
   &:focus:hover {
-    border-color: rgba($color__white, .3);
+    border-color: rgba(colors.$color__white, .3);
     background-color: transparent;
-    color: $color__text--title-contrast;
+    color: colors.$color__text--title-contrast;
   }
 
   &.s-active,
   &:active:hover {
-    border-color: rgba($color__white, .4);
+    border-color: rgba(colors.$color__white, .4);
     background-color: transparent;
-    color: $color__text--title-contrast;
+    color: colors.$color__text--title-contrast;
   }
 }
 
 .btn--contrast-secondary {
-  background-color: rgba($color__white, .1);
-  color: $color__text--title-contrast;
+  background-color: rgba(colors.$color__white, .1);
+  color: colors.$color__text--title-contrast;
 
   &:hover,
   &:focus:hover {
-    background-color: rgba($color__white, .15);
-    color: $color__text--title-contrast;
+    background-color: rgba(colors.$color__white, .15);
+    color: colors.$color__text--title-contrast;
   }
 
   &.s-active,
   &:active:hover {
-    background-color: rgba($color__white, .2);
-    color: $color__text--title-contrast;
+    background-color: rgba(colors.$color__white, .2);
+    color: colors.$color__text--title-contrast;
   }
 }
 
 .btn--my-museum-tour {
   border-color: transparent;
-  background-color: $color__teal-light--my-museum-tour;
-  color: $color__black;
+  background-color: colors.$color__teal-light--my-museum-tour;
+  color: colors.$color__black;
 
   &:hover,
   &:focus:hover,
   &.s-active,
   &:active:hover {
     border-color: transparent;
-    background-color: $color__teal-medium--my-museum-tour;
-    color: $color__black;
+    background-color: colors.$color__teal-medium--my-museum-tour;
+    color: colors.$color__black;
   }
 }
 
 .btn--my-museum-tour-dark {
   border-color: transparent;
-  background-color: $color__teal--my-museum-tour;
-  color: $color__white;
+  background-color: colors.$color__teal--my-museum-tour;
+  color: colors.$color__white;
 
   &:hover,
   &:focus:hover,
   &.s-active,
   &:active:hover {
     border-color: transparent;
-    background-color: $color__teal-medium--my-museum-tour;
-    color: $color__white;
+    background-color: colors.$color__teal-medium--my-museum-tour;
+    color: colors.$color__white;
   }
 }
 
 .btn--transparent {
   border-color: transparent;
   background-color: transparent;
-  color: $color__text--title;
+  color: colors.$color__text--title;
 
   &:hover,
   &:focus:hover,
@@ -366,7 +371,7 @@ Example usage:
   &:active:hover {
     border-color: transparent;
     background-color: transparent;
-    color: $color__text--title;
+    color: colors.$color__text--title;
   }
 }
 
@@ -388,8 +393,8 @@ Example usage:
 .btn.s-loading:focus,
 .btn.s-loading:active {
   @extend %loader;
-  border: 1px solid $color__rules--secondary;
-  background-color: $color__white;
+  border: 1px solid colors.$color__rules--secondary;
+  background-color: colors.$color__white;
   color: transparent;
 }
 
@@ -468,10 +473,10 @@ Example usage:
 .o-blocks .o-blocks__block dt a,
 .o-blocks .o-blocks__block dt a:active {
   text-decoration: underline;
-  color: $color__black--90;
+  color: colors.$color__black--90;
 }
 
 .o-blocks .o-blocks__block dt a:focus,
 .o-blocks .o-blocks__block dt a:hover {
-  color: $color__grey--110;
+  color: colors.$color__grey--110;
 }

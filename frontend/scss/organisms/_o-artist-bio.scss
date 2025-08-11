@@ -1,3 +1,9 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/mixins/typography";
+@use "../setup/variables";
+
 $bioBreakpoints: ('large',
   'xlarge',
 );
@@ -7,7 +13,7 @@ $bioBreakpoints: ('large',
   margin-top: 24px;
   padding-top: 24px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-top: 40px;
   }
 
@@ -20,7 +26,7 @@ $bioBreakpoints: ('large',
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: colors.$color__rules--primary;
 }
 
 .o-artist-bio__inner {
@@ -30,15 +36,15 @@ $bioBreakpoints: ('large',
 
   @each $name,
   $point in $bioBreakpoints {
-    @include breakpoint('#{$name}') {
+    @include breakpoint.breakpoint('#{$name}') {
       flex-flow: row wrap;
-      margin-left: colspan(2, $name, 0, true);
+      margin-left: grid.colspan(2, $name, 0, true);
     }
   }
 }
 
 .o-author-bio .o-artist-bio__inner {
-  @include breakpoint('medium') {
+  @include breakpoint.breakpoint('medium') {
     flex-flow: row wrap;
   }
 }
@@ -49,9 +55,9 @@ $bioBreakpoints: ('large',
 
   @each $name,
   $point in $bioBreakpoints {
-    @include breakpoint('#{$name}') {
-      width: colspan(grid-cols-to-colspan(2), $name);
-      margin-left: colspan(2, #{$name});
+    @include breakpoint.breakpoint('#{$name}') {
+      width: grid.colspan(grid.grid-cols-to-colspan(2), $name);
+      margin-left: grid.colspan(2, #{$name});
     }
   }
 }
@@ -60,7 +66,7 @@ $bioBreakpoints: ('large',
 
   @each $name,
   $point in ('xsmall', 'small') {
-    @include breakpoint('#{$name}') {
+    @include breakpoint.breakpoint('#{$name}') {
       width: 300px;
       align-self: center;
     }
@@ -68,7 +74,7 @@ $bioBreakpoints: ('large',
 
   @each $name,
   $point in ('medium', 'large', 'xlarge') {
-    @include breakpoint('#{$name}') {
+    @include breakpoint.breakpoint('#{$name}') {
       width: 300px;
     }
   }
@@ -86,9 +92,9 @@ $bioBreakpoints: ('large',
 
   @each $name,
   $point in ('medium', 'large', 'xlarge') {
-    @include breakpoint('#{$name}') {
-      width: calc(#{colspan(58, $name)} - 300px - #{colspan(2, $name)});
-      margin-left: colspan(2, #{$name});
+    @include breakpoint.breakpoint('#{$name}') {
+      width: calc(#{grid.colspan(58, $name)} - 300px - #{grid.colspan(2, $name)});
+      margin-left: grid.colspan(2, #{$name});
     }
   }
 }
@@ -96,7 +102,7 @@ $bioBreakpoints: ('large',
 .o-author-bio .o-artist-bio__main .o-artist-bio__body {
   margin-top: 24px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-top: 0;
   }
 }
@@ -112,20 +118,20 @@ $bioBreakpoints: ('large',
 .o-artist-bio__image figcaption {
   @extend %f-caption;
   margin-top: 8px;
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 
   p a {
-    @include text-underline(20px, $color__rules--primary);
+    @include typography.text-underline(20px, colors.$color__rules--primary);
 
     & {
       padding-bottom: 1px;
-      color: $color__text--accent;
+      color: colors.$color__text--accent;
     }
   }
 
   p a:hover,
   p a:focus {
-    @include text-underline(20px, $color__rules--brand);
+    @include typography.text-underline(20px, colors.$color__rules--brand);
   }
 }
 
@@ -135,82 +141,82 @@ $bioBreakpoints: ('large',
   flex-flow: row wrap;
   margin-top: 16px;
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     margin-top: -16px;
   }
 
   @each $name,
-  $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      margin-left: colspan(2, $name, 0, true);
+  $point in variables.$breakpoints {
+    @include breakpoint.breakpoint('#{$name}') {
+      margin-left: grid.colspan(2, $name, 0, true);
     }
   }
 }
 
 .o-artist-bio__main dt,
 .o-artist-bio__main dd {
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-top: 4px;
   }
 
   @each $name,
-  $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      margin-left: colspan(2, $name);
+  $point in variables.$breakpoints {
+    @include breakpoint.breakpoint('#{$name}') {
+      margin-left: grid.colspan(2, $name);
     }
   }
 }
 
 .o-artist-bio__main dt {
   @extend %f-subheading-1;
-  width: colspan(58, xsmall);
+  width: grid.colspan(58, xsmall);
 
-  @include breakpoint(xsmall) {
+  @include breakpoint.breakpoint(xsmall) {
     margin-top: 12px;
   }
 
-  @include breakpoint(small) {
-    width: colspan(18, small);
+  @include breakpoint.breakpoint(small) {
+    width: grid.colspan(18, small);
   }
 
-  @include breakpoint(medium) {
-    width: colspan(18, medium);
+  @include breakpoint.breakpoint(medium) {
+    width: grid.colspan(18, medium);
   }
 
-  @include breakpoint(large) {
-    width: colspan(8, large);
+  @include breakpoint.breakpoint(large) {
+    width: grid.colspan(8, large);
   }
 
-  @include breakpoint(xlarge) {
-    width: colspan(8, xlarge);
+  @include breakpoint.breakpoint(xlarge) {
+    width: grid.colspan(8, xlarge);
   }
 }
 
 .o-artist-bio__main dt:first-child {
-  @include breakpoint(xsmall) {
+  @include breakpoint.breakpoint(xsmall) {
     margin-top: 0;
   }
 }
 
 .o-artist-bio__main dd {
   @extend %f-body;
-  color: $color__text--secondary;
-  width: colspan(58, small);
+  color: colors.$color__text--secondary;
+  width: grid.colspan(58, small);
 
-  @include breakpoint(small) {
-    width: colspan(38, small);
+  @include breakpoint.breakpoint(small) {
+    width: grid.colspan(38, small);
   }
 
-  @include breakpoint(medium) {
-    width: colspan(33, medium);
+  @include breakpoint.breakpoint(medium) {
+    width: grid.colspan(33, medium);
   }
 
-  @include breakpoint(large) {
-    width: colspan(18, large);
+  @include breakpoint.breakpoint(large) {
+    width: grid.colspan(18, large);
   }
 
-  @include breakpoint(xlarge) {
-    width: colspan(18, xlarge);
+  @include breakpoint.breakpoint(xlarge) {
+    width: grid.colspan(18, xlarge);
   }
 }
 
@@ -219,17 +225,17 @@ $bioBreakpoints: ('large',
 }
 
 .o-artist-bio__body a {
-  @include text-underline(20px, $color__rules--primary);
+  @include typography.text-underline(20px, colors.$color__rules--primary);
 
   & {
     padding-bottom: 1px;
-    color: $color__text--accent;
+    color: colors.$color__text--accent;
   }
 }
 
 .o-artist-bio__body a:hover,
 .o-artist-bio__body a:focus {
-  @include text-underline(20px, $color__rules--brand);
+  @include typography.text-underline(20px, colors.$color__rules--brand);
 }
 
 .o-artist-bio__main dl+.o-artist-bio__body {
@@ -242,7 +248,7 @@ $bioBreakpoints: ('large',
   margin-top: 24px;
   padding-top: .02px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-top: 32px;
   }
 }

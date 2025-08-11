@@ -1,3 +1,8 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/variables";
+
 // Index/listing page
 .o-educator-resources {
     .m-header-block {
@@ -24,7 +29,7 @@
         padding-right: 0 !important;
         padding-left: 0 !important;
 
-        @include breakpoint('small-') {
+        @include breakpoint.breakpoint('small-') {
           flex-direction: column;
           align-items: flex-start;
         }
@@ -33,7 +38,7 @@
             width: 28%;
             padding-right: 24px;
 
-            @include breakpoint('small-') {
+            @include breakpoint.breakpoint('small-') {
               width: 100%;
               padding-right: 0;
             }
@@ -59,7 +64,7 @@
                 padding-top: 22px;
             }
 
-            @include breakpoint('small-') {
+            @include breakpoint.breakpoint('small-') {
               margin-top: 12px;
             }
         }
@@ -70,7 +75,7 @@
       padding-top: 20px;
       margin-bottom: 56px;
 
-      @include breakpoint('small-') {
+      @include breakpoint.breakpoint('small-') {
         min-height: 26px;
         padding-top: 0px;
         margin-bottom: 32px;
@@ -78,7 +83,7 @@
     }
 
     .filter-results {
-      border-top: 1px solid $color__rules--primary;
+      border-top: 1px solid colors.$color__rules--primary;
       padding-top: 56px;
       margin-bottom: 33px;
     }
@@ -90,14 +95,14 @@
       gap: 30px;
       width: 100%;
       overflow: hidden;
-      border-top: 1px solid $color__rules--primary;
+      border-top: 1px solid colors.$color__rules--primary;
 
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
       }
 
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(1, 1fr);
       }
@@ -107,14 +112,14 @@
         position: absolute;
         width: 100%;
         height: 1px;
-        background-color: $color__rules--primary;
+        background-color: colors.$color__rules--primary;
         z-index: 2;
       }
     }
 
     .m-listing {
       padding: 20px 0;
-      border-top: 1px solid $color__rules--primary;
+      border-top: 1px solid colors.$color__rules--primary;
 
       &::after {
         content: '';
@@ -123,7 +128,7 @@
         right: -15px;
         bottom: -30px;
         height: 200%;
-        background-color: $color__rules--primary;
+        background-color: colors.$color__rules--primary;
         z-index: 2;
       }
     }
@@ -136,7 +141,7 @@
     min-height: 72px;
   }
 
-    @include breakpoint('small-') {
+    @include breakpoint.breakpoint('small-') {
       .m-article-header {
         display: none
       }
@@ -148,14 +153,14 @@
 
   .o-educator-resource__body {
       margin: auto;
-      @include breakpoint('medium') {
-        width: colspan(58, 'medium');
+      @include breakpoint.breakpoint('medium') {
+        width: grid.colspan(58, 'medium');
       }
-      @include breakpoint('large') {
-        width: colspan(38, 'large');
+      @include breakpoint.breakpoint('large') {
+        width: grid.colspan(38, 'large');
       }
-      @include breakpoint('xlarge') {
-        width: colspan(38, 'xlarge');
+      @include breakpoint.breakpoint('xlarge') {
+        width: grid.colspan(38, 'xlarge');
       }
 
       .title {
@@ -168,7 +173,7 @@
         * {
           margin-top: 24px;
           font-size: 28px;
-          font-family: $serif-font;
+          font-family: variables.$serif-font;
           font-weight: 300;
           line-height: 36px;
           padding-bottom: 40px;
@@ -187,7 +192,7 @@
           min-width: 110px;
 
           &:not(.btn) {
-            color: $color__red--100;
+            color: colors.$color__red--100;
           }
         }
       }
@@ -195,7 +200,7 @@
       .o-blocks {
         padding-top: 56px;
         margin-top: 56px;
-        border-top: 1px solid $color__black--20 !important;
+        border-top: 1px solid colors.$color__black--20 !important;
       }
   }
 

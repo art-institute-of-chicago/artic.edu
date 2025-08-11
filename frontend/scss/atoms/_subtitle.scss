@@ -1,3 +1,5 @@
+@use "../setup/colors";
+
 /***
 
 subtitle
@@ -12,5 +14,5 @@ Sets color of subtitle text
 ***/
 
 .subtitle {
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 }

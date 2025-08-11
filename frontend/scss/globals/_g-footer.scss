@@ -1,22 +1,29 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/mixins/other";
+@use "../setup/mixins/typography";
+@use "../setup/variables";
+
 .g-footer {
-  @include background-fill;
+  @include other.background-fill;
 
   & {
     padding-top: 56px;
     padding-bottom: 44px;
-    background-color: $color__bg--footer;
-    color: $color__text--footer;
+    background-color: colors.$color__bg--footer;
+    color: colors.$color__text--footer;
 
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-top: 76px;
     padding-bottom: 35px;
   }
 }
 
 .g-footer__top-link {
-  @include untuck;
+  @include typography.untuck;
 
   & {
     position: absolute;
@@ -28,23 +35,23 @@
 }
 
 .g-footer__top-link span {
-  color: $color__white;
+  color: colors.$color__white;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: inline-block;
     margin-left: 14px;
     padding-left: 16px;
-    border-left: 1px solid $color__rules--contrast;
+    border-left: 1px solid colors.$color__rules--contrast;
   }
 }
 
 .g-footer__inner {
-  border-top: 1px solid $color__rules--contrast;
+  border-top: 1px solid colors.$color__rules--contrast;
 }
 
 .g-footer__logo {
   display: inline-block;
-  color: $color__white;
+  color: colors.$color__white;
 }
 
 .g-footer__logo svg {
@@ -54,21 +61,21 @@
 
 .g-footer__link-list,
 .g-footer .f-secondary {
-  color: $color__white;
+  color: colors.$color__white;
 }
 
 .g-footer__link-list a,
 .g-footer .f-secondary a {
-  color: $color__text--footer;
+  color: colors.$color__text--footer;
 
   &:hover {
-    @include text-underline(1.05em, $color__text--footer, $color__bg--footer);
+    @include typography.text-underline(1.05em, colors.$color__text--footer, colors.$color__bg--footer);
   }
 
   &:active {
     & {
       background-image: none;
-      color: $color__text--footer;
+      color: colors.$color__text--footer;
       text-shadow: 0;
     }
   }
@@ -84,7 +91,7 @@
 }
 
 .g-footer__link-list--flush {
-  @include untuck;
+  @include typography.untuck;
 
   & {
     margin-top: 0;
@@ -106,9 +113,9 @@
   height: 100%;
 
   @each $name,
-  $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      margin-left: colspan(2, $name, 0, true);
+  $point in variables.$breakpoints {
+    @include breakpoint.breakpoint('#{$name}') {
+      margin-left: grid.colspan(2, $name, 0, true);
     }
   }
 }
@@ -117,33 +124,33 @@
   position: relative;
   padding-top: 40px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-top: 26px;
   }
 
-  @include breakpoint('xsmall') {
-    width: colspan(grid-cols-to-colspan(1, 58), 'xsmall');
-    margin-left: colspan(2, 'xsmall');
+  @include breakpoint.breakpoint('xsmall') {
+    width: grid.colspan(grid.grid-cols-to-colspan(1, 58), 'xsmall');
+    margin-left: grid.colspan(2, 'xsmall');
   }
 
-  @include breakpoint('small') {
-    width: colspan(grid-cols-to-colspan(1, 58), 'small');
-    margin-left: colspan(2, 'small');
+  @include breakpoint.breakpoint('small') {
+    width: grid.colspan(grid.grid-cols-to-colspan(1, 58), 'small');
+    margin-left: grid.colspan(2, 'small');
   }
 
-  @include breakpoint('medium') {
-    width: colspan(grid-cols-to-colspan(2, 58), 'medium');
-    margin-left: colspan(2, 'medium');
+  @include breakpoint.breakpoint('medium') {
+    width: grid.colspan(grid.grid-cols-to-colspan(2, 58), 'medium');
+    margin-left: grid.colspan(2, 'medium');
   }
 
-  @include breakpoint('large') {
-    width: colspan(grid-cols-to-colspan(4, 58), 'large');
-    margin-left: colspan(2, 'large');
+  @include breakpoint.breakpoint('large') {
+    width: grid.colspan(grid.grid-cols-to-colspan(4, 58), 'large');
+    margin-left: grid.colspan(2, 'large');
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(grid-cols-to-colspan(4, 58), 'xlarge');
-    margin-left: colspan(2, 'xlarge');
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(grid.grid-cols-to-colspan(4, 58), 'xlarge');
+    margin-left: grid.colspan(2, 'xlarge');
   }
 }
 
@@ -153,7 +160,7 @@
 
 .g-footer__grid>li:nth-child(1),
 .g-footer__grid>li:nth-child(2) {
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     min-height: 334px;
   }
 }
@@ -169,27 +176,27 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: $color__rules--contrast;
+  background-color: colors.$color__rules--contrast;
   pointer-events: none;
 
   @each $name,
-  $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      right: colspan(1, #{$name}, 0, true);
+  $point in variables.$breakpoints {
+    @include breakpoint.breakpoint('#{$name}') {
+      right: grid.colspan(1, #{$name}, 0, true);
     }
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: block;
   }
 }
 
 .g-footer__grid>li:nth-child(2n)::after {
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: none;
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     display: block;
   }
 }
@@ -201,15 +208,15 @@
 .g-footer__grid__group {
   padding-top: 26px;
   padding-bottom: 40px;
-  border-top: 1px solid $color__rules--contrast;
+  border-top: 1px solid colors.$color__rules--contrast;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-bottom: 98px;
   }
 }
 
 .g-footer__grid__group:first-child {
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     padding-top: 0;
     border-top: 0;
   }
@@ -217,14 +224,14 @@
 
 .g-footer .o-grid-listing>*::before,
 .g-footer .o-grid-listing>*::after {
-  background-color: $color__rules--contrast;
+  background-color: colors.$color__rules--contrast;
 }
 
 .g-footer .o-grid-listing>*>*:first-child {
   margin-top: 0;
 }
 
-@include breakpoint('medium-') {
+@include breakpoint.breakpoint('medium-') {
   .g-footer .o-grid-listing>*::after {
     content: none;
     display: none;
@@ -252,7 +259,7 @@
 }
 
 .g-footer h3 {
-  color: $color__text--title-contrast;
+  color: colors.$color__text--title-contrast;
 }
 
 .g-footer h3 a {
@@ -266,7 +273,7 @@
   flex: 0 0 auto;
   margin-left: auto;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: none;
   }
 }
@@ -286,16 +293,16 @@
 
 .g-footer__legals {
   padding-top: 15px;
-  border-top: 1px solid $color__rules--contrast;
+  border-top: 1px solid colors.$color__rules--contrast;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: flex;
     flex-flow: row wrap;
   }
 }
 
 .g-footer__legals li {
-  @include breakpoint('small') {
+  @include breakpoint.breakpoint('small') {
     margin-top: 4px;
 
     &:first-child {
@@ -303,7 +310,7 @@
     }
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     flex: 0 0 auto;
     margin-left: 16px;
 
@@ -317,15 +324,15 @@
   position: absolute;
   right: 0;
   bottom: 44px;
-  color: $color__text--contrast;
+  color: colors.$color__text--contrast;
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     bottom: 60px;
   }
 
   &:hover,
   &:focus:hover {
-    color: $color__text--title-contrast;
+    color: colors.$color__text--title-contrast;
   }
 
   &::before,
@@ -336,7 +343,7 @@
 
 .g-footer__grid--hours {
   .g-footer__link-list--hours {
-    @include untuck;
+    @include typography.untuck;
 
     & {
       margin-top: -8px;
@@ -352,13 +359,13 @@
   }
 
   p {
-    color: $color__text--footer;
+    color: colors.$color__text--footer;
   }
 }
 
 @each $name,
 $point in ('xsmall', 'small') {
-  @include breakpoint('#{$name}') {
+  @include breakpoint.breakpoint('#{$name}') {
     .g-footer > li:nth-child(2) .g-footer__grid__group {
       padding-bottom: 0;
     }
@@ -369,19 +376,19 @@ $point in ('xsmall', 'small') {
   }
 }
 
-@include breakpoint('medium+') {
+@include breakpoint.breakpoint('medium+') {
   .g-footer > li:nth-child(1) {
-    width: colspan(grid-cols-to-colspan(3, 58), 'medium');
+    width: grid.colspan(grid.grid-cols-to-colspan(3, 58), 'medium');
   }
 
   .g-footer > li:nth-child(2) {
     display: flex;
     justify-content: space-between;
 
-    width: colspan(38, 'medium');
+    width: grid.colspan(38, 'medium');
 
     .g-footer__grid__group {
-      width: colspan(grid-cols-to-colspan(3, 58), 'medium');
+      width: grid.colspan(grid.grid-cols-to-colspan(3, 58), 'medium');
       border-top: none;
       padding-top: 0;
 
@@ -393,12 +400,12 @@ $point in ('xsmall', 'small') {
         bottom: 0;
         left: calc(50% - 1px);
         width: 1px;
-        background-color: $color__rules--contrast;
+        background-color: colors.$color__rules--contrast;
         pointer-events: none;
       }
 
       &:nth-child(2) {
-        margin-left: colspan(2, 'medium');
+        margin-left: grid.colspan(2, 'medium');
         margin-top: -8px;
       }
     }
@@ -412,8 +419,8 @@ $point in ('xsmall', 'small') {
     right: 0;
     left: 0;
     height: 1px;
-    width: colspan(58, 'medium');
-    background-color: $color__rules--contrast;
+    width: grid.colspan(58, 'medium');
+    background-color: colors.$color__rules--contrast;
     pointer-events: none;
   }
 
@@ -434,7 +441,7 @@ $point in ('xsmall', 'small') {
   }
 }
 
-@include breakpoint('medium') {
+@include breakpoint.breakpoint('medium') {
   .g-footer > li {
     &::after {
       display: none;
@@ -449,19 +456,19 @@ $point in ('xsmall', 'small') {
 
 @each $name,
 $point in ('large', 'xlarge') {
-  @include breakpoint('#{$name}') {
+  @include breakpoint.breakpoint('#{$name}') {
     .g-footer > li:first-child {
-      width: colspan(grid-cols-to-colspan(2, 58), $name);
+      width: grid.colspan(grid.grid-cols-to-colspan(2, 58), $name);
     }
 
     .g-footer > li:nth-child(2) {
-      width: colspan(grid-cols-to-colspan(2, 58), $name);
+      width: grid.colspan(grid.grid-cols-to-colspan(2, 58), $name);
 
       .g-footer__grid__group {
-        width: colspan(grid-cols-to-colspan(4, 58) + 1, $name);
+        width: grid.colspan(grid.grid-cols-to-colspan(4, 58) + 1, $name);
 
         &:nth-child(2) {
-          margin-left: colspan(2, $name);
+          margin-left: grid.colspan(2, $name);
         }
       }
 
@@ -471,7 +478,7 @@ $point in ('large', 'xlarge') {
     }
 
     .g-footer > li:nth-child(3)::before {
-      width: colspan(58, $name);
+      width: grid.colspan(58, $name);
     }
   }
 }

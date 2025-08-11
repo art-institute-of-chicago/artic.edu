@@ -1,8 +1,11 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+
 .m-links-bar + .o-sticky-filters {
   margin-top: 0;
 }
 
-@include breakpoint('medium+') {
+@include breakpoint.breakpoint('medium+') {
   .o-sticky-filters {
     position: relative;
     padding-top: 100px;
@@ -20,8 +23,8 @@
     display: none;
     bottom: 0;
     height: 100%;
-    border-bottom: 1px solid rgba($color__black, .1);
-    background-color: rgba($color__white, .97);
+    border-bottom: 1px solid rgba(colors.$color__black, .1);
+    background-color: rgba(colors.$color__white, .97);
     background-clip: padding-box;
   }
 }

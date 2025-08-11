@@ -1,3 +1,5 @@
+@use "../setup/mixins/other";
+
 /***
 
 ratio-img
@@ -87,7 +89,7 @@ Can optionally use `object-fit` to cover or contain the area:
 
 .ratio-img--cover img,
 .ratio-img--cover video {
-  @include objectFitFix;
+  @include other.objectFitFix;
 
   & {
     object-fit: cover;
@@ -96,7 +98,7 @@ Can optionally use `object-fit` to cover or contain the area:
 
 .ratio-img--contain img,
 .ratio-img--contain video {
-  @include objectFitFix;
+  @include other.objectFitFix;
 
   & {
     object-fit: contain;

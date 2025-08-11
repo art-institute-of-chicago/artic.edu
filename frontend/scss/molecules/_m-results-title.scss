@@ -1,3 +1,8 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/other";
+@use "../setup/mixins/typography" as mixins-typography;
+@use "../setup/typography" as setup-typography;
 
 
 .m-results-title {
@@ -14,26 +19,26 @@
 }
 
 .m-results-title .title.f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 60));
+  @include other.tucked-margin-top(setup-typography.$f-list-3, ('xsmall': 60));
 
   a {
-    @include text-underline(.8em, $color__rules--secondary);
-    color: $color__link--accent;
+    @include mixins-typography.text-underline(.8em, colors.$color__rules--secondary);
+    color: colors.$color__link--accent;
     text-decoration: none;
 
     &:hover,
     &:focus:hover {
-      @include text-underline(.8em, $color__link--accent);
+      @include mixins-typography.text-underline(.8em, colors.$color__link--accent);
     }
 
     &:active:hover {
-      @include text-underline(.8em, $color__rules--secondary);
+      @include mixins-typography.text-underline(.8em, colors.$color__rules--secondary);
     }
   }
 }
 
 .m-results-title .title + .f-body {
-  @include tucked-margin-top($f-body, ('xsmall': 56));
+  @include other.tucked-margin-top(setup-typography.$f-body, ('xsmall': 56));
 }
 
 .m-results-title__links {
@@ -43,7 +48,7 @@
   margin-top: 0;
   margin-left: auto;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     display: flex;
     margin-top: auto;
     align-self: flex-end;
@@ -56,18 +61,18 @@
 }
 
 .m-results-title__links a {
-  color: $color__link--accent;
+  color: colors.$color__link--accent;
 
   &:hover,
   &:focus:hover {
-    color: $color__link--accent-hover;
+    color: colors.$color__link--accent-hover;
   }
 
   &:active:hover {
-    color: $color__link--accent-active;
+    color: colors.$color__link--accent-active;
   }
 }
 
 .m-results-title__links span {
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 }

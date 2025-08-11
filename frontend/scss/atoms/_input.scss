@@ -1,3 +1,7 @@
+@use "../setup/colors";
+@use "../setup/mixins/forms";
+@use "../setup/variables";
+
 /***
 
 Input
@@ -17,26 +21,26 @@ Basic text input:
   height: 48px;
   margin: 0;
   padding: 0 15px 4px;
-  border: 1px solid $color__input-border;
-  border-radius: $border-radius;
-  background-color: $color__white;
-  color: $color__input-text;
+  border: 1px solid colors.$color__input-border;
+  border-radius: variables.$border-radius;
+  background-color: colors.$color__white;
+  color: colors.$color__input-text;
   -webkit-appearance: none;
   -moz-appearance: none;
   font-variant-numeric: lining-nums;
 
-  @include placeholder() {
-    color: $color__text--forms;
+  @include forms.placeholder() {
+    color: colors.$color__text--forms;
   }
 
   &:hover {
-    border-color: $color__input-border--hover;
-    color: $color__input-text--hover;
+    border-color: colors.$color__input-border--hover;
+    color: colors.$color__input-text--hover;
   }
 
   &:focus {
-    border-color: $color__input-border--focus;
-    color: $color__input-text--focus;
+    border-color: colors.$color__input-border--focus;
+    color: colors.$color__input-text--focus;
   }
 
   &:disabled {
@@ -45,7 +49,7 @@ Basic text input:
   }
 
   .s-error > & {
-    border-color: $color__input-border--error;
+    border-color: colors.$color__input-border--error;
   }
 
   label + & {
@@ -106,7 +110,7 @@ Basic text input, with counter:
   right: 16px;
   top: 50%;
   margin-top: -1px;
-  color: $color__input-output;
+  color: colors.$color__input-output;
   text-align: right;
   transform: translateY(-50%);
 

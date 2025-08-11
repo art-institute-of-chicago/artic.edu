@@ -1,3 +1,8 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/variables";
+
 @use "sass:map";
 /***
 
@@ -16,25 +21,25 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
   .o-sticky-sidebar__sticker {
     height: 100vh;
 
-    @include breakpoint('medium-') {
+    @include breakpoint.breakpoint('medium-') {
       height: max-content;
     }
   }
 
   &.is-sidebar-overlay {
     .m-article-actions--publication__logo a {
-      color: $color__text--title !important;
+      color: colors.$color__text--title !important;
     }
 
-    @include breakpoint('medium-') {
+    @include breakpoint.breakpoint('medium-') {
       .g-mask {
         right: 0;
         bottom: 0;
         opacity: 1;
-        background-color: rgba($color__bg--tertiary, .25);
+        background-color: rgba(colors.$color__bg--tertiary, .25);
 
         @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-          background-color: rgba($color__bg--tertiary, .5);
+          background-color: rgba(colors.$color__bg--tertiary, .5);
           -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
         }
@@ -67,11 +72,11 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
           padding: 8px;
           border: 0 none;
           background: transparent;
-          color: $color__text--forms;
+          color: colors.$color__text--forms;
           cursor: pointer;
 
           &:hover {
-            color: $color__text;
+            color: colors.$color__text;
           }
 
           .icon--close {
@@ -90,28 +95,28 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
       }
     }
 
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       .o-sticky-sidebar__sticker {
         overflow-y: scroll !important;
         height: 100vh;
         width: 100vw;
       }
     }
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       .o-sticky-sidebar__sticker {
         height: 100vh;
-        width: calc(colspan(19, 'small') + map.get($outer-gutters, 'small'));
+        width: calc(grid.colspan(19, 'small') + map.get(variables.$outer-gutters, 'small'));
       }
     }
-    @include breakpoint('medium') {
+    @include breakpoint.breakpoint('medium') {
       .o-sticky-sidebar__sticker {
         height: 100vh;
-        width: calc(colspan(19, 'medium') + map.get($outer-gutters, 'medium'));
+        width: calc(grid.colspan(19, 'medium') + map.get(variables.$outer-gutters, 'medium'));
       }
     }
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     .o-sticky-sidebar__sticker[data-sticky-animated-logo] {
       .m-article-actions--publication__logo {
         display: none;
@@ -133,9 +138,9 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
           }
 
           @each $name in ('large', 'xlarge') {
-            @include breakpoint('#{$name}') {
-              width: #{colspan(19, '#{$name}')};
-              padding-right: #{colspan(1, '#{$name}')};
+            @include breakpoint.breakpoint('#{$name}') {
+              width: #{grid.colspan(19, '#{$name}')};
+              padding-right: #{grid.colspan(1, '#{$name}')};
             }
           }
 
@@ -145,7 +150,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
           }
 
           .m-article-actions--publication__logo a {
-            color: $color__text--title;
+            color: colors.$color__text--title;
           }
         }
 
@@ -202,7 +207,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
     }
   }
 
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     .m-sidebar-toggle--publication__logo {
       margin-bottom: 40px;
       white-space: nowrap;
@@ -217,7 +222,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         opacity: 1;
         position: fixed;
         top: 0;
-        z-index: map.get($zindexs, 'header');
+        z-index: map.get(variables.$zindexs, 'header');
 
         &::before {
           left: 0;
