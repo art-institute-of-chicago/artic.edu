@@ -2,8 +2,7 @@
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 
 /***
 
@@ -167,7 +166,7 @@ Demonstrated in **statics/article**
 
 
 .deflist .f-module-title-1 {
-  @include other.tucked-margin-top(setup-typography.$f-module-title-1, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-module-title-1, ('xsmall': 28));
 
   & {
     display: block;
@@ -175,7 +174,7 @@ Demonstrated in **statics/article**
 }
 
 .deflist .f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 24, 'small+': 28));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 24, 'small+': 28));
 
   & {
     display: block;
@@ -184,14 +183,14 @@ Demonstrated in **statics/article**
 
 
 .deflist .f-secondary a {
-  @include mixins-typography.text-underline(1.02em, colors.$color__rules--secondary);
+  @include typography.text-underline(1.02em, colors.$color__rules--secondary);
 
   &:hover,
   &:focus:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--hover);
+    @include typography.text-underline(1.02em, colors.$color__link--hover);
   }
 
   &:active:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--active);
+    @include typography.text-underline(1.02em, colors.$color__link--active);
   }
 }

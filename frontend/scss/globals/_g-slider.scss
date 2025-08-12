@@ -1,10 +1,11 @@
 @use "../setup/colors";
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
-@use "../setup/mixins/typography";
+@use "../setup/typography";
 @use "../setup/variables";
 
 @use "sass:map";
+
 $slider-edge-spacing: 48px;
 $btn-close-padding: 12px;
 $btn-close-size: 20px;

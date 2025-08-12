@@ -2,8 +2,7 @@
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 @use "../setup/variables";
 
 @use "sass:map";
@@ -30,7 +29,7 @@
 }
 
 .o-gallery__title {
-  @include mixins-typography.untuck();
+  @include typography.untuck();
 
   @include breakpoint.breakpoint('xlarge') {
     flex: 0 0 auto;
@@ -72,7 +71,7 @@
 
 .o-gallery .m-media figcaption a:hover,
 .o-gallery .m-media a.m-media__img:hover+figcaption a {
-  @include mixins-typography.text-underline(1.05em, colors.$color__text--title-contrast, colors.$color__bg--gallery);
+  @include typography.text-underline(1.05em, colors.$color__text--title-contrast, colors.$color__bg--gallery);
 }
 
 .o-gallery .m-media figcaption a:active {
@@ -141,11 +140,11 @@
 
 
 .o-gallery__title.f-module-title-2 {
-  @include other.tucked-margin-top(setup-typography.$f-module-title-2, ('xsmall': 56, 'small+': 68, 'medium+': 80));
+  @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 56, 'small+': 68, 'medium+': 80));
 }
 
 .o-gallery__caption .f-caption {
-  @include mixins-typography.untuck();
+  @include typography.untuck();
 
   & {
     margin-top: 24px;
@@ -650,7 +649,7 @@
 
   .m-media figcaption a:hover,
   .m-media a.m-media__img:hover+figcaption a {
-    @include mixins-typography.text-underline(1.05em, colors.$color__text--title, colors.$color__bg--primary);
+    @include typography.text-underline(1.05em, colors.$color__text--title, colors.$color__bg--primary);
   }
 
   .m-media figcaption a:active {
@@ -725,8 +724,8 @@
           margin-bottom: 15px;
         }
 
-        @include mixins-typography.untuck;
-        @include mixins-typography.font-styles-untuck(mixins-typography.generate-font-obj((font-family: variables.$serif-font,
+        @include typography.untuck;
+        @include typography.font-styles-untuck(typography.generate-font-obj((font-family: variables.$serif-font,
               font-family-loaded: variables.$serif-font--loaded,
               font-loaded-class: variables.$serif-font-loaded-class,
               settings: ('xsmall': (font-size: 17, line-height: 21, text-transform: uppercase, letter-spacing: 0.1em, push: 0),

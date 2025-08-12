@@ -2,7 +2,7 @@
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography";
+@use "../setup/typography";
 
 .m-directions-block {
   @include other.float-clear;

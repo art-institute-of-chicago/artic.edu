@@ -2,8 +2,7 @@
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 @use "../setup/variables";
 
 @use "sass:math";
@@ -119,7 +118,7 @@
       color: colors.$color__text--secondary;
       background: none;
 
-      @include mixins-typography.font-styles(mixins-typography.generate-font-obj((font-family: variables.$sans-serif-font,
+      @include typography.font-styles(typography.generate-font-obj((font-family: variables.$sans-serif-font,
             font-family-loaded: variables.$sans-serif-font--loaded,
             font-loaded-class: variables.$sans-serif-font-loaded-class,
             settings: ('xsmall': (font-size: 15, line-height: 20, font-weight: 300, letter-spacing: 0.01em, push: 0)))));
@@ -138,7 +137,7 @@
         padding: 20px 30px;
         background: rgba(0, 0, 0, 0.7);
 
-        @include mixins-typography.font-styles(mixins-typography.generate-font-obj((font-family: variables.$serif-font,
+        @include typography.font-styles(typography.generate-font-obj((font-family: variables.$serif-font,
               font-family-loaded: variables.$serif-font--loaded,
               font-loaded-class: variables.$serif-font-loaded-class,
               settings: ('xsmall': (font-size: 18, line-height: 24, font-weight: 400),
@@ -511,7 +510,7 @@ a.m-media__img:hover object {
 
 .m-media figcaption,
 .m-listing--sound figcaption {
-  @include other.tucked-margin-top(setup-typography.$f-caption, ('xsmall': 24));
+  @include other.tucked-margin-top(typography.$f-caption, ('xsmall': 24));
   display: block;
   position: relative;
   min-height: 36px;
@@ -565,7 +564,7 @@ a.m-media__img:hover object {
 .m-media a.m-media__img:hover+figcaption strong a,
 .m-listing--sound figcaption strong a:hover,
 .m-listing--sound a.m-media__img:hover+figcaption strong a {
-  @include mixins-typography.text-underline(1.05em, colors.$color__text, colors.$color__bg);
+  @include typography.text-underline(1.05em, colors.$color__text, colors.$color__bg);
 }
 
 .m-media figcaption strong a:active,

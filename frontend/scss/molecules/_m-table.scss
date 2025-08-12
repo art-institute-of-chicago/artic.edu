@@ -1,8 +1,7 @@
 @use "../setup/colors";
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 
 /***
 
@@ -160,7 +159,7 @@ Intended for very simple m-tables..
   }
 
   .f-module-title-1 {
-    @include other.tucked-align-top(setup-typography.$f-module-title-1);
+    @include other.tucked-align-top(typography.$f-module-title-1);
 
     & {
       display: inline-block;
@@ -168,7 +167,7 @@ Intended for very simple m-tables..
   }
 
   .f-secondary {
-    @include other.tucked-align-top(setup-typography.$f-secondary);
+    @include other.tucked-align-top(typography.$f-secondary);
 
     & {
       display: inline-block;
@@ -181,7 +180,7 @@ Intended for very simple m-tables..
   }
 
   .f-tag {
-    @include other.tucked-align-top(setup-typography.$f-tag);
+    @include other.tucked-align-top(typography.$f-tag);
     display: inline-block;
 
     & {
@@ -190,7 +189,7 @@ Intended for very simple m-tables..
   }
 
   .f-caption {
-    @include mixins-typography.untuck;
+    @include typography.untuck;
 
     & {
       margin-top: 16px;

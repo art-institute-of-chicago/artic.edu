@@ -1,9 +1,10 @@
 @use "../setup/colors";
 @use "../setup/mixins/forms";
-@use "../setup/mixins/typography";
+@use "../setup/typography";
 @use "../setup/variables";
 
 @use "sass:map";
+
 $f-search-input: typography.generate-font-obj((font-family: variables.$serif-font,
     font-family-loaded: variables.$serif-font--loaded,
     font-loaded-class: variables.$serif-font-loaded-class,

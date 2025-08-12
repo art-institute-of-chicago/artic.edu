@@ -1,11 +1,11 @@
 @use "../setup/colors";
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 @use "../setup/variables";
 
 @use "sass:map";
+
 .p-issuearticle-show,
 .p-issuearticle-preview,
 .p-digitalpublicationarticle-show,
@@ -58,11 +58,11 @@ top: -100%;
   }
 
   .o-blocks:not(.o-blocks--bibliographic) > p {
-    @include setup-typography.f-body;
+    @include typography.f-body;
   }
 
   .o-blocks>p {
-    @include mixins-typography.untuck();
+    @include typography.untuck();
   }
 
   &.s-sans-serif-loaded .o-blocks>p:not([class*=f-]),
@@ -158,7 +158,7 @@ top: -100%;
       }
     }
 
-    @include mixins-typography.font-styles-untuck(mixins-typography.generate-font-obj(
+    @include typography.font-styles-untuck(typography.generate-font-obj(
       (
         font-family: variables.$serif-font,
         font-family-loaded: variables.$serif-font--loaded,
@@ -381,7 +381,7 @@ top: -100%;
               background-color: rgba(255, 255, 255, 0.75);
 
               h1 {
-                @include mixins-typography.untuck;
+                @include typography.untuck;
 
                 & {
                   margin-top: 0;
@@ -553,7 +553,7 @@ top: -100%;
           }
 
           .m-title-bar > .f-list-3 {
-            @include mixins-typography.untuck();
+            @include typography.untuck();
 
             & {
               font-family: variables.$sans-serif-font--loaded;
@@ -565,7 +565,7 @@ top: -100%;
           }
 
           .o-blocks--bibliographic .f-secondary {
-            @include mixins-typography.untuck();
+            @include typography.untuck();
 
             &:not(:first-child) {
               margin-top: 8px;

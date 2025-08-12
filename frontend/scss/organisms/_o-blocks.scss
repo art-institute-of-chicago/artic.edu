@@ -2,8 +2,7 @@
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 
 /*****************************/
 /*
@@ -12,10 +11,10 @@
 /**/
 
 .o-blocks>.f-deck {
-  @include other.tucked-margin-top(setup-typography.$f-deck, ('xsmall': 60, 'small+': 84));
+  @include other.tucked-margin-top(typography.$f-deck, ('xsmall': 60, 'small+': 84));
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-deck);
+    @include other.tucked-align-top(typography.$f-deck);
   }
 }
 
@@ -23,10 +22,10 @@
 
 .o-blocks>h2:not([class*='f-']),
 .o-blocks>.f-module-title-2 {
-  @include other.tucked-margin-top(setup-typography.$f-module-title-2, ('xsmall': 48, 'small+': 68, 'medium+': 80));
+  @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 48, 'small+': 68, 'medium+': 80));
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-module-title-2);
+    @include other.tucked-align-top(typography.$f-module-title-2);
   }
 }
 
@@ -36,7 +35,7 @@
 
 .o-blocks>.f-deck+h2:not([class*='f-']),
 .o-blocks>.f-deck+.f-module-title-2 {
-  @include other.tucked-margin-top(setup-typography.$f-module-title-2, ('xsmall': 76));
+  @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 76));
 }
 
 .o-blocks>h4:not([class*='f-']) {
@@ -46,28 +45,28 @@
 /*****/
 
 .o-blocks>.f-subheading-1 {
-  @include other.tucked-margin-top(setup-typography.$f-subheading-1, ('xsmall': 56));
+  @include other.tucked-margin-top(typography.$f-subheading-1, ('xsmall': 56));
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-subheading-1);
+    @include other.tucked-align-top(typography.$f-subheading-1);
   }
 }
 
 .o-blocks>.hr+.f-subheading-1 {
-  @include other.tucked-margin-top(setup-typography.$f-subheading-1, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-subheading-1, ('xsmall': 36));
 }
 
 .o-blocks>.f-deck+.f-subheading-1 {
-  @include other.tucked-margin-top(setup-typography.$f-subheading-1, ('xsmall': 76));
+  @include other.tucked-margin-top(typography.$f-subheading-1, ('xsmall': 76));
 }
 
 /*****/
 
 .o-blocks>.f-list-2 {
-  @include other.tucked-margin-top(setup-typography.$f-list-2, ('xsmall': 56));
+  @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 56));
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-list-2);
+    @include other.tucked-align-top(typography.$f-list-2);
   }
 }
 
@@ -75,10 +74,10 @@
 
 .o-blocks>h3:not([class*='f-']),
 .o-blocks>.f-list-3 {
-  @include other.tucked-margin-top(setup-typography.$f-list-3, ('xsmall': 56, 'large+': 60, 'xlarge': 72));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 56, 'large+': 60, 'xlarge': 72));
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-list-3);
+    @include other.tucked-align-top(typography.$f-list-3);
   }
 }
 
@@ -88,31 +87,31 @@
 
 .o-blocks>.hr+h3:not([class*='f-']),
 .o-blocks>.hr+.f-list-3 {
-  @include other.tucked-margin-top(setup-typography.$f-list-3, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 36));
 }
 
 .o-blocks>.f-deck+h3:not([class*='f-']),
 .o-blocks>.f-deck+.f-list-3 {
-  @include other.tucked-margin-top(setup-typography.$f-list-3, ('xsmall': 76));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 76));
 }
 
 /*****/
 
 .o-blocks>.f-list-4 {
-  @include other.tucked-margin-top(setup-typography.$f-list-4, ('xsmall': 56));
+  @include other.tucked-margin-top(typography.$f-list-4, ('xsmall': 56));
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-list-4);
+    @include other.tucked-align-top(typography.$f-list-4);
   }
 }
 
 /*****/
 
 .o-blocks>.f-list-5 {
-  @include other.tucked-margin-top(setup-typography.$f-list-5, ('xsmall': 56));
+  @include other.tucked-margin-top(typography.$f-list-5, ('xsmall': 56));
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-list-5);
+    @include other.tucked-align-top(typography.$f-list-5);
   }
 }
 
@@ -122,10 +121,10 @@
 .o-blocks>ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.f-body {
-  @include other.tucked-margin-top(setup-typography.$f-body, ('xsmall': 40, 'small+': 56));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 40, 'small+': 56));
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-body);
+    @include other.tucked-align-top(typography.$f-body);
   }
 }
 
@@ -144,14 +143,14 @@
 .o-blocks>.f-deck+ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.f-deck+ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.f-deck+.f-body {
-  @include other.tucked-margin-top(setup-typography.$f-body, ('xsmall': 76));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 76));
 }
 
 .o-blocks>.o-blocks__block+p:not([class*='f-']):not([class*='p-']),
 .o-blocks>.o-blocks__block+ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.o-blocks__block+ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.o-blocks__block+.f-body {
-  @include other.tucked-margin-top(setup-typography.$f-body, ('xsmall': 32, 'small+': 68));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 32, 'small+': 68));
 }
 
 .o-blocks>.o-blocks__block.o-row-listing+p:not([class*='f-']):not([class*='p-']),
@@ -162,7 +161,7 @@
 .o-blocks>.o-blocks__block.o-grid-listing+ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.o-blocks__block.o-grid-listing+ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.o-blocks__block.o-grid-listing+.f-body {
-  @include other.tucked-margin-top(setup-typography.$f-body, ('xsmall': 40, 'small+': 80));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 40, 'small+': 80));
 }
 
 /*****/
@@ -171,10 +170,10 @@
 .o-blocks>.f-body-editorial,
 .o-blocks>p:not([class*='f-']),
 .o-blocks>.f-body-editorial {
-  @include other.tucked-margin-top(setup-typography.$f-body-editorial, ('xsmall': 40, 'small+': 56));
+  @include other.tucked-margin-top(typography.$f-body-editorial, ('xsmall': 40, 'small+': 56));
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-body-editorial);
+    @include other.tucked-align-top(typography.$f-body-editorial);
   }
 }
 
@@ -188,7 +187,7 @@
 .o-article--editorial .o-blocks>.o-blocks__block+ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-article--editorial .o-blocks>.o-blocks__block+ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-article--editorial .o-blocks>.o-blocks__block+.f-body-editorial {
-  @include other.tucked-margin-top(setup-typography.$f-body-editorial, ('xsmall': 60));
+  @include other.tucked-margin-top(typography.$f-body-editorial, ('xsmall': 60));
 }
 
 .o-article--editorial .o-blocks.o-article__body>p:not([class*=f-]) .f-dropcap-editorial {
@@ -210,10 +209,10 @@
 
 .o-blocks>small,
 .o-blocks>.f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 40, 'medium+': 52));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 40, 'medium+': 52));
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-secondary);
+    @include other.tucked-align-top(typography.$f-secondary);
   }
 }
 
@@ -224,14 +223,14 @@
 /*****/
 
 .o-blocks>.f-caption {
-  @include other.tucked-margin-top(setup-typography.$f-caption, ('xsmall': 48));
+  @include other.tucked-margin-top(typography.$f-caption, ('xsmall': 48));
 
   & {
     color: colors.$color__text--secondary;
   }
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-caption);
+    @include other.tucked-align-top(typography.$f-caption);
   }
 }
 
@@ -242,7 +241,7 @@
   &:hover,
   &:focus:hover,
   &:active:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__rules--secondary);
+    @include typography.text-underline(1.02em, colors.$color__rules--secondary);
   }
 }
 
@@ -339,11 +338,11 @@
 .o-blocks {
   .m-media--m figcaption .f-caption {
     @include breakpoint.breakpoint('large+') {
-      @include other.tucked-align-top(setup-typography.$f-caption, 'large');
+      @include other.tucked-align-top(typography.$f-caption, 'large');
     }
 
     @include breakpoint.breakpoint('xlarge') {
-      @include other.tucked-align-top(setup-typography.$f-caption, 'xlarge');
+      @include other.tucked-align-top(typography.$f-caption, 'xlarge');
     }
   }
 
@@ -628,11 +627,11 @@
 
   &:hover,
   &:focus:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--accent);
+    @include typography.text-underline(1.02em, colors.$color__link--accent);
   }
 
   &:active:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__rules--secondary);
+    @include typography.text-underline(1.02em, colors.$color__rules--secondary);
   }
 }
 
@@ -644,11 +643,11 @@
 
   &:hover,
   &:focus:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--accent);
+    @include typography.text-underline(1.02em, colors.$color__link--accent);
   }
 
   &:active:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__rules--secondary);
+    @include typography.text-underline(1.02em, colors.$color__rules--secondary);
   }
 }
 
@@ -656,7 +655,7 @@
 .o-article--editorial .o-blocks>ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a,
 .o-article--editorial .o-blocks>ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a,
 .o-blocks>.f-body-editorial a {
-  @include mixins-typography.text-underline(89%, colors.$color__rules--secondary);
+  @include typography.text-underline(89%, colors.$color__rules--secondary);
 
   & {
     color: colors.$color__link--editorial;
@@ -665,16 +664,16 @@
 
   &:hover,
   &:focus:hover {
-    @include mixins-typography.text-underline(89%, colors.$color__link--editorial);
+    @include typography.text-underline(89%, colors.$color__link--editorial);
   }
 
   &:active:hover {
-    @include mixins-typography.text-underline(89%, colors.$color__rules--secondary);
+    @include typography.text-underline(89%, colors.$color__rules--secondary);
   }
 }
 
 .o-blocks>.f-deck a {
-  @include mixins-typography.text-underline(89%, colors.$color__text--tertiary);
+  @include typography.text-underline(89%, colors.$color__text--tertiary);
 
   & {
     color: inherit;
@@ -683,7 +682,7 @@
 
   &:hover,
   &:focus:hover {
-    @include mixins-typography.text-underline(89%, colors.$color__text--secondary);
+    @include typography.text-underline(89%, colors.$color__text--secondary);
     color: colors.$color__text;
   }
 
@@ -694,15 +693,15 @@
 
 .o-blocks>small a,
 .o-blocks>.f-secondary a {
-  @include mixins-typography.text-underline(1.02em, colors.$color__text--tertiary);
+  @include typography.text-underline(1.02em, colors.$color__text--tertiary);
 
   &:hover,
   &:focus:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__text--secondary);
+    @include typography.text-underline(1.02em, colors.$color__text--secondary);
   }
 
   &:active {
-    @include mixins-typography.text-underline(1.02em, transparent);
+    @include typography.text-underline(1.02em, transparent);
   }
 }
 

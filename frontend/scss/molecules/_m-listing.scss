@@ -2,8 +2,7 @@
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 @use "../setup/variables";
 
 @use "sass:map";
@@ -60,14 +59,14 @@
   .o-article__related .m-inline-aside &,
   .o-article__secondary-actions .m-inline-aside & {
     .f-list-3 {
-      @include mixins-typography.font-styles(mixins-typography.generate-font-obj((font-family: variables.$serif-font,
+      @include typography.font-styles(typography.generate-font-obj((font-family: variables.$serif-font,
             font-family-loaded: variables.$serif-font--loaded,
             font-loaded-class: variables.$serif-font-loaded-class,
             settings: ('xsmall': (font-size: 24, line-height: 34, push: 0)))));
     }
 
     .f-list-1 {
-      @include mixins-typography.font-styles(mixins-typography.generate-font-obj((font-family: variables.$serif-font,
+      @include typography.font-styles(typography.generate-font-obj((font-family: variables.$serif-font,
             font-family-loaded: variables.$serif-font--loaded,
             font-loaded-class: variables.$serif-font-loaded-class,
             settings: ('xsmall': (font-size: 19, line-height: 28, push: 0)))));
@@ -311,7 +310,7 @@
 }
 
 .m-listing__img-prompt {
-  @include mixins-typography.untuck;
+  @include typography.untuck;
 
   & {
     position: absolute;
@@ -407,85 +406,85 @@
 }
 
 .m-listing__meta .f-tag {
-  @include other.tucked-margin-top(setup-typography.$f-tag, ('xsmall': 28, 'medium+': 32, 'large+': 28));
+  @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 28, 'medium+': 32, 'large+': 28));
 }
 
 .m-listing__meta .f-secondary+br+.f-tag,
 .m-listing__meta .f-tertiary+br+.f-tag {
-  @include other.tucked-margin-top(setup-typography.$f-tag, ('xsmall': 32, 'large+': 36));
+  @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 32, 'large+': 36));
 }
 
 .m-listing__meta .f-headline-editorial {
-  @include other.tucked-margin-top(setup-typography.$f-headline-editorial, ('xsmall': 36, 'small+': 60, 'medium+': 64));
+  @include other.tucked-margin-top(typography.$f-headline-editorial, ('xsmall': 36, 'small+': 60, 'medium+': 64));
 }
 
 .m-listing__meta .f-list-1 {
-  @include other.tucked-margin-top(setup-typography.$f-list-1, ('xsmall': 32, 'medium+': 36));
+  @include other.tucked-margin-top(typography.$f-list-1, ('xsmall': 32, 'medium+': 36));
 
   &:first-child {
-    @include other.tucked-margin-top(setup-typography.$f-list-1, ('xsmall': 44, 'large+': 38));
+    @include other.tucked-margin-top(typography.$f-list-1, ('xsmall': 44, 'large+': 38));
   }
 }
 
 .m-listing__meta .f-list-2 {
-  @include other.tucked-margin-top(setup-typography.$f-list-2, ('xsmall': 32));
+  @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 32));
 
   &:first-child {
-    @include other.tucked-margin-top(setup-typography.$f-list-2, ('xsmall': 44, 'large+': 38));
+    @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 44, 'large+': 38));
   }
 }
 
 .m-listing__meta .f-list-3 {
-  @include other.tucked-margin-top(setup-typography.$f-list-3, ('xsmall': 40, 'large+': 44));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 40, 'large+': 44));
 }
 
 .m-listing__meta .f-list-3:first-child,
 .m-listing__meta .date+.f-list-3 {
-  @include other.tucked-margin-top(setup-typography.$f-list-3, ('xsmall': 36, 'small+': 40));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 36, 'small+': 40));
 }
 
 .m-listing__meta .f-list-4 {
-  @include other.tucked-margin-top(setup-typography.$f-list-4, ('xsmall': 36, 'large+': 44));
+  @include other.tucked-margin-top(typography.$f-list-4, ('xsmall': 36, 'large+': 44));
 
   &:first-child {
-    @include other.tucked-margin-top(setup-typography.$f-list-4, ('xsmall': 44, 'large+': 48));
+    @include other.tucked-margin-top(typography.$f-list-4, ('xsmall': 44, 'large+': 48));
   }
 }
 
 .m-listing__meta .f-list-5 {
-  @include other.tucked-margin-top(setup-typography.$f-list-5, ('xsmall': 32, 'small+': 44, 'medium+': 40, 'large+': 48));
+  @include other.tucked-margin-top(typography.$f-list-5, ('xsmall': 32, 'small+': 44, 'medium+': 40, 'large+': 48));
 
   &:first-child {
-    @include other.tucked-margin-top(setup-typography.$f-list-5, ('xsmall': 44, 'small+': 52, 'medium+': 48, 'large+': 56));
+    @include other.tucked-margin-top(typography.$f-list-5, ('xsmall': 44, 'small+': 52, 'medium+': 48, 'large+': 56));
   }
 }
 
 .m-listing__meta .f-list-6 {
-  @include other.tucked-margin-top(setup-typography.$f-list-6, ('xsmall': 32));
+  @include other.tucked-margin-top(typography.$f-list-6, ('xsmall': 32));
 
   &:first-child {
-    @include other.tucked-margin-top(setup-typography.$f-list-6, ('xsmall': 44, 'large+': 38));
+    @include other.tucked-margin-top(typography.$f-list-6, ('xsmall': 44, 'large+': 38));
   }
 }
 
 .m-listing__meta .f-list-7 {
-  @include other.tucked-margin-top(setup-typography.$f-list-7, ('xsmall': 32));
+  @include other.tucked-margin-top(typography.$f-list-7, ('xsmall': 32));
 
   &:first-child {
-    @include other.tucked-margin-top(setup-typography.$f-list-7, ('xsmall': 28, 'small+': 36, 'medium+': 44, 'large+': 38));
+    @include other.tucked-margin-top(typography.$f-list-7, ('xsmall': 28, 'small+': 36, 'medium+': 44, 'large+': 38));
   }
 }
 
 .m-listing__meta .f-headline-editorial {
-  @include other.tucked-margin-top(setup-typography.$f-headline-editorial, ('xsmall': 32, 'small+': 44, 'medium+': 40, 'large+': 48));
+  @include other.tucked-margin-top(typography.$f-headline-editorial, ('xsmall': 32, 'small+': 44, 'medium+': 40, 'large+': 48));
 
   &:first-child {
-    @include other.tucked-margin-top(setup-typography.$f-headline-editorial, ('xsmall': 44, 'small+': 52, 'medium+': 48, 'large+': 56));
+    @include other.tucked-margin-top(typography.$f-headline-editorial, ('xsmall': 44, 'small+': 52, 'medium+': 48, 'large+': 56));
   }
 }
 
 .m-listing__meta .f-display-1 {
-  @include other.tucked-margin-top(setup-typography.$f-display-1, ('xsmall': 36, 'small+': 40, 'medium+': 44));
+  @include other.tucked-margin-top(typography.$f-display-1, ('xsmall': 36, 'small+': 40, 'medium+': 44));
 }
 
 .p-home-index .m-listing__meta .f-display-1 {
@@ -494,31 +493,31 @@
 }
 
 .m-listing__meta .f-module-title-2 {
-  @include other.tucked-margin-top(setup-typography.$f-module-title-2, ('xsmall': 24, 'small+': 32));
+  @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 24, 'small+': 32));
 }
 
 .m-listing__meta .f-subheading-1 {
-  @include other.tucked-margin-top(setup-typography.$f-subheading-1, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-subheading-1, ('xsmall': 28));
 }
 
 .m-listing__meta .f-body {
-  @include other.tucked-margin-top(setup-typography.$f-body, ('xsmall': 48));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 48));
 }
 
 .m-listing__meta .f-list-3+.f-body {
-  @include other.tucked-margin-top(setup-typography.$f-body, ('xsmall': 36, 'small+': 44, 'medium+': 48));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 36, 'small+': 44, 'medium+': 48));
 }
 
 .m-listing__meta .f-list-4+br+.f-body {
-  @include other.tucked-margin-top(setup-typography.$f-body, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 36));
 }
 
 .m-listing__meta .subtitle.f-body {
-  @include other.tucked-margin-top(setup-typography.$f-body, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 28));
 }
 
 .m-listing__meta .f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 36));
 
   & {
     margin-bottom: 14px;
@@ -529,15 +528,15 @@
 .m-listing__meta .f-list-2+br+.f-secondary:not(ul),
 .m-listing__meta .f-list-6+br+.f-secondary:not(ul),
 .m-listing__meta .f-list-7+br+.f-secondary:not(ul) {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 28));
 }
 
 .m-listing__meta .m-listing__meta-bottom .f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 40));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 40));
 }
 
 .m-listing__meta .f-list-4+br+.m-listing__meta-bottom .f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 60, 'small+': 40));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 60, 'small+': 40));
 }
 
 .m-listing__meta span.f-secondary.last-child,
@@ -550,14 +549,14 @@
 }
 
 .m-listing__meta .f-tertiary {
-  @include other.tucked-margin-top(setup-typography.$f-tertiary, ('xsmall': 36, 'small+': 36));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 36, 'small+': 36));
 }
 
 .m-listing__meta .f-list-1+br+.f-tertiary,
 .m-listing__meta .f-list-2+br+.f-tertiary,
 .m-listing__meta .f-list-6+br+.f-tertiary,
 .m-listing__meta .f-list-7+br+.f-tertiary {
-  @include other.tucked-margin-top(setup-typography.$f-tertiary, ('xsmall': 20, 'small+': 28));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 20, 'small+': 28));
 
   @include breakpoint.breakpoint('xsmall') {
     padding-bottom: 4px;
@@ -569,15 +568,15 @@
 }
 
 .m-listing__meta .f-link {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 28));
 }
 
 .m-listing__meta .f-caption {
-  @include other.tucked-margin-top(setup-typography.$f-caption, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-caption, ('xsmall': 36));
 }
 
 .m-listing__meta .f-body-editorial {
-  @include other.tucked-margin-top(setup-typography.$f-body-editorial, ('xsmall': 40));
+  @include other.tucked-margin-top(typography.$f-body-editorial, ('xsmall': 40));
 
   & {
     color: colors.$color__text;
@@ -585,7 +584,7 @@
 }
 
 .m-listing__meta .f-secondary+br+.f-secondary:not(ul):not(span):not(.date) {
-  @include other.tucked-align-top(setup-typography.$f-secondary);
+  @include other.tucked-align-top(typography.$f-secondary);
 
   & {
     color: colors.$color__text--tertiary;
@@ -593,7 +592,7 @@
 }
 
 .m-listing__meta .f-tertiary+br+.f-tertiary {
-  @include other.tucked-align-top(setup-typography.$f-tertiary);
+  @include other.tucked-align-top(typography.$f-tertiary);
 
   & {
     color: colors.$color__text--tertiary;
@@ -603,7 +602,7 @@
 .m-listing__meta .f-list-3+br+.f-link,
 .m-listing__meta .f-secondary+br+.f-link,
 .m-listing__meta .f-tertiary+br+.f-link {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 36));
 }
 
 
@@ -612,43 +611,43 @@ $point in variables.$breakpoints {
   @if ($name !='xsmall') {
     @include breakpoint.breakpoint('#{$name}') {
       .m-listing--row .m-listing__meta .f-headline-editorial:first-child {
-        @include other.tucked-align-top(setup-typography.$f-headline-editorial, $name);
+        @include other.tucked-align-top(typography.$f-headline-editorial, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-1:first-child {
-        @include other.tucked-align-top(setup-typography.$f-list-1, $name);
+        @include other.tucked-align-top(typography.$f-list-1, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-2:first-child {
-        @include other.tucked-align-top(setup-typography.$f-list-2, $name);
+        @include other.tucked-align-top(typography.$f-list-2, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-3:first-child {
-        @include other.tucked-align-top(setup-typography.$f-list-3, $name);
+        @include other.tucked-align-top(typography.$f-list-3, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-4:first-child {
-        @include other.tucked-align-top(setup-typography.$f-list-4, $name);
+        @include other.tucked-align-top(typography.$f-list-4, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-5:first-child {
-        @include other.tucked-align-top(setup-typography.$f-list-5, $name);
+        @include other.tucked-align-top(typography.$f-list-5, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-6:first-child {
-        @include other.tucked-align-top(setup-typography.$f-list-6, $name);
+        @include other.tucked-align-top(typography.$f-list-6, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-7:first-child {
-        @include other.tucked-align-top(setup-typography.$f-list-7, $name);
+        @include other.tucked-align-top(typography.$f-list-7, $name);
       }
 
       .m-listing--row .m-listing__meta .f-headline-editorial:first-child {
-        @include other.tucked-align-top(setup-typography.$f-headline-editorial, $name);
+        @include other.tucked-align-top(typography.$f-headline-editorial, $name);
       }
 
       .m-listing--row .m-listing__meta .f-tag:first-child {
-        @include other.tucked-align-top(setup-typography.$f-tag, $name);
+        @include other.tucked-align-top(typography.$f-tag, $name);
       }
     }
   }
@@ -733,19 +732,19 @@ $point in variables.$breakpoints {
 }
 
 .m-listing--feature .m-listing__meta .f-tag {
-  @include other.tucked-margin-top(setup-typography.$f-tag, ('xsmall': 32, 'medium+': 8));
+  @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 32, 'medium+': 8));
 }
 
 .m-listing--feature .m-listing__meta .f-module-title-2:first-child {
-  @include other.tucked-align-top(setup-typography.$f-module-title-2);
+  @include other.tucked-align-top(typography.$f-module-title-2);
 }
 
 .m-listing--feature .m-listing__meta .f-secondary+br+.f-secondary {
-  @include other.tucked-align-top(setup-typography.$f-secondary);
+  @include other.tucked-align-top(typography.$f-secondary);
 }
 
 .m-listing--feature .m-listing__meta .f-tertiary+br+.f-tertiary {
-  @include other.tucked-align-top(setup-typography.$f-tertiary);
+  @include other.tucked-align-top(typography.$f-tertiary);
 }
 
 
@@ -957,7 +956,7 @@ $point in variables.$breakpoints {
 }
 
 .m-listing--hero .m-listing__meta .f-tag {
-  @include other.tucked-align-top(setup-typography.$f-tag);
+  @include other.tucked-align-top(typography.$f-tag);
 }
 
 .m-listing--hero .m-listing__meta .f-previewdate {
@@ -972,27 +971,27 @@ $point in variables.$breakpoints {
 }
 
 .m-listing--hero .m-listing__meta .f-display-1:first-child {
-  @include other.tucked-align-top(setup-typography.$f-display-1);
+  @include other.tucked-align-top(typography.$f-display-1);
 }
 
 .m-listing--hero .m-listing__meta .f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 40, 'small+': 56, 'large+': 92));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 40, 'small+': 56, 'large+': 92));
 }
 
 .m-listing--hero .m-listing__meta .f-secondary+br+.f-secondary {
-  @include other.tucked-align-top(setup-typography.$f-secondary);
+  @include other.tucked-align-top(typography.$f-secondary);
 }
 
 .m-listing--hero .m-listing__meta .f-tertiary {
-  @include other.tucked-margin-top(setup-typography.$f-tertiary, ('xsmall': 40, 'small+': 56, 'large+': 92));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 40, 'small+': 56, 'large+': 92));
 }
 
 .m-listing--hero .m-listing__meta .f-tertiary+br+.f-tertiary {
-  @include other.tucked-align-top(setup-typography.$f-tertiary);
+  @include other.tucked-align-top(typography.$f-tertiary);
 }
 
 .m-listing--hero .m-listing__meta .f-body {
-  @include other.tucked-margin-top(setup-typography.$f-body, ('xsmall': 40, 'small+': 56, 'large+': 92));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 40, 'small+': 56, 'large+': 92));
 }
 
 
@@ -1056,7 +1055,7 @@ $point in variables.$breakpoints {
 }
 
 .m-listing--hero-editorial .m-listing__meta>.f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 44));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 44));
 
   & {
     display: none;
@@ -1068,7 +1067,7 @@ $point in variables.$breakpoints {
 }
 
 .m-listing--hero-editorial .m-listing__meta>.f-tertiary {
-  @include other.tucked-margin-top(setup-typography.$f-tertiary, ('xsmall': 44, 'small+': 44, 'medium+': 48));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 44, 'small+': 44, 'medium+': 48));
 
   & {
     display: none;
@@ -1104,15 +1103,15 @@ $point in variables.$breakpoints {
 }
 
 .m-listing--hero-editorial .m-listing__meta-bottom .f-tag {
-  @include other.tucked-margin-top(setup-typography.$f-tag, ('xsmall': 12));
+  @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 12));
 }
 
 .m-listing--hero-editorial .m-listing__meta-bottom .f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 12));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 12));
 }
 
 .m-listing--hero-editorial .m-listing__meta-bottom .f-tertiary {
-  @include other.tucked-margin-top(setup-typography.$f-tertiary, ('xsmall': 12));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 12));
 }
 
 
@@ -1323,19 +1322,19 @@ $point in variables.$breakpoints {
 
 .m-listing--row.m-listing--w-meta-bottom .m-listing__meta .m-listing__meta-bottom .f-secondary {
   @include breakpoint.breakpoint('small+') {
-    @include other.tucked-align-top(setup-typography.$f-secondary, 'small');
+    @include other.tucked-align-top(typography.$f-secondary, 'small');
   }
 
   @include breakpoint.breakpoint('medium+') {
-    @include other.tucked-align-top(setup-typography.$f-secondary, 'medium');
+    @include other.tucked-align-top(typography.$f-secondary, 'medium');
   }
 
   @include breakpoint.breakpoint('large+') {
-    @include other.tucked-align-top(setup-typography.$f-secondary, 'large');
+    @include other.tucked-align-top(typography.$f-secondary, 'large');
   }
 
   @include breakpoint.breakpoint('xlarge') {
-    @include other.tucked-align-top(setup-typography.$f-secondary, 'xlarge');
+    @include other.tucked-align-top(typography.$f-secondary, 'xlarge');
   }
 }
 
@@ -1374,31 +1373,31 @@ $point in variables.$breakpoints {
     }
 
     .m-listing__meta .f-tag {
-      @include other.tucked-margin-top(setup-typography.$f-tag, ('xsmall': 12), 'small');
+      @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 12), 'small');
     }
 
     .m-listing__meta .f-tag:first-child {
-      @include other.tucked-align-top(setup-typography.$f-tag, 'small');
+      @include other.tucked-align-top(typography.$f-tag, 'small');
     }
 
     .m-listing__meta .f-list-2:first-child {
-      @include other.tucked-align-top(setup-typography.$f-list-2, 'small');
+      @include other.tucked-align-top(typography.$f-list-2, 'small');
     }
 
     .m-listing__meta .f-list-3:first-child {
-      @include other.tucked-align-top(setup-typography.$f-list-3, 'small');
+      @include other.tucked-align-top(typography.$f-list-3, 'small');
     }
 
     .m-listing__meta .f-list-4:first-child {
-      @include other.tucked-align-top(setup-typography.$f-list-4, 'small');
+      @include other.tucked-align-top(typography.$f-list-4, 'small');
     }
 
     .m-listing__meta .f-list-5:first-child {
-      @include other.tucked-align-top(setup-typography.$f-list-5, 'small');
+      @include other.tucked-align-top(typography.$f-list-5, 'small');
     }
 
     .m-listing__meta .f-headline-editorial:first-child {
-      @include other.tucked-align-top(setup-typography.$f-headline-editorial, 'small');
+      @include other.tucked-align-top(typography.$f-headline-editorial, 'small');
     }
   }
 }
@@ -1436,31 +1435,31 @@ $point in variables.$breakpoints {
     }
 
     .m-listing__meta .f-tag {
-      @include other.tucked-margin-top(setup-typography.$f-tag, ('medium': 12), 'medium');
+      @include other.tucked-margin-top(typography.$f-tag, ('medium': 12), 'medium');
     }
 
     .m-listing__meta .f-tag:first-child {
-      @include other.tucked-align-top(setup-typography.$f-tag, 'medium');
+      @include other.tucked-align-top(typography.$f-tag, 'medium');
     }
 
     .m-listing__meta .f-list-2:first-child {
-      @include other.tucked-align-top(setup-typography.$f-list-2, 'medium');
+      @include other.tucked-align-top(typography.$f-list-2, 'medium');
     }
 
     .m-listing__meta .f-list-3:first-child {
-      @include other.tucked-align-top(setup-typography.$f-list-3, 'medium');
+      @include other.tucked-align-top(typography.$f-list-3, 'medium');
     }
 
     .m-listing__meta .f-list-4:first-child {
-      @include other.tucked-align-top(setup-typography.$f-list-4, 'medium');
+      @include other.tucked-align-top(typography.$f-list-4, 'medium');
     }
 
     .m-listing__meta .f-list-5:first-child {
-      @include other.tucked-align-top(setup-typography.$f-list-5, 'medium');
+      @include other.tucked-align-top(typography.$f-list-5, 'medium');
     }
 
     .m-listing__meta .f-headline-editorial:first-child {
-      @include other.tucked-align-top(setup-typography.$f-headline-editorial, 'medium');
+      @include other.tucked-align-top(typography.$f-headline-editorial, 'medium');
     }
   }
 }
@@ -1522,7 +1521,7 @@ $point in variables.$breakpoints {
   height: auto;
 }
 
-$f-audio-subtitle: mixins-typography.generate-font-obj((font-family: variables.$sans-serif-font,
+$f-audio-subtitle: typography.generate-font-obj((font-family: variables.$sans-serif-font,
     font-family-loaded: variables.$sans-serif-font--loaded,
     font-loaded-class: variables.$sans-serif-font-loaded-class,
     settings: ('xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
@@ -1531,7 +1530,7 @@ $f-audio-subtitle: mixins-typography.generate-font-obj((font-family: variables.$
 // Quick aside for artwork detail's sound variant
 .m-listing--inline.m-listing--sound {
   .m-listing__meta--sound {
-    @include mixins-typography.font-styles(setup-typography.$f-module-title-1);
+    @include typography.font-styles(typography.$f-module-title-1);
   }
 
   .m-listing__link {
@@ -1549,7 +1548,7 @@ $f-audio-subtitle: mixins-typography.generate-font-obj((font-family: variables.$
   }
 
   .m-listing--sound__subtitle {
-    @include mixins-typography.font-styles($f-audio-subtitle);
+    @include typography.font-styles($f-audio-subtitle);
 
     & {
       text-align: right;
@@ -1662,7 +1661,7 @@ $f-audio-subtitle: mixins-typography.generate-font-obj((font-family: variables.$
 
 .m-listing--inline .m-listing__meta .type {
   display: inline-block;
-  @include other.tucked-align-top(setup-typography.$f-tag);
+  @include other.tucked-align-top(typography.$f-tag);
 }
 
 .m-listing--inline .m-listing__meta .m-listing__types {
@@ -1670,35 +1669,35 @@ $f-audio-subtitle: mixins-typography.generate-font-obj((font-family: variables.$
 }
 
 .m-listing--inline .m-listing__meta .f-list-2 {
-  @include other.tucked-margin-top(setup-typography.$f-list-2, ('xsmall': 32, 'small+': 36));
+  @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 32, 'small+': 36));
 
   &:first-child {
-    @include other.tucked-margin-top(setup-typography.$f-list-2, ('xsmall': 16, 'small+': 20));
+    @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 16, 'small+': 20));
   }
 }
 
 .m-listing--inline .m-listing__meta .f-list-3 {
-  @include other.tucked-margin-top(setup-typography.$f-list-3, ('xsmall': 32, 'small+': 36));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 32, 'small+': 36));
 
   &:first-child {
-    @include other.tucked-margin-top(setup-typography.$f-list-2, ('xsmall': 16, 'small+': 20));
+    @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 16, 'small+': 20));
   }
 }
 
 .m-listing--inline .m-listing__meta .f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 28));
 }
 
 .m-listing--inline .m-listing__meta .f-secondary+br+.f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 36));
 }
 
 .m-listing--inline .m-listing__meta .f-tertiary {
-  @include other.tucked-margin-top(setup-typography.$f-tertiary, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 28));
 }
 
 .m-listing--inline .m-listing__meta .f-tertiary+br+.f-tertiary {
-  @include other.tucked-margin-top(setup-typography.$f-tertiary, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 36));
 }
 
 // Variant 'm-listing--inline-feature'
@@ -1888,13 +1887,13 @@ $f-audio-subtitle: mixins-typography.generate-font-obj((font-family: variables.$
 
 .m-inline-aside .m-listing--inline .m-listing__meta .type:first-child {
   @include breakpoint.breakpoint('small') {
-    @include other.tucked-margin-top(setup-typography.$f-tag, ('small': 28), 'small');
+    @include other.tucked-margin-top(typography.$f-tag, ('small': 28), 'small');
   }
 }
 
 .m-inline-aside .m-listing--inline .m-listing__meta .f-list-2:first-child {
   @include breakpoint.breakpoint('small') {
-    @include other.tucked-margin-top(setup-typography.$f-list-2, ('small': 36), 'small');
+    @include other.tucked-margin-top(typography.$f-list-2, ('small': 36), 'small');
   }
 }
 
@@ -1938,15 +1937,15 @@ $f-audio-subtitle: mixins-typography.generate-font-obj((font-family: variables.$
 }
 
 .o-feature-plus-4__feature .m-listing__meta .f-tag {
-  @include other.tucked-margin-top(setup-typography.$f-tag, ('xsmall': 44, 'small+': 52, 'medium+': 60));
+  @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 44, 'small+': 52, 'medium+': 60));
 }
 
 .o-feature-plus-4__feature .f-headline-editorial {
-  @include other.tucked-margin-top(setup-typography.$f-headline-editorial, ('xsmall': 40, 'small+': 60, 'medium+': 52, 'large': 60));
+  @include other.tucked-margin-top(typography.$f-headline-editorial, ('xsmall': 40, 'small+': 60, 'medium+': 52, 'large': 60));
 }
 
 .o-feature-plus-4__feature .m-listing__meta .f-body-editorial {
-  @include other.tucked-margin-top(setup-typography.$f-body-editorial, ('xsmall': 44, 'small+': 52, 'medium+': 56));
+  @include other.tucked-margin-top(typography.$f-body-editorial, ('xsmall': 44, 'small+': 52, 'medium+': 56));
 }
 
 // Variant `m-listing` that expects the image to be on the left, not the right, and optionally absent
@@ -1992,7 +1991,7 @@ $f-audio-subtitle: mixins-typography.generate-font-obj((font-family: variables.$
   }
 
   @include breakpoint.breakpoint('large+') {
-    @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 36));
+    @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 36));
 
     & {
       margin-right: grid.colspan(0.5);
@@ -2155,7 +2154,7 @@ $f-audio-subtitle: mixins-typography.generate-font-obj((font-family: variables.$
     }
 
     .m-listing__meta-bottom {
-      @include mixins-typography.untuck;
+      @include typography.untuck;
 
       & {
         margin-bottom: 20px;
@@ -2362,7 +2361,7 @@ a:focus:hover .btn--magazine {
       flex-direction: row;
       align-items: baseline;
 
-      @include mixins-typography.untuck;
+      @include typography.untuck;
 
       * {
         padding-right: 12px;
@@ -2376,7 +2375,7 @@ a:focus:hover .btn--magazine {
         text-transform: uppercase;
         font-family: variables.$sans-serif-font--loaded;
 
-        @include mixins-typography.untuck;
+        @include typography.untuck;
       }
 
       .f-link {
@@ -2485,7 +2484,7 @@ a:focus:hover .btn--magazine {
   }
 
   .title {
-    @include mixins-typography.untuck;
+    @include typography.untuck;
 
     & {
       padding-top: 10px;
@@ -2538,7 +2537,7 @@ a:focus:hover .btn--magazine {
         width: 68%;
 
         .title {
-          @include mixins-typography.untuck;
+          @include typography.untuck;
 
           & {
             margin: 0;
@@ -2769,7 +2768,7 @@ a:focus:hover .btn--magazine {
     padding: 20px 0;
 
     .f-body {
-      @include mixins-typography.untuck();
+      @include typography.untuck();
 
       & {
         margin-top: 0;
