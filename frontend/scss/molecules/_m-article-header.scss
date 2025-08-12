@@ -2,8 +2,7 @@
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 @use "../setup/variables";
 
 @use "sass:map";
@@ -56,7 +55,7 @@
 }
 
 .m-article-header .title {
-  @include other.tucked-margin-top(setup-typography.$f-headline, ('xsmall': 44, 'medium+': 48));
+  @include other.tucked-margin-top(typography.$f-headline, ('xsmall': 44, 'medium+': 48));
 }
 
 .m-article-header--default .title {
@@ -65,15 +64,15 @@
 
 .m-article-header--default .title:only-child {
   @include breakpoint.breakpoint('xsmall') {
-    @include other.tucked-align-top(setup-typography.$f-headline, 'xsmall');
+    @include other.tucked-align-top(typography.$f-headline, 'xsmall');
   }
 
   @include breakpoint.breakpoint('small') {
-    @include other.tucked-align-top(setup-typography.$f-headline, 'small');
+    @include other.tucked-align-top(typography.$f-headline, 'small');
   }
 
   @include breakpoint.breakpoint('medium') {
-    @include other.tucked-align-top(setup-typography.$f-headline, 'medium');
+    @include other.tucked-align-top(typography.$f-headline, 'medium');
   }
 }
 
@@ -98,7 +97,7 @@
 }
 
 .m-article-header .date {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 72, 'medium+': 96));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 72, 'medium+': 96));
 }
 
 .m-article-header--editorial .date {
@@ -106,22 +105,22 @@
 }
 
 .m-article-header .type {
-  @include other.tucked-align-top(setup-typography.$f-tag, 'xsmall');
+  @include other.tucked-align-top(typography.$f-tag, 'xsmall');
 
   & {
     order: 0;
   }
 
   @include breakpoint.breakpoint('small+') {
-    @include other.tucked-margin-top(setup-typography.$f-tag, ('xsmall': 16), 'small');
+    @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 16), 'small');
   }
 
   @include breakpoint.breakpoint('medium+') {
-    @include other.tucked-align-top(setup-typography.$f-tag, 'medium');
+    @include other.tucked-align-top(typography.$f-tag, 'medium');
   }
 
   @include breakpoint.breakpoint('large+') {
-    @include other.tucked-align-top(setup-typography.$f-tag, 'large');
+    @include other.tucked-align-top(typography.$f-tag, 'large');
 
     & {
       position: absolute;
@@ -131,7 +130,7 @@
   }
 
   @include breakpoint.breakpoint('xlarge') {
-    @include other.tucked-align-top(setup-typography.$f-tag, 'xlarge');
+    @include other.tucked-align-top(typography.$f-tag, 'xlarge');
   }
 }
 
@@ -329,7 +328,7 @@
 }
 
 .m-article-header--feature .title {
-  @include other.tucked-margin-top(setup-typography.$f-headline, ('xsmall': 78, 'medium': 88, 'large+': 48));
+  @include other.tucked-margin-top(typography.$f-headline, ('xsmall': 78, 'medium': 88, 'large+': 48));
 
   & {
     color: colors.$color__text--title-contrast;
@@ -337,7 +336,7 @@
 }
 
 .m-article-header--feature.m-article-header--editorial .title {
-  @include other.tucked-margin-top(setup-typography.$f-headline-editorial, ('xsmall': 74, 'medium': 88, 'large+': 48));
+  @include other.tucked-margin-top(typography.$f-headline-editorial, ('xsmall': 74, 'medium': 88, 'large+': 48));
 
   & {
     color: colors.$color__text--title;
@@ -531,11 +530,11 @@
 }
 
 .m-article-header--hero .m-article-header__text .f-tag-2 {
-  @include other.tucked-align-top(setup-typography.$f-tag-2);
+  @include other.tucked-align-top(typography.$f-tag-2);
 }
 
 .m-article-header--hero .m-article-header__text .f-display-3 {
-  @include other.tucked-margin-top(setup-typography.$f-display-3, ('xsmall': 60, 'small+': 100));
+  @include other.tucked-margin-top(typography.$f-display-3, ('xsmall': 60, 'small+': 100));
 }
 
 .m-article-header--hero .m-info-trigger {
@@ -674,7 +673,7 @@
 }
 
 .m-article-header--super-hero .title {
-  @include other.tucked-align-top(setup-typography.$f-display-2);
+  @include other.tucked-align-top(typography.$f-display-2);
 
   & {
     color: colors.$color__text--title-contrast;
@@ -682,7 +681,7 @@
 }
 
 .m-article-header--super-hero .date {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 40, 'small+': 60, 'medium+': 80));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 40, 'small+': 60, 'medium+': 80));
 }
 
 .m-article-header--super-hero .type {
@@ -717,7 +716,7 @@
 }
 
 .m-article-header--super-hero .m-article-header__intro {
-  @include other.tucked-margin-top(setup-typography.$f-deck, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-deck, ('xsmall': 36));
 
   & {
     padding-right: 32px;
@@ -1154,7 +1153,7 @@
     }
 
     .f-headline-editorial {
-      @include mixins-typography.untuck();
+      @include typography.untuck();
     }
   }
 
@@ -1595,7 +1594,7 @@
     }
 
     .m-article-header--generic .title {
-      @include other.tucked-margin-top(setup-typography.$f-headline, ('xsmall': 40));
+      @include other.tucked-margin-top(typography.$f-headline, ('xsmall': 40));
 
       & {
         padding-top: 8px;
@@ -1640,7 +1639,7 @@
     }
 
     .m-article-header__breadcrumb .f-secondary {
-      @include mixins-typography.untuck();
+      @include typography.untuck();
     }
 
     .m-article-header--generic-w-img .title {

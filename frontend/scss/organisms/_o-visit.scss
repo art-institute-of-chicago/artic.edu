@@ -1,8 +1,7 @@
 @use "../setup/colors";
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 
 .o-visit .m-links-bar {
   margin-top: 0;
@@ -168,12 +167,12 @@
 
   .o-visit-capacity__text {
     margin-bottom: 24px;
-    @include setup-typography.f-secondary;
-    @include mixins-typography.untuck;
+    @include typography.f-secondary;
+    @include typography.untuck;
 
     h2 {
-      @include setup-typography.f-list-3;
-      @include mixins-typography.untuck;
+      @include typography.f-list-3;
+      @include typography.untuck;
 
       & {
         margin-bottom: 12px;
@@ -181,7 +180,7 @@
     }
 
     a {
-      @include mixins-typography.text-underline(1.02em, colors.$color__rules--secondary);
+      @include typography.text-underline(1.02em, colors.$color__rules--secondary);
     }
   }
 

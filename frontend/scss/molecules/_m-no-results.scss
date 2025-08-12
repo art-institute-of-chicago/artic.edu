@@ -1,7 +1,6 @@
 @use "../setup/colors";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 
 
 .m-no-results {
@@ -13,24 +12,24 @@
 }
 
 .m-no-results .title.f-list-3 {
-  @include other.tucked-margin-top(setup-typography.$f-list-3, ('xsmall': 60));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 60));
 
   a {
-    @include mixins-typography.text-underline(.8em, colors.$color__rules--secondary);
+    @include typography.text-underline(.8em, colors.$color__rules--secondary);
     color: colors.$color__link--accent;
     text-decoration: none;
 
     &:hover,
     &:focus:hover {
-      @include mixins-typography.text-underline(.8em, colors.$color__link--accent);
+      @include typography.text-underline(.8em, colors.$color__link--accent);
     }
 
     &:active:hover {
-      @include mixins-typography.text-underline(.8em, colors.$color__rules--secondary);
+      @include typography.text-underline(.8em, colors.$color__rules--secondary);
     }
   }
 }
 
 .m-no-results .title + .f-body {
-  @include other.tucked-margin-top(setup-typography.$f-body, ('xsmall': 56));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 56));
 }

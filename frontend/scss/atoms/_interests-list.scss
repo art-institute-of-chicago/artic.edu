@@ -1,7 +1,6 @@
 @use "../setup/colors";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 
 /***
 
@@ -21,11 +20,11 @@ Typically used at the bottom of the artwork detail.
 }
 
 .interests-list.f-list-2 {
-  @include other.tucked-margin-top(setup-typography.$f-list-2, ('xsmall': 52));
+  @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 52));
 }
 
 .interests-list a {
-  @include mixins-typography.text-underline(.8em, colors.$color__text--title);
+  @include typography.text-underline(.8em, colors.$color__text--title);
 
   & {
     color: colors.$color__text--title;
@@ -34,7 +33,7 @@ Typically used at the bottom of the artwork detail.
 }
 
 .interests-list a:hover {
-  @include mixins-typography.text-underline(.8em, colors.$color__text--secondary);
+  @include typography.text-underline(.8em, colors.$color__text--secondary);
 
   & {
     color: colors.$color__text--secondary;

@@ -1,8 +1,7 @@
 @use "../setup/colors";
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 @use "../setup/variables";
 
 /***
@@ -517,15 +516,15 @@
 }
 
 .m-links-bar--tabs .m-links-bar__item-trigger.f-module-title-2 {
-  @include other.tucked-margin-top(setup-typography.$f-module-title-2, ('xsmall': 12, 'small': 16));
+  @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 12, 'small': 16));
 }
 
 .m-links-bar--tabs .m-links-bar__item-trigger.f-buttons {
-  @include other.tucked-margin-top(setup-typography.$f-buttons, ('xsmall': 12, 'small': 16));
+  @include other.tucked-margin-top(typography.$f-buttons, ('xsmall': 12, 'small': 16));
 }
 
 .m-links-bar--tabs .m-links-bar__item-trigger.f-link {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 12, 'small': 16));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 12, 'small': 16));
 }
 
 .m-links-bar--tabs .m-links-bar__item--overflow {
@@ -555,7 +554,7 @@
   }
 
   .dropdown.f-module-title-2 {
-    @include other.tucked-margin-top(setup-typography.$f-module-title-2, ('xsmall': 12, 'small': 16));
+    @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 12, 'small': 16));
   }
 
   .dropdown > button {
@@ -607,11 +606,11 @@
 }
 
 .m-links-bar--buttons .m-links-bar__items-secondary .m-links-bar__item-trigger.f-buttons {
-  @include other.tucked-margin-top(setup-typography.$f-buttons, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-buttons, ('xsmall': 28));
 }
 
 .m-links-bar--buttons .m-links-bar__items-secondary .m-links-bar__item-trigger.f-link {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 28));
 }
 
 
@@ -662,7 +661,7 @@
   >.m-links-bar__items-secondary {
     >.f-secondary {
       align-self: center;
-      @include mixins-typography.untuck;
+      @include typography.untuck;
     }
   }
 }

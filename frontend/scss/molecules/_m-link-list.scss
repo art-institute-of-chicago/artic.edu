@@ -1,8 +1,7 @@
 @use "../setup/colors";
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 
 /***
 
@@ -17,7 +16,7 @@
 ***/
 
 .m-link-list {
-  @include mixins-typography.untuck;
+  @include typography.untuck;
 
   & {
     margin-top: 40px;
@@ -29,7 +28,7 @@
 }
 
 .m-link-list__sublabel {
-  @include setup-typography.f-secondary;
+  @include typography.f-secondary;
 
   & {
     color: colors.$color__text--type;
@@ -100,7 +99,7 @@
 
 // TODO: Is this needed anymore?
 .m-link-list__trigger.f-module-title-1 {
-  @include other.tucked-align-top(setup-typography.$f-module-title-1);
+  @include other.tucked-align-top(typography.$f-module-title-1);
 
   & {
     color: colors.$color__text--title;
@@ -120,7 +119,7 @@ a.m-link-list__trigger.f-module-title-1 {
 }
 
 .m-link-list__trigger.f-secondary {
-  @include other.tucked-align-top(setup-typography.$f-secondary);
+  @include other.tucked-align-top(typography.$f-secondary);
 
   & {
     color: colors.$color__link;
@@ -143,11 +142,11 @@ a.m-link-list__trigger.f-secondary {
 
   &:hover .m-link-list__label,
   &:focus:hover .m-link-list__label {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--hover);
+    @include typography.text-underline(1.02em, colors.$color__link--hover);
   }
 
   &:active:hover .m-link-list__label {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--active);
+    @include typography.text-underline(1.02em, colors.$color__link--active);
   }
 
   .m-link-list--quiet & {

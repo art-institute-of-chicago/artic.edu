@@ -3,10 +3,11 @@
 @use "../setup/mixins/forms";
 @use "../setup/mixins/grid";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography";
+@use "../setup/typography";
 @use "../setup/variables";
 
 @use "sass:map";
+
 .g-nav-mobile {
   position: fixed;
   z-index: map.get(variables.$zindexs, 'mobileNav');

@@ -1,9 +1,9 @@
+@use "../atoms/loader";
 @use "../setup/colors";
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 @use "../setup/variables";
 
 /***
@@ -99,7 +99,7 @@
 }
 
 .m-aside-newsletter legend .title.f-list-3 {
-  @include other.tucked-margin-top(setup-typography.$f-list-3, ('xsmall': 36, 'medium+': 40));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 36, 'medium+': 40));
 }
 
 .m-aside-newsletter__field {
@@ -116,7 +116,7 @@
 }
 
 .m-aside-newsletter label.f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 40, 'small': 28));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 40, 'small': 28));
 }
 
 .m-aside-newsletter input {
@@ -133,7 +133,7 @@
 
 
 .m-aside-newsletter button.m-aside-newsletter__btn--submit {
-  @include mixins-typography.untuck;
+  @include typography.untuck;
 
   & {
     display: block;
@@ -182,7 +182,7 @@
 }
 
 .m-aside-newsletter__msg {
-  @include mixins-typography.untuck;
+  @include typography.untuck;
   @include other.background-fill;
 
   & {
@@ -293,7 +293,7 @@
 }
 
 .m-aside-newsletter--wide legend .title.f-list-3 {
-  @include other.tucked-margin-top(setup-typography.$f-list-3, ('xsmall': 44, 'small+': 52, 'large+': 82, 'xlarge': 84));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 44, 'small+': 52, 'large+': 82, 'xlarge': 84));
 }
 
 .m-aside-newsletter--wide .m-aside-newsletter__field__wrapper {
@@ -384,7 +384,7 @@
 }
 
 .m-aside-newsletter--wide button.m-aside-newsletter__btn--list {
-  @include mixins-typography.untuck;
+  @include typography.untuck;
 
   & {
     height: 48px;
@@ -461,7 +461,7 @@
   padding-right: 16px;
 }
 
-$f-aside-subtitle: mixins-typography.generate-font-obj((font-family: variables.$sans-serif-font,
+$f-aside-subtitle: typography.generate-font-obj((font-family: variables.$sans-serif-font,
     font-family-loaded: variables.$sans-serif-font--loaded,
     font-loaded-class: variables.$sans-serif-font-loaded-class,
     settings: ('xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
@@ -469,7 +469,7 @@ $f-aside-subtitle: mixins-typography.generate-font-obj((font-family: variables.$
 
 
 .m-aside-newsletter .subtitle {
-  @include mixins-typography.font-styles($f-aside-subtitle);
+  @include typography.font-styles($f-aside-subtitle);
 
   a {
     color: colors.$color__link--accent;

@@ -2,8 +2,7 @@
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 @use "../setup/variables";
 @use "../themes/magazine";
 
@@ -69,11 +68,11 @@
 }
 
 .o-article__primary-actions>*.f-secondary:not(:nth-child(1)) {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 52));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 52));
 }
 
 .o-article__primary-actions>*.f-secondary:nth-child(3) {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 39));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 39));
 }
 
 .o-article__primary-actions>.m-article-actions:nth-child(1) {
@@ -104,15 +103,15 @@
 }
 
 .o-article__primary-actions *.f-secondary:not(.m-author):not(.m-link-list) a {
-  @include mixins-typography.text-underline(1.02em, colors.$color__rules--secondary);
+  @include typography.text-underline(1.02em, colors.$color__rules--secondary);
 
   &:hover,
   &:focus:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--hover);
+    @include typography.text-underline(1.02em, colors.$color__link--hover);
   }
 
   &:active:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--active);
+    @include typography.text-underline(1.02em, colors.$color__link--active);
   }
 }
 
@@ -256,7 +255,7 @@
 }
 
 .m-article-actions--publication__text {
-  @include mixins-typography.untuck();
+  @include typography.untuck();
 
   @each $name in ('large', 'xlarge') {
     @include breakpoint.breakpoint('#{$name}') {
@@ -371,7 +370,7 @@ margin-right: grid.colspan(2, #{$name});
               }
             }
 
-            @include mixins-typography.font-styles-untuck(mixins-typography.generate-font-obj((font-family: variables.$serif-font,
+            @include typography.font-styles-untuck(typography.generate-font-obj((font-family: variables.$serif-font,
                   font-family-loaded: variables.$serif-font--loaded,
                   font-loaded-class: variables.$serif-font-loaded-class,
                   settings: ('xsmall': (font-size: 22, line-height: 23, push: 0),

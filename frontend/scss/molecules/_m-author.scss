@@ -1,8 +1,7 @@
 @use "../setup/colors";
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 
 /***
 
@@ -69,7 +68,7 @@
 }
 
 .m-author .f-secondary {
-  @include other.tucked-margin-top(setup-typography.$f-secondary, ('xsmall': 12, 'medium+': 12));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 12, 'medium+': 12));
 
   & {
     flex: 0 0 auto;
@@ -86,7 +85,7 @@
 
   &:hover,
   &:focus:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--accent-hover);
+    @include typography.text-underline(1.02em, colors.$color__link--accent-hover);
 
     & {
       color: colors.$color__link--accent-hover;
@@ -94,7 +93,7 @@
   }
 
   &:active:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--accent-active);
+    @include typography.text-underline(1.02em, colors.$color__link--accent-active);
 
     & {
       color: colors.$color__link--accent-active;
@@ -107,7 +106,7 @@
 
   &:hover,
   &:focus:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--editorial-hover);
+    @include typography.text-underline(1.02em, colors.$color__link--editorial-hover);
 
     & {
       color: colors.$color__link--editorial-hover;
@@ -115,7 +114,7 @@
   }
 
   &:active:hover {
-    @include mixins-typography.text-underline(1.02em, colors.$color__link--editorial-active);
+    @include typography.text-underline(1.02em, colors.$color__link--editorial-active);
 
     & {
       color: colors.$color__link--editorial-active;

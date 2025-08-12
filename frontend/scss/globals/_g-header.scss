@@ -1,9 +1,10 @@
 @use "../setup/colors";
 @use "../setup/mixins/breakpoint";
-@use "../setup/mixins/typography";
+@use "../setup/typography";
 @use "../setup/variables";
 
 @use "sass:map";
+
 #a17:has(.level-1>[aria-expanded="true"])+.g-mask {
   background-color: rgba(colors.$color__black--80, 50%);
   bottom: 0;

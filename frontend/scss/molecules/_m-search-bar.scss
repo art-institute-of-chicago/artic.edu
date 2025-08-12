@@ -2,8 +2,7 @@
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/forms";
 @use "../setup/mixins/other";
-@use "../setup/mixins/typography" as mixins-typography;
-@use "../setup/typography" as setup-typography;
+@use "../setup/typography";
 @use "../setup/variables";
 
 .m-search-bar {
@@ -119,10 +118,10 @@
 
   padding-top: 8px;
 
-  @include other.tucked-margin-top(setup-typography.$f-body-editorial, ('xsmall': 40, 'small+': 56));
+  @include other.tucked-margin-top(typography.$f-body-editorial, ('xsmall': 40, 'small+': 56));
 
   &:first-child {
-    @include other.tucked-align-top(setup-typography.$f-body-editorial);
+    @include other.tucked-align-top(typography.$f-body-editorial);
   }
 
 }
@@ -192,7 +191,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ autocomplete
 
 .m-search-bar__autocomplete {
-  @include mixins-typography.untuck;
+  @include typography.untuck;
 
   & {
     display: block;
