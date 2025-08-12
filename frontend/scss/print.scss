@@ -1,6 +1,17 @@
+// setup/variables must be the first import as following imports depend on it
+@use 'setup/variables' with ( $disable-font-loading: true );
+
+@use "atoms/arrow-link";
+@use "atoms/deflist";
+@use "atoms/hr";
 @use "atoms/list";
+@use "atoms/tag";
 @use "layout/content";
+@use "setup/colors";
+@use "setup/mixins";
 @use "setup/typography";
+
+@use "sass:meta";
 
 html.s-print {
     left: 0;
@@ -37,19 +48,6 @@ html.s-print body {
         background: none;
     }
 
-    $disable-font-loading: true;
-
-    @import 'setup/variables';
-    @import 'setup/colors';
-    @import 'setup/mixins';
-    @import 'setup/typography';
-
-    @import 'atoms/arrow-link';
-    @import 'atoms/hr';
-    @import 'atoms/tag';
-    @import 'atoms/list';
-    @import 'atoms/deflist';
-
     *[class*='f-'] {
         color: #000;
 
@@ -71,20 +69,20 @@ html.s-print body {
         .journal-logo {
             width: 80px;
             height: 80px;
-            color: $color__black--54;
+            color: colors.$color__black--54;
             margin-right: 0.5in;
             align-self: flex-end;
             svg {
                 width: 100%;
                 height: 100%;
                 * {
-                    color: $color__black--54;
+                    color: colors.$color__black--54;
                 }
             }
         }
         .issue-number {
             align-self: flex-end;
-            color: $color__black--54;
+            color: colors.$color__black--54;
         }
     }
 
@@ -550,7 +548,7 @@ html.s-print body {
     .o-article__intro {
         width: 66%;
         p {
-            color: $color__black--54;
+            color: colors.$color__black--54;
         }
     }
 
@@ -568,10 +566,10 @@ html.s-print body {
     }
 
     .m-sidebar-toggle {
-        background-color: $color__white;
+        background-color: colors.$color__white;
 
         &::before {
-            background-color: $color__white;
+            background-color: colors.$color__white;
             border-bottom: 0px;
         }
 
