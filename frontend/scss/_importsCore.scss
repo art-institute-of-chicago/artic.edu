@@ -164,9 +164,9 @@
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ utilities */
 
-@use 'utilities/u-hide@x';
-@use 'utilities/u-show@x';
-@use 'utilities/sr-show@x';
+@use 'utilities/u-hide@x' as u-hide;
+@use 'utilities/u-show@x' as u-show;
+@use 'utilities/sr-show@x' as sr-show;
 @use 'utilities/u-crisp-image';
 @use 'utilities/u-nowrap';
 
