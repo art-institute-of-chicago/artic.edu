@@ -1,6 +1,8 @@
+@use "../atoms/loader";
 @use "../setup/colors";
 @use "../setup/mixins/forms";
 @use "../setup/typography";
+@use "../setup/placeholders";
 @use "../setup/variables";
 
 @use "sass:map";

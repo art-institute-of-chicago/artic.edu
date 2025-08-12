@@ -1,9 +1,11 @@
+@use "../organisms/o-article__primary-actions";
 @use "../setup/colors";
 @use "../setup/mixins/breakpoint";
 @use "../setup/mixins/grid";
 @use "../setup/variables";
 
 @use "sass:map";
+
 // This file contains styles for both journal issues and magazine issues
 .p-magazineissue-show,
 .p-magazineissue-latest,
