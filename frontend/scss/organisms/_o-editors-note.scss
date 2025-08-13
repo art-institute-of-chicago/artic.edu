@@ -50,9 +50,6 @@
     @include breakpoint.breakpoint('large+') {
       margin-bottom: 20px;
     }
-
-    @include breakpoint.breakpoint('xlarge') {
-    }
   }
 
   .o-editors-note__inner {
