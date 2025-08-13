@@ -277,13 +277,9 @@ const autocomplete = function(container) {
    * @see adapted from http://locutus.io/php/url/http_build_query/
    */
   function _arrayQueryStringHandler(formdata) {
-    var value
-    var tmp = []
-    var argSeparator = '&'
+    const argSeparator = '&'
 
     const _httpBuildQueryHelper = function (key, val) {
-      var k
-      tmp = []
       if (val === true) {
         val = '1'
       } else if (val === false) {
@@ -291,12 +287,13 @@ const autocomplete = function(container) {
       }
       if (val !== null) {
         if (typeof val === 'object') {
-          for (k in val) {
+          let serialized = []
+          for (const k in val) {
             if (val[k] !== null) {
-              tmp.push(_httpBuildQueryHelper(key + '[' + k + ']', val[k]))
+              serialized.push(_httpBuildQueryHelper(key + '[' + k + ']', val[k]))
             }
           }
-          return tmp.join(argSeparator)
+          return serialized.join(argSeparator)
         } else if (typeof val !== 'function') {
           return _encodeURIComponent(key) + '=' + _encodeURIComponent(val)
         } else {
@@ -307,15 +304,15 @@ const autocomplete = function(container) {
       }
     }
 
+    let queryItems = []
     for (const key in formdata) {
-      value = formdata[key]
-      const query = _httpBuildQueryHelper(key, value)
+      const query = _httpBuildQueryHelper(key, formdata[key])
       if (query !== '') {
-        tmp.push(query)
+        queryItems.push(query)
       }
     }
 
-    return tmp.join(argSeparator)
+    return queryItems.join(argSeparator)
   }
 
   /**
