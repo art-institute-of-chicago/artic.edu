@@ -56,6 +56,7 @@
         "chillerlan/php-qrcode": "^5.0",
         "eluceo/ical": "2.0",
         "erusev/parsedown": "^1.7",
+        "google/apiclient": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/httpauth": "^4.0",
         "kalnoy/nestedset": "^6.0",
