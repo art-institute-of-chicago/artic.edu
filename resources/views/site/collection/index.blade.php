@@ -24,7 +24,7 @@
     @slot('isPrimaryPageNav', true)
     @slot('linksPrimary', [
         ['label' => 'Artworks', 'href' => route('collection'), 'active' => true],
-        ['label' => 'Publications', 'href' => route('articles_publications')],
+        ['label' => 'Publications', 'href' => '/publications'],
         ['label' => 'Research', 'href' => route('collection.research_resources')]
     ])
 @endcomponent

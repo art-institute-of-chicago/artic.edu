@@ -102,9 +102,6 @@ Route::get('/events-more', [EventsController::class, 'indexMore'])->name('events
 Route::get('/events/{id}/ics', [EventsController::class, 'ics'])->name('events.ics');
 Route::get('/events/{id}/{slug?}', [EventsController::class, 'show'])->name('events.show');
 
-// Articles & Publications routes
-Route::get('/articles_publications', [ArticlesPublicationsController::class, 'index'])->name('articles_publications');
-
 // Articles routes
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
 Route::get('/articles/{id}/{slug?}', [ArticleController::class, 'show'])->name('articles.show');

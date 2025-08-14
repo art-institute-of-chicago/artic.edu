@@ -200,7 +200,7 @@ class ReportAltText extends Command
             }
 
             if ($item->id == 2) {
-                return 'https://www.artic.edu/articles_publications';
+                return 'https://www.artic.edu/publications';
             }
 
             if ($item->id == 3) {
