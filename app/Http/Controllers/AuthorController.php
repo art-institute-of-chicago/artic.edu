@@ -32,7 +32,7 @@ class AuthorController extends FrontController
         ];
 
         $nav = [
-            ['label' => 'Publications', 'href' => route('articles_publications'), 'links' => $subNav]
+            ['label' => 'Publications', 'href' => '/publications', 'links' => $subNav]
         ];
 
         $view_data = [
@@ -73,7 +73,7 @@ class AuthorController extends FrontController
             ],
             [
                 'label' => 'Publications',
-                'href' => '/articles_publications',
+                'href' => '/publications',
             ],
             [
                 'label' => 'Authors',

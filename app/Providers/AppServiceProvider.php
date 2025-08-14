@@ -404,17 +404,7 @@ class AppServiceProvider extends ServiceProvider
                                 ],
                                 [
                                     'name' => 'Publications',
-                                    'url' => '/articles_publications',
-                                    'children' => [
-                                        [
-                                            'name' => 'Print Catalogues',
-                                            'url' => '/print-publications',
-                                        ],
-                                        [
-                                            'name' => 'Digital Publications',
-                                            'url' => '/digital-publications',
-                                        ],
-                                    ],
+                                    'url' => '/publications',
                                 ],
                             ],
                         ],

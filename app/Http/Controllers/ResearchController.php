@@ -71,7 +71,7 @@ class ResearchController extends FrontController
                     'label' => 'Artworks',
                 ],
                 [
-                    'href' => route('articles_publications'),
+                    'href' => '/publications',
                     'label' => 'Publications',
                 ],
                 [

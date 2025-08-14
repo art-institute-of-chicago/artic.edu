@@ -39,7 +39,7 @@ class InteractiveFeatureExperiencesController extends FrontController
         $this->seo->setTitle($title);
 
         $nav = [
-            ['label' => 'Publications', 'href' => route('articles_publications'), 'links' => [
+            ['label' => 'Publications', 'href' => '/publications', 'links' => [
                 [
                     'label' => 'Articles',
                     'href' => route('articles'),
@@ -65,7 +65,7 @@ class InteractiveFeatureExperiencesController extends FrontController
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Publications', 'href' => route('articles_publications')],
+            ['label' => 'Publications', 'href' => '/publications'],
             ['label' => $title, 'href' => ''],
         ];
 
