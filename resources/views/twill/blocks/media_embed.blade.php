@@ -1,22 +1,19 @@
 @php
     $currentUrl = explode('/', request()->url());
     $type = $currentUrl[5] ?? null;
+    $default = $type === 'digitalPublications' ? 'l' : 's';
+    $disabled = $type === 'digitalPublications' ? true : false;
 @endphp
 
 @twillBlockTitle('Media embed')
 @twillBlockIcon('text')
 
-@php
-    $default = $type === 'digitalPublications' ? 'l' : 's';
-    $disabled = $type === 'digitalPublications' ? true : false;
-@endphp
-
 <x-twill::select
     name='size'
     label='Size'
     placeholder='Select size'
-    default='$default'
-    disabled='$disabled'
+    :default="$default"
+    :disabled="$disabled"
     :options="[
         [
             'value' => 's',
