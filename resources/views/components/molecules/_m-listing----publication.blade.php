@@ -19,7 +19,7 @@
 <{{ $tag ?? 'li' }}
   class="m-listing m-listing--publication m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}"
   data-filter-values="{{ $filterValues }}"
-  data-filter-date="{{ isset($item) && isset($item->publish_start_date) ? date('d-m-Y', strtotime($item->publish_start_date)) : '' }}"
+  data-filter-date="{{ isset($item) && isset($item?->publication_date) ? date('d-m-Y', strtotime($item?->publication_date)) :  date('d-m-Y', strtotime($item?->publish_start_date)) }}"
   data-filter-title="{{ isset($item) && isset($item->title) ? htmlspecialchars($item->title) : '' }}"
 >
     <a href="{{ $href ?? '' }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
@@ -50,7 +50,7 @@
             @endif
             @if (isset($landingPageType) && $landingPageType === 'publications')
                 @component('components.atoms._type')
-                    {!! date('Y', strtotime($item->publication_date ?? $item->publish_start_date)) !!}
+                    {!! date('Y', strtotime($item?->publication_date ?? $item?->publish_start_date)) !!}
                 @endcomponent
                 <br>
             @endif
