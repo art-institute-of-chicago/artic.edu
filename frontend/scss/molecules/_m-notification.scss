@@ -1,3 +1,9 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/other";
+@use "../setup/placeholders";
+@use "../setup/typography";
+
 @use "sass:color";
 /***
 
@@ -47,21 +53,21 @@
 
 
 .m-notification {
-  @include background-fill;
+  @include other.background-fill;
 
   & {
     display: block;
     padding-top: 16px;
     padding-right: 48px;
     padding-bottom: 20px;
-    background-color: $color__error;
+    background-color: colors.$color__error;
     transition: all .1s linear;
   }
 }
 
 .m-notification--header {
   padding-right: 0px;
-  background-color: color.adjust($color__error, $alpha: -0.03);
+  background-color: color.adjust(colors.$color__error, $alpha: -0.03);
 
   // Wait until cookie has been confirmed
   display: none;
@@ -80,7 +86,7 @@
 .m-notification--header .m-notification__text {
   margin-right: 28px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     br {
       display: none;
     }
@@ -103,23 +109,23 @@
 
 .m-notification__text,
 .m-notification__title {
-  color: $color__text--title-contrast;
+  color: colors.$color__text--title-contrast;
 }
 
 .m-notification__title.f-module-title-1 {
-  @include tucked-margin-top($f-module-title-1, ('xsmall': 12));
+  @include other.tucked-margin-top(typography.$f-module-title-1, ('xsmall': 12));
 }
 
 .m-notification__text.f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 12));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 12));
 
   .m-notification__title+& {
-    @include tucked-margin-top($f-secondary, ('xsmall': 20));
+    @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 20));
   }
 }
 
 .m-notification__text a {
-  color: $color__text--title-contrast;
+  color: colors.$color__text--title-contrast;
   text-decoration: underline;
 }
 
@@ -140,11 +146,11 @@
   border: 0 none;
   border-radius: 0;
   background: transparent;
-  color: $color__text--title-contrast;
+  color: colors.$color__text--title-contrast;
   cursor: pointer;
 
   // WEB-2354: Raise close button on small and xsmall
-  @include breakpoint('small-') {
+  @include breakpoint.breakpoint('small-') {
     top: -4px;
   }
 }
@@ -153,28 +159,28 @@
 
 
 .m-notification--secondary {
-  background-color: $color__black--90;
+  background-color: colors.$color__black--90;
 }
 
 .m-notification--tertiary {
-  background-color: $color__bg--primary;
+  background-color: colors.$color__bg--primary;
 
   .m-notification__title,
   .m-notification__text,
   .m-notification__text a,
   .m-notification__close {
-    color: $color__text--secondary;
+    color: colors.$color__text--secondary;
   }
 }
 
 .m-notification--quaternary {
-  background-color: $color__grey--100;
+  background-color: colors.$color__grey--100;
 }
 
 .m-notification--quinary {
   margin-top: 40px;
   padding-left: 20px;
-  border: 1px solid $color__black--10;
+  border: 1px solid colors.$color__black--10;
   background-color: transparent;
 
   &:first-child {
@@ -182,36 +188,36 @@
   }
 
   .m-notification__title {
-    color: $color__text;
+    color: colors.$color__text;
   }
 
   .m-notification__text,
   .m-notification__close {
-    color: $color__text--secondary;
+    color: colors.$color__text--secondary;
   }
 
   .m-notification__text a {
-    color: $color__link;
+    color: colors.$color__link;
     text-decoration: none;
 
     &:hover,
     &:focus:hover {
-      color: $color__link--hover;
+      color: colors.$color__link--hover;
     }
 
     &:active:hover {
-      color: $color__link--active;
+      color: colors.$color__link--active;
     }
   }
 }
 
 .m-notification--error {
-  background-color: $color__bg--error;
+  background-color: colors.$color__bg--error;
 
   .m-notification__title,
   .m-notification__text,
   .m-notification__text a,
   .m-notification__close {
-    color: $color__text--error;
+    color: colors.$color__text--error;
   }
 }

@@ -1,9 +1,13 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/variables";
+
 .quick-look__header {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
 
-    @include breakpoint('small-') {
+    @include breakpoint.breakpoint('small-') {
         flex-direction: column;
     }
 
@@ -14,14 +18,14 @@
         justify-content: space-between;
         flex-direction: row;
 
-        @include breakpoint('medium-') {
+        @include breakpoint.breakpoint('medium-') {
             width: 48%;
             height: auto;
             flex-direction: column;
             flex-wrap: wrap;
         }
 
-        @include breakpoint('small-') {
+        @include breakpoint.breakpoint('small-') {
             width: 100%;
             height: auto;
             flex-direction: column;
@@ -36,14 +40,14 @@
             padding-right: 40px;
             width: 70%;
 
-            @include breakpoint('medium-') {
+            @include breakpoint.breakpoint('medium-') {
                 margin: 0;
                 padding: 0;
                 order: 1;
                 width: 100% !important;
             }
 
-            @include breakpoint('small-') {
+            @include breakpoint.breakpoint('small-') {
                 margin: 0;
                 order: 1;
                 width: 100% !important;
@@ -60,7 +64,7 @@
                 }
 
                 .intro {
-                    font-family: $sans-serif-font--loaded;
+                    font-family: variables.$sans-serif-font--loaded;
                     font-size: 17px;
                     font-weight: 300;
                     line-height: 28px;
@@ -68,13 +72,13 @@
                 }
 
                 .author {
-                    font-family: $sans-serif-font--loaded;
+                    font-family: variables.$sans-serif-font--loaded;
                     font-size: 15px;
                     font-weight: 400;
                     line-height: 20px;
                     letter-spacing: 0.01em;
                     margin-top: 0 !important;
-                    color: $color__black--54;
+                    color: colors.$color__black--54;
                 }
             }
         }
@@ -83,14 +87,14 @@
             order: 1;
             width: 30%;
 
-            @include breakpoint('medium-') {
+            @include breakpoint.breakpoint('medium-') {
                 display: flex;
                 flex-direction: row;
                 width: 100% !important;
                 gap: 20px;
             }
 
-            @include breakpoint('small-') {
+            @include breakpoint.breakpoint('small-') {
                 order: 2;
                 max-width: 100% !important;
                 width: 100% !important;
@@ -102,7 +106,7 @@
                 width: 100%;
 
                 .m-listing__meta {
-                    @include breakpoint('large+') {
+                    @include breakpoint.breakpoint('large+') {
                         min-height: 0;
                         margin-bottom: 30px;
                     }
@@ -119,12 +123,12 @@
 
             .author {
                 margin-top: 0 !important;
-                font-family: $sans-serif-font--loaded;
+                font-family: variables.$sans-serif-font--loaded;
                 font-size: 15px;
                 font-weight: 400;
                 line-height: 20px;
                 letter-spacing: 0.01em;
-                color: $color__black--54;
+                color: colors.$color__black--54;
             }
         }
     }
@@ -132,26 +136,26 @@
     .quick-look__list-container {
         height: min-content;
         width: 30%;
-        background-color: $color__cold-white;
+        background-color: colors.$color__cold-white;
 
-        @include breakpoint('medium-') {
+        @include breakpoint.breakpoint('medium-') {
             width: 48% !important;
         }
 
-        @include breakpoint('small-') {
+        @include breakpoint.breakpoint('small-') {
             height: auto;
             width: 100% !important;
         }
 
         .quick-look__list-title {
-            background-color: $color__black--85;
-            font-family: $sans-serif-font--loaded;
+            background-color: colors.$color__black--85;
+            font-family: variables.$sans-serif-font--loaded;
             font-size: 13px;
             font-weight: 400;
             line-height: 16px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: $color__black--3;
+            color: colors.$color__black--3;
             padding: 12px;
         }
 
@@ -163,7 +167,7 @@
             flex-wrap: wrap;
             padding-bottom: 28px;
 
-            @include breakpoint('medium-') {
+            @include breakpoint.breakpoint('medium-') {
                 padding-bottom: 28px;
             }
 
@@ -172,7 +176,7 @@
 
                 &:not(:first-child) {
                     .quick-look__item-meta {
-                        border-top: 1px solid $color__black--10;
+                        border-top: 1px solid colors.$color__black--10;
                     }
                 }
 
@@ -187,8 +191,8 @@
                 flex-direction: row;
 
                 .quick-look__list-count {
-                    color: $color__black;
-                    font-family: $serif-font--loaded;
+                    color: colors.$color__black;
+                    font-family: variables.$serif-font--loaded;
                     font-weight: 400;
                     font-size: 38px;
                     padding: 4px 4px 4px 16px;
@@ -207,7 +211,7 @@
                     .title.f-list-3 {
                         display: block;
                         width: 100%;
-                        font-family: $sans-serif-font--loaded;
+                        font-family: variables.$sans-serif-font--loaded;
                         font-weight: 400;
                         font-size: 16px;
                         line-height: 20px;

@@ -1,3 +1,5 @@
+@use "../setup/mixins/breakpoint";
+
 /***
 
 Calendar active
@@ -32,7 +34,7 @@ Display the mask and the calender for date selecting.
     display: block;
   }
 
-  @include breakpoint('small-') {
+  @include breakpoint.breakpoint('small-') {
 
     .g-mask {
       opacity: 1;

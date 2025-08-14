@@ -1,3 +1,7 @@
+@use "../../setup/colors";
+@use "../../setup/mixins/breakpoint";
+@use "../../setup/variables";
+
 .home {
   .o-hours {
     margin-top: 24px;
@@ -13,23 +17,23 @@
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 20px;
-    border-bottom: 1px solid $color__rules--primary;
+    border-bottom: 1px solid colors.$color__rules--primary;
 
-    @include breakpoint('small-') {
+    @include breakpoint.breakpoint('small-') {
       flex-direction: column;
     }
 
     .home-callout {
       min-width: 65%;
 
-      @include breakpoint('small-') {
+      @include breakpoint.breakpoint('small-') {
         min-width: 100%;
       }
 
       .home-callout-text {
-        color: $color__text--tertiary;
+        color: colors.$color__text--tertiary;
         a {
-          color: $color__rules--brand;
+          color: colors.$color__rules--brand;
           text-decoration: underline;
           text-decoration-thickness: 2px;
         }
@@ -40,22 +44,22 @@
       margin-left: 5%;
       min-width: 30%;
 
-      @include breakpoint('small-') {
+      @include breakpoint.breakpoint('small-') {
         margin-left: 0;
         margin-top: 20px;
         min-width: 100%;
       }
       > div {
-        border-top: 1px solid $color__rules--primary;
+        border-top: 1px solid colors.$color__rules--primary;
         padding: 20px 0;
         span {
-          font-family: $sans-serif-font--loaded;
+          font-family: variables.$sans-serif-font--loaded;
           display: flex;
           align-items: center;
           font-size: 17px;
           svg {
-            color: $color__rules--brand;
-            fill: $color__rules--brand;
+            color: colors.$color__rules--brand;
+            fill: colors.$color__rules--brand;
             height: 24px;
             width: 24px;
             margin-right: 8px;
@@ -64,14 +68,14 @@
       }
       div:last-child {
         span {
-          font-family: $sans-serif-font--loaded;
+          font-family: variables.$sans-serif-font--loaded;
           font-size: 12px;
           font-weight: 500;
-          color: $color__text--secondary;
+          color: colors.$color__text--secondary;
           letter-spacing: 1px;
         }
         svg {
-          color: $color__link;
+          color: colors.$color__link;
           margin-top: 16px;
           margin-right: 16px;
           height: 24px;

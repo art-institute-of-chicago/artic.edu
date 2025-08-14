@@ -1,3 +1,5 @@
+@use "../variables";
+
 @use "sass:map";
 @use "sass:string";
 /*
@@ -12,7 +14,7 @@
 */
 @function get-breakpoint-directions() {
   $_bps: ();
-  @each $k, $bp in $breakpoints {
+  @each $k, $bp in variables.$breakpoints {
     $_bps: map.merge($_bps, ($k: $bp));
     $start: map.get($bp, start);
     $end: map.get($bp, end);

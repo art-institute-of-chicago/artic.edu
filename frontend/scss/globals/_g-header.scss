@@ -1,6 +1,13 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/typography";
+@use "../setup/placeholders";
+@use "../setup/variables";
+
 @use "sass:map";
+
 #a17:has(.level-1>[aria-expanded="true"])+.g-mask {
-  background-color: rgba($color__black--80, 50%);
+  background-color: rgba(colors.$color__black--80, 50%);
   bottom: 0;
   opacity: 1;
   right: 0;
@@ -14,7 +21,7 @@
 
 .g-header {
   position: fixed;
-  z-index: map.get($zindexs, 'header');
+  z-index: map.get(variables.$zindexs, 'header');
   left: 0;
   right: 0;
   top: 0;
@@ -29,38 +36,38 @@
 }
 
 .g-header:not(:has([aria-expanded="true"])) {
-  background-color: rgba($color__white, 1);
+  background-color: rgba(colors.$color__white, 1);
   transition: background-color .3s ease-out;
 }
 
 .g-header:has([aria-expanded="true"]) {
-  z-index: map.get($zindexs, 'header');
-  background-color: rgba($color__white, 1);
+  z-index: map.get(variables.$zindexs, 'header');
+  background-color: rgba(colors.$color__white, 1);
   transition: background-color .6s ease-in;
 
   &:has(.m-notification--header) {
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       height: 416px !important;
     }
 
-    @include breakpoint('medium') {
+    @include breakpoint.breakpoint('medium') {
       height: 424px !important;
     }
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       height: 428px !important;
     }
   }
 
-  @include breakpoint('small') {
+  @include breakpoint.breakpoint('small') {
     height: 368px;
   }
 
-  @include breakpoint('medium') {
+  @include breakpoint.breakpoint('medium') {
     height: 376px;
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     height: 380px;
   }
 
@@ -73,14 +80,14 @@
   @extend %container;
   position: relative;
   min-height: 112px;
-  border-bottom: 1px solid $color__rules--primary;
+  border-bottom: 1px solid colors.$color__rules--primary;
 
   .g-header__nav-primary__container {
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       min-height: 128px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       min-height: 140px;
     }
   }
@@ -92,15 +99,15 @@
   top: 16px;
   width: 80px;
   height: 80px;
-  color: $color__black;
+  color: colors.$color__black;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     top: 20px;
     width: 88px;
     height: 88px;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     top: 24px;
     width: 92px;
     height: 92px;
@@ -118,23 +125,23 @@
   &:nth-child(1) {
     display: block;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       display: none;
     }
   }
 
   &:nth-child(2) {
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       display: block;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       display: none;
     }
   }
 
   &:nth-child(3) {
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       display: block;
     }
   }
@@ -146,9 +153,9 @@
   left: 120px;
   top: 12px;
   margin-top: 0;
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: block;
   }
 }
@@ -164,7 +171,7 @@
   right: 0;
 
   [aria-expanded="false"]+.details {
-    background: rgba($color__white, 0);
+    background: rgba(colors.$color__white, 0);
     opacity: 0;
     visibility: collapse;
   }
@@ -192,15 +199,15 @@
     transition: opacity .6s ease-in;
   }
 
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     display: none;
   }
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     top: 88px;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     top: 92px;
   }
 }
@@ -216,7 +223,7 @@
       flex: 0 0 auto;
       margin-left: 16px;
 
-      @include breakpoint('medium+') {
+      @include breakpoint.breakpoint('medium+') {
         margin-left: 32px;
       }
     }
@@ -225,11 +232,11 @@
 
 .g-header__nav-primary a,
 .g-header__nav-primary button {
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
   transition: color .6s linear;
 
-  @include breakpoint('small+') {
-    color: $color__text--title;
+  @include breakpoint.breakpoint('small+') {
+    color: colors.$color__text--title;
   }
 }
 
@@ -248,10 +255,10 @@
 }
 
 .g-header__nav-primary .s-current a {
-  color: $color__link--accent;
+  color: colors.$color__link--accent;
 
   &:hover {
-    @include text-underline(1.12em, $color__link--accent);
+    @include typography.text-underline(1.12em, colors.$color__link--accent);
   }
 
   &:active {
@@ -264,7 +271,7 @@
   position: relative;
   top: -1px;
 
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     display: none;
   }
 }
@@ -280,7 +287,7 @@
     }
 
     &[aria-expanded="true"] {
-      color: $color__red--100;
+      color: colors.$color__red--100;
       transition: color .6s;
 
       & .icon--arrow {
@@ -297,16 +304,16 @@
   }
 
   &>.details {
-    background: linear-gradient(to right, $color__black--5 33%, transparent 33%);
-    box-shadow: 0 4px 20px -20px rgba($color__black, 15%);
+    background: linear-gradient(to right, colors.$color__black--5 33%, transparent 33%);
+    box-shadow: 0 4px 20px -20px rgba(colors.$color__black, 15%);
     height: 240px;
     left: -6px;
     margin-top: 16px;
     position: fixed;
     width: 100vw;
 
-    @include breakpoint('large+') {
-      background: linear-gradient(to right, $color__black--5 50%, transparent 50%);
+    @include breakpoint.breakpoint('large+') {
+      background: linear-gradient(to right, colors.$color__black--5 50%, transparent 50%);
       margin-top: 20px;
     }
 
@@ -317,7 +324,7 @@
       margin-right: 4.6875vw;
       height: 100%;
 
-      @include breakpoint('xlarge') {
+      @include breakpoint.breakpoint('xlarge') {
         margin-left: auto;
         margin-right: auto;
         width: 1500px;
@@ -326,11 +333,11 @@
 
     &>.details__container>a,
     &>.details__container>span {
-      background-color: $color__black--5;
+      background-color: colors.$color__black--5;
       display: flex;
       flex-basis: 33%;
 
-      @include breakpoint('large+') {
+      @include breakpoint.breakpoint('large+') {
         flex-basis: 50%;
       }
     }
@@ -342,27 +349,27 @@
       max-width: 239px;
       object-fit: cover;
 
-      @include breakpoint('medium-') {
+      @include breakpoint.breakpoint('medium-') {
         display: none;
       }
 
-      @include breakpoint('xlarge') {
+      @include breakpoint.breakpoint('xlarge') {
         margin-left: 0;
       }
     }
 
     .description__container {
-      color: $color__black--54;
+      color: colors.$color__black--54;
       font-size: 16px;
       line-height: 24px;
       margin: 32px;
 
-      @include breakpoint('medium-') {
+      @include breakpoint.breakpoint('medium-') {
         margin-left: 0;
       }
 
       .title {
-        color: $color__black--80;
+        color: colors.$color__black--80;
         font-size: 24px;
         line-height: 28px;
         padding-bottom: .5em;
@@ -370,7 +377,7 @@
       }
 
       .cta {
-        color: $color__red--100;
+        color: colors.$color__red--100;
         font-size: 17px;
         line-height: 28px;
       }
@@ -388,12 +395,12 @@
       margin-top: 24px;
       padding-left: 32px;
 
-      @include breakpoint('medium-') {
+      @include breakpoint.breakpoint('medium-') {
         flex-basis: 33%;
       }
 
       &:has(.details) {
-        border-right: 1px solid $color__black--20;
+        border-right: 1px solid colors.$color__black--20;
       }
     }
   }
@@ -402,7 +409,7 @@
 .g-header__nav-primary .level-1.exhibitions {
   &>.details {
     .supertitle {
-      color: $color__grey--100;
+      color: colors.$color__grey--100;
       font-size: 12px;
       font-weight: 325;
       line-height: 16px;
@@ -424,11 +431,11 @@
     position: absolute;
     top: 24px;
 
-    @include breakpoint('large') {
+    @include breakpoint.breakpoint('large') {
       left: 75%;
     }
 
-    @include breakpoint('xlarge') {
+    @include breakpoint.breakpoint('xlarge') {
       left: calc(50% + 375px);
       margin: auto
     }
@@ -442,7 +449,7 @@
 
 .g-header__nav-primary [role="menu"]:has(>li>a:hover, >li>a:focus, >li>a[aria-expanded="true"]) {
   &>li>a:not(:hover, :focus, [aria-expanded="true"]) {
-    color: $color__black--30;
+    color: colors.$color__black--30;
     transition: color .3s ease-out;
   }
 }
@@ -452,17 +459,17 @@
   right: 0;
   top: 20px;
 
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     top: 80px;
   }
 }
 
 .g-header__opening-hours a,
 .g-header__nav-secondary a {
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 
-  @include breakpoint('xsmall') {
-    color: $color__text--title;
+  @include breakpoint.breakpoint('xsmall') {
+    color: colors.$color__text--title;
   }
 }
 
@@ -471,16 +478,16 @@
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__text--secondary);
+    @include typography.text-underline(1.02em, colors.$color__text--secondary);
   }
 
   &:active {
-    @include text-underline(1.02em, transparent);
+    @include typography.text-underline(1.02em, transparent);
   }
 }
 
 .g-header__menu-link {
-  @include untuck;
+  @include typography.untuck;
 
   & {
     position: absolute;
@@ -490,21 +497,21 @@
     padding: 0;
     border: 0 none;
     background-color: transparent;
-    color: $color__text--title;
+    color: colors.$color__text--title;
     cursor: pointer;
   }
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     display: none;
   }
 
   &:hover,
   &:focus:hover {
-    color: $color__text;
+    color: colors.$color__text;
   }
 
   &:active:hover {
-    color: $color__text--secondary;
+    color: colors.$color__text--secondary;
   }
 }
 

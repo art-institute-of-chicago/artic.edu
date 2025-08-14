@@ -1,3 +1,11 @@
+@use "../atoms/loader";
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/mixins/other";
+@use "../setup/typography";
+@use "../setup/variables";
+
 /***
 
 ```
@@ -63,7 +71,7 @@
 
   .m-inline-aside &,
   &.o-blocks__block {
-    border-top: 1px solid $color__rules--primary;
+    border-top: 1px solid colors.$color__rules--primary;
   }
 }
 
@@ -91,7 +99,7 @@
 }
 
 .m-aside-newsletter legend .title.f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 36, 'medium+': 40));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 36, 'medium+': 40));
 }
 
 .m-aside-newsletter__field {
@@ -108,7 +116,7 @@
 }
 
 .m-aside-newsletter label.f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small': 28));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 40, 'small': 28));
 }
 
 .m-aside-newsletter input {
@@ -125,7 +133,7 @@
 
 
 .m-aside-newsletter button.m-aside-newsletter__btn--submit {
-  @include untuck;
+  @include typography.untuck;
 
   & {
     display: block;
@@ -134,53 +142,53 @@
     height: 48px;
     margin: 16px 0 0 0;
     padding: 0 20px;
-    border: 1px solid $color__rules--secondary;
+    border: 1px solid colors.$color__rules--secondary;
     border-radius: 0;
     background-color: transparent;
-    color: $color__text--title;
+    color: colors.$color__text--title;
     cursor: pointer;
   }
 
   &:hover,
   &:focus:hover {
-    border-color: $color__black--30;
-    color: $color__text--title;
+    border-color: colors.$color__black--30;
+    color: colors.$color__text--title;
   }
 
   &:active:hover {
-    border-color: $color__black--42;
-    color: $color__text--title;
+    border-color: colors.$color__black--42;
+    color: colors.$color__text--title;
   }
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     width: auto;
     margin-left: -1px;
   }
 }
 
-@include breakpoint('medium+') {
+@include breakpoint.breakpoint('medium+') {
   .m-aside-newsletter input:hover+button.m-aside-newsletter__btn--submit {
-    border-color: $color__input-border--hover;
+    border-color: colors.$color__input-border--hover;
   }
 
   .m-aside-newsletter input:focus+button.m-aside-newsletter__btn--submit {
-    border-color: $color__input-border--focus;
+    border-color: colors.$color__input-border--focus;
   }
 
   .m-aside-newsletter .s-error input,
   .m-aside-newsletter .s-error input+button.m-aside-newsletter__btn--submit {
-    border-color: $color__input-border--error;
+    border-color: colors.$color__input-border--error;
   }
 }
 
 .m-aside-newsletter__msg {
-  @include untuck;
-  @include background-fill;
+  @include typography.untuck;
+  @include other.background-fill;
 
   & {
     display: block;
-    background-color: $color__link;
-    color: $color__white;
+    background-color: colors.$color__link;
+    color: colors.$color__white;
     font-style: normal;
   }
 }
@@ -189,14 +197,14 @@
   padding-top: 11px;
   padding-bottom: 13px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-top: 10px;
     padding-bottom: 14px;
   }
 }
 
 .m-aside-newsletter__msg--error {
-  background-color: $color__error;
+  background-color: colors.$color__error;
 }
 
 // Variation `.m-aside-newsletter--inline
@@ -222,7 +230,7 @@
 }
 
 .m-aside-newsletter--inline button.m-aside-newsletter__btn--submit {
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-top: 0;
   }
 }
@@ -241,10 +249,10 @@
 // Variation `.m-aside-newsletter--wide`
 
 .m-aside-newsletter--wide {
-  @include background-fill;
+  @include other.background-fill;
 
   & {
-    background-color: $color__bg--secondary;
+    background-color: colors.$color__bg--secondary;
   }
 
   &.o-blocks__block {
@@ -253,17 +261,17 @@
 }
 
 .m-aside-newsletter--wide fieldset {
-  @include breakpoint('large+') {
-    padding-left: colspan(29, large);
+  @include breakpoint.breakpoint('large+') {
+    padding-left: grid.colspan(29, large);
   }
 
-  @include breakpoint('xlarge') {
-    padding-left: colspan(29, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    padding-left: grid.colspan(29, xlarge);
   }
 }
 
 .m-aside-newsletter--wide legend {
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     position: absolute;
     left: 0;
     top: 0;
@@ -271,51 +279,51 @@
 }
 
 .m-aside-newsletter--wide input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 30px $color__bg--secondary inset;
+  -webkit-box-shadow: 0 0 0 30px colors.$color__bg--secondary inset;
 }
 
 .m-aside-newsletter--wide legend .title {
-  @include breakpoint('large+') {
-    width: colspan(29, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(29, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(29, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(29, xlarge);
   }
 }
 
 .m-aside-newsletter--wide legend .title.f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 44, 'small+': 52, 'large+': 82, 'xlarge': 84));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 44, 'small+': 52, 'large+': 82, 'xlarge': 84));
 }
 
 .m-aside-newsletter--wide .m-aside-newsletter__field__wrapper {
   padding-top: 0.02px;
   padding-bottom: 16px; // 28
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     padding-top: 20px;
     padding-bottom: 16px; // 40
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     padding-top: 52px;
     padding-bottom: 16px; // 60
   }
 }
 
 .m-aside-newsletter--wide .m-aside-newsletter__field {
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     padding-top: 20px;
     flex-flow: row nowrap;
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     padding-top: 0px;
   }
 }
 
 .m-aside-newsletter--wide label {
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     width: auto;
   }
 }
@@ -330,7 +338,7 @@
   border-width: 0;
   border-bottom-width: 1px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-left: 20px;
   }
 }
@@ -341,34 +349,34 @@
   padding: 0;
   border-width: 0;
   border-bottom-width: 1px;
-  border-color: $color__rules--secondary;
+  border-color: colors.$color__rules--secondary;
   border-radius: 0;
-  color: $color__link--accent;
+  color: colors.$color__link--accent;
   text-align: right;
 
   &:hover,
   &:focus:hover {
-    border-color: $color__rules--secondary;
-    color: $color__link--accent-hover;
+    border-color: colors.$color__rules--secondary;
+    color: colors.$color__link--accent-hover;
   }
 
   &:active:hover {
-    border-color: $color__rules--secondary;
-    color: $color__link--accent-active;
+    border-color: colors.$color__rules--secondary;
+    color: colors.$color__link--accent-active;
   }
 }
 
 .m-aside-newsletter--wide input:hover+button.m-aside-newsletter__btn--submit {
-  border-color: $color__input-border--hover;
+  border-color: colors.$color__input-border--hover;
 }
 
 .m-aside-newsletter--wide input:focus+button.m-aside-newsletter__btn--submit {
-  border-color: $color__input-border--focus;
+  border-color: colors.$color__input-border--focus;
 }
 
 .m-aside-newsletter--wide .s-error input,
 .m-aside-newsletter--wide .s-error input+button.m-aside-newsletter__btn--submit {
-  border-color: $color__input-border--error;
+  border-color: colors.$color__input-border--error;
 }
 
 .m-aside-newsletter--wide .m-aside-newsletter__btn--list__wrapper {
@@ -376,7 +384,7 @@
 }
 
 .m-aside-newsletter--wide button.m-aside-newsletter__btn--list {
-  @include untuck;
+  @include typography.untuck;
 
   & {
     height: 48px;
@@ -385,29 +393,29 @@
     border: transparent;
     border-radius: 0;
     background-color: transparent;
-    color: $color__text--title;
+    color: colors.$color__text--title;
     cursor: pointer;
   }
 
   &:hover,
   &:focus:hover {
-    border-color: $color__black--30;
-    color: $color__text--title;
+    border-color: colors.$color__black--30;
+    color: colors.$color__text--title;
   }
 
   &:active:hover {
-    border-color: $color__black--42;
-    color: $color__text--title;
+    border-color: colors.$color__black--42;
+    color: colors.$color__text--title;
   }
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     width: auto;
     margin-left: -1px;
   }
 
   svg {
     transform: rotate(90deg);
-    transition: transform .2s $bezier--ease-in-out;
+    transition: transform .2s variables.$bezier--ease-in-out;
   }
 
   &.m-aside-newsletter__btn--list--opened svg {
@@ -418,7 +426,7 @@
 .m-aside-newsletter__list-wrapper {
   height: 0;
   overflow: hidden;
-  transition: height .2s $bezier--ease-in-out, padding .2s $bezier--ease-in-out;
+  transition: height .2s variables.$bezier--ease-in-out, padding .2s variables.$bezier--ease-in-out;
 
   &[aria-hidden="false"] {
     height: auto;
@@ -430,7 +438,7 @@
 }
 
 .m-aside-newsletter__list {
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     display: flex;
   }
 }
@@ -440,34 +448,34 @@
 }
 
 .m-aside-newsletter__list__right .m-fieldset__field--group {
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     margin-top: 4px;
   }
 }
 
 .m-aside-newsletter--wide .m-aside-newsletter__msg {
-  @include background-fill;
+  @include other.background-fill;
 }
 
 .m-aside-newsletter--wide .checkbox label {
   padding-right: 16px;
 }
 
-$f-aside-subtitle: generate-font-obj((font-family: $sans-serif-font,
-    font-family-loaded: $sans-serif-font--loaded,
-    font-loaded-class: $sans-serif-font-loaded-class,
+$f-aside-subtitle: typography.generate-font-obj((font-family: variables.$sans-serif-font,
+    font-family-loaded: variables.$sans-serif-font--loaded,
+    font-loaded-class: variables.$sans-serif-font-loaded-class,
     settings: ('xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
       'medium+': (font-size: 14, line-height: 28, push: 0))));
 
 
 .m-aside-newsletter .subtitle {
-  @include font-styles($f-aside-subtitle);
+  @include typography.font-styles($f-aside-subtitle);
 
   a {
-    color: $color__link--accent;
+    color: colors.$color__link--accent;
 
     &:hover {
-      color: $color__link--accent-hover;
+      color: colors.$color__link--accent-hover;
     }
   }
 }

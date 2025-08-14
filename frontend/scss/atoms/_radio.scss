@@ -1,3 +1,7 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/variables";
+
 /***
 
 radio
@@ -43,13 +47,13 @@ radio
   display: block;
   position: relative;
   padding-left: 34px;
-  color: $color__input-text;
+  color: colors.$color__input-text;
   cursor: pointer;
 }
 
 .radio label:hover,
 .radio input[type=radio]:focus + span label {
-  color: $color__input-text--focus;
+  color: colors.$color__input-text--focus;
 }
 
 .radio input[type=radio]:focus + span label {
@@ -64,33 +68,33 @@ radio
   top: 3px;
   width: 16px;
   height: 16px;
-  border: 1px solid $color__input-border;
+  border: 1px solid colors.$color__input-border;
   border-radius: 50%;
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     top: 6px;
   }
 }
 
 .radio label::after {
   border: 0 none;
-  background-color: $color__white;
+  background-color: colors.$color__white;
   opacity: 0;
   transform: scale(.1);
-  transition: all .15s $bezier__bounce;
+  transition: all .15s variables.$bezier__bounce;
 }
 
 .radio input[type=radio]:focus + span label::before {
-  border-color: $color__input-border--focus;
+  border-color: colors.$color__input-border--focus;
 }
 
 .radio label:hover::before {
-  border-color: $color__input-border--hover;
+  border-color: colors.$color__input-border--hover;
 }
 
 .radio input[type=radio]:checked + span label::before {
-  border-color: $color__input-border--checked;
-  background-color: $color__input-border--checked;
+  border-color: colors.$color__input-border--checked;
+  background-color: colors.$color__input-border--checked;
 }
 
 .radio input[type=radio]:checked + span label::after {
@@ -104,5 +108,5 @@ radio
 }
 
 .radio.s-error label::before {
-  border-color: $color__input-border--error;
+  border-color: colors.$color__input-border--error;
 }

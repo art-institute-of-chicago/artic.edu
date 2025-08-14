@@ -1,3 +1,8 @@
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/mixins/other";
+@use "../setup/typography";
+
 .m-post-hero {
   display: flex;
   position: relative;
@@ -7,12 +12,12 @@
 .m-post-hero__image {
   width: 100%;
 
-  @include breakpoint('large+') {
-    width: colspan(38, 'large');
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(38, 'large');
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(38, 'xlarge');
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(38, 'xlarge');
   }
 }
 
@@ -25,33 +30,33 @@
 .m-post-hero__main {
   width: 100%;
 
-  @include breakpoint('large+') {
-    width: colspan(18, 'large');
-    margin-left: colspan(2, 'large');
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(18, 'large');
+    margin-left: grid.colspan(2, 'large');
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(18, 'xlarge');
-    margin-left: colspan(2, 'xlarge');
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(18, 'xlarge');
+    margin-left: grid.colspan(2, 'xlarge');
   }
 }
 
 .m-post-hero__main .f-list-4 {
-  @include tucked-margin-top($f-list-4, ('xsmall': 36, 'small+': 44));
+  @include other.tucked-margin-top(typography.$f-list-4, ('xsmall': 36, 'small+': 44));
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     &:first-child {
-      @include tucked-align-top($f-list-4, 'large');
+      @include other.tucked-align-top(typography.$f-list-4, 'large');
     }
   }
 
-  @include breakpoint('xlarge') {
+  @include breakpoint.breakpoint('xlarge') {
     &:first-child {
-      @include tucked-align-top($f-list-4, 'xlarge');
+      @include other.tucked-align-top(typography.$f-list-4, 'xlarge');
     }
   }
 }
 
 .m-post-hero__main .f-body {
-  @include tucked-margin-top($f-body, ('xsmall': 28, 'small+': 36));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 28, 'small+': 36));
 }

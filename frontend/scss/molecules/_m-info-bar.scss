@@ -1,3 +1,5 @@
+@use "../setup/colors";
+
 /***
 
 ```
@@ -15,7 +17,7 @@
 .m-info-bar {
   position: relative;
   padding: 10px 24px 16px;
-  background-color: $color__bg--primary;
+  background-color: colors.$color__bg--primary;
 }
 
 .m-info-bar--w-icon {
@@ -28,5 +30,5 @@
   top: 20px;
   width: 16px;
   height: 16px;
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 }

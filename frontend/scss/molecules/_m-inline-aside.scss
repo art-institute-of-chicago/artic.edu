@@ -1,7 +1,10 @@
+@use "../setup/mixins/other";
+@use "../setup/typography";
+
 .m-inline-aside .f-subheading-1 {
-  @include tucked-margin-top($f-subheading-1, ('xsmall': 24, 'medium+': 28));
+  @include other.tucked-margin-top(typography.$f-subheading-1, ('xsmall': 24, 'medium+': 28));
 }
 
 .m-inline-aside .f-module-title-1 {
-  @include tucked-margin-top($f-module-title-1, ('xsmall': 32));
+  @include other.tucked-margin-top(typography.$f-module-title-1, ('xsmall': 32));
 }

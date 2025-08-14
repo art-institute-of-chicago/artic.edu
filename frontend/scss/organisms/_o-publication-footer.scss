@@ -1,3 +1,7 @@
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/variables";
+
 @use "sass:map";
 // Derived from _m-split-block, used for journal and magazine
 .o-publication-footer {
@@ -5,12 +9,12 @@
   flex-flow: row wrap;
   align-items: center;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     flex-flow: row nowrap;
   }
 
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
+  @each $name, $point in variables.$breakpoints {
+    @include breakpoint.breakpoint('#{$name}') {
       margin-top: #{map.get((
         xsmall: 24,
         small: 36,
@@ -21,7 +25,7 @@
     }
   }
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     flex-flow: row nowrap;
   }
 
@@ -44,13 +48,13 @@
 
 .o-publication-footer--journal {
   .o-publication-footer__logo {
-    @each $name, $point in $breakpoints {
-      @include breakpoint('#{$name}') {
-        margin-right: colspan(2, '#{$name}');
+    @each $name, $point in variables.$breakpoints {
+      @include breakpoint.breakpoint('#{$name}') {
+        margin-right: grid.colspan(2, '#{$name}');
       }
     }
 
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       margin-bottom: 24px;
     }
 
@@ -63,13 +67,13 @@
 
 .o-publication-footer--magazine {
   .o-publication-footer__logo {
-    @each $name, $point in $breakpoints {
-      @include breakpoint('#{$name}') {
-        margin-right: colspan(4, '#{$name}');
+    @each $name, $point in variables.$breakpoints {
+      @include breakpoint.breakpoint('#{$name}') {
+        margin-right: grid.colspan(4, '#{$name}');
       }
     }
 
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       display: none;
     }
 

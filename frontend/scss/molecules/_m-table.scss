@@ -1,3 +1,8 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/other";
+@use "../setup/typography";
+
 /***
 
 Intended for very simple m-tables..
@@ -66,17 +71,17 @@ Intended for very simple m-tables..
   &.m-table--no-title {
     margin-top: 48px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: 60px;
     }
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       margin-top: 72px;
     }
   }
 
   &.m-table--l {
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       width: 100% !important;
     }
   }
@@ -99,16 +104,16 @@ Intended for very simple m-tables..
   th,
   td {
     padding: 15px 12px 23px;
-    border-top: 1px solid $color__rules--primary;
-    border-bottom: 1px solid $color__rules--primary;
-    border-left: 1px solid $color__rules--primary;
-    border-right: 1px solid $color__rules--primary;
+    border-top: 1px solid colors.$color__rules--primary;
+    border-bottom: 1px solid colors.$color__rules--primary;
+    border-left: 1px solid colors.$color__rules--primary;
+    border-right: 1px solid colors.$color__rules--primary;
     font-weight: normal;
     text-align: left;
     white-space: nowrap;
     vertical-align: middle;
 
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       padding-right: 7px;
     }
   }
@@ -144,17 +149,17 @@ Intended for very simple m-tables..
 
   td[rowspan],
   td[colspan] {
-    background: $color__bg--primary;
+    background: colors.$color__bg--primary;
     text-align: left;
     vertical-align: middle;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       text-align: center;
     }
   }
 
   .f-module-title-1 {
-    @include tucked-align-top($f-module-title-1);
+    @include other.tucked-align-top(typography.$f-module-title-1);
 
     & {
       display: inline-block;
@@ -162,7 +167,7 @@ Intended for very simple m-tables..
   }
 
   .f-secondary {
-    @include tucked-align-top($f-secondary);
+    @include other.tucked-align-top(typography.$f-secondary);
 
     & {
       display: inline-block;
@@ -175,16 +180,16 @@ Intended for very simple m-tables..
   }
 
   .f-tag {
-    @include tucked-align-top($f-tag);
+    @include other.tucked-align-top(typography.$f-tag);
     display: inline-block;
 
     & {
-      color: $color__text--title;
+      color: colors.$color__text--title;
     }
   }
 
   .f-caption {
-    @include untuck;
+    @include typography.untuck;
 
     & {
       margin-top: 16px;

@@ -1,3 +1,12 @@
+@use "../atoms/btn";
+@use "../atoms/loader";
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/forms";
+@use "../setup/mixins/other";
+@use "../setup/typography";
+@use "../setup/variables";
+
 .m-search-bar {
   position: relative;
 }
@@ -27,27 +36,27 @@
   margin: 0;
   border: 1px solid transparent;
   border-radius: 0;
-  border-top-left-radius: $border-radius;
-  border-bottom-left-radius: $border-radius;
-  background: $color__bg--primary;
-  color: $color__text--title;
+  border-top-left-radius: variables.$border-radius;
+  border-bottom-left-radius: variables.$border-radius;
+  background: colors.$color__bg--primary;
+  color: colors.$color__text--title;
   outline: none;
 
-  @include placeholder() {
-    color: $color__text--secondary;
+  @include forms.placeholder() {
+    color: colors.$color__text--secondary;
   }
 }
 
 .m-search-bar.s-autocomplete-active input[type=text],
 .m-search-bar input[type=text]:focus {
-  border-color: $color__rules--focus;
-  background-color: $color__white;
+  border-color: colors.$color__rules--focus;
+  background-color: colors.$color__white;
 }
 
 .m-search-bar.s-autocomplete-active input[type=text]+.m-search-bar__submit,
 .m-search-bar input[type=text]:focus+.m-search-bar__submit {
-  background-color: $color__rules--focus;
-  color: $color__white;
+  background-color: colors.$color__rules--focus;
+  color: colors.$color__white;
 }
 
 .m-search-bar__submit,
@@ -63,17 +72,17 @@
   padding: 0;
   border: 0 none;
   border-radius: 0;
-  border-top-right-radius: $border-radius;
-  border-bottom-right-radius: $border-radius;
-  background: $color__bg--tertiary;
-  color: $color__white;
+  border-top-right-radius: variables.$border-radius;
+  border-bottom-right-radius: variables.$border-radius;
+  background: colors.$color__bg--tertiary;
+  color: colors.$color__white;
   line-height: 56px;
   text-align: center;
   cursor: pointer;
 
   &:hover,
   &:focus:hover {
-    background-color: $color__black;
+    background-color: colors.$color__black;
   }
 }
 
@@ -111,10 +120,10 @@
 
   padding-top: 8px;
 
-  @include tucked-margin-top($f-body-editorial, ('xsmall': 40, 'small+': 56));
+  @include other.tucked-margin-top(typography.$f-body-editorial, ('xsmall': 40, 'small+': 56));
 
   &:first-child {
-    @include tucked-align-top($f-body-editorial);
+    @include other.tucked-align-top(typography.$f-body-editorial);
   }
 
 }
@@ -131,12 +140,12 @@
 
 .m-search-bar--subtle .m-search-bar__submit,
 .m-search-bar--subtle .m-search-bar__clear {
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 
   &:hover,
   &:focus:hover {
     background-color: transparent;
-    color: $color__black;
+    color: colors.$color__black;
   }
 }
 
@@ -146,37 +155,37 @@
 .o-collection-search {
 
   .m-search-bar input[type=text] {
-    color: $color__text--secondary;
+    color: colors.$color__text--secondary;
 
-    @include placeholder() {
-      color: $color__text--tertiary;
+    @include forms.placeholder() {
+      color: colors.$color__text--tertiary;
     }
   }
 
   .m-search-bar.s-autocomplete-active input[type=text]:focus,
   .m-search-bar input[type=text]:focus {
     border-color: transparent;
-    background-color: $color__bg--primary;
-    color: $color__text--title;
+    background-color: colors.$color__bg--primary;
+    color: colors.$color__text--title;
   }
 
   .m-search-bar .m-search-bar__submit {
-    color: $color__text--tertiary;
+    color: colors.$color__text--tertiary;
   }
 
   .m-search-bar .m-search-bar__submit:hover,
   .m-search-bar .m-search-bar__submit:focus {
-    color: $color__text--secondary;
+    color: colors.$color__text--secondary;
   }
 
   .m-search-bar .m-search-bar__submit:active {
-    color: $color__text--title;
+    color: colors.$color__text--title;
   }
 
   .m-search-bar.s-autocomplete-active input[type=text]:focus+.m-search-bar__submit,
   .m-search-bar input[type=text]:focus+.m-search-bar__submit {
-    background-color: $color__bg--primary;
-    color: $color__text--title;
+    background-color: colors.$color__bg--primary;
+    color: colors.$color__text--title;
   }
 
 }
@@ -184,7 +193,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ autocomplete
 
 .m-search-bar__autocomplete {
-  @include untuck;
+  @include typography.untuck;
 
   & {
     display: block;
@@ -193,13 +202,13 @@
     left: 0;
     right: 0;
     top: 100%;
-    background-color: $color__bg;
-    box-shadow: $shadow;
+    background-color: colors.$color__bg;
+    box-shadow: variables.$shadow;
   }
 }
 
 .m-search-bar__autocomplete li:not(:first-child) {
-  border-top: 1px solid $color__rules--tertiary;
+  border-top: 1px solid colors.$color__rules--tertiary;
 }
 
 .m-search-bar__autocomplete a {
@@ -221,30 +230,30 @@
   padding-top: 9px;
   padding-bottom: 12px;
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     padding-top: 6px;
     padding-bottom: 11px;
   }
 }
 
 .m-search-bar__autocomplete a:not([class]) {
-  background-color: $color__white;
-  color: $color__text--secondary;
+  background-color: colors.$color__white;
+  color: colors.$color__text--secondary;
 
   &:hover {
-    background-color: $color__bg--secondary;
-    color: $color__text--title;
+    background-color: colors.$color__bg--secondary;
+    color: colors.$color__text--title;
   }
 
   &:hover {
-    background-color: $color__bg--primary;
-    color: $color__text--title;
+    background-color: colors.$color__bg--primary;
+    color: colors.$color__text--title;
   }
 }
 
 .m-search-bar__autocomplete a.suggestion--fulltext {
   @extend .btn--tertiary;
-  color: $color__white;
+  color: colors.$color__white;
 
   svg {
     margin-right: 16px;
@@ -258,12 +267,12 @@
   right: 56px;
   border: 0 none;
   background-color: transparent;
-  color: $color__text--title;
+  color: colors.$color__text--title;
 
   &:focus:hover,
   &:hover {
     background-color: transparent;
-    color: $color__text--title;
+    color: colors.$color__text--title;
   }
 }
 

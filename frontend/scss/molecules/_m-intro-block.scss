@@ -1,3 +1,8 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/mixins/other";
+@use "../setup/typography";
 
 
 .m-intro-block {
@@ -6,7 +11,7 @@
   padding-top: 0.02px;
   padding-bottom: 0.02px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: flex;
     flex-flow: row nowrap;
   }
@@ -23,16 +28,16 @@
   .o-features + & {
     margin-top: 32px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: 28px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-top: 48px;
       padding-top: 24px;
     }
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       padding-top: 36px;
       margin-top: 60px;
     }
@@ -41,15 +46,15 @@
   & + .o-grid-listing {
     margin-top: 32px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: 28px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-top: 48px;
     }
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       margin-top: 56px;
     }
   }
@@ -63,30 +68,30 @@
     right: 0;
     top: 0;
     height: 1px;
-    background-color: $color__rules--primary;
+    background-color: colors.$color__rules--primary;
   }
 
   & + * {
     margin-top: 40px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: 60px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-top: 40px;
     }
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       margin-top: 72px;
     }
   }
 }
 
 .m-intro-block__intro {
-  color: $color__text--contrast;
+  color: colors.$color__text--contrast;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     flex: 1 1 auto;
 
     &:only-child {
@@ -96,7 +101,7 @@
 }
 
 .m-intro-block__intro.f-deck {
- @include tucked-align-top($f-deck);
+ @include other.tucked-align-top(typography.$f-deck);
 }
 
 
@@ -105,21 +110,21 @@
   flex-flow: row wrap;
   margin-top: 36px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     flex: 0 0 auto;
-    width: colspan(15, medium);
+    width: grid.colspan(15, medium);
     margin-top: 0;
-    margin-left: colspan(5, medium);
+    margin-left: grid.colspan(5, medium);
   }
 
-  @include breakpoint('large+') {
-    width: colspan(15, large);
-    margin-left: colspan(5, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(15, large);
+    margin-left: grid.colspan(5, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(15, xlarge);
-    margin-left: colspan(5, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(15, xlarge);
+    margin-left: grid.colspan(5, xlarge);
   }
 }
 
@@ -132,7 +137,7 @@
     margin-top: 0;
   }
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     width: auto;
     margin-left: 24px;
 
@@ -141,7 +146,7 @@
     }
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     width: 100%;
     margin-top: 0;
     margin-left: 0;
@@ -151,7 +156,7 @@
     }
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     margin-top: 4px;
 
     &:first-child {
@@ -164,7 +169,7 @@
   width: 100%;
   padding-bottom: 8px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-bottom: 12px;
   }
 }

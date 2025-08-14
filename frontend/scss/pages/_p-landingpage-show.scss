@@ -1,12 +1,14 @@
-@import 'types/t-conservation-and-science';
-@import 'types/t-educator-resources';
-@import 'types/t-editorial';
-@import 'types/t-home';
-@import 'types/t-mmt';
-@import 'types/t-publications';
-@import 'types/t-research-center';
-@import 'types/t-rlc';
-@import 'types/t-visit';
+@use 'types/t-conservation-and-science';
+@use 'types/t-educator-resources';
+@use 'types/t-editorial';
+@use 'types/t-home';
+@use 'types/t-mmt';
+@use 'types/t-publications';
+@use 'types/t-research-center';
+@use 'types/t-rlc';
+@use 'types/t-visit';
+@use "../setup/colors";
+@use "../setup/variables";
 
 .p-landingpage-show {
   .o-landingpage__body.o-blocks * {
@@ -16,14 +18,14 @@
 
 .m-home-header {
   .header-cta-button {
-    color: $color__red--100;
+    color: colors.$color__red--100;
   }
 }
 
 .m-educator-resources-header {
   .header-cta-title {
     margin-top: 0;
-    font-family: $serif-font--loaded;
+    font-family: variables.$serif-font--loaded;
     font-size: 38px;
     letter-spacing: 0;
     text-transform: none;
@@ -31,8 +33,8 @@
 
   .header-cta-description {
     margin-top: 32px;
-    color: $color__white;
-    font-family: $sans-serif-font--loaded;
+    color: colors.$color__white;
+    font-family: variables.$sans-serif-font--loaded;
     font-size: 18px;
   }
 }

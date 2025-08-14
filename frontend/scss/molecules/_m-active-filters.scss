@@ -1,3 +1,5 @@
+@use "../setup/colors";
+
 
 .m-active-filters {
   display: flex;
@@ -16,7 +18,7 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: colors.$color__rules--primary;
 }
 
 
@@ -44,15 +46,15 @@
 }
 
 .m-active-filters__clear a {
-  color: $color__link;
+  color: colors.$color__link;
 
   &:hover,
   &:focus:hover {
-    color: $color__link--hover;
+    color: colors.$color__link--hover;
   }
 
   &:active:hover {
-    color: $color__link--active;
+    color: colors.$color__link--active;
   }
 }
 
@@ -63,7 +65,7 @@
   display: block;
   margin: 0;
   padding: 16px 20px 24px;
-  background: $color__bg--primary;
+  background: colors.$color__bg--primary;
 }
 
 .o-collection-filters .m-active-filters::before {

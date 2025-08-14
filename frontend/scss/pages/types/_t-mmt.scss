@@ -1,13 +1,17 @@
+@use "../../setup/colors";
+@use "../../setup/mixins/breakpoint";
+@use "../../setup/variables";
+
 .my-museum-tour-header-section {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     display: flex;
     flex-direction: row;
-    background-color: $color__teal--my-museum-tour;
-    color: $color__white;
+    background-color: colors.$color__teal--my-museum-tour;
+    color: colors.$color__white;
     padding: 56px;
 
-    @include breakpoint('small-') {
+    @include breakpoint.breakpoint('small-') {
         padding: 14px;
     }
 
@@ -19,7 +23,7 @@
             flex-direction: row;
             justify-content: space-between;
 
-            @include breakpoint('medium-') {
+            @include breakpoint.breakpoint('medium-') {
                 flex-direction: column;
             }
 
@@ -27,10 +31,10 @@
                 width: 35%;
                 font-size: 56px;
                 line-height: 65px;
-                color: $color__white;
-                font-family: $serif-font--loaded;
+                color: colors.$color__white;
+                font-family: variables.$serif-font--loaded;
 
-                @include breakpoint('medium-') {
+                @include breakpoint.breakpoint('medium-') {
                     font-size: 35px;
                     width: 100%;
                 }
@@ -40,9 +44,9 @@
                 width: 30%;
                 font-size: 17px;
                 line-height: 25px;
-                font-family: $sans-serif-font--loaded;
+                font-family: variables.$sans-serif-font--loaded;
 
-                @include breakpoint('medium-') {
+                @include breakpoint.breakpoint('medium-') {
                     font-size: 16px;
                     width: 100%;
                 }
@@ -56,7 +60,7 @@
                 align-items: center;
                 justify-content: center;
 
-                @include breakpoint('medium-') {
+                @include breakpoint.breakpoint('medium-') {
                     width: 100%;
                     margin: 30px auto 0 auto;
                 }
@@ -65,16 +69,16 @@
                     width: 100%;
                     margin-left: 0 !important;
 
-                    @include breakpoint('small-') {
+                    @include breakpoint.breakpoint('small-') {
                         width: 100%;
                     }
 
                     &:nth-of-type(2) {
                         margin-top: 30px;
                         background-color: transparent;
-                        border: 2px solid $color__white;
+                        border: 2px solid colors.$color__white;
 
-                        @include breakpoint('small-') {
+                        @include breakpoint.breakpoint('small-') {
                             margin-top: 20px;
                         }
                     }
@@ -90,7 +94,7 @@
             margin-top: 40px;
             margin-bottom: 56px;
 
-            @include breakpoint('small-') {
+            @include breakpoint.breakpoint('small-') {
                 display: none;
             }
         }
@@ -103,7 +107,7 @@
             margin-top: 40px;
             margin-bottom: 40px;
 
-            @include breakpoint('small-') {
+            @include breakpoint.breakpoint('small-') {
                 display: block;
             }
         }
@@ -119,7 +123,7 @@
             margin-top: 30px;
             margin-bottom: 30px;
 
-            @include breakpoint('small-') {
+            @include breakpoint.breakpoint('small-') {
                 margin-top: 0;
                 flex-direction: column;
             }
@@ -131,7 +135,7 @@
                 align-items: center;
                 text-align: center;
 
-                @include breakpoint('small-') {
+                @include breakpoint.breakpoint('small-') {
                     width: 100%;
                     flex-direction: row;
                     text-align: left;
@@ -139,11 +143,11 @@
                 }
 
                 svg {
-                    color: $color__white;
+                    color: colors.$color__white;
                 }
 
                 >div {
-                    @include breakpoint('small-') {
+                    @include breakpoint.breakpoint('small-') {
                         margin-left: 35px;
                         width: 80%;
                     }
@@ -153,9 +157,9 @@
                         line-height: 28px;
                         margin-top: 20px;
                         text-transform: uppercase;
-                        font-family: $sans-serif-font--loaded;
+                        font-family: variables.$sans-serif-font--loaded;
 
-                        @include breakpoint('small-') {
+                        @include breakpoint.breakpoint('small-') {
                             margin-top: 0;
                         }
                     }
@@ -164,9 +168,9 @@
                         font-size: 14px;
                         line-height: 20px;
                         margin-top: 20px;
-                        font-family: $serif-font--loaded;
+                        font-family: variables.$serif-font--loaded;
 
-                        @include breakpoint('small-') {
+                        @include breakpoint.breakpoint('small-') {
                             margin-top: 10px;
                         }
                     }
@@ -184,7 +188,7 @@
         a:focus:hover .my-museum-tour-header__icons p,
         a.s-active .my-museum-tour-header__icons p,
         a:active:hover .my-museum-tour-header__icons p {
-          color: $color__white;
+          color: colors.$color__white;
         }
     }
 }

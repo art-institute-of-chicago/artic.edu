@@ -1,3 +1,7 @@
+@use "../setup/colors";
+@use "../setup/mixins/other";
+@use "../setup/typography";
+
 /***
 
 ```
@@ -22,7 +26,7 @@
   position: relative;
   align-items: flex-start;
   margin-top: 40px;
-  border: 1px solid $color__rules--primary;
+  border: 1px solid colors.$color__rules--primary;
 
   & + & {
     margin-top: -1px;
@@ -50,7 +54,7 @@
 }
 
 .m-download-file__meta.f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 38));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 38));
 }
 
 .m-download-file__button {

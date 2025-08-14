@@ -1,3 +1,9 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/mixins/other";
+@use "../setup/typography";
+
 /***
 
 deflist
@@ -60,7 +66,7 @@ Demonstrated in **statics/article**
   margin-top: 20px;
   padding-right: 20px;
   padding-top: .02px;
-  color: $color__text--title;
+  color: colors.$color__text--title;
 
   &:first-child {
     margin-top: 0;
@@ -82,11 +88,11 @@ Demonstrated in **statics/article**
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: colors.$color__rules--primary;
 }
 
 @supports (display: grid) {
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     .deflist {
       display: grid;
       grid-template-columns: max-content auto;
@@ -98,40 +104,40 @@ Demonstrated in **statics/article**
 
     .deflist:not(.deflist--free-spacing) {
       dt {
-        @include breakpoint('small+') {
-          width: colspan(18, small);
+        @include breakpoint.breakpoint('small+') {
+          width: grid.colspan(18, small);
         }
 
-        @include breakpoint('medium+') {
-          width: colspan(8, medium);
+        @include breakpoint.breakpoint('medium+') {
+          width: grid.colspan(8, medium);
         }
 
-        @include breakpoint('large+') {
-          width: colspan(8, large);
+        @include breakpoint.breakpoint('large+') {
+          width: grid.colspan(8, large);
         }
 
-        @include breakpoint('xlarge') {
-          width: colspan(8, xlarge);
+        @include breakpoint.breakpoint('xlarge') {
+          width: grid.colspan(8, xlarge);
         }
       }
 
       // @see .o-article__secondary-actions ~ .o-article__body
       // Subtract dt width from that width...
       dd {
-        @include breakpoint('small+') {
-          width: colspan(40, small);
+        @include breakpoint.breakpoint('small+') {
+          width: grid.colspan(40, small);
         }
 
-        @include breakpoint('medium+') {
-          width: colspan(30, medium);
+        @include breakpoint.breakpoint('medium+') {
+          width: grid.colspan(30, medium);
         }
 
-        @include breakpoint('large+') {
-          width: colspan(20, large);
+        @include breakpoint.breakpoint('large+') {
+          width: grid.colspan(20, large);
         }
 
-        @include breakpoint('xlarge') {
-          width: colspan(20, xlarge);
+        @include breakpoint.breakpoint('xlarge') {
+          width: grid.colspan(20, xlarge);
         }
       }
     }
@@ -153,14 +159,14 @@ Demonstrated in **statics/article**
       right: 0;
       top: 0;
       height: 1px;
-      background-color: $color__rules--primary;
+      background-color: colors.$color__rules--primary;
     }
   }
 }
 
 
 .deflist .f-module-title-1 {
-  @include tucked-margin-top($f-module-title-1, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-module-title-1, ('xsmall': 28));
 
   & {
     display: block;
@@ -168,7 +174,7 @@ Demonstrated in **statics/article**
 }
 
 .deflist .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 24, 'small+': 28));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 24, 'small+': 28));
 
   & {
     display: block;
@@ -177,14 +183,14 @@ Demonstrated in **statics/article**
 
 
 .deflist .f-secondary a {
-  @include text-underline(1.02em, $color__rules--secondary);
+  @include typography.text-underline(1.02em, colors.$color__rules--secondary);
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__link--hover);
+    @include typography.text-underline(1.02em, colors.$color__link--hover);
   }
 
   &:active:hover {
-    @include text-underline(1.02em, $color__link--active);
+    @include typography.text-underline(1.02em, colors.$color__link--active);
   }
 }

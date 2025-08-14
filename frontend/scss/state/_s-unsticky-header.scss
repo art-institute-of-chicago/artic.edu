@@ -1,3 +1,5 @@
+@use "../setup/mixins/breakpoint";
+
 /***
 
 Sticky header
@@ -21,20 +23,20 @@ For those times when you just don't want the navigation to get in the way of the
 
         &:has(.m-notification--header) {
           & ~ main#content {
-            @include breakpoint('small+') {
+            @include breakpoint.breakpoint('small+') {
               padding-top: 176px;
             }
-            @include breakpoint('medium+') {
+            @include breakpoint.breakpoint('medium+') {
               padding-top: 188px;
             }
           }
         }
 
         & ~ main#content {
-          @include breakpoint('small+') {
+          @include breakpoint.breakpoint('small+') {
             padding-top: 128px;
           }
-          @include breakpoint('medium+') {
+          @include breakpoint.breakpoint('medium+') {
             padding-top: 140px;
           }
         }
@@ -48,22 +50,22 @@ For those times when you just don't want the navigation to get in the way of the
 
   &.s-contrast-header #a17 .g-header {
     position: absolute;
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       height: 128px;
     }
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       height: 140px;
     }
     &:hover {
       position: fixed;
       &:has(a[role="menuitem"][aria-expanded="true"]) {
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
           height: 368px;
         }
-        @include breakpoint('medium') {
+        @include breakpoint.breakpoint('medium') {
           height: 376px;
         }
-        @include breakpoint('large+') {
+        @include breakpoint.breakpoint('large+') {
           height: 380px;
         }
       }

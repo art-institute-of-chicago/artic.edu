@@ -1,3 +1,6 @@
+@use "../setup/mixins/breakpoint";
+@use "../setup/variables";
+
 .m-image-slider {
   height: 100%;
   width: 100%;
@@ -77,7 +80,7 @@
     flex-flow: row no-wrap;
     justify-content: center;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       left: auto;
       right: 32px;
       bottom: 32px;
@@ -100,13 +103,13 @@
       }
 
       &:first-child .btn {
-        border-top-left-radius: $border-radius;
-        border-bottom-left-radius: $border-radius;
+        border-top-left-radius: variables.$border-radius;
+        border-bottom-left-radius: variables.$border-radius;
       }
 
       &:last-child .btn {
-        border-top-right-radius: $border-radius;
-        border-bottom-right-radius: $border-radius;
+        border-top-right-radius: variables.$border-radius;
+        border-bottom-right-radius: variables.$border-radius;
       }
     }
   }

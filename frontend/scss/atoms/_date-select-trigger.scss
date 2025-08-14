@@ -1,3 +1,5 @@
+@use "../setup/colors";
+
 /***
 
 date select trigger
@@ -70,7 +72,7 @@ Example usage:
   padding: 0;
   border: 0 none;
   background: none;
-  color: $color__link;
+  color: colors.$color__link;
   cursor: pointer;
 
   font: inherit;
@@ -78,11 +80,11 @@ Example usage:
 
   &:hover,
   &:focus:hover {
-    color: $color__link--hover;
+    color: colors.$color__link--hover;
   }
 
   &:active:hover {
-    color: $color__link--active;
+    color: colors.$color__link--active;
   }
 }
 
