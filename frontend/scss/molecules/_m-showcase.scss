@@ -183,7 +183,7 @@
 
         @include breakpoint('xsmall') {
             padding: 0;
-            margin: 100px auto !important;
+            margin: 50px auto !important;
         }
 
         .showcase-title {
@@ -224,11 +224,16 @@
             }
 
             @include breakpoint('xsmall') {
-                flex-direction: column-reverse;
+                flex-direction: column;
 
                 .showcase-header {
                     flex-basis: fit-content;
                     order: 1;
+                }
+
+
+                .m-showcase-block__text-wrapper {
+                  order: 2;
                 }
             }
         }
