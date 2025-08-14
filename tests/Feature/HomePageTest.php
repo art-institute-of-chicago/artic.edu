@@ -140,7 +140,7 @@ class HomePageTest extends BaseTestCase
         $block->content = [
             'stories_heading' => 'Articles & Videos',
             'browse_label' => 'See more',
-            'browse_link' => '\/articles_publications',
+            'browse_link' => '\/publications',
             'browsers' => ['content' => $articles->pluck('id')]
         ];
         $block->save();
