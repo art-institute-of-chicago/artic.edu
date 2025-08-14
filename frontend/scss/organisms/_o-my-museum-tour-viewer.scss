@@ -1,3 +1,9 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/typography";
+@use "../setup/variables";
+
 @use 'sass:math';
 
 // ------ My Museum Tour viewer
@@ -7,13 +13,13 @@
 .aic-ct-grid-intro,
 .m-cta-banner__msg--aic-ct {
   &.f-body {
-    @include untuck;
+    @include typography.untuck;
   }
 }
 
 .my-museum-tour-header {
   .f-display-2 {
-    @include untuck;
+    @include typography.untuck;
   }
 }
 
@@ -21,7 +27,7 @@
 .my-museum-tour-header,
 .aic-ct-viewer {
   .f-deck {
-    @include untuck;
+    @include typography.untuck;
   }
 }
 
@@ -29,7 +35,7 @@
 .aic-ct-viewer {
   .f-headline-editorial {
     font-weight: 300;
-    @include untuck;
+    @include typography.untuck;
   }
 }
 
@@ -37,7 +43,7 @@
 .aic-ct-viewer,
 .aic-ct-flash-message {
   .f-headline {
-    @include untuck;
+    @include typography.untuck;
   }
 }
 
@@ -50,7 +56,7 @@
   .f-link,
   .f-body-editorial-emphasis,
   .f-quote {
-    @include untuck;
+    @include typography.untuck;
   }
 }
 
@@ -85,15 +91,15 @@
 
   .f-deck {
     margin-bottom: 4px;
-    color: $color__black--90;
+    color: colors.$color__black--90;
   }
 
   .f-tertiary {
-    color: $color__black--80;
+    color: colors.$color__black--80;
   }
 
   .f-link {
-    color: $color__teal--my-museum-tour;
+    color: colors.$color__teal--my-museum-tour;
   }
 }
 
@@ -108,9 +114,9 @@
   .f-module-title-1 {
     font-size: 13px;
     font-weight: 300;
-    @include untuck;
+    @include typography.untuck;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       font-size: 13px;
     }
   }
@@ -122,7 +128,7 @@
   position: relative;
   padding-top: 32px;
   padding-bottom: 32px;
-  background-color: $color__black--5;
+  background-color: colors.$color__black--5;
 
   &::before {
     content: "";
@@ -155,22 +161,22 @@
   grid-template-columns: 100%;
   gap: 20px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @include breakpoint('xlarge') {
+  @include breakpoint.breakpoint('xlarge') {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 .aic-ct-grid-card {
   height: auto;
-  background-color: $color__white;
+  background-color: colors.$color__white;
 
   .aic-ct-grid-card__top {
     position: relative;
@@ -192,11 +198,11 @@
     bottom: 20px;
     margin-top: 20px;
     margin-right: 20px;
-    color: $color__white;
+    color: colors.$color__white;
   }
 
   .f-headline-editorial {
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       font-size: 28px;
       line-height: 1.14;
     }
@@ -221,7 +227,7 @@
     margin: auto;
     padding: 16px 20px 24px;
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       min-height: 296px;
     }
   }
@@ -232,7 +238,7 @@
   }
 
   .f-deck {
-    color: $color__black--80;
+    color: colors.$color__black--80;
     font-size: 17px;
     line-height: 1.41;
   }
@@ -279,7 +285,7 @@
   margin-left: -4.6875vw;
   margin-right: -4.6875vw;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin: 60px 0 0;
   }
 
@@ -302,23 +308,23 @@
     padding-left: 4.6875vw;
     padding-right: 4.6875vw;
 
-    @include breakpoint('medium+') {
-      padding-left: colspan(3, medium);
-      padding-right: colspan(3, medium);
+    @include breakpoint.breakpoint('medium+') {
+      padding-left: grid.colspan(3, medium);
+      padding-right: grid.colspan(3, medium);
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
       gap: 32px;
     }
 
-    @include breakpoint('large+') {
-      padding-left: colspan(3, large);
-      padding-right: colspan(3, large);
+    @include breakpoint.breakpoint('large+') {
+      padding-left: grid.colspan(3, large);
+      padding-right: grid.colspan(3, large);
     }
 
-    @include breakpoint('xlarge') {
-      padding-left: colspan(3, xlarge);
-      padding-right: colspan(3, xlarge);
+    @include breakpoint.breakpoint('xlarge') {
+      padding-left: grid.colspan(3, xlarge);
+      padding-right: grid.colspan(3, xlarge);
     }
   }
 
@@ -328,25 +334,25 @@
     gap: 20px;
     min-width: 200px;
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       width: auto;
     }
   }
 
   .btn--secondary {
-    border: 1px solid $color__black;
+    border: 1px solid colors.$color__black;
   }
 
   .btn--secondary:hover,
   .btn-secondary:focus:hover {
-    background-color: $color__black--10;
-    border: 1px solid $color__black;
+    background-color: colors.$color__black--10;
+    border: 1px solid colors.$color__black;
   }
 
   .m-cta-banner__msg {
     margin-bottom: 20px;
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-bottom: 0;
     }
   }
@@ -355,28 +361,28 @@
 .m-cta-banner--aic-ct-bottom {
   margin-bottom: -120px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-bottom: 0;
   }
 }
 
 .m-cta-banner--aic-ct-viewer-container {
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     // 90.625vw is the width of <main>, colspan(28, large) is the width of .aic-ct-viewer
-    margin-left: math.div(-90.625vw, 2) + math.div(colspan(28, large), 2);
-    margin-right: math.div(-90.625vw, 2) + math.div(colspan(28, large), 2);
+    margin-left: math.div(-90.625vw, 2) + math.div(grid.colspan(28, large), 2);
+    margin-right: math.div(-90.625vw, 2) + math.div(grid.colspan(28, large), 2);
   }
 
-  @include breakpoint('xlarge') {
+  @include breakpoint.breakpoint('xlarge') {
     // 1500px is the width of <main>, colspan(28, xlarge) is the width of .aic-ct-viewer
-    margin-left: math.div(-1500px, 2) + math.div(colspan(28, xlarge), 2);
-    margin-right: math.div(-1500px, 2) + math.div(colspan(28, xlarge), 2);
+    margin-left: math.div(-1500px, 2) + math.div(grid.colspan(28, xlarge), 2);
+    margin-right: math.div(-1500px, 2) + math.div(grid.colspan(28, xlarge), 2);
   }
 }
 
 .m-cta-banner--aic-ct-viewer-container-completed {
   .m-cta-banner--aic-ct {
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-top: 0;
       margin-bottom: 60px;
     }
@@ -413,7 +419,7 @@
     }
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     overflow: hidden;
 
     .m-cta-banner__img {
@@ -429,22 +435,22 @@
 }
 
 .m-cta-banner--aic-ct-no-image {
-  background-color: $color__black;
+  background-color: colors.$color__black;
   overflow: visible;
 
   .m-cta-banner__title,
   .m-cta-banner__msg {
-    color: $color__white;
+    color: colors.$color__white;
   }
 
   .btn--quaternary {
-    border-color: $color__white;
+    border-color: colors.$color__white;
     background-color: transparent;
   }
 
   .btn--quaternary:focus:hover,
   .btn--quaternary:hover {
-    background-color: $color__black--80;
+    background-color: colors.$color__black--80;
   }
 }
 
@@ -455,13 +461,13 @@
     margin-top: 0;
     padding-top: 0;
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       float: none;
-      width: colspan(28, large);
+      width: grid.colspan(28, large);
     }
 
-    @include breakpoint('xlarge') {
-      width: colspan(28, xlarge);
+    @include breakpoint.breakpoint('xlarge') {
+      width: grid.colspan(28, xlarge);
     }
   }
 
@@ -493,16 +499,16 @@
     margin-left: calc(50% - 50vw);
     display: flex;
     flex-direction: row;
-    background-color: $color__teal--my-museum-tour;
-    color: $color__white;
+    background-color: colors.$color__teal--my-museum-tour;
+    color: colors.$color__white;
     padding: 24px 56px 56px;
     margin-bottom: 20px;
 
-    @include breakpoint('medium-') {
+    @include breakpoint.breakpoint('medium-') {
       padding: 24px;
     }
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-bottom: 40px;
     }
 
@@ -513,10 +519,10 @@
       margin-bottom: 24px;
       font-size: 56px;
       line-height: 65px;
-      color: $color__white;
-      font-family: $serif-font--loaded;
+      color: colors.$color__white;
+      font-family: variables.$serif-font--loaded;
 
-      @include breakpoint('medium-') {
+      @include breakpoint.breakpoint('medium-') {
           font-size: 40px;
           width: 100%;
       }
@@ -527,7 +533,7 @@
       width: 100%;
       height: auto;
 
-      @include breakpoint('small-') {
+      @include breakpoint.breakpoint('small-') {
         display: none;
       }
     }
@@ -537,7 +543,7 @@
       width: 100%;
       height: auto;
 
-      @include breakpoint('small-') {
+      @include breakpoint.breakpoint('small-') {
         display: block;
       }
     }
@@ -549,7 +555,7 @@
 .aic-ct-viewer__link-container {
   margin-bottom: 24px;
   padding: 16px;
-  background-color: $color__black--5;
+  background-color: colors.$color__black--5;
 }
 
 .aic-ct-quote--large {
@@ -565,7 +571,7 @@
   }
 
   .quote__icon {
-    color: $color__teal--my-museum-tour;
+    color: colors.$color__teal--my-museum-tour;
   }
 }
 
@@ -592,7 +598,7 @@
     // This is to account for the margin on #a17
     margin-left: -4.6875vw;
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       width: 100%;
       margin-left: 0;
     }
@@ -605,7 +611,7 @@
   position: relative;
   overflow: hidden;
   margin-bottom: 12px;
-  background-color: $color__black--5;
+  background-color: colors.$color__black--5;
 
   img {
     width: auto;
@@ -621,13 +627,13 @@
   gap: 4px;
 
   .icon--location {
-    color: $color__grey--100;
+    color: colors.$color__grey--100;
   }
 }
 
 .aic-ct-viewer__description.f-tertiary {
   margin-bottom: 20px;
-  color: $color__black;
+  color: colors.$color__black;
 }
 
 .aic-ct-viewer__creator-container {
@@ -638,7 +644,7 @@
 
   .aic-ct-title {
     margin: 16px 0;
-    font-family: $serif-font--loaded;
+    font-family: variables.$serif-font--loaded;
     font-size: 38px;
     font-weight: 300;
     line-height: 44px;

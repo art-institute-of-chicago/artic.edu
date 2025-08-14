@@ -1,3 +1,5 @@
+@use "../setup/colors";
+
 /***
 
 label
@@ -15,18 +17,18 @@ Basic form label:
 .label {
   display: flex;
   flex-flow: row nowrap;
-  color: $color__text;
+  color: colors.$color__text;
 }
 
 
 .label__optional {
-  color: $color__text--tertiary;
+  color: colors.$color__text--tertiary;
   font-style: normal;
 }
 
 .label__hint {
   flex: 0 0 auto;
   margin-left: auto;
-  color: $color__text--tertiary;
+  color: colors.$color__text--tertiary;
   font-style: normal;
 }

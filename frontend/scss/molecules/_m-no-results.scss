@@ -1,3 +1,6 @@
+@use "../setup/colors";
+@use "../setup/mixins/other";
+@use "../setup/typography";
 
 
 .m-no-results {
@@ -9,24 +12,24 @@
 }
 
 .m-no-results .title.f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 60));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 60));
 
   a {
-    @include text-underline(.8em, $color__rules--secondary);
-    color: $color__link--accent;
+    @include typography.text-underline(.8em, colors.$color__rules--secondary);
+    color: colors.$color__link--accent;
     text-decoration: none;
 
     &:hover,
     &:focus:hover {
-      @include text-underline(.8em, $color__link--accent);
+      @include typography.text-underline(.8em, colors.$color__link--accent);
     }
 
     &:active:hover {
-      @include text-underline(.8em, $color__rules--secondary);
+      @include typography.text-underline(.8em, colors.$color__rules--secondary);
     }
   }
 }
 
 .m-no-results .title + .f-body {
-  @include tucked-margin-top($f-body, ('xsmall': 56));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 56));
 }

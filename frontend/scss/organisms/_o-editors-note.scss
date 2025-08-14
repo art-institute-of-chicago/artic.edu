@@ -1,16 +1,19 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+
 .o-editors-note {
   *:before, *:after {
     content: none;
   }
 
   .deck--black {
-    color: $color__text--title;
+    color: colors.$color__text--title;
   }
 
   a .f-deck,
   a .f-body-editorial {
     transition: color .15s;
-    color: $color__black--42;
+    color: colors.$color__black--42;
   }
 
   a:hover .f-deck,
@@ -18,42 +21,39 @@
   a:hover .f-body-editorial,
   a:focus .f-body-editorial {
     &:not(.o-editors-note__title-lockup) {
-      color: $color__black--61;
+      color: colors.$color__black--61;
     }
   }
 
   a .icon--arrow {
-    color: $color__blue;
+    color: colors.$color__blue;
   }
 
   a:hover .icon--arrow,
   a:focus:hover .icon--arrow,
   a:active:hover .icon--arrow {
-    color: $color__blue--hover;
+    color: colors.$color__blue--hover;
   }
 
   .o-editors-note__tag {
     margin-left: 1px;
     margin-bottom: 9px;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-bottom: 12px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-bottom: 16px;
     }
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       margin-bottom: 20px;
-    }
-
-    @include breakpoint('xlarge') {
     }
   }
 
   .o-editors-note__inner {
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       display: flex;
       flex: row nowrap;
     }
@@ -68,12 +68,12 @@
         height: 25px;
         vertical-align: text-bottom;
 
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
           width: 28px;
           height: 28px;
         }
 
-        @include breakpoint('medium+') {
+        @include breakpoint.breakpoint('medium+') {
           width: 31px;
           height: 31px;
         }
@@ -84,7 +84,7 @@
 
 .o-editors-note--magazine {
   .o-editors-note__tag {
-    color: $color__plum;
+    color: colors.$color__plum;
   }
 
   .o-editors-note__author {

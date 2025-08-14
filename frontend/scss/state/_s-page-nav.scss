@@ -1,3 +1,6 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+
 /***
 
 Page nav
@@ -15,7 +18,7 @@ Shows the mask to fade out the page, fades back in after. Has variations for fil
   .g-mask {
     right: 0;
     bottom: 0;
-    background-color: rgba($color__white, 1);
+    background-color: rgba(colors.$color__white, 1);
     opacity: .25;
   }
 
@@ -41,7 +44,7 @@ Shows the mask to fade out the page, fades back in after. Has variations for fil
   .g-mask {
     right: 0;
     bottom: 0;
-    background-color: rgba($color__white, 1);
+    background-color: rgba(colors.$color__white, 1);
     opacity: 1;
   }
 
@@ -58,13 +61,13 @@ Shows the mask to fade out the page, fades back in after. Has variations for fil
 .s-collection-search-active.s-page-nav-swapping,
 .s-collection-filters-active.s-page-nav-swapping {
   .g-mask {
-    @include breakpoint('medium+') {
-      background-color: rgba($color__white, .75);
+    @include breakpoint.breakpoint('medium+') {
+      background-color: rgba(colors.$color__white, .75);
       opacity: 1;
     }
 
-    @include breakpoint('small-') {
-      background-color: rgba($color__bg--tertiary, .25);
+    @include breakpoint.breakpoint('small-') {
+      background-color: rgba(colors.$color__bg--tertiary, .25);
       opacity: 1;
     }
   }
@@ -80,7 +83,7 @@ Shows the mask to fade out the page, fades back in after. Has variations for fil
   }
 
   .o-collection-filters::after {
-    @include breakpoint('small-') {
+    @include breakpoint.breakpoint('small-') {
       right: 0;
       bottom: 0;
       opacity: .5;

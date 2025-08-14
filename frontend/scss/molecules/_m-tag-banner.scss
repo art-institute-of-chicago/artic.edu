@@ -1,5 +1,9 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/variables";
+
 .m-tag-banner-block {
-  border-top: 1px solid $color__black--20;
+  border-top: 1px solid colors.$color__black--20;
   margin-top: 50px;
   padding-top: 50px;
 
@@ -9,7 +13,7 @@
     position: relative;
     width: 100%;
 
-    @include breakpoint('medium-') {
+    @include breakpoint.breakpoint('medium-') {
       height: 300px;
     }
   }
@@ -21,7 +25,7 @@
     z-index: 0;
 
     &::before {
-      background: $color__cold-white;
+      background: colors.$color__cold-white;
       bottom: 0;
       content: "";
       display: block;
@@ -59,14 +63,14 @@
     width: 100%;
     z-index: 1;
 
-    @include breakpoint('medium-') {
+    @include breakpoint.breakpoint('medium-') {
       align-items: flex-start;
       flex-direction: column;
       justify-content: space-around;
       padding: 50px;
     }
 
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       padding: 30px;
     }
   }
@@ -75,8 +79,8 @@
     align-self: baseline;
 
     .tag-banner-title {
-      color: $color__black--90 !important;
-      font-family: $sans-serif-font--loaded;
+      color: colors.$color__black--90 !important;
+      font-family: variables.$sans-serif-font--loaded;
       font-size: 21px;
       font-weight: 400;
       letter-spacing: 0.08em;
@@ -86,9 +90,9 @@
     }
 
     .tag-banner-body {
-      color: $color__black--90 !important;
+      color: colors.$color__black--90 !important;
       display: block;
-      font-family: $serif-font--loaded;
+      font-family: variables.$serif-font--loaded;
       font-size: 22px;
       font-weight: 300;
       letter-spacing: -0.005em;
@@ -111,11 +115,11 @@
       justify-content: center;
 
       .tag {
-        background-color: $color__white;
+        background-color: colors.$color__white;
         border-radius: 2px;
-        border: 1px solid $color__black--20;
-        color: $color__black;
-        font-family: $sans-serif-font--loaded;
+        border: 1px solid colors.$color__black--20;
+        color: colors.$color__black;
+        font-family: variables.$sans-serif-font--loaded;
         font-size: 12px;
         font-weight: 400;
         letter-spacing: 0.14em;
@@ -139,14 +143,14 @@
   }
 
   &.tag-banner-block--variation-categories {
-    @include breakpoint('medium-') {
+    @include breakpoint.breakpoint('medium-') {
       .m-tag-banner {
         display: none;
       }
     }
 
     .tag-banner-link {
-      color: $color__rules--brand;
+      color: colors.$color__rules--brand;
       display: block;
       font-size: 20px;
       font-weight: 300;

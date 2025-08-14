@@ -1,3 +1,6 @@
+@use "../setup/mixins/breakpoint";
+@use "input";
+
 /***
 
 textarea
@@ -21,11 +24,11 @@ textarea
   &.f-secondary {
     padding-top: 10px;
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       padding-top: 11px;
     }
 
-    @include breakpoint('xlarge') {
+    @include breakpoint.breakpoint('xlarge') {
       padding-top: 7px;
     }
   }

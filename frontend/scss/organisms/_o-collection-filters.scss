@@ -1,18 +1,22 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/variables";
+
 @use "sass:map";
 
 
 .o-collection-filters {
   display: none;
   position: fixed;
-  z-index: map.get($zindexs, 'searchFilters');
+  z-index: map.get(variables.$zindexs, 'searchFilters');
   left: 0;
   top: 0;
   bottom: 0;
   width: 300px;
   flex-flow: column nowrap;
-  background: $color__bg;
+  background: colors.$color__bg;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     position: static;
     width: auto;
     background-color: transparent;
@@ -27,11 +31,11 @@
   right: 100%;
   top: 0;
   bottom: 100%;
-  background-color: rgba($color__bg--tertiary, .25);
+  background-color: rgba(colors.$color__bg--tertiary, .25);
   opacity: 0;
   transition: .15s opacity;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     content: none;
     display: none;
   }
@@ -45,11 +49,11 @@
   right: 100%;
   top: 0;
   bottom: 100%;
-  background-color: $color__white;
+  background-color: colors.$color__white;
   opacity: 0;
   transition: .15s opacity;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     content: none;
     display: none;
   }
@@ -60,7 +64,7 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     flex: 0 0 auto;
     overflow-y: initial;
     -webkit-overflow-scrolling: auto;
@@ -70,13 +74,13 @@
 .o-collection-filters .o-accordion__trigger:not(:first-child) {
   margin-top: 12px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-top: 16px;
   }
 }
 
 .o-collection-filters .o-accordion__trigger:not(:first-child) .icon--arrow {
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-top: -16px;
   }
 }
@@ -88,7 +92,7 @@
 .o-collection-filters .o-accordion__panel-content {
   padding-bottom: 16px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-bottom: 32px;
   }
 }
@@ -110,7 +114,7 @@
   padding-top: 9px;
   padding-bottom: 11px;
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     padding-top: 7px;
     padding-bottom: 15px;
   }
@@ -123,7 +127,7 @@
 .o-collection-filters__filters {
   padding: 20px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding: 0;
   }
 }
@@ -132,16 +136,16 @@
   flex: 0 0 auto;
   width: 100%;
   padding: 11px 12px 12px;
-  border-top: 1px solid $color__rules--primary;
-  background: $color__bg;
+  border-top: 1px solid colors.$color__rules--primary;
+  background: colors.$color__bg;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: none;
   }
 }
 
 .o-collection-filters .m-active-filters {
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: none;
   }
 }

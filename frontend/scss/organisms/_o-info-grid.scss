@@ -1,3 +1,6 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+
 .o-info-grid {
   margin-top: 50px;
   display: flex;
@@ -5,28 +8,28 @@
 
   .row:first-child {
     padding-bottom: 18px;
-    border-bottom: 1px solid $color__rules--primary;
+    border-bottom: 1px solid colors.$color__rules--primary;
     margin-bottom: 50px;
   }
 
   .row:last-child {
     margin-top: 32px;
-    @include breakpoint('medium') {
+    @include breakpoint.breakpoint('medium') {
       margin-top: 32px;
     }
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       margin-top: 32px;
     }
 
     > .col:first-child {
-      border-right: 1px solid $color__rules--primary;
-      @include breakpoint('medium') {
+      border-right: 1px solid colors.$color__rules--primary;
+      @include breakpoint.breakpoint('medium') {
         border-right: none;
       }
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         border-right: none;
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         border-right: none;
       }
     }
@@ -37,40 +40,40 @@
     flex-direction: row;
     align-items: top;
     justify-content: space-between;
-    @include breakpoint('medium') {
+    @include breakpoint.breakpoint('medium') {
       flex-direction: column;
     }
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       flex-direction: column;
     }
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       flex-direction: column;
     }
 
     .col:first-child {
       padding-right: 20px;
-      @include breakpoint('medium') {
+      @include breakpoint.breakpoint('medium') {
         padding-right: 0;
       }
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         padding-right: 0;
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         padding-right: 0;
       }
     }
 
     .col:not(:first-child) {
       padding-left: 20px;
-      @include breakpoint('medium') {
+      @include breakpoint.breakpoint('medium') {
         padding-left: 0;
         margin-top: 32px;
       }
-      @include breakpoint('small') {
+      @include breakpoint.breakpoint('small') {
         padding-left: 0;
         margin-top: 32px;
       }
-      @include breakpoint('xsmall') {
+      @include breakpoint.breakpoint('xsmall') {
         padding-left: 0;
         margin-top: 32px;
       }
@@ -83,13 +86,13 @@
 
   .col {
     width: 50%;
-    @include breakpoint('medium') {
+    @include breakpoint.breakpoint('medium') {
       width: 100%;
     }
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       width: 100%;
     }
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       width: 100%;
     }
 
@@ -110,7 +113,7 @@
     width: 100%;
 
     tr {
-      border-bottom: 1px solid $color__rules--primary ;
+      border-bottom: 1px solid colors.$color__rules--primary ;
       padding: 6px;
     }
 
@@ -120,7 +123,7 @@
     }
 
     td {
-      color: $color__text--secondary;
+      color: colors.$color__text--secondary;
       font-weight: 300;
       padding: 10px 0 18px;
       width: 20%;
@@ -131,12 +134,12 @@
     }
 
     .closed {
-      color: $color__text--secondary;
+      color: colors.$color__text--secondary;
     }
   }
 
   div.location {
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       display: flex;
 
       .location-image {
@@ -151,7 +154,7 @@
         vertical-align: top;
       }
     }
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       .location-image {
         text-align: center;
       }
@@ -160,7 +163,7 @@
         width: 100%;
       }
     }
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       .location-image {
         text-align: center;
       }

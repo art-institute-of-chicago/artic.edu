@@ -1,3 +1,11 @@
+@use "../layout/content";
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/mixins/other";
+@use "../setup/typography";
+@use "../setup/variables";
+
 @use "sass:map";
 /***
 
@@ -34,13 +42,13 @@
   &.hidden {
     display: none;
 
-    @include breakpoint('small-') {
+    @include breakpoint.breakpoint('small-') {
       display: block;
     }
   }
 
   .o-article .m-listing--publication {
-    border: thin solid $color__rules--primary;
+    border: thin solid colors.$color__rules--primary;
   }
 
   .o-article__related .m-inline-aside &,
@@ -52,16 +60,16 @@
   .o-article__related .m-inline-aside &,
   .o-article__secondary-actions .m-inline-aside & {
     .f-list-3 {
-      @include font-styles(generate-font-obj((font-family: $serif-font,
-            font-family-loaded: $serif-font--loaded,
-            font-loaded-class: $serif-font-loaded-class,
+      @include typography.font-styles(typography.generate-font-obj((font-family: variables.$serif-font,
+            font-family-loaded: variables.$serif-font--loaded,
+            font-loaded-class: variables.$serif-font-loaded-class,
             settings: ('xsmall': (font-size: 24, line-height: 34, push: 0)))));
     }
 
     .f-list-1 {
-      @include font-styles(generate-font-obj((font-family: $serif-font,
-            font-family-loaded: $serif-font--loaded,
-            font-loaded-class: $serif-font-loaded-class,
+      @include typography.font-styles(typography.generate-font-obj((font-family: variables.$serif-font,
+            font-family-loaded: variables.$serif-font--loaded,
+            font-loaded-class: variables.$serif-font-loaded-class,
             settings: ('xsmall': (font-size: 19, line-height: 28, push: 0)))));
     }
   }
@@ -70,7 +78,7 @@
   .o-article__secondary-actions .m-inline-aside &+& {
     &:before {
       content: '';
-      border-top: 1px solid $color__rules--primary;
+      border-top: 1px solid colors.$color__rules--primary;
     }
   }
 }
@@ -103,7 +111,7 @@
   flex: 0 0 auto;
   position: relative;
   margin-top: 28px;
-  background-color: $color__bg--primary;
+  background-color: colors.$color__bg--primary;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   overflow: hidden;
@@ -119,7 +127,7 @@
     margin-top: 0;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-top: 36px;
 
     &:first-child {
@@ -158,20 +166,20 @@
   right: 0;
   bottom: 0;
   height: 0;
-  background-color: $color__link;
-  transition: all .25s $bezier--ease-out-circ;
+  background-color: colors.$color__link;
+  transition: all .25s variables.$bezier--ease-out-circ;
 }
 
 .m-listing--hover-bar.m-listing--limited .m-listing__img::after {
-  background-color: $color__text--limited;
+  background-color: colors.$color__text--limited;
 }
 
 .m-listing--hover-bar.m-listing--new .m-listing__img::after {
-  background-color: $color__text--new;
+  background-color: colors.$color__text--new;
 }
 
 .m-listing--hover-bar.m-listing--membership .m-listing__img::after {
-  background-color: $color__text--membership;
+  background-color: colors.$color__text--membership;
 }
 
 .m-listing--hover-bar .m-listing__link:hover .m-listing__img::after,
@@ -187,7 +195,7 @@
 .m-listing__img img,
 .m-listing__img video,
 .m-listing__img .default-img {
-  @include objectFitFix;
+  @include other.objectFitFix;
 
   & {
     position: absolute;
@@ -204,7 +212,7 @@
 .m-listing__img .img-hero-desktop {
   display: none;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     display: block;
   }
 }
@@ -212,7 +220,7 @@
 .m-listing__img .img-hero-mobile {
   display: block;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     display: none;
   }
 }
@@ -237,7 +245,7 @@
     display: none;
   }
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     img {
       display: none;
     }
@@ -257,7 +265,7 @@
   margin: 0 auto;
   transform: translateY(-50%);
 
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     width: 24px;
     height: 24px;
   }
@@ -272,7 +280,7 @@
   margin: 0 auto;
   transform: translateY(-50%);
 
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     width: 24px;
     height: 24px;
   }
@@ -287,7 +295,7 @@
   margin: 0 auto;
   transform: translateY(-50%);
 
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     width: 24px;
     height: 24px;
   }
@@ -303,19 +311,19 @@
 }
 
 .m-listing__img-prompt {
-  @include untuck;
+  @include typography.untuck;
 
   & {
     position: absolute;
     right: 0;
     bottom: 0;
     padding: 10px 12px 12px;
-    background-color: $color__text--type;
-    color: $color__text--title-contrast;
+    background-color: colors.$color__text--type;
+    color: colors.$color__text--title-contrast;
     text-align: center;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     min-width: 120px;
     padding-top: 11px;
     padding-bottom: 11px;
@@ -336,7 +344,7 @@
 
   z-index: 3;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     min-height: 144px;
   }
 }
@@ -347,11 +355,11 @@
 .o-grid-listing--4-col\@xlarge .m-listing__meta {
   min-height: 152px;
 
-  @include breakpoint('small') {
+  @include breakpoint.breakpoint('small') {
     min-height: 168px;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     min-height: 184px;
   }
 }
@@ -391,7 +399,7 @@
 }
 
 .m-listing.s-no-link .title {
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 }
 
 .m-listing__link:hover .title {
@@ -399,85 +407,85 @@
 }
 
 .m-listing__meta .f-tag {
-  @include tucked-margin-top($f-tag, ('xsmall': 28, 'medium+': 32, 'large+': 28));
+  @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 28, 'medium+': 32, 'large+': 28));
 }
 
 .m-listing__meta .f-secondary+br+.f-tag,
 .m-listing__meta .f-tertiary+br+.f-tag {
-  @include tucked-margin-top($f-tag, ('xsmall': 32, 'large+': 36));
+  @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 32, 'large+': 36));
 }
 
 .m-listing__meta .f-headline-editorial {
-  @include tucked-margin-top($f-headline-editorial, ('xsmall': 36, 'small+': 60, 'medium+': 64));
+  @include other.tucked-margin-top(typography.$f-headline-editorial, ('xsmall': 36, 'small+': 60, 'medium+': 64));
 }
 
 .m-listing__meta .f-list-1 {
-  @include tucked-margin-top($f-list-1, ('xsmall': 32, 'medium+': 36));
+  @include other.tucked-margin-top(typography.$f-list-1, ('xsmall': 32, 'medium+': 36));
 
   &:first-child {
-    @include tucked-margin-top($f-list-1, ('xsmall': 44, 'large+': 38));
+    @include other.tucked-margin-top(typography.$f-list-1, ('xsmall': 44, 'large+': 38));
   }
 }
 
 .m-listing__meta .f-list-2 {
-  @include tucked-margin-top($f-list-2, ('xsmall': 32));
+  @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 32));
 
   &:first-child {
-    @include tucked-margin-top($f-list-2, ('xsmall': 44, 'large+': 38));
+    @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 44, 'large+': 38));
   }
 }
 
 .m-listing__meta .f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 40, 'large+': 44));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 40, 'large+': 44));
 }
 
 .m-listing__meta .f-list-3:first-child,
 .m-listing__meta .date+.f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 36, 'small+': 40));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 36, 'small+': 40));
 }
 
 .m-listing__meta .f-list-4 {
-  @include tucked-margin-top($f-list-4, ('xsmall': 36, 'large+': 44));
+  @include other.tucked-margin-top(typography.$f-list-4, ('xsmall': 36, 'large+': 44));
 
   &:first-child {
-    @include tucked-margin-top($f-list-4, ('xsmall': 44, 'large+': 48));
+    @include other.tucked-margin-top(typography.$f-list-4, ('xsmall': 44, 'large+': 48));
   }
 }
 
 .m-listing__meta .f-list-5 {
-  @include tucked-margin-top($f-list-5, ('xsmall': 32, 'small+': 44, 'medium+': 40, 'large+': 48));
+  @include other.tucked-margin-top(typography.$f-list-5, ('xsmall': 32, 'small+': 44, 'medium+': 40, 'large+': 48));
 
   &:first-child {
-    @include tucked-margin-top($f-list-5, ('xsmall': 44, 'small+': 52, 'medium+': 48, 'large+': 56));
+    @include other.tucked-margin-top(typography.$f-list-5, ('xsmall': 44, 'small+': 52, 'medium+': 48, 'large+': 56));
   }
 }
 
 .m-listing__meta .f-list-6 {
-  @include tucked-margin-top($f-list-6, ('xsmall': 32));
+  @include other.tucked-margin-top(typography.$f-list-6, ('xsmall': 32));
 
   &:first-child {
-    @include tucked-margin-top($f-list-6, ('xsmall': 44, 'large+': 38));
+    @include other.tucked-margin-top(typography.$f-list-6, ('xsmall': 44, 'large+': 38));
   }
 }
 
 .m-listing__meta .f-list-7 {
-  @include tucked-margin-top($f-list-7, ('xsmall': 32));
+  @include other.tucked-margin-top(typography.$f-list-7, ('xsmall': 32));
 
   &:first-child {
-    @include tucked-margin-top($f-list-7, ('xsmall': 28, 'small+': 36, 'medium+': 44, 'large+': 38));
+    @include other.tucked-margin-top(typography.$f-list-7, ('xsmall': 28, 'small+': 36, 'medium+': 44, 'large+': 38));
   }
 }
 
 .m-listing__meta .f-headline-editorial {
-  @include tucked-margin-top($f-headline-editorial, ('xsmall': 32, 'small+': 44, 'medium+': 40, 'large+': 48));
+  @include other.tucked-margin-top(typography.$f-headline-editorial, ('xsmall': 32, 'small+': 44, 'medium+': 40, 'large+': 48));
 
   &:first-child {
-    @include tucked-margin-top($f-headline-editorial, ('xsmall': 44, 'small+': 52, 'medium+': 48, 'large+': 56));
+    @include other.tucked-margin-top(typography.$f-headline-editorial, ('xsmall': 44, 'small+': 52, 'medium+': 48, 'large+': 56));
   }
 }
 
 .m-listing__meta .f-display-1 {
-  @include tucked-margin-top($f-display-1, ('xsmall': 36, 'small+': 40, 'medium+': 44));
+  @include other.tucked-margin-top(typography.$f-display-1, ('xsmall': 36, 'small+': 40, 'medium+': 44));
 }
 
 .p-home-index .m-listing__meta .f-display-1 {
@@ -486,31 +494,31 @@
 }
 
 .m-listing__meta .f-module-title-2 {
-  @include tucked-margin-top($f-module-title-2, ('xsmall': 24, 'small+': 32));
+  @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 24, 'small+': 32));
 }
 
 .m-listing__meta .f-subheading-1 {
-  @include tucked-margin-top($f-subheading-1, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-subheading-1, ('xsmall': 28));
 }
 
 .m-listing__meta .f-body {
-  @include tucked-margin-top($f-body, ('xsmall': 48));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 48));
 }
 
 .m-listing__meta .f-list-3+.f-body {
-  @include tucked-margin-top($f-body, ('xsmall': 36, 'small+': 44, 'medium+': 48));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 36, 'small+': 44, 'medium+': 48));
 }
 
 .m-listing__meta .f-list-4+br+.f-body {
-  @include tucked-margin-top($f-body, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 36));
 }
 
 .m-listing__meta .subtitle.f-body {
-  @include tucked-margin-top($f-body, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 28));
 }
 
 .m-listing__meta .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 36));
 
   & {
     margin-bottom: 14px;
@@ -521,37 +529,37 @@
 .m-listing__meta .f-list-2+br+.f-secondary:not(ul),
 .m-listing__meta .f-list-6+br+.f-secondary:not(ul),
 .m-listing__meta .f-list-7+br+.f-secondary:not(ul) {
-  @include tucked-margin-top($f-secondary, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 28));
 }
 
 .m-listing__meta .m-listing__meta-bottom .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 40));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 40));
 }
 
 .m-listing__meta .f-list-4+br+.m-listing__meta-bottom .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 60, 'small+': 40));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 60, 'small+': 40));
 }
 
 .m-listing__meta span.f-secondary.last-child,
 .m-listing__meta ul.f-secondary:last-child {
   padding-bottom: 20px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     padding-bottom: 8px;
   }
 }
 
 .m-listing__meta .f-tertiary {
-  @include tucked-margin-top($f-tertiary, ('xsmall': 36, 'small+': 36));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 36, 'small+': 36));
 }
 
 .m-listing__meta .f-list-1+br+.f-tertiary,
 .m-listing__meta .f-list-2+br+.f-tertiary,
 .m-listing__meta .f-list-6+br+.f-tertiary,
 .m-listing__meta .f-list-7+br+.f-tertiary {
-  @include tucked-margin-top($f-tertiary, ('xsmall': 20, 'small+': 28));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 20, 'small+': 28));
 
-  @include breakpoint('xsmall') {
+  @include breakpoint.breakpoint('xsmall') {
     padding-bottom: 4px;
     margin-bottom: -4px; // To not crop letters with descenders
     overflow: hidden;
@@ -561,86 +569,86 @@
 }
 
 .m-listing__meta .f-link {
-  @include tucked-margin-top($f-secondary, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 28));
 }
 
 .m-listing__meta .f-caption {
-  @include tucked-margin-top($f-caption, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-caption, ('xsmall': 36));
 }
 
 .m-listing__meta .f-body-editorial {
-  @include tucked-margin-top($f-body-editorial, ('xsmall': 40));
+  @include other.tucked-margin-top(typography.$f-body-editorial, ('xsmall': 40));
 
   & {
-    color: $color__text;
+    color: colors.$color__text;
   }
 }
 
 .m-listing__meta .f-secondary+br+.f-secondary:not(ul):not(span):not(.date) {
-  @include tucked-align-top($f-secondary);
+  @include other.tucked-align-top(typography.$f-secondary);
 
   & {
-    color: $color__text--tertiary;
+    color: colors.$color__text--tertiary;
   }
 }
 
 .m-listing__meta .f-tertiary+br+.f-tertiary {
-  @include tucked-align-top($f-tertiary);
+  @include other.tucked-align-top(typography.$f-tertiary);
 
   & {
-    color: $color__text--tertiary;
+    color: colors.$color__text--tertiary;
   }
 }
 
 .m-listing__meta .f-list-3+br+.f-link,
 .m-listing__meta .f-secondary+br+.f-link,
 .m-listing__meta .f-tertiary+br+.f-link {
-  @include tucked-margin-top($f-secondary, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 36));
 }
 
 
 @each $name,
-$point in $breakpoints {
+$point in variables.$breakpoints {
   @if ($name !='xsmall') {
-    @include breakpoint('#{$name}') {
+    @include breakpoint.breakpoint('#{$name}') {
       .m-listing--row .m-listing__meta .f-headline-editorial:first-child {
-        @include tucked-align-top($f-headline-editorial, $name);
+        @include other.tucked-align-top(typography.$f-headline-editorial, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-1:first-child {
-        @include tucked-align-top($f-list-1, $name);
+        @include other.tucked-align-top(typography.$f-list-1, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-2:first-child {
-        @include tucked-align-top($f-list-2, $name);
+        @include other.tucked-align-top(typography.$f-list-2, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-3:first-child {
-        @include tucked-align-top($f-list-3, $name);
+        @include other.tucked-align-top(typography.$f-list-3, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-4:first-child {
-        @include tucked-align-top($f-list-4, $name);
+        @include other.tucked-align-top(typography.$f-list-4, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-5:first-child {
-        @include tucked-align-top($f-list-5, $name);
+        @include other.tucked-align-top(typography.$f-list-5, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-6:first-child {
-        @include tucked-align-top($f-list-6, $name);
+        @include other.tucked-align-top(typography.$f-list-6, $name);
       }
 
       .m-listing--row .m-listing__meta .f-list-7:first-child {
-        @include tucked-align-top($f-list-7, $name);
+        @include other.tucked-align-top(typography.$f-list-7, $name);
       }
 
       .m-listing--row .m-listing__meta .f-headline-editorial:first-child {
-        @include tucked-align-top($f-headline-editorial, $name);
+        @include other.tucked-align-top(typography.$f-headline-editorial, $name);
       }
 
       .m-listing--row .m-listing__meta .f-tag:first-child {
-        @include tucked-align-top($f-tag, $name);
+        @include other.tucked-align-top(typography.$f-tag, $name);
       }
     }
   }
@@ -652,7 +660,7 @@ $point in $breakpoints {
   padding-bottom: math.percentage(math.div(9, 16)); // 16:9
 }
 
-@include breakpoint('medium+') {
+@include breakpoint.breakpoint('medium+') {
   .m-listing--feature .m-listing__link {
     display: block;
     position: relative;
@@ -694,7 +702,7 @@ $point in $breakpoints {
   .m-listing--feature .subtitle,
   .m-listing--feature .f-secondary+br+.f-secondary,
   .m-listing--feature .f-tertiary+br+.f-tertiary {
-    color: $color__text--title-contrast;
+    color: colors.$color__text--title-contrast;
   }
 
   .m-listing--feature .intro.f-caption,
@@ -708,36 +716,36 @@ $point in $breakpoints {
   }
 
   .m-listing--feature .m-listing__link:hover .title {
-    color: $color__text--title-contrast;
+    color: colors.$color__text--title-contrast;
     opacity: 1;
   }
 }
 
 .m-listing--feature .m-listing__meta {
 
-  @include breakpoint('large+') {
-    padding: colspan(1, large);
+  @include breakpoint.breakpoint('large+') {
+    padding: grid.colspan(1, large);
   }
 
-  @include breakpoint('xlarge') {
-    padding: colspan(1, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    padding: grid.colspan(1, xlarge);
   }
 }
 
 .m-listing--feature .m-listing__meta .f-tag {
-  @include tucked-margin-top($f-tag, ('xsmall': 32, 'medium+': 8));
+  @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 32, 'medium+': 8));
 }
 
 .m-listing--feature .m-listing__meta .f-module-title-2:first-child {
-  @include tucked-align-top($f-module-title-2);
+  @include other.tucked-align-top(typography.$f-module-title-2);
 }
 
 .m-listing--feature .m-listing__meta .f-secondary+br+.f-secondary {
-  @include tucked-align-top($f-secondary);
+  @include other.tucked-align-top(typography.$f-secondary);
 }
 
 .m-listing--feature .m-listing__meta .f-tertiary+br+.f-tertiary {
-  @include tucked-align-top($f-tertiary);
+  @include other.tucked-align-top(typography.$f-tertiary);
 }
 
 
@@ -763,12 +771,12 @@ $point in $breakpoints {
   height: 120vw;
   overflow: hidden;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     height: auto;
     max-height: calc(95vh - 128px);
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     max-height: 95vh;
   }
 }
@@ -776,7 +784,7 @@ $point in $breakpoints {
 .m-listing--hero .m-listing__img::before {
   padding-bottom: 100%; // 1:1
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-bottom: math.percentage(math.div(9, 16)); // 16:9
   }
 }
@@ -797,7 +805,7 @@ $point in $breakpoints {
 .m-listing--hero .m-listing__link:focus .m-listing__img::after {
   height: 220px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     height: 300px;
   }
 }
@@ -861,7 +869,7 @@ $point in $breakpoints {
 }
 
 .m-listing--hero .m-listing__meta {
-  @include opaqueBg(rgba(0, 0, 0, .4), rgba(0, 0, 0, .25));
+  @include other.opaqueBg(rgba(0, 0, 0, .4), rgba(0, 0, 0, .25));
 
   & {
     position: absolute;
@@ -869,33 +877,33 @@ $point in $breakpoints {
     right: 0;
     bottom: 0;
     min-height: 0;
-    padding: 20px colspan(3, xsmall);
+    padding: 20px grid.colspan(3, xsmall);
     pointer-events: none;
   }
 
-  @include breakpoint('small+') {
-    padding: colspan(2, small) colspan(3, small);
+  @include breakpoint.breakpoint('small+') {
+    padding: grid.colspan(2, small) grid.colspan(3, small);
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     left: 50%;
     right: auto;
     bottom: 40px;
-    width: colspan(28, medium);
-    margin-left: colspan(29, medium, 0, true);
+    width: grid.colspan(28, medium);
+    margin-left: grid.colspan(29, medium, 0, true);
     padding: 20px;
   }
 
-  @include breakpoint('large+') {
-    width: colspan(28, large);
-    margin-left: colspan(29, large, 0, true);
-    padding: colspan(1, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(28, large);
+    margin-left: grid.colspan(29, large, 0, true);
+    padding: grid.colspan(1, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(28, xlarge);
-    margin-left: colspan(29, xlarge, 0, true);
-    padding: colspan(1, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(28, xlarge);
+    margin-left: grid.colspan(29, xlarge, 0, true);
+    padding: grid.colspan(1, xlarge);
   }
 }
 
@@ -907,7 +915,7 @@ $point in $breakpoints {
 .m-listing--hero .intro,
 .m-listing--hero .f-secondary+br+.f-secondary,
 .m-listing--hero .f-tertiary+br+.f-tertiary {
-  color: $color__text--title-contrast;
+  color: colors.$color__text--title-contrast;
 }
 
 .m-listing--hero .intro.f-caption {
@@ -926,30 +934,30 @@ $point in $breakpoints {
 }
 
 .m-listing--hero .title {
-  @include breakpoint('small+') {
-    max-width: colspan(design-cols-to-colspan(10), small);
+  @include breakpoint.breakpoint('small+') {
+    max-width: grid.colspan(grid.design-cols-to-colspan(10), small);
   }
 
-  @include breakpoint('medium+') {
-    max-width: colspan(design-cols-to-colspan(10), medium);
+  @include breakpoint.breakpoint('medium+') {
+    max-width: grid.colspan(grid.design-cols-to-colspan(10), medium);
   }
 
-  @include breakpoint('large+') {
-    max-width: colspan(design-cols-to-colspan(10), large);
+  @include breakpoint.breakpoint('large+') {
+    max-width: grid.colspan(grid.design-cols-to-colspan(10), large);
   }
 
-  @include breakpoint('xlarge') {
-    max-width: colspan(design-cols-to-colspan(10), xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    max-width: grid.colspan(grid.design-cols-to-colspan(10), xlarge);
   }
 }
 
 .m-listing--hero .m-listing__link:hover .title {
-  color: $color__text--title-contrast;
+  color: colors.$color__text--title-contrast;
   opacity: 1;
 }
 
 .m-listing--hero .m-listing__meta .f-tag {
-  @include tucked-align-top($f-tag);
+  @include other.tucked-align-top(typography.$f-tag);
 }
 
 .m-listing--hero .m-listing__meta .f-previewdate {
@@ -958,115 +966,115 @@ $point in $breakpoints {
   margin-bottom: 2px;
   width: fit-content;
 
-  @include breakpoint('small-') {
+  @include breakpoint.breakpoint('small-') {
     border-bottom: 1px solid #6f2562;
   }
 }
 
 .m-listing--hero .m-listing__meta .f-display-1:first-child {
-  @include tucked-align-top($f-display-1);
+  @include other.tucked-align-top(typography.$f-display-1);
 }
 
 .m-listing--hero .m-listing__meta .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small+': 56, 'large+': 92));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 40, 'small+': 56, 'large+': 92));
 }
 
 .m-listing--hero .m-listing__meta .f-secondary+br+.f-secondary {
-  @include tucked-align-top($f-secondary);
+  @include other.tucked-align-top(typography.$f-secondary);
 }
 
 .m-listing--hero .m-listing__meta .f-tertiary {
-  @include tucked-margin-top($f-tertiary, ('xsmall': 40, 'small+': 56, 'large+': 92));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 40, 'small+': 56, 'large+': 92));
 }
 
 .m-listing--hero .m-listing__meta .f-tertiary+br+.f-tertiary {
-  @include tucked-align-top($f-tertiary);
+  @include other.tucked-align-top(typography.$f-tertiary);
 }
 
 .m-listing--hero .m-listing__meta .f-body {
-  @include tucked-margin-top($f-body, ('xsmall': 40, 'small+': 56, 'large+': 92));
+  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 40, 'small+': 56, 'large+': 92));
 }
 
 
 
 .m-listing--hero-editorial .m-listing__meta {
-  @include opaqueBg(rgba($color__bg--editorial, .85), rgba($color__bg--editorial, .85));
+  @include other.opaqueBg(rgba(colors.$color__bg--editorial, .85), rgba(colors.$color__bg--editorial, .85));
 
   & {
-    padding: 0 colspan(3, xsmall) 24px;
+    padding: 0 grid.colspan(3, xsmall) 24px;
   }
 
-  @include breakpoint('small') {
+  @include breakpoint.breakpoint('small') {
     left: 50%;
     right: auto;
     top: auto;
     bottom: 60px;
-    width: colspan(29, small);
+    width: grid.colspan(29, small);
     min-width: 400px;
-    margin-left: colspan(29, small, 0, true);
+    margin-left: grid.colspan(29, small, 0, true);
     padding: 12px 40px 36px 40px;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-top: 20px;
     padding-right: 40px;
     padding-bottom: 40px;
     padding-left: 40px;
   }
 
-  @include breakpoint('large+') {
-    width: colspan(25, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(25, large);
     padding-top: 12px;
     padding-bottom: 40px;
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(23, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(23, xlarge);
   }
 }
 
 .m-listing--hero-editorial .m-listing__link:hover .m-listing__meta {
-  background-color: $color__bg--editorial;
+  background-color: colors.$color__bg--editorial;
 }
 
 .m-listing--hero-editorial .type {
-  color: $color__text--type;
+  color: colors.$color__text--type;
 }
 
 .m-listing--hero-editorial .title {
-  color: $color__text--title;
+  color: colors.$color__text--title;
 }
 
 .m-listing--hero-editorial .m-listing__link:hover .title {
-  color: $color__text--title;
+  color: colors.$color__text--title;
   opacity: 1;
 }
 
 .m-listing--hero-editorial .date,
 .m-listing--hero-editorial .intro {
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 }
 
 .m-listing--hero-editorial .m-listing__meta>.f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 44));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 44));
 
   & {
     display: none;
   }
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     display: block;
   }
 }
 
 .m-listing--hero-editorial .m-listing__meta>.f-tertiary {
-  @include tucked-margin-top($f-tertiary, ('xsmall': 44, 'small+': 44, 'medium+': 48));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 44, 'small+': 44, 'medium+': 48));
 
   & {
     display: none;
   }
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     display: block;
   }
 }
@@ -1077,11 +1085,11 @@ $point in $breakpoints {
   flex-flow: row nowrap;
   margin-top: 60px;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-top: 32px;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-top: 60px;
   }
 }
@@ -1096,15 +1104,15 @@ $point in $breakpoints {
 }
 
 .m-listing--hero-editorial .m-listing__meta-bottom .f-tag {
-  @include tucked-margin-top($f-tag, ('xsmall': 12));
+  @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 12));
 }
 
 .m-listing--hero-editorial .m-listing__meta-bottom .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 12));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 12));
 }
 
 .m-listing--hero-editorial .m-listing__meta-bottom .f-tertiary {
-  @include tucked-margin-top($f-tertiary, ('xsmall': 12));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 12));
 }
 
 
@@ -1122,14 +1130,14 @@ $point in $breakpoints {
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: colors.$color__rules--primary;
 }
 
 
 // Variant `m-listing--row`
 
 .m-listing--row {
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     flex-flow: row nowrap;
     max-width: 100%;
   }
@@ -1137,14 +1145,14 @@ $point in $breakpoints {
   &+& {
     margin-top: 20px;
     padding-top: 16px;
-    border-top: 1px solid $color__rules--primary;
+    border-top: 1px solid colors.$color__rules--primary;
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-top: 20px;
       padding-top: 20px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-top: 24px;
       padding-top: 24px;
     }
@@ -1152,7 +1160,7 @@ $point in $breakpoints {
 }
 
 .m-listing--row .m-listing__link {
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     flex-flow: row nowrap;
     height: auto;
   }
@@ -1160,108 +1168,108 @@ $point in $breakpoints {
 
 .m-listing--row .m-listing__img {
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     align-self: flex-start;
-    width: colspan(13, small);
+    width: grid.colspan(13, small);
   }
 
-  @include breakpoint('medium+') {
-    width: colspan(13, medium);
+  @include breakpoint.breakpoint('medium+') {
+    width: grid.colspan(13, medium);
   }
 
-  @include breakpoint('large+') {
-    width: colspan(13, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(13, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(13, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(13, xlarge);
   }
 }
 
 .m-listing--row.m-listing--secondary .m-listing__img {
 
-  @include breakpoint('small+') {
-    width: colspan(7, small);
+  @include breakpoint.breakpoint('small+') {
+    width: grid.colspan(7, small);
   }
 
-  @include breakpoint('medium+') {
-    width: colspan(7, medium);
+  @include breakpoint.breakpoint('medium+') {
+    width: grid.colspan(7, medium);
   }
 
-  @include breakpoint('large+') {
-    width: colspan(7, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(7, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(7, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(7, xlarge);
   }
 }
 
 .m-listing--row.m-listing--tertiary .m-listing__img {
 
-  @include breakpoint('small+') {
-    width: colspan(7, small);
+  @include breakpoint.breakpoint('small+') {
+    width: grid.colspan(7, small);
   }
 
-  @include breakpoint('medium+') {
-    width: colspan(7, medium);
+  @include breakpoint.breakpoint('medium+') {
+    width: grid.colspan(7, medium);
   }
 
-  @include breakpoint('large+') {
-    width: colspan(5, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(5, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(5, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(5, xlarge);
   }
 }
 
 .m-listing--row.m-listing--generic .m-listing__img {
 
-  @include breakpoint('large+') {
-    width: colspan(10, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(10, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(10, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(10, xlarge);
   }
 }
 
 .m-listing--row .m-listing__meta {
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     position: relative;
     flex: 1;
     width: auto;
     min-height: 0;
     margin-top: 0;
-    margin-left: colspan(2, small);
+    margin-left: grid.colspan(2, small);
 
     &:first-child {
       margin-left: 0;
     }
   }
 
-  @include breakpoint('medium+') {
-    margin-left: colspan(2, medium);
+  @include breakpoint.breakpoint('medium+') {
+    margin-left: grid.colspan(2, medium);
 
     &:first-child {
       margin-left: 0;
     }
   }
 
-  @include breakpoint('large+') {
-    margin-left: colspan(1, large);
-    padding-right: colspan(5, large);
+  @include breakpoint.breakpoint('large+') {
+    margin-left: grid.colspan(1, large);
+    padding-right: grid.colspan(5, large);
 
     &:first-child {
       margin-left: 0;
     }
   }
 
-  @include breakpoint('xlarge') {
-    margin-left: colspan(1, xlarge);
-    padding-right: colspan(5, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    margin-left: grid.colspan(1, xlarge);
+    padding-right: grid.colspan(5, xlarge);
 
     &:first-child {
       margin-left: 0;
@@ -1270,70 +1278,70 @@ $point in $breakpoints {
 }
 
 .m-listing--row.m-listing--w-meta-bottom .m-listing__meta {
-  @include breakpoint('small+') {
-    padding-right: colspan(15, small);
+  @include breakpoint.breakpoint('small+') {
+    padding-right: grid.colspan(15, small);
 
   }
 
-  @include breakpoint('medium+') {
-    padding-right: colspan(12, medium);
+  @include breakpoint.breakpoint('medium+') {
+    padding-right: grid.colspan(12, medium);
   }
 
-  @include breakpoint('large+') {
-    padding-right: colspan(10, large);
+  @include breakpoint.breakpoint('large+') {
+    padding-right: grid.colspan(10, large);
   }
 
-  @include breakpoint('xlarge') {
-    padding-right: colspan(10, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    padding-right: grid.colspan(10, xlarge);
   }
 }
 
 .m-listing--row.m-listing--w-meta-bottom .m-listing__meta .m-listing__meta-bottom {
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     position: absolute;
     right: 0;
     top: -4px;
-    width: colspan(13, small);
+    width: grid.colspan(13, small);
   }
 
-  @include breakpoint('medium+') {
-    width: colspan(11, medium);
+  @include breakpoint.breakpoint('medium+') {
+    width: grid.colspan(11, medium);
   }
 
   @media screen and (min-width: 1024px) {
-    width: colspan(10, medium);
+    width: grid.colspan(10, medium);
   }
 
-  @include breakpoint('large+') {
-    width: colspan(8, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(8, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(8, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(8, xlarge);
   }
 }
 
 .m-listing--row.m-listing--w-meta-bottom .m-listing__meta .m-listing__meta-bottom .f-secondary {
-  @include breakpoint('small+') {
-    @include tucked-align-top($f-secondary, 'small');
+  @include breakpoint.breakpoint('small+') {
+    @include other.tucked-align-top(typography.$f-secondary, 'small');
   }
 
-  @include breakpoint('medium+') {
-    @include tucked-align-top($f-secondary, 'medium');
+  @include breakpoint.breakpoint('medium+') {
+    @include other.tucked-align-top(typography.$f-secondary, 'medium');
   }
 
-  @include breakpoint('large+') {
-    @include tucked-align-top($f-secondary, 'large');
+  @include breakpoint.breakpoint('large+') {
+    @include other.tucked-align-top(typography.$f-secondary, 'large');
   }
 
-  @include breakpoint('xlarge') {
-    @include tucked-align-top($f-secondary, 'xlarge');
+  @include breakpoint.breakpoint('xlarge') {
+    @include other.tucked-align-top(typography.$f-secondary, 'xlarge');
   }
 }
 
 // Variant 'm-listing--row@small'
 // Variant 'm-listing--row@medium'
-@include breakpoint('small') {
+@include breakpoint.breakpoint('small') {
   .m-listing--row\@small {
     flex-flow: row nowrap;
     max-width: 100%;
@@ -1345,7 +1353,7 @@ $point in $breakpoints {
 
     .m-listing__img {
       align-self: flex-start;
-      width: colspan(23, small);
+      width: grid.colspan(23, small);
     }
 
     .m-listing__meta {
@@ -1354,7 +1362,7 @@ $point in $breakpoints {
       width: auto;
       min-height: 0;
       margin-top: 0;
-      margin-left: colspan(2, small);
+      margin-left: grid.colspan(2, small);
 
       &:first-child {
         margin-left: 0;
@@ -1366,36 +1374,36 @@ $point in $breakpoints {
     }
 
     .m-listing__meta .f-tag {
-      @include tucked-margin-top($f-tag, ('xsmall': 12), 'small');
+      @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 12), 'small');
     }
 
     .m-listing__meta .f-tag:first-child {
-      @include tucked-align-top($f-tag, 'small');
+      @include other.tucked-align-top(typography.$f-tag, 'small');
     }
 
     .m-listing__meta .f-list-2:first-child {
-      @include tucked-align-top($f-list-2, 'small');
+      @include other.tucked-align-top(typography.$f-list-2, 'small');
     }
 
     .m-listing__meta .f-list-3:first-child {
-      @include tucked-align-top($f-list-3, 'small');
+      @include other.tucked-align-top(typography.$f-list-3, 'small');
     }
 
     .m-listing__meta .f-list-4:first-child {
-      @include tucked-align-top($f-list-4, 'small');
+      @include other.tucked-align-top(typography.$f-list-4, 'small');
     }
 
     .m-listing__meta .f-list-5:first-child {
-      @include tucked-align-top($f-list-5, 'small');
+      @include other.tucked-align-top(typography.$f-list-5, 'small');
     }
 
     .m-listing__meta .f-headline-editorial:first-child {
-      @include tucked-align-top($f-headline-editorial, 'small');
+      @include other.tucked-align-top(typography.$f-headline-editorial, 'small');
     }
   }
 }
 
-@include breakpoint('medium') {
+@include breakpoint.breakpoint('medium') {
   .m-listing--row\@medium {
     flex-flow: row nowrap;
     max-width: 100%;
@@ -1407,7 +1415,7 @@ $point in $breakpoints {
 
     .m-listing__img {
       align-self: flex-start;
-      width: colspan(22, medium);
+      width: grid.colspan(22, medium);
     }
 
     .m-listing__meta {
@@ -1416,7 +1424,7 @@ $point in $breakpoints {
       width: auto;
       min-height: 0;
       margin-top: 0;
-      margin-left: colspan(2, medium);
+      margin-left: grid.colspan(2, medium);
 
       &:first-child {
         margin-left: 0;
@@ -1428,31 +1436,31 @@ $point in $breakpoints {
     }
 
     .m-listing__meta .f-tag {
-      @include tucked-margin-top($f-tag, ('medium': 12), 'medium');
+      @include other.tucked-margin-top(typography.$f-tag, ('medium': 12), 'medium');
     }
 
     .m-listing__meta .f-tag:first-child {
-      @include tucked-align-top($f-tag, 'medium');
+      @include other.tucked-align-top(typography.$f-tag, 'medium');
     }
 
     .m-listing__meta .f-list-2:first-child {
-      @include tucked-align-top($f-list-2, 'medium');
+      @include other.tucked-align-top(typography.$f-list-2, 'medium');
     }
 
     .m-listing__meta .f-list-3:first-child {
-      @include tucked-align-top($f-list-3, 'medium');
+      @include other.tucked-align-top(typography.$f-list-3, 'medium');
     }
 
     .m-listing__meta .f-list-4:first-child {
-      @include tucked-align-top($f-list-4, 'medium');
+      @include other.tucked-align-top(typography.$f-list-4, 'medium');
     }
 
     .m-listing__meta .f-list-5:first-child {
-      @include tucked-align-top($f-list-5, 'medium');
+      @include other.tucked-align-top(typography.$f-list-5, 'medium');
     }
 
     .m-listing__meta .f-headline-editorial:first-child {
-      @include tucked-align-top($f-headline-editorial, 'medium');
+      @include other.tucked-align-top(typography.$f-headline-editorial, 'medium');
     }
   }
 }
@@ -1463,30 +1471,30 @@ $point in $breakpoints {
   max-width: 100%;
   padding-top: 19px;
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     padding-top: 23px;
   }
 
   &+& {
     margin-top: 20px;
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       margin-top: 36px;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-top: 40px;
     }
   }
 
   .o-row-listing>& {
-    border-top: 1px solid $color__rules--primary;
+    border-top: 1px solid colors.$color__rules--primary;
   }
 
   .m-inline-aside .m-listing {
     margin-top: 28px;
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-top: 40px;
     }
   }
@@ -1495,7 +1503,7 @@ $point in $breakpoints {
   .m-inline-aside .o-row-listing &+& {
     margin-top: 20px;
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       margin-top: 24px;
     }
   }
@@ -1503,7 +1511,7 @@ $point in $breakpoints {
   .o-article__secondary & {
     margin-top: 16px;
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       margin-top: 24px;
     }
   }
@@ -1514,16 +1522,16 @@ $point in $breakpoints {
   height: auto;
 }
 
-$f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
-    font-family-loaded: $sans-serif-font--loaded,
-    font-loaded-class: $sans-serif-font-loaded-class,
+$f-audio-subtitle: typography.generate-font-obj((font-family: variables.$sans-serif-font,
+    font-family-loaded: variables.$sans-serif-font--loaded,
+    font-loaded-class: variables.$sans-serif-font-loaded-class,
     settings: ('xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
       'medium+': (font-size: 14, line-height: 28, push: 0))));
 
 // Quick aside for artwork detail's sound variant
 .m-listing--inline.m-listing--sound {
   .m-listing__meta--sound {
-    @include font-styles($f-module-title-1);
+    @include typography.font-styles(typography.$f-module-title-1);
   }
 
   .m-listing__link {
@@ -1535,35 +1543,35 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
     width: 100%;
     margin-top: 20px;
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       margin-top: 24px;
     }
   }
 
   .m-listing--sound__subtitle {
-    @include font-styles($f-audio-subtitle);
+    @include typography.font-styles($f-audio-subtitle);
 
     & {
       text-align: right;
     }
 
     a {
-      color: $color__link--accent;
+      color: colors.$color__link--accent;
 
       &:hover {
-        color: $color__link--accent-hover;
+        color: colors.$color__link--accent-hover;
       }
     }
   }
 
   .m-listing--sound__transcript {
-    background-color: $color__bg--secondary;
+    background-color: colors.$color__bg--secondary;
 
     padding: 0 16px;
 
     height: 0;
     overflow: hidden;
-    transition: height .2s $bezier--ease-in-out, padding .2s $bezier--ease-in-out;
+    transition: height .2s variables.$bezier--ease-in-out, padding .2s variables.$bezier--ease-in-out;
 
     &[aria-hidden="false"] {
       padding: 16px;
@@ -1572,7 +1580,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
     }
 
     p {
-      font-family: $sans-serif-font--loaded;
+      font-family: variables.$sans-serif-font--loaded;
       font-weight: 300;
       font-size: 16px;
       line-height: 20px;
@@ -1588,42 +1596,42 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 .m-listing--inline .m-listing__img {
   align-self: flex-start;
-  width: colspan(18, xsmall);
+  width: grid.colspan(18, xsmall);
 
-  @include breakpoint('small+') {
-    width: colspan(18, small);
+  @include breakpoint.breakpoint('small+') {
+    width: grid.colspan(18, small);
   }
 
-  @include breakpoint('medium+') {
-    width: colspan(13, medium);
+  @include breakpoint.breakpoint('medium+') {
+    width: grid.colspan(13, medium);
   }
 
-  @include breakpoint('large+') {
-    width: colspan(8, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(8, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(8, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(8, xlarge);
   }
 }
 
 .m-listing--inline-narrow-image .m-listing__img {
-  width: colspan(10, xsmall);
+  width: grid.colspan(10, xsmall);
 
-  @include breakpoint('small+') {
-    width: colspan(8, small);
+  @include breakpoint.breakpoint('small+') {
+    width: grid.colspan(8, small);
   }
 
-  @include breakpoint('medium+') {
-    width: colspan(5, medium);
+  @include breakpoint.breakpoint('medium+') {
+    width: grid.colspan(5, medium);
   }
 
-  @include breakpoint('large+') {
-    width: colspan(4, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(4, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(4, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(4, xlarge);
   }
 }
 
@@ -1633,28 +1641,28 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   width: auto;
   min-height: 0;
   margin-top: 0;
-  margin-right: colspan(2, xsmall);
+  margin-right: grid.colspan(2, xsmall);
 
-  @include breakpoint('small+') {
-    margin-right: colspan(2, small);
+  @include breakpoint.breakpoint('small+') {
+    margin-right: grid.colspan(2, small);
   }
 
-  @include breakpoint('medium+') {
-    margin-right: colspan(2, medium);
+  @include breakpoint.breakpoint('medium+') {
+    margin-right: grid.colspan(2, medium);
   }
 
-  @include breakpoint('large+') {
-    margin-right: colspan(1, large);
+  @include breakpoint.breakpoint('large+') {
+    margin-right: grid.colspan(1, large);
   }
 
-  @include breakpoint('xlarge') {
-    margin-right: colspan(1, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    margin-right: grid.colspan(1, xlarge);
   }
 }
 
 .m-listing--inline .m-listing__meta .type {
   display: inline-block;
-  @include tucked-align-top($f-tag);
+  @include other.tucked-align-top(typography.$f-tag);
 }
 
 .m-listing--inline .m-listing__meta .m-listing__types {
@@ -1662,46 +1670,46 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 }
 
 .m-listing--inline .m-listing__meta .f-list-2 {
-  @include tucked-margin-top($f-list-2, ('xsmall': 32, 'small+': 36));
+  @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 32, 'small+': 36));
 
   &:first-child {
-    @include tucked-margin-top($f-list-2, ('xsmall': 16, 'small+': 20));
+    @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 16, 'small+': 20));
   }
 }
 
 .m-listing--inline .m-listing__meta .f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 32, 'small+': 36));
+  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 32, 'small+': 36));
 
   &:first-child {
-    @include tucked-margin-top($f-list-2, ('xsmall': 16, 'small+': 20));
+    @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 16, 'small+': 20));
   }
 }
 
 .m-listing--inline .m-listing__meta .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 28));
 }
 
 .m-listing--inline .m-listing__meta .f-secondary+br+.f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 36));
 }
 
 .m-listing--inline .m-listing__meta .f-tertiary {
-  @include tucked-margin-top($f-tertiary, ('xsmall': 28));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 28));
 }
 
 .m-listing--inline .m-listing__meta .f-tertiary+br+.f-tertiary {
-  @include tucked-margin-top($f-tertiary, ('xsmall': 36));
+  @include other.tucked-margin-top(typography.$f-tertiary, ('xsmall': 36));
 }
 
 // Variant 'm-listing--inline-feature'
 
 .m-listing--inline-feature+.m-listing--inline-feature {
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     padding-top: 35px;
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-top: 39px;
   }
 }
@@ -1710,7 +1718,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 .m-listing--inline-feature .m-listing__link {
   flex-direction: column;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     flex-direction: row;
   }
 }
@@ -1720,25 +1728,25 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   margin-top: 28px;
   margin-right: 0;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     margin-top: 0;
     margin-right: 0;
-    margin-left: colspan(3, small);
+    margin-left: grid.colspan(3, small);
   }
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-right: 0;
-    margin-left: colspan(3, medium);
+    margin-left: grid.colspan(3, medium);
   }
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     margin-right: 0;
-    margin-left: colspan(2, large);
+    margin-left: grid.colspan(2, large);
   }
 
-  @include breakpoint('xlarge') {
+  @include breakpoint.breakpoint('xlarge') {
     margin-right: 0;
-    margin-left: colspan(2, xlarge);
+    margin-left: grid.colspan(2, xlarge);
   }
 }
 
@@ -1746,31 +1754,31 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   width: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
-  border: 1px solid $color__rules--primary;
+  border: 1px solid colors.$color__rules--primary;
 
-  @include breakpoint('small+') {
-    width: colspan(28, small);
+  @include breakpoint.breakpoint('small+') {
+    width: grid.colspan(28, small);
     padding-top: 0;
     padding-bottom: 0;
   }
 
-  @include breakpoint('medium+') {
-    width: colspan(18, medium);
+  @include breakpoint.breakpoint('medium+') {
+    width: grid.colspan(18, medium);
   }
 
-  @include breakpoint('large+') {
-    width: colspan(13, large);
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(13, large);
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(13, xlarge);
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(13, xlarge);
   }
 }
 
 .m-listing--inline-feature .m-listing__img::before {
   padding-bottom: 0;
 
-  @include breakpoint('small+') {
+  @include breakpoint.breakpoint('small+') {
     padding-bottom: 100%;
   }
 }
@@ -1783,57 +1791,57 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   height: 160px;
   margin: 0 auto;
 
-  @include breakpoint('small+') {
-    @include objectFitFix;
+  @include breakpoint.breakpoint('small+') {
+    @include other.objectFitFix;
 
     & {
       position: absolute;
-      left: colspan(4, small);
-      right: colspan(4, small);
-      top: colspan(4, small);
-      bottom: colspan(4, small);
-      width: colspan(20, small);
-      height: colspan(20, small);
+      left: grid.colspan(4, small);
+      right: grid.colspan(4, small);
+      top: grid.colspan(4, small);
+      bottom: grid.colspan(4, small);
+      width: grid.colspan(20, small);
+      height: grid.colspan(20, small);
       object-fit: cover;
     }
   }
 
-  @include breakpoint('medium+') {
-    @include objectFitFix;
+  @include breakpoint.breakpoint('medium+') {
+    @include other.objectFitFix;
 
     & {
-      left: colspan(3, medium);
-      right: colspan(3, medium);
-      top: colspan(3, medium);
-      bottom: colspan(3, medium);
-      width: colspan(12, medium);
-      height: colspan(12, medium);
+      left: grid.colspan(3, medium);
+      right: grid.colspan(3, medium);
+      top: grid.colspan(3, medium);
+      bottom: grid.colspan(3, medium);
+      width: grid.colspan(12, medium);
+      height: grid.colspan(12, medium);
     }
   }
 
-  @include breakpoint('large+') {
-    @include objectFitFix;
+  @include breakpoint.breakpoint('large+') {
+    @include other.objectFitFix;
 
     & {
-      left: colspan(2, large);
-      right: colspan(2, large);
-      top: colspan(2, large);
-      bottom: colspan(2, large);
-      width: colspan(9, large);
-      height: colspan(9, large);
+      left: grid.colspan(2, large);
+      right: grid.colspan(2, large);
+      top: grid.colspan(2, large);
+      bottom: grid.colspan(2, large);
+      width: grid.colspan(9, large);
+      height: grid.colspan(9, large);
     }
   }
 
-  @include breakpoint('xlarge') {
-    @include objectFitFix;
+  @include breakpoint.breakpoint('xlarge') {
+    @include other.objectFitFix;
 
     & {
-      left: colspan(2, xlarge);
-      right: colspan(2, xlarge);
-      top: colspan(2, xlarge);
-      bottom: colspan(2, xlarge);
-      width: colspan(9, xlarge);
-      height: colspan(9, xlarge);
+      left: grid.colspan(2, xlarge);
+      right: grid.colspan(2, xlarge);
+      top: grid.colspan(2, xlarge);
+      bottom: grid.colspan(2, xlarge);
+      width: grid.colspan(9, xlarge);
+      height: grid.colspan(9, xlarge);
     }
   }
 }
@@ -1845,7 +1853,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   padding-top: 0;
   border-top: 0 none;
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     padding-top: 0;
   }
 }
@@ -1854,7 +1862,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 .m-inline-aside .m-listing--inline .m-listing__link,
 .m-inline-aside .m-listing--inline-feature,
 .m-inline-aside .m-listing--inline-feature .m-listing__link {
-  @include breakpoint('small') {
+  @include breakpoint.breakpoint('small') {
     flex-direction: column;
   }
 }
@@ -1863,7 +1871,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 .m-inline-aside .m-listing--inline .m-listing__meta,
 .m-inline-aside .m-listing--inline-feature .m-listing__img,
 .m-inline-aside .m-listing--inline-feature .m-listing__meta {
-  @include breakpoint('small') {
+  @include breakpoint.breakpoint('small') {
     width: 100%;
     margin-right: 0;
     margin-left: 0;
@@ -1872,21 +1880,21 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 .m-listing--inline-feature .m-listing__img img,
 .m-listing--inline-feature .m-listing__img .default-img {
-  @include breakpoint('small') {
-    width: colspan(15, small);
-    height: colspan(15, small);
+  @include breakpoint.breakpoint('small') {
+    width: grid.colspan(15, small);
+    height: grid.colspan(15, small);
   }
 }
 
 .m-inline-aside .m-listing--inline .m-listing__meta .type:first-child {
-  @include breakpoint('small') {
-    @include tucked-margin-top($f-tag, ('small': 28), 'small');
+  @include breakpoint.breakpoint('small') {
+    @include other.tucked-margin-top(typography.$f-tag, ('small': 28), 'small');
   }
 }
 
 .m-inline-aside .m-listing--inline .m-listing__meta .f-list-2:first-child {
-  @include breakpoint('small') {
-    @include tucked-margin-top($f-list-2, ('small': 36), 'small');
+  @include breakpoint.breakpoint('small') {
+    @include other.tucked-margin-top(typography.$f-list-2, ('small': 36), 'small');
   }
 }
 
@@ -1900,7 +1908,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 .o-pinboard__item.m-listing--variable-height .m-listing__img img,
 .o-pinboard__item.m-listing--variable-height .m-listing__img .default-img {
-  @include objectFitFix;
+  @include other.objectFitFix;
 
   & {
     display: block;
@@ -1930,15 +1938,15 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 }
 
 .o-feature-plus-4__feature .m-listing__meta .f-tag {
-  @include tucked-margin-top($f-tag, ('xsmall': 44, 'small+': 52, 'medium+': 60));
+  @include other.tucked-margin-top(typography.$f-tag, ('xsmall': 44, 'small+': 52, 'medium+': 60));
 }
 
 .o-feature-plus-4__feature .f-headline-editorial {
-  @include tucked-margin-top($f-headline-editorial, ('xsmall': 40, 'small+': 60, 'medium+': 52, 'large': 60));
+  @include other.tucked-margin-top(typography.$f-headline-editorial, ('xsmall': 40, 'small+': 60, 'medium+': 52, 'large': 60));
 }
 
 .o-feature-plus-4__feature .m-listing__meta .f-body-editorial {
-  @include tucked-margin-top($f-body-editorial, ('xsmall': 44, 'small+': 52, 'medium+': 56));
+  @include other.tucked-margin-top(typography.$f-body-editorial, ('xsmall': 44, 'small+': 52, 'medium+': 56));
 }
 
 // Variant `m-listing` that expects the image to be on the left, not the right, and optionally absent
@@ -1979,20 +1987,20 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 .m-listing--rtl .m-listing__img {
   margin-top: 0;
 
-  @include breakpoint('medium-') {
+  @include breakpoint.breakpoint('medium-') {
     width: 100%;
   }
 
-  @include breakpoint('large+') {
-    @include tucked-margin-top($f-secondary, ('xsmall': 36));
+  @include breakpoint.breakpoint('large+') {
+    @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 36));
 
     & {
-      margin-right: colspan(0.5);
+      margin-right: grid.colspan(0.5);
     }
   }
 }
 
-@include breakpoint('small') {
+@include breakpoint.breakpoint('small') {
 
   .m-listing--rtl .m-listing__img {
     order: 1;
@@ -2027,7 +2035,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   text-align: right;
 
   background: linear-gradient(to bottom,
-      $color__black--85,
+      colors.$color__black--85,
       transparent);
 }
 
@@ -2061,7 +2069,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 }
 
 .m-listing--feature .m-listing__img .m-listing__img__overlay {
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     @include m-listing__img__overlay;
   }
 }
@@ -2075,7 +2083,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   left: 0;
   height: 1px;
   width: 100%;
-  background: $color__rules--primary;
+  background: colors.$color__rules--primary;
 }
 
 .m-listing--label.o-blocks__block .m-listing__meta {
@@ -2093,7 +2101,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 // Shared styles for .m-listing--journal and .m-listing--magazine
 .m-listing--publication {
-  border: thin solid $color__rules--primary;
+  border: thin solid colors.$color__rules--primary;
 
   .m-listing__img img {
     transition: transform .35s ease-in-out;
@@ -2103,26 +2111,26 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
     padding: 8px 16px;
     text-transform: uppercase;
     font-size: 13px;
-    font-family: $sans-serif-font--loaded;
+    font-family: variables.$sans-serif-font--loaded;
     font-weight: 400;
     letter-spacing: 1px;
-    color: $color__white;
+    color: colors.$color__white;
     width: max-content;
-    background: rgb($color__black, 80);
+    background: rgb(colors.$color__black, 80);
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: map.get($map: $zindexs, $key: 'overlay');
+    z-index: map.get($map: variables.$zindexs, $key: 'overlay');
   }
 
   .m-listing__meta {
 
     @each $name,
-    $point in $breakpoints {
-      @include breakpoint('#{$name}') {
-        padding-left: colspan(1, #{$name});
-        padding-right: colspan(1, #{$name});
+    $point in variables.$breakpoints {
+      @include breakpoint.breakpoint('#{$name}') {
+        padding-left: grid.colspan(1, #{$name});
+        padding-right: grid.colspan(1, #{$name});
         padding-top: 16px;
       }
     }
@@ -2135,26 +2143,26 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
     .title {
       margin-top: 0;
       margin-bottom: 8px;
-      color: $color__black--90;
+      color: colors.$color__black--90;
     }
 
     .short-description {
       margin-top: 0;
       margin-bottom: 20px;
-      color: $color__black--54;
+      color: colors.$color__black--54;
       font-size: 19px;
       line-height: 24px;
     }
 
     .m-listing__meta-bottom {
-      @include untuck;
+      @include typography.untuck;
 
       & {
         margin-bottom: 20px;
       }
 
       .f-secondary {
-        color: $color__black--54;
+        color: colors.$color__black--54;
       }
     }
   }
@@ -2175,7 +2183,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 }
 
 .m-listing--publication-call-to-action {
-  background-color: $color__plum;
+  background-color: colors.$color__plum;
   border: 0;
 
   .m-listing__meta {
@@ -2186,20 +2194,20 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
       // Redo padding from .m-listing--publication.m-listing__meta
       // Needed for full `padding-bottom` calculation in :after
       @each $name,
-      $point in $breakpoints {
-        @include breakpoint('#{$name}') {
-          margin-left: -#{colspan(1, #{$name})
+      $point in variables.$breakpoints {
+        @include breakpoint.breakpoint('#{$name}') {
+          margin-left: -#{grid.colspan(1, #{$name})
         }
 
         ;
-        margin-right: -#{colspan(1, #{$name})
+        margin-right: -#{grid.colspan(1, #{$name})
       }
 
       ;
 
       .title {
-        padding-left: colspan(1, #{$name});
-        padding-right: colspan(1, #{$name});
+        padding-left: grid.colspan(1, #{$name});
+        padding-right: grid.colspan(1, #{$name});
       }
     }
   }
@@ -2214,69 +2222,69 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 }
 
 .f-tag {
-  color: $color__white;
+  color: colors.$color__white;
   margin-bottom: 12px;
 }
 
 .f-headline {
-  color: $color__white;
+  color: colors.$color__white;
   margin-bottom: 48px;
 }
 }
 
 .m-listing__meta-bottom {
   .f-module-title-2 {
-    color: $color__white;
+    color: colors.$color__white;
   }
 }
 
 .btn--magazine {
-  border-color: rgba($color__white, .8);
-  background-color: $color__plum;
-  color: $color__white;
+  border-color: rgba(colors.$color__white, .8);
+  background-color: colors.$color__plum;
+  color: colors.$color__white;
 }
 
 a:hover .btn--magazine,
 a:focus:hover .btn--magazine {
-  background-color: $color__white;
-  color: $color__plum;
+  background-color: colors.$color__white;
+  color: colors.$color__plum;
 }
 }
 
 .m-listing----cover {
   &.m-listing {
 
-    @include breakpoint('xsmall') {
+    @include breakpoint.breakpoint('xsmall') {
       margin-bottom: 20px;
       height: 80px;
-      width: colspan(design-cols-to-colspan(12), xsmall) !important;
+      width: grid.colspan(grid.design-cols-to-colspan(12), xsmall) !important;
     }
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       margin-bottom: 20px;
       height: 80px;
-      width: colspan(design-cols-to-colspan(12), small) !important;
+      width: grid.colspan(grid.design-cols-to-colspan(12), small) !important;
     }
 
-    @include breakpoint('medium+') {
+    @include breakpoint.breakpoint('medium+') {
       height: auto;
-      width: colspan(design-cols-to-colspan(4), medium) !important;
+      width: grid.colspan(grid.design-cols-to-colspan(4), medium) !important;
     }
 
-    @include breakpoint('large+') {
+    @include breakpoint.breakpoint('large+') {
       height: auto;
-      width: colspan(11.25, large) !important;
-      margin-left: colspan(2, large) !important;
+      width: grid.colspan(11.25, large) !important;
+      margin-left: grid.colspan(2, large) !important;
     }
 
-    @include breakpoint('xlarge') {
+    @include breakpoint.breakpoint('xlarge') {
       height: auto;
-      width: colspan(11.33, xlarge) !important;
-      margin-left: colspan(2, xlarge) !important;
+      width: grid.colspan(11.33, xlarge) !important;
+      margin-left: grid.colspan(2, xlarge) !important;
     }
 
     a:hover .title {
-      color: rgba($color__white, .8) !important;
+      color: rgba(colors.$color__white, .8) !important;
     }
 
     .m-listing__img {
@@ -2292,7 +2300,7 @@ a:focus:hover .btn--magazine {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba($color__black, .4);
+        background: rgba(colors.$color__black, .4);
         z-index: 1;
       }
     }
@@ -2303,7 +2311,7 @@ a:focus:hover .btn--magazine {
       justify-content: center;
       align-items: center;
       text-align: center;
-      color: $color__white;
+      color: colors.$color__white;
       height: 100%;
       width: 100%;
       z-index: 2;
@@ -2354,7 +2362,7 @@ a:focus:hover .btn--magazine {
       flex-direction: row;
       align-items: baseline;
 
-      @include untuck;
+      @include typography.untuck;
 
       * {
         padding-right: 12px;
@@ -2366,9 +2374,9 @@ a:focus:hover .btn--magazine {
         font-weight: 400;
         letter-spacing: 1px;
         text-transform: uppercase;
-        font-family: $sans-serif-font--loaded;
+        font-family: variables.$sans-serif-font--loaded;
 
-        @include untuck;
+        @include typography.untuck;
       }
 
       .f-link {
@@ -2377,11 +2385,11 @@ a:focus:hover .btn--magazine {
         align-items: baseline;
         font-size: 16px;
         font-weight: 400;
-        color: $color__rules--brand;
+        color: colors.$color__rules--brand;
       }
 
       .f-link + .f-link {
-          border-left: 1px solid $color__black--20;
+          border-left: 1px solid colors.$color__black--20;
           padding-left: 12px;
       }
     }
@@ -2391,28 +2399,28 @@ a:focus:hover .btn--magazine {
 .m-listing--digital-publication-article {
   &.m-listing {
 
-    @include breakpoint('small+') {
-      width: colspan(58, small) !important;
-      margin-left: colspan(2, small) !important;
+    @include breakpoint.breakpoint('small+') {
+      width: grid.colspan(58, small) !important;
+      margin-left: grid.colspan(2, small) !important;
     }
 
-    @include breakpoint('medium+') {
-      width: colspan(18, medium) !important;
-      margin-left: colspan(2, medium) !important;
+    @include breakpoint.breakpoint('medium+') {
+      width: grid.colspan(18, medium) !important;
+      margin-left: grid.colspan(2, medium) !important;
     }
 
-    @include breakpoint('large+') {
-      width: colspan(11.33, large) !important;
-      margin-left: colspan(2, large) !important;
+    @include breakpoint.breakpoint('large+') {
+      width: grid.colspan(11.33, large) !important;
+      margin-left: grid.colspan(2, large) !important;
     }
 
-    @include breakpoint('xlarge') {
-      width: colspan(11.33, xlarge) !important;
-      margin-left: colspan(2, xlarge) !important;
+    @include breakpoint.breakpoint('xlarge') {
+      width: grid.colspan(11.33, xlarge) !important;
+      margin-left: grid.colspan(2, xlarge) !important;
     }
 
     .short-description {
-      color: $color__black
+      color: colors.$color__black
     }
 
     .link {
@@ -2439,28 +2447,28 @@ a:focus:hover .btn--magazine {
 
 .m-listing--digital-publication-article-entry {
 
-  @include breakpoint('xsmall') {
-    width: colspan(26, small) !important;
+  @include breakpoint.breakpoint('xsmall') {
+    width: grid.colspan(26, small) !important;
   }
 
-  @include breakpoint('small+') {
-    width: colspan(28, small) !important;
-    margin-left: colspan(2, small) !important;
+  @include breakpoint.breakpoint('small+') {
+    width: grid.colspan(28, small) !important;
+    margin-left: grid.colspan(2, small) !important;
   }
 
-  @include breakpoint('medium+') {
-    width: colspan(13, medium) !important;
-    margin-left: colspan(2, medium) !important;
+  @include breakpoint.breakpoint('medium+') {
+    width: grid.colspan(13, medium) !important;
+    margin-left: grid.colspan(2, medium) !important;
   }
 
-  @include breakpoint('large+') {
-    width: colspan(8, large) !important;
-    margin-left: colspan(2, large) !important;
+  @include breakpoint.breakpoint('large+') {
+    width: grid.colspan(8, large) !important;
+    margin-left: grid.colspan(2, large) !important;
   }
 
-  @include breakpoint('xlarge') {
-    width: colspan(8, xlarge) !important;
-    margin-left: colspan(2, xlarge) !important;
+  @include breakpoint.breakpoint('xlarge') {
+    width: grid.colspan(8, xlarge) !important;
+    margin-left: grid.colspan(2, xlarge) !important;
   }
 
   .m-listing__img {
@@ -2477,7 +2485,7 @@ a:focus:hover .btn--magazine {
   }
 
   .title {
-    @include untuck;
+    @include typography.untuck;
 
     & {
       padding-top: 10px;
@@ -2489,19 +2497,19 @@ a:focus:hover .btn--magazine {
 
 .m-listing--seventy-thirty {
   &.m-listing {
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       margin-left: 0 !important
     }
 
-    @include breakpoint('medium') {
+    @include breakpoint.breakpoint('medium') {
       margin-left: 0 !important
     }
 
-    @include breakpoint('large') {
+    @include breakpoint.breakpoint('large') {
       margin-left: 0 !important;
     }
 
-    @include breakpoint('xlarge') {
+    @include breakpoint.breakpoint('xlarge') {
       margin-left: 0 !important;
     }
 
@@ -2530,7 +2538,7 @@ a:focus:hover .btn--magazine {
         width: 68%;
 
         .title {
-          @include untuck;
+          @include typography.untuck;
 
           & {
             margin: 0;
@@ -2550,27 +2558,27 @@ a:focus:hover .btn--magazine {
 }
 
 .m-listing--publication-call-to-action-light {
-  background-color: $color__white;
-  border: 1px solid $color__text--type;
+  background-color: colors.$color__white;
+  border: 1px solid colors.$color__text--type;
 
   .m-listing__meta {
     >.f-tag {
-      color: $color__plum;
+      color: colors.$color__plum;
     }
 
     .f-headline {
-      color: $color__plum;
+      color: colors.$color__plum;
     }
   }
 
   .m-listing__meta-bottom {
     .f-module-title-2 {
-      color: $color__plum;
+      color: colors.$color__plum;
     }
   }
 
   .btn--magazine {
-    border-color: rgba($color__plum, .8);
+    border-color: rgba(colors.$color__plum, .8);
   }
 }
 
@@ -2578,15 +2586,15 @@ a:focus:hover .btn--magazine {
 
   @each $name,
   $point in ('xsmall', 'small', 'medium') {
-    @include breakpoint('#{$name}') {
-      width: colspan(58, $name) !important;
+    @include breakpoint.breakpoint('#{$name}') {
+      width: grid.colspan(58, $name) !important;
     }
   }
 
   @each $name,
   $point in ('large', 'xlarge') {
-    @include breakpoint('#{$name}') {
-      width: colspan(42, $name) !important;
+    @include breakpoint.breakpoint('#{$name}') {
+      width: grid.colspan(42, $name) !important;
     }
   }
 
@@ -2598,14 +2606,14 @@ a:focus:hover .btn--magazine {
     }
 
     .btn--publication-happening {
-      color: $color__text--title;
-      border-color: $color__text--title;
-      background-color: $color__white;
+      color: colors.$color__text--title;
+      border-color: colors.$color__text--title;
+      background-color: colors.$color__white;
 
       &:hover,
       &:focus {
-        color: $color__black--42;
-        border-color: $color__black--42;
+        color: colors.$color__black--42;
+        border-color: colors.$color__black--42;
       }
     }
 
@@ -2617,38 +2625,38 @@ a:focus:hover .btn--magazine {
 
       @each $name,
       $point in ('small', 'medium', 'large', 'xlarge') {
-        @include breakpoint('#{$name}') {
-          margin-left: -#{colspan(1, $name)};
-          margin-right: -#{colspan(1, $name)};
+        @include breakpoint.breakpoint('#{$name}') {
+          margin-left: -#{grid.colspan(1, $name)};
+          margin-right: -#{grid.colspan(1, $name)};
         }
       }
 
       .m-listing--publication-happenings__item {
         margin: 24px 0;
 
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
           flex-basis: 100%;
         }
 
         @each $name,
         $point in ('small', 'medium', 'large', 'xlarge') {
-          @include breakpoint('#{$name}') {
-            margin-left: colspan(1, $name);
-            margin-right: colspan(1, $name);
+          @include breakpoint.breakpoint('#{$name}') {
+            margin-left: grid.colspan(1, $name);
+            margin-right: grid.colspan(1, $name);
           }
         }
 
         @each $name,
         $point in ('small', 'medium') {
-          @include breakpoint('#{$name}') {
-            width: colspan(26, medium);
+          @include breakpoint.breakpoint('#{$name}') {
+            width: grid.colspan(26, medium);
           }
         }
 
         @each $name,
         $point in ('large', 'xlarge') {
-          @include breakpoint('#{$name}') {
-            width: colspan(18.5, $name);
+          @include breakpoint.breakpoint('#{$name}') {
+            width: grid.colspan(18.5, $name);
           }
         }
 
@@ -2670,11 +2678,11 @@ a:focus:hover .btn--magazine {
 // Variant for Art Institute Review
 .m-listing--journal {
   .m-listing__meta>.f-tag {
-    color: $color__blue;
+    color: colors.$color__blue;
   }
 }
 
-@include breakpoint('small+') {
+@include breakpoint.breakpoint('small+') {
 
   // Variant for Digital Publications
   .m-listing--work {
@@ -2713,13 +2721,13 @@ a:focus:hover .btn--magazine {
 // Variant for Member Magazine
 .m-listing--magazine {
   .m-listing__meta>.f-tag {
-    color: $color__plum;
+    color: colors.$color__plum;
   }
 }
 
 // Variant for author pages
 .m-listing--author {
-  border-color: $color__rules--primary;
+  border-color: colors.$color__rules--primary;
 
   .m-listing__link:hover,
   .m-listing__link:focus {
@@ -2737,7 +2745,7 @@ a:focus:hover .btn--magazine {
   align-items: center;
 
   .m-listing__img {
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       width: initial;
       align-self: initial;
     }
@@ -2748,7 +2756,7 @@ a:focus:hover .btn--magazine {
     height: 100px;
     margin-right: 20px;
 
-    @include breakpoint('large') {
+    @include breakpoint.breakpoint('large') {
       width: 120px;
       height: 120px;
       margin-right: 40px;
@@ -2761,7 +2769,7 @@ a:focus:hover .btn--magazine {
     padding: 20px 0;
 
     .f-body {
-      @include untuck();
+      @include typography.untuck();
 
       & {
         margin-top: 0;

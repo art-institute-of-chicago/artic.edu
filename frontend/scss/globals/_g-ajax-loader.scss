@@ -1,9 +1,12 @@
+@use "../setup/colors";
+@use "../setup/variables";
+
 @use "sass:map";
 
 .g-ajax-loader {
   content: '';
   position: fixed;
-  z-index: map.get($zindexs, 'ajaxLoader');
+  z-index: map.get(variables.$zindexs, 'ajaxLoader');
   left: -50%;
   top: -50%;
   width: 80px;
@@ -33,7 +36,7 @@
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
   //stroke-linecap: round;
-  stroke: $color__rules--brand;
+  stroke: colors.$color__rules--brand;
   animation: g-ajax-loader__dash 1.5s ease-in-out infinite;
 }
 

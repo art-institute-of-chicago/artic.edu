@@ -1,3 +1,7 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/variables";
+
 .m-custom-banner-block {
     width: 100%;
     margin-top: 50px;
@@ -8,15 +12,15 @@
         height: 200px;
         height: fit-content !important;
 
-        @include breakpoint('medium') {
+        @include breakpoint.breakpoint('medium') {
             height: 300px;
         }
 
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
             height: 300px;
         }
 
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
             height: 300px;
         }
     }
@@ -35,7 +39,7 @@
             right: 0;
             bottom: 0;
             left: 0;
-            background: rgba($color__black, .4);
+            background: rgba(colors.$color__black, .4);
         }
 
         img {
@@ -66,19 +70,19 @@
         height: 100%;
         width: 100%;
 
-        @include breakpoint('medium') {
+        @include breakpoint.breakpoint('medium') {
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
         }
 
-        @include breakpoint('small') {
+        @include breakpoint.breakpoint('small') {
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
         }
 
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
@@ -116,7 +120,7 @@
         display: flex;
         align-items: center;
 
-        @include breakpoint('xsmall') {
+        @include breakpoint.breakpoint('xsmall') {
             padding-top: 10px;
             flex-direction: column;
             justify-content: space-around;
@@ -136,7 +140,7 @@
             height: 40px !important;
             margin-right: 12px;
 
-            @include breakpoint('xsmall') {
+            @include breakpoint.breakpoint('xsmall') {
                 margin-right: 0;
                 margin-bottom: 6px;
             }
@@ -151,13 +155,13 @@
     &.custom-banner-block--default, &.custom-banner-block--home, &.custom-banner-block--educator-resources {
         .custom-banner-body {
             font-size: 24px;
-            font-family: $serif-font--loaded !important;
+            font-family: variables.$serif-font--loaded !important;
         }
 
         .btn {
-            border-color: $color__white !important;
+            border-color: colors.$color__white !important;
             background-color: #ffffff00 !important;
-            color: $color__white !important;
+            color: colors.$color__white !important;
             margin-top: 20px;
 
             &:hover,
@@ -179,13 +183,13 @@
                 flex-direction: row;
                 justify-content: space-between;
 
-                @include breakpoint('small-') {
+                @include breakpoint.breakpoint('small-') {
                     flex-direction: column;
                 }
             }
 
             .custom-banner-title {
-                font-family: $sans-serif-font--loaded;
+                font-family: variables.$sans-serif-font--loaded;
                 font-size: 21px;
                 font-weight: 400;
                 line-height: 28px;
@@ -195,7 +199,7 @@
             }
 
             .custom-banner-body {
-                font-family: $serif-font--loaded;
+                font-family: variables.$serif-font--loaded;
                 font-size: 22px;
                 font-weight: 300;
                 line-height: 28px;
@@ -219,7 +223,7 @@
                 flex-direction: row;
                 padding: 50px 0;
 
-                @include breakpoint('medium-') {
+                @include breakpoint.breakpoint('medium-') {
                     flex-direction: column;
                 }
             }
@@ -231,7 +235,7 @@
         padding-top: 25px;
 
         &.custom-banner-block--variation-cloud {
-            border-top: 1px solid $color__black--20;
+            border-top: 1px solid colors.$color__black--20;
             .content-wrapper {
                 height: 276px;
                 display: flex;
@@ -241,7 +245,7 @@
                 align-items: center;
                 height: unset;
 
-                @include breakpoint('medium-') {
+                @include breakpoint.breakpoint('medium-') {
                     align-items: flex-start;
                 }
 
@@ -255,24 +259,24 @@
             }
 
             .custom-banner-title {
-                font-family: $sans-serif-font--loaded;
+                font-family: variables.$sans-serif-font--loaded;
                 font-size: 21px;
                 font-weight: 400;
                 line-height: 28px;
                 letter-spacing: 0.08em;
                 text-align: left;
                 text-transform: uppercase;
-                color: $color__black--90 !important;
+                color: colors.$color__black--90 !important;
             }
 
             .custom-banner-body {
-                font-family: $serif-font--loaded;
+                font-family: variables.$serif-font--loaded;
                 font-size: 22px;
                 font-weight: 300;
                 line-height: 28px;
                 letter-spacing: -0.005em;
                 text-align: left;
-                color: $color__black--90 !important;
+                color: colors.$color__black--90 !important;
             }
 
             .tag-cloud {
@@ -281,21 +285,21 @@
                 flex-wrap: wrap;
                 align-items: center;
 
-                @include breakpoint('medium-') {
+                @include breakpoint.breakpoint('medium-') {
                     display: none;
                 }
 
                 .f-tag {
-                    background-color: $color__white;
+                    background-color: colors.$color__white;
                     padding: 6px 12px;
                     margin: 6px;
-                    font-family: $sans-serif-font--loaded;
+                    font-family: variables.$sans-serif-font--loaded;
                     font-size: 12px;
                     font-weight: 400;
                     line-height: 16px;
                     letter-spacing: 0.14em;
-                    color: $color__black;
-                    border: 1px solid $color__black--20;
+                    color: colors.$color__black;
+                    border: 1px solid colors.$color__black--20;
                     border-radius: 2px;
                 }
             }
@@ -303,7 +307,7 @@
             .tag-cloud__link {
                 display: block;
                 margin: auto;
-                color: $color__rules--brand;
+                color: colors.$color__rules--brand;
                 text-align: center;
                 font-size: 20px;
                 font-weight: 300;

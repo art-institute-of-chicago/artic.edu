@@ -1,3 +1,8 @@
+@use "../layout/content";
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/variables";
+
 /***
 
 tag
@@ -25,9 +30,9 @@ Tags and their variants,
   padding-right: 12px;
   padding-left: 12px;
   border: 0;
-  border-radius: $border-radius;
-  background-color: $color__black--5;
-  color: $color__black--54;
+  border-radius: variables.$border-radius;
+  background-color: colors.$color__black--5;
+  color: colors.$color__black--54;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
@@ -46,11 +51,11 @@ a.tag {
 
 a.tag:hover,
 a.tag:focus {
-  background-color: $color__black--10;
+  background-color: colors.$color__black--10;
 }
 
 a.tag:active {
-  background-color: $color__black--5;
+  background-color: colors.$color__black--5;
 }
 
 .tag[class*=f-]::before,
@@ -73,37 +78,37 @@ a.tag:active {
 
 
 .tag--primary {
-  background-color: $color__link;
-  color: $color__white;
+  background-color: colors.$color__link;
+  color: colors.$color__white;
 }
 
 a.tag--primary:hover,
 a.tag--primary:focus {
-  background-color: $color__link--hover;
-  color: $color__white;
+  background-color: colors.$color__link--hover;
+  color: colors.$color__white;
 }
 
 a.tag--primary:active {
-  background-color: $color__link--active;
-  color: $color__white;
+  background-color: colors.$color__link--active;
+  color: colors.$color__white;
 }
 
 
 
 .tag--secondary {
-  background-color: $color__black--5;
-  color: $color__text--title;
+  background-color: colors.$color__black--5;
+  color: colors.$color__text--title;
 }
 
 a.tag--secondary:hover,
 a.tag--secondary:focus {
-  background-color: $color__black--10;
-  color: $color__text--title;
+  background-color: colors.$color__black--10;
+  color: colors.$color__text--title;
 }
 
 a.tag--secondary:active {
-  background-color: $color__black--5;
-  color: $color__text--title;
+  background-color: colors.$color__black--5;
+  color: colors.$color__text--title;
 }
 
 
@@ -111,22 +116,22 @@ a.tag--secondary:active {
 .tag--tertiary {
   padding-right: 11px;
   padding-left: 11px;
-  border: 1px solid $color__rules--secondary;
-  background-color: $color__white;
-  color: $color__text--limited;
+  border: 1px solid colors.$color__rules--secondary;
+  background-color: colors.$color__white;
+  color: colors.$color__text--limited;
 }
 
 a.tag--tertiary:hover,
 a.tag--tertiary:focus {
-  border-color: $color__rules--primary;
-  background-color: $color__white;
-  color: $color__text--limited;
+  border-color: colors.$color__rules--primary;
+  background-color: colors.$color__white;
+  color: colors.$color__text--limited;
 }
 
 a.tag--tertiary:active {
-  border-color: $color__rules--secondary;
-  background-color: $color__white;
-  color: $color__text--limited;
+  border-color: colors.$color__rules--secondary;
+  background-color: colors.$color__white;
+  color: colors.$color__text--limited;
 }
 
 .tag--tertiary.f-tag {
@@ -138,32 +143,32 @@ a.tag--tertiary:active {
 
 
 .tag--quaternary {
-  background-color: $color__black--90;
-  color: $color__white;
+  background-color: colors.$color__black--90;
+  color: colors.$color__white;
 }
 
 .tag--quaternary .icon--close {
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
 }
 
 .tag--l .icon--close {
   position: relative;
   top: -1px;
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     top: -2px;
   }
 }
 
 a.tag--quaternary:hover,
 a.tag--quaternary:focus {
-  background-color: $color__black--80;
-  color: $color__white;
+  background-color: colors.$color__black--80;
+  color: colors.$color__white;
 }
 
 a.tag--quaternary:active {
-  background-color: $color__black--90;
-  color: $color__white;
+  background-color: colors.$color__black--90;
+  color: colors.$color__white;
 }
 
 
@@ -171,9 +176,9 @@ a.tag--quaternary:active {
 .tag--quinary {
   padding-right: 11px;
   padding-left: 11px;
-  border: 1px solid $color__rules--secondary;
-  background-color: $color__white;
-  color: $color__text--secondary;
+  border: 1px solid colors.$color__rules--secondary;
+  background-color: colors.$color__white;
+  color: colors.$color__text--secondary;
 }
 
 a.tag--quinary:hover,
@@ -181,18 +186,18 @@ a.tag--quinary:focus {
   //border-color: $color__text--secondary;
   //background-color: $color__white;
   //color: $color__text--secondary;
-  border-color: $color__black--90;
-  background-color: $color__black--90;
-  color: $color__white;
+  border-color: colors.$color__black--90;
+  background-color: colors.$color__black--90;
+  color: colors.$color__white;
 }
 
 a.tag--quinary:active {
   //border-color: $color__rules--secondary;
   //background-color: $color__white;
   //color: $color__text--secondary;
-  border-color: $color__black--80;
-  background-color: $color__black--80;
-  color: $color__white;
+  border-color: colors.$color__black--80;
+  background-color: colors.$color__black--80;
+  color: colors.$color__white;
 }
 
 .tag--quinary.f-tag {
@@ -208,7 +213,7 @@ a.tag--quinary:active {
   padding-right: 16px;
   padding-left: 16px;
   background: transparent;
-  color: $color__text--secondary;
+  color: colors.$color__text--secondary;
   line-height: 40px;
 
   &.tag--w-image {
@@ -225,8 +230,8 @@ a.tag--quinary:active {
   right: 0;
   top: 0;
   bottom: 0;
-  border: 1px solid $color__rules--primary;
-  border-radius: $border-radius;
+  border: 1px solid colors.$color__rules--primary;
+  border-radius: variables.$border-radius;
 }
 
 .tag--senary.f-tag,
@@ -258,10 +263,10 @@ button.tag--senary {
   &:hover,
   &:focus {
     background-color: transparent;
-    color: $color__text--secondary;
+    color: colors.$color__text--secondary;
 
     &::before {
-      border-color: $color__text--secondary;
+      border-color: colors.$color__text--secondary;
     }
   }
 
@@ -271,10 +276,10 @@ a.tag--senary,
 button.tag--senary {
   &:active {
     background-color: transparent;
-    color: $color__text--secondary;
+    color: colors.$color__text--secondary;
 
     &::before {
-      border-color: $color__rules--secondary;
+      border-color: colors.$color__rules--secondary;
     }
   }
 }
@@ -290,7 +295,7 @@ button.tag--senary {
   overflow: hidden;
   text-overflow: ellipsis;
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     display: block;
   }
 }

@@ -1,3 +1,10 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/mixins/grid";
+@use "../setup/placeholders";
+@use "../setup/typography";
+@use "../setup/variables";
+
 @use "sass:map";
 /***
 
@@ -75,9 +82,9 @@ Demonstrated in **statics/toybox**
   height: 48px;
   padding-right: 68px;
   padding-left: 15px;
-  border: 1px solid $color__input-border;
+  border: 1px solid colors.$color__input-border;
   background: none;
-  color: $color__input-text;
+  color: colors.$color__input-text;
   text-align: left;
   text-decoration: none;
   text-overflow: ellipsis;
@@ -87,7 +94,7 @@ Demonstrated in **statics/toybox**
 }
 
 .dropdown__trigger[class*=f-] {
-  @include untuck;
+  @include typography.untuck;
 }
 
 .dropdown__trigger .button {
@@ -106,7 +113,7 @@ Demonstrated in **statics/toybox**
   content: '' !important;
   display: block !important;
   position: fixed;
-  z-index: map.get($zindexs, 'dropdown');
+  z-index: map.get(variables.$zindexs, 'dropdown');
   left: 0;
   right: 0;
   top: 0;
@@ -119,21 +126,21 @@ Demonstrated in **statics/toybox**
   padding-top: 11px;
   padding-bottom: 9px;
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     padding-top: 7px;
     padding-bottom: 15px;
   }
 }
 
 .dropdown__trigger:hover {
-  border-color: $color__input-border--hover;
-  color: $color__input-text--hover;
+  border-color: colors.$color__input-border--hover;
+  color: colors.$color__input-text--hover;
 }
 
 .dropdown__trigger:focus,
 .dropdown__trigger:active {
-  border-color: $color__input-border--focus;
-  color: $color__input-text--focus;
+  border-color: colors.$color__input-border--focus;
+  color: colors.$color__input-text--focus;
 }
 
 .dropdown__trigger>.icon--arrow {
@@ -160,19 +167,19 @@ Demonstrated in **statics/toybox**
 
 .dropdown__list {
   @extend %styled-scrollbars;
-  @include untuck;
+  @include typography.untuck;
 
   & {
     display: none;
     position: absolute;
-    z-index: map.get($zindexs, 'dropdown');
+    z-index: map.get(variables.$zindexs, 'dropdown');
     left: 0;
     top: 100%;
     min-width: 100%;
     max-height: 80vh;
     margin-top: 0;
-    background-color: $color__white;
-    box-shadow: $shadow;
+    background-color: colors.$color__white;
+    box-shadow: variables.$shadow;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -184,7 +191,7 @@ Demonstrated in **statics/toybox**
   .m-links-bar__item & {
     top: calc(100% + 13px);
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       top: 0;
     }
   }
@@ -193,23 +200,23 @@ Demonstrated in **statics/toybox**
   .m-links-bar__item--overflow & {
     left: auto;
     right: 0;
-    width: colspan(58, 'xsmall');
+    width: grid.colspan(58, 'xsmall');
 
-    @include breakpoint('small+') {
+    @include breakpoint.breakpoint('small+') {
       width: auto;
-      max-width: colspan(58, 'small');
+      max-width: grid.colspan(58, 'small');
     }
 
-    @include breakpoint('medium+') {
-      max-width: colspan(58, 'medium');
+    @include breakpoint.breakpoint('medium+') {
+      max-width: grid.colspan(58, 'medium');
     }
 
-    @include breakpoint('large+') {
-      max-width: colspan(58, 'large');
+    @include breakpoint.breakpoint('large+') {
+      max-width: grid.colspan(58, 'large');
     }
 
-    @include breakpoint('xlarge') {
-      max-width: colspan(58, 'xlarge');
+    @include breakpoint.breakpoint('xlarge') {
+      max-width: grid.colspan(58, 'xlarge');
     }
   }
 
@@ -217,27 +224,27 @@ Demonstrated in **statics/toybox**
     left: auto;
     right: 0;
     top: calc(100% - 1px);
-    width: colspan(58, 'xsmall');
+    width: grid.colspan(58, 'xsmall');
 
-    @include breakpoint('small+') {
-      width: colspan(58, 'small');
+    @include breakpoint.breakpoint('small+') {
+      width: grid.colspan(58, 'small');
     }
 
-    @include breakpoint('medium+') {
-      width: colspan(58, 'medium');
+    @include breakpoint.breakpoint('medium+') {
+      width: grid.colspan(58, 'medium');
     }
 
-    @include breakpoint('large+') {
-      width: colspan(58, 'large');
+    @include breakpoint.breakpoint('large+') {
+      width: grid.colspan(58, 'large');
     }
 
-    @include breakpoint('xlarge') {
-      width: colspan(58, 'xlarge');
+    @include breakpoint.breakpoint('xlarge') {
+      width: grid.colspan(58, 'xlarge');
     }
   }
 
   .m-links-bar__secondary-split .m-links-bar__item & {
-    @include breakpoint('small') {
+    @include breakpoint.breakpoint('small') {
       left: 0;
       right: auto;
     }
@@ -246,7 +253,7 @@ Demonstrated in **statics/toybox**
 
 
 .dropdown__list>li:not(:first-child) {
-  border-top: 1px solid $color__rules--tertiary;
+  border-top: 1px solid colors.$color__rules--tertiary;
 }
 
 .dropdown__list>li.s-hidden {
@@ -256,8 +263,8 @@ Demonstrated in **statics/toybox**
 .dropdown__list a:not([class]) {
   display: block;
   padding: 10px 16px;
-  background-color: $color__white;
-  color: $color__text--secondary;
+  background-color: colors.$color__white;
+  color: colors.$color__text--secondary;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-decoration: none;
@@ -268,25 +275,25 @@ Demonstrated in **statics/toybox**
   padding-top: 11px;
   padding-bottom: 12px;
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     padding-top: 8px;
     padding-bottom: 11px;
   }
 }
 
 .dropdown__list a:not([class]):hover {
-  background-color: $color__bg--secondary;
-  color: $color__text--title;
+  background-color: colors.$color__bg--secondary;
+  color: colors.$color__text--title;
 }
 
 .dropdown__list a:not([class]):active {
-  background-color: $color__bg--primary;
-  color: $color__text--title;
+  background-color: colors.$color__bg--primary;
+  color: colors.$color__text--title;
 }
 
 .dropdown__list .s-active a:not([class]) {
-  background-color: $color__black--90;
-  color: $color__text--title-contrast;
+  background-color: colors.$color__black--90;
+  color: colors.$color__text--title-contrast;
 }
 
 
@@ -301,7 +308,7 @@ Demonstrated in **statics/toybox**
   padding-left: 0;
   border: 0 none;
   border-radius: 0;
-  color: $color__link;
+  color: colors.$color__link;
 
   margin-right: 24px;
 }
@@ -323,18 +330,18 @@ Demonstrated in **statics/toybox**
   padding-top: 11px;
   padding-bottom: 9px;
 
-  @include breakpoint('large+') {
+  @include breakpoint.breakpoint('large+') {
     padding-top: 7px;
     padding-bottom: 15px;
   }
 }
 
 .dropdown--filter .dropdown__trigger:hover {
-  color: $color__link--hover;
+  color: colors.$color__link--hover;
 }
 
 .dropdown--filter .dropdown__trigger:active {
-  color: $color__link--active;
+  color: colors.$color__link--active;
 }
 
 .dropdown--filter .dropdown__trigger>.icon--arrow {

@@ -1,3 +1,7 @@
+@use "../setup/colors";
+@use "../setup/mixins/other";
+@use "../setup/typography";
+
 /***
 
 error-msg
@@ -13,7 +17,7 @@ Sets color of error message text
 
 .error-msg {
   display: block;
-  color: $color__text--error;
+  color: colors.$color__text--error;
   font-style: normal;
 }
 
@@ -21,11 +25,11 @@ Sets color of error message text
   label + &,
   input + &,
   .select__select + & {
-    @include tucked-margin-top($f-secondary, ('xsmall': 28));
+    @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 28));
   }
 
   .checkbox label + &,
   .radio label + & {
-    @include tucked-margin-top($f-secondary, ('xsmall': 20));
+    @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 20));
   }
 }

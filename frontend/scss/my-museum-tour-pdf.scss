@@ -1,10 +1,10 @@
-$disable-font-loading: true;
+// setup/variables must be the first import as following imports depend on it
+@use 'setup/variables' with ( $disable-font-loading: true );
 
-@import 'setup/variables';
-@import 'setup/colors';
-@import 'setup/mixins';
-@import 'setup/typography';
-@import 'atoms/loader';
+@use 'setup/colors';
+@use 'setup/mixins';
+@use 'setup/typography';
+@use 'atoms/loader';
 
 @page {
   size: 11in 8.5in landscape;
@@ -14,7 +14,7 @@ $disable-font-loading: true;
 .p-mymuseumtour-pdflayout {
 
   body {
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   table tr td *::before {
@@ -185,70 +185,70 @@ $disable-font-loading: true;
     font-size: 10pt;
     line-height: 12pt;
     padding-bottom: 0.02in;
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   .t-artist-title {
     font-size: 8pt;
     line-height: 10pt;
     padding-bottom: 0.02in;
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   .t-gallery-title {
     font-size: 8pt;
     line-height: 9pt;
     padding-bottom: 0;
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   .t-short-description {
     font-size: 9pt;
     line-height: 11pt;
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   .t-object-note {
     font-size: 12pt;
     line-height: 15pt;
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   .c-object-note {
     height: 0.8194in;
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   .t-home-callout-text {
     font-size: 25pt;
     line-height: 28pt;
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   .t-made-by {
     font-size: 12pt;
     line-height: 14pt;
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   .t-sum,
   .t-sum em {
     font-size: 9pt;
     line-height: 12pt;
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   .t-tour-description {
     font-size: 18pt;
     line-height: 21pt;
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   .t-qr-caption {
     font-size: 5.5pt;
     line-height: 10pt;
     float: right;
-    color: $color__black;
+    color: colors.$color__black;
   }
 
   .i-aic-bloomberg {

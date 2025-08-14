@@ -1,16 +1,20 @@
+@use "../setup/colors";
+@use "../setup/mixins/breakpoint";
+@use "../setup/variables";
+
 .o-collection-listing > .m-search-bar,
 .o-collection-listing > .m-quick-search-links,
 .o-collection-listing > .m-search-actions,
 .o-collection-listing__col-right > .m-active-filters {
 
-  @include breakpoint('small-') {
+  @include breakpoint.breakpoint('small-') {
     display: none;
   }
 }
 
 .o-collection-listing > .m-search-triggers {
 
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: none;
   }
 }
@@ -26,8 +30,8 @@
     margin-top: 0;
   }
 
-  @include breakpoint('small-') {
-    box-shadow: 0 1px 0 $color__white inset;
+  @include breakpoint.breakpoint('small-') {
+    box-shadow: 0 1px 0 colors.$color__white inset;
     margin-top: 0;
 
     &:first-child {
@@ -45,14 +49,14 @@
       bottom: auto;
       width: 100%;
       height: 1px;
-      background: $color__white;
+      background: colors.$color__white;
     }
   }
 }
 
 
 .o-collection-listing__colset {
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     display: flex;
     flex-flow: row nowrap;
     margin-top: 24px;
@@ -60,38 +64,38 @@
 }
 
 .o-collection-listing__col-left {
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     flex: 0 0 auto;
     width: 0;
-    border-right: 1px solid $color__rules--tertiary;
+    border-right: 1px solid colors.$color__rules--tertiary;
     opacity: 0;
     overflow: hidden;
-    transition: width .4s $bezier--marius-ease, .4s margin-right $bezier--marius-ease, .4s padding-right $bezier--marius-ease, opacity .4s;
+    transition: width .4s variables.$bezier--marius-ease, .4s margin-right variables.$bezier--marius-ease, .4s padding-right variables.$bezier--marius-ease, opacity .4s;
   }
 }
 
 .o-collection-listing__col-right {
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     flex: 1;
-    transition: width .4s $bezier--marius-ease;
+    transition: width .4s variables.$bezier--marius-ease;
   }
 }
 
 .o-collection-listing__col-left .o-collection-filters {
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     padding-top: 32px - 1px;
-    border-top: 1px solid $color__rules--primary;
+    border-top: 1px solid colors.$color__rules--primary;
   }
 }
 
 .o-collection-listing__col-right .m-active-filters {
-  @include breakpoint('medium+') {
+  @include breakpoint.breakpoint('medium+') {
     margin-top: 0;
   }
 }
 
 .o-collection-listing__col-right .o-pinboard {
-  @include breakpoint('small-') {
+  @include breakpoint.breakpoint('small-') {
     padding-top: 20px;
     border-top: 0 none;
   }
@@ -111,7 +115,7 @@
     align-items: center;
     justify-content: center;
 
-    background-color: $color__black--3;
+    background-color: colors.$color__black--3;
 
     .m-links-bar__item {
       padding: 29px 0;
