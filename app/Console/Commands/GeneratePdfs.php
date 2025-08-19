@@ -50,8 +50,7 @@ class GeneratePdfs extends Command
                 try {
                     $this->generatePdf($model, $route);
                 } catch (\Exception $exception) {
-                    $this->error($exception->getMessage());
-                    return 1;
+                    $this->error("$modelClass $model->id: {$exception->getMessage()}");
                 }
             }
 
