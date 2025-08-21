@@ -392,6 +392,12 @@ return [
             "gallery_level" => "second level",
             "gallery_location" => "Arts of Europe: Design Galleries",
         ],
+    
+        32536 => [
+            "gallery_title" => "Galleries 231-233",
+            "gallery_level" => "second level",
+            "gallery_location" => "Applied Arts of Europe Galleries",
+        ],
 
 
         2147483633 => [
