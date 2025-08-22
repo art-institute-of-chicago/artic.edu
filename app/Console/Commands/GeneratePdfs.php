@@ -38,11 +38,16 @@ class GeneratePdfs extends Command
         'my-museum-tour.pdf-layout' => MyMuseumTour::class,
     ];
 
+    private Prince $prince;
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
+        if (!$this->initializePrince()) {
+            return 1;
+        }
         foreach (self::$models as $route => $modelClass) {
             $models = method_exists($modelClass, 'published') ? $modelClass::published()->get() : $modelClass::get();
 
@@ -50,8 +55,7 @@ class GeneratePdfs extends Command
                 try {
                     $this->generatePdf($model, $route);
                 } catch (\Exception $exception) {
-                    $this->error($exception->getMessage());
-                    return 1;
+                    $this->error("$modelClass $model->id: {$exception->getMessage()}");
                 }
             }
 
@@ -65,6 +69,25 @@ class GeneratePdfs extends Command
         }
     }
 
+    protected function initializePrince(): bool
+    {
+        try {
+            $this->prince = new Prince(config('aic.prince_command'));
+            $this->prince->setBaseURL(config('app.url'));
+            $this->prince->setMedia('print');
+            $this->prince->setFailMissingResources(true);
+
+            if (config('app.debug') || config('aic.pdf_debug')) {
+                $this->prince->setVerbose(true);
+                $this->prince->setLog(storage_path('logs/prince-' . date('Y-m-d') . '.log'));
+            }
+            return isset($this->prince);
+        } catch (\Exception $exception) {
+            $this->error($exception->getMessage());
+            return false;
+        }
+    }
+
     protected function generatePdf($model, $route = null)
     {
         $route = empty($route) ? self::route($model) : $route;
@@ -75,21 +98,11 @@ class GeneratePdfs extends Command
         $fullUrl = $baseUrl . $this->path($model, $route);
 
         // Now, produce the PDF
-        $prince = new Prince(config('aic.prince_command'));
-        $prince->setBaseURL($baseUrl);
-        $prince->setMedia('print');
-        $prince->setFailMissingResources(true);
-
-        if (config('app.debug') || config('aic.pdf_debug')) {
-            $prince->setVerbose(true);
-            $prince->setLog(storage_path('logs/prince-' . date('Y-m-d') . '.log'));
-        }
-
         set_time_limit(0);
         $html = Http::get($fullUrl, ['print' => true])->body();
         $fileName = self::fileName($model);
         $class = class_basename($model);
-        if ($prince->convertStringToFile($html, self::localPath($fileName))) {
+        if ($this->prince->convertStringToFile($html, self::localPath($fileName))) {
             $this->storePdf($fileName);
         } else {
             throw new \Exception("Prince was unable to generate a PDF for {$class} with ID {$model->id}");
