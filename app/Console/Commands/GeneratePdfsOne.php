@@ -23,6 +23,9 @@ class GeneratePdfsOne extends GeneratePdfs
      */
     public function handle()
     {
+        if (!$this->initializePrince()) {
+            return 1;
+        }
         if (!empty($this->argument('model')) && !empty($this->argument('id'))) {
             $modelClass = $this->argument('model');
             $id = $this->argument('id');
