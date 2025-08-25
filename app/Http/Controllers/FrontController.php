@@ -160,8 +160,9 @@ class FrontController extends BaseController
         }
 
         $itemId = request()->query('id');
+        $itemModel->id = $itemId;
 
-        if ((method_exists($itemModel, 'hasAugmentedModel')) && $itemModel->hasAugmentedModel()) {
+        if ((method_exists($itemModel, 'hasAugmentedModel')) && $itemModel->hasAugmentedModel() && $itemModel->getAugmentedModel()) {
             $itemModel = $itemModel->getAugmentedModelClass();
             $item = $itemModel::where('datahub_id', $itemId)->first();
         } else {
