@@ -1,7 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/variables";
-
 @use "sass:map";
 /***
 
@@ -22,24 +18,24 @@ The top link - on the site it hides and shows as you scroll up and down on mediu
 .top-link {
   display: none;
   position: fixed;
-  z-index: map.get(variables.$zindexs, 'articleTopLink');
+  z-index: map.get($zindexs, 'articleTopLink');
   right: 40px;
   bottom: -48px;
   width: 48px;
   height: 48px;
   padding: 0;
   border: 0 none;
-  border-radius: variables.$border-radius;
-  background-color: rgba(colors.$color__black, .7);
-  color: colors.$color__white;
+  border-radius: $border-radius;
+  background-color: rgba($color__black, .7);
+  color: $color__white;
   line-height: 45px;
   text-align: center;
   cursor: pointer;
   transform: rotate(-90deg);
-  transition: bottom .25s variables.$bezier--bounce;
+  transition: bottom .25s $bezier--bounce;
   will-change: bottom;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: block;
   }
 
@@ -53,8 +49,8 @@ The top link - on the site it hides and shows as you scroll up and down on mediu
 .top-link:hover,
 .top-link:focus,
 .top-link:active {
-  background-color: rgba(colors.$color__black, .9);
-  color: colors.$color__white;
+  background-color: rgba($color__black, .9);
+  color: $color__white;
 }
 
 .top-link svg {
@@ -71,7 +67,7 @@ The top link - on the site it hides and shows as you scroll up and down on mediu
   top: 16px;
   bottom: 16px;
   width: 1.5px;
-  background-color: colors.$color__white;
+  background-color: $color__white;
 }
 
 .top-link::after {

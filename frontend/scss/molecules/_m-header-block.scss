@@ -1,16 +1,13 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-
 .m-header-block {
   position: relative;
   margin-top: 0;
   padding-top: 40px;
 
-  @include breakpoint.breakpoint('small') {
+  @include breakpoint('small') {
     padding-top: 44px;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     padding-top: 52px;
   }
 
@@ -20,11 +17,11 @@
   .o-visit & + .m-title-bar {
     margin-top: 24px;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 32px;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       margin-top: 40px;
     }
   }
@@ -37,7 +34,7 @@
     right: 0;
     top: 0;
     height: 1px;
-    background-color: colors.$color__rules--primary;
+    background-color: $color__rules--primary;
   }
 
   .m-links-bar + &::before {

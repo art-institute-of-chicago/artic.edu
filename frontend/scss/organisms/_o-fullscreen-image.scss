@@ -1,19 +1,15 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/variables";
-
 @use "sass:map";
 
 .o-fullscreen-image {
   display: none;
   position: fixed;
-  z-index: map.get(variables.$zindexs, 'fullscreenImage');
+  z-index: map.get($zindexs, 'fullscreenImage');
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
-  border-radius: variables.$border-radius;
-  background-color: colors.$color__black--80;
+  border-radius: $border-radius;
+  background-color: $color__black--80;
   overflow: hidden;
   opacity: 0;
   transition: opacity .35s;
@@ -68,29 +64,29 @@
   z-index: 2;
   left: 20px;
   bottom: 20px;
-  font-family: variables.$sans-serif-font--loaded;
+  font-family: $sans-serif-font--loaded;
   font-size: 1.8em;
   line-height: 48px;
   padding: 0 16px;
-  border-radius: variables.$border-radius;
-  background-color: rgba(colors.$color__black, .5);
-  color: colors.$color__white;
+  border-radius: $border-radius;
+  background-color: rgba($color__black, .5);
+  color: $color__white;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     left: 32px;
     bottom: 32px;
   }
 
   &:hover,
   &:focus:hover {
-    background-color: colors.$color__link--accent-hover;
-    color: colors.$color__white;
+    background-color: $color__link--accent-hover;
+    color: $color__white;
   }
 
   &.s-active,
   &:active:hover {
-    background-color: colors.$color__link--accent-active;
-    color: colors.$color__white;
+    background-color: $color__link--accent-active;
+    color: $color__white;
   }
 }
 
@@ -119,7 +115,7 @@
   justify-content: space-between;
 
   .o-fullscreen-image:not(.o-fullscreen-image--advanced) & {
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       left: auto;
       right: 32px;
       bottom: 32px;
@@ -166,13 +162,13 @@
       }
 
       &:first-child .btn {
-        border-top-left-radius: variables.$border-radius;
-        border-bottom-left-radius: variables.$border-radius;
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
       }
 
       &:last-child .btn {
-        border-top-right-radius: variables.$border-radius;
-        border-bottom-right-radius: variables.$border-radius;
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
       }
     }
   }
@@ -190,7 +186,7 @@
     pointer-actions: none;
   }
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     right: 32px;
     top: 32px;
   }

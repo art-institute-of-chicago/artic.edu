@@ -127,7 +127,7 @@ $journal-header-margin-bottom: (
 // Site font stack variables
 //
 // uncomment and complete stack with project fonts
-// xxxxx--loaded variables need a font loader to be activated (see setup/typography for CSS rule) :
+// xxxxx--loaded variables need a font loader to be activated (see setup/mixins/typography for CSS rule) :
 
 // The fall back font family string. eg. Helvetica, Arial, sans-serif.
 $serif-font: 'Times New Roman', Times, Georgia, serif;
@@ -139,8 +139,7 @@ $sans-serif-font--loaded: 'Ideal Sans A', 'Ideal Sans B', #{$sans-serif-font};
 $serif-font-loaded-class: 's-serif-loaded';
 $sans-serif-font-loaded-class: 's-sans-serif-loaded';
 
-$disable-font-loading: false !default;
-@if $disable-font-loading {
+@if meta.variable-exists('disable-font-loading') and $disable-font-loading {
     $serif-font: $serif-font--loaded;
     $sans-serif-font: $sans-serif-font--loaded;
 }

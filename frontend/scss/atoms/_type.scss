@@ -1,5 +1,3 @@
-@use "../setup/colors";
-
 /***
 
 type
@@ -17,18 +15,18 @@ Sets colors for type tags:
 ***/
 
 .type {
-  color: colors.$color__text--type;
+  color: $color__text--type;
   font-style: normal;
 }
 
 .type--membership {
-  color: colors.$color__text--membership;
+  color: $color__text--membership;
 }
 
 .type--new {
-  color: colors.$color__text--new;
+  color: $color__text--new;
 }
 
 .type--limited {
-  color: colors.$color__text--limited;
+  color: $color__text--limited;
 }

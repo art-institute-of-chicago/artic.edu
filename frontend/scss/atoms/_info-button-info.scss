@@ -1,9 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/other";
-@use "../setup/typography";
-@use "../setup/variables";
-
 @use "sass:map";
 /***
 
@@ -23,16 +17,16 @@ Image credit for hero images - content is filled out by `infoButtonInfo.js`
 
 .info-button-info {
   position: absolute;
-  z-index: map.get(variables.$zindexs, 'infoBubbleInfo');
+  z-index: map.get($zindexs, 'infoBubbleInfo');
   min-width: 80px;
   max-width: 180px;
   padding: 8px 16px 16px;
-  background-color: colors.$color__white;
-  box-shadow: variables.$shadow;
+  background-color: $color__white;
+  box-shadow: $shadow;
   transition: opacity .15s;
   white-space: initial;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     max-width: 250px;
   }
 
@@ -49,5 +43,5 @@ Image credit for hero images - content is filled out by `infoButtonInfo.js`
   }
 
 .info-button-info .f-caption {
-  @include other.tucked-align-top(typography.$f-caption);
+  @include tucked-align-top($f-caption);
 }

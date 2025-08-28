@@ -1,6 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-
 /***
 
 Ajax Page Load Mask - active
@@ -15,7 +12,7 @@ Masking the page when an Ajax page load is happening
   .g-mask {
     right: 0;
     bottom: 0;
-    background-color: rgba(colors.$color__white, 1);
+    background-color: rgba($color__white, 1);
     opacity: 0;
   }
 }
@@ -24,19 +21,19 @@ Masking the page when an Ajax page load is happening
 .s-collection-filters-active.s-ajaxPageLoadMask-active {
   .g-mask {
 
-    @include breakpoint.breakpoint('medium+') {
-      background-color: rgba(colors.$color__white, 1);
+    @include breakpoint('medium+') {
+      background-color: rgba($color__white, 1);
       opacity: .5;
     }
 
-    @include breakpoint.breakpoint('small-') {
+    @include breakpoint('small-') {
       opacity: 1;
-      background-color: rgba(colors.$color__bg--tertiary, .25);
+      background-color: rgba($color__bg--tertiary, .25);
     }
   }
 
   .o-collection-filters::after {
-    @include breakpoint.breakpoint('small-') {
+    @include breakpoint('small-') {
       right: 0;
       bottom: 0;
       opacity: .2;

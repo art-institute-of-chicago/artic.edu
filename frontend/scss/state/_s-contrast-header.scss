@@ -1,7 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/typography";
-
 /***
 
 Contrast header
@@ -19,11 +15,11 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
   #a17 {
     padding-top: 0;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       padding-top: 0;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       padding-top: 0;
     }
   }
@@ -31,22 +27,22 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
   &:not(.s-scroll-direction-up),
   &:not(.s-header-hide) {
     .g-header {
-      @include breakpoint.breakpoint('small') {
+      @include breakpoint('small') {
         height: 368px;
       }
-      @include breakpoint.breakpoint('medium') {
+      @include breakpoint('medium') {
         height: 376px;
       }
-      @include breakpoint.breakpoint('large+') {
+      @include breakpoint('large+') {
         height: 380px;
       }
     }
     .g-header:has([aria-expanded="true"]) {
-      background-color: rgba(colors.$color__white, 1);
+      background-color: rgba($color__white, 1);
       transition: background-color .6s ease-in;
     }
     .g-header:not(:has([aria-expanded="true"])) {
-      background-color: rgba(colors.$color__white, 0);
+      background-color: rgba($color__white, 0);
       transition: background-color .3s ease-out;
 
       [aria-expanded="false"].collapsing + .details {
@@ -64,11 +60,11 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
 
       .g-header__nav-primary svg,
       .g-header__nav-primary a {
-        color: colors.$color__text--title-contrast;
+        color: $color__text--title-contrast;
         transition: color .6s linear;
 
-        @include breakpoint.breakpoint('small+') {
-          color: colors.$color__text--title-contrast;
+        @include breakpoint('small+') {
+          color: $color__text--title-contrast;
         }
       }
 
@@ -77,22 +73,22 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
       .g-header__opening-hours a,
       .g-header__menu-link,
       .g-header__menu-link:active {
-        color: colors.$color__text--title-contrast;
+        color: $color__text--title-contrast;
         transition: color .25s .25s;
       }
 
       .g-header__nav-secondary a,
       .g-header__menu-link:hover,
       .g-header__menu-link:focus {
-        color: rgba(colors.$color__text--title-contrast, .7);
+        color: rgba($color__text--title-contrast, .7);
         transition: color .25s .25s;
-        @include breakpoint.breakpoint('xsmall') {
-          color: colors.$color__text--title-contrast;
+        @include breakpoint('xsmall') {
+          color: $color__text--title-contrast;
         }
       }
 
       .g-header__nav-primary a:hover {
-        color: colors.$color__red--100;
+        color: $color__red--100;
       }
 
       .g-header__nav-primary .s-current a {
@@ -104,7 +100,7 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
       .g-header__nav-secondary a:hover,
       .g-header__opening-hours a:active,
       .g-header__nav-secondary a:active {
-        @include typography.text-underline(1.02em, colors.$color__text--title-contrast, transparent);
+        @include text-underline(1.02em, $color__text--title-contrast, transparent);
       }
     }
   }
@@ -112,7 +108,7 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
   &.s-filled-logo {
 
     .g-header__logo {
-      color: colors.$color__text--title-contrast;
+      color: $color__text--title-contrast;
     }
   }
 }

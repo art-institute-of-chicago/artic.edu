@@ -1,7 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/typography";
-
 // ------ My Museum Tour
 
 .my-museum-tour {
@@ -13,7 +9,7 @@
     border: none;
     padding: 0;
     max-width: 680px;
-    background-color: colors.$color__white;
+    background-color: $color__white;
 
     img {
       display: block;
@@ -42,24 +38,24 @@
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px colors.$color__white inset;
+    -webkit-box-shadow: 0 0 0 30px $color__white inset;
   }
 
   .checkbox {
-    @include typography.untuck;
+    @include untuck;
 
     label {
       display: inline-block;
-      color: colors.$color__black--80;
+      color: $color__black--80;
     }
 
     input[type=checkbox]:checked+span label::before {
-      background-color: colors.$color__grey--130;
-      border-color: colors.$color__grey--130;
+      background-color: $color__grey--130;
+      border-color: $color__grey--130;
     }
 
     input+span {
-      @include typography.untuck;
+      @include untuck;
     }
   }
 
@@ -85,7 +81,7 @@
 .aic-ct-full-bleed__core {
   padding: 0 4.6875vw;
 
-  @include breakpoint.breakpoint('xlarge') {
+  @include breakpoint('xlarge') {
     padding: 0;
     max-width: 1500px;
     margin: 0 auto;
@@ -110,17 +106,17 @@
 }
 
 .aic-ct-preview__content-warning {
-  background-color: colors.$color__teal-light--my-museum-tour;
+  background-color: $color__teal-light--my-museum-tour;
 
   .aic-ct-preview__header {
-    background-color: colors.$color__teal-light--my-museum-tour;
+    background-color: $color__teal-light--my-museum-tour;
   }
 
   .aic-ct-preview__body {
     text-align: center;
     padding: 48px 60px 48px 60px;
 
-    @include breakpoint.breakpoint('small-') {
+    @include breakpoint('small-') {
       padding: 0 52px 48px 52px;
     }
 
@@ -132,12 +128,12 @@
       font-size: 36px;
       line-height: 40px;
 
-      @include breakpoint.breakpoint('small-') {
+      @include breakpoint('small-') {
         font-size: 30px;
         line-height: 34px;
       }
 
-      @include breakpoint.breakpoint('xsmall') {
+      @include breakpoint('xsmall') {
         font-size: 24px;
         line-height: 28px;
       }
@@ -150,14 +146,14 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
-  background-color: colors.$color__white;
+  background-color: $color__white;
   padding-top: 8px;
   padding-bottom: 8px;
 
 
 
   h2 {
-    @include typography.untuck;
+    @include untuck;
   }
 }
 
@@ -194,7 +190,7 @@
 }
 
 .aic-ct-preview__date {
-  @include typography.untuck;
+  @include untuck;
 }
 
 .aic-ct-preview__details {
@@ -203,12 +199,12 @@
 
 .aic-ct-preview__links {
   padding: 24px 0;
-  border-top: 1px solid colors.$color__black--20;
-  border-bottom: 1px solid colors.$color__black--20;
+  border-top: 1px solid $color__black--20;
+  border-bottom: 1px solid $color__black--20;
   margin-bottom: 24px;
 
   p {
-    @include typography.untuck;
+    @include untuck;
   }
 }
 
@@ -226,7 +222,7 @@
 }
 
 .aic-ct-preview__close-trans {
-  color: colors.$color__link;
+  color: $color__link;
   padding-left: 0;
   padding-right: 0;
 
@@ -241,7 +237,7 @@
 // ---- My Museum Tour: Header
 
 .aic-ct-header {
-  @include typography.untuck;
+  @include untuck;
 
   & {
     position: sticky;
@@ -250,8 +246,8 @@
     padding: 20px 0;
     margin-left: 50%;
     transform: translateX(-50%);
-    background-color: colors.$color__teal--my-museum-tour;
-    color: colors.$color__white;
+    background-color: $color__teal--my-museum-tour;
+    color: $color__white;
     z-index: 9;
   }
 
@@ -279,7 +275,7 @@
 }
 
 .aic-ct-item-info__count-num {
-  @include typography.untuck;
+  @include untuck;
 
   & {
     display: flex;
@@ -288,14 +284,14 @@
     border-radius: 50%;
     min-width: 24px;
     aspect-ratio: 1;
-    color: colors.$color__grey--100;
-    background-color: colors.$color__white;
+    color: $color__grey--100;
+    background-color: $color__white;
     font-size: 0.778em;
     line-height: 1;
     font-weight: 500;
   }
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     min-width: 28px;
   }
 }
@@ -324,7 +320,7 @@
 
 .aic-ct-header__slot--inactive {
   .btn {
-    border-color: colors.$color__white;
+    border-color: $color__white;
   }
 }
 
@@ -336,7 +332,7 @@
 .aic-ct-header__button {
   margin: 0 !important;
   padding: 0 !important;
-  color: colors.$color__white;
+  color: $color__white;
   font-weight: 400;
   // Set to size of longest text to prevent cosmetic jumps
   // This may need updating if the text changes
@@ -350,7 +346,7 @@
   &:hover,
   &:focus,
   &:focus:hover {
-    color: colors.$color__white;
+    color: $color__white;
   }
 }
 
@@ -382,7 +378,7 @@
 }
 
 .aic-ct-header__button--exit {
-  color: colors.$color__black--20;
+  color: $color__black--20;
 }
 
 // ---- My Museum Tour: Intro
@@ -397,7 +393,7 @@
 
 .aic-ct-intro--keyline {
   padding-bottom: 32px;
-  border-bottom: 1px solid colors.$color__black--35;
+  border-bottom: 1px solid $color__black--35;
 }
 
 // -- My Museum Tour: Searchbar
@@ -421,24 +417,24 @@
 
 .aic-ct-theme-toggle {
   .icon--close {
-    color: colors.$color__text--secondary;
+    color: $color__text--secondary;
   }
 }
 
 // Borrow just the color styles from tag--quaternary
 .aic-ct-theme-toggle--active {
-  color: colors.$color__white !important;
-  background-color: colors.$color__black--90 !important;
+  color: $color__white !important;
+  background-color: $color__black--90 !important;
 
   &:hover,
   &:focus {
-    color: colors.$color__white !important;
-    background-color: colors.$color__black--80 !important;
+    color: $color__white !important;
+    background-color: $color__black--80 !important;
   }
 
   &:active {
-    color: colors.$color__white !important;
-    background-color: colors.$color__black--90 !important;
+    color: $color__white !important;
+    background-color: $color__black--90 !important;
   }
 }
 
@@ -451,7 +447,7 @@
 
 .aic-ct-pre-result-text,
 .aic-ct-post-result-text {
-  @include typography.untuck;
+  @include untuck;
 
   & {
     margin-bottom: 24px;
@@ -485,7 +481,7 @@
 
 .aic-ct-result--selected {
   .m-listing__img {
-    border: 4px solid colors.$color__teal--my-museum-tour;
+    border: 4px solid $color__teal--my-museum-tour;
   }
 
   &.m-listing--variable-height .m-listing__img img {
@@ -503,8 +499,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background-color: colors.$color__teal--my-museum-tour;
-    color: colors.$color__white;
+    background-color: $color__teal--my-museum-tour;
+    color: $color__white;
   }
 }
 
@@ -524,8 +520,8 @@
   flex-direction: column;
   gap: 12px;
   padding: 16px 20px;
-  background-color: colors.$color__teal--my-museum-tour;
-  color: colors.$color__white;
+  background-color: $color__teal--my-museum-tour;
+  color: $color__white;
 }
 
 .aic-ct-nav {
@@ -541,7 +537,7 @@
   white-space: normal;
   max-width: 180px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     min-width: 150px;
   }
 
@@ -575,10 +571,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: colors.$color__white;
+  color: $color__white;
 
   & .aic-ct-nav__number {
-    color: colors.$color__black--45;
+    color: $color__black--45;
   }
 }
 
@@ -590,7 +586,7 @@
   min-width: 24px;
   aspect-ratio: 1;
   margin-bottom: 6px;
-  border: 1px solid colors.$color__white;
+  border: 1px solid $color__white;
   font-size: 0.875em;
   line-height: 1;
 }
@@ -614,17 +610,17 @@
   }
 
   & .aic-ct-nav__number {
-    color: colors.$color__black;
-    background-color: colors.$color__teal-light--my-museum-tour;
-    border: 1px solid colors.$color__teal-light--my-museum-tour;
+    color: $color__black;
+    background-color: $color__teal-light--my-museum-tour;
+    border: 1px solid $color__teal-light--my-museum-tour;
     font-size: 1em;
   }
 }
 
 .aic-ct-nav__button--done {
   & .aic-ct-nav__number {
-    background-color: colors.$color__white;
-    color: colors.$color__black--45;
+    background-color: $color__white;
+    color: $color__black--45;
   }
 }
 
@@ -661,7 +657,7 @@
 
 .input input:invalid,
 .textarea textarea:invalid {
-  border-color: colors.$color__red--100;
+  border-color: $color__red--100;
 }
 
 // ------ My Museum Tour: Tour items
@@ -679,7 +675,7 @@
   gap: 24px;
   padding-top: 24px;
   padding-bottom: 24px;
-  border-top: 1px solid colors.$color__black--20;
+  border-top: 1px solid $color__black--20;
 }
 
 .aic-ct-tour-item__lockup {
@@ -700,12 +696,12 @@
 .aic-ct-tour-item__title,
 .aic-ct-tour-item__artist,
 .aic-ct-tour-item__gallery {
-  @include typography.untuck;
+  @include untuck;
 }
 
 .aic-ct-tour-item__title {
   margin-bottom: 4px;
-  color: colors.$color__black--90;
+  color: $color__black--90;
 }
 
 .aic-ct-tour-item__artist {
@@ -729,7 +725,7 @@
 .aic-ct-tour-item__remove {
   padding-left: 0;
   padding-right: 0;
-  color: colors.$color__grey--100;
+  color: $color__grey--100;
 }
 
 
@@ -737,8 +733,8 @@
 
 .aic-ct-tour__cta {
   padding: 20px 0;
-  background-color: colors.$color__black--5;
-  border-top: 1px solid colors.$color__black--20;
+  background-color: $color__black--5;
+  border-top: 1px solid $color__black--20;
 
   .aic-ct-tour__cta-wrapper {
     display: flex;
@@ -747,7 +743,7 @@
   }
 
   .f-body {
-    @include typography.untuck;
+    @include untuck;
   }
 
   .aic-ct-tour__cta-actions {
@@ -755,7 +751,7 @@
     flex-direction: column;
     gap: 16px;
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       flex-direction: row;
     }
   }

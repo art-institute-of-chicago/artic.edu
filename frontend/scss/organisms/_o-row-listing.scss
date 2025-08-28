@@ -1,7 +1,3 @@
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-@use "../setup/variables";
-
 @use "sass:map";
 
 .o-row-listing {
@@ -14,10 +10,10 @@
 
 .o-row-listing > * {
 
-  @each $name, $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
       //margin-top: #{map-get($grid-margin-tops, $name)}px;
-      margin-top: grid.colspan(map.get(variables.$grid-padding-tops, $name), #{$name});
+      margin-top: colspan(map.get($grid-padding-tops, $name), #{$name});
     }
   }
 }

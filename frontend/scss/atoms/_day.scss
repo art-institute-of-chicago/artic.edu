@@ -1,7 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/other";
-@use "../setup/typography";
-
 /***
 
 day
@@ -60,28 +56,28 @@ Example usage:
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: colors.$color__rules--tertiary;
+  background-color: $color__rules--tertiary;
 }
 
 .day__date {
   display: block;
   width: 50px;
-  color: colors.$color__text--title;
+  color: $color__text--title;
   text-align: right;
 }
 
 .day__date.f-numeral-date {
-  @include other.tucked-margin-top(typography.$f-numeral-date, ('xsmall': 48, 'small+': 52));
+  @include tucked-margin-top($f-numeral-date, ('xsmall': 48, 'small+': 52));
 }
 
 .day__month {
   bottom: 4px;
-  color: colors.$color__text--title;
+  color: $color__text--title;
 }
 
 .day__day {
   bottom: 21px;
-  color: colors.$color__text--secondary;
+  color: $color__text--secondary;
 }
 
 .day__month,
