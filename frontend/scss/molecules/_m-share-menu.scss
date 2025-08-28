@@ -1,35 +1,28 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-@use "../setup/placeholders";
-@use "../setup/typography";
-@use "../setup/variables";
-
 @use "sass:map";
 .m-share-menu {
   @extend %styled-scrollbars;
   display: none;
   position: fixed;
-  z-index: map.get(variables.$zindexs, 'shareMenu');
-  left: grid.colspan(3, xsmall);
-  right: grid.colspan(3, xsmall);
+  z-index: map.get($zindexs, 'shareMenu');
+  left: colspan(3, xsmall);
+  right: colspan(3, xsmall);
   top: 50%;
   margin-top: -144px;
   max-height: 80vh;
-  background-color: colors.$color__white;
-  box-shadow: variables.$shadow;
+  background-color: $color__white;
+  box-shadow: $shadow;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   transition: opacity .15s;
 
-  @include breakpoint.breakpoint('small+') {
-    left: grid.colspan(10, small);
-    right: grid.colspan(10, small);
+  @include breakpoint('small+') {
+    left: colspan(10, small);
+    right: colspan(10, small);
     top: 50%;
     margin-top: -144px;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     position: absolute;
     left: auto;
     right: auto;
@@ -45,19 +38,19 @@
 .m-share-menu--inline {
   display: block;
   position: relative;
-  border: 1px solid colors.$color__rules--primary;
+  border: 1px solid $color__rules--primary;
   box-shadow: none;
 }
 
 .m-share-menu__title {
-  @include typography.untuck;
+  @include untuck;
 
   & {
     padding: 18px 60px 18px 16px;
-    color: colors.$color__text--title;
+    color: $color__text--title;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: none;
   }
 }
@@ -68,18 +61,18 @@
 }
 
 .m-share-menu li {
-  border-top: 1px solid colors.$color__rules--tertiary;
+  border-top: 1px solid $color__rules--tertiary;
 }
 
 .m-share-menu li:first-child {
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     border-top: 0 none;
   }
 }
 
 .m-share-menu ul a,
 .m-share-menu ul button {
-  @include typography.untuck;
+  @include untuck;
 
   & {
     display: block;
@@ -87,8 +80,8 @@
     margin: 0;
     padding: 10px 16px;
     border: 0 none;
-    background-color: colors.$color__white;
-    color: colors.$color__text--secondary;
+    background-color: $color__white;
+    color: $color__text--secondary;
     text-align: left;
     text-decoration: none;
     cursor: pointer;
@@ -100,7 +93,7 @@
   padding-top: 11px;
   padding-bottom: 12px;
 
-  @include breakpoint.breakpoint('large+') {
+  @include breakpoint('large+') {
     padding-top: 8px;
     padding-bottom: 11px;
   }
@@ -108,14 +101,14 @@
 
 .m-share-menu ul a:hover,
 .m-share-menu ul button:hover {
-  background-color: colors.$color__bg--secondary;
-  color: colors.$color__text--title;
+  background-color: $color__bg--secondary;
+  color: $color__text--title;
 }
 
 .m-share-menu ul :active,
 .m-share-menu ul button:active {
-  background-color: colors.$color__bg--primary;
-  color: colors.$color__text--title;
+  background-color: $color__bg--primary;
+  color: $color__text--title;
 }
 
 .m-share-menu__close {
@@ -128,9 +121,9 @@
   padding: 0;
   border: 0 none;
   background: transparent;
-  color: colors.$color__text--title;
+  color: $color__text--title;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     position: absolute;
     width: 1px;
     height: 1px;

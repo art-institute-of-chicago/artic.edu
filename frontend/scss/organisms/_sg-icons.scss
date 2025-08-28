@@ -1,11 +1,9 @@
-@use "../setup/colors";
-
 .sg-icons {
   display: flex;
   flex-flow: row wrap;
   padding: 4px 0 24px 20px;
-  background: colors.$color__bg--primary;
-  color: colors.$color__black;
+  background: $color__bg--primary;
+  color: $color__black;
 
   #demo & {
     background-color: transparent;
@@ -19,5 +17,5 @@
 }
 
 .sg-icons svg:hover {
-  color: colors.$color__link--accent;
+  color: $color__link--accent;
 }

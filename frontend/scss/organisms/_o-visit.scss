@@ -1,8 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-@use "../setup/typography";
-
 .o-visit .m-links-bar {
   margin-top: 0;
 }
@@ -10,7 +5,7 @@
 .m-links-bar--title-bar-companion,
 .o-visit .o-grid-listing+.m-links-bar--title-bar-companion,
 .o-visit .m-link-list+.m-links-bar--title-bar-companion {
-  @include breakpoint.breakpoint('xsmall') {
+  @include breakpoint('xsmall') {
     margin-top: 24px;
   }
 }
@@ -22,7 +17,7 @@
     margin-top: 0;
   }
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     margin-top: 0;
 
     &+* {
@@ -30,7 +25,7 @@
     }
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     margin-top: 0;
 
     &+* {
@@ -44,17 +39,17 @@
 }
 
 .o-visit hr {
-  border-top: 1px solid colors.$color__rules--quaternary;
+  border-top: 1px solid $color__rules--quaternary;
 }
 
 .o-visit .m-title-bar {
   margin-top: 52px;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     margin-top: 60px;
   }
 
-  @include breakpoint.breakpoint('large+') {
+  @include breakpoint('large+') {
     margin-top: 72px;
   }
 }
@@ -65,70 +60,70 @@
 
   margin-top: 0;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     flex-flow: row-reverse nowrap;
   }
 }
 
 .o-visit .m-ticket-actions__action {
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     flex: 0 0 auto;
-    width: grid.colspan(28, small);
+    width: colspan(28, small);
     margin-top: 0;
   }
 
-  @include breakpoint.breakpoint('medium+') {
-    width: grid.colspan(13, medium);
+  @include breakpoint('medium+') {
+    width: colspan(13, medium);
   }
 
-  @include breakpoint.breakpoint('large+') {
-    width: grid.colspan(13, large);
+  @include breakpoint('large+') {
+    width: colspan(13, large);
   }
 
-  @include breakpoint.breakpoint('xlarge') {
-    width: grid.colspan(13, xlarge);
+  @include breakpoint('xlarge') {
+    width: colspan(13, xlarge);
   }
 }
 
 .o-visit .m-ticket-actions__action:first-child {
   margin-top: 12px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     margin-top: 0;
   }
 }
 
 .o-visit .m-ticket-actions__action:not(:first-child) {
-  @include breakpoint.breakpoint('small+') {
-    margin-right: grid.colspan(2, small);
+  @include breakpoint('small+') {
+    margin-right: colspan(2, small);
   }
 
-  @include breakpoint.breakpoint('medium+') {
-    margin-right: grid.colspan(2, medium);
+  @include breakpoint('medium+') {
+    margin-right: colspan(2, medium);
   }
 
-  @include breakpoint.breakpoint('large+') {
-    margin-right: grid.colspan(2, large);
+  @include breakpoint('large+') {
+    margin-right: colspan(2, large);
   }
 
-  @include breakpoint.breakpoint('xlarge') {
-    margin-right: grid.colspan(2, xlarge);
+  @include breakpoint('xlarge') {
+    margin-right: colspan(2, xlarge);
   }
 }
 
 .o-visit .m-link-list {
   margin-top: 24px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     margin-top: 36px;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     margin-top: 40px;
   }
 
-  @include breakpoint.breakpoint('large+') {
+  @include breakpoint('large+') {
     margin-top: 44px;
   }
 }
@@ -152,7 +147,7 @@
     'small+': 40,
     'medium+': 52,
   ) {
-    @include breakpoint.breakpoint('#{$name}') {
+    @include breakpoint('#{$name}') {
       margin-top: #{$margin}px;
     }
   }
@@ -167,12 +162,12 @@
 
   .o-visit-capacity__text {
     margin-bottom: 24px;
-    @include typography.f-secondary;
-    @include typography.untuck;
+    @include f-secondary;
+    @include untuck;
 
     h2 {
-      @include typography.f-list-3;
-      @include typography.untuck;
+      @include f-list-3;
+      @include untuck;
 
       & {
         margin-bottom: 12px;
@@ -180,7 +175,7 @@
     }
 
     a {
-      @include typography.text-underline(1.02em, colors.$color__rules--secondary);
+      @include text-underline(1.02em, $color__rules--secondary);
     }
   }
 
@@ -196,23 +191,23 @@
     }
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     flex-wrap: wrap;
     flex-direction: row;
   }
 
-  @include breakpoint.breakpoint('medium') {
+  @include breakpoint('medium') {
     .o-visit-capacity__graph {
-      width: grid.colspan(24, 'medium');
-      padding-right: grid.colspan(2, 'medium');
+      width: colspan(24, 'medium');
+      padding-right: colspan(2, 'medium');
     }
 
     .o-visit-capacity__text {
-      width: grid.colspan(34, 'medium');
+      width: colspan(34, 'medium');
     }
   }
 
-  @include breakpoint.breakpoint('large+') {
+  @include breakpoint('large+') {
     .o-visit-capacity__graph {
       margin-bottom: 0;
     }
@@ -223,38 +218,38 @@
   }
 
   @each $name in ('large', 'xlarge') {
-    @include breakpoint.breakpoint('#{$name}') {
+    @include breakpoint('#{$name}') {
       .o-visit-capacity__graph {
-        padding-right: grid.colspan(2, $name);
+        padding-right: colspan(2, $name);
       }
 
       .o-visit-capacity__text {
-        padding-right: grid.colspan(2, $name);
+        padding-right: colspan(2, $name);
       }
 
       .o-visit-capacity__actions {
-        width: grid.colspan(16, $name);
+        width: colspan(16, $name);
       }
     }
   }
 
-  @include breakpoint.breakpoint('large') {
+  @include breakpoint('large') {
     .o-visit-capacity__graph {
-      width: grid.colspan(20, 'large');
+      width: colspan(20, 'large');
     }
 
     .o-visit-capacity__text {
-      width: grid.colspan(22, 'large');
+      width: colspan(22, 'large');
     }
   }
 
-  @include breakpoint.breakpoint('xlarge') {
+  @include breakpoint('xlarge') {
     .o-visit-capacity__graph {
-      width: grid.colspan(18, 'xlarge');
+      width: colspan(18, 'xlarge');
     }
 
     .o-visit-capacity__text {
-      width: grid.colspan(24, 'xlarge');
+      width: colspan(24, 'xlarge');
     }
   }
 }

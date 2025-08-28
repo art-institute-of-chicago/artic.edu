@@ -1,15 +1,9 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-@use "../setup/typography";
-@use "../setup/variables";
-
 .p--linked {
   display: flex;
   position: relative;
 
   // WEB-1034: the pseudo-element trick doesn't work with flex
-  @include typography.untuck();
+  @include untuck();
 
   & {
     margin-top: 16px;
@@ -20,9 +14,9 @@
   .o-blocks>&:not([class*='f-']) {
 
     @each $name,
-    $point in variables.$breakpoints {
-      @include breakpoint.breakpoint('#{$name}') {
-        padding-right: grid.colspan(2, $name);
+    $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        padding-right: colspan(2, $name);
       }
     }
   }
@@ -30,7 +24,7 @@
   span.p--linked__ref {
     display: none;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       display: block;
     }
 
@@ -44,15 +38,15 @@
     }
 
     a {
-      font-family: variables.$sans-serif-font;
-      color: colors.$color__black--30;
+      font-family: $sans-serif-font;
+      color: $color__black--30;
 
       &:hover {
-        color: colors.$color__black--50;
+        color: $color__black--50;
       }
 
       .s-sans-serif-loaded & {
-        font-family: variables.$sans-serif-font--loaded;
+        font-family: $sans-serif-font--loaded;
       }
     }
   }

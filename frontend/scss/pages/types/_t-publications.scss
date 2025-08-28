@@ -1,15 +1,11 @@
-@use "../../setup/colors";
-@use "../../setup/mixins/breakpoint";
-@use "../../setup/variables";
-
 .publications-subnav {
     text-align: left !important;
     padding-bottom: 28px;
-    border-bottom: 1px solid colors.$color__black--10;
+    border-bottom: 1px solid $color__black--10;
     overflow-x: auto;
     overflow-y: hidden;
 
-    @include breakpoint.breakpoint('small-') {
+    @include breakpoint('small-') {
         padding-bottom: 20px;
     }
 
@@ -25,8 +21,8 @@
     }
 
     .m-links-bar__item>.f-link {
-        color: colors.$color__black--90;
-        font-family: variables.$sans-serif-font--loaded;
+        color: $color__black--90;
+        font-family: $sans-serif-font--loaded;
         font-size: 17px;
         font-weight: 300;
         line-height: 28px;
@@ -42,7 +38,7 @@
         align-items: center;
         justify-content: space-between;
         padding-bottom: 20px;
-        border-bottom: 1px solid colors.$color__black--10;
+        border-bottom: 1px solid $color__black--10;
         margin-bottom: 30px;
 
         &.publication-resources {
@@ -69,7 +65,7 @@
         }
 
         .m-listing {
-            background-color: colors.$color__white;
+            background-color: $color__white;
             border: none;
 
             .m-listing__img {
@@ -103,7 +99,7 @@
         justify-content: space-between;
         flex-direction: row;
 
-        @include breakpoint.breakpoint('medium-') {
+        @include breakpoint('medium-') {
             flex-direction: column;
         }
 
@@ -115,24 +111,24 @@
             flex-direction: column;
             padding-top: 30px;
 
-            @include breakpoint.breakpoint('medium-') {
+            @include breakpoint('medium-') {
                 max-width: 100%;
                 padding-bottom: 20px;
 
                 &:not(:first-child) {
-                    border-top: 1px solid colors.$color__black--10;
+                    border-top: 1px solid $color__black--10;
                     padding-top: 20px;
                 }
             }
 
             >h3 {
-                font-family: variables.$serif-font--loaded;
+                font-family: $serif-font--loaded;
                 font-size: 28px;
                 margin-bottom: 14px;
             }
 
             >p {
-                font-family: variables.$sans-serif-font--loaded;
+                font-family: $sans-serif-font--loaded;
                 font-size: 17px;
                 margin-bottom: 60px;
                 font-weight: 300;
@@ -140,7 +136,7 @@
             }
 
             >a {
-                font-family: variables.$sans-serif-font--loaded;
+                font-family: $sans-serif-font--loaded;
                 font-size: 17px;
             }
 
@@ -152,10 +148,10 @@
                 right: -6%;
                 height: 100%;
                 width: 1px;
-                background-color: colors.$color__black--10;
+                background-color: $color__black--10;
                 pointer-events: none;
 
-                @include breakpoint.breakpoint('medium-') {
+                @include breakpoint('medium-') {
                     display: none;
                 }
               }

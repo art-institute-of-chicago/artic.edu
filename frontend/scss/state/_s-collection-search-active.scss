@@ -1,5 +1,3 @@
-@use "../setup/colors";
-
 /***
 
 Collection search active
@@ -20,10 +18,10 @@ Only used on smaller screens.
     right: 0;
     bottom: 0;
     opacity: 1;
-    background-color: rgba(colors.$color__bg--tertiary, .25);
+    background-color: rgba($color__bg--tertiary, .25);
 
     @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-      background-color: rgba(colors.$color__bg--tertiary, .5);
+      background-color: rgba($color__bg--tertiary, .5);
       -webkit-backdrop-filter: blur(5px);
       backdrop-filter: blur(5px);
     }

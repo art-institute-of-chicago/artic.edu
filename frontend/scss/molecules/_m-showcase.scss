@@ -1,9 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/typography";
-@use "../setup/variables";
-@use "../themes/rlc";
-
 .m-showcase-block, .m-showcase,
 .m-showcase-background { // The showcase background is used in the Showcase Multiple block
     width: 100vw;
@@ -11,14 +5,14 @@
     margin-left: calc(50% - 50vw);
     display: flex;
     flex-direction: row;
-    background-color: colors.$color__bg--secondary;
+    background-color: $color__bg--secondary;
     padding: 50px;
 
-    @include breakpoint.breakpoint('small') {
+    @include breakpoint('small') {
         padding: 25px;
     }
 
-    @include breakpoint.breakpoint('xsmall') {
+    @include breakpoint('xsmall') {
         padding: 25px;
     }
 
@@ -30,14 +24,14 @@
         margin: auto;
         max-width: 1500px;
 
-        @include breakpoint.breakpoint('small-') {
+        @include breakpoint('small-') {
             padding: 0;
 
             .showcase-header {
                 margin-top: 50px;
             }
         }
-        @include breakpoint.breakpoint('xsmall') {
+        @include breakpoint('xsmall') {
             flex-direction: column;
 
             .showcase-header {
@@ -57,7 +51,7 @@
             flex: 1 1;
             margin: 0;
 
-            @include breakpoint.breakpoint('small+') {
+            @include breakpoint('small+') {
                 width: 100%;
             }
         }
@@ -66,7 +60,7 @@
             min-width: unset;
             position: relative;
 
-            @include breakpoint.breakpoint('xsmall') {
+            @include breakpoint('xsmall') {
                 min-width: 100%;
             }
 
@@ -88,7 +82,7 @@
         width: 100%;
 
         .showcase-tag {
-            color: colors.$color__text--type;
+            color: $color__text--type;
 
             &::before {
                 padding: 0 !important;
@@ -100,7 +94,7 @@
         }
 
         .showcase-description {
-            color: colors.$color__text--secondary;
+            color: $color__text--secondary;
             margin: 18px 0 0 0;
         }
 
@@ -110,7 +104,7 @@
         }
 
         .showcase-link {
-            color: colors.$color__text--secondary;
+            color: $color__text--secondary;
             margin: 18px 0 0 0;
             font-size: 17px;
         }
@@ -128,21 +122,21 @@
 
 
         .m-showcase-wrapper {
-            @include breakpoint.breakpoint('small-') {
+            @include breakpoint('small-') {
                 flex-direction: column;
                 gap: 16px;
             }
         }
 
         .showcase-tag {
-            @include breakpoint.breakpoint('small-') {
+            @include breakpoint('small-') {
                 font-size: 12px;
             }
         }
 
         .showcase-title {
-            @include breakpoint.breakpoint('small-') {
-                @include typography.untuck;
+            @include breakpoint('small-') {
+                @include untuck;
                 & {
                     font-size: 19px !important;
                     line-height: 4px !important;
@@ -159,7 +153,7 @@
 
         .showcase-description {
             * {
-            color: colors.$color__black !important;
+            color: $color__black !important;
             }
             & {
                 margin: 0 !important;
@@ -182,12 +176,12 @@
         padding: 0;
         width: 100%;
 
-        @include breakpoint.breakpoint('small') {
+        @include breakpoint('small') {
             padding: 0;
             margin: 100px auto !important;
         }
 
-        @include breakpoint.breakpoint('xsmall') {
+        @include breakpoint('xsmall') {
             padding: 0;
             margin: 50px auto !important;
         }
@@ -207,29 +201,29 @@
             .showcase-header {
                 flex-basis: 100%;
                 order: -1;
-                color: colors.$color__black--60;
+                color: $color__black--60;
                 font-size: 13px;
-                font-family: variables.$sans-serif-font--loaded;
+                font-family: $sans-serif-font--loaded;
                 font-weight: 400;
                 letter-spacing: 1px;
                 text-transform: uppercase;
                 position: relative;
                 top: 50px;
 
-                @include breakpoint.breakpoint('medium-') {
+                @include breakpoint('medium-') {
                     margin-top: 0;
                 }
 
-                @include breakpoint.breakpoint('small') {
+                @include breakpoint('small') {
                     top: 25px;
                 }
 
-                @include breakpoint.breakpoint('xsmall') {
+                @include breakpoint('xsmall') {
                     top: 25px;
                 }
             }
 
-            @include breakpoint.breakpoint('xsmall') {
+            @include breakpoint('xsmall') {
                 flex-direction: column;
 
                 .showcase-header {
@@ -254,12 +248,12 @@
 
             .showcase-date {
                 margin-top: 28px;
-                color: rlc.$color__rlc__fire_opal;
+                color: $color__rlc__fire_opal;
             }
         }
 
         &.showcase--variation-about-the-rlc {
-            background-color: rlc.$color__rlc__fire_opal !important;
+            background-color: $color__rlc__fire_opal !important;
 
             .m-showcase-wrapper {
                 flex-direction: row-reverse;
@@ -269,7 +263,7 @@
                     order: -1;
                 }
 
-                @include breakpoint.breakpoint('xsmall') {
+                @include breakpoint('xsmall') {
                     flex-direction: column-reverse;
 
                     .showcase-header {
@@ -288,7 +282,7 @@
                     }
                 }
 
-                @include breakpoint.breakpoint('small+') {
+                @include breakpoint('small+') {
                     flex: 2;
                 }
             }
@@ -298,39 +292,39 @@
             .showcase-title,
             .showcase-description,
             .showcase-link {
-                color: colors.$color__black--90;
+                color: $color__black--90;
             }
         }
         &.showcase--variation-rlc-secondary {
-            background-color: rlc.$color__rlc__myrtle_green !important;
+            background-color: $color__rlc__myrtle_green !important;
 
             .showcase-header,
             .showcase-tag,
             .showcase-title,
             .showcase-description {
-                color: colors.$color__white;
+                color: $color__white;
             }
             .showcase-date {
                 margin-top: 28px;
-                color: rlc.$color__rlc__sunglow;
+                color: $color__rlc__sunglow;
             }
             .showcase-link {
-                color: rlc.$color__rlc__sunglow;
+                color: $color__rlc__sunglow;
                 &:hover {
-                    color: colors.$color__white;
+                    color: $color__white;
                 }
             }
         }
     }
     &.showcase--default.showcase--variation-1e3f49 {
-        background-color: colors.$color__japanese-indigo;
+        background-color: $color__japanese-indigo;
 
         .showcase-description,
         .showcase-header,
         .showcase-link,
         .showcase-tag,
         .showcase-title {
-            color: colors.$color__white;
+            color: $color__white;
         }
     }
     &.showcase--educator-resources {
@@ -344,7 +338,7 @@
                 .title {
                     margin-top: 0;
 
-                    @include typography.untuck();
+                    @include untuck();
                 }
             }
 
@@ -355,7 +349,7 @@
 
         .showcase-callout {
             a {
-                color: colors.$color__link--accent;
+                color: $color__link--accent;
             }
         }
     }
@@ -368,11 +362,11 @@
         }
 
         &.showcase--variation-make-with-us {
-            background-color: rlc.$color__rlc__apricot;
+            background-color: $color__rlc__apricot;
 
             .m-showcase-background {
                 --spacing: calc(100vw);
-                background-color: rlc.$color__rlc__fawn;
+                background-color: $color__rlc__fawn;
                 border-bottom-left-radius: var(--spacing);
                 border-bottom-right-radius: var(--spacing);
             }
@@ -387,7 +381,7 @@
             }
 
             .m-showcase-media {
-                @include breakpoint.breakpoint('xsmall') {
+                @include breakpoint('xsmall') {
                     grid-column-end: 3;
                     grid-column-start: 1;
                 }
@@ -398,7 +392,7 @@
             }
 
             .m-showcase-block__text-wrapper {
-                @include breakpoint.breakpoint('xsmall') {
+                @include breakpoint('xsmall') {
                     grid-column-end: 3;
                     grid-column-start: 1;
                 }
@@ -407,25 +401,25 @@
             .showcase-description,
             .showcase-tag,
             .showcase-link {
-                color: colors.$color__black--80;
+                color: $color__black--80;
             }
         }
 
         &.showcase--variation-experience-with-us {
-            color: colors.$color__white;
+            color: $color__white;
             overflow: hidden;
             position: relative;
 
-            @include breakpoint.breakpoint('small+') {
+            @include breakpoint('small+') {
                 --fullwidth: calc(100vw - 5px);
             }
 
-            @include breakpoint.breakpoint('xsmall') {
+            @include breakpoint('xsmall') {
                 --fullwidth: calc(100vw);
             }
 
             &::after {
-                border-color: transparent rlc.$color__rlc__myrtle_green transparent transparent;
+                border-color: transparent $color__rlc__myrtle_green transparent transparent;
                 border-style: solid;
                 border-width: 0 var(--fullwidth) var(--fullwidth) 0;
                 content: '';
@@ -437,7 +431,7 @@
             }
 
             .m-showcase-background {
-                background-color: rlc.$color__rlc__japanese_indigo;
+                background-color: $color__rlc__japanese_indigo;
             }
 
             .m-showcase-wrapper {
@@ -450,12 +444,12 @@
             .showcase-description,
             .showcase-tag,
             .showcase-link {
-                color: colors.$color__white;
+                color: $color__white;
             }
 
             .f-caption {
-                background-color: colors.$color__black;
-                color: colors.$color__white;
+                background-color: $color__black;
+                color: $color__white;
             }
 
             .m-showcase-block__header-wrapper {
@@ -463,7 +457,7 @@
                 grid-column-start: 1;
             }
 
-            @include breakpoint.breakpoint('small+') {
+            @include breakpoint('small+') {
                 .m-showcase-media:nth-of-type(1) {
                     img {
                         aspect-ratio: 1;
@@ -489,7 +483,7 @@
                 }
             }
 
-            @include breakpoint.breakpoint('xsmall') {
+            @include breakpoint('xsmall') {
 
                 .m-showcase-media,
                 .m-showcase-block__text-wrapper {
@@ -500,7 +494,7 @@
         }
 
         &.showcase--variation-learn-with-us {
-            background-color: rlc.$color__rlc__apricot;
+            background-color: $color__rlc__apricot;
 
             .m-showcase-background {
                 background-color: inherit;
@@ -524,7 +518,7 @@
                     aspect-ratio: 1;
                 }
 
-                @include breakpoint.breakpoint('small+') {
+                @include breakpoint('small+') {
                     max-width: 350px;
                 }
             }
@@ -555,17 +549,17 @@
                 }
 
                 .showcase-description {
-                    color: colors.$color__black--80;
+                    color: $color__black--80;
 
-                    @include breakpoint.breakpoint('xsmall') {
+                    @include breakpoint('xsmall') {
                         display: none;
                     }
                 }
 
                 .showcase-link {
-                    color: rlc.$color__rlc__fire_opal;
+                    color: $color__rlc__fire_opal;
 
-                    @include breakpoint.breakpoint('xsmall') {
+                    @include breakpoint('xsmall') {
                         text-align: center;
                     }
                 }

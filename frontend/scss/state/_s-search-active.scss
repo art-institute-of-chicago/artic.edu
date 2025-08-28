@@ -1,6 +1,3 @@
-@use "../setup/colors";
-@use "../setup/variables";
-
 /***
 
 Search active
@@ -24,7 +21,7 @@ Additional state for if the auto complete has been used.
   .g-search {
     display: block;
     transform: translateY(0%);
-    transition: transform .4s .25s variables.$bezier--marius-ease;
+    transition: transform .4s .25s $bezier--marius-ease;
   }
 
   .g-search__inner {
@@ -32,7 +29,7 @@ Additional state for if the auto complete has been used.
   }
 
   .g-mask {
-    background-color: rgba(colors.$color__black--80, 50%);
+    background-color: rgba($color__black--80, 50%);
     bottom: 0;
     height: 100vh;
     opacity: 1;
@@ -54,7 +51,7 @@ Additional state for if the auto complete has been used.
 
   .g-search__scroll {
     height: 100vh;
-    transition: height .25s variables.$bezier--marius-ease;
+    transition: height .25s $bezier--marius-ease;
   }
 
   .g-search__autocomplete {

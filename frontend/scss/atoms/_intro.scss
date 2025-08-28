@@ -1,5 +1,3 @@
-@use "../setup/colors";
-
 /***
 
 intro
@@ -14,5 +12,5 @@ Sets color of intro text
 ***/
 
 .intro {
-  color: colors.$color__text--secondary;
+  color: $color__text--secondary;
 }

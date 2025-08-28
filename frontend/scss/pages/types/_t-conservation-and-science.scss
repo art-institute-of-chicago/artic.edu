@@ -1,18 +1,13 @@
-@use "../../setup/colors";
-@use "../../setup/mixins/breakpoint";
-@use "../../setup/mixins/grid";
-@use "../../setup/variables";
-
 @use "sass:map";
 .conservation-and-science-subnav {
-    border-bottom: 1px solid colors.$color__black--10;
-    border-top: 1px solid colors.$color__black--10;
+    border-bottom: 1px solid $color__black--10;
+    border-top: 1px solid $color__black--10;
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 28px;
     text-align: left !important;
 
-    @include breakpoint.breakpoint('small-') {
+    @include breakpoint('small-') {
         padding-bottom: 20px;
     }
 
@@ -28,8 +23,8 @@
     }
 
     .m-links-bar__item>.f-link {
-        color: colors.$color__black--90;
-        font-family: variables.$sans-serif-font--loaded;
+        color: $color__black--90;
+        font-family: $sans-serif-font--loaded;
         font-size: 17px;
         font-weight: 300;
         line-height: 28px;
@@ -40,7 +35,7 @@
 .conservation-and-science {
   .showcase--conservation-and-science.m-showcase-block {
     margin-top: 50px;
-    background-color: colors.$color__white;
+    background-color: $color__white;
 
     .m-showcase-wrapper {
       flex-direction: row-reverse;
@@ -52,15 +47,15 @@
     }
 
     .showcase-header {
-      color: colors.$color__black--54;
-      font-family: variables.$sans-serif-font--loaded;
+      color: $color__black--54;
+      font-family: $sans-serif-font--loaded;
       font-size: 13px;
       line-height: 16px;
       text-transform: uppercase;
     }
 
     .showcase-description {
-      color: colors.$color__black--80;
+      color: $color__black--80;
       margin: 0;
     }
 
@@ -72,7 +67,7 @@
   }
 
   .o-row-listing.o-blocks__block {
-    background-color: colors.$color__black--5;
+    background-color: $color__black--5;
 
     .m-listing--inline {
       border-top: none;
@@ -80,7 +75,7 @@
       padding: 0;
     }
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       padding: 30px;
 
       .m-listing__link {
@@ -88,7 +83,7 @@
       }
 
       .m-listing__img {
-        width: grid.colspan(18, large);
+        width: colspan(18, large);
       }
 
       .m-listing__meta {
@@ -117,7 +112,7 @@
       }
     }
 
-    @include breakpoint.breakpoint('xsmall') {
+    @include breakpoint('xsmall') {
       padding: 15px;
 
       .m-listing__link {
@@ -133,17 +128,17 @@
         margin: 0;
 
         .short-description {
-          color: colors.$color__black--80;
+          color: $color__black--80;
         }
       }
 
       .m-listing__meta-bottom::after {
-        border: 1px colors.$color__black--80 solid;
+        border: 1px $color__black--80 solid;
         border-radius: 2px;
-        color: colors.$color__black--80;
+        color: $color__black--80;
         content: "Register";
         display: block;
-        font-family: variables.$sans-serif-font--loaded;
+        font-family: $sans-serif-font--loaded;
         font-size: 16px;
         height: 48px;
         line-height: 24px;
@@ -162,7 +157,7 @@
       max-width: 20vw;
     }
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 100px;
     }
   }
@@ -186,14 +181,14 @@
       padding-right: 0;
 
       .f-caption {
-        color: colors.$color__black--90;
-        font-family: variables.$serif-font--loaded;
+        color: $color__black--90;
+        font-family: $serif-font--loaded;
         font-size: 22px;
         line-height: 28px;
       }
 
       .f-link {
-        color: colors.$color__grey--100 !important;
+        color: $color__grey--100 !important;
       }
     }
   }
@@ -208,8 +203,8 @@
 
     .editorial-block__heading {
       h2 {
-        color: colors.$color__black;
-        font-family: variables.$sans-serif-font--loaded;
+        color: $color__black;
+        font-family: $sans-serif-font--loaded;
         font-size: 21px;
         font-weight: normal;
         letter-spacing: 0.08em;
@@ -223,12 +218,12 @@
     }
 
     .editorial-block__content-wrapper {
-      border-top: 1px solid colors.$color__black--20;
+      border-top: 1px solid $color__black--20;
     }
 
     .author {
-      color: colors.$color__black--54;
-      font-family: variables.$sans-serif-font--loaded;
+      color: $color__black--54;
+      font-family: $sans-serif-font--loaded;
       font-size: 15px;
       font-weight: 325;
       line-height: 20px;
@@ -238,7 +233,7 @@
       display: none;
     }
 
-    @include breakpoint.breakpoint('xsmall') {
+    @include breakpoint('xsmall') {
       margin-top: 20px;
 
       .editorial-block__header {
@@ -254,13 +249,13 @@
       }
 
       .intro {
-        color: colors.$color__black--81;
+        color: $color__black--81;
         font-size: 16px;
         line-height: 24px;
       }
     }
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 50px;
 
       .editorial-block__header {
@@ -287,8 +282,8 @@
         }
 
         .intro {
-          color: colors.$color__black--81;
-          font-family: variables.$serif-font--loaded;
+          color: $color__black--81;
+          font-family: $serif-font--loaded;
           font-size: 19px;
           line-height: 28px;
         }
@@ -321,7 +316,7 @@
         }
 
         .intro {
-          color: colors.$color__black--80;
+          color: $color__black--80;
           font-size: 17px;
           line-height: 28px;
           font-weight: 300;
@@ -339,19 +334,19 @@
       margin-top: 0;
     }
 
-    @each $name, $point in variables.$breakpoints {
-      @include breakpoint.breakpoint('#{$name}') {
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
         .hr {
-          margin-top: grid.colspan(map.get(variables.$grid-padding-tops, $name), #{$name});
+          margin-top: colspan(map.get($grid-padding-tops, $name), #{$name});
         }
       }
     }
 
-    @include breakpoint.breakpoint('large+') {
+    @include breakpoint('large+') {
       margin-left: unset !important;
     }
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 100px;
     }
   }
@@ -362,19 +357,19 @@
       padding-top: 14px;
 
       .title {
-        color: colors.$color__black--90;
+        color: $color__black--90;
         font-size: 24px;
         line-height: 32px;
       }
 
       .intro {
-        color: colors.$color__black--80;
+        color: $color__black--80;
         font-size: 17px;
         line-height: 28px;
       }
     }
 
-    @include breakpoint.breakpoint('xsmall') {
+    @include breakpoint('xsmall') {
       .m-listing__meta .intro:last-of-type {
         margin-bottom: 0;
       }
@@ -386,13 +381,13 @@
       display: none;
     }
 
-    @include breakpoint.breakpoint('xsmall') {
+    @include breakpoint('xsmall') {
       .m-listing__meta {
         min-height: unset;
       }
     }
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       .m-listing__meta .f-link {
         margin: auto 0 0;
       }
@@ -400,11 +395,11 @@
   }
 
   .m-prefooter-section, &~.m-aside-newsletter {
-    @include breakpoint.breakpoint('xsmall') {
+    @include breakpoint('xsmall') {
       margin-top: 45px;
     }
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 100px;
     }
   }

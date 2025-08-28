@@ -1,10 +1,3 @@
-@use "../atoms/list";
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-@use "../setup/mixins/other";
-@use "../setup/typography";
-
 /*****************************/
 /*
 /* Sort out text spacings
@@ -12,10 +5,10 @@
 /**/
 
 .o-blocks>.f-deck {
-  @include other.tucked-margin-top(typography.$f-deck, ('xsmall': 60, 'small+': 84));
+  @include tucked-margin-top($f-deck, ('xsmall': 60, 'small+': 84));
 
   &:first-child {
-    @include other.tucked-align-top(typography.$f-deck);
+    @include tucked-align-top($f-deck);
   }
 }
 
@@ -23,10 +16,10 @@
 
 .o-blocks>h2:not([class*='f-']),
 .o-blocks>.f-module-title-2 {
-  @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 48, 'small+': 68, 'medium+': 80));
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 48, 'small+': 68, 'medium+': 80));
 
   &:first-child {
-    @include other.tucked-align-top(typography.$f-module-title-2);
+    @include tucked-align-top($f-module-title-2);
   }
 }
 
@@ -36,7 +29,7 @@
 
 .o-blocks>.f-deck+h2:not([class*='f-']),
 .o-blocks>.f-deck+.f-module-title-2 {
-  @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 76));
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 76));
 }
 
 .o-blocks>h4:not([class*='f-']) {
@@ -46,28 +39,28 @@
 /*****/
 
 .o-blocks>.f-subheading-1 {
-  @include other.tucked-margin-top(typography.$f-subheading-1, ('xsmall': 56));
+  @include tucked-margin-top($f-subheading-1, ('xsmall': 56));
 
   &:first-child {
-    @include other.tucked-align-top(typography.$f-subheading-1);
+    @include tucked-align-top($f-subheading-1);
   }
 }
 
 .o-blocks>.hr+.f-subheading-1 {
-  @include other.tucked-margin-top(typography.$f-subheading-1, ('xsmall': 36));
+  @include tucked-margin-top($f-subheading-1, ('xsmall': 36));
 }
 
 .o-blocks>.f-deck+.f-subheading-1 {
-  @include other.tucked-margin-top(typography.$f-subheading-1, ('xsmall': 76));
+  @include tucked-margin-top($f-subheading-1, ('xsmall': 76));
 }
 
 /*****/
 
 .o-blocks>.f-list-2 {
-  @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 56));
+  @include tucked-margin-top($f-list-2, ('xsmall': 56));
 
   &:first-child {
-    @include other.tucked-align-top(typography.$f-list-2);
+    @include tucked-align-top($f-list-2);
   }
 }
 
@@ -75,10 +68,10 @@
 
 .o-blocks>h3:not([class*='f-']),
 .o-blocks>.f-list-3 {
-  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 56, 'large+': 60, 'xlarge': 72));
+  @include tucked-margin-top($f-list-3, ('xsmall': 56, 'large+': 60, 'xlarge': 72));
 
   &:first-child {
-    @include other.tucked-align-top(typography.$f-list-3);
+    @include tucked-align-top($f-list-3);
   }
 }
 
@@ -88,31 +81,31 @@
 
 .o-blocks>.hr+h3:not([class*='f-']),
 .o-blocks>.hr+.f-list-3 {
-  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 36));
+  @include tucked-margin-top($f-list-3, ('xsmall': 36));
 }
 
 .o-blocks>.f-deck+h3:not([class*='f-']),
 .o-blocks>.f-deck+.f-list-3 {
-  @include other.tucked-margin-top(typography.$f-list-3, ('xsmall': 76));
+  @include tucked-margin-top($f-list-3, ('xsmall': 76));
 }
 
 /*****/
 
 .o-blocks>.f-list-4 {
-  @include other.tucked-margin-top(typography.$f-list-4, ('xsmall': 56));
+  @include tucked-margin-top($f-list-4, ('xsmall': 56));
 
   &:first-child {
-    @include other.tucked-align-top(typography.$f-list-4);
+    @include tucked-align-top($f-list-4);
   }
 }
 
 /*****/
 
 .o-blocks>.f-list-5 {
-  @include other.tucked-margin-top(typography.$f-list-5, ('xsmall': 56));
+  @include tucked-margin-top($f-list-5, ('xsmall': 56));
 
   &:first-child {
-    @include other.tucked-align-top(typography.$f-list-5);
+    @include tucked-align-top($f-list-5);
   }
 }
 
@@ -122,10 +115,10 @@
 .o-blocks>ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.f-body {
-  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 40, 'small+': 56));
+  @include tucked-margin-top($f-body, ('xsmall': 40, 'small+': 56));
 
   &:first-child {
-    @include other.tucked-align-top(typography.$f-body);
+    @include tucked-align-top($f-body);
   }
 }
 
@@ -144,14 +137,14 @@
 .o-blocks>.f-deck+ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.f-deck+ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.f-deck+.f-body {
-  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 76));
+  @include tucked-margin-top($f-body, ('xsmall': 76));
 }
 
 .o-blocks>.o-blocks__block+p:not([class*='f-']):not([class*='p-']),
 .o-blocks>.o-blocks__block+ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.o-blocks__block+ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.o-blocks__block+.f-body {
-  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 32, 'small+': 68));
+  @include tucked-margin-top($f-body, ('xsmall': 32, 'small+': 68));
 }
 
 .o-blocks>.o-blocks__block.o-row-listing+p:not([class*='f-']):not([class*='p-']),
@@ -162,7 +155,7 @@
 .o-blocks>.o-blocks__block.o-grid-listing+ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.o-blocks__block.o-grid-listing+ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks>.o-blocks__block.o-grid-listing+.f-body {
-  @include other.tucked-margin-top(typography.$f-body, ('xsmall': 40, 'small+': 80));
+  @include tucked-margin-top($f-body, ('xsmall': 40, 'small+': 80));
 }
 
 /*****/
@@ -171,10 +164,10 @@
 .o-blocks>.f-body-editorial,
 .o-blocks>p:not([class*='f-']),
 .o-blocks>.f-body-editorial {
-  @include other.tucked-margin-top(typography.$f-body-editorial, ('xsmall': 40, 'small+': 56));
+  @include tucked-margin-top($f-body-editorial, ('xsmall': 40, 'small+': 56));
 
   &:first-child {
-    @include other.tucked-align-top(typography.$f-body-editorial);
+    @include tucked-align-top($f-body-editorial);
   }
 }
 
@@ -188,7 +181,7 @@
 .o-article--editorial .o-blocks>.o-blocks__block+ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-article--editorial .o-blocks>.o-blocks__block+ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-article--editorial .o-blocks>.o-blocks__block+.f-body-editorial {
-  @include other.tucked-margin-top(typography.$f-body-editorial, ('xsmall': 60));
+  @include tucked-margin-top($f-body-editorial, ('xsmall': 60));
 }
 
 .o-article--editorial .o-blocks.o-article__body>p:not([class*=f-]) .f-dropcap-editorial {
@@ -196,11 +189,11 @@
   margin-top: -17px;
   margin-right: 4px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     margin-top: -9px;
   }
 
-  @include breakpoint.breakpoint('large+') {
+  @include breakpoint('large+') {
     margin-top: -34px;
     margin-bottom: -4px;
   }
@@ -210,10 +203,10 @@
 
 .o-blocks>small,
 .o-blocks>.f-secondary {
-  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 40, 'medium+': 52));
+  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'medium+': 52));
 
   &:first-child {
-    @include other.tucked-align-top(typography.$f-secondary);
+    @include tucked-align-top($f-secondary);
   }
 }
 
@@ -224,25 +217,25 @@
 /*****/
 
 .o-blocks>.f-caption {
-  @include other.tucked-margin-top(typography.$f-caption, ('xsmall': 48));
+  @include tucked-margin-top($f-caption, ('xsmall': 48));
 
   & {
-    color: colors.$color__text--secondary;
+    color: $color__text--secondary;
   }
 
   &:first-child {
-    @include other.tucked-align-top(typography.$f-caption);
+    @include tucked-align-top($f-caption);
   }
 }
 
 .o-blocks>.f-caption a {
-  color: colors.$color__text--secondary;
+  color: $color__text--secondary;
   text-decoration: none;
 
   &:hover,
   &:focus:hover,
   &:active:hover {
-    @include typography.text-underline(1.02em, colors.$color__rules--secondary);
+    @include text-underline(1.02em, $color__rules--secondary);
   }
 }
 
@@ -272,13 +265,13 @@
 .o-blocks>.f-deck,
 .o-blocks>.f-body,
 .o-blocks>.f-body-editorial {
-  padding-right: grid.colspan(2, xsmall);
+  padding-right: colspan(2, xsmall);
 
-  @include breakpoint.breakpoint('small+') {
-    padding-right: grid.colspan(3, small);
+  @include breakpoint('small+') {
+    padding-right: colspan(3, small);
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     padding-right: 0;
   }
 }
@@ -297,15 +290,15 @@
     min-width: 100%;
     margin-top: 32px;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 44px;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       margin-top: 48px;
     }
 
-    @include breakpoint.breakpoint('large+') {
+    @include breakpoint('large+') {
       margin-top: 60px;
     }
   }
@@ -320,11 +313,11 @@
   .hr:first-child {
     margin-top: 0;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 0;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       margin-top: 0;
     }
   }
@@ -338,17 +331,17 @@
 
 .o-blocks {
   .m-media--m figcaption .f-caption {
-    @include breakpoint.breakpoint('large+') {
-      @include other.tucked-align-top(typography.$f-caption, 'large');
+    @include breakpoint('large+') {
+      @include tucked-align-top($f-caption, 'large');
     }
 
-    @include breakpoint.breakpoint('xlarge') {
-      @include other.tucked-align-top(typography.$f-caption, 'xlarge');
+    @include breakpoint('xlarge') {
+      @include tucked-align-top($f-caption, 'xlarge');
     }
   }
 
   .m-media--m .m-media__share {
-    @include breakpoint.breakpoint('large+') {
+    @include breakpoint('large+') {
       display: block;
       position: static;
       margin-top: 24px;
@@ -368,20 +361,20 @@
   .m-aside-newsletter--wide,
   .o-grid-block,
   .m-links-bar--nav-bar {
-    @include breakpoint.breakpoint('medium+') {
-      width: grid.colspan(58, medium);
-      margin-right: grid.colspan(20, medium, 0, true);
+    @include breakpoint('medium+') {
+      width: colspan(58, medium);
+      margin-right: colspan(20, medium, 0, true);
     }
 
-    @include breakpoint.breakpoint('large+') {
-      width: grid.colspan(43, large);
+    @include breakpoint('large+') {
+      width: colspan(43, large);
       margin-left: 0;
-      margin-right: grid.colspan(15, large, 0, true);
+      margin-right: colspan(15, large, 0, true);
     }
 
-    @include breakpoint.breakpoint('xlarge') {
-      width: grid.colspan(33, xlarge);
-      margin-right: grid.colspan(15, xlarge, 0, true);
+    @include breakpoint('xlarge') {
+      width: colspan(33, xlarge);
+      margin-right: colspan(15, xlarge, 0, true);
     }
   }
 
@@ -389,9 +382,9 @@
 
     @each $name,
     $point in ('large', 'xlarge') {
-      @include breakpoint.breakpoint('#{$name}') {
+      @include breakpoint('#{$name}') {
         left: 0;
-        margin-left: grid.colspan(1, $name, 0, true);
+        margin-left: colspan(1, $name, 0, true);
       }
     }
   }
@@ -403,19 +396,19 @@
   }
 
   .o-gallery--mosaic .o-gallery__media {
-    @include breakpoint.breakpoint('large') {
-      width: grid.colspan(42, large);
+    @include breakpoint('large') {
+      width: colspan(42, large);
 
       >* {
-        width: grid.colspan(20, large);
+        width: colspan(20, large);
       }
     }
 
-    @include breakpoint.breakpoint('xlarge') {
-      width: grid.colspan(42, xlarge);
+    @include breakpoint('xlarge') {
+      width: colspan(42, xlarge);
 
       >* {
-        width: grid.colspan(20, xlarge);
+        width: colspan(20, xlarge);
       }
     }
   }
@@ -426,7 +419,7 @@
       flex-flow: column !important;
     }
 
-    @include breakpoint.breakpoint('large+') {
+    @include breakpoint('large+') {
       display: flex;
       flex-flow: row nowrap;
     }
@@ -434,13 +427,13 @@
 
   .m-media--m .m-media__img,
   .m-media--m .m-media--3d-embed {
-    @include breakpoint.breakpoint('large+') {
+    @include breakpoint('large+') {
       flex: 0 0 auto;
-      width: grid.colspan(28, large);
+      width: colspan(28, large);
     }
 
-    @include breakpoint.breakpoint('xlarge') {
-      width: grid.colspan(28, xlarge);
+    @include breakpoint('xlarge') {
+      width: colspan(28, xlarge);
     }
   }
 
@@ -458,31 +451,31 @@
   }
 
   .m-media--m figcaption {
-    @include breakpoint.breakpoint('large+') {
+    @include breakpoint('large+') {
       flex: 0 0 auto;
       margin-top: 0;
       padding-right: 0;
 
-      width: grid.colspan(13, large);
-      margin-left: grid.colspan(2, large);
+      width: colspan(13, large);
+      margin-left: colspan(2, large);
 
       &::before {
         content: '';
         position: absolute;
         left: 0;
         top: 0;
-        width: grid.colspan(13, large);
+        width: colspan(13, large);
         height: 1px;
-        background-color: colors.$color__rules--primary;
+        background-color: $color__rules--primary;
       }
     }
 
-    @include breakpoint.breakpoint('xlarge') {
-      width: grid.colspan(13, xlarge);
-      margin-left: grid.colspan(2, xlarge);
+    @include breakpoint('xlarge') {
+      width: colspan(13, xlarge);
+      margin-left: colspan(2, xlarge);
 
       &::before {
-        width: grid.colspan(13, xlarge);
+        width: colspan(13, xlarge);
       }
     }
   }
@@ -491,9 +484,9 @@
 
     @each $name,
     $point in ('large', 'xlarge') {
-      @include breakpoint.breakpoint('#{$name}') {
+      @include breakpoint('#{$name}') {
         left: 0;
-        margin-left: grid.colspan(1, $name, 0, true);
+        margin-left: colspan(1, $name, 0, true);
       }
     }
   }
@@ -509,25 +502,25 @@
   .m-mobile-block,
   .m-aside-newsletter--wide,
   .o-grid-block {
-    @include breakpoint.breakpoint('medium+') {
-      width: grid.colspan(58, medium);
-      margin-right: grid.colspan(20, medium, 0, true);
+    @include breakpoint('medium+') {
+      width: colspan(58, medium);
+      margin-right: colspan(20, medium, 0, true);
     }
 
-    @include breakpoint.breakpoint('large+') {
-      width: grid.colspan(58, large);
+    @include breakpoint('large+') {
+      width: colspan(58, large);
       margin-right: 0;
-      margin-left: grid.colspan(15, large, 0, true);
+      margin-left: colspan(15, large, 0, true);
     }
 
-    @include breakpoint.breakpoint('xlarge') {
-      width: grid.colspan(58, xlarge);
-      margin-left: grid.colspan(15, xlarge, 0, true);
+    @include breakpoint('xlarge') {
+      width: colspan(58, xlarge);
+      margin-left: colspan(15, xlarge, 0, true);
     }
   }
 
   .m-media--m {
-    @include breakpoint.breakpoint('large+') {
+    @include breakpoint('large+') {
       display: flex;
       flex-flow: row-reverse nowrap;
     }
@@ -535,40 +528,40 @@
 
   .m-media--m .m-media__img,
   .m-media--m .m-media--3d-embed {
-    @include breakpoint.breakpoint('large+') {
+    @include breakpoint('large+') {
       flex: 0 0 auto;
-      width: grid.colspan(43, large);
+      width: colspan(43, large);
     }
 
-    @include breakpoint.breakpoint('xlarge') {
-      width: grid.colspan(43, xlarge);
+    @include breakpoint('xlarge') {
+      width: colspan(43, xlarge);
     }
   }
 
   .m-media--m figcaption {
-    @include breakpoint.breakpoint('large+') {
+    @include breakpoint('large+') {
       flex: 0 0 auto;
-      width: grid.colspan(15, large);
+      width: colspan(15, large);
       margin-top: 0;
-      padding-right: grid.colspan(2, large);
+      padding-right: colspan(2, large);
 
       &::before {
         content: '';
         position: absolute;
         left: 0;
         top: 0;
-        width: grid.colspan(13, large);
+        width: colspan(13, large);
         height: 1px;
-        background-color: colors.$color__rules--primary;
+        background-color: $color__rules--primary;
       }
     }
 
-    @include breakpoint.breakpoint('xlarge') {
-      width: grid.colspan(15, xlarge);
-      padding-right: grid.colspan(2, xlarge);
+    @include breakpoint('xlarge') {
+      width: colspan(15, xlarge);
+      padding-right: colspan(2, xlarge);
 
       &::before {
-        width: grid.colspan(13, xlarge);
+        width: colspan(13, xlarge);
       }
     }
   }
@@ -576,11 +569,11 @@
   .deflist.o-blocks__block {
     margin-top: 32px;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 44px;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       margin-top: 48px;
     }
   }
@@ -588,21 +581,21 @@
   .deflist.o-blocks__block+.deflist.o-blocks__block {
     margin-top: 16px;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 44px;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       margin-top: 48px;
     }
 
-    @include breakpoint.breakpoint('large+') {
+    @include breakpoint('large+') {
       margin-top: 60px;
     }
   }
 
   .deflist.o-blocks__block+.o-accordion.o-blocks__block {
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       margin-top: 74px;
     }
   }
@@ -623,16 +616,16 @@
 .o-blocks>ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
 .o-blocks>ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
 .o-blocks>.f-body a:not(.btn) {
-  color: colors.$color__link--accent;
+  color: $color__link--accent;
   text-decoration: none;
 
   &:hover,
   &:focus:hover {
-    @include typography.text-underline(1.02em, colors.$color__link--accent);
+    @include text-underline(1.02em, $color__link--accent);
   }
 
   &:active:hover {
-    @include typography.text-underline(1.02em, colors.$color__rules--secondary);
+    @include text-underline(1.02em, $color__rules--secondary);
   }
 }
 
@@ -644,11 +637,11 @@
 
   &:hover,
   &:focus:hover {
-    @include typography.text-underline(1.02em, colors.$color__link--accent);
+    @include text-underline(1.02em, $color__link--accent);
   }
 
   &:active:hover {
-    @include typography.text-underline(1.02em, colors.$color__rules--secondary);
+    @include text-underline(1.02em, $color__rules--secondary);
   }
 }
 
@@ -656,25 +649,25 @@
 .o-article--editorial .o-blocks>ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a,
 .o-article--editorial .o-blocks>ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a,
 .o-blocks>.f-body-editorial a {
-  @include typography.text-underline(89%, colors.$color__rules--secondary);
+  @include text-underline(89%, $color__rules--secondary);
 
   & {
-    color: colors.$color__link--editorial;
+    color: $color__link--editorial;
     text-decoration: none;
   }
 
   &:hover,
   &:focus:hover {
-    @include typography.text-underline(89%, colors.$color__link--editorial);
+    @include text-underline(89%, $color__link--editorial);
   }
 
   &:active:hover {
-    @include typography.text-underline(89%, colors.$color__rules--secondary);
+    @include text-underline(89%, $color__rules--secondary);
   }
 }
 
 .o-blocks>.f-deck a {
-  @include typography.text-underline(89%, colors.$color__text--tertiary);
+  @include text-underline(89%, $color__text--tertiary);
 
   & {
     color: inherit;
@@ -683,26 +676,26 @@
 
   &:hover,
   &:focus:hover {
-    @include typography.text-underline(89%, colors.$color__text--secondary);
-    color: colors.$color__text;
+    @include text-underline(89%, $color__text--secondary);
+    color: $color__text;
   }
 
   &:active:hover {
-    color: colors.$color__text;
+    color: $color__text;
   }
 }
 
 .o-blocks>small a,
 .o-blocks>.f-secondary a {
-  @include typography.text-underline(1.02em, colors.$color__text--tertiary);
+  @include text-underline(1.02em, $color__text--tertiary);
 
   &:hover,
   &:focus:hover {
-    @include typography.text-underline(1.02em, colors.$color__text--secondary);
+    @include text-underline(1.02em, $color__text--secondary);
   }
 
   &:active {
-    @include typography.text-underline(1.02em, transparent);
+    @include text-underline(1.02em, transparent);
   }
 }
 
@@ -733,12 +726,12 @@
   background: none !important;
 
   // PUB-132: Revisit if this needs to be limited to publications
-  color: colors.$color__blue !important;
+  color: $color__blue !important;
 
   &:hover,
   &:focus:hover,
   &:active:hover {
-    color: colors.$color__blue--hover !important;
+    color: $color__blue--hover !important;
   }
 }
 

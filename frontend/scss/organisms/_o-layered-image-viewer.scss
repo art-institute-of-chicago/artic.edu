@@ -1,6 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-
 // ------ Layered image viewer
 
 // ---- General
@@ -91,13 +88,13 @@
   align-items: center;
   min-height: 4.8em;
   padding: 0.4em 1.2em;
-  background-color: colors.$color__white;
+  background-color: $color__white;
 
   label {
     display: none;
   }
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     label {
       display: block;
     }
@@ -111,7 +108,7 @@
   height: 0.2em;
   background: linear-gradient(var(--track-fill), var(--track-fill)) 0 /
       var(--pos) no-repeat,
-    colors.$color__black--10;
+    $color__black--10;
 }
 
 @mixin thumb() {
@@ -124,7 +121,7 @@
   border-radius: 50%;
   border: none;
   box-shadow: 0 0 0 0.1em var(--thumb-border);
-  background: colors.$color__white;
+  background: $color__white;
   cursor: grab;
 
   &:active {
@@ -138,8 +135,8 @@
   align-items: center;
 
   input {
-    --track-fill: #{colors.$color__black--42};
-    --thumb-border: #{colors.$color__black--20};
+    --track-fill: #{$color__black--42};
+    --thumb-border: #{$color__black--20};
 
     font-size: 1em;
     --pos: calc(#{1.6em} + var(--percent, 0) * (100% - #{1.6em}));
@@ -162,17 +159,17 @@
     }
 
     &:hover {
-      --thumb-border: #{colors.$color__black--42};
+      --thumb-border: #{$color__black--42};
     }
 
     &:active,
     &:focus-visible {
-      --track-fill: #{colors.$color__black--80};
-      --thumb-border: #{colors.$color__black--80};
+      --track-fill: #{$color__black--80};
+      --thumb-border: #{$color__black--80};
     }
   }
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     margin-left: 1.6em;
   }
 }
@@ -222,12 +219,12 @@
   bottom: 100%;
   right: calc(-100% - 0.1em);
   min-width: min(calc(var(--viewer-width) - 48px), 35em);
-  background: colors.$color__white;
+  background: $color__white;
   padding: 2.4em;
   max-height: calc(var(--viewer-height) - 9.8em);
   overflow: auto;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     // button w/h is 4.8em
     right: calc(100% - 4.8em);
   }
@@ -249,11 +246,11 @@
 .o-layered-image-viewer__details-row {
   gap: 2.4em;
   padding-bottom: 1.2em;
-  border-bottom: 0.1em solid colors.$color__black--5;
+  border-bottom: 0.1em solid $color__black--5;
 
   &:first-child {
     padding-top: 1.2em;
-    border-top: 0.1em solid colors.$color__black--5;
+    border-top: 0.1em solid $color__black--5;
   }
 }
 
@@ -273,7 +270,7 @@
   border: none;
 
   .f-caption {
-    color: colors.$color__black--54;
+    color: $color__black--54;
   }
 }
 

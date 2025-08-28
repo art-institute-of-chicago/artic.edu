@@ -1,7 +1,3 @@
-@use "../colors";
-@use "../variables";
-@use "breakpoint";
-
 @use "sass:map";
 @use "sass:string";
 // @mixin float-clear
@@ -41,7 +37,7 @@
 
 
 // @mixin keyline-fill
-@mixin keyline-full($position:top, $color:colors.$color__black) {
+@mixin keyline-full($position:top, $color:$color__black) {
   position: relative;
 
   &::before {
@@ -82,7 +78,7 @@ Creates a load spinner.
   height: 40px;
   border-radius: 50%;
   border: 2px solid transparent;
-  border-top-color: colors.$color__red--100;
+  border-top-color: $color__red--100;
   transform: translate(-50%, -50%) rotate(0deg);
   transform-origin: 20px 20px;
   animation: ajax-loader .9s linear infinite;
@@ -150,7 +146,7 @@ Creates a load spinner.
   @if $settings {
 
     @each $name,
-    $point in breakpoint.$breakpoints-with-directions {
+    $point in $breakpoints-with-directions {
 
       // First see if font settings has a line height for this breakpoint
       @if map.has-key($settings, $name) {
@@ -181,7 +177,7 @@ Creates a load spinner.
         }
 
         @else {
-          @include breakpoint.breakpoint(#{$name}) {
+          @include breakpoint(#{$name}) {
             margin-top: #{$margin - $line-height}px;
           }
         }
@@ -202,7 +198,7 @@ Creates a load spinner.
   @if $settings {
 
     @each $name,
-    $point in breakpoint.$breakpoints-with-directions {
+    $point in $breakpoints-with-directions {
 
       // First see if font settings has a line height for this breakpoint
       @if map.has-key($settings, $name) {
@@ -216,16 +212,16 @@ Creates a load spinner.
       // Now set the margin top
       @if ($new-pull !=$pull) {
         $pull: $new-pull;
-        $base-height-into-pull: math.floor(math.div($pull, variables.$base-height)); // round or floor? erm
+        $base-height-into-pull: math.floor(math.div($pull, $base-height)); // round or floor? erm
         // Round will be closer but has the risk of drawing too much negative margin
-        $margin-top: 0 - ($base-height-into-pull * variables.$base-height);
+        $margin-top: 0 - ($base-height-into-pull * $base-height);
 
         @if ($name=='xsmall'or $single-bp==$name) {
           margin-top: #{$margin-top}px;
         }
 
         @else {
-          @include breakpoint.breakpoint(#{$name}) {
+          @include breakpoint(#{$name}) {
             margin-top: #{$margin-top}px;
           }
         }

@@ -1,12 +1,8 @@
-@use "../setup/colors";
-@use "../setup/typography";
-@use "../setup/variables";
-
 @use "sass:map";
 .m-search-triggers {
   display: flex;
   position: fixed;
-  z-index: map.get(variables.$zindexs, 'searchTriggers');
+  z-index: map.get($zindexs, 'searchTriggers');
   left: 0;
   right: 0;
   bottom: 40px;
@@ -23,7 +19,7 @@
 }
 
 .m-search-triggers button {
-  @include typography.untuck;
+  @include untuck;
 
   & {
     display: block;
@@ -32,12 +28,12 @@
     margin: 0;
     padding: 0 16px;
     border: 0 none;
-    border-radius: variables.$border-radius;
-    background: colors.$color__bg;
-    color: colors.$color__link;
+    border-radius: $border-radius;
+    background: $color__bg;
+    color: $color__link;
     line-height: 44px;
     cursor: pointer;
-    box-shadow: variables.$shadow;
+    box-shadow: $shadow;
   }
 
   &.m-search-triggers__search {
@@ -46,13 +42,13 @@
 
   &:hover,
   &:focus:hover {
-    background-color: colors.$color__bg--secondary;
-    color: colors.$color__link--hover;
+    background-color: $color__bg--secondary;
+    color: $color__link--hover;
   }
 }
 
 .m-search-triggers button em {
-  color: colors.$color__text--secondary;
+  color: $color__text--secondary;
   font-style: normal;
 }
 
@@ -69,10 +65,10 @@
 }
 
 .m-search-triggers button .icon--search--24 {
-  color: colors.$color__text--title;
+  color: $color__text--title;
 }
 
 .m-search-triggers button:hover .icon--search--24,
 .m-search-triggers button:focus .icon--search--24 {
-  color: colors.$color__text--title;
+  color: $color__text--title;
 }

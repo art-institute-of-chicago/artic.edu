@@ -1,13 +1,11 @@
-@use "../setup/colors";
-
 .contrast-text {
   .s-light-background ~ * &,
   .s-light-background & {
-    color: colors.$color__black !important;
+    color: $color__black !important;
   }
 
   .s-dark-background ~ * &,
   .s-dark-background & {
-    color: colors.$color__white !important;
+    color: $color__white !important;
   }
 }

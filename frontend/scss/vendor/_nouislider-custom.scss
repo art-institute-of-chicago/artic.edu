@@ -1,5 +1,3 @@
-@use "../setup/colors";
-
 .noUi-touch-area::after {
   display: none;
 }
@@ -34,16 +32,16 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   height: 4px;
   margin: 24px 8px 0;
   border: 0;
-  background-color: colors.$color__black--10;
+  background-color: $color__black--10;
 }
 .noUi-connects {
   border-radius: 3px;
 }
 .noUi-connect {
-  background-color: colors.$color__black--40;
+  background-color: $color__black--40;
 
   .noUi-state-drag & {
-    background-color: colors.$color__black--80;
+    background-color: $color__black--80;
   }
 }
 /* Handles and cursors;
@@ -55,9 +53,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   cursor: ns-resize;
 }
 .noUi-handle {
-  border: 1px solid colors.$color__black--20;
+  border: 1px solid $color__black--20;
   border-radius: 50%;
-  background-color: colors.$color__white;
+  background-color: $color__white;
   /* autoprefixer: off */
   cursor: move;
   cursor: -webkit-grab;
@@ -65,15 +63,15 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   cursor: grab;
 
   &:hover {
-    border-color: colors.$color__black--80;
+    border-color: $color__black--80;
   }
 
   .noUi-state-drag & {
-    border-color: colors.$color__black--20;
+    border-color: $color__black--20;
   }
 
   &.noUi-active {
-    border-color: colors.$color__black--80;
+    border-color: $color__black--80;
     /* autoprefixer: off */
     cursor: move;
     cursor: -webkit-grabbing;
@@ -82,7 +80,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   }
 
   .noUi-state-drag &.noUi-active {
-    border-color: colors.$color__black--80;
+    border-color: $color__black--80;
   }
 }
 .noUi-handle:before,

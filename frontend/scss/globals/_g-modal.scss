@@ -1,28 +1,23 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-@use "../setup/variables";
-
 @use "sass:map";
 @use "sass:math";
 
 .g-modal {
   display: none;
   position: fixed;
-  z-index: map.get(variables.$zindexs, 'modal');
+  z-index: map.get($zindexs, 'modal');
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   max-width: 100vw;
   max-height: 100vh;
-  background-color: colors.$color__white;
+  background-color: $color__white;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   opacity: 0;
   transition: opacity .35s;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     left: 50%;
     right: auto;
     top: 50%;
@@ -38,11 +33,11 @@
   padding: 0;
   border: 0 none;
   background: transparent;
-  color: colors.$color__text--forms;
+  color: $color__text--forms;
   cursor: pointer;
 
   &:hover {
-    color: colors.$color__text;
+    color: $color__text;
   }
 }
 
@@ -55,18 +50,18 @@
     top: 22px;
   }
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     padding-top: 40px;
-    background-color: colors.$color__black;
+    background-color: $color__black;
 
     .g-modal__close {
       right: 12px;
       top: 12px;
-      color: colors.$color__white;
+      color: $color__white;
     }
 
     .g-modal__close:hover {
-      color: colors.$color__black--5;
+      color: $color__black--5;
     }
   }
 
@@ -93,30 +88,30 @@
 
 .g-modal--media.g-modal--media-sounds {
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
 
     padding: 36px;
 
-    background-color: colors.$color__black--5;
+    background-color: $color__black--5;
 
     .g-modal__close {
-      color: colors.$color__text--forms;
+      color: $color__text--forms;
     }
 
     .g-modal__close:hover {
-      color: colors.$color__text;
+      color: $color__text;
     }
   }
 
   .g-modal__content {
     padding-bottom: 112px;
 
-    @include breakpoint.breakpoint('large+') {
-      width: grid.colspan(28,'large');
+    @include breakpoint('large+') {
+      width: colspan(28,'large');
     }
 
-    @include breakpoint.breakpoint('xlarge') {
-      width: grid.colspan(28,'xlarge');
+    @include breakpoint('xlarge') {
+      width: colspan(28,'xlarge');
     }
 
     .m-listing--inline {
@@ -133,7 +128,7 @@
   bottom:0;
   transform:none;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     top: 40px;
     left: 60px;
     right: 60px;
@@ -176,8 +171,8 @@
 }
 
 .g-modal--module360 {
-  border-radius: variables.$border-radius;
-  background-color: colors.$color__black--80;
+  border-radius: $border-radius;
+  background-color: $color__black--80;
   overflow: hidden;
   padding-top:0;
   left:0;
@@ -293,8 +288,8 @@
 }
 
 .g-modal--moduleMirador {
-  border-radius: variables.$border-radius;
-  background-color: colors.$color__black--80;
+  border-radius: $border-radius;
+  background-color: $color__black--80;
   overflow: hidden;
   padding-top:0;
   left:0;
@@ -374,7 +369,7 @@
     width:100%;
     height:100%;
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       width:calc(100% - 120px);
       height:calc(100% - 80px);
     }
@@ -391,7 +386,7 @@
     width:100%;
     height:100%;
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       width:calc(100% - 120px);
       height:calc(100% - 80px);
     }

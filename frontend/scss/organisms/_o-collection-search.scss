@@ -1,19 +1,16 @@
-@use "../setup/colors";
-@use "../setup/variables";
-
 @use "sass:map";
 
 .o-collection-search {
   display: none;
   position: fixed;
-  z-index: map.get(variables.$zindexs, 'searchForm');
+  z-index: map.get($zindexs, 'searchForm');
   left: 0;
   top: 0;
   bottom: 0;
   flex-flow: column nowrap;
   width: 300px;
-  border-right: 1px solid colors.$color__rules--primary;
-  background: colors.$color__bg;
+  border-right: 1px solid $color__rules--primary;
+  background: $color__bg;
 }
 
 .o-collection-search .m-search-bar {
@@ -21,13 +18,13 @@
 }
 
 .o-collection-search .m-search-bar button {
-  background-color: colors.$color__bg--primary;
-  color: colors.$color__text--title;
+  background-color: $color__bg--primary;
+  color: $color__text--title;
 
   &:hover,
   &:focus:hover {
-    background-color: colors.$color__bg--primary;
-    color: colors.$color__text--title;
+    background-color: $color__bg--primary;
+    color: $color__text--title;
   }
 }
 
@@ -60,6 +57,6 @@
   flex: 0 0 auto;
   width: 100%;
   padding: 19px 20px 20px;
-  border-top: 1px solid colors.$color__rules--primary;
-  background: colors.$color__bg;
+  border-top: 1px solid $color__rules--primary;
+  background: $color__bg;
 }

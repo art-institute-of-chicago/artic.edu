@@ -1,7 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-
 
 /***
 
@@ -20,37 +16,37 @@ Displays the collection filters and the mask if required. The different breakpoi
     display: flex;
   }
 
-  @include breakpoint.breakpoint('small-') {
+  @include breakpoint('small-') {
     .g-mask {
       right: 0;
       bottom: 0;
       opacity: 1;
-      background-color: rgba(colors.$color__bg--tertiary, .25);
+      background-color: rgba($color__bg--tertiary, .25);
 
       @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-        background-color: rgba(colors.$color__bg--tertiary, .5);
+        background-color: rgba($color__bg--tertiary, .5);
         -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
       }
     }
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     .o-collection-listing__col-left {
       opacity: 1;
       overflow: visible;
     }
   }
 
-  @include breakpoint.breakpoint('medium') {
+  @include breakpoint('medium') {
     .o-collection-listing__col-left {
-      width: grid.colspan(19, 'medium');
-      margin-right: grid.colspan(1, 'medium');
-      padding-right: grid.colspan(1, 'medium');
+      width: colspan(19, 'medium');
+      margin-right: colspan(1, 'medium');
+      padding-right: colspan(1, 'medium');
     }
 
     .o-collection-listing__col-right {
-      width: grid.colspan(38, 'medium');
+      width: colspan(38, 'medium');
     }
 
     .o-collection-listing__col-right .o-pinboard--3-col\@medium::after {
@@ -58,15 +54,15 @@ Displays the collection filters and the mask if required. The different breakpoi
     }
   }
 
-  @include breakpoint.breakpoint('large') {
+  @include breakpoint('large') {
     .o-collection-listing__col-left {
-      width: grid.colspan(14, 'large');
-      margin-right: grid.colspan(1, 'large');
-      padding-right: grid.colspan(1, 'large');
+      width: colspan(14, 'large');
+      margin-right: colspan(1, 'large');
+      padding-right: colspan(1, 'large');
     }
 
     .o-collection-listing__col-right {
-      width: grid.colspan(43, 'large');
+      width: colspan(43, 'large');
     }
 
     .o-collection-listing__col-right .o-pinboard--3-col\@large::after,
@@ -75,15 +71,15 @@ Displays the collection filters and the mask if required. The different breakpoi
     }
   }
 
-  @include breakpoint.breakpoint('xlarge') {
+  @include breakpoint('xlarge') {
     .o-collection-listing__col-left {
-      width: grid.colspan(14, 'xlarge');
-      margin-right: grid.colspan(1, 'xlarge');
-      padding-right: grid.colspan(1, 'xlarge');
+      width: colspan(14, 'xlarge');
+      margin-right: colspan(1, 'xlarge');
+      padding-right: colspan(1, 'xlarge');
     }
 
     .o-collection-listing__col-right {
-      width: grid.colspan(42, 'xlarge');
+      width: colspan(42, 'xlarge');
     }
 
     .o-collection-listing__col-right .o-pinboard--3-col\@xlarge::after,

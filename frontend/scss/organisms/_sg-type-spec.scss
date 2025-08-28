@@ -1,6 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
 
 
 .sg-type-spec {
@@ -11,16 +8,16 @@
   margin: 0;
   padding: 20px 0;
 
-  @include breakpoint.breakpoint('medium+') {
-    margin-left: grid.colspan(2, medium, 0, true);
+  @include breakpoint('medium+') {
+    margin-left: colspan(2, medium, 0, true);
   }
 
-  @include breakpoint.breakpoint('large+') {
-    margin-left: grid.colspan(2, large, 0, true);
+  @include breakpoint('large+') {
+    margin-left: colspan(2, large, 0, true);
   }
 
-  @include breakpoint.breakpoint('xlarge') {
-    margin-left: grid.colspan(2, xlarge, 0, true);
+  @include breakpoint('xlarge') {
+    margin-left: colspan(2, xlarge, 0, true);
   }
 }
 
@@ -31,21 +28,21 @@
   margin: 20px 0 0;
   padding: 0;
 
-  @include breakpoint.breakpoint('medium+') {
-    width: grid.colspan(grid.grid-cols-to-colspan(2), medium);
+  @include breakpoint('medium+') {
+    width: colspan(grid-cols-to-colspan(2), medium);
     margin-top: 40px;
-    margin-left: grid.colspan(2, medium);
+    margin-left: colspan(2, medium);
   }
 
-  @include breakpoint.breakpoint('large+') {
-    width: grid.colspan(grid.grid-cols-to-colspan(3), large);
+  @include breakpoint('large+') {
+    width: colspan(grid-cols-to-colspan(3), large);
     margin-top: 80px;
-    margin-left: grid.colspan(2, large);
+    margin-left: colspan(2, large);
   }
 
-  @include breakpoint.breakpoint('xlarge') {
-    width: grid.colspan(grid.grid-cols-to-colspan(3), xlarge);
-    margin-left: grid.colspan(2, xlarge);
+  @include breakpoint('xlarge') {
+    width: colspan(grid-cols-to-colspan(3), xlarge);
+    margin-left: colspan(2, xlarge);
   }
 }
 
@@ -54,7 +51,7 @@
   display: block;
   width: 100%;
   height: 4px;
-  background-color: colors.$color__bg--primary;
+  background-color: $color__bg--primary;
 }
 
 .sg-type-spec p {

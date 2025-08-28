@@ -1,7 +1,3 @@
-@use "colors";
-@use "mixins/breakpoint";
-@use "variables";
-
 @use "sass:map";
 .container,
 %container {
@@ -9,14 +5,14 @@
   margin-right: auto;
   margin-left: auto;
 
-  @each $name, $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
-      @if (map.get(variables.$main-col-widths, $name) == 'fluid') {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      @if (map.get($main-col-widths, $name) == 'fluid') {
         width: auto;
-        margin-right: map.get(variables.$outer-gutters, $name);
-        margin-left: map.get(variables.$outer-gutters, $name);
+        margin-right: map.get($outer-gutters, $name);
+        margin-left: map.get($outer-gutters, $name);
       } @else {
-        width: map.get(variables.$main-col-widths, $name);
+        width: map.get($main-col-widths, $name);
         margin-right: auto;
         margin-left: auto;
       }
@@ -44,14 +40,14 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    border: 4px solid colors.$color__white;
+    border: 4px solid $color__white;
     background-color: rgba(0,0,0,.5);
     border-radius: 8px;
   }
 
   &::-webkit-scrollbar-track {
     border-radius: 8px;
-    background-color: colors.$color__white;
+    background-color: $color__white;
   }
 }
 
