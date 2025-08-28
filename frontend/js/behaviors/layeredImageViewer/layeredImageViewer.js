@@ -1337,6 +1337,7 @@ const layeredImageViewer = function(container) {
   const updateDimensions = () => {
     figCaption = container.querySelector('figcaption');
     container.style.height = 'max-content'
+    container.offsetHeight;
 
     if (figCaption !== null && (container.offsetHeight > figCaption.offsetHeight) && !isSized) {
 
