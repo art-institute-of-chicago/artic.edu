@@ -1333,16 +1333,14 @@ const layeredImageViewer = function(container) {
   let isInitialized = false;
   let isSized = false;
   let figCaption = null;
-  let initialHeight = null;
 
-  const updateDimensions = async () => {
+  const updateDimensions = () => {
     figCaption = container.querySelector('figcaption');
-    initialHeight = container.style.height;
     container.style.height = 'max-content'
 
     if (figCaption !== null && (container.offsetHeight > figCaption.offsetHeight) && !isSized) {
 
-      container.style.height = container.offsetHeight + 'px';
+      container.style.height = `${container.offsetHeight}px`;
       isSized = true;
     }
   };
