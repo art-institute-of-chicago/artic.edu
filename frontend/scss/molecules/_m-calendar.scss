@@ -1,8 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/other";
-@use "../setup/variables";
-
 @use "sass:map";
 /***
 
@@ -51,24 +46,24 @@
 
 .m-calendar {
   position: absolute;
-  z-index: map.get(variables.$zindexs, 'calendar');
+  z-index: map.get($zindexs, 'calendar');
   flex-flow: column nowrap;
-  background-color: colors.$color__white;
+  background-color: $color__white;
 }
 
 .m-calendar:not(.m-calendar--inline) {
   display: none;
-  box-shadow: variables.$shadow;
+  box-shadow: $shadow;
   transition: opacity .15s;
 
-  @include breakpoint.breakpoint('small-') {
+  @include breakpoint('small-') {
     transition: none;
   }
 }
 
 .m-calendar--inline {
   position: relative;
-  border: 1px solid colors.$color__rules--primary;
+  border: 1px solid $color__rules--primary;
 }
 
 .m-calendar a {
@@ -90,14 +85,14 @@
   align-content: stretch;
   padding-top: 64px;
 
-  @include breakpoint.breakpoint('small-') {
+  @include breakpoint('small-') {
     flex-grow: 1;
     flex-shrink: 1;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     flex: none;
     padding-top: 0;
   }
@@ -111,9 +106,9 @@
   right: 0;
   top: 64px;
   height: 48px;
-  background-color: colors.$color__black--90;
+  background-color: $color__black--90;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     content: none;
     display: none;
   }
@@ -126,7 +121,7 @@
   height: 100%;
   padding: 0 12px 12px;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     height: auto;
   }
 }
@@ -138,20 +133,20 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: colors.$color__rules--tertiary;
+  background-color: $color__rules--tertiary;
 }
 
 .m-calendar__header,
 .m-calendar__footer {
   padding: 12px;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: none;
   }
 }
 
 .m-calendar__header {
-  @include other.opaqueBg(rgba(255, 255, 255, .95), rgba(255, 255, 255, .85));
+  @include opaqueBg(rgba(255, 255, 255, .95), rgba(255, 255, 255, .85));
 
   & {
     position: absolute;
@@ -173,22 +168,22 @@
 }
 
 .m-calendar .btn--secondary {
-  color: colors.$color__text--secondary;
+  color: $color__text--secondary;
 }
 
 .m-calendar .btn--secondary.s-has-date {
-  color: colors.$color__text;
+  color: $color__text;
 }
 
 .m-calendar .btn--secondary.s-active {
-  border-color: colors.$color__rules--brand;
-  color: colors.$color__text--accent;
+  border-color: $color__rules--brand;
+  color: $color__text--accent;
 }
 
 .m-calendar__footer {
   flex-direction: row-reverse;
   padding-top: 11px;
-  border-top: 1px solid colors.$color__rules--primary;
+  border-top: 1px solid $color__rules--primary;
 }
 
 .m-calendar__footer .btn {
@@ -205,7 +200,7 @@
   padding: 0;
   border: 0 none;
   background: transparent;
-  color: colors.$color__text--title;
+  color: $color__text--title;
 
   &::after {
     content: '';
@@ -218,7 +213,7 @@
 }
 
 .m-calendar__calendar:not(:first-child) {
-  border-left: 1px solid colors.$color__rules--tertiary;
+  border-left: 1px solid $color__rules--tertiary;
 }
 
 .m-calendar__title {
@@ -226,8 +221,8 @@
   height: 48px;
   margin: 0 -12px;
   padding: 0 64px;
-  background-color: colors.$color__black--90;
-  color: colors.$color__white;
+  background-color: $color__black--90;
+  color: $color__white;
   font-weight: normal;
   line-height: 48px;
   text-align: center;
@@ -251,7 +246,7 @@
   background-color: transparent;
   cursor: pointer;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     top: 0;
   }
 
@@ -281,7 +276,7 @@
   top: 50%;
   margin-top: -8px;
   margin-left: -8px;
-  color: colors.$color__white;
+  color: $color__white;
 }
 
 .m-calendar__prev .icon--arrow {
@@ -293,12 +288,12 @@
 .m-calendar__prev .icon--arrow:hover,
 .m-calendar__next .icon--arrow:focus,
 .m-calendar__prev .icon--arrow:focus {
-  color: colors.$color__black--30;
+  color: $color__black--30;
 }
 
 .m-calendar__next .icon--arrow:active,
 .m-calendar__prev .icon--arrow:active {
-  color: colors.$color__black--42;
+  color: $color__black--42;
 }
 
 
@@ -306,7 +301,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  color: colors.$color__black--20;
+  color: $color__black--20;
   text-align: center;
   table-layout: fixed;
   border-collapse: collapse;
@@ -322,8 +317,8 @@
 
 .m-calendar thead th {
   height: 48px;
-  border-bottom: 1px solid colors.$color__black--5;
-  color: colors.$color__text--secondary;
+  border-bottom: 1px solid $color__black--5;
+  color: $color__text--secondary;
   font-weight: normal;
 }
 
@@ -338,35 +333,35 @@
 }
 
 .m-calendar__today {
-  color: colors.$color__red--100;
+  color: $color__red--100;
 }
 
 .m-calendar table a {
   display: inline-block;
   width: 40px;
   height: 40px;
-  color: colors.$color__black--54;
+  color: $color__black--54;
   line-height: 40px;
   text-align: center;
   vertical-align: middle;
 
   &:hover,
   &:focus:hover {
-    background-color: colors.$color__black--15;
-    color: colors.$color__black--90;
+    background-color: $color__black--15;
+    color: $color__black--90;
   }
 
   &:active:hover {
-    background-color: colors.$color__red--100;
-    color: colors.$color__white;
+    background-color: $color__red--100;
+    color: $color__white;
   }
 }
 
 .m-calendar table .m-calendar__today a {
-  color: colors.$color__link--accent;
+  color: $color__link--accent;
 
   &:active:hover {
-    color: colors.$color__white;
+    color: $color__white;
   }
 }
 
@@ -374,18 +369,18 @@
 .m-calendar table .s-range.m-calendar__today a,
 .m-calendar table .s-range a,
 .m-calendar table .s-range.m-calendar__today a {
-  background-color: colors.$color__black--5;
+  background-color: $color__black--5;
 }
 
 .m-calendar table .s-start a,
 .m-calendar table .s-start.m-calendar__today a,
 .m-calendar table .s-end a,
 .m-calendar table .s-end.m-calendar__today a {
-  background-color: colors.$color__link--accent;
-  color: colors.$color__white;
+  background-color: $color__link--accent;
+  color: $color__white;
 
   &:active:hover {
-    background-color: colors.$color__link--accent-active;
+    background-color: $color__link--accent-active;
   }
 }
 

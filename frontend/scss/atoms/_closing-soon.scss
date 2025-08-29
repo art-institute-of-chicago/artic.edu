@@ -1,5 +1,3 @@
-@use "../setup/colors";
-
 /***
 
 closing soon
@@ -15,5 +13,5 @@ Sets color of closing soon text
 
 
 .closing-soon {
-  color: colors.$color__text--limited;
+  color: $color__text--limited;
 }

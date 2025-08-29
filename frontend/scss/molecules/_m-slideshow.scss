@@ -1,5 +1,3 @@
-@use "../setup/colors";
-
 .m-slideshow {
   .slideshow-display {
     overflow: hidden;
@@ -21,7 +19,7 @@
     width: 100%;
   }
   .slideshow-position-pip {
-    background-color: colors.$color__black--15;
+    background-color: $color__black--15;
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -30,6 +28,6 @@
     width: 10px;
   }
   .slideshow-position-current {
-    background-color: colors.$color__black;
+    background-color: $color__black;
   }
 }

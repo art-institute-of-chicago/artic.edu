@@ -1,24 +1,21 @@
-@use "../setup/colors";
-@use "../setup/mixins/other";
-
 .m-patron-banner-container {
   width: 100%;
-  background-color: colors.$color__black;
+  background-color: $color__black;
   height: 105px;
-  color: colors.$color__white;
+  color: $color__white;
   padding: 15px 0px;
   text-align: left;
   margin-bottom: -120px;
   margin-top: 120px;
-  @include other.background-fill;
+  @include background-fill;
 
   .m-patron-banner .m-patron_logo svg {
-    fill: colors.$color__white;
+    fill: $color__white;
   }
 }
 
 .m-patron-banner-container----mmt {
-  background-color: colors.$color__teal--my-museum-tour;
+  background-color: $color__teal--my-museum-tour;
 }
 
 /*

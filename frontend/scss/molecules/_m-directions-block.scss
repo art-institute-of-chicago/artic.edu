@@ -1,36 +1,30 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-@use "../setup/mixins/other";
-@use "../setup/typography";
-
 .m-directions-block {
-  @include other.float-clear;
+  @include float-clear;
 
   & {
     margin-top: 32px;
     padding-top: 19px;
-    border-top: 1px solid colors.$color__rules--primary;
+    border-top: 1px solid $color__rules--primary;
   }
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     margin-top: 52px;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     margin-top: 72px;
   }
 }
 
 .m-directions-block__map {
 
-  @include breakpoint.breakpoint('large+') {
+  @include breakpoint('large+') {
     float: left;
-    width: grid.colspan(38, large);
+    width: colspan(38, large);
   }
 
-  @include breakpoint.breakpoint('xlarge') {
-    width: grid.colspan(38, xlarge);
+  @include breakpoint('xlarge') {
+    width: colspan(38, xlarge);
   }
 }
 
@@ -38,36 +32,36 @@
   margin-top: 20px;
   padding-top: .02px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     float: left;
-    width: grid.colspan(28, small);
+    width: colspan(28, small);
   }
 
-  @include breakpoint.breakpoint('medium+') {
-    width: grid.colspan(28, medium);
+  @include breakpoint('medium+') {
+    width: colspan(28, medium);
   }
 
-  @include breakpoint.breakpoint('large+') {
-    width: grid.colspan(18, large);
+  @include breakpoint('large+') {
+    width: colspan(18, large);
     margin-top: 0;
-    margin-left: grid.colspan(2, large);
+    margin-left: colspan(2, large);
   }
 
-  @include breakpoint.breakpoint('xlarge') {
-    width: grid.colspan(18, xlarge);
-    margin-left: grid.colspan(2, xlarge);
+  @include breakpoint('xlarge') {
+    width: colspan(18, xlarge);
+    margin-left: colspan(2, xlarge);
   }
 
   h3 {
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 11px;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       margin-top: 16px;
     }
 
-    @include breakpoint.breakpoint('large+') {
+    @include breakpoint('large+') {
       margin-top: 0;
     }
   }
@@ -77,52 +71,52 @@
   margin-top: 20px;
   padding-top: .02px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     float: left;
-    width: grid.colspan(28, small);
-    margin-left: grid.colspan(2, small);
+    width: colspan(28, small);
+    margin-left: colspan(2, small);
   }
 
-  @include breakpoint.breakpoint('medium+') {
-    width: grid.colspan(28, medium);
-    margin-left: grid.colspan(2, medium);
+  @include breakpoint('medium+') {
+    width: colspan(28, medium);
+    margin-left: colspan(2, medium);
   }
 
-  @include breakpoint.breakpoint('large+') {
-    width: grid.colspan(18, large);
+  @include breakpoint('large+') {
+    width: colspan(18, large);
     margin-top: 32px;
-    margin-left: grid.colspan(2, large);
+    margin-left: colspan(2, large);
   }
 
-  @include breakpoint.breakpoint('xlarge') {
-    width: grid.colspan(18, xlarge);
-    margin-left: grid.colspan(2, xlarge);
+  @include breakpoint('xlarge') {
+    width: colspan(18, xlarge);
+    margin-left: colspan(2, xlarge);
   }
 }
 
 .m-directions-block__links ul[class*=f-] {
   margin-top: 0;
-  @include typography.untuck;
+  @include untuck;
 }
 
 .m-directions-block__links.o-blocks>span[class*=f-] a {
   background: none;
-  color: colors.$color__link--accent;
+  color: $color__link--accent;
 
   &:hover,
   &:focus:hover {
-    @include typography.text-underline(1.02em, colors.$color__link--accent-hover);
+    @include text-underline(1.02em, $color__link--accent-hover);
 
     & {
-      color: colors.$color__link--accent-hover;
+      color: $color__link--accent-hover;
     }
   }
 
   &:active {
-    @include typography.text-underline(1.02em, transparent);
+    @include text-underline(1.02em, transparent);
 
     & {
-      color: colors.$color__link--accent-active;
+      color: $color__link--accent-active;
     }
   }
 }

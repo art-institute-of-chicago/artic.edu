@@ -1,8 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-@use "../setup/variables";
-
 @use "sass:map";
 /***
 
@@ -20,7 +15,7 @@ Basic flexed set up
     margin-top: 0;
   }
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     margin-top: 36px;
 
     &:first-child {
@@ -28,7 +23,7 @@ Basic flexed set up
     }
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     margin-top: 40px;
 
     &:first-child {
@@ -37,11 +32,11 @@ Basic flexed set up
   }
 
   .m-table+& {
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 32px;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       margin-top: 40px;
     }
   }
@@ -53,10 +48,10 @@ Basic flexed set up
   width: 100%;
 
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
       //margin-top: #{map-get($grid-margin-tops, $name)}px;
-      margin-top: grid.colspan(map.get(variables.$grid-padding-tops, $name), #{$name});
+      margin-top: colspan(map.get($grid-padding-tops, $name), #{$name});
     }
   }
 }
@@ -64,8 +59,8 @@ Basic flexed set up
 .o-grid-listing>*:first-child {
 
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
       margin-top: 0;
     }
   }
@@ -73,15 +68,15 @@ Basic flexed set up
 
 // If this is in cols, adjust spacings
 @each $name,
-$point in variables.$breakpoints {
-  @include breakpoint.breakpoint('#{$name}') {
+$point in $breakpoints {
+  @include breakpoint('#{$name}') {
     .o-grid-listing[class*="col@#{$name}"] {
       @if ($name=='xsmall') {
-        margin-left: grid.colspan(6, #{$name}, 0, true);
+        margin-left: colspan(6, #{$name}, 0, true);
       }
 
       @else {
-        margin-left: grid.colspan(2, #{$name}, 0, true);
+        margin-left: colspan(2, #{$name}, 0, true);
       }
     }
 
@@ -89,11 +84,11 @@ $point in variables.$breakpoints {
       margin-top: 0;
 
       @if ($name=='xsmall') {
-        margin-left: grid.colspan(6, #{$name});
+        margin-left: colspan(6, #{$name});
       }
 
       @else {
-        margin-left: grid.colspan(2, #{$name});
+        margin-left: colspan(2, #{$name});
       }
 
       border-top-style: none;
@@ -113,8 +108,8 @@ Variant: `o-listing--single-row` - limits to a single row
 }
 
 @each $name,
-$point in variables.$breakpoints {
-  @include breakpoint.breakpoint('#{$name}') {
+$point in $breakpoints {
+  @include breakpoint('#{$name}') {
     .o-grid-listing--single-row[class*="scroll@#{$name}"] {
       position: relative;
       left: 50%;
@@ -123,7 +118,7 @@ $point in variables.$breakpoints {
       margin-left: -50vw;
 
       @if ($name=='xlarge') {
-        padding-left: calc((100vw - #{map.get(variables.$main-col-widths, xlarge)}) / 2);
+        padding-left: calc((100vw - #{map.get($main-col-widths, xlarge)}) / 2);
       }
 
       @else if ($name=='xsmall') {
@@ -131,7 +126,7 @@ $point in variables.$breakpoints {
       }
 
       @else {
-        padding-left: grid.colspan(1, $name);
+        padding-left: colspan(1, $name);
       }
 
       overflow-x: auto;
@@ -144,15 +139,15 @@ $point in variables.$breakpoints {
       flex: 0 0 auto;
 
       @if ($name=='xlarge') {
-        width: calc((100vw - #{map.get(variables.$main-col-widths, xlarge)}) / 2);
+        width: calc((100vw - #{map.get($main-col-widths, xlarge)}) / 2);
       }
 
       @else if ($name=='xsmall') {
-        width: grid.colspan(3, $name);
+        width: colspan(3, $name);
       }
 
       @else {
-        width: grid.colspan(3, $name);
+        width: colspan(3, $name);
       }
 
       height: 1px;
@@ -163,15 +158,15 @@ $point in variables.$breakpoints {
       margin-top: 0;
 
       @if ($name=='xsmall') {
-        margin-left: grid.colspan(6, #{$name});
+        margin-left: colspan(6, #{$name});
 
         &:first-child {
-          margin-left: grid.colspan(3, #{$name});
+          margin-left: colspan(3, #{$name});
         }
       }
 
       @else {
-        margin-left: grid.colspan(2, #{$name});
+        margin-left: colspan(2, #{$name});
       }
 
       & {
@@ -197,8 +192,8 @@ $point in variables.$breakpoints {
     }
 
     .o-grid-listing--gridlines-rows.o-grid-listing--single-row[class*="scroll@#{$name}"]>*::before {
-      left: grid.colspan(1, #{$name}, 0, true);
-      right: grid.colspan(1, #{$name}, 0, true);
+      left: colspan(1, #{$name}, 0, true);
+      right: colspan(1, #{$name}, 0, true);
       width: auto;
     }
 
@@ -222,18 +217,18 @@ hr+.o-grid-listing,
 .hr+.o-grid-listing {
 
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
       margin-top: 0;
       //padding-top: #{map-get($grid-margin-tops, $name)}px;
-      padding-top: grid.colspan(map.get(variables.$grid-padding-tops, $name), #{$name});
+      padding-top: colspan(map.get($grid-padding-tops, $name), #{$name});
     }
   }
 }
 
 @each $name,
-$point in variables.$breakpoints {
-  @include breakpoint.breakpoint('#{$name}') {
+$point in $breakpoints {
+  @include breakpoint('#{$name}') {
 
     hr+.o-grid-listing--gridlines-top[class*="col@#{$name}"],
     hr+.o-grid-listing--gridlines-rows[class*="col@#{$name}"],
@@ -251,8 +246,8 @@ Variant `o-grid-listing--info-block`
 ***/
 
 @each $name,
-$point in variables.$breakpoints {
-  @include breakpoint.breakpoint('#{$name}') {
+$point in $breakpoints {
+  @include breakpoint('#{$name}') {
     .o-grid-listing:not([class*="col@#{$name}"]):not(.o-grid-listing--info-block)+.o-grid-listing--info-block[class*="col@#{$name}"] {
       margin-top: 60px;
     }
@@ -269,7 +264,7 @@ $point in variables.$breakpoints {
 
     .o-grid-listing--gridlines-top.o-grid-listing--info-block:not([class*="col@#{$name}"])>*,
     .o-grid-listing--gridlines-rows.o-grid-listing--info-block:not([class*="col@#{$name}"])>* {
-      margin-top: #{map.get(variables.$grid-margin-tops, $name)}px;
+      margin-top: #{map.get($grid-margin-tops, $name)}px;
       padding-top: 0;
 
       &::before {
@@ -277,8 +272,8 @@ $point in variables.$breakpoints {
       }
 
       &:first-child {
-        padding-top: grid.colspan(map.get(variables.$grid-padding-tops, $name), #{$name});
-        padding-top: #{map.get(variables.$grid-margin-tops, $name)}px;
+        padding-top: colspan(map.get($grid-padding-tops, $name), #{$name});
+        padding-top: #{map.get($grid-margin-tops, $name)}px;
       }
 
       &:first-child::before {
@@ -302,23 +297,23 @@ X cols at XXXXX breakpoint
 
 // Adjust width of things, second row onwards wants margin-tops
 
-@include breakpoint.breakpoint('xsmall') {
+@include breakpoint('xsmall') {
   .o-grid-listing--2-col\@xsmall>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(2, 58, 6), 'xsmall');
+    width: colspan(grid-cols-to-colspan(2, 58, 6), 'xsmall');
   }
 
   .o-grid-listing--3-col\@xsmall>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(3, 58, 6), 'xsmall');
+    width: colspan(grid-cols-to-colspan(3, 58, 6), 'xsmall');
   }
 
   .o-grid-listing--4-col\@xsmall>*,
   .o-grid-listing--scroll\@xsmall.o-grid-listing--4-col\@xsmall>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(4, 58, 6), 'xsmall');
+    width: colspan(grid-cols-to-colspan(4, 58, 6), 'xsmall');
   }
 
   .o-grid-listing--6-col\@xsmall>*,
   .o-grid-listing--scroll\@xsmall.o-grid-listing--6-col\@xsmall>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(6, 58, 6), 'xsmall');
+    width: colspan(grid-cols-to-colspan(6, 58, 6), 'xsmall');
   }
 
   .o-grid-listing--2-col\@xsmall:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
@@ -326,7 +321,7 @@ X cols at XXXXX breakpoint
   .o-grid-listing--4-col\@xsmall:not(.o-grid-listing--single-row)>*:nth-child(4)~*,
   .o-grid-listing--6-col\@xsmall:not(.o-grid-listing--single-row)>*:nth-child(6)~* {
     //margin-top: #{map-get($grid-margin-tops, 'xsmall')}px;
-    margin-top: grid.colspan(map.get(variables.$grid-padding-tops, 'xsmall'), 'xsmall');
+    margin-top: colspan(map.get($grid-padding-tops, 'xsmall'), 'xsmall');
   }
 
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@xsmall.o-grid-listing--2-col\@xsmall>*:nth-child(2)~*,
@@ -337,23 +332,23 @@ X cols at XXXXX breakpoint
   }
 }
 
-@include breakpoint.breakpoint('small') {
+@include breakpoint('small') {
   .o-grid-listing--2-col\@small>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(2), 'small');
+    width: colspan(grid-cols-to-colspan(2), 'small');
   }
 
   .o-grid-listing--3-col\@small>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(3), 'small');
+    width: colspan(grid-cols-to-colspan(3), 'small');
   }
 
   .o-grid-listing--4-col\@small>*,
   .o-grid-listing--scroll\@small.o-grid-listing--4-col\@small>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(4), 'small');
+    width: colspan(grid-cols-to-colspan(4), 'small');
   }
 
   .o-grid-listing--6-col\@small>*,
   .o-grid-listing--scroll\@small.o-grid-listing--6-col\@small>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(6), 'small');
+    width: colspan(grid-cols-to-colspan(6), 'small');
   }
 
   .o-grid-listing--2-col\@small:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
@@ -361,7 +356,7 @@ X cols at XXXXX breakpoint
   .o-grid-listing--4-col\@small:not(.o-grid-listing--single-row)>*:nth-child(4)~*,
   .o-grid-listing--6-col\@small:not(.o-grid-listing--single-row)>*:nth-child(6)~* {
     //margin-top: #{map-get($grid-margin-tops, 'small')}px;
-    margin-top: grid.colspan(map.get(variables.$grid-padding-tops, 'small'), 'small');
+    margin-top: colspan(map.get($grid-padding-tops, 'small'), 'small');
   }
 
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@small.o-grid-listing--2-col\@small>*:nth-child(2)~*,
@@ -372,27 +367,27 @@ X cols at XXXXX breakpoint
   }
 }
 
-@include breakpoint.breakpoint('medium') {
+@include breakpoint('medium') {
   .o-grid-listing--2-col\@medium>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(2), 'medium');
+    width: colspan(grid-cols-to-colspan(2), 'medium');
 
     .o-article__secondary-actions~.o-article__body & {
-      width: grid.colspan(18, 'medium');
+      width: colspan(18, 'medium');
     }
   }
 
   .o-grid-listing--3-col\@medium>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(3), 'medium');
+    width: colspan(grid-cols-to-colspan(3), 'medium');
   }
 
   .o-grid-listing--4-col\@medium>*,
   .o-grid-listing--scroll\@medium.o-grid-listing--4-col\@medium>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(4), 'medium');
+    width: colspan(grid-cols-to-colspan(4), 'medium');
   }
 
   .o-grid-listing--6-col\@medium>*,
   .o-grid-listing--scroll\@medium.o-grid-listing--6-col\@medium>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(6), 'medium');
+    width: colspan(grid-cols-to-colspan(6), 'medium');
   }
 
   .o-grid-listing--2-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
@@ -400,7 +395,7 @@ X cols at XXXXX breakpoint
   .o-grid-listing--4-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(4)~*,
   .o-grid-listing--6-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(6)~* {
     //margin-top: #{map-get($grid-margin-tops, 'medium')}px;
-    margin-top: grid.colspan(map.get(variables.$grid-padding-tops, 'medium'), 'medium');
+    margin-top: colspan(map.get($grid-padding-tops, 'medium'), 'medium');
   }
 
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--2-col\@medium>*:nth-child(2)~*,
@@ -411,39 +406,39 @@ X cols at XXXXX breakpoint
   }
 }
 
-@include breakpoint.breakpoint('large') {
+@include breakpoint('large') {
   .o-grid-listing--2-col\@large>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(2), 'large');
+    width: colspan(grid-cols-to-colspan(2), 'large');
 
     .o-article__body & {
-      width: grid.colspan(20.5, 'large');
+      width: colspan(20.5, 'large');
     }
 
     .o-article__secondary-actions~.o-article__body & {
-      width: grid.colspan(13, 'large');
+      width: colspan(13, 'large');
     }
   }
 
   .o-grid-listing--3-col\@large>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(3), 'large');
+    width: colspan(grid-cols-to-colspan(3), 'large');
   }
 
   .o-grid-listing--4-col\@large>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(4), 'large');
+    width: colspan(grid-cols-to-colspan(4), 'large');
   }
 
   .o-grid-listing--5-col\@large>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(5), 'large');
+    width: colspan(grid-cols-to-colspan(5), 'large');
   }
 
   .o-grid-listing--6-col\@large>*,
   .o-grid-listing--scroll\@large.o-grid-listing--6-col\@large>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(6), 'large');
+    width: colspan(grid-cols-to-colspan(6), 'large');
   }
 
   .o-grid-listing--12-col\@large>*,
   .o-grid-listing--scroll\@large.o-grid-listing--12-col\@large>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(12), 'large');
+    width: colspan(grid-cols-to-colspan(12), 'large');
   }
 
   .o-grid-listing--2-col\@large:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
@@ -453,7 +448,7 @@ X cols at XXXXX breakpoint
   .o-grid-listing--6-col\@large:not(.o-grid-listing--single-row)>*:nth-child(6)~*,
   .o-grid-listing--12-col\@large:not(.o-grid-listing--single-row)>*:nth-child(12)~* {
     //margin-top: #{map-get($grid-margin-tops, 'large')}px;
-    margin-top: grid.colspan(map.get(variables.$grid-padding-tops, 'large'), 'large');
+    margin-top: colspan(map.get($grid-padding-tops, 'large'), 'large');
   }
 
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--2-col\@large>*:nth-child(2)~*,
@@ -466,39 +461,39 @@ X cols at XXXXX breakpoint
   }
 }
 
-@include breakpoint.breakpoint('xlarge') {
+@include breakpoint('xlarge') {
   .o-grid-listing--2-col\@xlarge>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(2), 'xlarge');
+    width: colspan(grid-cols-to-colspan(2), 'xlarge');
 
     .o-article__body & {
-      width: grid.colspan(20.5, 'xlarge');
+      width: colspan(20.5, 'xlarge');
     }
 
     .o-article__secondary-actions~.o-article__body & {
-      width: grid.colspan(13, 'xlarge');
+      width: colspan(13, 'xlarge');
     }
   }
 
   .o-grid-listing--3-col\@xlarge>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(3), 'xlarge');
+    width: colspan(grid-cols-to-colspan(3), 'xlarge');
   }
 
   .o-grid-listing--4-col\@xlarge>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(4), 'xlarge');
+    width: colspan(grid-cols-to-colspan(4), 'xlarge');
   }
 
   .o-grid-listing--5-col\@xlarge>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(5), 'xlarge');
+    width: colspan(grid-cols-to-colspan(5), 'xlarge');
   }
 
   .o-grid-listing--6-col\@xlarge>*,
   .o-grid-listing--scroll\@xlarge.o-grid-listing--6-col\@xlarge>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(6), 'xlarge');
+    width: colspan(grid-cols-to-colspan(6), 'xlarge');
   }
 
   .o-grid-listing--12-col\@xlarge>*,
   .o-grid-listing--scroll\@xlarge.o-grid-listing--12-col\@xlarge>* {
-    width: grid.colspan(grid.grid-cols-to-colspan(12), 'xlarge');
+    width: colspan(grid-cols-to-colspan(12), 'xlarge');
   }
 
   .o-grid-listing--2-col\@xlarge:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
@@ -508,7 +503,7 @@ X cols at XXXXX breakpoint
   .o-grid-listing--6-col\@xlarge:not(.o-grid-listing--single-row)>*:nth-child(6)~*,
   .o-grid-listing--12-col\@xlarge:not(.o-grid-listing--single-row)>*:nth-child(12)~* {
     //margin-top: #{map-get($grid-margin-tops, 'large')}px;
-    margin-top: grid.colspan(map.get(variables.$grid-padding-tops, 'large'), 'large');
+    margin-top: colspan(map.get($grid-padding-tops, 'large'), 'large');
   }
 
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--2-col\@xlarge>*:nth-child(2)~*,
@@ -546,18 +541,18 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
   top: 0;
   bottom: -4px; // Why? because design thats why..
   width: 1px;
-  background-color: colors.$color__rules--tertiary;
+  background-color: $color__rules--tertiary;
   pointer-events: none;
 
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
       @if ($name=='xsmall') {
-        right: grid.colspan(3, #{$name}, 0, true);
+        right: colspan(3, #{$name}, 0, true);
       }
 
       @else {
-        right: grid.colspan(1, #{$name}, 0, true);
+        right: colspan(1, #{$name}, 0, true);
       }
     }
   }
@@ -568,10 +563,10 @@ hr+.o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-gr
 .hr+.o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-grid-listing--gridlines-rows)>*::after {
 
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
       //top: #{0 - map-get($grid-margin-tops, $name)}px;
-      top: grid.colspan(map.get(variables.$grid-padding-tops, $name), #{$name}, 0, true);
+      top: colspan(map.get($grid-padding-tops, $name), #{$name}, 0, true);
     }
   }
 }
@@ -579,7 +574,7 @@ hr+.o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-gr
 // The last item of each row doesn't want a keyline
 // cols gridlines need to stretch to reach each other
 // so from the 2nd row onwards, needs a negative top spacing
-@include breakpoint.breakpoint('xsmall') {
+@include breakpoint('xsmall') {
 
   .o-grid-listing--gridlines-right.o-grid-listing--2-col\@xsmall>*:not(:nth-child(2n))::after,
   .o-grid-listing--gridlines-right.o-grid-listing--3-col\@xsmall>*:not(:nth-child(3n))::after,
@@ -597,11 +592,11 @@ hr+.o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-gr
   .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@xsmall>*:nth-child(4)~*::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@xsmall>*:nth-child(6)~*::after {
     //top: #{0 - map-get($grid-margin-tops, xsmall)}px;
-    top: grid.colspan(map.get(variables.$grid-padding-tops, 'xsmall'), 'xsmall', 0, true);
+    top: colspan(map.get($grid-padding-tops, 'xsmall'), 'xsmall', 0, true);
   }
 }
 
-@include breakpoint.breakpoint('small') {
+@include breakpoint('small') {
 
   .o-grid-listing--gridlines-right.o-grid-listing--2-col\@small>*:not(:nth-child(2n))::after,
   .o-grid-listing--gridlines-right.o-grid-listing--3-col\@small>*:not(:nth-child(3n))::after,
@@ -619,11 +614,11 @@ hr+.o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-gr
   .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@small>*:nth-child(4)~*::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@small>*:nth-child(6)~*::after {
     //top: #{0 - map-get($grid-margin-tops, small)}px;
-    top: grid.colspan(map.get(variables.$grid-padding-tops, 'small'), 'small', 0, true);
+    top: colspan(map.get($grid-padding-tops, 'small'), 'small', 0, true);
   }
 }
 
-@include breakpoint.breakpoint('medium') {
+@include breakpoint('medium') {
 
   .o-grid-listing--gridlines-right.o-grid-listing--2-col\@medium>*:not(:nth-child(2n))::after,
   .o-grid-listing--gridlines-right.o-grid-listing--3-col\@medium>*:not(:nth-child(3n))::after,
@@ -641,11 +636,11 @@ hr+.o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-gr
   .o-grid-listing--gridlines-cols.o-grid-listing--4-col\@medium>*:nth-child(4)~*::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@medium>*:nth-child(6)~*::after {
     //top: #{0 - map-get($grid-margin-tops, medium)}px;
-    top: grid.colspan(map.get(variables.$grid-padding-tops, 'medium'), 'medium', 0, true);
+    top: colspan(map.get($grid-padding-tops, 'medium'), 'medium', 0, true);
   }
 }
 
-@include breakpoint.breakpoint('large') {
+@include breakpoint('large') {
 
   .o-grid-listing--gridlines-right.o-grid-listing--2-col\@large>*:not(:nth-child(2n))::after,
   .o-grid-listing--gridlines-right.o-grid-listing--3-col\@large>*:not(:nth-child(3n))::after,
@@ -669,11 +664,11 @@ hr+.o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-gr
   .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@large>*:nth-child(6)~*::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@large>*:nth-child(12)~*::after {
     //top: #{0 - map-get($grid-margin-tops, large)}px;
-    top: grid.colspan(map.get(variables.$grid-padding-tops, 'large'), 'large', 0, true);
+    top: colspan(map.get($grid-padding-tops, 'large'), 'large', 0, true);
   }
 }
 
-@include breakpoint.breakpoint('xlarge') {
+@include breakpoint('xlarge') {
 
   .o-grid-listing--gridlines-right.o-grid-listing--2-col\@xlarge>*:not(:nth-child(2n))::after,
   .o-grid-listing--gridlines-right.o-grid-listing--3-col\@xlarge>*:not(:nth-child(3n))::after,
@@ -697,7 +692,7 @@ hr+.o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-gr
   .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@xlarge>*:nth-child(6)~*::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@xlarge>*:nth-child(12)~*::after {
     //top: #{0 - map-get($grid-margin-tops, xlarge)}px;
-    top: grid.colspan(map.get(variables.$grid-padding-tops, 'xlarge'), 'xlarge', 0, true);
+    top: colspan(map.get($grid-padding-tops, 'xlarge'), 'xlarge', 0, true);
   }
 }
 
@@ -721,7 +716,7 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
   right: 0;
   top: 0;
   height: 1px;
-  background-color: colors.$color__rules--primary;
+  background-color: $color__rules--primary;
   pointer-events: none;
 }
 
@@ -731,12 +726,12 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 }
 
 @each $name,
-$point in variables.$breakpoints {
-  @include breakpoint.breakpoint('#{$name}') {
+$point in $breakpoints {
+  @include breakpoint('#{$name}') {
 
     .o-grid-listing--gridlines-top>*,
     .o-grid-listing--gridlines-rows>* {
-      padding-top: grid.colspan(map.get(variables.$grid-padding-tops, $name), #{$name});
+      padding-top: colspan(map.get($grid-padding-tops, $name), #{$name});
       border-top: 0 none;
     }
 
@@ -754,7 +749,7 @@ $point in variables.$breakpoints {
 
 // Start drawing a keyline at the top of the first item in each row
 // this keyline will be full width
-@include breakpoint.breakpoint('xsmall') {
+@include breakpoint('xsmall') {
 
   .o-grid-listing--gridlines-rows:not([class*=col\@xsmall])>*::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall>*:nth-child(2n + 1)::before,
@@ -762,11 +757,11 @@ $point in variables.$breakpoints {
   .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xsmall>*:nth-child(4n + 1)::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xsmall>*:nth-child(6n + 1)::before {
     display: block;
-    width: grid.colspan(58, 'xsmall');
+    width: colspan(58, 'xsmall');
   }
 }
 
-@include breakpoint.breakpoint('small') {
+@include breakpoint('small') {
 
   .o-grid-listing--gridlines-rows:not([class*=col\@small])>*::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@small>*:nth-child(2n + 1)::before,
@@ -774,11 +769,11 @@ $point in variables.$breakpoints {
   .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@small>*:nth-child(4n + 1)::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@small>*:nth-child(6n + 1)::before {
     display: block;
-    width: grid.colspan(58, 'small');
+    width: colspan(58, 'small');
   }
 }
 
-@include breakpoint.breakpoint('medium') {
+@include breakpoint('medium') {
 
   .o-grid-listing--gridlines-rows:not([class*=col\@medium])>*::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@medium>*:nth-child(2n + 1)::before,
@@ -786,15 +781,15 @@ $point in variables.$breakpoints {
   .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@medium>*:nth-child(4n + 1)::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@medium>*:nth-child(6n + 1)::before {
     display: block;
-    width: grid.colspan(58, 'medium');
+    width: colspan(58, 'medium');
 
     .o-article__body & {
-      width: grid.colspan(38, 'medium');
+      width: colspan(38, 'medium');
     }
   }
 }
 
-@include breakpoint.breakpoint('large') {
+@include breakpoint('large') {
 
   .o-grid-listing--gridlines-rows:not([class*=col\@large])>*::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@large>*:nth-child(2n + 1)::before,
@@ -804,15 +799,15 @@ $point in variables.$breakpoints {
   .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@large>*:nth-child(6n + 1)::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--12-col\@large>*:nth-child(12n + 1)::before {
     display: block;
-    width: grid.colspan(58, 'large');
+    width: colspan(58, 'large');
 
     .o-article__body & {
-      width: grid.colspan(28, 'large');
+      width: colspan(28, 'large');
     }
   }
 }
 
-@include breakpoint.breakpoint('xlarge') {
+@include breakpoint('xlarge') {
 
   .o-grid-listing--gridlines-rows:not([class*=col\@xlarge])>*::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xlarge>*:nth-child(2n + 1)::before,
@@ -822,10 +817,10 @@ $point in variables.$breakpoints {
   .o-grid-listing--gridlines-rows.o-grid-listing--6-col\@xlarge>*:nth-child(6n + 1)::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--12-col\@xlarge>*:nth-child(12n + 1)::before {
     display: block;
-    width: grid.colspan(58, 'xlarge');
+    width: colspan(58, 'xlarge');
 
     .o-article__body & {
-      width: grid.colspan(28, 'xlarge');
+      width: colspan(28, 'xlarge');
     }
   }
 }
@@ -836,9 +831,9 @@ $point in variables.$breakpoints {
 .o-grid-listing--gridlines-right.o-grid-listing--gridlines-rows>*::after {
 
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
-      top: grid.colspan(map.get(variables.$grid-padding-tops, $name), #{$name});
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      top: colspan(map.get($grid-padding-tops, $name), #{$name});
     }
   }
 }
@@ -848,16 +843,16 @@ $point in variables.$breakpoints {
 .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows>*::after {
 
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
       //bottom: #{0 - map-get($grid-margin-tops, $name)}px;
-      bottom: grid.colspan(map.get(variables.$grid-padding-tops, $name), #{$name}, 0, true);
+      bottom: colspan(map.get($grid-padding-tops, $name), #{$name}, 0, true);
     }
   }
 }
 
 // Then you have to select the last row of everything and fix
-@include breakpoint.breakpoint('xsmall') {
+@include breakpoint('xsmall') {
 
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall>*:nth-child(2n+1):nth-last-child(-n+2)::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall>*:nth-child(2n+1):nth-last-child(-n+2)~*::after,
@@ -871,7 +866,7 @@ $point in variables.$breakpoints {
   }
 }
 
-@include breakpoint.breakpoint('small') {
+@include breakpoint('small') {
 
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@small>*:nth-child(2n+1):nth-last-child(-n+2)::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@small>*:nth-child(2n+1):nth-last-child(-n+2)~*::after,
@@ -885,7 +880,7 @@ $point in variables.$breakpoints {
   }
 }
 
-@include breakpoint.breakpoint('medium') {
+@include breakpoint('medium') {
 
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@medium>*:nth-child(2n+1):nth-last-child(-n+2)::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@medium>*:nth-child(2n+1):nth-last-child(-n+2)~*::after,
@@ -899,7 +894,7 @@ $point in variables.$breakpoints {
   }
 }
 
-@include breakpoint.breakpoint('large') {
+@include breakpoint('large') {
 
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@large>*:nth-child(2n+1):nth-last-child(-n+2)::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@large>*:nth-child(2n+1):nth-last-child(-n+2)~*::after,
@@ -917,7 +912,7 @@ $point in variables.$breakpoints {
   }
 }
 
-@include breakpoint.breakpoint('xlarge') {
+@include breakpoint('xlarge') {
 
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xlarge>*:nth-child(2n+1):nth-last-child(-n+2)::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xlarge>*:nth-child(2n+1):nth-last-child(-n+2)~*::after,
@@ -951,9 +946,9 @@ $point in variables.$breakpoints {
 .o-grid-listing--gridlines-cols.o-grid-listing--basic-artworks>* {
 
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
-      padding-bottom: grid.colspan(map.get(variables.$grid-padding-tops, $name), #{$name});
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      padding-bottom: colspan(map.get($grid-padding-tops, $name), #{$name});
     }
   }
 }
@@ -975,31 +970,31 @@ Draws boxes around each grid item
 
   >.m-listing {
 
-    @include breakpoint.breakpoint('small+') {
-      width: grid.colspan(grid.grid-cols-to-colspan(2), 'small');
-      margin-left: grid.colspan(2, small) !important;
+    @include breakpoint('small+') {
+      width: colspan(grid-cols-to-colspan(2), 'small');
+      margin-left: colspan(2, small) !important;
     }
 
-    @include breakpoint.breakpoint('medium+') {
-      width: grid.colspan(grid.grid-cols-to-colspan(2), 'medium');
-      margin-left: grid.colspan(2, medium) !important;
+    @include breakpoint('medium+') {
+      width: colspan(grid-cols-to-colspan(2), 'medium');
+      margin-left: colspan(2, medium) !important;
     }
 
-    @include breakpoint.breakpoint('large') {
-      width: grid.colspan(20, 'large');
-      margin-left: grid.colspan(2, large) !important;
+    @include breakpoint('large') {
+      width: colspan(20, 'large');
+      margin-left: colspan(2, large) !important;
     }
 
-    @include breakpoint.breakpoint('xlarge') {
-      width: grid.colspan(20, 'xlarge');
-      margin-left: grid.colspan(2, 'xlarge') !important;
+    @include breakpoint('xlarge') {
+      width: colspan(20, 'xlarge');
+      margin-left: colspan(2, 'xlarge') !important;
     }
   }
 
   // By default, top border is hidden; show it!
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
       &[class*="col@#{$name}"]>* {
         border-top-style: solid;
         border-top-width: thin;
@@ -1008,17 +1003,17 @@ Draws boxes around each grid item
   }
 
   // Override weird default above: no space to breathe!
-  @include breakpoint.breakpoint('xsmall') {
+  @include breakpoint('xsmall') {
     &.o-grid-listing[class*="col@xsmall"]>* {
-      margin-top: grid.colspan(map.get(variables.$grid-padding-tops, 'xsmall'), xsmall);
-      width: grid.colspan(58, xsmall);
+      margin-top: colspan(map.get($grid-padding-tops, 'xsmall'), xsmall);
+      width: colspan(58, xsmall);
     }
   }
 
   // Ensure all cards after the first rows have the right margin-top:
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
 
       &[class*="2-col@#{$name}"]:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
       &[class*="3-col@#{$name}"]:not(.o-grid-listing--single-row)>*:nth-child(3)~*,
@@ -1045,7 +1040,7 @@ Variants: `.o-grid-listing--feature-2x`
 * `.o-grid-listing--feature-2x` spans two items across full width of page
 
 ***/
-@include breakpoint.breakpoint('medium-') {
+@include breakpoint('medium-') {
   .o-grid-listing--feature-2x[class*="col@medium"] {
     margin-left: 0;
   }
@@ -1055,8 +1050,8 @@ Variants: `.o-grid-listing--feature-2x`
 
   @each $name,
   $point in ('small', 'medium', 'large', 'xlarge') {
-    @include breakpoint.breakpoint('#{$name}') {
-      width: grid.colspan(grid.grid-cols-to-colspan(2), $name);
+    @include breakpoint('#{$name}') {
+      width: colspan(grid-cols-to-colspan(2), $name);
     }
   }
 }
@@ -1076,7 +1071,7 @@ Variants: `.o-grid-listing--feature-4x`
 * `.o-grid-listing--feature-4x` spans four items across full width of page
 
 ***/
-@include breakpoint.breakpoint('large') {
+@include breakpoint('large') {
   .o-grid-listing--feature-4x[class*="col@large"] {
     margin-left: 0;
   }
@@ -1084,13 +1079,13 @@ Variants: `.o-grid-listing--feature-4x`
 
 @each $name,
 $point in ('small', 'medium') {
-  @include breakpoint.breakpoint('#{$name}') {
+  @include breakpoint('#{$name}') {
     .o-grid-listing--feature-4x[class*="col@#{$name}"] {
       margin-left: 0;
     }
 
     .o-article__body.o-blocks .o-grid-listing--feature-4x.o-grid-listing--2-col\@#{$name}>* {
-      width: grid.colspan(grid.grid-cols-to-colspan(2), $name);
+      width: colspan(grid-cols-to-colspan(2), $name);
     }
 
     .o-article__body.o-blocks .o-grid-listing--feature-4x>li:nth-child(1),

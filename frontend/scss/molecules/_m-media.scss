@@ -1,10 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-@use "../setup/mixins/other";
-@use "../setup/typography";
-@use "../setup/variables";
-
 @use "sass:math";
 
 .m-media {
@@ -33,16 +26,16 @@
         position: fixed;
         margin: 0 auto;
 
-        @include breakpoint.breakpoint('medium+') {
-          width: grid.colspan(58, medium);
+        @include breakpoint('medium+') {
+          width: colspan(58, medium);
         }
 
-        @include breakpoint.breakpoint('large+') {
-          width: grid.colspan(58, large);
+        @include breakpoint('large+') {
+          width: colspan(58, large);
         }
 
-        @include breakpoint.breakpoint('xlarge') {
-          width: grid.colspan(58, xlarge);
+        @include breakpoint('xlarge') {
+          width: colspan(58, xlarge);
         }
 
         //z-index:-1;
@@ -115,12 +108,12 @@
       margin: 10px auto 0;
       text-align: left;
       padding: 0;
-      color: colors.$color__text--secondary;
+      color: $color__text--secondary;
       background: none;
 
-      @include typography.font-styles(typography.generate-font-obj((font-family: variables.$sans-serif-font,
-            font-family-loaded: variables.$sans-serif-font--loaded,
-            font-loaded-class: variables.$sans-serif-font-loaded-class,
+      @include font-styles(generate-font-obj((font-family: $sans-serif-font,
+            font-family-loaded: $sans-serif-font--loaded,
+            font-loaded-class: $sans-serif-font-loaded-class,
             settings: ('xsmall': (font-size: 15, line-height: 20, font-weight: 300, letter-spacing: 0.01em, push: 0)))));
 
       &:before,
@@ -128,7 +121,7 @@
         display: none;
       }
 
-      @include breakpoint.breakpoint('medium+') {
+      @include breakpoint('medium+') {
         position: absolute;
         max-width: 60%;
         margin: 0 auto;
@@ -137,9 +130,9 @@
         padding: 20px 30px;
         background: rgba(0, 0, 0, 0.7);
 
-        @include typography.font-styles(typography.generate-font-obj((font-family: variables.$serif-font,
-              font-family-loaded: variables.$serif-font--loaded,
-              font-loaded-class: variables.$serif-font-loaded-class,
+        @include font-styles(generate-font-obj((font-family: $serif-font,
+              font-family-loaded: $serif-font--loaded,
+              font-loaded-class: $serif-font-loaded-class,
               settings: ('xsmall': (font-size: 18, line-height: 24, font-weight: 400),
                 'small+': (font-size: 22, line-height: 28, font-weight: 400),
               ))));
@@ -199,7 +192,7 @@
 .m-media__img {
   display: block;
   position: relative;
-  background-color: colors.$color__bg--primary;
+  background-color: $color__bg--primary;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='56' viewBox='0 0 80 56'%3E%3Cpath fill='%23ccc' d='M4 52l28-28 28 28H4z'/%3E%3Cpath fill='%23ccc' d='M44 52l16-16 16 16H44z'/%3E%3Ccircle cx='58' cy='18' r='6' fill='%23ccc'/%3E%3Cpath fill='%23ccc' d='M79 1v54H1V1h78m1-1H0v56h80V0z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -210,7 +203,7 @@
   }
 
   &.m-media__img--alt-background {
-    background-color: colors.$color__white;
+    background-color: $color__white;
   }
 
   .header-cta {
@@ -237,7 +230,7 @@
     }
 
     .header-cta-title {
-      color: colors.$color__text--title-contrast;
+      color: $color__text--title-contrast;
     }
 
     .header-cta-button {
@@ -382,7 +375,7 @@
 .m-media--l .m-media__img img,
 .m-media__img video,
 .m-media__img.m-media__img--video img {
-  @include other.objectFitFix;
+  @include objectFitFix;
 
   & {
     object-fit: contain;
@@ -489,7 +482,7 @@ a.m-media__img:hover object {
 }
 
 .m-media__img--video.s-inline-media-activated {
-  background-color: colors.$color__bg--gallery;
+  background-color: $color__bg--gallery;
 }
 
 @media (hover: hover) {
@@ -510,7 +503,7 @@ a.m-media__img:hover object {
 
 .m-media figcaption,
 .m-listing--sound figcaption {
-  @include other.tucked-margin-top(typography.$f-caption, ('xsmall': 24));
+  @include tucked-margin-top($f-caption, ('xsmall': 24));
   display: block;
   position: relative;
   min-height: 36px;
@@ -524,7 +517,7 @@ a.m-media__img:hover object {
 
 .m-media figcaption .f-caption,
 .m-listing--sound figcaption .f-caption {
-  color: colors.$color__text--secondary;
+  color: $color__text--secondary;
 }
 
 .m-media figcaption .f-caption-title em,
@@ -542,35 +535,35 @@ a.m-media__img:hover object {
 
 .m-media figcaption a,
 .m-listing--sound figcaption a {
-  color: colors.$color__link--accent;
+  color: $color__link--accent;
 }
 
 .m-media figcaption a:hover,
 .m-listing--sound figcaption a:hover {
-  color: colors.$color__link--accent-hover;
+  color: $color__link--accent-hover;
 }
 
 .m-media figcaption a:active,
 .m-listing--sound figcaption a:active {
-  color: colors.$color__link--accent-active;
+  color: $color__link--accent-active;
 }
 
 .m-media figcaption strong a,
 .m-listing--sound figcaption strong a {
-  color: colors.$color__text;
+  color: $color__text;
 }
 
 .m-media figcaption strong a:hover,
 .m-media a.m-media__img:hover+figcaption strong a,
 .m-listing--sound figcaption strong a:hover,
 .m-listing--sound a.m-media__img:hover+figcaption strong a {
-  @include typography.text-underline(1.05em, colors.$color__text, colors.$color__bg);
+  @include text-underline(1.05em, $color__text, $color__bg);
 }
 
 .m-media figcaption strong a:active,
 .m-listing--sound figcaption strong a:active {
   background-image: none;
-  color: colors.$color__text;
+  color: $color__text;
   text-shadow: 0;
 }
 
@@ -602,7 +595,7 @@ a.m-media__img:hover object {
   height: 220px;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, .85) 0%, rgba(0, 0, 0, .05) 90%, rgba(0, 0, 0, 0) 100%);
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     height: 300px;
   }
 }
@@ -610,7 +603,7 @@ a.m-media__img:hover object {
 .m-media__img--hero {
   display: block !important;
 
-  @include breakpoint.breakpoint('xsmall') {
+  @include breakpoint('xsmall') {
     display: none !important;
   }
 }
@@ -618,14 +611,14 @@ a.m-media__img:hover object {
 .m-media__img--mobile-hero {
   display: none !important;
 
-  @include breakpoint.breakpoint('xsmall') {
+  @include breakpoint('xsmall') {
     display: block !important;
   }
 }
 
 .m-media--hero img,
 .m-media--hero video {
-  @include other.objectFitFix;
+  @include objectFitFix;
 
   & {
     position: absolute;
@@ -642,7 +635,7 @@ a.m-media__img:hover object {
 .m-media--hero img:not(:only-child) {
   display: block;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     display: none;
   }
 }
@@ -651,7 +644,7 @@ a.m-media__img:hover object {
 .m-media--hero video {
   display: none;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     display: block;
   }
 }
@@ -659,7 +652,7 @@ a.m-media__img:hover object {
 .o-article--video .m-media {
   margin-top: 28px;
 
-  @include breakpoint.breakpoint('large+') {
+  @include breakpoint('large+') {
     margin-top: 0;
     margin-bottom: 28px;
   }

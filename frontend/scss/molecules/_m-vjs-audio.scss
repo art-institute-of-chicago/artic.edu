@@ -1,8 +1,6 @@
-@use "../setup/colors";
-
 .m-vjs-audio {
 
-  $color-audio-dark: colors.$color__black--72;
+  $color-audio-dark: $color__black--72;
 
   margin-top: 20px;
 
@@ -26,7 +24,7 @@
 
     height: 100%;
 
-    background-color: colors.$color__black--10;
+    background-color: $color__black--10;
   }
 
   .vjs-control {
@@ -56,12 +54,12 @@
 
   .vjs-progress-control .vjs-mouse-display .vjs-time-tooltip {
     background-color: $color-audio-dark;
-    color: colors.$color__black--2;
+    color: $color__black--2;
 
   }
 
   .vjs-play-progress .vjs-time-tooltip {
-    background-color: colors.$color__black--5;
+    background-color: $color__black--5;
     color: $color-audio-dark;
   }
 
@@ -89,7 +87,7 @@
 
   .vjs-time-divider,
   .vjs-duration {
-    color: colors.$color__black--35;
+    color: $color__black--35;
   }
 
   .vjs-progress-control {
@@ -126,8 +124,8 @@
   .vjs-volume-level:before,
   .vjs-icon-circle:before {
     content: '';
-    background-color: colors.$color__black--2;
-    border: 2px solid colors.$color__black--40;
+    background-color: $color__black--2;
+    border: 2px solid $color__black--40;
     border-radius: 50%;
     z-index: 2;
 
@@ -139,26 +137,26 @@
 
   .vjs-volume-level:before {
     border: none;
-    background-color: colors.$color__black--40;
+    background-color: $color__black--40;
 
   }
 
   .vjs-progress-holder {
-    background: colors.$color__black--20;
+    background: $color__black--20;
   }
 
   .vjs-load-progress {
     // User-friendly "what's loaded"
-    background: colors.$color__black--40;
+    background: $color__black--40;
   }
 
   .vjs-load-progress div {
     // What's actually loaded by block
-    background: colors.$color__black--40;
+    background: $color__black--40;
   }
 
   .vjs-volume-bar {
-    background: colors.$color__black--40;
+    background: $color__black--40;
   }
 
   .vjs-volume-tooltip {
@@ -190,7 +188,7 @@
   }
 
   .vjs-custom-button {
-    background-color: colors.$color__black--40;
+    background-color: $color__black--40;
     width: 48px;
     height: 48px;
     cursor: pointer;
@@ -199,7 +197,7 @@
 
     &:hover,
     &:active {
-      background-color: colors.$color__black--35;
+      background-color: $color__black--35;
     }
   }
 

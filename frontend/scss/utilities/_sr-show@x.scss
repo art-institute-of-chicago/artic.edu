@@ -1,6 +1,3 @@
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/other";
-
 /***
 
 ```
@@ -33,75 +30,75 @@
 .sr-show\@xlarge {
 }
 
-@include breakpoint.breakpoint('xsmall') {
+@include breakpoint('xsmall') {
   .sr-show\@xsmall {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }
 
-@include breakpoint.breakpoint('small') {
+@include breakpoint('small') {
   .sr-show\@small {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }
 
-@include breakpoint.breakpoint('medium') {
+@include breakpoint('medium') {
   .sr-show\@medium {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }
 
-@include breakpoint.breakpoint('large') {
+@include breakpoint('large') {
   .sr-show\@large {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }
 
-@include breakpoint.breakpoint('xlarge') {
+@include breakpoint('xlarge') {
   .sr-show\@xlarge {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }
 
 
-@include breakpoint.breakpoint('small-') {
+@include breakpoint('small-') {
   .sr-show\@small\- {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }
 
-@include breakpoint.breakpoint('medium-') {
+@include breakpoint('medium-') {
   .sr-show\@medium\- {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }
 
-@include breakpoint.breakpoint('large-') {
+@include breakpoint('large-') {
   .sr-show\@large\- {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }
 
-@include breakpoint.breakpoint('small+') {
+@include breakpoint('small+') {
   .sr-show\@small\+ {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }
 
-@include breakpoint.breakpoint('medium+') {
+@include breakpoint('medium+') {
   .sr-show\@medium\+ {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }
 
-@include breakpoint.breakpoint('large+') {
+@include breakpoint('large+') {
   .sr-show\@large\+ {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }
 
-@include breakpoint.breakpoint('xlarge') {
+@include breakpoint('xlarge') {
   .sr-show\@xlarge {
-    @include other.sr-only-attributes;
+    @include sr-only-attributes;
   }
 }

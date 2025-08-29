@@ -1,15 +1,12 @@
-@use "../setup/colors";
-@use "../setup/variables";
-
 @use "sass:map";
 .g-mask {
   position: fixed;
-  z-index: map.get(variables.$zindexs, 'mask');
+  z-index: map.get($zindexs, 'mask');
   left: 0;
   right: 100%;
   top: 0;
   bottom: 100%;
-  background-color: rgba(colors.$color__white, 0);
+  background-color: rgba($color__white, 0);
   opacity: 0;
   user-select: none;
 }

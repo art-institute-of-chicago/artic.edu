@@ -1,5 +1,5 @@
-@use 'setup/colors';
-@use 'atoms/loader';
+@import 'setup/colors';
+@import 'atoms/loader';
 
 html.s-interactive-feature--kiosk {
   overflow-y: hidden;

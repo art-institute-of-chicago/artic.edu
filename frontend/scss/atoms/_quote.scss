@@ -1,9 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/other";
-@use "../setup/typography";
-@use "../setup/variables";
-
 /***
 
 quote
@@ -42,13 +36,13 @@ Has a variant for editorial articles:
   position: relative;
   padding-top: 56px;
   padding-bottom: 0.02px;
-  color: colors.$color__text--title;
+  color: $color__text--title;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     padding-top: 68px;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     padding-top: 80px;
   }
 
@@ -64,11 +58,11 @@ Has a variant for editorial articles:
   right: 0;
   top: 0;
   height: 1px;
-  background-color: colors.$color__rules--primary;
+  background-color: $color__rules--primary;
 }
 
 .quote cite {
-  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 40, 'medium': 56));
+  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'medium': 56));
 
   & {
     display: block;
@@ -81,17 +75,17 @@ Has a variant for editorial articles:
   top: 16px;
   width: 48px;
   height: 29px;
-  color: colors.$color__text--accent;
+  color: $color__text--accent;
   transform: rotate(180deg);
   transform-origin: 24px 14.5px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     width: 68px;
     height: 40px;
     transform-origin: 34px 20px;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     top: 20px;
     width: 76px;
     height: 44px;
@@ -100,7 +94,7 @@ Has a variant for editorial articles:
 }
 
 .quote__icon *:nth-child(1) {
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     display: none;
   }
 }
@@ -108,11 +102,11 @@ Has a variant for editorial articles:
 .quote__icon *:nth-child(2) {
   display: none;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     display: block;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: none;
   }
 }
@@ -120,30 +114,30 @@ Has a variant for editorial articles:
 .quote__icon *:nth-child(3) {
   display: none;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: block;
   }
 }
 
 .quote .f-quote:first-child {
-  @include other.tucked-align-top(typography.$f-quote);
+  @include tucked-align-top($f-quote);
 }
 
 .quote .f-deck:first-child {
-  @include other.tucked-align-top(typography.$f-deck);
+  @include tucked-align-top($f-deck);
 }
 
 .quote--editorial,
 .o-article--editorial .o-blocks .quote {
   padding: 12px 40px 60px 12px;
-  border-radius: variables.$border-radius;
-  background-color: colors.$color__bg--editorial;
+  border-radius: $border-radius;
+  background-color: $color__bg--editorial;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     padding: 16px 40px 80px 20px;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     padding-top: 20px;
     padding-bottom: 116px;
   }
@@ -160,7 +154,7 @@ Has a variant for editorial articles:
 .quote--editorial .f-quote,
 .o-article--editorial .o-blocks .quote .f-quote {
   font-style: italic;
-  color: colors.$color__text--title;
+  color: $color__text--title;
 }
 
 .quote--editorial .quote__icon,
@@ -170,10 +164,10 @@ Has a variant for editorial articles:
   right: 16px;
   top: auto;
   bottom: 16px;
-  color: colors.$color__text--editorial;
+  color: $color__text--editorial;
   transform: none;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     right: 20px;
     bottom: 20px;
   }
@@ -181,14 +175,14 @@ Has a variant for editorial articles:
 
 .o-article .quote.o-blocks__block {
   padding: 12px 40px 60px 12px;
-  border-radius: variables.$border-radius;
-  background-color: colors.$color__bg--editorial;
+  border-radius: $border-radius;
+  background-color: $color__bg--editorial;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     padding: 16px 40px 80px 20px;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     padding-top: 20px;
     padding-bottom: 116px;
   }
@@ -201,7 +195,7 @@ Has a variant for editorial articles:
 
 .o-article .quote.o-blocks__block .f-quote {
   font-style: italic;
-  color: colors.$color__text--title;
+  color: $color__text--title;
 }
 
 .o-article .quote.o-blocks__block .quote__icon {
@@ -212,7 +206,7 @@ Has a variant for editorial articles:
   bottom: 16px;
   transform: none;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     right: 20px;
     bottom: 20px;
   }

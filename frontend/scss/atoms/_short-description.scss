@@ -1,5 +1,3 @@
-@use "../setup/colors";
-
 /***
 
 short-description
@@ -14,5 +12,5 @@ Sets color of short description text
 ***/
 
 .short-description {
-  color: colors.$color__text--secondary;
+  color: $color__text--secondary;
 }

@@ -1,32 +1,27 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/other";
-@use "../setup/typography";
-
 
 .m-featured-results {
   margin-top: 40px;
 }
 
 .m-featured-results__title.f-tag {
-  @include other.tucked-align-top(typography.$f-tag);
+  @include tucked-align-top($f-tag);
 }
 
 .m-featured-results .m-listing--row {
   margin-top: 0;
   padding: 20px;
-  border-top: 1px solid colors.$color__rules--primary;
-  background: colors.$color__bg--secondary;
+  border-top: 1px solid $color__rules--primary;
+  background: $color__bg--secondary;
 
   & + & {
     margin-top: 0;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 0;
       padding-top: 20px;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       margin-top: 0;
       padding-top: 20px;
     }

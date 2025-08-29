@@ -1,8 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/typography";
-@use "../setup/variables";
-
 html {
   /* juggling left/right and margin left/right as 100vw includes scroll bars so forcing 100vw width to make grid colspan calcs work */
   position: relative;
@@ -18,14 +13,14 @@ html {
 }
 
 body {
-  @include typography.font-smoothing(on);
+  @include font-smoothing(on);
 
   & {
     width: 100vw;
     overflow-x: hidden;
-    background: colors.$color__bg;
-    color: colors.$color__text;
-    font-family: variables.$sans-serif-font;
+    background: $color__bg;
+    color: $color__text;
+    font-family: $sans-serif-font;
     font-size: 62.5%;
     font-feature-settings: 'kern';
     font-kerning: normal;
@@ -52,8 +47,8 @@ body {
 }
 
 @each $name,
-$point in variables.$breakpoints {
-  @include breakpoint.breakpoint('#{$name}') {
+$point in $breakpoints {
+  @include breakpoint('#{$name}') {
     head {
       font-family: '#{$name}';
     }

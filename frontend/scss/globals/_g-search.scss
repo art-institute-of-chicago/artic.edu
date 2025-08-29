@@ -1,23 +1,15 @@
-@use "../atoms/loader";
-@use "../setup/colors";
-@use "../setup/mixins/forms";
-@use "../setup/typography";
-@use "../setup/placeholders";
-@use "../setup/variables";
-
 @use "sass:map";
-
-$f-search-input: typography.generate-font-obj((font-family: variables.$serif-font,
-    font-family-loaded: variables.$serif-font--loaded,
-    font-loaded-class: variables.$serif-font-loaded-class,
+$f-search-input: generate-font-obj((font-family: $serif-font,
+    font-family-loaded: $serif-font--loaded,
+    font-loaded-class: $serif-font-loaded-class,
     settings: ('xsmall': (font-size: 28, line-height: 32, letter-spacing: -.01em, push: 0),
       'small+': (font-size: 35, line-height: 40, push: 0),
       'medium+': (font-size: 38, line-height: 44, push: 0),
     )));
 
-$f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-serif-font,
-    font-family-loaded: variables.$sans-serif-font--loaded,
-    font-loaded-class: variables.$sans-serif-font-loaded-class,
+$f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
+    font-family-loaded: $sans-serif-font--loaded,
+    font-loaded-class: $sans-serif-font-loaded-class,
     settings: ('xsmall': (font-size: 16, line-height: 24, letter-spacing: .01em, push: 0),
       'small+': (font-size: 17, line-height: 24, push: 0),
     )));
@@ -27,18 +19,18 @@ $f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-seri
   top: 0;
   left: 0;
   right: 0;
-  z-index: map.get(variables.$zindexs, 'searchForm');
-  background-color: rgba(colors.$color__black--90, 0.96);
+  z-index: map.get($zindexs, 'searchForm');
+  background-color: rgba($color__black--90, 0.96);
   display: none;
   transform: translateY(-100%);
-  transition: transform .4s variables.$bezier--marius-ease, visibility 0s .4s variables.$bezier--marius-ease;
+  transition: transform .4s $bezier--marius-ease, visibility 0s .4s $bezier--marius-ease;
 }
 
 .g-search__scroll {
   min-height: fit-content;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
-  transition: height .25s .25s variables.$bezier--marius-ease;
+  transition: height .25s .25s $bezier--marius-ease;
 }
 
 .g-search__inner {
@@ -47,7 +39,7 @@ $f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-seri
   padding: 80px 0 45px;
   transform: translateZ(0);
   opacity: 0;
-  transition: opacity .25s .75s variables.$bezier--marius-ease;
+  transition: opacity .25s .75s $bezier--marius-ease;
 }
 
 .g-search__close {
@@ -57,7 +49,7 @@ $f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-seri
   padding: 0;
   border: 0 none;
   background-color: transparent;
-  color: colors.$color__white;
+  color: $color__white;
   cursor: pointer;
 
   &:hover {
@@ -70,29 +62,29 @@ $f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-seri
 }
 
 .g-search__input {
-  @include typography.font-styles($f-search-input);
+  @include font-styles($f-search-input);
 
   & {
     width: 100%;
     padding-right: 40px;
     padding-bottom: 15px;
     border: 0;
-    border-bottom: 1px solid rgba(colors.$color__rules--tertiary, 0.5);
+    border-bottom: 1px solid rgba($color__rules--tertiary, 0.5);
     background-color: transparent;
-    color: colors.$color__text--search;
+    color: $color__text--search;
     -webkit-appearance: none;
     outline: 0;
 
   }
 
-  @include forms.placeholder() {
-    color: colors.$color__text--search;
+  @include placeholder() {
+    color: $color__text--search;
   }
 }
 
 .g-search__input:focus {
-  border-bottom-color: colors.$color__rules--tertiary;
-  color: colors.$color__white;
+  border-bottom-color: $color__rules--tertiary;
+  color: $color__white;
 }
 
 .g-search__submit {
@@ -107,7 +99,7 @@ $f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-seri
   padding: 0;
   border: 0;
   background-color: transparent;
-  color: colors.$color__text--search;
+  color: $color__text--search;
   line-height: 56px;
   text-align: center;
   cursor: pointer;
@@ -121,7 +113,7 @@ $f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-seri
 }
 
 .g-search__submit:hover {
-  color: colors.$color__white;
+  color: $color__white;
 }
 
 .g-search__loader {
@@ -145,7 +137,7 @@ $f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-seri
 
 .g-search__suggested-title {
   @extend %f-tag;
-  color: colors.$color__text--title-contrast;
+  color: $color__text--title-contrast;
 }
 
 .g-search__suggested ul {
@@ -164,11 +156,11 @@ $f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-seri
   display: block;
   padding: 10px 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: colors.$color__text--title-contrast;
+  color: $color__text--title-contrast;
 }
 
 .g-search__suggested li a:hover {
-  border-color: colors.$color__text--title-contrast;
+  border-color: $color__text--title-contrast;
 }
 
 .g-search__autocomplete {
@@ -187,12 +179,12 @@ $f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-seri
   display: block;
   min-height: 52px;
   padding: 6px 0 6px 55px;
-  color: colors.$color__text--search;
+  color: $color__text--search;
 }
 
 .g-search__autocomplete li a:hover {
   background-color: rgba(0, 0, 0, 0.2);
-  color: colors.$color__white;
+  color: $color__white;
 }
 
 .g-search__autocomplete-img {
@@ -206,7 +198,7 @@ $f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-seri
 
 .g-search__autocomplete strong {
   font-weight: normal;
-  color: colors.$color__white;
+  color: $color__white;
 }
 
 .g-search__autocomplete-img img {
@@ -227,14 +219,14 @@ $f-autocomplete: typography.generate-font-obj((font-family: variables.$sans-seri
 }
 
 .g-search__autocomplete-all a {
-  color: colors.$color__link--hover;
+  color: $color__link--hover;
 
   &:hover,
   &:focus:hover {
-    color: colors.$color__link;
+    color: $color__link;
   }
 
   &:active:hover {
-    color: colors.$color__link--active;
+    color: $color__link--active;
   }
 }

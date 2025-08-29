@@ -1,6 +1,3 @@
-@use "../variables";
-@use "breakpoint";
-
 @use "sass:map";
 /*
   @function colspan
@@ -18,9 +15,9 @@
 @use "sass:math";
 
 @function colspan($number-of-columns:1, $breakpoint:'xsmall', $bump:0, $inverse:false) {
-  @if map.has-key(breakpoint.$breakpoints-with-directions, $breakpoint) {
-    $this-bp-main-col-width: map.get(variables.$main-col-widths, $breakpoint);
-    $this-bp-outer-gutter: map.get(variables.$outer-gutters, $breakpoint);
+  @if map.has-key($breakpoints-with-directions, $breakpoint) {
+    $this-bp-main-col-width: map.get($main-col-widths, $breakpoint);
+    $this-bp-outer-gutter: map.get($outer-gutters, $breakpoint);
     $this-multiplier: 1;
     $this-calc: '';
 
@@ -101,7 +98,7 @@
   }
 
   @else {
-    @warn "Unknown breakpoint `#{variables.$breakpoints}` in $breakpoints-with-directions";
+    @warn "Unknown breakpoint `#{$breakpoints}` in $breakpoints-with-directions";
   }
 }
 
@@ -196,11 +193,11 @@
   @if $colspans {
 
     @each $name,
-    $point in variables.$breakpoints {
+    $point in $breakpoints {
       $colspan: map.get($colspans, #{$name});
 
       @if $colspan {
-        @include breakpoint.breakpoint('#{$name}') {
+        @include breakpoint('#{$name}') {
           @include width($colspan, #{$name}, $bump);
         }
       }
@@ -260,11 +257,11 @@
   @if $colspans {
 
     @each $name,
-    $point in variables.$breakpoints {
+    $point in $breakpoints {
       $colspan: map.get($colspans, #{$name});
 
       @if $colspan {
-        @include breakpoint.breakpoint('#{$name}') {
+        @include breakpoint('#{$name}') {
           @include push($colspan, #{$name}, $bump);
         }
       }
@@ -292,8 +289,8 @@
   flex-flow: row wrap;
 
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
       margin-left: math.div(map.get($inner-gutters, $name), -1);
     }
   }
@@ -329,8 +326,8 @@
   flex: 0 0 auto;
 
   @each $name,
-  $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
+  $point in $breakpoints {
+    @include breakpoint('#{$name}') {
       @if $colspans {
         $colspan: map.get($colspans, #{$name});
 

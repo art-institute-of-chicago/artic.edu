@@ -1,7 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/other";
-@use "../setup/typography";
-
 /***
 
 Interests List
@@ -16,26 +12,26 @@ Typically used at the bottom of the artwork detail.
 ***/
 
 .interests-list {
-  color: colors.$color__text--title;
+  color: $color__text--title;
 }
 
 .interests-list.f-list-2 {
-  @include other.tucked-margin-top(typography.$f-list-2, ('xsmall': 52));
+  @include tucked-margin-top($f-list-2, ('xsmall': 52));
 }
 
 .interests-list a {
-  @include typography.text-underline(.8em, colors.$color__text--title);
+  @include text-underline(.8em, $color__text--title);
 
   & {
-    color: colors.$color__text--title;
+    color: $color__text--title;
     text-decoration: none;
   }
 }
 
 .interests-list a:hover {
-  @include typography.text-underline(.8em, colors.$color__text--secondary);
+  @include text-underline(.8em, $color__text--secondary);
 
   & {
-    color: colors.$color__text--secondary;
+    color: $color__text--secondary;
   }
 }

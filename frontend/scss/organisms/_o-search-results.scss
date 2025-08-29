@@ -1,17 +1,16 @@
-@use "../setup/mixins/breakpoint";
 
 
 .o-search-results .m-search-actions {
   display: none;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: flex;
   }
 }
 
 .o-search-results .m-search-triggers {
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: none;
   }
 }
