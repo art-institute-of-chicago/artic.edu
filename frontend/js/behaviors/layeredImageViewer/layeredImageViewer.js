@@ -1330,167 +1330,73 @@ const layeredImageViewer = function(container) {
   let viewer = null;
   let observer = null;
   let resizeObserver = null;
-  let containerDimensions = null;
+  let isInitialized = false;
+  let isSized = false;
+  let figCaption = null;
 
   const updateDimensions = () => {
-    // Only update if we don't have an active viewer
-    if (!viewer) {
-      container.style.height = 'maxcontent';
-      const parentWidth = container.parentElement.offsetWidth;
-      const maxWidth = container.dataset.maxWidth || parentWidth;
-      const width = Math.min(parentWidth, maxWidth);
+    figCaption = container.querySelector('figcaption');
+    container.style.height = 'max-content'
+    container.offsetHeight;
 
-      let height = 1;
-      let aspect = 0;
+    if (figCaption !== null && (container.offsetHeight > figCaption.offsetHeight) && !isSized) {
 
-      const mainFigure = container.querySelector('figure.o-layered-image-viewer__osd');
-
-      if (mainFigure) {
-        height = calculateHeightFromFigure(mainFigure, width);
-        aspect = width / height;
-      } else {
-        // LayeredImageViewer not initialized yet - use reasonable default
-        const defaultAspect = 3/4; // Default aspect ratio
-        height = Math.min(width * defaultAspect, 650); // Max 600px height
-        aspect = width / height;
-      }
-
-      // Store and apply dimensions
-      containerDimensions = { width, height, aspect };
-      container.style.width = `${width}px`;
-      container.style.height = `${height}px`;
-      container.style.backgroundColor = '#f5f5f5';
+      container.style.height = `${container.offsetHeight}px`;
+      isSized = true;
     }
   };
 
-  const calculateHeightFromFigure = (figure, containerWidth) => {
-    const mediaImg = figure.querySelector('.m-media__img');
-    const figcaption = figure.querySelector('figcaption');
-
-    if (!mediaImg) {
-      return containerWidth * (3/4); // Fallback
-    }
-
-    const idealImageHeight = containerWidth * (5/4);
-    const computedStyle = window.getComputedStyle(mediaImg);
-    const cssMaxHeight = computedStyle.maxHeight;
-
-    let maxHeight = 650; // Default fallback
-    if (cssMaxHeight && cssMaxHeight !== 'none' && cssMaxHeight !== 'unset') {
-      const parsed = parseFloat(cssMaxHeight);
-      if (!isNaN(parsed) && parsed > 0) {
-        maxHeight = parsed;
-      }
-    }
-
-    const imageHeight = Math.min(idealImageHeight, maxHeight);
-
-    // Calculate figcaption height
-    let captionHeight = 0;
-    if (figcaption) {
-      const captionStyle = window.getComputedStyle(figcaption);
-      captionHeight = figcaption.offsetHeight +
-                     (parseInt(captionStyle.marginTop) || 0) +
-                     (parseInt(captionStyle.marginBottom) || 0);
-    }
-
-    return imageHeight + captionHeight;
-  };
-
-  const waitForViewerReady = () => {
-    return new Promise((resolve) => {
-      requestAnimationFrame(() => {
-        const mainFigure = container.querySelector('figure.o-layered-image-viewer__osd');
-        if (mainFigure) {
-          container.style.height = `${container.offsetHeight + mainFigure.querySelector('figcaption').offsetHeight}px`;
-          updateDimensions();
-          resolve();
-          return;
-        }
-
-        let timeoutId;
-        observer = new MutationObserver((mutations) => {
-          for (const mutation of mutations) {
-            for (const node of mutation.addedNodes) {
-              if (node.nodeType === Node.ELEMENT_NODE) {
-                const figure = node.matches?.('figure.o-layered-image-viewer__osd')
-                  ? node
-                  : node.querySelector?.('figure.o-layered-image-viewer__osd');
-
-                if (figure) {
-                  clearTimeout(timeoutId);
-                  observer.disconnect();
-                  resolve();
-                  return;
-                }
-              }
-            }
-          }
-        });
-
-        observer.observe(container, { childList: true, subtree: true });
-
-        timeoutId = setTimeout(() => {
-          observer.disconnect();
-          resolve();
-        }, 2000);
-      });
-    });
-  };
-
-  const setupResizeObserver = () => {
-    if (resizeObserver) return;
-
-    resizeObserver = new ResizeObserver(() => {
-      updateDimensions();
-    });
-
-    resizeObserver.observe(container.parentElement);
-  };
-
-  this.setupObserver = function() {
-    updateDimensions();
-    setupResizeObserver();
-    document.addEventListener('accordion:toggled', updateDimensions);
-
+  const setupObservers = () => {
     observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const figure = container.querySelector('figure');
 
         if (entry.isIntersecting && !viewer) {
-          // Show figure and initialize viewer
           if (figure) {
             figure.style.display = 'block';
           }
-
-          viewer = new LayeredImageViewer(container);
-          container.style.backgroundColor = '';
-
-          // Wait for viewer to be fully ready, then update dimensions
-          waitForViewerReady().then(() => {
-            updateDimensions();
-          });
-
+          if (!viewer) {
+            viewer = new LayeredImageViewer(container);
+          }
         } else if (!entry.isIntersecting && viewer) {
           if (figure) {
-            figure.style.display = '';
+            figure.style.display = 'none';
           }
-
-          LayeredImageViewer.destroy(container);
-          viewer = null;
-          updateDimensions();
+          if (viewer) {
+            if (typeof viewer.destroy === 'function') {
+              viewer.destroy();
+            } else if (typeof LayeredImageViewer.destroy === 'function') {
+              LayeredImageViewer.destroy(container);
+            }
+            viewer = null;
+          }
         }
       });
-    }, {
-      rootMargin: '200px 0px',
-      threshold: 0.01
     });
 
+    // Start observing the container
     observer.observe(container);
+
+    resizeObserver = new ResizeObserver(() => {
+      if (viewer) {
+        setTimeout(100);
+        isSized = false;
+        updateDimensions();
+      }
+    });
+    resizeObserver.observe(container);
+  };
+
+  this.setupViewer = async function() {
+    if (!isInitialized) {
+      setupObservers();
+      await updateDimensions();
+      isInitialized = true;
+    }
   };
 
   this.init = function() {
-    this.setupObserver();
+    this.setupViewer();
   };
 
   this.destroy = function() {
@@ -1498,45 +1404,25 @@ const layeredImageViewer = function(container) {
       observer.disconnect();
       observer = null;
     }
+
     if (resizeObserver) {
       resizeObserver.disconnect();
       resizeObserver = null;
     }
+
     if (viewer) {
-      LayeredImageViewer.destroy(container);
+      // Use the instance method if available, otherwise try static method
+      if (typeof viewer.destroy === 'function') {
+        viewer.destroy();
+      } else if (typeof LayeredImageViewer.destroy === 'function') {
+        LayeredImageViewer.destroy(container);
+      }
       viewer = null;
     }
 
-    document.removeEventListener('accordion:toggled', updateDimensions);
-
-    // Reset container styles
-    container.style.width = '';
-    container.style.height = '';
-    container.style.backgroundColor = '';
-
-    const figure = container.querySelector('figure');
-    if (figure) {
-      figure.style.display = '';
-    }
-
-    containerDimensions = null;
-  };
-
-  this.forceInit = function() {
-    if (!viewer) {
-      const figure = container.querySelector('figure');
-      if (figure) {
-        figure.style.display = 'block';
-      }
-
-      viewer = new LayeredImageViewer(container);
-      container.style.backgroundColor = '';
-
-      // Wait for viewer to be fully ready, then update dimensions
-      waitForViewerReady().then(() => {
-        updateDimensions();
-      });
-    }
+    isSized = false;
+    isInitialized = false;
   };
 };
+
 export default layeredImageViewer;
