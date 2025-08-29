@@ -1,7 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/variables";
-
 /***
 
 checkbox
@@ -84,7 +80,7 @@ a.checkbox {
   display: block;
   position: relative;
   padding-left: 28px;
-  color: colors.$color__input-text;
+  color: $color__input-text;
   cursor: pointer;
 }
 
@@ -92,14 +88,14 @@ a.checkbox {
 a.checkbox em,
 .checkbox label i,
 a.checkbox i {
-  color: colors.$color__text--forms;
+  color: $color__text--forms;
   font-style: normal;
 }
 
 .checkbox label:hover,
 .checkbox input[type=checkbox]:focus + span label,
 a.checkbox:hover {
-  color: colors.$color__input-text--focus;
+  color: $color__input-text--focus;
   background-image: none;
   text-shadow: none;
 }
@@ -116,11 +112,11 @@ a.checkbox::before {
   top: 3px;
   width: 16px;
   height: 16px;
-  border: 1px solid colors.$color__input-border;
-  border-radius: variables.$border-radius;
-  background-color: colors.$color__white;
+  border: 1px solid $color__input-border;
+  border-radius: $border-radius;
+  background-color: $color__white;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     top: 6px;
   }
 }
@@ -133,35 +129,35 @@ a.checkbox::after {
   top: 4px;
   width: 5px;
   height: 12px;
-  border: 1.5px solid colors.$color__white;
+  border: 1.5px solid $color__white;
   border-top: 0 none;
   border-left: 0 none;
   background-color: transparent;
   opacity: 0;
   transform: rotate(45deg) scale(.1);
-  transition: all .15s variables.$bezier__bounce;
+  transition: all .15s $bezier__bounce;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     top: 7px;
   }
 }
 
 .checkbox input[type=checkbox]:focus + span label::before,
 a.checkbox:focus::before {
-  border-color: colors.$color__input-border--focus;
+  border-color: $color__input-border--focus;
 }
 
 .checkbox label:hover::before,
 a.checkbox:hover::before {
-  border-color: colors.$color__input-border--hover;
+  border-color: $color__input-border--hover;
 }
 
 
 
 .checkbox input[type=checkbox]:checked + span label::before,
 a.checkbox.s-checked::before {
-  border-color: colors.$color__input-border--checked;
-  background-color: colors.$color__input-border--checked;
+  border-color: $color__input-border--checked;
+  background-color: $color__input-border--checked;
 }
 
 .checkbox input[type=checkbox]:checked + span label::after,
@@ -181,5 +177,5 @@ a.checkbox:disabled {
 
 .checkbox.s-error label::before,
 a.checkbox.s-error::before {
-  border-color: colors.$color__input-border--error;
+  border-color: $color__input-border--error;
 }

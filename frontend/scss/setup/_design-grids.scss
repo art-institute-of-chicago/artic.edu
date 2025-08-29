@@ -1,8 +1,3 @@
-@use "mixins/breakpoint";
-@use "mixins/grid";
-@use "mixins/other";
-@use "variables";
-
 @use "sass:map";
 .design-grid-toggles {
   position: fixed;
@@ -28,8 +23,8 @@
   &::before {
     margin-bottom: 3px;
 
-    @each $name, $point in variables.$breakpoints {
-      @include breakpoint.breakpoint('#{$name}') {
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
         content: '#{$name}';
       }
     }
@@ -107,7 +102,7 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  background: repeating-linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0) #{variables.$base-height}px, #7fffff #{variables.$base-height}px, #7fffff #{variables.$base-height + variables.$base-height}px);
+  background: repeating-linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0) #{$base-height}px, #7fffff #{$base-height}px, #7fffff #{$base-height + $base-height}px);
   opacity: .25;
   pointer-events: none;
 
@@ -131,26 +126,26 @@
   opacity: .25;
   pointer-events: none;
 
-  @each $name, $point in variables.$breakpoints {
-    @include breakpoint.breakpoint('#{$name}') {
-      @if (map.get(variables.$main-col-widths, $name) == 'fluid') {
-        width: calc(100vw - #{map.get(variables.$outer-gutters, $name) * 2});
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      @if (map.get($main-col-widths, $name) == 'fluid') {
+        width: calc(100vw - #{map.get($outer-gutters, $name) * 2});
       } @else {
-        width: map.get(variables.$main-col-widths, $name);
+        width: map.get($main-col-widths, $name);
       }
       background: repeating-linear-gradient(
         90deg,
         rgba(127,255,255,.5),
-        rgba(127,255,255,.5) grid.colspan(1, $name),
-        rgba(255,127,255,.5) grid.colspan(1, $name),
-        rgba(255,127,255,.5) grid.colspan(2, $name)
+        rgba(127,255,255,.5) colspan(1, $name),
+        rgba(255,127,255,.5) colspan(1, $name),
+        rgba(255,127,255,.5) colspan(2, $name)
       ),
       repeating-linear-gradient(
         90deg,
         rgba(0,0,0,.75),
-        rgba(0,0,0,.75) grid.colspan(3, $name),
-        rgba(0,0,0,0) grid.colspan(3, $name),
-        rgba(0,0,0,0) grid.colspan(5, $name)
+        rgba(0,0,0,.75) colspan(3, $name),
+        rgba(0,0,0,0) colspan(3, $name),
+        rgba(0,0,0,0) colspan(5, $name)
       ),
       ;
     }
@@ -163,5 +158,5 @@
 
 /* Taken from: http://a11y-guidelines.orange.com/web_EN/exemples/masquage/index.html */
 .sr-only {
-  @include other.sr-only-attributes;
+  @include sr-only-attributes;
 }

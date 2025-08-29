@@ -1,5 +1,3 @@
-@use "../setup/mixins/breakpoint";
-
 /***
 
 Image heights capped
@@ -32,11 +30,11 @@ Dev mode - can cap the heights of the images, rounds them to something that divi
   .m-article-header--gallery .m-article-header__img {
     height: 200px !important;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       height: 400px !important;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       height: 600px !important;
     }
   }

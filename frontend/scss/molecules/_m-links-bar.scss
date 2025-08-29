@@ -1,9 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/other";
-@use "../setup/typography";
-@use "../setup/variables";
-
 /***
 
 ```
@@ -64,11 +58,11 @@
   .o-row-listing + & {
     margin-top: 20px;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 20px;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       margin-top: 20px;
     }
   }
@@ -76,11 +70,11 @@
   & + .hr:not(.hr--flush-top) {
     margin-top: 36px;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       margin-top: 48px;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       margin-top: 60px;
     }
   }
@@ -93,7 +87,7 @@
     display: none;
   }
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     flex-wrap: nowrap;
 
     &.s-overflowing {
@@ -109,7 +103,7 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: colors.$color__rules--primary;
+  background-color: $color__rules--primary;
   pointer-events: none;
 }
 
@@ -130,12 +124,12 @@
   max-width: 100%;
   min-height: 48px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     width: auto;
     min-height: 56px;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     min-height: 72px;
   }
 
@@ -147,7 +141,7 @@
 .m-links-bar__items-primary {
   flex-wrap: wrap;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     flex: 1;
   }
 
@@ -159,7 +153,7 @@
 .m-links-bar__items-secondary {
   flex-wrap: wrap;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     flex-wrap: nowrap;
     margin-left: auto;
     padding-left: 20px;
@@ -176,11 +170,11 @@
   margin-right: 20px;
   padding-top: 4px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     padding-top: 8px;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     padding-top: 12px;
   }
 
@@ -205,7 +199,7 @@
   &.s-active {
     .f-link {
       font-weight: 400;
-      color: colors.$color__black;
+      color: $color__black;
       text-decoration: underline;
     }
   }
@@ -213,7 +207,7 @@
   .dropdown__trigger.s-active {
     .f-secondary {
       font-weight: 400;
-      color: colors.$color__black;
+      color: $color__black;
       text-decoration: underline;
     }
   }
@@ -269,10 +263,10 @@
     right: 0;
     top: 0;
     height: 1px;
-    background-color: colors.$color__rules--tertiary;
+    background-color: $color__rules--tertiary;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     flex-grow: 0;
     width: 240px;
     margin-top: 0;
@@ -289,7 +283,7 @@
 }
 
 .m-links-bar__item--search .m-search-bar input[type=text] {
-  @include breakpoint.breakpoint('small-') {
+  @include breakpoint('small-') {
     //padding-left: 0;
   }
 }
@@ -328,7 +322,7 @@
     right: 0;
     top: 0;
     height: 1px;
-    background-color: colors.$color__rules--tertiary;
+    background-color: $color__rules--tertiary;
   }
 }
 .s-overflowing .m-links-bar__items-secondary {
@@ -336,7 +330,7 @@
 }
 
 .m-links-bar__items-secondary {
-  @include breakpoint.breakpoint('xsmall') {
+  @include breakpoint('xsmall') {
     @include overflowOverrides;
   }
 }
@@ -360,20 +354,20 @@
 
 .m-links-bar__item-trigger:not([class*=btn]) {
   //color: $color__link--tab;
-  color: colors.$color__link;
+  color: $color__link;
 }
 
 .m-links-bar__item-trigger:not([class*=btn]):hover,
 .m-links-bar__item-trigger:not([class*=btn]):focus {
-  color: colors.$color__link--hover;
+  color: $color__link--hover;
 }
 
 .m-links-bar__item-trigger:not([class*=btn]):active {
-  color: colors.$color__link--active;
+  color: $color__link--active;
 }
 
 .s-active > .m-links-bar__item-trigger:not([class*=btn]) {
-  color: colors.$color__link--tab-active;
+  color: $color__link--tab-active;
 
   &.f-link {
     background: none;
@@ -381,7 +375,7 @@
 }
 
 
-@include breakpoint.breakpoint('xsmall') {
+@include breakpoint('xsmall') {
   .m-links-bar__items-secondary .dropdown {
     display: block;
   }
@@ -401,7 +395,7 @@
 
 // Variant `.m-links-bar__secondary-split`
 
-@include breakpoint.breakpoint('small') {
+@include breakpoint('small') {
   .m-links-bar__secondary-split {
     flex-wrap: wrap;
 
@@ -418,7 +412,7 @@
       right: 0;
       top: 0;
       height: 1px;
-      background-color: colors.$color__rules--tertiary;
+      background-color: $color__rules--tertiary;
     }
 
     .m-links-bar__items-secondary .m-links-bar__item--primary:first-child {
@@ -458,11 +452,11 @@
 
 .m-links-bar--tabs .m-links-bar__items-secondary {
 
-  @include breakpoint.breakpoint('xsmall') {
+  @include breakpoint('xsmall') {
     margin-top: 16px;
   }
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     min-height: 0;
   }
 }
@@ -478,7 +472,7 @@
   width: 100%;
   margin-right: 0;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     width: auto;
     margin-right: 24px;
   }
@@ -492,39 +486,39 @@
     right: 0;
     bottom: 0;
     height: 1px;
-    background-color: colors.$color__rules--primary;
+    background-color: $color__rules--primary;
   }
 
   .s-active::before {
-    background-color: colors.$color__rules--brand;
+    background-color: $color__rules--brand;
   }
 }
 
 .m-links-bar--tabs .m-links-bar__items-primary .m-links-bar__item-trigger:not([class*=btn]) {
   padding-bottom: 32px;
-  color: colors.$color__link--tab;
+  color: $color__link--tab;
 }
 
 .m-links-bar--tabs .m-links-bar__items-primary .m-links-bar__item-trigger:not([class*=btn]):hover,
 .m-links-bar--tabs .m-links-bar__items-primary .m-links-bar__item-trigger:not([class*=btn]):focus {
-  color: colors.$color__link--tab-hover;
+  color: $color__link--tab-hover;
 }
 
 .m-links-bar--tabs .m-links-bar__items-primary .m-links-bar__item-trigger:not([class*=btn]):active,
 .m-links-bar--tabs .m-links-bar__items-primary .m-links-bar__item.s-active .m-links-bar__item-trigger:not([class*=btn]) {
-  color: colors.$color__link--tab-active;
+  color: $color__link--tab-active;
 }
 
 .m-links-bar--tabs .m-links-bar__item-trigger.f-module-title-2 {
-  @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 12, 'small': 16));
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 12, 'small': 16));
 }
 
 .m-links-bar--tabs .m-links-bar__item-trigger.f-buttons {
-  @include other.tucked-margin-top(typography.$f-buttons, ('xsmall': 12, 'small': 16));
+  @include tucked-margin-top($f-buttons, ('xsmall': 12, 'small': 16));
 }
 
 .m-links-bar--tabs .m-links-bar__item-trigger.f-link {
-  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 12, 'small': 16));
+  @include tucked-margin-top($f-secondary, ('xsmall': 12, 'small': 16));
 }
 
 .m-links-bar--tabs .m-links-bar__item--overflow {
@@ -539,13 +533,13 @@
     right: 0;
     top: 0;
     height: 1px;
-    background-color: colors.$color__rules--primary;
+    background-color: $color__rules--primary;
   }
 
   &::after {
     top: auto;
     bottom: 0;
-    background-color: colors.$color__rules--brand;
+    background-color: $color__rules--brand;
   }
 
   .dropdown {
@@ -554,7 +548,7 @@
   }
 
   .dropdown.f-module-title-2 {
-    @include other.tucked-margin-top(typography.$f-module-title-2, ('xsmall': 12, 'small': 16));
+    @include tucked-margin-top($f-module-title-2, ('xsmall': 12, 'small': 16));
   }
 
   .dropdown > button {
@@ -562,14 +556,14 @@
     width: 100%;
     padding-top: 12px;
     padding-bottom: 12px;
-    color: colors.$color__link--tab-active;
+    color: $color__link--tab-active;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       padding-top: 11px;
       padding-bottom: 17px;
     }
 
-    @include breakpoint.breakpoint('medium+') {
+    @include breakpoint('medium+') {
       padding-top: 23px;
       padding-bottom: 21px;
     }
@@ -579,7 +573,7 @@
     padding-top: 10px;
     padding-bottom: 14px;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       padding-top: 15px;
       padding-bottom: 17px;
     }
@@ -587,11 +581,11 @@
 
   .dropdown > button:hover,
   .dropdown > button:focus {
-    color: colors.$color__link--tab-hover;
+    color: $color__link--tab-hover;
   }
 
   .dropdown > button:active {
-    color: colors.$color__link--tab-active;
+    color: $color__link--tab-active;
   }
 }
 
@@ -600,17 +594,17 @@
 .m-links-bar--buttons {
   padding-top: 12px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     padding-top: 20px;
   }
 }
 
 .m-links-bar--buttons .m-links-bar__items-secondary .m-links-bar__item-trigger.f-buttons {
-  @include other.tucked-margin-top(typography.$f-buttons, ('xsmall': 28));
+  @include tucked-margin-top($f-buttons, ('xsmall': 28));
 }
 
 .m-links-bar--buttons .m-links-bar__items-secondary .m-links-bar__item-trigger.f-link {
-  @include other.tucked-margin-top(typography.$f-secondary, ('xsmall': 28));
+  @include tucked-margin-top($f-secondary, ('xsmall': 28));
 }
 
 
@@ -622,7 +616,7 @@
   padding-top: 16px;
   border-top: 0 none;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     display: none;
   }
 }
@@ -661,7 +655,7 @@
   >.m-links-bar__items-secondary {
     >.f-secondary {
       align-self: center;
-      @include typography.untuck;
+      @include untuck;
     }
   }
 }
@@ -693,29 +687,29 @@
   width: 100vw;
   height: auto;
   margin-left: -50vw;
-  background-color: colors.$color__bg--primary;
+  background-color: $color__bg--primary;
 }
 
 .m-links-bar--nav-bar .m-links-bar__item-trigger:not([class*=btn]) {
-  color: colors.$color__text;
+  color: $color__text;
 
   &:hover,
   &:focus:hover {
-    color: colors.$color__text--title;
+    color: $color__text--title;
   }
 
   &:focus:hover {
-    color: colors.$color__text;
+    color: $color__text;
   }
 }
 
 .m-links-bar--nav-bar .m-links-bar__items-secondary .m-links-bar__item--primary {
-  border-right-color: colors.$color__rules--primary;
-  border-left-color: colors.$color__rules--primary;
+  border-right-color: $color__rules--primary;
+  border-left-color: $color__rules--primary;
 }
 
 .m-links-bar--nav-bar .m-links-bar__items-secondary .m-links-bar__item--primary::before {
-  background-color: colors.$color__rules--primary;
+  background-color: $color__rules--primary;
 }
 
 
@@ -723,7 +717,7 @@
 
 .m-links-bar--filters::before {
   z-index: 1;
-  background-color: colors.$color__rules--quaternary;
+  background-color: $color__rules--quaternary;
 }
 
 .m-links-bar--filters::after {
@@ -733,15 +727,15 @@
   right: 0;
   bottom: 0;
   height: 1px;
-  background-color: colors.$color__rules--primary;
+  background-color: $color__rules--primary;
   pointer-events: none;
 }
 
 .m-links-bar--filters .m-links-bar__item--primary {
-  border-right-color: colors.$color__rules--primary;
-  border-left-color: colors.$color__rules--primary;
+  border-right-color: $color__rules--primary;
+  border-left-color: $color__rules--primary;
 
-  @include breakpoint.breakpoint('small-') {
+  @include breakpoint('small-') {
     width: 50%;
 
     &:only-child {
@@ -755,7 +749,7 @@
     }
   }
 
-  @include breakpoint.breakpoint('xsmall') {
+  @include breakpoint('xsmall') {
     width: 100%;
     margin-right: 0;
     margin-left: 0;
@@ -766,13 +760,13 @@
 
     & + .m-links-bar__item:not(.m-links-bar__item--search) {
       margin-top: 19px;
-      border-top: 1px solid colors.$color__rules--secondary;
+      border-top: 1px solid $color__rules--secondary;
     }
   }
 }
 
 .m-links-bar--filters .m-links-bar__item--primary:nth-child(2n) {
-  @include breakpoint.breakpoint('small-') {
+  @include breakpoint('small-') {
     margin-right: 0;
     border-right: 0 none;
   }
@@ -788,11 +782,11 @@
   margin-left: 0;
   padding-top: 12px;
 
-  @include breakpoint.breakpoint(medium) {
+  @include breakpoint(medium) {
     padding-top: 16px;
   }
 
-  @include breakpoint.breakpoint('small-') {
+  @include breakpoint('small-') {
     position: relative;
     z-index: 1;
     margin-top: 20px;
@@ -808,10 +802,10 @@
 
 .m-links-bar--filters .m-search-bar {
   height: 48px;
-  border: 1px solid colors.$color__rules--secondary;
-  border-radius: variables.$border-radius;
+  border: 1px solid $color__rules--secondary;
+  border-radius: $border-radius;
 
-  @include breakpoint.breakpoint('medium') {
+  @include breakpoint('medium') {
     height: 40px;
   }
 }
@@ -819,12 +813,12 @@
 .m-links-bar--filters .m-search-bar input[type=text] {
   height: 48px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     position: relative;
     top: -1px;
   }
 
-  @include breakpoint.breakpoint('medium') {
+  @include breakpoint('medium') {
     height: 40px;
   }
 }
@@ -835,14 +829,14 @@
   height: 48px;
   line-height: 48px;
 
-  @include breakpoint.breakpoint('medium') {
+  @include breakpoint('medium') {
     height: 40px;
     line-height: 40px;
   }
 }
 
 .m-links-bar--centered\@xsmall {
-  @include breakpoint.breakpoint(xsmall) {
+  @include breakpoint(xsmall) {
     justify-content: center;
   }
 }

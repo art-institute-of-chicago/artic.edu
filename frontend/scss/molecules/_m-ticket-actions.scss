@@ -1,7 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-
 /***
 
 ```
@@ -41,7 +37,7 @@
 .m-ticket-actions__action:not(:first-child) {
   margin-top: 12px;
 
-  @include breakpoint.breakpoint('xlarge') {
+  @include breakpoint('xlarge') {
     margin-top: 20px;
   }
 }
@@ -50,21 +46,21 @@
 .m-ticket-actions__inline-list {
   margin-top: 4px;
 
-  @include breakpoint.breakpoint('xlarge') {
+  @include breakpoint('xlarge') {
     margin-top: 12px;
   }
 }
 
 .m-ticket-actions__inline-list-items {
   margin-top: 0;
-  color: colors.$color__text--secondary;
+  color: $color__text--secondary;
 }
 
 .m-ticket-actions__inline-list-item,
 .m-ticket-actions__inline-list-items > p {
   display: inline-block;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     width: 100%;
   }
 }
@@ -73,7 +69,7 @@
   margin-top: 0;
   margin-right: 3px;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     margin-right: 0;
   }
 }
@@ -82,34 +78,34 @@
 .m-ticket-actions__inline-list-items > p:not(:last-child)::after {
   content: ', ';
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     content: none;
   }
 }
 
-@include breakpoint.breakpoint('small') {
+@include breakpoint('small') {
   .o-article__secondary-actions .m-ticket-actions {
     display: flex;
     flex-flow: row wrap;
-    margin-left: grid.colspan(2, small, 0, true);
+    margin-left: colspan(2, small, 0, true);
   }
 
   .o-article__secondary-actions .m-ticket-actions__action {
     flex: 0 0 auto;
-    width: grid.colspan(28, small);
+    width: colspan(28, small);
     margin-top: 12px;
-    margin-left: grid.colspan(2, small);
+    margin-left: colspan(2, small);
   }
 
   .o-article__secondary-actions .m-ticket-actions__action--single-action {
-    width: grid.colspan(58, small);
+    width: colspan(58, small);
   }
 
   .m-ticket-actions__note,
   .m-ticket-actions__inline-list {
     flex: 0 0 auto;
-    width: grid.colspan(58, small);
-    margin-left: grid.colspan(2, small);
+    width: colspan(58, small);
+    margin-left: colspan(2, small);
   }
 
   .o-article__secondary-actions .m-ticket-actions__action:nth-child(1),

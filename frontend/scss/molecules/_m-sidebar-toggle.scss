@@ -1,6 +1,3 @@
-@use "../setup/colors";
-@use "../setup/typography";
-
 .m-sidebar-toggle {
   position: relative;
   padding-top: 13px;
@@ -16,13 +13,13 @@
     width: 100vw;
     margin-left: -50vw;
     pointer-events: none;
-    background-color: colors.$color__bg--primary;
-    border-bottom: 1px solid colors.$color__rules--primary;
+    background-color: $color__bg--primary;
+    border-bottom: 1px solid $color__rules--primary;
   }
 
   button {
     cursor: pointer;
-    color: colors.$color__link;
+    color: $color__link;
 
     background: none;
     border: none;
@@ -34,11 +31,11 @@
 
     &:hover,
     &:focus:hover {
-      color: colors.$color__link--hover;
+      color: $color__link--hover;
     }
 
     &:active:hover {
-      color: colors.$color__link--active;
+      color: $color__link--active;
     }
 
     .icon--menu--24 {
@@ -49,7 +46,7 @@
     }
 
     .f-list-1 {
-      @include typography.untuck();
+      @include untuck();
     }
   }
 }

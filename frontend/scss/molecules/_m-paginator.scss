@@ -1,8 +1,3 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/grid";
-@use "../setup/typography";
-
 /***
 
 m-paginator
@@ -33,11 +28,11 @@ m-paginator
   position: relative;
   margin-top: 20px;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     margin-top: 28px;
   }
 
-  @include breakpoint.breakpoint('large+') {
+  @include breakpoint('large+') {
     margin-top: 40px;
   }
 }
@@ -50,11 +45,11 @@ m-paginator
   right: 0;
   top: 0;
   height: 1px;
-  background-color: colors.$color__rules--primary;
+  background-color: $color__rules--primary;
 }
 
 .m-paginator .f-buttons {
-  @include typography.untuck;
+  @include untuck;
 }
 
 .m-paginator a,
@@ -67,7 +62,7 @@ m-paginator
 }
 
 .m-paginator a {
-  color: colors.$color__text--title;
+  color: $color__text--title;
 }
 
 .m-paginator__prev-next {
@@ -94,7 +89,7 @@ m-paginator
   width: 48px;
   text-align: center;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     width: auto;
     padding-right: 20px;
     padding-left: 20px;
@@ -109,20 +104,20 @@ m-paginator
 
 .m-paginator__prev-next li:first-child a,
 .m-paginator__prev-next li:first-child > span {
-  border-left: 1px solid colors.$color__rules--primary;
+  border-left: 1px solid $color__rules--primary;
 }
 
 .m-paginator__prev-next li:last-child a,
 .m-paginator__prev-next li:last-child > span {
-  border-right: 1px solid colors.$color__rules--primary;
+  border-right: 1px solid $color__rules--primary;
 }
 
 .m-paginator__prev-next li a:hover {
-  border-color: colors.$color__black--42;
+  border-color: $color__black--42;
 }
 
 .m-paginator__prev-next li > span {
-  color: colors.$color__text--disabled;
+  color: $color__text--disabled;
 }
 
 .m-paginator__prev-next .f-buttons > a > span,
@@ -130,13 +125,13 @@ m-paginator
 {
   display: none;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: inline;
   }
 }
 
 .m-paginator__prev-next svg {
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: none;
   }
 }
@@ -156,7 +151,7 @@ m-paginator
   line-height: 48px;
   text-align: center;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: none;
   }
 }
@@ -164,26 +159,26 @@ m-paginator
 .m-paginator__pages {
   display: none;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: flex;
     position: absolute;
     top: 0;
     z-index: 1;
-    left: grid.colspan(8, medium);
-    right: grid.colspan(8, medium);
+    left: colspan(8, medium);
+    right: colspan(8, medium);
     flex-flow: row nowrap;
     justify-content: center;
     margin-top: 0;
   }
 
-  @include breakpoint.breakpoint('large+') {
-    left: grid.colspan(8, large);
-    right: grid.colspan(8, large);
+  @include breakpoint('large+') {
+    left: colspan(8, large);
+    right: colspan(8, large);
   }
 
-  @include breakpoint.breakpoint('xlarge') {
-    left: grid.colspan(8, xlarge);
-    right: grid.colspan(8, xlarge);
+  @include breakpoint('xlarge') {
+    left: colspan(8, xlarge);
+    right: colspan(8, xlarge);
   }
 }
 
@@ -200,20 +195,20 @@ m-paginator
   height: 48px;
   margin-left: -1px;
   border: 1px solid transparent;
-  border-left-color: colors.$color__rules--primary;
-  border-right-color: colors.$color__rules--primary;
+  border-left-color: $color__rules--primary;
+  border-right-color: $color__rules--primary;
 }
 
 .m-paginator__pages a:hover,
 .m-paginator__pages a:active {
   z-index: 2;
-  border-color: colors.$color__black--42;
+  border-color: $color__black--42;
 }
 
 .m-paginator__pages a:active {
-  border-color: colors.$color__black--80;
+  border-color: $color__black--80;
 }
 
 .m-paginator__pages .s-active a {
-  border-top-color: colors.$color__rules--brand;
+  border-top-color: $color__rules--brand;
 }

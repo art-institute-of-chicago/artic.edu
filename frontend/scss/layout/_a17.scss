@@ -1,16 +1,13 @@
-@use "../setup/mixins/breakpoint";
-@use "../setup/placeholders";
-
 #a17 {
   @extend %container;
   position: relative;
   padding-top: 112px;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     padding-top: 128px;
   }
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     padding-top: 140px;
   }
 

@@ -1,5 +1,3 @@
-@use "../setup/colors";
-
 /***
 
 Layered image viewer active
@@ -17,7 +15,7 @@ When fullscreen / using modal on layered image viewer
   }
 
   .o-layered-image-viewer__osd-mount {
-    background: colors.$color__black--80;
+    background: $color__black--80;
     height: 100%;
   }
 

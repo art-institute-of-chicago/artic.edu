@@ -1,5 +1,3 @@
-@use "../setup/mixins/breakpoint";
-
 /***
 
 media-play-pause-video
@@ -24,14 +22,14 @@ Used to allow videos in hero's and hero listings pauseable to top them being dis
   display: none;
   z-index: 20;
 
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     display: inline-block;
   }
 
   &.btn.btn--icon {
     display: none;
 
-    @include breakpoint.breakpoint('small+') {
+    @include breakpoint('small+') {
       display: inline-block;
     }
   }

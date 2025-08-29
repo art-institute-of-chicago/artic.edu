@@ -1,6 +1,3 @@
-@use "../setup/mixins/breakpoint";
-@use "../setup/variables";
-
 @use "sass:map";
 /***
 
@@ -19,30 +16,30 @@ Additional states for scrolling up and down conditions - so the date filters don
 
 .s-sticky-filters--fixed .o-sticky-filters > .m-links-bar:first-child,
 .s-sticky-filters--bottom .o-sticky-filters > .m-links-bar:first-child {
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     position: fixed;
-    z-index: map.get(variables.$zindexs, 'stickyFilters');
+    z-index: map.get($zindexs, 'stickyFilters');
     left: 0;
     right: 0;
     top: 0;
-    padding-right: map.get(variables.$outer-gutters, small);
-    padding-left: map.get(variables.$outer-gutters, small);
+    padding-right: map.get($outer-gutters, small);
+    padding-left: map.get($outer-gutters, small);
   }
 
-  @include breakpoint.breakpoint('medium+') {
-    padding-right: map.get(variables.$outer-gutters, medium);
-    padding-left: map.get(variables.$outer-gutters, medium);
+  @include breakpoint('medium+') {
+    padding-right: map.get($outer-gutters, medium);
+    padding-left: map.get($outer-gutters, medium);
   }
 
-  @include breakpoint.breakpoint('large+') {
-    padding-right: map.get(variables.$outer-gutters, large);
-    padding-left: map.get(variables.$outer-gutters, large);
+  @include breakpoint('large+') {
+    padding-right: map.get($outer-gutters, large);
+    padding-left: map.get($outer-gutters, large);
   }
 
-  @include breakpoint.breakpoint('xlarge') {
+  @include breakpoint('xlarge') {
     left: 50%;
-    width: map.get(variables.$main-col-widths, xlarge);
-    margin-left: math.div(map.get(variables.$main-col-widths, xlarge), -2);
+    width: map.get($main-col-widths, xlarge);
+    margin-left: math.div(map.get($main-col-widths, xlarge), -2);
     padding-right: 0;
     padding-left: 0;
   }
@@ -50,11 +47,11 @@ Additional states for scrolling up and down conditions - so the date filters don
 
 .s-sticky-filters--fixed .o-sticky-filters > .m-links-bar:first-child::before,
 .s-sticky-filters--bottom .o-sticky-filters > .m-links-bar:first-child::before {
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     display: block;
   }
 
-  @include breakpoint.breakpoint('xlarge') {
+  @include breakpoint('xlarge') {
     left: 50%;
     width: 100vw;
     margin-left: -50vw;
@@ -63,7 +60,7 @@ Additional states for scrolling up and down conditions - so the date filters don
 
 .s-sticky-filters--fixed.s-scroll-direction-up .o-sticky-filters > .m-links-bar:first-child,
 .s-sticky-filters--bottom .o-sticky-filters > .m-links-bar:bot(.m-links-bar--visible) {
-  @include breakpoint.breakpoint('small+') {
+  @include breakpoint('small+') {
     opacity: 0; // TODO: Figure out why this is here..?
   }
 }

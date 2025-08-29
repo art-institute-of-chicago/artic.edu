@@ -1,30 +1,20 @@
-@use "../setup/colors";
-@use "../setup/mixins/breakpoint";
-@use "../setup/mixins/forms";
-@use "../setup/mixins/grid";
-@use "../setup/mixins/other";
-@use "../setup/typography";
-@use "../setup/placeholders";
-@use "../setup/variables";
-
 @use "sass:map";
-
 .g-nav-mobile {
   position: fixed;
-  z-index: map.get(variables.$zindexs, 'mobileNav');
+  z-index: map.get($zindexs, 'mobileNav');
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: colors.$color__bg;
+  background-color: $color__bg;
   overflow: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   opacity: 0;
   display: none;
-  transition: opacity .2s variables.$bezier--ease-in-out, visibility 0s .2s variables.$bezier--ease-in-out;
+  transition: opacity .2s $bezier--ease-in-out, visibility 0s .2s $bezier--ease-in-out;
 
-  @include breakpoint.breakpoint('medium+') {
+  @include breakpoint('medium+') {
     display: none;
   }
 }
@@ -38,7 +28,7 @@
   }
 
   .title {
-    color: colors.$color__white;
+    color: $color__white;
   }
 }
 
@@ -54,32 +44,32 @@
 .g-nav-mobile__close {
   position: absolute;
   z-index: 10;
-  right: map.get(variables.$outer-gutters, 'xsmall');
+  right: map.get($outer-gutters, 'xsmall');
   top: 16px;
   padding: 0;
   border: 0 none;
   background: none;
-  color: colors.$color__black--90;
+  color: $color__black--90;
   cursor: pointer;
   -webkit-appearance: none;
 }
 
 .js-subnav-open .g-nav-mobile__close {
-  color: colors.$color__text--title-contrast;
+  color: $color__text--title-contrast;
 }
 
 .g-nav-mobile__search {
-  @include other.background-fill();
+  @include background-fill();
 
   & {
     position: relative;
-    background-color: colors.$color__bg--primary;
+    background-color: $color__bg--primary;
   }
 }
 
 .g-nav-mobile__search input {
   @extend %f-secondary;
-  @include typography.untuck;
+  @include untuck;
 
   & {
     width: 100%;
@@ -90,8 +80,8 @@
 
   }
 
-  @include forms.placeholder() {
-    color: colors.$color__text--secondary;
+  @include placeholder() {
+    color: $color__text--secondary;
   }
 }
 
@@ -102,16 +92,16 @@
   padding: 0;
   border: 0;
   background-color: transparent;
-  color: colors.$color__text--secondary;
+  color: $color__text--secondary;
   transform: translateY(-50%);
 }
 
 .g-nav-mobile__nav-wrapper {
-  margin-right: - map.get(variables.$outer-gutters, 'xsmall');
-  margin-left: - map.get(variables.$outer-gutters, 'xsmall');
-  padding-right: map.get(variables.$outer-gutters, 'xsmall');
-  padding-left: map.get(variables.$outer-gutters, 'xsmall');
-  border-top: 1px solid colors.$color__rules--primary;
+  margin-right: - map.get($outer-gutters, 'xsmall');
+  margin-left: - map.get($outer-gutters, 'xsmall');
+  padding-right: map.get($outer-gutters, 'xsmall');
+  padding-left: map.get($outer-gutters, 'xsmall');
+  border-top: 1px solid $color__rules--primary;
 }
 
 .g-nav-mobile__nav-wrapper li>a {
@@ -121,19 +111,19 @@
 }
 
 .g-nav-mobile__nav li {
-  margin-right: - map.get(variables.$outer-gutters, 'xsmall');
-  margin-left: - map.get(variables.$outer-gutters, 'xsmall');
-  padding-left: map.get(variables.$outer-gutters, 'xsmall');
-  border-bottom: 1px solid colors.$color__rules--tertiary;
-  color: colors.$color__text--title;
+  margin-right: - map.get($outer-gutters, 'xsmall');
+  margin-left: - map.get($outer-gutters, 'xsmall');
+  padding-left: map.get($outer-gutters, 'xsmall');
+  border-bottom: 1px solid $color__rules--tertiary;
+  color: $color__text--title;
 }
 
 .g-nav-mobile__nav>li:last-child {
-  border-bottom-color: colors.$color__rules--primary;
+  border-bottom-color: $color__rules--primary;
 }
 
 .g-nav-mobile__nav li>a {
-  @include typography.untuck();
+  @include untuck();
 
   & {
     line-height: 48px;
@@ -141,7 +131,7 @@
 }
 
 .g-nav-mobile .g-nav-expand-icon {
-  border-left: 1px solid colors.$color__black--5;
+  border-left: 1px solid $color__black--5;
   display: inline-block;
   height: 48px;
   position: absolute;
@@ -150,14 +140,14 @@
 }
 
 .g-nav-mobile__nav li>a .icon--arrow {
-  color: colors.$color__grey--100;
+  color: $color__grey--100;
   position: absolute;
   right: 16px;
   top: 16px;
 }
 
 .g-nav-mobile__nav .g-nav-mobile__nav--muted {
-  color: colors.$color__text--secondary;
+  color: $color__text--secondary;
 }
 
 .g-nav-mobile__nav a {
@@ -172,20 +162,20 @@
 }
 
 .g-nav-mobile__nav .details__container>a {
-  padding-right: map.get(variables.$outer-gutters, 'xsmall');
-  padding-left: map.get(variables.$outer-gutters, 'xsmall');
+  padding-right: map.get($outer-gutters, 'xsmall');
+  padding-left: map.get($outer-gutters, 'xsmall');
 }
 
 .g-nav-mobile__nav .g-nav-collapse-icon,
 .g-nav-mobile__nav .details__container>a {
   @extend %f-tag-2;
-  @include typography.untuck;
+  @include untuck;
 
   & {
-    margin-right: - map.get(variables.$outer-gutters, 'xsmall');
-    margin-left: - map.get(variables.$outer-gutters, 'xsmall');
-    background-color: colors.$color__bg--footer;
-    color: colors.$color__text--title-contrast;
+    margin-right: - map.get($outer-gutters, 'xsmall');
+    margin-left: - map.get($outer-gutters, 'xsmall');
+    background-color: $color__bg--footer;
+    color: $color__text--title-contrast;
     line-height: 56px;
     text-align: center;
   }
@@ -206,13 +196,13 @@
   top: 0;
   bottom: 0;
   margin: 0;
-  padding-right: map.get(variables.$outer-gutters, 'xsmall');
-  padding-left: map.get(variables.$outer-gutters, 'xsmall');
+  padding-right: map.get($outer-gutters, 'xsmall');
+  padding-left: map.get($outer-gutters, 'xsmall');
   overflow-x: hidden;
   overflow-y: scroll;
-  background: colors.$color__bg;
+  background: $color__bg;
   transform: translateX(100%);
-  transition: transform .2s variables.$bezier--ease-in-out;
+  transition: transform .2s $bezier--ease-in-out;
 }
 
 .g-nav-mobile__nav-secondary {
@@ -221,32 +211,32 @@
   flex-flow: row wrap;
   height: 100%;
 
-  @include breakpoint.breakpoint('xsmall') {
-    margin-left: grid.colspan(2, 'xsmall', 0, true);
+  @include breakpoint('xsmall') {
+    margin-left: colspan(2, 'xsmall', 0, true);
   }
 
-  @include breakpoint.breakpoint('small') {
-    margin-left: grid.colspan(2, 'small', 0, true);
+  @include breakpoint('small') {
+    margin-left: colspan(2, 'small', 0, true);
   }
 }
 
 .g-nav-mobile__legals,
 .g-nav-mobile__social {
-  @include breakpoint.breakpoint('xsmall') {
-    width: grid.colspan(grid.grid-cols-to-colspan(2, 58), 'xsmall');
-    margin-left: grid.colspan(2, 'xsmall');
+  @include breakpoint('xsmall') {
+    width: colspan(grid-cols-to-colspan(2, 58), 'xsmall');
+    margin-left: colspan(2, 'xsmall');
   }
 
-  @include breakpoint.breakpoint('small') {
-    width: grid.colspan(grid.grid-cols-to-colspan(2, 58), 'small');
-    margin-left: grid.colspan(2, 'small');
+  @include breakpoint('small') {
+    width: colspan(grid-cols-to-colspan(2, 58), 'small');
+    margin-left: colspan(2, 'small');
   }
 }
 
 .g-nav-mobile__legals li,
 .g-nav-mobile__social li {
   margin-top: 16px;
-  color: colors.$color__text--secondary;
+  color: $color__text--secondary;
 }
 
 .g-nav-mobile__social li>a {
@@ -277,11 +267,11 @@
 }
 
 .g-nav-mobile .g-header {
-  z-index: map.get(variables.$zindexs, 'mobileHeader');
+  z-index: map.get($zindexs, 'mobileHeader');
   position: relative;
-  padding-right: map.get(variables.$outer-gutters, 'xsmall');
-  padding-left: map.get(variables.$outer-gutters, 'xsmall');
-  border-bottom: 1px solid colors.$color__rules--primary;
+  padding-right: map.get($outer-gutters, 'xsmall');
+  padding-left: map.get($outer-gutters, 'xsmall');
+  border-bottom: 1px solid $color__rules--primary;
   transform: translateY(0);
 
   @supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0)) {
@@ -300,7 +290,7 @@
 
   &,
   .s-contrast-header & {
-    color: colors.$color__grey--100 !important;
+    color: $color__grey--100 !important;
   }
 }
 
@@ -308,7 +298,7 @@
 
   &,
   .s-contrast-header & {
-    color: colors.$color__red--100;
+    color: $color__red--100;
   }
 }
 
@@ -317,7 +307,7 @@
 
   &,
   .s-contrast-header & {
-    color: colors.$color__text--secondary;
+    color: $color__text--secondary;
   }
 }
 
@@ -326,10 +316,10 @@
 
   &,
   .s-contrast-header & {
-    color: colors.$color__text--title !important;
+    color: $color__text--title !important;
   }
 }
 
 .g-nav-mobile .g-header .g-header__nav-primary a:hover {
-  @include typography.text-underline(1.12em, colors.$color__text--title);
+  @include text-underline(1.12em, $color__text--title);
 }
