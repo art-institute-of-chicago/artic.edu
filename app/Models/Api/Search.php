@@ -573,6 +573,49 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+public function scopeByVisuallySimilar($query, Artist|Artwork $item = null, $boost = false)
+{
+    if (empty($item)) {
+        return $query;
+    }
+
+    // Check if embedding data exists
+    if (!$item->imageEmbeddingData || !$item->imageEmbeddingData->embedding) {
+        return $query;
+    }
+
+    $query->forceEndpoint('msearch');
+
+
+    $vectorType = 'image_embedding';
+    $queryVector = $item->imageEmbeddingData->embedding;
+
+    $params['body']['query']['script_score']['script'] = [
+        'source' => <<<SOURCE
+            double vector_score = 0;
+            if (doc.containsKey('$vectorType') && doc['$vectorType'].size() > 0 && params.query_vector != null && params.query_vector.length > 0) {
+                vector_score = cosineSimilarity(params.query_vector, '$vectorType') + 1.0;
+            }
+
+            double boost_multiplier = 1.0;
+            if (doc.containsKey('is_boosted') && doc['is_boosted'].size() > 0 && doc['is_boosted'].value == true) {
+                boost_multiplier = 1.02;
+            }
+
+            if (params.query_vector != null && params.query_vector.length > 0) {
+                return vector_score * boost_multiplier;
+            }
+            else {
+                return _score;
+            }
+            SOURCE,
+        'params' => [
+            'query_vector' => $queryVector,
+        ],
+    ];
+
+    return $this->rawSearch($params);
+}
     public function scopeYearMin($query, $year): ApiModelBuilderSearch
     {
         if (empty($year)) {

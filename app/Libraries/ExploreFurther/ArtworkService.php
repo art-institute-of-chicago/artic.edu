@@ -24,6 +24,7 @@ class ArtworkService extends BaseService
 
         // Build Most Similar Tag
         $tags['most-similar'] = collect(['most-similar' => 'Most Similar']);
+        $tags['visually-similar'] = collect(['visually-similar' => 'Visually Similar']);
 
         // Build Style Tags
         if ($this->resource->style_id) {

@@ -191,6 +191,9 @@ class BaseService
                 case 'most-similar':
                     $query->byMostSimilar($this->resource);
 
+                case 'visually-similar':
+                    $query->byVisuallySimilar($this->resource);
+
                     break;
             }
         }
