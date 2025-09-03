@@ -137,7 +137,27 @@
 @endphp
 
 <{{ $tag ?? 'figure' }} data-type="{{ $type }}" data-title="{{ $item['captionTitle'] ?? $item['caption'] ?? $media['caption'] ?? (isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '') }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ $useContain ? ' m-media--contain' : '' }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
-    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}{{ $useAltBackground ? ' m-media__img--alt-background' : '' }}{{ $disablePlaceholder ? ' m-media__img--disable-placeholder' : '' }}{{ isset($headerVariation) && $headerVariation === 'small' ? ' small' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}" data-platform="{!! isset($item['platform']) ? $item['platform'] : '' !!}" {!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! ($_allowAdvancedModalFeatures ?? false) ? ' data-modal-advanced="true"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}{!! !empty($item['credit']) ? ' data-credit="' . $item['credit'] . '"' : '' !!}>
+    <div
+        @class([
+            'm-media__img',
+            'm-media__img--embed' => $type === 'embed',
+            'm-media__img--video' => $type === 'video',
+            'm-media__img--alt-background' => $useAltBackground,
+            'm-media__img--disable-placeholder' => $disablePlaceholder,
+            'small' => isset($headerVariation) && $headerVariation === 'small',
+        ])
+        @style([
+            "height: $embed_height" => !empty($embed_height),
+        ])
+        aria-label="{{ $mediaBehavior ? 'Media embed, click to play' : '' }}"
+        data-behavior="fitText {!! $mediaBehavior ?: '' !!}"
+        data-credit="{!! $item['credit'] ?? '' !!}"
+        data-modal-advanced="{{ ($_allowAdvancedModalFeatures ?? false) ? 'true' : '' }}"
+        data-platform="{!! $item['platform'] ?? '' !!}"
+        data-restrict="{{ ($media['restrict'] ?? false) ? 'true' : '' }}"
+        data-title="{!! $media['title'] ?? '' !!}"
+        tabindex="{{ $mediaBehavior ? '0' : '-1'}}"
+    >
         @if ($useContain && !($item['isArtwork'] ?? false) && ($size === 'm' || $size === 'l'))
             <div class="m-media__contain--spacer" style="padding-bottom: {{ min(62.5, intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100) }}%"></div>
         @endif
