@@ -12,6 +12,7 @@
     $manifest = isset($item['manifest']) ? $item['manifest'] : false;
     $default_view = isset($item['default_view']) ? $item['default_view'] : 'single';
 
+    $embedHeight = $embed_height ?? false;
     $hideCaption = (isset($item['hideCaption']) && $item['hideCaption']) ? true : false;
     $fitCaptionTitle = $type === 'artist';
     $type = $type === 'artist' ? 'image' : $type;
@@ -147,7 +148,7 @@
             'small' => isset($headerVariation) && $headerVariation === 'small',
         ])
         @style([
-            "height: $embed_height" => !empty($embed_height),
+            "height: $embedHeight" => $embedHeight,
         ])
         aria-label="{{ $mediaBehavior ? 'Media embed, click to play' : '' }}"
         data-behavior="fitText {!! $mediaBehavior ?: '' !!}"
