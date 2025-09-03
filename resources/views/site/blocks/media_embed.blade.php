@@ -18,6 +18,7 @@
             'type' => 'embed',
             'size' => $block->input('size'),
             'disablePlaceholder' => $disablePlaceholder,
+            'useAltBackground' => true,
             'media' => [
                 "embed" => $embed_code,
                 "src" => (isset($image['src'])) ? $image['src'] : '',
