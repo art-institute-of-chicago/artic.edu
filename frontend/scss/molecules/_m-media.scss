@@ -481,6 +481,7 @@ a.m-media__img:hover object {
   display: none;
 }
 
+.m-media__img--embed.s-inline-media-activated,
 .m-media__img--video.s-inline-media-activated {
   background-color: $color__bg--gallery;
 }
