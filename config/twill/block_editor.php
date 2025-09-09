@@ -246,7 +246,7 @@ return [
         'feature_4x',
         'collection_block',
         'citation',
-        'links-bar',
+        'links_block',
         'mobile_app',
         'magazine_item',
         'threesixty_embed',
