@@ -10,11 +10,18 @@
 />
 
 @php
-    $options = \App\Models\ExactTargetList::getList()->toArray();
+    $options = [];
+
+    foreach (\App\Models\ExactTargetList::getList()->toArray() as $value => $label) {
+        $options[] = [
+            'value' => $value,
+            'label' => $label,
+        ];
+    }
 @endphp
 
 <x-twill::select
     name='list'
     label='Newsletter target list'
-    :options='$options'
+    :options="$options"
 />
