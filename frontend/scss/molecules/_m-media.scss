@@ -486,6 +486,10 @@ a.m-media__img:hover object {
   background-color: $color__bg--gallery;
 }
 
+.m-media__img--embed {
+  overflow-x: scroll;
+}
+
 @media (hover: hover) {
 
   .m-media__btn-download,
