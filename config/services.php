@@ -49,6 +49,10 @@ return [
         'id' => env('GTM_ID', '')
     ],
 
+    'google_api' => [
+        'key' => env('GOOGLE_API_KEY'),
+    ],
+
     'cloudflare' => [
         'enabled' => (bool) env('CLOUDFLARE_ENABLED', false),
         'key' => env('CLOUDFLARE_KEY'),
