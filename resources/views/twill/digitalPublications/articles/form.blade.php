@@ -220,7 +220,7 @@
                     'image',
                     'image_slider',
                     'layered_image_viewer',
-                    'links-bar',
+                    'links_block',
                     'list',
                     'media_embed',
                     'membership_banner',
