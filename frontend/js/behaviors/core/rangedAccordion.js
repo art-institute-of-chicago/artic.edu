@@ -63,12 +63,9 @@ const rangedAccordion = function(container) {
 
     function _checkUrl() {
       const hash = window.location.hash.substring(1);
-      console.log(hash, trigger.id);
 
       if (hash && trigger && trigger.id === hash) {
-        console.log('matches');
         const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
-        console.log(isExpanded);
 
         // Only toggle if not already expanded
         if (!isExpanded) {
@@ -83,6 +80,7 @@ const rangedAccordion = function(container) {
         trigger.removeEventListener('click', _toggleAccordion);
       }
 
+      window.removeEventListener('popstate', _checkUrl);
       // Remove properties of this behavior
       purgeProperties(this);
     };
