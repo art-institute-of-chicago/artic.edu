@@ -33,12 +33,25 @@
       padding: 16px 0 !important;
     }
 
+    .o-accordion__trigger {
+      @include breakpoint('medium-') {
+        scroll-margin-top: 75px;
+          &[id]::before {
+            content: '';
+            display: block;
+            padding-top: 75px;
+            margin-top: -75px;
+            visibility: hidden;
+          }
+      }
+    }
+
     .o-accordion__trigger.f-module-title-2 {
       padding-top: 0;
       border-top: none;
 
       &:before {
-        display: none !important;
+        display: none;
       }
 
       @include breakpoint('small+') {
