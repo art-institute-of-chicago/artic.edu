@@ -61,6 +61,23 @@ const rangedAccordion = function(container) {
         }
     };
 
+    function _checkUrl() {
+      const hash = window.location.hash.substring(1);
+      console.log(hash, trigger.id);
+
+      if (hash && trigger && trigger.id === hash) {
+        console.log('matches');
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        console.log(isExpanded);
+
+        // Only toggle if not already expanded
+        if (!isExpanded) {
+          setTimeout(150);
+          trigger.click();
+        }
+      }
+    }
+
     this.destroy = function() {
       if (trigger) {
         trigger.removeEventListener('click', _toggleAccordion);
@@ -74,6 +91,8 @@ const rangedAccordion = function(container) {
       if (trigger) {
         trigger.addEventListener('click', _toggleAccordion);
       }
+
+      window.addEventListener('popstate', _checkUrl);
     };
 }
 
