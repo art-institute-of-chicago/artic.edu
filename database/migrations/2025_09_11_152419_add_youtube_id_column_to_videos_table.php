@@ -16,7 +16,7 @@ return new class extends Migration
         });
         $this->populateVideoYouTubeId();
 
-        Schema::create('playlists_videos', function (Blueprint $table) {
+        Schema::create('playlist_video', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignId('playlist_id');
