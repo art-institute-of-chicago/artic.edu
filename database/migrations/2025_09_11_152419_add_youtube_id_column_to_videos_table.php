@@ -46,7 +46,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('playlists');
 
-        Schema::dropIfExists('playlists_videos');
+        Schema::dropIfExists('playlist_video');
 
         Schema::table('videos', function (Blueprint $table) {
             $table->dropColumn(['youtube_id', 'uploaded_at']);
