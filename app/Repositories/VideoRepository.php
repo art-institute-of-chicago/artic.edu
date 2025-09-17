@@ -9,6 +9,7 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\Video;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class VideoRepository extends ModuleRepository
@@ -19,6 +20,12 @@ class VideoRepository extends ModuleRepository
     use HandleFiles;
     use HandleRevisions;
 
+    protected $browsers = [
+        'playlists' => [
+            'routePrefix' => 'collection.articlesPublications',
+        ],
+    ];
+
     protected $relatedBrowsers = [
         'related_videos' => [
             'relation' => 'related_videos'
@@ -28,6 +35,14 @@ class VideoRepository extends ModuleRepository
     public function __construct(Video $model)
     {
         $this->model = $model;
+    }
+
+    public function order($query, array $orders = []): Builder
+    {
+        // Default sort by uploaded_at instead of created_at.
+        $orders['uploaded_at'] ??= 'desc';
+        unset($orders['created_at']);
+        return parent::order($query, $orders);
     }
 
     public function getShowData($item, $slug = null, $previewPage = null): array

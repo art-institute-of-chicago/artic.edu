@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -11,6 +10,8 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Video extends AbstractModel
 {
@@ -42,6 +43,7 @@ class Video extends AbstractModel
         'toggle_autorelated',
         'youtube_id',
         'uploaded_at',
+        'thumbnail_url',
     ];
 
     protected $casts = [
@@ -60,6 +62,7 @@ class Video extends AbstractModel
 
     protected $appends = [
         'embed',
+        'source_url',
     ];
 
     public $mediasParams = [
@@ -87,6 +90,13 @@ class Video extends AbstractModel
         return $this->belongsToMany(Playlist::class)
             ->withTimestamps()
             ->withPivot('position');
+    }
+
+    public function sourceUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($_, array $attributes) => "https://youtube.com/watch?v={$attributes['youtube_id']}",
+        );
     }
 
     public function scopeByCategories($query, $categories = null): Builder
