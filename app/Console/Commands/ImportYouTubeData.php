@@ -91,6 +91,7 @@ class ImportYouTubeData extends Command
                     'list_description' => $source['snippet']['description'],
                     'uploaded_at' => $source['snippet']['publishedAt'],
                     'duration' => $this->convertDuration($source['contentDetails']['duration']),
+                    'thumbnail_url' => $source['snippet']['thumbnails']['high']['url'],
                 ]);
                 $video->save();
                 $progress->advance();
@@ -109,11 +110,12 @@ class ImportYouTubeData extends Command
         $progress->start();
         foreach ($this->playlists() as $sourcePlaylist) {
             $playlistId = $sourcePlaylist['id'];
-            $playlist = Playlist::firstOrCreate(
+            $playlist = Playlist::updateOrCreate(
                 ['youtube_id' =>  $playlistId],
                 [
                     'youtube_id' =>  $playlistId,
                     'title' => $sourcePlaylist['snippet']['title'],
+                    'thumbnail_url' => $sourcePlaylist['snippet']['thumbnails']['high']['url'],
                 ],
             );
             $sourcePlaylistItems = $this->itemsInPlaylist($playlistId)->all();
