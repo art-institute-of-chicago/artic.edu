@@ -9,8 +9,8 @@ use Google\Service\Resource;
 use Google\Service\YouTube;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\LazyCollection;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class ImportYouTubeData extends Command
 {
@@ -25,7 +25,7 @@ class ImportYouTubeData extends Command
     private $shortsPlaylistId;
     private $uploadPlaylistId;
 
-    // Used for debugging/logging
+    // Used for debugging
     private $requestCount = 0;
 
     public function __construct()
@@ -42,8 +42,10 @@ class ImportYouTubeData extends Command
 
     public function handle()
     {
-        Log::withContext(['session' => hash('crc32', time())]);
-        Log::debug('YouTube import session {session} start');
+        $this->info(
+            "YouTube import session start",
+            OutputInterface::VERBOSITY_DEBUG,
+        );
 
         $this->info('Importing uploads');
         $sourceIds = $this->importUploads();
@@ -61,11 +63,11 @@ class ImportYouTubeData extends Command
         $this->syncPlaylists();
         $this->newLine();
 
-        $this->info('YouTube import complete');
-
-        Log::debug('YouTube import session {session} end - request count: {requestCount}', [
-            'requestCount' => $this->requestCount,
-        ]);
+        $this->info(
+            "YouTube import session end - request count: $this->requestCount",
+            OutputInterface::VERBOSITY_DEBUG
+        );
+        $this->info('YouTube import complete', OutputInterface::VERBOSITY_QUIET);
     }
 
     /**
@@ -73,8 +75,8 @@ class ImportYouTubeData extends Command
      */
     private function importUploads(): Collection
     {
-        $progress = $this->output->createProgressBar($this->uploadCount());
-        $progress->start();
+        $progress = !$this->output->isDebug() ? $this->output->createProgressBar($this->uploadCount()) : null;
+        $progress?->start();
         $sourceIds = collect();
         foreach ($this->uploads() as $upload) {
             $videoId = $upload['snippet']['resourceId']['videoId'];
@@ -86,9 +88,9 @@ class ImportYouTubeData extends Command
                     'title' => $upload['snippet']['title'],
                 ],
             );
-            $progress->advance();
+            $progress?->advance();
         }
-        $progress->finish();
+        $progress?->finish();
 
         return $sourceIds;
     }
@@ -99,8 +101,8 @@ class ImportYouTubeData extends Command
      */
     private function updateVideos(Collection $sourceIds): void
     {
-        $progress = $this->output->createProgressBar($sourceIds->count());
-        $progress->start();
+        $progress = !$this->output->isDebug() ? $this->output->createProgressBar($sourceIds->count()) : null;
+        $progress?->start();
         foreach ($sourceIds->chunk(self::VIDEOS_PER_REQUEST) as $chunkOfSourceIds) {
             $sourceVideos = $this->videosByIds($chunkOfSourceIds);
             foreach ($sourceVideos as $source) {
@@ -112,10 +114,10 @@ class ImportYouTubeData extends Command
                     'thumbnail_url' => $source['snippet']['thumbnails']['high']['url'],
                 ]);
                 $video->save();
-                $progress->advance();
+                $progress?->advance();
             }
         }
-        $progress->finish();
+        $progress?->finish();
     }
 
     /**
@@ -136,8 +138,8 @@ class ImportYouTubeData extends Command
      */
     private function syncPlaylists(): void
     {
-        $progress = $this->output->createProgressBar($this->playlistCount());
-        $progress->start();
+        $progress = !$this->output->isDebug() ? $this->output->createProgressBar($this->playlistCount()) : null;
+        $progress?->start();
         foreach ($this->playlists() as $sourcePlaylist) {
             $playlistId = $sourcePlaylist['id'];
             $playlist = Playlist::updateOrCreate(
@@ -165,9 +167,9 @@ class ImportYouTubeData extends Command
                     ]];
                 });
             $playlist->videos()->sync($videoIdsToSync);
-            $progress->advance();
+            $progress?->advance();
         }
-        $progress->finish();
+        $progress?->finish();
     }
 
     /**
@@ -280,21 +282,20 @@ class ImportYouTubeData extends Command
      */
     private function allPages(Resource $resource, string $action, string $parts, array $options)
     {
-        Log::withContext(['index' => $this->requestCount]);
         $nextPageToken = null;
         do {
-            Log::debug('YouTube import {session} request #{index} - action: {action}, parts: {parts}', [
-                'action' => $action,
-                'parts' => $parts,
-            ]);
+            $this->info(
+                "YouTube import request #$this->requestCount - action: $action, parts: $parts",
+                OutputInterface::VERBOSITY_DEBUG,
+            );
             $page = $resource->{$action}($parts, $options + ['pageToken' => $nextPageToken]);
+            $this->info(
+                "YouTube import response #$this->requestCount - " .
+                    "kind: {$page['kind']}, " .
+                    "results: {$page['pageInfo']['resultsPerPage']}/{$page['pageInfo']['totalResults']}",
+                OutputInterface::VERBOSITY_DEBUG,
+            );
             $this->requestCount++;
-
-            Log::debug('YouTube import {session} response #{index} - kind: {kind}, results: {resultsPerPage}/{totalResults}', [
-                'kind' => $page['kind'],
-                'resultsPerPage' => $page['pageInfo']['resultsPerPage'],
-                'totalResults' => $page['pageInfo']['totalResults'],
-            ]);
             yield $page;
 
             $nextPageToken = $page['nextPageToken'];
