@@ -40,6 +40,8 @@ class Video extends AbstractModel
         'duration',
         'is_listed',
         'toggle_autorelated',
+        'youtube_id',
+        'uploaded_at',
     ];
 
     protected $casts = [
@@ -47,6 +49,7 @@ class Video extends AbstractModel
         'published' => 'boolean',
         'is_listed' => 'boolean',
         'toggle_autorelated' => 'boolean',
+        'uploaded_at' => 'datetime',
     ];
 
     public $attributes = [
@@ -77,6 +80,13 @@ class Video extends AbstractModel
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'video_category');
+    }
+
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class)
+            ->withTimestamps()
+            ->withPivot('position');
     }
 
     public function scopeByCategories($query, $categories = null): Builder

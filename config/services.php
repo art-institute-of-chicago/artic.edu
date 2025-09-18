@@ -49,6 +49,15 @@ return [
         'id' => env('GTM_ID', '')
     ],
 
+    'google_api' => [
+        'key' => env('GOOGLE_API_KEY'),
+    ],
+
+    'youtube' => [
+        'channel_id' => env('YOUTUBE_CHANNEL_ID'),
+        'upload_playlist_id' => env('YOUTUBE_UPLOAD_PLAYLIST_ID')
+    ],
+
     'cloudflare' => [
         'enabled' => (bool) env('CLOUDFLARE_ENABLED', false),
         'key' => env('CLOUDFLARE_KEY'),
