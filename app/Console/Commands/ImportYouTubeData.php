@@ -9,6 +9,7 @@ use Google\Service\Resource;
 use Google\Service\YouTube;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\LazyCollection;
 
 class ImportYouTubeData extends Command
@@ -24,6 +25,9 @@ class ImportYouTubeData extends Command
     private $shortsPlaylistId;
     private $uploadPlaylistId;
 
+    // Used for debugging/logging
+    private $requestCount = 0;
+
     public function __construct()
     {
         parent::__construct();
@@ -38,6 +42,9 @@ class ImportYouTubeData extends Command
 
     public function handle()
     {
+        Log::withContext(['session' => hash('crc32', time())]);
+        Log::debug('YouTube import session {session} start');
+
         $this->info('Importing uploads');
         $sourceIds = $this->importUploads();
         $this->newLine();
@@ -55,6 +62,10 @@ class ImportYouTubeData extends Command
         $this->newLine();
 
         $this->info('YouTube import complete');
+
+        Log::debug('YouTube import session {session} end - request count: {requestCount}', [
+            'requestCount' => $this->requestCount,
+        ]);
     }
 
     /**
@@ -159,6 +170,9 @@ class ImportYouTubeData extends Command
         $progress->finish();
     }
 
+    /**
+     * Convert a duration from 'PT1H1M1S' to '1:01:01'.
+     */
     private function convertDuration(string $durationSpec): string
     {
         $interval = new \DateInterval($durationSpec);
@@ -213,8 +227,13 @@ class ImportYouTubeData extends Command
 
     private function playlistCount(): int
     {
-        $response = $this->youtube->playlists->listPlaylists('id', ['channelId' => $this->channelId]);
-        return $response['pageInfo']['totalResults'] ?? 0;
+        $pageInfo = $this->pageInfo(
+            $this->youtube->playlists,
+            'listPlaylists',
+            'id',
+            ['channelId' => $this->channelId],
+        );
+        return $pageInfo['totalResults'] ?? 0;
     }
 
     private function shortsCount(): int
@@ -225,8 +244,18 @@ class ImportYouTubeData extends Command
 
     private function uploadCount(): int
     {
-        $response = $this->youtube->playlistItems->listPlaylistItems('id', ['playlistId' => $this->uploadPlaylistId]);
-        return $response['pageInfo']['totalResults'] ?? 0;
+        $pageInfo = $this->pageInfo(
+            $this->youtube->playlistItems,
+            'listPlaylistItems',
+            'id',
+            ['playlistId' => $this->uploadPlaylistId],
+        );
+        return $pageInfo['totalResults'] ?? 0;
+    }
+
+    private function pageInfo($resource, $action, $parts, $options): array
+    {
+        return (array) $this->allPages($resource, $action, $parts, $options)->current()['pageInfo'];
     }
 
     /**
@@ -251,10 +280,23 @@ class ImportYouTubeData extends Command
      */
     private function allPages(Resource $resource, string $action, string $parts, array $options)
     {
+        Log::withContext(['index' => $this->requestCount]);
         $nextPageToken = null;
         do {
+            Log::debug('YouTube import {session} request #{index} - action: {action}, parts: {parts}', [
+                'action' => $action,
+                'parts' => $parts,
+            ]);
             $page = $resource->{$action}($parts, $options + ['pageToken' => $nextPageToken]);
+            $this->requestCount++;
+
+            Log::debug('YouTube import {session} response #{index} - kind: {kind}, results: {resultsPerPage}/{totalResults}', [
+                'kind' => $page['kind'],
+                'resultsPerPage' => $page['pageInfo']['resultsPerPage'],
+                'totalResults' => $page['pageInfo']['totalResults'],
+            ]);
             yield $page;
+
             $nextPageToken = $page['nextPageToken'];
         } while ($nextPageToken);
     }
