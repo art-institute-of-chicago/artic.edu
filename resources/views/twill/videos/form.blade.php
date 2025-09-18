@@ -16,19 +16,30 @@
     <x-twill::input
         name='video_url'
         label='Video URL'
+        disabled='true'
     />
 
     <x-twill::input
         name='duration'
         label='Duration'
-        note='e.g. 3:45'
+        disabled='true'
     />
 
-    <x-twill::medias
-        label='Hero Image'
-        name='hero'
-        note='Minimum image width 3000px'
-    />
+    <x-twill::formColumns>
+        <x-slot:left>
+            <img
+                style="margin-top: 35px; width: 100%"
+                src='{{ $item->thumbnail_url }}'
+            />
+        </x-slot:left>
+        <x-slot:right>
+            <x-twill::medias
+                label='Hero Image'
+                name='hero'
+                note='Minimum image width 3000px'
+            />
+        </x-slot:right>
+    </x-twill::formColumns>
 
     <x-twill::date-picker
         name='date'
@@ -115,4 +126,31 @@
 
     @include('twill.partials.related')
 
+@endsection
+
+@section('sideFieldsets')
+    <a17-fieldset title="YouTube" id="youtube">
+        <x-twill::input
+            name='youtube_id'
+            label='YouTube ID'
+            disabled='true'
+        />
+        <a href="{{ $item->source_url }}" target="_blank">🔗 YouTube</a>
+
+        <x-twill::input
+            name='uploaded_at'
+            label='Uploaded At'
+            disabled='true'
+        />
+
+        <x-twill::browser
+            name='playlists'
+            label='Playlists'
+            note='Read-only'
+            module-name='playlists'
+            route-prefix='collection.articlesPublications'
+            disabled='true'
+            itemLabel=''
+        />
+    </a17-fieldset>
 @endsection

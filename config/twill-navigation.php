@@ -136,6 +136,10 @@ $nav = [
                         'title' => 'Videos',
                         'module' => true,
                     ],
+                    'playlists' => [
+                        'title' => 'Playlists',
+                        'module' => true,
+                    ],
                     'printedPublications' => [
                         'title' => 'Print Publications',
                         'module' => true,
