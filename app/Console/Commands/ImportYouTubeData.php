@@ -16,13 +16,12 @@ class ImportYouTubeData extends Command
     protected $signature = 'import:youtube';
     protected $description = 'Import video data from YouTube';
 
-    private const CHANNEL_ID = 'UCXflF3_PL_QuDX1CsCImuFA';
-    private const UPLOAD_PLAYLIST_ID = 'UUXflF3_PL_QuDX1CsCImuFA';
-
     // The api allows retrieving at most 50 videos per request.
     private const VIDEOS_PER_REQUEST = 50;
 
     private YouTube $youtube;
+    private $channelId;
+    private $uploadPlaylistId;
 
     public function __construct()
     {
@@ -31,6 +30,8 @@ class ImportYouTubeData extends Command
         $client->setApplicationName('Art Institute of Chicago Video Import');
         $client->setDeveloperKey(config('services.google_api.key'));
         $this->youtube = new YouTube($client);
+        $this->channelId = config('services.youtube.channel_id');
+        $this->uploadPlaylistId = config('services.youtube.upload_playlist_id');
     }
 
     public function handle()
@@ -156,7 +157,7 @@ class ImportYouTubeData extends Command
             $this->youtube->playlists,
             'listPlaylists',
             'snippet',
-            ['channelId' => self::CHANNEL_ID],
+            ['channelId' => $this->channelId],
         );
     }
 
@@ -182,18 +183,18 @@ class ImportYouTubeData extends Command
 
     private function uploads(): LazyCollection
     {
-        return $this->itemsInPlaylist(self::UPLOAD_PLAYLIST_ID);
+        return $this->itemsInPlaylist($this->uploadPlaylistId);
     }
 
     private function playlistCount(): int
     {
-        $response = $this->youtube->playlists->listPlaylists('id', ['channelId' => self::CHANNEL_ID]);
+        $response = $this->youtube->playlists->listPlaylists('id', ['channelId' => $this->channelId]);
         return $response['pageInfo']['totalResults'] ?? 0;
     }
 
     private function uploadCount(): int
     {
-        $response = $this->youtube->playlistItems->listPlaylistItems('id', ['playlistId' => self::UPLOAD_PLAYLIST_ID]);
+        $response = $this->youtube->playlistItems->listPlaylistItems('id', ['playlistId' => $this->uploadPlaylistId]);
         return $response['pageInfo']['totalResults'] ?? 0;
     }
 
