@@ -55,7 +55,8 @@ return [
 
     'youtube' => [
         'channel_id' => env('YOUTUBE_CHANNEL_ID'),
-        'upload_playlist_id' => env('YOUTUBE_UPLOAD_PLAYLIST_ID')
+        'shorts_playlist_id' => env('YOUTUBE_SHORTS_PLAYLIST_ID'),
+        'upload_playlist_id' => env('YOUTUBE_UPLOAD_PLAYLIST_ID'),
     ],
 
     'cloudflare' => [

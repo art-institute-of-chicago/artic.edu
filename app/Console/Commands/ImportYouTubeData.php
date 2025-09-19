@@ -21,6 +21,7 @@ class ImportYouTubeData extends Command
 
     private YouTube $youtube;
     private $channelId;
+    private $shortsPlaylistId;
     private $uploadPlaylistId;
 
     public function __construct()
@@ -31,6 +32,7 @@ class ImportYouTubeData extends Command
         $client->setDeveloperKey(config('services.google_api.key'));
         $this->youtube = new YouTube($client);
         $this->channelId = config('services.youtube.channel_id');
+        $this->shortsPlaylistId = config('services.youtube.shorts_playlist_id');
         $this->uploadPlaylistId = config('services.youtube.upload_playlist_id');
     }
 
@@ -42,6 +44,10 @@ class ImportYouTubeData extends Command
 
         $this->info('Updating videos');
         $this->updateVideos($sourceIds);
+        $this->newLine();
+
+        $this->info('Indicating shorts');
+        $this->indicateShorts();
         $this->newLine();
 
         $this->info('Syncing playlists');
@@ -98,6 +104,18 @@ class ImportYouTubeData extends Command
                 $progress->advance();
             }
         }
+        $progress->finish();
+    }
+
+    /**
+     * Set entries corresponding with items from the shorts playlist as shorts.
+     */
+    private function indicateShorts()
+    {
+        $progress = $this->output->createProgressBar($this->shortsCount());
+        $progress->start();
+        $sourceIds = $this->shorts()->pluck('snippet.resourceId.videoId')->all();
+        Video::whereIn('youtube_id', $sourceIds)->update(['is_short' => true]);
         $progress->finish();
     }
 
@@ -183,6 +201,11 @@ class ImportYouTubeData extends Command
         );
     }
 
+    private function shorts(): LazyCollection
+    {
+        return $this->itemsInPlaylist($this->shortsPlaylistId);
+    }
+
     private function uploads(): LazyCollection
     {
         return $this->itemsInPlaylist($this->uploadPlaylistId);
@@ -191,6 +214,12 @@ class ImportYouTubeData extends Command
     private function playlistCount(): int
     {
         $response = $this->youtube->playlists->listPlaylists('id', ['channelId' => $this->channelId]);
+        return $response['pageInfo']['totalResults'] ?? 0;
+    }
+
+    private function shortsCount(): int
+    {
+        $response = $this->youtube->playlistItems->listPlaylistItems('id', ['playlistId' => $this->shortsPlaylistId]);
         return $response['pageInfo']['totalResults'] ?? 0;
     }
 
@@ -208,7 +237,7 @@ class ImportYouTubeData extends Command
     {
         return LazyCollection::make(function () use ($resource, $action, $parts, $options) {
             foreach ($this->allPages($resource, $action, $parts, $options) as $page) {
-                foreach ($page['items'] as $item) {
+                foreach ($page[$page['collection_key']] as $item) {
                     yield $item;
                 }
             }
