@@ -10,13 +10,21 @@ return new class extends Migration
     {
         Schema::table('videos', function (Blueprint $table) {
             $table->boolean('is_short')->default(false);
+            $table->text('description')->nullable();
+            $table->text('short_description')->nullable();
+        });
+        Schema::table('playlist_video', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
     public function down(): void
     {
         Schema::table('videos', function (Blueprint $table) {
-            $table->dropColumn('is_short');
+            $table->dropColumn(['is_short', 'description', 'short_description']);
+        });
+        Schema::table('playlist_video', function (Blueprint $table) {
+            $table->dropColumn('deleted_at');
         });
     }
 };
