@@ -125,11 +125,11 @@ class ImportYouTubeData extends Command
      */
     private function indicateShorts()
     {
-        $progress = $this->output->createProgressBar($this->shortsCount());
-        $progress->start();
+        $progress = !$this->output->isDebug() ? $this->output->createProgressBar($this->shortsCount()) : null;
+        $progress?->start();
         $sourceIds = $this->shorts()->pluck('snippet.resourceId.videoId')->all();
         Video::whereIn('youtube_id', $sourceIds)->update(['is_short' => true]);
-        $progress->finish();
+        $progress?->finish();
     }
 
     /**
@@ -240,8 +240,13 @@ class ImportYouTubeData extends Command
 
     private function shortsCount(): int
     {
-        $response = $this->youtube->playlistItems->listPlaylistItems('id', ['playlistId' => $this->shortsPlaylistId]);
-        return $response['pageInfo']['totalResults'] ?? 0;
+        $pageInfo = $this->pageInfo(
+            $this->youtube->playlistItems,
+            'listPlaylistItems',
+            'id',
+            ['playlistId' => $this->shortsPlaylistId],
+        );
+        return $pageInfo['totalResults'] ?? 0;
     }
 
     private function uploadCount(): int
