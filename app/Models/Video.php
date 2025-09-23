@@ -15,53 +15,57 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Video extends AbstractModel
 {
-    use HasSlug;
-    use HasRevisions;
-    use HasMedias;
+    use HasBlocks;
     use HasFiles;
+    use HasMedias;
     use HasMediasEloquent;
     use HasRelated;
-    use HasBlocks;
+    use HasRevisions;
+    use HasSlug;
     use Transformable;
 
     protected $presenter = 'App\Presenters\Admin\VideoPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\VideoPresenter';
 
     protected $fillable = [
-        'published',
         'date',
-        'title',
-        'heading',
-        'video_url',
-        'list_description',
-        'title_display',
-        'meta_title',
-        'meta_description',
-        'search_tags',
+        'description',
         'duration',
+        'heading',
         'is_listed',
-        'toggle_autorelated',
-        'youtube_id',
-        'uploaded_at',
+        'is_short',
+        'list_description',
+        'meta_description',
+        'meta_title',
+        'published',
+        'search_tags',
+        'short_description',
         'thumbnail_url',
+        'title',
+        'title_display',
+        'toggle_autorelated',
+        'uploaded_at',
+        'video_url',
+        'youtube_id',
     ];
 
     protected $casts = [
         'date' => 'date',
-        'published' => 'boolean',
         'is_listed' => 'boolean',
+        'published' => 'boolean',
         'toggle_autorelated' => 'boolean',
         'uploaded_at' => 'datetime',
     ];
 
     public $attributes = [
-        'published' => false,
         'is_listed' => false,
+        'published' => false,
         'toggle_autorelated' => false,
     ];
 
     protected $appends = [
         'embed',
+        'format',
         'source_url',
     ];
 
@@ -90,6 +94,13 @@ class Video extends AbstractModel
         return $this->belongsToMany(Playlist::class)
             ->withTimestamps()
             ->withPivot('position');
+    }
+
+    public function format(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($_, array $attributes) => $attributes['is_short'] ? 'Short' : 'Video',
+        );
     }
 
     public function sourceUrl(): Attribute
