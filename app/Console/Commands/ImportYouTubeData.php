@@ -95,7 +95,7 @@ class ImportYouTubeData extends Command
             foreach ($sourceVideos as $source) {
                 $video = Video::firstWhere('youtube_id', $source['id'])->fill([
                     'title' => $source['snippet']['title'],
-                    'list_description' => $source['snippet']['description'],
+                    'description' => $source['snippet']['description'],
                     'uploaded_at' => $source['snippet']['publishedAt'],
                     'duration' => $this->convertDuration($source['contentDetails']['duration']),
                     'thumbnail_url' => $source['snippet']['thumbnails']['high']['url'],
