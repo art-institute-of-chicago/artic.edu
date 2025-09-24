@@ -260,6 +260,9 @@ class ImportYouTubeData extends Command
         return $pageInfo['totalResults'] ?? 0;
     }
 
+    /**
+     * Return only the first page's metadata.
+     */
     private function pageInfo($resource, $action, $parts, $options): array
     {
         return (array) $this->allPages($resource, $action, $parts, $options)->current()['pageInfo'];
@@ -287,6 +290,7 @@ class ImportYouTubeData extends Command
      */
     private function allPages(Resource $resource, string $action, string $parts, array $options)
     {
+        $resultCount = 0;
         $nextPageToken = null;
         do {
             $this->info(
@@ -294,10 +298,12 @@ class ImportYouTubeData extends Command
                 OutputInterface::VERBOSITY_DEBUG,
             );
             $page = $resource->{$action}($parts, $options + ['pageToken' => $nextPageToken]);
+            $pageResultCount = count($page[$page['collection_key']]);
+            $resultCount += $pageResultCount;
             $this->info(
                 "YouTube import response #$this->requestCount - " .
                     "kind: {$page['kind']}, " .
-                    "results: {$page['pageInfo']['resultsPerPage']}/{$page['pageInfo']['totalResults']}",
+                    "results: $pageResultCount ($resultCount/{$page['pageInfo']['totalResults']})",
                 OutputInterface::VERBOSITY_DEBUG,
             );
             $this->requestCount++;
