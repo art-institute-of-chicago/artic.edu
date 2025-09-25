@@ -72,17 +72,9 @@
     />
 
     <x-twill::wysiwyg
-        name='short_description'
-        label='Short description'
-        :maxlength='255'
-        :toolbar-options="[ 'italic' ]"
-    />
-
-    <x-twill::input
         name='heading'
-        label='Heading [Is this field still necessary?]'
-        type='textarea'
-        :rows='3'
+        label='Heading'
+        :toolbar-options="[ 'italic' ]"
     />
 
     @php

@@ -39,7 +39,6 @@ class Video extends AbstractModel
         'meta_title',
         'published',
         'search_tags',
-        'short_description',
         'thumbnail_url',
         'title',
         'title_display',
