@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::table('videos', function (Blueprint $table) {
             $table->boolean('is_short')->default(false);
             $table->text('description')->nullable();
-            $table->text('short_description')->nullable();
         });
         Schema::table('playlist_video', function (Blueprint $table) {
             $table->softDeletes();
@@ -21,7 +20,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('videos', function (Blueprint $table) {
-            $table->dropColumn(['is_short', 'description', 'short_description']);
+            $table->dropColumn(['is_short', 'description']);
         });
         Schema::table('playlist_video', function (Blueprint $table) {
             $table->dropColumn('deleted_at');

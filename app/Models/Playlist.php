@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasRelated;
+use App\Models\Behaviors\HasMedias;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Playlist extends AbstractModel
 {
     use HasFactory;
+    use HasMedias;
     use HasRelated;
 
     protected $fillable = [

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Twill;
 
-use A17\Twill\Services\Listings\Columns\Relation;
+use A17\Twill\Services\Listings\Columns\NestedData;
 use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\TableColumns;
 use App\Models\Playlist;
+use App\Twill\Services\Listings\Columns\ImageWithFallback;
 
 class PlaylistController extends BaseController
 {
@@ -13,7 +14,9 @@ class PlaylistController extends BaseController
     {
         $this->disableCreate();
         $this->disableDelete();
-        $this->disablePermalink();
+
+        $this->enableShowImage();
+
         $this->setModuleName('playlists');
         $this->setSearchColumns(['title', 'youtube_id']);
     }
@@ -21,27 +24,28 @@ class PlaylistController extends BaseController
     protected function getIndexTableColumns(): TableColumns
     {
         $columns = parent::getIndexTableColumns();
-        $afterFirstColumn = $columns->splice(1);
-        $columns->push(
-            Text::make()
-                ->field('thumbnail_url')
-                ->title(null)
-                ->renderHtml()
-                ->customRender(fn (Playlist $playlist) => "<img style='max-width: 80px' src='$playlist->thumbnail_url' />")
-        );
+        if ($this->indexOptions['showImage']) {
+            $afterFirstColumn = $columns->splice(1);
+            $afterFirstColumn->shift(); // Remove Image column
+            // Replace it with ImageWithFallback column
+            $columns->push(
+                ImageWithFallback::make()
+                    ->field('thumbnail')
+                    ->title('Thumbnail')
+                    ->fallback(fn (Playlist $playlist) => $playlist->thumbnail_url)
+            );
 
-        return $columns->merge($afterFirstColumn);
+            return $columns->merge($afterFirstColumn);
+        }
+
+        return $columns;
     }
 
     protected function additionalIndexTableColumns(): TableColumns
     {
         $columns = TableColumns::make();
         $columns->add(
-            Relation::make()
-                ->relation('videos')
-                ->field('title')
-                ->title('Videos')
-                ->optional()
+            NestedData::make()->field('videos')
         );
         $columns->add(
             Text::make()
@@ -51,6 +55,26 @@ class PlaylistController extends BaseController
                 ->hide()
                 ->linkCell(fn (Playlist $playlist) => $playlist->source_url)
         );
+
+        return $columns;
+    }
+
+    protected function getBrowserTableColumns(): TableColumns
+    {
+        $columns = parent::getBrowserTableColumns();
+        if ($this->indexOptions['showImage']) {
+            $afterFirstColumn = $columns->splice(1);
+            $afterFirstColumn->shift(); // Remove Image column
+            // Replace it with ImageWithFallback column
+            $columns->push(
+                ImageWithFallback::make()
+                    ->field('thumbnail')
+                    ->title('Thumbnail')
+                    ->fallback(fn (Playlist $playlist) => $playlist->thumbnail_url)
+            );
+
+            return $columns->merge($afterFirstColumn);
+        }
 
         return $columns;
     }
