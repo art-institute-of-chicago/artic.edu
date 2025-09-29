@@ -23,16 +23,16 @@
         </div>
     @endif
 
-    @if (isset($captionTitle))
-        <div class="o-layered-image-viewer__caption">
-            <div class="o-layered-image-viewer__caption-title f-caption-title">
+    @if (isset($captionTitle) || isset($captionText))
+        <figcaption>
+            <div class="f-caption-title">
                 {!! $captionTitle !!}
             </div>
             @if (isset($captionText))
-                <div class="o-layered-image-viewer__caption-text f-caption">
+                <div class="f-caption">
                     {!! $captionText !!}
                 </div>
             @endif
-        </div>
+        </figcaption>
     @endif
 </div>

@@ -59,8 +59,6 @@ class LayeredImageViewer {
       },
     }
 
-    this.captionTitleEl = null;
-    this.captionEl = null;
     this.images = {
       items: [],
       active: {
@@ -278,18 +276,10 @@ class LayeredImageViewer {
 
     // Store state required for each type
     imgEls.forEach((imgEl, i) => {
-      const figureEl = imgEl.closest('figure');
       const itemState = {};
       itemState.url = imgEl.dataset.viewerSrc;
       itemState.alt = imgEl.alt;
       itemState.label = 'Unknown';
-
-      // Handle either figcaption or title
-      if (imgEl.title) {
-        itemState.label = imgEl.title;
-      } else if (figureEl && figureEl.querySelector('figcaption')) {
-        itemState.label = figureEl.querySelector('figcaption').innerText.trim();
-      }
 
       // Set default active overlays
       if (type === 'overlays') {
@@ -330,14 +320,6 @@ class LayeredImageViewer {
     );
     this.overlays.element = this.element.querySelector(
       '.o-layered-image-viewer__overlays'
-    );
-
-    // Get caption and caption title nodes
-    this.captionTitleEl = this.element.querySelector(
-      '.o-layered-image-viewer__caption-title'
-    );
-    this.captionEl = this.element.querySelector(
-      '.o-layered-image-viewer__caption-text'
     );
 
     // Extract initial crop / zoom if set
@@ -1327,102 +1309,119 @@ class LayeredImageViewer {
 }
 
 const layeredImageViewer = function(container) {
-  let viewer = null;
-  let observer = null;
-  let resizeObserver = null;
-  let isInitialized = false;
-  let isSized = false;
-  let figCaption = null;
+    let viewer = null;
+    let observer = null;
+    let resizeObserver = null;
+    let isInitialized = false;
+    let isSized = false;
+    let figCaption = null;
+    let viewerWidth = null;
+    let lastKnownWidth = null; // Track actual width changes
 
-  const updateDimensions = () => {
-    figCaption = container.querySelector('figcaption');
-    container.style.height = 'max-content'
-    container.offsetHeight;
+    const updateDimensions = () => {
+        const figCaptions = container.querySelectorAll('figcaption');
+        figCaption = figCaptions[figCaptions.length - 1];
+        viewerWidth = container.parentElement.offsetWidth;
 
-    if (figCaption !== null && (container.offsetHeight > figCaption.offsetHeight) && !isSized) {
+        if (figCaption !== null && !isSized) {
+            container.style.height = 'max-content';
+            container.style.height;
+            // Calculate height from 4:3 aspect ratio
+            const calculatedHeight = viewerWidth * (3/4);
+            // Calculate the final height using 4:3 ratio + natural spacing
+            const figCaptionHeight = figCaption.scrollHeight;
+            const finalHeight = calculatedHeight + figCaptionHeight;
+            // Set the calculated height
+            container.style.height = `${finalHeight}px`;
+            isSized = true;
+            lastKnownWidth = viewerWidth; // Remember this width
+        }
+    };
 
-      container.style.height = `${container.offsetHeight}px`;
-      isSized = true;
-    }
-  };
-
-  const setupObservers = () => {
-    observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    const hideViewer = () => {
         const figure = container.querySelector('figure');
+        if (figure) {
+            figure.style.visibility = 'hidden';
+        }
+    };
 
-        if (entry.isIntersecting && !viewer) {
-          if (figure) {
-            figure.style.display = 'block';
-          }
-          if (!viewer) {
-            viewer = new LayeredImageViewer(container);
-          }
-        } else if (!entry.isIntersecting && viewer) {
-          if (figure) {
-            figure.style.display = 'none';
-          }
-          if (viewer) {
+    const showViewer = () => {
+        const figure = container.querySelector('figure');
+        if (figure) {
+            figure.style.visibility = 'visible';
+        }
+    };
+
+    const setupObservers = () => {
+        observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !viewer) {
+                    showViewer();
+                    if (!viewer) {
+                        viewer = new LayeredImageViewer(container);
+                    }
+                } else if (!entry.isIntersecting && viewer) {
+                    hideViewer();
+                    if (viewer) {
+                        if (typeof viewer.destroy === 'function') {
+                            viewer.destroy();
+                        } else if (typeof LayeredImageViewer.destroy === 'function') {
+                            LayeredImageViewer.destroy(container);
+                        }
+                        viewer = null;
+                    }
+                }
+            });
+        });
+
+        // Start observing the container
+        observer.observe(container);
+
+        resizeObserver = new ResizeObserver(() => {
+            const currentWidth = container.parentElement.offsetWidth;
+
+            // ONLY resize if the WIDTH actually changed, not just height/visibility changes
+            if (lastKnownWidth !== null && Math.abs(currentWidth - lastKnownWidth) > 1) {
+                isSized = false;
+                updateDimensions();
+            }
+        });
+        resizeObserver.observe(container.parentElement);
+    };
+
+    this.setupViewer = async function() {
+        if (!isInitialized) {
+            setupObservers();
+            await updateDimensions();
+            hideViewer();
+            isInitialized = true;
+        }
+    };
+
+    this.init = function() {
+        this.setupViewer();
+    };
+
+    this.destroy = function() {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+        if (resizeObserver) {
+            resizeObserver.disconnect();
+            resizeObserver = null;
+        }
+        if (viewer) {
             if (typeof viewer.destroy === 'function') {
-              viewer.destroy();
+                viewer.destroy();
             } else if (typeof LayeredImageViewer.destroy === 'function') {
-              LayeredImageViewer.destroy(container);
+                LayeredImageViewer.destroy(container);
             }
             viewer = null;
-          }
         }
-      });
-    });
-
-    // Start observing the container
-    observer.observe(container);
-
-    resizeObserver = new ResizeObserver(() => {
-      if (viewer) {
-        setTimeout(100);
         isSized = false;
-        updateDimensions();
-      }
-    });
-    resizeObserver.observe(container);
-  };
-
-  this.setupViewer = async function() {
-    if (!isInitialized) {
-      setupObservers();
-      await updateDimensions();
-      isInitialized = true;
-    }
-  };
-
-  this.init = function() {
-    this.setupViewer();
-  };
-
-  this.destroy = function() {
-    if (observer) {
-      observer.disconnect();
-      observer = null;
-    }
-
-    if (resizeObserver) {
-      resizeObserver.disconnect();
-      resizeObserver = null;
-    }
-
-    if (viewer) {
-      // Use the instance method if available, otherwise try static method
-      if (typeof viewer.destroy === 'function') {
-        viewer.destroy();
-      } else if (typeof LayeredImageViewer.destroy === 'function') {
-        LayeredImageViewer.destroy(container);
-      }
-      viewer = null;
-    }
-
-    isSized = false;
-    isInitialized = false;
-  };
+        isInitialized = false;
+    };
 };
 
 export default layeredImageViewer;
