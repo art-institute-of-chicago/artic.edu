@@ -1324,11 +1324,8 @@ const layeredImageViewer = function(container) {
         viewerWidth = container.parentElement.offsetWidth;
 
         if (figCaption !== null && !isSized) {
-            const originalHeight = container.style.height;
             container.style.height = 'max-content';
             container.style.height;
-            // Force reflow to get the natural height
-            const maxContentHeight = container.scrollHeight;
             // Calculate height from 4:3 aspect ratio
             const calculatedHeight = viewerWidth * (3/4);
             // Calculate the final height using 4:3 ratio + natural spacing
