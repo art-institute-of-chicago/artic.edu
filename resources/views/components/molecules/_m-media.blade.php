@@ -159,8 +159,8 @@
         data-title="{!! $media['title'] ?? '' !!}"
         tabindex="{{ $mediaBehavior ? '0' : '-1'}}"
     >
-        @if ($useContain && !($item['isArtwork'] ?? false) && ($size === 'm' || $size === 'l'))
-            <div class="m-media__contain--spacer" style="padding-bottom: {{ min(62.5, intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100) }}%"></div>
+        @if ($useContain && !($item['isArtwork'] ?? false) && ($size === 's' || $size === 'm' || $size === 'l'))
+            <div class="m-media__contain--spacer" style="--aspect-ratio: {{ intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100 }}%; padding-bottom: var(--aspect-ratio); width: 100%;"></div>
         @endif
         @if ($type == 'image')
             @if ($showUrlFullscreen)

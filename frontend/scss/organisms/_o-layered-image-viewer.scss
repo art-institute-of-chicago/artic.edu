@@ -2,6 +2,9 @@
 
 // ---- General
 .o-layered-image-viewer {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
   -webkit-user-select: none;
   user-select: none;
 
@@ -290,7 +293,7 @@
   // a11y: need min-height that doesn't allow buttons to overlap
   min-height: 32em;
   max-height: 80vh;
-  aspect-ratio: 1 / var(--viewer-aspect);
+  aspect-ratio: 4/3;
 
   @supports not (aspect-ratio: 1) {
     height: 80vh;
