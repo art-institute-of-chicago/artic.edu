@@ -8,6 +8,7 @@ use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
+use App\Models\Caption;
 use App\Models\Video;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
@@ -21,6 +22,11 @@ class VideoRepository extends ModuleRepository
     use HandleRevisions;
 
     protected $browsers = [
+        'captions' => [
+            'model' => Caption::class,
+            'moduleName' => 'videos.captions',
+            'routePrefix' => 'collection.articlesPublications',
+        ],
         'playlists' => [
             'routePrefix' => 'collection.articlesPublications',
         ],
