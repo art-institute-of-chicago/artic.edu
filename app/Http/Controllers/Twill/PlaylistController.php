@@ -15,6 +15,8 @@ class PlaylistController extends BaseController
         $this->disableCreate();
         $this->disableDelete();
 
+        $this->eagerLoadListingRelations(['videos']);
+
         $this->enableShowImage();
 
         $this->setModuleName('playlists');
@@ -45,7 +47,8 @@ class PlaylistController extends BaseController
     {
         $columns = TableColumns::make();
         $columns->add(
-            NestedData::make()->field('videos')
+            NestedData::make()
+                ->field('videos')
         );
         $columns->add(
             Text::make()

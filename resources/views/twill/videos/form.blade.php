@@ -170,6 +170,15 @@
             </x-slot:right>
         </x-twill::formColumns>
 
+        <x-twill::browser
+            name='captions'
+            label='Captions'
+            note='Read-only'
+            module-name='videos.captions'
+            route-prefix='collection.articlesPublications'
+            disabled='true'
+            itemLabel=''
+        />
 
         <x-twill::browser
             name='playlists'
