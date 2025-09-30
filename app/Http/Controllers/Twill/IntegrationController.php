@@ -11,18 +11,7 @@ class IntegrationController extends Controller
 {
     public function show()
     {
-        $integrations = array();
-
-        $authorizationUrl = app(GoogleOAuthService::class)->createAuthorizationUrl();
-        $credentials = DB::table('oauth')->where('provider', 'google')->first();
-        $isConnected = (bool) $credentials?->access_token;
-        $integrations[] = [
-            'name' => class_basename(GoogleOAuthService::class),
-            'provider' => $credentials?->provider,
-            'authorizationUrl' => $isConnected ? null : $authorizationUrl,
-            'connectedSince' => $credentials?->created_at,
-            'isConnected' => $isConnected,
-        ];
+        $integrations = [$this->getGoogleOAuthIntegration()];
 
         return view('twill.integrations.show', ['items' => $integrations]);
     }
@@ -30,6 +19,22 @@ class IntegrationController extends Controller
     public function disconnect($provider): RedirectResponse
     {
         DB::table('oauth')->where('provider', $provider)->delete();
+
         return redirect()->route('twill.general.integrations.show');
+    }
+
+    private function getGoogleOAuthIntegration()
+    {
+        $authorizationUrl = app(GoogleOAuthService::class)->createAuthorizationUrl();
+        $credentials = DB::table('oauth')->where('provider', 'google')->first();
+        $isConnected = (bool) $credentials?->access_token;
+
+        return [
+            'name' => class_basename(GoogleOAuthService::class),
+            'provider' => $credentials?->provider,
+            'authorizationUrl' => $isConnected ? null : $authorizationUrl,
+            'connectedSince' => $credentials?->created_at,
+            'isConnected' => $isConnected,
+        ];
     }
 }
