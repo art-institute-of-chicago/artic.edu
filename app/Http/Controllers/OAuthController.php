@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class OAuthController extends Controller
 {
-    public function oauth(Request $request, GoogleOAuthService $oAuth): string
+    public function google(Request $request, GoogleOAuthService $oAuth): string
     {
         try {
             if ($oAuth->createAccessTokenWithAuthorizationCode($request->query('code'))) {

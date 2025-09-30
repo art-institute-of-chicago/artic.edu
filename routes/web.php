@@ -43,7 +43,7 @@ Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 
-Route::get('/google-oauth', [OAuthController::class, 'oauth'])->name('google-oauth');
+Route::get('/google-oauth', [OAuthController::class, 'google'])->name('google-oauth');
 
 Route::get('/ajaxData', [FrontController::class, 'getAjaxData']);
 
