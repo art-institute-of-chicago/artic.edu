@@ -59,9 +59,7 @@ return [
                 'token_uri' => '',
                 'auth_provider_x509_cert_url' => '',
                 'client_secret' => '',
-                'redirect_uris' => [
-                    'http://www-dev.artic.edu/google-oauth'
-                ],
+                'redirect_uris' => ['/google-oauth'],
             ],
         ]),
     ],
