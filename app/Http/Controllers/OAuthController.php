@@ -9,10 +9,16 @@ class OAuthController extends Controller
 {
     public function oauth(Request $request, GoogleOAuthService $oAuth): string
     {
-        if ($oAuth->createAccessTokenWithAuthorizationCode($request->query('code'))) {
-            return 'Authorization succeeded. You may close this tab.';
-        } else {
-            return 'Authorization failed!';
+        try {
+            if ($oAuth->createAccessTokenWithAuthorizationCode($request->query('code'))) {
+                $message = 'Authorization succeeded. You may close this tab.';
+            } else {
+                $message = 'Authorization failed!';
+            }
+        } catch (\Exception $exception) {
+            $message = $exception->getMessage();
         }
+
+        return $message;
     }
 }
