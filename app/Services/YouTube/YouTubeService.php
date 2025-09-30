@@ -8,13 +8,13 @@ use Google\Service\Resource;
 use Google\Service\YouTube;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\LazyCollection;
-use Monolog\Handler\StreamHandler;
-use Monolog\Processor\PsrLogMessageProcessor;
 
 class YouTubeService
 {
+    // The name to use for the user agent in requests
+    public const SERVICE_NAME = 'The Art Institute of Chicago YouTube Service';
+
     // The api allows retrieving at most 50 items per request
     public const ITEMS_PER_REQUEST = 50;
 
