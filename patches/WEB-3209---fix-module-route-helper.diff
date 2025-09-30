@@ -1,0 +1,21 @@
+diff --git a/src/Helpers/routes_helpers.php b/src/Helpers/routes_helpers.php
+index 77ba9199..fa7f2bd7 100644
+--- a/src/Helpers/routes_helpers.php
++++ b/src/Helpers/routes_helpers.php
+@@ -1,6 +1,5 @@
+ <?php
+ 
+-use Illuminate\Support\Facades\Request;
+ use Illuminate\Support\Facades\Route;
+ use Illuminate\Support\Str;
+ 
+@@ -15,6 +14,9 @@ if (! function_exists('moduleRoute')) {
+         // Fix module name case
+         $moduleName = Str::camel($moduleName);
+ 
++        // Wrap scalar parameters in an array
++        $parameters = is_array($parameters) ? $parameters : [$parameters];
++
+         // Nested module, pass in current parameters for deeply nested modules
+         if (Str::contains($moduleName, '.')) {
+             if (Str::endsWith(request()->route()->getName(), 'restoreRevision')) {
