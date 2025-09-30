@@ -25,6 +25,7 @@ use App\Http\Controllers\LandingPagesController;
 use App\Http\Controllers\MagazineIssueController;
 use App\Http\Controllers\MiradorController;
 use App\Http\Controllers\MyMuseumTourController;
+use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\PressReleasesController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\PrintedPublicationsController;
@@ -41,6 +42,8 @@ use App\Models\Slugs\LandingPageSlug;
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
+
+Route::get('/google-oauth', [OAuthController::class, 'oauth'])->name('google-oauth');
 
 Route::get('/ajaxData', [FrontController::class, 'getAjaxData']);
 
