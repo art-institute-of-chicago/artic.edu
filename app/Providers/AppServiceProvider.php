@@ -157,7 +157,12 @@ class AppServiceProvider extends ServiceProvider
     public function registerGoogleOAuthService(): void
     {
         $this->app->singleton(GoogleOAuthService::class, function () {
-            return new GoogleOAuthService(base_path(config('services.google_api.oauth_config_file')));
+            $developerKey = config('services.google_api.key');
+            $authConfig = config('services.google_api.oauth_config_file');
+            if (is_string($authConfig)) {
+                $authConfig = base_path($authConfig);
+            }
+            return new GoogleOAuthService($developerKey, $authConfig);
         });
     }
 

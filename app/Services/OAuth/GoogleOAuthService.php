@@ -16,12 +16,12 @@ class GoogleOAuthService
 
     public Client $client;
 
-    public function __construct(string $authConfig)
+    public function __construct(string $developerKey, array|string $authConfig)
     {
         // See https://developers.google.com/youtube/v3/getting-started#gzip
         $clientConfig = ['headers' => ['Accept-Encoding' => 'gzip']];
         $this->client = new Client($clientConfig);
-        $this->client->setDeveloperKey(config('services.google_api.key'));
+        $this->client->setDeveloperKey($developerKey);
         $this->client->setAuthConfig($authConfig);
         $this->client->setAccessType(self::ACCESS_TYPE);
         $this->client->setScopes(self::SCOPES);
