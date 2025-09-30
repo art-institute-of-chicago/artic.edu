@@ -51,6 +51,7 @@ return [
 
     'google_api' => [
         'key' => env('GOOGLE_API_KEY'),
+        'oauth_config_file' => env('GOOGLE_OAUTH_CONFIG_FILE')
     ],
 
     'youtube' => [

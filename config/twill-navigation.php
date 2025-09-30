@@ -272,7 +272,11 @@ $nav = [
             'illuminatedLinks' => [
                 'title' => 'Illuminated Links',
                 'module' => true,
-            ]
+            ],
+            'integrations' => [
+                'title' => 'Integrations',
+                'route' => 'twill.general.integrations.show',
+            ],
         ],
     ],
 

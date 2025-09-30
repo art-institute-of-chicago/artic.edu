@@ -9,6 +9,7 @@ use App\Http\Controllers\Twill\DepartmentController;
 use App\Http\Controllers\Twill\DigitalPublicationArticleController;
 use App\Http\Controllers\Twill\ExhibitionController;
 use App\Http\Controllers\Twill\GalleryController;
+use App\Http\Controllers\Twill\IntegrationController;
 use App\Http\Controllers\Twill\PageController;
 use App\Http\Controllers\Twill\ShopItemController;
 
@@ -123,4 +124,6 @@ Route::group(['prefix' => 'general'], function () {
     TwillRoutes::module('tourStops');
     TwillRoutes::module('vanityRedirects');
     TwillRoutes::module('illuminatedLinks');
+    Route::get('/integrations', [IntegrationController::class, 'show'])->name('general.integrations.show');
+    Route::get('/integrations/{provider}/disconnect', [IntegrationController::class, 'disconnect'])->name('general.integrations.disconnect');
 });
