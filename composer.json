@@ -20,7 +20,7 @@
             "package": {
                 "type": "metapackage",
                 "name": "vendor/package-patches",
-                "version": "1.11.0",
+                "version": "1.12.0",
                 "require": {
                     "netresearch/composer-patches-plugin": "~1.2"
                 },
@@ -42,6 +42,10 @@
                             {
                                 "title": "WEB-3084: Fix Preview Changes",
                                 "url": "patches/WEB-3084---remove-eager-loading-related-items-on-hydrate.diff"
+                            },
+                            {
+                                "title": "WEB-3209: Fix Twill `moduleRoute` helper",
+                                "url": "patches/WEB-3209---fix-module-route-helper.diff"
                             }
                         ]
                     }
