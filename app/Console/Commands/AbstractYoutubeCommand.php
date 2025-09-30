@@ -21,7 +21,7 @@ abstract class AbstractYoutubeCommand extends Command
     {
         $this->signature = Str::replace('{signature}', $this->signature, $this->signatureTemplate);
         parent::__construct();
-        $oAuth->setApplicationName('Art Institute of Chicago Video Import (gzip)');
+        $oAuth->setApplicationName(YouTubeService::SERVICE_NAME . ' (gzip)');
         $this->youtube = new YouTubeService($oAuth->client);
         $this->youtube->setLogger(fn ($message) => $this->info($message, OutputInterface::VERBOSITY_DEBUG));
     }

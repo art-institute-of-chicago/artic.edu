@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class YouTubeQuota extends Command
 {
-    protected $signature = 'youtube:quota {--R|resets : Include }';
+    protected $signature = 'youtube:quota';
     protected $description = 'Display the daily quota usage information';
 
     protected YouTubeService $youtube;
@@ -17,7 +17,7 @@ class YouTubeQuota extends Command
     public function __construct(GoogleOAuthService $oAuth)
     {
         parent::__construct();
-        $oAuth->setApplicationName('Art Institute of Chicago Video Import (gzip)');
+        $oAuth->setApplicationName(YouTubeService::SERVICE_NAME . ' (gzip)');
         $this->youtube = new YouTubeService($oAuth->client);
         $this->youtube->setLogger(fn ($message) => $this->info($message, OutputInterface::VERBOSITY_DEBUG));
     }
