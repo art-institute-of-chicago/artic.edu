@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Twill;
 
+use A17\Twill\Services\Listings\Columns\NestedData;
 use A17\Twill\Services\Listings\Columns\Relation;
 use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\Filters\BasicFilter;
@@ -14,7 +15,6 @@ use App\Models\Video;
 use App\Repositories\CategoryRepository;
 use App\Twill\Services\Listings\Columns\ImageWithFallback;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 class VideoController extends BaseController
 {
@@ -23,6 +23,8 @@ class VideoController extends BaseController
         $this->disableCreate();
 
         $this->enableShowImage();
+
+        $this->eagerLoadListingRelations(['captions', 'playlists']);
 
         $this->setModuleName('videos');
         $this->setPreviewView('site.videoDetail');
@@ -109,6 +111,11 @@ class VideoController extends BaseController
                 ->relation('playlists')
                 ->field('title')
                 ->title('Playlists')
+                ->optional()
+        );
+        $columns->add(
+            NestedData::make()
+                ->field('captions')
                 ->optional()
         );
         $columns->add(

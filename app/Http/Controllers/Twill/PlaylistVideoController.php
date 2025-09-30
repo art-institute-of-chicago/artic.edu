@@ -9,7 +9,6 @@ use A17\Twill\Services\Listings\Filters\QuickFilter;
 use A17\Twill\Services\Listings\Filters\QuickFilters;
 use A17\Twill\Services\Listings\TableColumns;
 use App\Models\PlaylistVideo;
-use App\Models\Video;
 use App\Twill\Services\Listings\Columns\ImageWithFallback;
 
 class PlaylistVideoController extends BaseController
@@ -28,20 +27,26 @@ class PlaylistVideoController extends BaseController
         $this->disablePublish();
         $this->disableRestore();
 
+        $this->eagerLoadListingRelations(['playlist', 'video']);
+
         $this->setModelName('PlaylistVideo');
         $this->setModuleName('playlists.videos');
         $this->setTitleColumnKey('position');
         $this->setTitleColumnLabel('Position');
 
-        $this->setBreadcrumbs(NestedBreadcrumbs::make()
-            ->forParent(
-                parentModule: 'playlists',
-                module: $this->moduleName,
-                activeParentId: request('playlist'),
-                repository: \App\Repositories\PlaylistRepository::class,
-                routePrefix: 'collection.articlesPublications',
-            )
-            ->label('Videos'));
+        if (request('playlist')) {
+            $this->setBreadcrumbs(
+                NestedBreadcrumbs::make()
+                    ->forParent(
+                        parentModule: 'playlists',
+                        module: $this->moduleName,
+                        activeParentId: request('playlist'),
+                        repository: \App\Repositories\PlaylistRepository::class,
+                        routePrefix: 'collection.articlesPublications',
+                    )
+                    ->label('Videos')
+            );
+        }
     }
 
     public function quickFilters(): QuickFilters

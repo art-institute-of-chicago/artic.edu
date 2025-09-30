@@ -25,15 +25,19 @@ class VideoCaptionController extends BaseController
         $this->setModelName('Caption');
         $this->setModuleName('videos.captions');
 
-        $this->setBreadcrumbs(NestedBreadcrumbs::make()
-            ->forParent(
-                parentModule: 'videos',
-                module: $this->moduleName,
-                activeParentId: request('video'),
-                repository: VideoRepository::class,
-                routePrefix: 'collection.articlesPublications',
-            )
-            ->label('Captions'));
+        if (request('video')) {
+            $this->setBreadcrumbs(
+                NestedBreadcrumbs::make()
+                    ->forParent(
+                        parentModule: 'videos',
+                        module: $this->moduleName,
+                        activeParentId: request('video'),
+                        repository: VideoRepository::class,
+                        routePrefix: 'collection.articlesPublications',
+                    )
+                    ->label('Captions')
+            );
+        }
     }
 
     protected function additionalIndexTableColumns(): TableColumns

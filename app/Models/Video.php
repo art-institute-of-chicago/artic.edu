@@ -95,6 +95,11 @@ class Video extends AbstractModel
             ->withPivot('position');
     }
 
+    public function captions()
+    {
+        return $this->hasMany(Caption::class);
+    }
+
     public function format(): Attribute
     {
         return Attribute::make(
