@@ -131,7 +131,7 @@ class PrintedPublication extends AbstractModel
 
     public function getSubtypeAttribute()
     {
-        return 'Printed Publication';
+        return 'Print Publication';
     }
 
     public function getIdSlugAttribute()
