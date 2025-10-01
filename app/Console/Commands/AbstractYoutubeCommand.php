@@ -23,7 +23,9 @@ abstract class AbstractYoutubeCommand extends Command
         parent::__construct();
         $oAuth->setApplicationName(YouTubeService::SERVICE_NAME . ' (gzip)');
         $this->youtube = new YouTubeService($oAuth->client);
-        $this->youtube->setLogger(fn ($message) => $this->info($message, OutputInterface::VERBOSITY_DEBUG));
+        $this->youtube->setLogger(fn ($message, $level = 'info') => (
+            $this->{$level}($message, OutputInterface::VERBOSITY_DEBUG)
+        ));
     }
 
     public function handle()
@@ -32,16 +34,30 @@ abstract class AbstractYoutubeCommand extends Command
             "YouTube service session start",
             OutputInterface::VERBOSITY_DEBUG,
         );
+        // If the options are null, let them be, otherwise cast their types.
+        $quota = is_null($this->option('quota')) ? $this->option('quota') : (int) $this->option('quota');
+        $force = is_null($this->option('force')) ? $this->option('force') : (bool) $this->option('force');
         try {
-            $this->youtube->session(fn () => $this->handleCommand(), $this->option('quota'), $this->option('force'));
+            $this->youtube->clearSession()->session(fn () => $this->handleCommand(), $quota, $force);
         } catch (YouTubeServiceException $exception) {
             $code = $exception->getCode();
             $this->error($exception->getMessage(), OutputInterface::VERBOSITY_QUIET);
         }
-        $this->info(
+        $requestCount = $this->youtube->getRequestCount();
+        $sessionUsage = $this->youtube->getSessionUsage();
+        $remainingQuota = $this->youtube->getRemainingQuota(quiet: true);
+        $level = 'info';
+        // Less than 10% of the daily limit
+        if ($remainingQuota <= 0) {
+            $level = 'error';
+        } elseif ($remainingQuota < YouTubeService::QUOTA_LIMIT * .10) {
+            $level = 'warn';
+        }
+        $this->{$level}(
             'YouTube service session end - ' .
-                "request count: {$this->youtube->getRequestCount()}, " .
-                "quota usage: {$this->youtube->getSessionUsage()}",
+                "request count: $requestCount, " .
+                "quota usage: $sessionUsage, " .
+                "remaining quota: $remainingQuota",
             OutputInterface::VERBOSITY_DEBUG
         );
 
