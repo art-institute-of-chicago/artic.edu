@@ -50,7 +50,18 @@ return [
     ],
 
     'google_api' => [
-        'key' => env('GOOGLE_API_KEY'),
+        'key' => env('GOOGLE_API_KEY', ''),
+        'oauth_config_file' => env('GOOGLE_OAUTH_CONFIG_FILE', [
+            'web' => [
+                'client_id' => '',
+                'project_id' => '',
+                'auth_uri' => '',
+                'token_uri' => '',
+                'auth_provider_x509_cert_url' => '',
+                'client_secret' => '',
+                'redirect_uris' => ['/google-oauth'],
+            ],
+        ]),
     ],
 
     'youtube' => [
