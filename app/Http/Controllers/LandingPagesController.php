@@ -291,8 +291,8 @@ class LandingPagesController extends FrontController
                             'value' => 'digital-publication'
                         ],
                         [
-                            'label' => 'Printed Publications',
-                            'value' => 'printed-publication'
+                            'label' => 'Print Publications',
+                            'value' => 'print-publication'
                         ]
                     ],
                     $filters
