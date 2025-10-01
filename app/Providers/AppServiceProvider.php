@@ -5,9 +5,10 @@ namespace App\Providers;
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
 use Aic\Hub\Foundation\Library\Api\Consumers\GuzzleApiConsumer;
-use App\Libraries\EmbedConverterService;
 use App\Libraries\DamsImageService;
+use App\Libraries\EmbedConverterService;
 use App\Observers\FileObserver;
+use App\Services\OAuth\GoogleOAuthService;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerEmbedConverterService();
         $this->registerClosureService();
         $this->registerPrintService();
+        $this->registerGoogleOAuthService();
         $this->registerDebugMethod();
         $this->registerVendorClasses();
         $this->registerAliases();
@@ -149,6 +151,18 @@ class AppServiceProvider extends ServiceProvider
                     return $this->isPrintMode;
                 }
             };
+        });
+    }
+
+    public function registerGoogleOAuthService(): void
+    {
+        $this->app->singleton(GoogleOAuthService::class, function () {
+            $developerKey = config('services.google_api.key');
+            $authConfig = config('services.google_api.oauth_config_file');
+            if (is_string($authConfig)) {
+                $authConfig = base_path($authConfig);
+            }
+            return new GoogleOAuthService($developerKey, $authConfig);
         });
     }
 
