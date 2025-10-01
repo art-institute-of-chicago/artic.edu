@@ -129,9 +129,13 @@ class YouTubeService
     /**
      * Return the datetime when the quota next resets.
      */
-    public function getResetsAt()
+    public function getResetsAt($timezone = null)
     {
-        return $this->lastResetAt()->addDay();
+        $resetsAt = $this->lastResetAt()->addDay();
+        if ($timezone) {
+            $resetsAt->tz = $timezone;
+        }
+        return $resetsAt;
     }
 
     /**
@@ -143,14 +147,14 @@ class YouTubeService
             $this->setSessionQuota($quota);
         }
         $this->setForceLimit($force);
-        $start = now();
+        $start = now('UTC');
         DB::table(self::SESSION_TABLE)->insert(['created_at' => $start]);
         try {
             $run();
         } catch (GoogleServiceException $exception) {
             $message = strip_tags(json_decode($exception->getMessage())->error->message);
             DB::table(self::SESSION_TABLE)->where('created_at', $start)->update([
-                'errored_at' => now(),
+                'errored_at' => now('UTC'),
                 'error' => $exception->getMessage(),
                 'message' => $message,
             ]);
@@ -161,7 +165,7 @@ class YouTubeService
             ]);
         } finally {
             DB::table(self::SESSION_TABLE)->where('created_at', $start)->update([
-                'updated_at' => now(),
+                'updated_at' => now('UTC'),
                 'requests' => $this->getRequestCount(),
                 'usage' => $this->getSessionUsage(),
             ]);
@@ -371,13 +375,15 @@ class YouTubeService
      */
     private function lastResetAt()
     {
-        return today()->setTimezone('Pacific/Honolulu');
+        return today('Pacific/Honolulu');
     }
 
     private function todaysSessionsQuery()
     {
+        $lastResetAt = $this->lastResetAt();
+        $lastResetAt->setTimezone('UTC');
         return DB::table(self::SESSION_TABLE)
-            ->where('created_at', '>=', $this->lastResetAt())
+            ->where('created_at', '>=', $lastResetAt)
             ->orderBy('created_at');
     }
 
