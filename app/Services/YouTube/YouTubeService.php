@@ -41,6 +41,7 @@ class YouTubeService
 
     // Default metadata fields used for most requests
     private const METADATA_FIELDS = 'kind,nextPageToken,pageInfo';
+    private $metadataFields;
 
     private YouTube $youtube;
     private $channelId;
@@ -51,7 +52,6 @@ class YouTubeService
 
     // Session data
     private $forceLimit = false;
-    private $metadataFields;
     private $requestCount = 0;
     private $sessionQuota = null;
     private $sessionUsage = 0;
@@ -95,12 +95,17 @@ class YouTubeService
         return $this->sessionUsage;
     }
 
+    public function getQuotaType(): string
+    {
+        return is_null($this->sessionQuota) ? 'daily' : 'session';
+    }
+
     /**
      * Calculate the amount of remaining quota points.
      */
-    public function getRemainingQuota()
+    public function getRemainingQuota(bool $quiet = false): int
     {
-        $type = is_null($this->sessionQuota) ? 'daily' : 'session';
+        $type = $this->getQuotaType();
         if ($type == 'daily') {
             $quota = self::QUOTA_LIMIT;
             $usage = $this->todaysSessionsQuery()->sum('usage') + $this->sessionUsage;
@@ -109,13 +114,15 @@ class YouTubeService
             $usage = $this->sessionUsage;
         }
         $remaining = $quota - $usage;
-        $this->log(
-            "YouTube service quota - " .
-                "type: $type, " .
-                "quota: $quota, " .
-                "usage: $usage, " .
-                "remaining: $remaining",
-        );
+        if (!$quiet) {
+            $this->log(
+                "YouTube service quota - " .
+                    "type: $type, " .
+                    "quota: $quota, " .
+                    "usage: $usage, " .
+                    "remaining: $remaining",
+            );
+        }
         return $remaining;
     }
 
@@ -127,6 +134,9 @@ class YouTubeService
         return $this->lastResetAt()->addDay();
     }
 
+    /**
+     * Run tasks in the context of a session, tracking quota usage and requests.
+     */
     public function session(\Closure $run, ?int $quota = null, bool $force = false): void
     {
         if (!is_null($quota)) {
@@ -156,6 +166,19 @@ class YouTubeService
                 'usage' => $this->getSessionUsage(),
             ]);
         }
+    }
+
+    /**
+     * Reset session-related data.
+     */
+    public function clearSession(): self
+    {
+        $this->forceLimit = false;
+        $this->requestCount = 0;
+        $this->sessionQuota = null;
+        $this->sessionUsage = 0;
+
+        return $this;
     }
 
     public function captionsForVideo(string $videoId, ?string $fields = null)
@@ -275,8 +298,7 @@ class YouTubeService
         $nextPageToken = null;
         $optional['fields'] = trim(($optional['fields'] ?? '') . ",$this->metadataFields", ',');
         do {
-            $estimatedUsage = self::QUOTAS[class_basename($resource)][str($action)->ucsplit()->first()];
-            $this->checkQuota($estimatedUsage);
+            $estimatedUsage = $this->checkQuota($resource, $action);
             if ($nextPageToken) {
                 $optional['pageToken'] = $nextPageToken;
             }
@@ -310,29 +332,37 @@ class YouTubeService
     }
 
     /**
-     * Check that there is available quota.
+     * Check that there is available quota for the resource action.
      */
-    private function checkQuota(int $estimatedUsage): void
+    private function checkQuota($resource, $action): int
     {
         // Check that we haven't already received a "quota exceeded" error from YouTube
         $errored = $this->todaysSessionsQuery()->whereNotNull('errored_at');
         if ($session = $errored->whereJsonContains('error->error->errors->0->reason', 'quotaExceeded')->first()) {
-            $this->log("YouTube service quota - exceeded: $session->errored_at");
+            $this->log("YouTube service quota - exceeded: $session->errored_at", 'error');
             throw new YouTubeServiceException("Today's daily quota previously been exceeded at $session->errored_at");
         }
 
+        $resourceName = class_basename($resource);
+        $actionName = str($action)->ucsplit()->first();
+        $estimatedUsage = self::QUOTAS[$resourceName][$actionName];
         $remaining = $this->getRemainingQuota();
         if ($estimatedUsage > $remaining) {
             $overage = $estimatedUsage - $remaining;
             $this->log(
                 "YouTube service usage estimate - " .
+                    "request: $resourceName $actionName, " .
                     "estimated usage: $estimatedUsage, " .
+                    "remaining quota: $remaining, " .
                     "estimated overage: $overage",
+                'warn',
             );
             if (!$this->forceLimit) {
                 throw new YouTubeServiceException("The quota would be exceeded by an estimated $overage");
             }
         }
+
+        return $estimatedUsage;
     }
 
     /**
@@ -351,9 +381,9 @@ class YouTubeService
             ->orderBy('created_at');
     }
 
-    private function log($message)
+    private function log($message, $level = 'info')
     {
         $logger = $this->logger;
-        $logger($message);
+        $logger($message, $level);
     }
 }
