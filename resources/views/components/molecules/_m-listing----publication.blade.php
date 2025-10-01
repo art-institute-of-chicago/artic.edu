@@ -3,7 +3,12 @@
  $filterValues = '';
 
  if (isset($item) && isset($item->type)) {
+  # PUB-343 | This is ugly and I hate it but later we should rename everything from printed -> print
+  if ($item->type == 'printed_publication') {
+    $filterValues .= 'print-publication';
+  } else {
      $filterValues .= str_replace('_', '-', $item->type);
+  }
  }
 
  if ($itemCategories->count() > 0) {
