@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1935986bfee8d8cf48d6a45081a5fce0",
+    "content-hash": "bafb846fb219f7d9f40db939cfd48a9d",
     "packages": [
         {
             "name": "aic/data-hub-foundation",
@@ -12069,7 +12069,7 @@
                             "url": "patches/WEB-3084---remove-eager-loading-related-items-on-hydrate.diff"
                         },
                         {
-                            "title": "Fix Twill `moduleRoute` helper",
+                            "title": "WEB-3209: Fix Twill `moduleRoute` helper",
                             "url": "patches/WEB-3209---fix-module-route-helper.diff"
                         }
                     ]
