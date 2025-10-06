@@ -77,7 +77,7 @@ class YouTubeCaptions extends AbstractYoutubeCommand
     {
         $captionsMissingText = Caption::where('kind', 'standard')
             ->whereHas('translations', function (Builder $query) {
-                $query->whereNull('text');
+                $query->whereNull('file');
             })
             ->latest('updated_at');
         $progress = !$this->output->isDebug() ?
@@ -86,7 +86,7 @@ class YouTubeCaptions extends AbstractYoutubeCommand
         $progress?->start();
         foreach ($captionsMissingText->get() as $caption) {
             foreach ($caption->translations as $translation) {
-                $translation->text = $this->youtube->downloadCaptionById($translation->youtube_id);
+                $translation->file = $this->youtube->downloadCaptionById($translation->youtube_id);
                 $translation->save();
             }
             $progress?->advance();

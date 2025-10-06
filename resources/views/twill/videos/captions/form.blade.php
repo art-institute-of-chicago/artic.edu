@@ -8,6 +8,7 @@
     />
 
     <x-twill::input
+        type='textarea'
         name='file'
         label='File'
         disabled='true'
