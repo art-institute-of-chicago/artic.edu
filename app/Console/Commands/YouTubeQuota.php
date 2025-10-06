@@ -25,11 +25,14 @@ class YouTubeQuota extends Command
     public function handle()
     {
         $remaining = $this->youtube->getRemainingQuota();
-        $resetsAt = $this->youtube->getResetsAt();
+        $resetsAt = $this->youtube->getResetsAt(config('app.timezone'));
         $resetsInHours = floor(now()->diffInHours($resetsAt));
-        $resetsInMins = floor(now()->diffInRealMinutes($resetsAt)) % 60;
+        $resetsInMinutes = floor(now()->diffInRealMinutes($resetsAt)) % 60;
+        $hours = $resetsInHours ? "$resetsInHours hours" : '';
+        $minutes = $resetsInMinutes ? "$resetsInMinutes minutes" : '';
+        $resets = $resetsAt->format('M j, g:iA');
         $this->info(
-            "YouTube service quota - remaining: $remaining, resets in: $resetsInHours hours $resetsInMins minutes",
+            "YouTube service quota - remaining: $remaining, resets in: $hours $minutes ($resets)",
             OutputInterface::VERBOSITY_QUIET,
         );
     }
