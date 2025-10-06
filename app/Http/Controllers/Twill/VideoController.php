@@ -51,6 +51,13 @@ class VideoController extends BaseController
         $afterSecondFilter = $filters->splice(2);
         $filters->add(
             QuickFilter::make()
+                ->queryString('is_uploaded')
+                ->label('Uploaded')
+                ->amount(fn () => $this->repository->whereNotNull('uploaded_at')->count())
+                ->apply(fn (Builder $builder) => $builder->whereNotNull('uploaded_at'))
+        );
+        $filters->add(
+            QuickFilter::make()
                 ->queryString('is_short')
                 ->label('Shorts')
                 ->amount(fn () => $this->repository->where('is_short', true)->count())
@@ -58,10 +65,10 @@ class VideoController extends BaseController
         );
         $filters->add(
             QuickFilter::make()
-                ->queryString('is_uploaded')
-                ->label('Uploaded')
-                ->amount(fn () => $this->repository->whereNotNull('uploaded_at')->count())
-                ->apply(fn (Builder $builder) => $builder->whereNotNull('uploaded_at'))
+                ->queryString('is_captioned')
+                ->label('Captioned')
+                ->amount(fn () => $this->repository->where('is_captioned', true)->count())
+                ->apply(fn (Builder $builder) => $builder->where('is_captioned', true))
         );
 
         return $filters->merge($afterSecondFilter);

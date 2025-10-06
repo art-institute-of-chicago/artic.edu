@@ -62,7 +62,11 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
     {
         $progress = !$this->output->isDebug() ? $this->output->createProgressBar($sourceIds->count()) : null;
         $progress?->start();
-        $fields =  'items(id,contentDetails/duration,snippet(title,description,publishedAt,thumbnails/high/url))';
+        $fields = 'items(' .
+            'id,' .
+            'contentDetails(caption,duration),' .
+            'snippet(title,description,publishedAt,thumbnails/high/url)' .
+        ')';
         foreach ($sourceIds->chunk(YouTubeService::ITEMS_PER_REQUEST) as $chunkOfSourceIds) {
             $sourceVideos = $this->youtube->videosByIds($chunkOfSourceIds, $fields);
             foreach ($sourceVideos as $source) {
@@ -72,6 +76,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                     'uploaded_at' => $source['snippet']['publishedAt'],
                     'duration' => $this->convertDuration($source['contentDetails']['duration']),
                     'thumbnail_url' => $source['snippet']['thumbnails']['high']['url'],
+                    'is_captioned' => $source['contentDetails']['caption'],
                 ]);
                 $video->save();
                 $progress?->advance();
