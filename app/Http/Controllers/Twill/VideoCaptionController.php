@@ -60,13 +60,6 @@ class VideoCaptionController extends BaseController
                 ->optional()
                 ->hide()
         );
-        $columns->add(
-            Text::make()
-                ->field('youtube_id')
-                ->title('YouTube ID')
-                ->optional()
-                ->hide()
-        );
 
         return $columns;
     }
