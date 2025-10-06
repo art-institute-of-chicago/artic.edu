@@ -4,15 +4,17 @@
     <table id="integrations">
         <thead>
             <tr>
-                <th>Status</th><th>Service</th><th>Action</th>
+                <th>Connection</th><th>Service</th><th>Status</th><th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($items as $integration)
                 <tr>
                     <td>
-                        @if($integration['isConnected'])
+                        @if($integration['connection'] && $integration['connection']['enabled'] ?? false)
                             <span style="color: green">&#11044;</span>
+                        @elseif($integration['connection'])
+                            <span style="color: yellow">&#11044;</span>
                         @else
                             <span style="color: red">&#11044;</span>
                         @endif
@@ -21,12 +23,12 @@
                         {{ $integration['name'] }}
                     </td>
                     <td>
-                        @if($integration['authorizationUrl'])
-                            <a href="{{ $integration['authorizationUrl'] }}" target="_blank">Connect</a>
-                        @elseif($integration['connectedSince'])
-                            {{ $integration['connectedSince'] }}
-                            (<a href="{{ route('twill.general.integrations.disconnect', $integration['provider']) }}">Disconnect</a>)
-                        @endif
+                        {{ $integration['status'] }}
+                    </td>
+                    <td>
+                        @foreach($integration['actions'] as $action)
+                            <a href="{{ $action['url'] }}">{{ $action['name'] }}</a>
+                        @endforeach
                     </td>
                 </tr>
             @endforeach

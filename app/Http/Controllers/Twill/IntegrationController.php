@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Twill;
 use A17\Twill\Http\Controllers\Admin\Controller;
 use App\Services\OAuth\GoogleOAuthService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 
 class IntegrationController extends Controller
 {
@@ -16,25 +15,69 @@ class IntegrationController extends Controller
         return view('twill.integrations.show', ['items' => $integrations]);
     }
 
-    public function disconnect($provider): RedirectResponse
+    public function action(string $service, string $action): RedirectResponse
     {
-        DB::table('oauth')->where('provider', $provider)->delete();
+        switch ($service) {
+            case class_basename(GoogleOAuthService::class):
+                $googleOAuth = app(GoogleOAuthService::class);
+                switch ($action) {
+                    case 'refresh':
+                        $googleOAuth->refreshAccess();
+                        break;
+                    case 'revoke':
+                        $googleOAuth->revokeAccess();
+                        break;
+                }
+                break;
+        }
 
         return redirect()->route('twill.general.integrations.show');
     }
 
     private function getGoogleOAuthIntegration()
     {
-        $authorizationUrl = app(GoogleOAuthService::class)->createAuthorizationUrl();
-        $credentials = DB::table('oauth')->where('provider', 'google')->first();
-        $isConnected = (bool) $credentials?->access_token;
+        $googleOAuth = app(GoogleOAuthService::class);
+        $hasAccess = $googleOAuth->hasAccess();
+        if ($hasAccess) {
+            $googleOAuth->authorizeAccess();
+        }
+        $isExpired = $googleOAuth->isAccessTokenExpired();
+
+        $connection = $hasAccess ? ['enabled' => !$isExpired] : null;
+        $name = class_basename(GoogleOAuthService::class);
+        $status = $hasAccess ?
+            ($isExpired ? 'Access token expired' : 'Access granted') :
+            'Not authorized';
+        $actions = array();
+        if ($hasAccess) {
+            $actions[] = [
+                'name' => 'Revoke',
+                'url' => route('twill.general.integrations.service.action', [
+                    'service' => $name,
+                    'action' => 'revoke',
+                ])
+            ];
+            if ($isExpired) {
+                $actions[] = [
+                    'name' => 'Refresh',
+                    'url' => route('twill.general.integrations.service.action', [
+                        'service' => $name,
+                        'action' => 'refresh',
+                    ])
+                ];
+            }
+        } else {
+            $actions[] = [
+                'name' => 'Authorize',
+                'url' => $googleOAuth->createAuthorizationUrl(),
+            ];
+        }
 
         return [
-            'name' => class_basename(GoogleOAuthService::class),
-            'provider' => $credentials?->provider,
-            'authorizationUrl' => $isConnected ? null : $authorizationUrl,
-            'connectedSince' => $credentials?->created_at,
-            'isConnected' => $isConnected,
+            'connection' => $connection,
+            'name' => $name,
+            'status' => $status,
+            'actions' => $actions,
         ];
     }
 }
