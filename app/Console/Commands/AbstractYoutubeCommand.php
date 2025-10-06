@@ -23,7 +23,7 @@ abstract class AbstractYoutubeCommand extends Command
         $this->oAuth = $oAuth;
         $this->signature = Str::replace('{signature}', $this->signature, $this->signatureTemplate);
         parent::__construct();
-        $this->oAuth->setApplicationName(YouTubeService::SERVICE_NAME . ' (gzip)');
+        $this->oAuth->setApplicationName(YouTubeService::SERVICE_NAME);
         $this->youtube = new YouTubeService($oAuth->client);
         $this->youtube->setLogger(fn ($message, $level = 'info') => (
             $this->{$level}($message, OutputInterface::VERBOSITY_DEBUG)
@@ -32,7 +32,7 @@ abstract class AbstractYoutubeCommand extends Command
 
     public function handle()
     {
-        $this->oAuth->authorizeWithAccessToken();
+        $this->oAuth->authorizeAccess();
         $this->info(
             "YouTube service session start",
             OutputInterface::VERBOSITY_DEBUG,
