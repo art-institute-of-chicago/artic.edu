@@ -54,7 +54,7 @@ class PlaylistVideoController extends BaseController
             QuickFilter::make()
                 ->label(twillTrans('twill::lang.listing.filter.all-items'))
                 ->queryString('all')
-                ->amount(fn() => $this->repository->getCountByStatusSlug('all', $scope)),
+                ->amount(fn () => $this->repository->getCountByStatusSlug('all', $scope)),
         ]);
     }
 
