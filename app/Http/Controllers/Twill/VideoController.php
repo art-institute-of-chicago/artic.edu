@@ -42,6 +42,12 @@ class VideoController extends BaseController
                         $builder->where('playlists.id', $playlistId);
                     });
                 }),
+            BasicFilter::make()
+                ->queryString('privacy')
+                ->options(collect(['private' => 'Private', 'public' => 'Public', 'unlisted' => 'Unlisted']))
+                ->apply(function (Builder $builder, string $privacy) {
+                    $builder->withoutGlobalScope('available')->where('privacy', $privacy);
+                }),
         ]);
     }
 
@@ -69,6 +75,17 @@ class VideoController extends BaseController
                 ->label('Captioned')
                 ->amount(fn () => $this->repository->where('is_captioned', true)->count())
                 ->apply(fn (Builder $builder) => $builder->where('is_captioned', true))
+        );
+        $filters->add(
+            QuickFilter::make()
+                ->queryString('private')
+                ->label('Private')
+                ->amount(function () {
+                    return $this->repository->withoutGlobalScope('available')->where('privacy', 'private')->count();
+                })
+                ->apply(function (Builder $builder) {
+                    return $builder->withoutGlobalScope('available')->where('privacy', 'private');
+                })
         );
 
         return $filters->merge($afterSecondFilter);
@@ -106,6 +123,12 @@ class VideoController extends BaseController
             Text::make()
                 ->field('format')
                 ->title('Format')
+        );
+        $columns->add(
+            Text::make()
+                ->field('privacy')
+                ->title('Privacy')
+                ->customRender(fn (Video $video) => ucfirst($video->privacy))
         );
         $columns->add(
             Text::make()
