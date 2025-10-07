@@ -36,16 +36,26 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         $progress = !$this->output->isDebug() ? $this->output->createProgressBar($this->youtube->uploadCount()) : null;
         $progress?->start();
         $sourceIds = collect();
-        foreach ($this->youtube->uploads(fields: 'items/snippet(resourceId/videoId,title)') as $upload) {
+        $fields = 'items(status,snippet(resourceId/videoId,title,description))';
+        foreach ($this->youtube->uploads($fields) as $upload) {
             $videoId = $upload['snippet']['resourceId']['videoId'];
-            $sourceIds->push($videoId);
-            Video::updateOrCreate(
+            Video::withTrashed()->updateOrCreate(
                 ['youtube_id' => $videoId],
                 [
                     'youtube_id' => $videoId,
                     'title' => $upload['snippet']['title'],
+                    'description' => $upload['snippet']['description'],
                 ],
             );
+            // Mark deleted videos as such in the db.
+            if (
+                $upload['snippet']['title'] == 'Deleted video'
+                && $upload['snippet']['description'] == 'This video is unavailable.'
+            ) {
+                Video::where('youtube_id', $videoId)->delete();
+            } else {
+                $sourceIds->push($videoId);
+            }
             $progress?->advance();
         }
         $progress?->finish();
@@ -65,7 +75,8 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         $fields = 'items(' .
             'id,' .
             'contentDetails(caption,duration),' .
-            'snippet(title,description,publishedAt,thumbnails/high/url)' .
+            'snippet(title,description,publishedAt,thumbnails/high/url),' .
+            'status/privacyStatus' .
         ')';
         foreach ($sourceIds->chunk(YouTubeService::ITEMS_PER_REQUEST) as $chunkOfSourceIds) {
             $sourceVideos = $this->youtube->videosByIds($chunkOfSourceIds, $fields);
@@ -77,6 +88,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                     'duration' => $this->convertDuration($source['contentDetails']['duration']),
                     'thumbnail_url' => $source['snippet']['thumbnails']['high']['url'],
                     'is_captioned' => $source['contentDetails']['caption'],
+                    'privacy' => $source['status']['privacyStatus'],
                 ]);
                 $video->save();
                 $progress?->advance();

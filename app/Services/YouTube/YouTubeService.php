@@ -273,7 +273,7 @@ class YouTubeService
         return $this->allItems(
             resource: $this->youtube->videos,
             action: 'listVideos',
-            required: ['contentDetails,snippet'],
+            required: ['contentDetails,snippet,status'],
             optional: ['id' => $videoIds->join(','), 'maxResults' => self::ITEMS_PER_REQUEST, 'fields' => $fields],
         );
     }

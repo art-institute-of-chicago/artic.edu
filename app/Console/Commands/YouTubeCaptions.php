@@ -86,7 +86,9 @@ class YouTubeCaptions extends AbstractYoutubeCommand
         $progress?->start();
         foreach ($captionsMissingText->get() as $caption) {
             foreach ($caption->translations as $translation) {
-                $translation->file = $this->youtube->downloadCaptionById($translation->youtube_id);
+                $file = $this->youtube->downloadCaptionById($translation->youtube_id);
+                // If file contains non-utf-8 characters, discard them.
+                $translation->file = iconv('UTF-8', 'UTF-8//IGNORE', $file);
                 $translation->save();
             }
             $progress?->advance();
