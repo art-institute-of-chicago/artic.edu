@@ -117,11 +117,6 @@ class Video extends AbstractModel
         );
     }
 
-    public function scopeAvailable(Builder $query)
-    {
-        $query->where('privacy', '<>', 'private');
-    }
-
     public function scopeByCategories($query, $categories = null): Builder
     {
         if (empty($categories)) {
