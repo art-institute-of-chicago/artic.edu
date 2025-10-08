@@ -1,25 +1,22 @@
 version = 1
 
-[[analyzers]]
-name = "php"
-
-test_patterns = [
-  "tests/**"
-]
-
 exclude_patterns = [
   "node_modules/**",
   "vendor/**",
   "public/**",
 ]
 
-
 [[analyzers]]
 name = "php"
 enabled = true
 
+test_patterns = [
+  "tests/**"
+]
+
+[[analyzers]]
 name = "javascript"
 enabled = true
 
-[analyzers.meta]
+  [analyzers.meta]
   plugins = ["vue"]
