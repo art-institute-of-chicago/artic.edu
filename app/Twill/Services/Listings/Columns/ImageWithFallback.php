@@ -24,6 +24,7 @@ class ImageWithFallback extends Image
         $fallback = $this->fallbackFn;
 
         return $model->image($role, $crop, $params, has_fallback: true, cms: true)
-            ??  ($fallback ? $fallback($model) : '');
+            ??  ($fallback ? $fallback($model) : '')
+            ?? '';
     }
 }

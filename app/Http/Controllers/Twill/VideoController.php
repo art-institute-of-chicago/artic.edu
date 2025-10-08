@@ -55,13 +55,6 @@ class VideoController extends BaseController
         $afterSecondFilter = $filters->splice(2);
         $filters->add(
             QuickFilter::make()
-                ->queryString('is_uploaded')
-                ->label('Uploaded')
-                ->amount(fn () => $this->repository->whereNotNull('uploaded_at')->count())
-                ->apply(fn (Builder $builder) => $builder->whereNotNull('uploaded_at'))
-        );
-        $filters->add(
-            QuickFilter::make()
                 ->queryString('is_short')
                 ->label('Shorts')
                 ->amount(fn () => $this->repository->where('is_short', true)->count())
@@ -87,6 +80,26 @@ class VideoController extends BaseController
         );
 
         return $filters->merge($afterSecondFilter);
+    }
+
+
+    protected function getDefaultQuickFilters(): QuickFilters
+    {
+        $filters = parent::getDefaultQuickFilters();
+        $withoutLast = $filters->splice(0, 4);
+        $withoutLast->add(
+            QuickFilter::make()
+                ->queryString('trash')
+                ->label(twillTrans('twill::lang.listing.filter.trash'))
+                ->onlyEnableWhen($this->getIndexOption('restore'))
+                ->amount(function () {
+                    return $this->repository->withoutGlobalScope('available')->onlyTrashed()->count();
+                })
+                ->apply(function (Builder $builder) {
+                    return $builder->withoutGlobalScope('available')->onlyTrashed();
+                })
+        );
+        return $withoutLast;
     }
 
     protected function getIndexTableColumns(): TableColumns
