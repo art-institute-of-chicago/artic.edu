@@ -39,7 +39,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         $fields = 'items(status,snippet(resourceId/videoId,title,description))';
         foreach ($this->youtube->uploads($fields) as $upload) {
             $videoId = $upload['snippet']['resourceId']['videoId'];
-            Video::withTrashed()->updateOrCreate(
+            Video::withoutGlobalScopes()->updateOrCreate(
                 ['youtube_id' => $videoId],
                 [
                     'youtube_id' => $videoId,
@@ -52,7 +52,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                 $upload['snippet']['title'] == 'Deleted video'
                 && $upload['snippet']['description'] == 'This video is unavailable.'
             ) {
-                Video::where('youtube_id', $videoId)->delete();
+                Video::withoutGlobalScopes()->where('youtube_id', $videoId)->delete();
             } else {
                 $sourceIds->push($videoId);
             }
@@ -81,7 +81,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         foreach ($sourceIds->chunk(YouTubeService::ITEMS_PER_REQUEST) as $chunkOfSourceIds) {
             $sourceVideos = $this->youtube->videosByIds($chunkOfSourceIds, $fields);
             foreach ($sourceVideos as $source) {
-                $video = Video::firstWhere('youtube_id', $source['id'])->fill([
+                $video = Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id'])->fill([
                     'title' => $source['snippet']['title'],
                     'description' => $source['snippet']['description'],
                     'uploaded_at' => $source['snippet']['publishedAt'],
@@ -107,7 +107,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         $progress?->start();
         $fields = 'items/snippet/resourceId/videoId';
         $sourceIds = $this->youtube->shorts($fields)->pluck('snippet.resourceId.videoId')->all();
-        Video::whereIn('youtube_id', $sourceIds)->update(['is_short' => true]);
+        Video::withoutGlobalScopes()->whereIn('youtube_id', $sourceIds)->update(['is_short' => true]);
         $progress?->finish();
         !$this->output->isDebug() ? $this->newLine() : null;
     }
