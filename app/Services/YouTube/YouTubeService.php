@@ -177,7 +177,7 @@ class YouTubeService
         return $this;
     }
 
-    public function captionsForVideo(string $videoId, ?string $fields = null)
+    public function captionsForVideo(string $videoId, ?string $fields = null): array
     {
         $response = $this->request(
             resource: $this->youtube->captions,
