@@ -6,7 +6,6 @@ use A17\Twill\Models\Behaviors\HasTranslation;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Collection;
 
 class Caption extends AbstractModel
 {
@@ -31,6 +30,7 @@ class Caption extends AbstractModel
     public $translatedAttributes = [
         'name',
         'file',
+        'transcript',
         'youtube_id',
     ];
 
