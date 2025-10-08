@@ -7,8 +7,19 @@ test_patterns = [
   "tests/**"
 ]
 
+exclude_patterns = [
+  "node_modules/**",
+  "vendor/**",
+  "public/**",
+]
+
+
 [[analyzers]]
+name = "php"
+enabled = true
+
 name = "javascript"
+enabled = true
 
 [analyzers.meta]
   plugins = ["vue"]
