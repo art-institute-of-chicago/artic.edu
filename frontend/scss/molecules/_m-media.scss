@@ -181,6 +181,11 @@
       }
     }
   }
+
+  // Fix spacer
+  &.m-media--s.m-media--contain .m-media__img .m-media__contain--spacer {
+    position: absolute;
+  }
 }
 
 // Fix sidebars overlapping with wide images
