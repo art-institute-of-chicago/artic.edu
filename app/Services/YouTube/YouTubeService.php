@@ -331,12 +331,8 @@ class YouTubeService
     public function request(Resource $resource, string $action, array $required, array $optional = [])
     {
         $estimatedUsage = $this->checkQuota($resource, $action);
-        $details = '';
-        if ($action != 'download') {
-            $parts = $required[0]; // Not always parts, but close enough
-            $fields = trim(($optional['fields'] ?? '') . ',' . self::REQUEST_FIELDS, ',');
-            $details = ", parts: '$parts', fields: '{$fields}'";
-        }
+        $optional['fields'] = trim(($optional['fields'] ?? '') . ',' . self::REQUEST_FIELDS, ',');
+        $details = $action == 'download' ? '' : ", parts: '$required[0]', fields: '{$optional['fields']}'";
         $this->log("YouTube service request #$this->requestCount - action: $action" . $details);
 
         $response = $resource->{$action}(...array_merge($required, [$optional]));
