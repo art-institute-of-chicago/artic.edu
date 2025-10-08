@@ -1,18 +1,18 @@
 version = 1
 
+test_patterns = [
+  "tests/**"
+]
+
 exclude_patterns = [
   "node_modules/**",
-  "vendor/**",
   "public/**",
+  "vendor/**",
 ]
 
 [[analyzers]]
 name = "php"
 enabled = true
-
-test_patterns = [
-  "tests/**"
-]
 
 [[analyzers]]
 name = "javascript"
