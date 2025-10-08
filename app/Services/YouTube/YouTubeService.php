@@ -38,10 +38,8 @@ class YouTubeService
 
     // DB table storing quota useage by session
     private const SESSION_TABLE = 'youtube_service_sessions';
-
-    // Default metadata fields used for most requests
-    private const METADATA_FIELDS = 'kind,nextPageToken,pageInfo';
-    private $metadataFields;
+    private const PAGINATION_FIELDS = 'nextPageToken,pageInfo';
+    private const REQUEST_FIELDS = 'kind';
 
     private YouTube $youtube;
     private $channelId;
@@ -62,7 +60,6 @@ class YouTubeService
         $this->channelId = config('services.youtube.channel_id');
         $this->shortsPlaylistId = config('services.youtube.shorts_playlist_id');
         $this->uploadPlaylistId = config('services.youtube.upload_playlist_id');
-        $this->setMetadataFields();
     }
 
     public function setForceLimit(bool $forceLimit = false)
@@ -78,11 +75,6 @@ class YouTubeService
     public function setSessionQuota(int $quota)
     {
         $this->sessionQuota = $quota;
-    }
-
-    public function setMetadataFields(?string $fields = self::METADATA_FIELDS): void
-    {
-        $this->metadataFields = $fields;
     }
 
     public function getRequestCount(): int
@@ -185,14 +177,16 @@ class YouTubeService
         return $this;
     }
 
-    public function captionsForVideo(string $videoId, ?string $fields = null): LazyCollection
+    public function captionsForVideo(string $videoId, ?string $fields = null)
     {
-        return $this->allItems(
+        $response = $this->request(
             resource: $this->youtube->captions,
             action: 'listCaptions',
             required: ['snippet', $videoId],
             optional: ['fields' => $fields],
         );
+
+        return $response[$response['collection_key']];
     }
 
     public function downloadCaptionById(string $captionId): string
@@ -281,19 +275,19 @@ class YouTubeService
     /**
      * Retrieve only the first page's metadata.
      */
-    private function pageInfo(Resource $resource, string $action, array $required, array $optional): array
+    private function pageInfo(Resource $resource, string $action, array $required, array $optional = []): array
     {
-        return (array) $this->allPages($resource, $action, $required, $optional)->current()['pageInfo'];
+        return (array) $this->paginate($resource, $action, $required, $optional)->current()['pageInfo'];
     }
 
     /**
      * Return a lazy collection of all of the items from all of the pages for
      * the given resource.
      */
-    private function allItems(Resource $resource, $action, $required, $optional = []): LazyCollection
+    private function allItems(Resource $resource, string $action, array $required, array $optional = []): LazyCollection
     {
         return LazyCollection::make(function () use ($resource, $action, $required, $optional) {
-            foreach ($this->allPages($resource, $action, $required, $optional) as $page) {
+            foreach ($this->paginate($resource, $action, $required, $optional) as $page) {
                 foreach ($page[$page['collection_key']] as $item) {
                     yield $item;
                 }
@@ -306,12 +300,12 @@ class YouTubeService
      *
      * This generator lazily iterates thru all of the resource's pages.
      */
-    private function allPages($resource, $action, $required, $optional = [])
+    private function paginate(Resource $resource, string $action, array $required, array $optional = [])
     {
         $pageCount = 0;
         $resultCount = 0;
         $nextPageToken = null;
-        $optional['fields'] = trim(($optional['fields'] ?? '') . ",$this->metadataFields", ',');
+        $optional['fields'] = trim(($optional['fields'] ?? '') . ',' . self::PAGINATION_FIELDS, ',');
         do {
             if ($nextPageToken) {
                 $optional['pageToken'] = $nextPageToken;
@@ -334,14 +328,14 @@ class YouTubeService
         } while ($nextPageToken);
     }
 
-    public function request(Resource $resource, string $action, array $required, ?array $optional = [])
+    public function request(Resource $resource, string $action, array $required, array $optional = [])
     {
         $estimatedUsage = $this->checkQuota($resource, $action);
         $details = '';
         if ($action != 'download') {
             $parts = $required[0]; // Not always parts, but close enough
-            $fields = $optional['fields'] ?? null;
-            $details = ", parts: '$parts'" . ($fields ? ", fields: '{$fields}'" : '');
+            $fields = trim(($optional['fields'] ?? '') . ',' . self::REQUEST_FIELDS, ',');
+            $details = ", parts: '$parts', fields: '{$fields}'";
         }
         $this->log("YouTube service request #$this->requestCount - action: $action" . $details);
 

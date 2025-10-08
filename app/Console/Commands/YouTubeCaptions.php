@@ -29,7 +29,6 @@ class YouTubeCaptions extends AbstractYoutubeCommand
      */
     private function importCaptions(): void
     {
-        $this->youtube->setMetadataFields('kind');
         $uncaptionedVideos = Video::published()
             ->whereNotNull('uploaded_at')
             ->where('is_captioned', true)
