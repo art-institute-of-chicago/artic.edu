@@ -365,7 +365,12 @@ class MigrateOSCIPublicationOne extends Command
                 $this->configureFigureBlock($block, $data);
                 break;
             default:
-                $block->content = [ 'paragraph' => $data->html ];
+                $block->content = [
+                  'paragraph' => [
+                    'en' => $data->html,
+                    'es' => ''
+                  ]
+                ];
                 $block->type = 'paragraph';
                 break;
         }

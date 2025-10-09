@@ -126,12 +126,11 @@
                 @slot('tag', 'h4')
                 Installation {{ Str::plural('Photo', $item->present()->getHistoryImages()->count()) }}
             @endcomponent
-            @foreach ($item->present()->getHistoryImagesForMediaComponent() as $picture)
-                @component('components.molecules._m-media')
-                    @slot('variation', 'o-blocks__block')
-                    @slot('item', $picture)
-                @endcomponent
-            @endforeach
+            @component('components.organisms._o-gallery----small-mosaic')
+                @slot('title', '')
+                @slot('variation', 'o-gallery----theme-3  o-gallery--mosaic o-blocks__block')
+                @slot('items', $item->present()->getHistoryImagesForMediaComponent())
+            @endcomponent
         @endif
     @endif
 

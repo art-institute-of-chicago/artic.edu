@@ -7,53 +7,74 @@
 ])
 
 @section('contentFields')
-    <x-twill::input
-        name='title_display'
-        label='Title formatting (optional)'
-        note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-    />
-
-    <x-twill::input
-        name='video_url'
-        label='Video URL'
-    />
-
-    <x-twill::input
-        name='duration'
-        label='Duration'
-        note='e.g. 3:45'
-    />
-
-    <x-twill::medias
-        label='Hero Image'
-        name='hero'
-        note='Minimum image width 3000px'
-    />
-
-    <x-twill::date-picker
-        name='date'
-        label='Display date'
-        note='When was this video published?'
-    />
-
     <x-twill::checkbox
         name='is_listed'
         label='Show this video in listings'
     />
 
+    <x-twill::input
+        name='title'
+        label='Title'
+        disabled='true'
+    />
+    <x-twill::input
+        name='title_display'
+        label='Title formatting'
+        note='Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+    />
+
+    <x-twill::formColumns>
+        <x-slot:left>
+            <img
+                style="margin-top: 35px; width: 100%"
+                src='{{ $item->thumbnail_url }}'
+            />
+        </x-slot:left>
+        <x-slot:right>
+            <x-twill::medias
+                name='hero'
+                label='Listing image'
+            />
+        </x-slot:right>
+    </x-twill::formColumns>
+
+    <x-twill::formColumns>
+        <x-slot:left>
+            <x-twill::input
+                name='uploaded_at'
+                label='Uploaded At'
+                disabled='true'
+                note="{{ $item->uploaded_at?->format('M j, Y') }}"
+            />
+        </x-slot:left>
+        <x-slot:right>
+            <x-twill::date-picker
+                name='date'
+                label='Display date'
+                note='When was this video published?'
+            />
+        </x-slot:right>
+    </x-twill::formColumns>
+
+    <x-twill::input
+        name='description'
+        label='Description'
+        type='textarea'
+        disabled='true'
+    />
+
     <x-twill::wysiwyg
         name='list_description'
-        label='List description'
+        label='Listing description'
         note='Max 255 characters. Will be used in "Related Videos" and social media.'
         :maxlength='255'
         :toolbar-options="[ 'italic' ]"
     />
 
-    <x-twill::input
+    <x-twill::wysiwyg
         name='heading'
         label='Heading'
-        type='textarea'
-        :rows='3'
+        :toolbar-options="[ 'italic' ]"
     />
 
     @php
@@ -115,4 +136,49 @@
 
     @include('twill.partials.related')
 
+@endsection
+
+@section('sideFieldsets')
+    <a17-fieldset title="YouTube" id="youtube">
+        <x-twill::input
+            name='youtube_id'
+            label='YouTube ID'
+            disabled='true'
+        />
+        <a href="{{ $item->source_url }}" target="_blank">🔗 YouTube</a>
+
+        <x-twill::input
+            name='uploaded_at'
+            label='Uploaded At'
+            disabled='true'
+        />
+
+        <x-twill::formColumns>
+            <x-slot:left>
+                <x-twill::input
+                    name='duration'
+                    label='Duration'
+                    disabled='true'
+                />
+            </x-slot:left>
+            <x-slot:right>
+                <x-twill::input
+                    name='format'
+                    label='Format'
+                    disabled='true'
+                />
+            </x-slot:right>
+        </x-twill::formColumns>
+
+
+        <x-twill::browser
+            name='playlists'
+            label='Playlists'
+            note='Read-only'
+            module-name='playlists'
+            route-prefix='collection.articlesPublications'
+            disabled='true'
+            itemLabel=''
+        />
+    </a17-fieldset>
 @endsection

@@ -181,6 +181,11 @@
       }
     }
   }
+
+  // Fix spacer
+  &.m-media--s.m-media--contain .m-media__img .m-media__contain--spacer {
+    position: absolute;
+  }
 }
 
 // Fix sidebars overlapping with wide images
@@ -481,8 +486,13 @@ a.m-media__img:hover object {
   display: none;
 }
 
+.m-media__img--embed.s-inline-media-activated,
 .m-media__img--video.s-inline-media-activated {
   background-color: $color__bg--gallery;
+}
+
+.m-media__img--embed {
+  overflow-x: scroll;
 }
 
 @media (hover: hover) {

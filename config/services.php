@@ -49,6 +49,27 @@ return [
         'id' => env('GTM_ID', '')
     ],
 
+    'google_api' => [
+        'key' => env('GOOGLE_API_KEY', ''),
+        'oauth_config_file' => env('GOOGLE_OAUTH_CONFIG_FILE', [
+            'web' => [
+                'client_id' => '',
+                'project_id' => '',
+                'auth_uri' => '',
+                'token_uri' => '',
+                'auth_provider_x509_cert_url' => '',
+                'client_secret' => '',
+                'redirect_uris' => ['/google-oauth'],
+            ],
+        ]),
+    ],
+
+    'youtube' => [
+        'channel_id' => env('YOUTUBE_CHANNEL_ID'),
+        'shorts_playlist_id' => env('YOUTUBE_SHORTS_PLAYLIST_ID'),
+        'upload_playlist_id' => env('YOUTUBE_UPLOAD_PLAYLIST_ID'),
+    ],
+
     'cloudflare' => [
         'enabled' => (bool) env('CLOUDFLARE_ENABLED', false),
         'key' => env('CLOUDFLARE_KEY'),

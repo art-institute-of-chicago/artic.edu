@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -11,52 +10,62 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Video extends AbstractModel
 {
-    use HasSlug;
-    use HasRevisions;
-    use HasMedias;
+    use HasBlocks;
     use HasFiles;
+    use HasMedias;
     use HasMediasEloquent;
     use HasRelated;
-    use HasBlocks;
+    use HasRevisions;
+    use HasSlug;
     use Transformable;
 
     protected $presenter = 'App\Presenters\Admin\VideoPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\VideoPresenter';
 
     protected $fillable = [
-        'published',
         'date',
-        'title',
-        'heading',
-        'video_url',
-        'list_description',
-        'title_display',
-        'meta_title',
-        'meta_description',
-        'search_tags',
+        'description',
         'duration',
+        'heading',
         'is_listed',
+        'is_short',
+        'list_description',
+        'meta_description',
+        'meta_title',
+        'published',
+        'search_tags',
+        'thumbnail_url',
+        'title',
+        'title_display',
         'toggle_autorelated',
+        'uploaded_at',
+        'video_url',
+        'youtube_id',
     ];
 
     protected $casts = [
         'date' => 'date',
-        'published' => 'boolean',
         'is_listed' => 'boolean',
+        'published' => 'boolean',
         'toggle_autorelated' => 'boolean',
+        'uploaded_at' => 'datetime',
     ];
 
     public $attributes = [
-        'published' => false,
         'is_listed' => false,
+        'published' => false,
         'toggle_autorelated' => false,
     ];
 
     protected $appends = [
         'embed',
+        'format',
+        'source_url',
     ];
 
     public $mediasParams = [
@@ -77,6 +86,27 @@ class Video extends AbstractModel
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'video_category');
+    }
+
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class)
+            ->withTimestamps()
+            ->withPivot('position');
+    }
+
+    public function format(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($_, array $attributes) => $attributes['is_short'] ? 'Short' : 'Video',
+        );
+    }
+
+    public function sourceUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($_, array $attributes) => "https://youtube.com/watch?v={$attributes['youtube_id']}",
+        );
     }
 
     public function scopeByCategories($query, $categories = null): Builder

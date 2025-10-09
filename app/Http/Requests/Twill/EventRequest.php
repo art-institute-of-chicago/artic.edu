@@ -61,6 +61,7 @@ class EventRequest extends Request
             'end_time' => 'required|time_greater_than',
             'short_description' => 'required',
             'list_description' => 'required',
+            'repeaters.date_rule' => 'required|array|min:1',
             'event_host_id' => [
                 'required_if:add_to_event_email_series,true',
                 Rule::notIn([Event::NULL_OPTION_EVENT_HOST]),

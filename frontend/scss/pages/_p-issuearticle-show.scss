@@ -408,7 +408,7 @@ top: -100%;
   .o-layered-image-viewer {
     .m-media.o-blocks__block {
       .m-media__img {
-        max-height: 650px !important;
+        max-height: max-content !important;
         width: 100% !important;
 
         img {
@@ -479,29 +479,36 @@ top: -100%;
     }
 
     & {
-      width: max-content !important;
+      width: 100%;
       max-width: 100%;
       min-width: unset !important;
     }
 
     .m-media__contain--spacer {
-      display: none !important;
+      position: relative !important;
+      display: block;
     }
 
     .m-media__img:not(.m-media__img--video) {
       & {
+        position: relative;
         width: max-content;
         max-width: 100%;
         max-height: 600px;
         overflow: hidden !important;
         text-align: left !important;
         background-image: unset !important;
+        width: 100%;
+        display: block;
       }
 
       img {
-        position: relative !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
         max-height: 600px !important;
         width: 100% !important;
+        height: 100% !important;
         object-fit: contain !important;
         display: block !important;
       }

@@ -56,6 +56,7 @@
         "chillerlan/php-qrcode": "^5.0",
         "eluceo/ical": "2.0",
         "erusev/parsedown": "^1.7",
+        "google/apiclient": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/httpauth": "^4.0",
         "kalnoy/nestedset": "^6.0",
@@ -77,7 +78,7 @@
     "require-dev": {
         "fakerphp/faker": "^1.0",
         "itsgoingd/clockwork": "^5.0",
-        "laravel/sail": "^1.0",
+        "laravel/sail": "^1.44",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^8.1",
         "orchestra/testbench": "^7.8 || ^8.0 || ^9.0",
@@ -98,6 +99,9 @@
         }
     },
     "scripts": {
+        "pre-autoload-dump": [
+            "Google\\Task\\Composer::cleanup"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
@@ -136,7 +140,10 @@
     "extra": {
         "laravel": {
             "dont-discover": []
-        }
+        },
+        "google/apiclient-services": [
+            "YouTube"
+        ]
     },
     "config": {
         "optimize-autoloader": true,

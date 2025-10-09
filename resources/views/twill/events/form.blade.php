@@ -81,6 +81,7 @@
         <x-twill::repeater
             type='date_rule'
             title='Date rule'
+            :required='true'
         />
     </x-twill::formFieldset>
 

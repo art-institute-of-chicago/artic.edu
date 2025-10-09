@@ -136,6 +136,10 @@ $nav = [
                         'title' => 'Videos',
                         'module' => true,
                     ],
+                    'playlists' => [
+                        'title' => 'Playlists',
+                        'module' => true,
+                    ],
                     'printedPublications' => [
                         'title' => 'Print Publications',
                         'module' => true,
@@ -268,7 +272,11 @@ $nav = [
             'illuminatedLinks' => [
                 'title' => 'Illuminated Links',
                 'module' => true,
-            ]
+            ],
+            'integrations' => [
+                'title' => 'Integrations',
+                'route' => 'twill.general.integrations.show',
+            ],
         ],
     ],
 
