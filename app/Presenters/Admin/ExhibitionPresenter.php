@@ -169,7 +169,7 @@ class ExhibitionPresenter extends BasePresenter
 
     public function getHistoryImagesForMediaComponent()
     {
-      return $this
+        return $this
           ->getHistoryImages()
           ->sortBy(function ($image) {
               return $image->title;
