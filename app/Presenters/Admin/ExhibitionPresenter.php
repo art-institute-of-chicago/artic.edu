@@ -169,17 +169,24 @@ class ExhibitionPresenter extends BasePresenter
 
     public function getHistoryImagesForMediaComponent()
     {
-        return $this
-            ->getHistoryImages()
-            ->map(function ($image) {
-                return [
-                    'type' => 'image',
-                    'useArtworkSrcset' => true,
-                    'isPublicDomain' => true,
-                    'media' => $image->imageFront(),
-                ];
-            })
-            ->toArray();
+      return $this
+          ->getHistoryImages()
+          ->sortBy(function ($image) {
+              return $image->title;
+          })
+          ->map(function ($image) {
+              return [
+                  'type' => 'image',
+                  'useArtworkSrcset' => true,
+                  'isPublicDomain' => true,
+                  'media' => $image->imageFront(),
+                  'captionTitle' => $image->title,
+                  'isZoomable' => true,
+                  'fullscreen' => true,
+              ];
+          })
+          ->values()
+          ->toArray();
     }
 
     public function navigation()
