@@ -11,6 +11,9 @@
             <svg class="icon--minus"><use xlink:href="#icon--minus" /></svg>
         </span>
     </button></h3>
+    @if(request()->is('*preview*'))
+      accordion_{{ StringHelpers::getUtf8Slug($title.'-'.$block->id) }}
+    @endif
     <div id="panel_accordion_{{ StringHelpers::getUtf8Slug($title.'-'.$block->id) }}" class="o-accordion__panel" aria-labelledby="{{ StringHelpers::getUtf8Slug($title)}}">
         <div class="o-accordion__panel-content o-blocks o-blocks--with-sidebar">
             {!! $renderData->renderChildren('accordion_items') !!}
