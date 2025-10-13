@@ -276,10 +276,18 @@ class LayeredImageViewer {
 
     // Store state required for each type
     imgEls.forEach((imgEl, i) => {
+      const figureEl = imgEl.closest('figure');
       const itemState = {};
       itemState.url = imgEl.dataset.viewerSrc;
       itemState.alt = imgEl.alt;
       itemState.label = 'Unknown';
+
+      // Handle either figcaption or title
+      if (imgEl.title) {
+        itemState.label = imgEl.title;
+      } else if (figureEl && figureEl.querySelector('figcaption')) {
+        itemState.label = figureEl.querySelector('figcaption').innerText.trim();
+      }
 
       // Set default active overlays
       if (type === 'overlays') {
