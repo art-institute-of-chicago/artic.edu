@@ -85,7 +85,7 @@
               if (app && app.$store) {
                   app.$store.subscribe((mutation, state) => {
                       if (mutation.type === 'setFormErrors') {
-                          const fieldErrors = state.form?.errors?.errors;
+                          const fieldErrors = mutation.payload;
 
                           if (fieldErrors && fieldErrors['repeaters.date_rule']) {
                               showError(fieldErrors['repeaters.date_rule']);
