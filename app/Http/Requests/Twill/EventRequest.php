@@ -62,11 +62,31 @@ class EventRequest extends Request
             'short_description' => 'required',
             'list_description' => 'required',
             'repeaters.date_rule' => 'required|array|min:1',
+            'repeaters.date_rule.*.start_date' => 'required|date',
             'event_host_id' => [
                 'required_if:add_to_event_email_series,true',
                 Rule::notIn([Event::NULL_OPTION_EVENT_HOST]),
             ],
             'test_emails' => 'emails',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'start_time.required' => 'The start time field is required.',
+            'end_time.required' => 'The end time field is required.',
+            'end_time.time_greater_than' => 'The end time must be greater than the start time.',
+            'short_description.required' => 'A short description is required.',
+            'list_description.required' => 'A list description is required.',
+            'repeaters.date_rule.required' => 'At least one date rule must be added.',
+            'repeaters.date_rule.array' => 'Date rules must be in the correct format.',
+            'repeaters.date_rule.min' => 'You must add at least one date rule!',
+            'repeaters.date_rule.*.start_date.required' => 'The start date is required for each date rule.',
+            'repeaters.date_rule.*.start_date.date' => 'Please provide a valid date format.',
+            'repeaters.date_rule.*.every.required' => 'Please provide an repeat interval',
+            'event_host_id.required_if' => 'An event host must be selected when adding to the email series.',
+            'test_emails.emails' => 'Please enter valid email addresses separated by commas.',
         ];
     }
 }
