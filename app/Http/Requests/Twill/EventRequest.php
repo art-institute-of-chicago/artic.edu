@@ -64,7 +64,6 @@ class EventRequest extends Request
             'repeaters.date_rule' => 'required|array|min:1',
             'repeaters.date_rule.*.type' => 'required',
             'repeaters.date_rule.*.start_date' => 'required|date',
-            'repeaters.date_rule.*.every' => 'required',
             'event_host_id' => [
                 'required_if:add_to_event_email_series,true',
                 Rule::notIn([Event::NULL_OPTION_EVENT_HOST]),
@@ -87,7 +86,6 @@ class EventRequest extends Request
             'repeaters.date_rule.*.type' => 'Please specify a date rule type',
             'repeaters.date_rule.*.start_date.required' => 'The start date is required for each date rule.',
             'repeaters.date_rule.*.start_date.date' => 'Please provide a valid date format.',
-            'repeaters.date_rule.*.every.required' => 'Please provide an repeat interval',
             'event_host_id.required_if' => 'An event host must be selected when adding to the email series.',
             'test_emails.emails' => 'Please enter valid email addresses separated by commas.',
         ];
