@@ -8,6 +8,7 @@
     label='Type of rule'
     default='0'
     :options='\App\Models\DateRule::getRuleTypes()'
+    :required='true'
 />
 
 <x-twill::formColumns>
@@ -16,6 +17,7 @@
             name='start_date'
             label='Start Date'
             :withTime='false'
+            :required='true'
         />
     </x-slot:left>
     <x-slot:right>
@@ -41,6 +43,7 @@
             label='Repeat every'
             type='number'
             placeholder='1, 2, 3.... etc'
+            :required='true'
         />
     </x-slot:left>
     <x-slot:right>
@@ -49,6 +52,7 @@
             label='Days/Week/Month'
             default='0'
             :options='\App\Models\DateRule::getRecurringTypes()'
+            :required='true'
         />
     </x-slot:right>
 </x-twill::formColumns>
