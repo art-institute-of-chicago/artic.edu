@@ -82,6 +82,7 @@ class EventRequest extends Request
             'repeaters.date_rule.required' => 'At least one date rule must be added.',
             'repeaters.date_rule.array' => 'Date rules must be in the correct format.',
             'repeaters.date_rule.min' => 'You must add at least one date rule!',
+            'repeaters.date_rule.*.type' => 'Please specify a date rule type',
             'repeaters.date_rule.*.start_date.required' => 'The start date is required for each date rule.',
             'repeaters.date_rule.*.start_date.date' => 'Please provide a valid date format.',
             'repeaters.date_rule.*.every.required' => 'Please provide an repeat interval',

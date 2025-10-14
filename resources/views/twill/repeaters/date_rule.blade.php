@@ -8,6 +8,7 @@
     label='Type of rule'
     default='0'
     :options='\App\Models\DateRule::getRuleTypes()'
+    :required='true'
 />
 
 <x-twill::formColumns>
@@ -24,7 +25,6 @@
             name='end_date'
             label='Ends'
             :withTime='false'
-            :required='true'
         />
 
         <x-twill::input
