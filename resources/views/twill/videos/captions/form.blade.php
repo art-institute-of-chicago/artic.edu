@@ -7,16 +7,12 @@
         translated='true'
     />
 
-    <x-twill::formConnectedFields
-        field-name='kind'
-        field-values='standard'
-    >
-        <x-twill::files
-            name='override'
-            label='Override caption track'
-            translated='true'
-        />
-    </x-twill::formConnectedFields>
+    <x-twill::input
+        type='textarea'
+        name='file'
+        label='File'
+        disabled='true'
+    />
 @stop
 
 @section('sideFieldsets')
@@ -24,6 +20,7 @@
         <x-twill::input
             name='youtube_id'
             label='YouTube ID'
+            translated='true'
             disabled='true'
         />
 

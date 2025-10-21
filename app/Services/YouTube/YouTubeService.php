@@ -185,7 +185,7 @@ class YouTubeService
         return $this;
     }
 
-    public function captionsForVideo(string $videoId, ?string $fields = null)
+    public function captionsForVideo(string $videoId, ?string $fields = null): LazyCollection
     {
         return $this->allItems(
             resource: $this->youtube->captions,
@@ -193,6 +193,16 @@ class YouTubeService
             required: ['snippet', $videoId],
             optional: ['fields' => $fields],
         );
+    }
+
+    public function downloadCaptionById(string $captionId): string
+    {
+        $response = $this->request(
+            resource: $this->youtube->captions,
+            action: 'download',
+            required: [$captionId],
+        );
+        return (string) $response->getBody();
     }
 
     public function playlistCount(): int
@@ -298,22 +308,16 @@ class YouTubeService
      */
     private function allPages($resource, $action, $required, $optional = [])
     {
+        $pageCount = 0;
         $resultCount = 0;
         $nextPageToken = null;
         $optional['fields'] = trim(($optional['fields'] ?? '') . ",$this->metadataFields", ',');
         do {
-            $estimatedUsage = $this->checkQuota($resource, $action);
             if ($nextPageToken) {
                 $optional['pageToken'] = $nextPageToken;
             }
-            $this->log(
-                "YouTube service request #$this->requestCount - " .
-                    "action: $action, " .
-                    "parts: '{$required[0]}', " .
-                    "fields: '{$optional['fields']}'",
-            );
 
-            $page = $resource->{$action}(...array_merge($required, [$optional]));
+            $page = $this->request($resource, $action, $required, $optional);
 
             $pageResultCount = count($page[$page['collection_key']]);
             $resultCount += $pageResultCount;
@@ -321,18 +325,41 @@ class YouTubeService
             if (isset($page['pageInfo'])) {
                 $results .= " ($resultCount/{$page['pageInfo']['totalResults']})";
             }
-            $this->log(
-                "YouTube service response #$this->requestCount - " .
-                    "kind: {$page['kind']}, " .
-                    "results: $results"
-            );
-            $this->requestCount++;
-            $this->sessionUsage += $estimatedUsage;
+            $this->log("YouTube service page #$pageCount - results: $results");
 
             yield $page;
 
+            $pageCount++;
             $nextPageToken = $page['nextPageToken'];
         } while ($nextPageToken);
+    }
+
+    public function request(Resource $resource, string $action, array $required, ?array $optional = [])
+    {
+        $estimatedUsage = $this->checkQuota($resource, $action);
+        $details = '';
+        if ($action != 'download') {
+            $parts = $required[0]; // Not always parts, but close enough
+            $fields = $optional['fields'] ?? null;
+            $details = ", parts: '$parts'" . ($fields ? ", fields: '{$fields}'" : '');
+        }
+        $this->log("YouTube service request #$this->requestCount - action: $action" . $details);
+
+        $response = $resource->{$action}(...array_merge($required, [$optional]));
+
+        if (is_a($response, \Google\Collection::class)) {
+            $type = 'kind: ' . $response['kind'];
+            $length = 'results: ' . count($response[$response['collection_key']]);
+        } elseif (is_a($response, \GuzzleHttp\Psr7\Response::class)) {
+            $type = 'content-type: ' . $response->getHeader('Content-Type')[0];
+            $length = 'content-length: ' . $response->getHeader('Content-Length')[0];
+        }
+        $this->log("YouTube service response #$this->requestCount - $type, $length");
+
+        $this->requestCount++;
+        $this->sessionUsage += $estimatedUsage;
+
+        return $response;
     }
 
     /**

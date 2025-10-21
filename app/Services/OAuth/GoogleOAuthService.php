@@ -50,4 +50,13 @@ class GoogleOAuthService
             'access_token' => json_encode($accessToken),
         ]);
     }
+
+    public function authorizeWithAccessToken()
+    {
+        $accessToken = DB::table('oauth')->where('provider', self::PROVIDER)->pluck('access_token')->first();
+        if ($accessToken) {
+            $this->client->setAccessToken($accessToken);
+            $this->client->authorize();
+        }
+    }
 }
