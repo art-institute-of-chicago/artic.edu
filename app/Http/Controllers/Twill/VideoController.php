@@ -42,6 +42,12 @@ class VideoController extends BaseController
                         $builder->where('playlists.id', $playlistId);
                     });
                 }),
+            BasicFilter::make()
+                ->queryString('privacy')
+                ->options(collect(['private' => 'Private', 'public' => 'Public', 'unlisted' => 'Unlisted']))
+                ->apply(function (Builder $builder, string $privacy) {
+                    $builder->withoutGlobalScope('available')->where('privacy', $privacy);
+                }),
         ]);
     }
 
@@ -49,13 +55,6 @@ class VideoController extends BaseController
     {
         $filters = parent::quickFilters();
         $afterSecondFilter = $filters->splice(2);
-        $filters->add(
-            QuickFilter::make()
-                ->queryString('is_uploaded')
-                ->label('Uploaded')
-                ->amount(fn () => $this->repository->whereNotNull('uploaded_at')->count())
-                ->apply(fn (Builder $builder) => $builder->whereNotNull('uploaded_at'))
-        );
         $filters->add(
             QuickFilter::make()
                 ->queryString('is_short')
@@ -70,8 +69,39 @@ class VideoController extends BaseController
                 ->amount(fn () => $this->repository->where('is_captioned', true)->count())
                 ->apply(fn (Builder $builder) => $builder->where('is_captioned', true))
         );
+        $filters->add(
+            QuickFilter::make()
+                ->queryString('private')
+                ->label('Private')
+                ->amount(function () {
+                    return $this->repository->withoutGlobalScope('available')->where('privacy', 'private')->count();
+                })
+                ->apply(function (Builder $builder) {
+                    return $builder->withoutGlobalScope('available')->where('privacy', 'private');
+                })
+        );
 
         return $filters->merge($afterSecondFilter);
+    }
+
+
+    protected function getDefaultQuickFilters(): QuickFilters
+    {
+        $filters = parent::getDefaultQuickFilters();
+        $withoutLast = $filters->splice(0, 4);
+        $withoutLast->add(
+            QuickFilter::make()
+                ->queryString('trash')
+                ->label(twillTrans('twill::lang.listing.filter.trash'))
+                ->onlyEnableWhen($this->getIndexOption('restore'))
+                ->amount(function () {
+                    return $this->repository->withoutGlobalScope('available')->onlyTrashed()->count();
+                })
+                ->apply(function (Builder $builder) {
+                    return $builder->withoutGlobalScope('available')->onlyTrashed();
+                })
+        );
+        return $withoutLast;
     }
 
     protected function getIndexTableColumns(): TableColumns
@@ -106,6 +136,12 @@ class VideoController extends BaseController
             Text::make()
                 ->field('format')
                 ->title('Format')
+        );
+        $columns->add(
+            Text::make()
+                ->field('privacy')
+                ->title('Privacy')
+                ->customRender(fn (Video $video) => ucfirst($video->privacy))
         );
         $columns->add(
             Text::make()
