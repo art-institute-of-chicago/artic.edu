@@ -17,7 +17,7 @@ class YouTubeQuota extends Command
     public function __construct(GoogleOAuthService $oAuth)
     {
         parent::__construct();
-        $oAuth->setApplicationName(YouTubeService::SERVICE_NAME . ' (gzip)');
+        $oAuth->setApplicationName(YouTubeService::SERVICE_NAME);
         $this->youtube = new YouTubeService($oAuth->client);
         $this->youtube->setLogger(fn ($message) => $this->info($message, OutputInterface::VERBOSITY_DEBUG));
     }
