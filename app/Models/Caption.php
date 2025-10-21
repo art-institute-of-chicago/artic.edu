@@ -3,21 +3,21 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasTranslation;
-use A17\Twill\Models\Behaviors\HasFiles;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Collection;
 
 class Caption extends AbstractModel
 {
     use HasFactory;
-    use HasFiles;
     use HasTranslation;
 
     protected $fillable = [
         'kind',
         'language',
         'name',
+        'file',
         'published',
         'updated_at',
         'video_id',
@@ -30,10 +30,8 @@ class Caption extends AbstractModel
 
     public $translatedAttributes = [
         'name',
-    ];
-
-    public $filesParams = [
-        'override',
+        'file',
+        'youtube_id',
     ];
 
     public function title(): Attribute

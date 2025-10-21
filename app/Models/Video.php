@@ -32,6 +32,7 @@ class Video extends AbstractModel
         'description',
         'duration',
         'heading',
+        'is_captioned',
         'is_listed',
         'is_short',
         'list_description',
@@ -50,6 +51,7 @@ class Video extends AbstractModel
 
     protected $casts = [
         'date' => 'date',
+        'is_captioned' => 'boolean',
         'is_listed' => 'boolean',
         'published' => 'boolean',
         'toggle_autorelated' => 'boolean',
