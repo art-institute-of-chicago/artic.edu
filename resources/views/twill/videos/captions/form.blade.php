@@ -5,12 +5,22 @@
         name='name'
         label='Name'
         translated='true'
+        disabled='true'
+    />
+
+    <x-twill::input
+        type='textarea'
+        name='transcript'
+        label='Transcript'
+        translated='true'
+        disabled='true'
     />
 
     <x-twill::input
         type='textarea'
         name='file'
         label='File'
+        translated='true'
         disabled='true'
     />
 @stop
