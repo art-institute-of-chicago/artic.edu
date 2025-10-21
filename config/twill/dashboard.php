@@ -29,6 +29,17 @@ return [
             'activity' => true,
             'drafts' => true,
         ],
+        'videos' => [
+            'label' => 'Videos',
+            'label_singular' => 'Video',
+            'name' => 'videos',
+            'routePrefix' => 'collection.articlesPublications',
+            'count' => true,
+            'create' => false,
+            'search' => true,
+            'activity' => false,
+            'drafts' => false,
+        ],
         'exhibitions' => [
             'name' => 'exhibitions',
             'routePrefix' => 'exhibitionsEvents',
