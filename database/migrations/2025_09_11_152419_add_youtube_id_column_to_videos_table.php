@@ -56,7 +56,8 @@ return new class () extends Migration {
     // Move playlist data in the video table to the playlist table.
     private function populatePlaylistYouTubeId()
     {
-        $withPlaylistUrl = Video::whereLike('video_url', 'https://www.youtube.com/playlist?list=%');
+        $withPlaylistUrl = Video::withoutGlobalScope('available')
+            ->whereLike('video_url', 'https://www.youtube.com/playlist?list=%');
         foreach ($withPlaylistUrl->get() as $playlist) {
             $query = parse_url($playlist->video_url, PHP_URL_QUERY);
             parse_str($query, $params);
@@ -74,7 +75,8 @@ return new class () extends Migration {
     // Set the video_id column by parsing it out of the video_url column.
     private function populateVideoYouTubeId()
     {
-        $withFullUrl = Video::whereLike('video_url', 'https://www.youtube.com/watch?v=%');
+        $withFullUrl = Video::withoutGlobalScope('available')
+            ->whereLike('video_url', 'https://www.youtube.com/watch?v=%');
         foreach ($withFullUrl->get() as $video) {
             $query = parse_url($video->video_url, PHP_URL_QUERY);
             parse_str($query, $params);
@@ -83,7 +85,8 @@ return new class () extends Migration {
             $video->save();
         }
 
-        $withShortenedUrl = Video::whereLike('video_url', 'https://youtu.be/%');
+        $withShortenedUrl = Video::withoutGlobalScope('available')
+            ->whereLike('video_url', 'https://youtu.be/%');
         foreach ($withShortenedUrl->get() as $video) {
             $path = str(parse_url($video->video_url, PHP_URL_PATH));
             $videoId = $path->trim('/');
@@ -91,7 +94,8 @@ return new class () extends Migration {
             $video->save();
         }
 
-        $withShortsUrl = Video::whereLike('video_url', 'https://www.youtube.com/shorts/%');
+        $withShortsUrl = Video::withoutGlobalScope('available')
+            ->whereLike('video_url', 'https://www.youtube.com/shorts/%');
         foreach ($withShortsUrl->get() as $video) {
             $path = str(parse_url($video->video_url, PHP_URL_PATH));
             $videoId = $path->afterLast('/');
@@ -103,8 +107,12 @@ return new class () extends Migration {
     // Remove profile entry and deleted records from the videos table.
     private function pruneNonVideoRecords()
     {
-        Video::whereLike('video_url', 'https://www.youtube.com/user/%')->forceDelete();
+        Video::withoutGlobalScope('available')
+            ->whereLike('video_url', 'https://www.youtube.com/user/%')
+            ->forceDelete();
 
-        Video::onlyTrashed()->forceDelete();
+        Video::withoutGlobalScope('available')
+            ->onlyTrashed()
+            ->forceDelete();
     }
 };
