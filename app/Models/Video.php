@@ -38,6 +38,7 @@ class Video extends AbstractModel
         'list_description',
         'meta_description',
         'meta_title',
+        'privacy',
         'published',
         'search_tags',
         'thumbnail_url',
@@ -164,6 +165,13 @@ class Video extends AbstractModel
     public function getTypeAttribute()
     {
         return 'video';
+    }
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope('available', function (Builder $query) {
+            $query->where('privacy', '<>', 'private');
+        });
     }
 
     protected function transformMappingInternal()
