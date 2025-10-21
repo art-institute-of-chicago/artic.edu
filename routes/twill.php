@@ -84,6 +84,7 @@ Route::group(['prefix' => 'collection'], function () {
         TwillRoutes::module('articles');
         TwillRoutes::module('categories');
         TwillRoutes::module('videos');
+        TwillRoutes::module('videos.captions');
         TwillRoutes::module('playlists');
         TwillRoutes::module('playlists.videos');
         TwillRoutes::module('printedPublications');
