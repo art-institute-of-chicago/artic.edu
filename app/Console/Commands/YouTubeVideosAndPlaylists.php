@@ -99,7 +99,8 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
     }
 
     /**
-     * Set entries corresponding with items from the shorts playlist as shorts.
+     * Set entries corresponding with items from the shorts playlist as shorts,
+     * and publish them.
      */
     private function indicateShorts(): void
     {
@@ -107,7 +108,9 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         $progress?->start();
         $fields = 'items/snippet/resourceId/videoId';
         $sourceIds = $this->youtube->shorts($fields)->pluck('snippet.resourceId.videoId')->all();
-        Video::withoutGlobalScopes()->whereIn('youtube_id', $sourceIds)->update(['is_short' => true]);
+        Video::withoutGlobalScopes()
+            ->whereIn('youtube_id', $sourceIds)
+            ->update(['is_short' => true, 'published' => true]);
         $progress?->finish();
         !$this->output->isDebug() ? $this->newLine() : null;
     }
