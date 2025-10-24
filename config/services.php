@@ -59,7 +59,7 @@ return [
                 'token_uri' => '',
                 'auth_provider_x509_cert_url' => '',
                 'client_secret' => '',
-                'redirect_uris' => ['/google-oauth'],
+                'redirect_uris' => ['http://localhost/google-oauth'],
             ],
         ]),
     ],
