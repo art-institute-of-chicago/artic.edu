@@ -17,14 +17,14 @@ class SubViewerParser extends Parser
     protected function parseCaptions(): void
     {
         $patterns = collect(self::PATTERNS)->join('|');
-        foreach (explode("\n", $this->text) as $line) {
+        $lines = str($this->text)->explode("\r\n")->flatMap(fn ($text) => str($text)->explode("\n"));
+        foreach ($lines as $line) {
             preg_match("/$patterns/", $line, $matches);
             if ($matches['interval']) {
                 $caption = new \stdClass();
                 $caption->start = $matches[2];
                 $caption->end = $matches[3];
                 $this->captions[] = $caption;
-                $latest = array_key_last($this->captions);
             } elseif ($line = $matches['line']) {
                 $caption = $this->captions[array_key_last($this->captions)];
                 $caption->lines[] = $line;
