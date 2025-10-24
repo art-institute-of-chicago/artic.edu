@@ -60,7 +60,7 @@ abstract class Parser
     {
         $parser = null;
         $firstLinePatterns = collect([SubRipParser::INDEX, SubViewerParser::INTERVAL])->join('|');
-        $firstLine = current(explode("\n", $file));
+        $firstLine = trim(current(explode("\n", $file)));
         preg_match("/$firstLinePatterns/", $firstLine, $matches);
         if ($matches['index'] ?? false) {
             $parser = SubRipParser::class;
