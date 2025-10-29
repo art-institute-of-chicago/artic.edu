@@ -78,6 +78,46 @@
             note='Optional, the event will show this instead of the automatic computed date'
         />
 
+        <script>
+          window.addEventListener('DOMContentLoaded', function() {
+              const app = document.querySelector('#app').__vue__;
+
+              if (app && app.$store) {
+                  app.$store.subscribe((mutation, state) => {
+                      if (mutation.type === 'setFormErrors') {
+                          const fieldErrors = mutation.payload;
+
+                          if (fieldErrors && fieldErrors['repeaters.date_rule']) {
+                              showError(fieldErrors['repeaters.date_rule']);
+                          } else {
+                              hideError();
+                          }
+                      }
+
+                      if (mutation.type === 'clearFormErrors') {
+                          hideError();
+                      }
+                  });
+              }
+          });
+
+          function showError(errorMessage) {
+              let errorElement = document.getElementById('repeater-error');
+
+              errorElement.textContent = Array.isArray(errorMessage) ? errorMessage[0] : errorMessage;
+              errorElement.style.display = 'block';
+          }
+
+          function hideError() {
+              const errorElement = document.getElementById('repeater-error');
+              if (errorElement) {
+                  errorElement.style.display = 'none';
+              }
+          }
+        </script>
+
+        <p style="color:red" id='repeater-error'></p>
+
         <x-twill::repeater
             type='date_rule'
             title='Date rule'
