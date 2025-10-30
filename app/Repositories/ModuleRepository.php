@@ -15,6 +15,16 @@ abstract class ModuleRepository extends BaseModuleRepository
     use HandleApiBrowsers;
 
     /**
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function getById(int $id, array $with = [], array $withCount = []): TwillModelContract
+    {
+        return once(function () use ($id, $with, $withCount) {
+            return $this->model->withoutGlobalScopes()->with($with)->withCount($withCount)->findOrFail($id);
+        });
+    }
+
+    /**
      * Flatten attributes cast as collections to fields with dot-separated field
      * names.
      */
