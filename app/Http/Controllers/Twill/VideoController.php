@@ -20,8 +20,6 @@ class VideoController extends BaseController
 {
     protected function setUpController(): void
     {
-        $this->disableCreate();
-
         $this->enableShowImage();
 
         $this->eagerLoadListingRelations(['captions', 'playlists']);
