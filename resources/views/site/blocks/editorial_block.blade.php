@@ -31,7 +31,7 @@
                       ];
 
                       foreach ($imageFallbacks as [$field, $crop, $source]) {
-                          if ($source->hasImage($field)) {
+                          if ($source->hasImage($field) && !empty($source->imageAsArray($field, $crop))) {
                               return $source->imageAsArray($field, $crop);
                           }
                       }
