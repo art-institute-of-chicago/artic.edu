@@ -29,10 +29,9 @@ class YouTubeCaptions extends AbstractYoutubeCommand
      */
     private function importCaptions(): void
     {
-        $uncaptionedVideos = Video::published()
-            ->whereNotNull('uploaded_at')
-            ->where('is_captioned', true)
+        $uncaptionedVideos = Video::where('is_captioned', true)
             ->whereNotIn('id', Caption::select('video_id')->where('kind', 'standard'))
+            ->whereNotNull('uploaded_at')
             ->latest('uploaded_at');
         $progress = !$this->output->isDebug() ?
             $this->output->createProgressBar($uncaptionedVideos->count()) :
