@@ -15,3 +15,7 @@ Schedule::command('update:cdn-ips')->hourly();
 Schedule::command('fix:galleries')->everyMinute();
 Schedule::command('send:confirmations')->everyTwoMinutes()->withoutOverlapping();
 Schedule::command('exhibitions:featured')->dailyAt('00:00');
+// TODO: Remove after getting caught up with the YouTube api
+Schedule::command('youtube:captions', ['--downloads-only'])->daily();
+Schedule::command('youtube:videos-and-playlists')->hourly();
+Schedule::command('youtube:captions')->hourly();
