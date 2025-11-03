@@ -407,6 +407,12 @@ class LandingPagesController extends FrontController
                 ];
                 break;
 
+            case $types->search('Videos'):
+                $viewData = [
+                    'subnav' => collect(BlockHelpers::getHeadings($item->blocks)),
+                ];
+                break;
+
             default:
                 $viewData = array();
                 break;
