@@ -1,0 +1,242 @@
+$color__videos__darkest_gray: $color__black--81;
+
+section.videos {
+    body:has(&) {
+        color: white;
+        background-color: $color__videos__darkest_gray;
+
+        .g-header {
+            z-index: 0;
+        }
+
+        .m-header-block {
+            &::before {
+                display: none;
+            }
+            h1.title {
+                color: $color__white;
+                font-family: $serif-font--loaded;
+                font-size: 38px;
+                font-style: normal;
+                font-weight: 300;
+                letter-spacing: -0.38px;
+                line-height: 44px;
+                text-align: center;
+                text-transform: unset;
+            }
+            & ~ .f-intro {
+                color: $color__black--20;
+                font-family: $sans-serif-font--loaded;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 300;
+                letter-spacing: 0.17px;
+                line-height: 28px;
+                margin: 16px;
+                text-align: center;
+            }
+        }
+    }
+    .videos-subnav {
+        text-align: left !important;
+        padding-bottom: 28px;
+        border-bottom: 1px solid white;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        @include breakpoint('small-') {
+            padding-bottom: 20px;
+        }
+
+        ul {
+            display: block;
+            text-align: left;
+            white-space: nowrap;
+            min-width: 100%;
+        }
+
+        li {
+            display: inline-block;
+        }
+
+        .m-links-bar__item>.f-link {
+            color: white;
+            font-family: $sans-serif-font--loaded;
+            font-size: 17px;
+            font-weight: 300;
+            line-height: 28px;
+            letter-spacing: 0.01em;
+        }
+    }
+
+    .shorts-grid {
+        .m-listing__img {
+            aspect-ratio: 2 / 3;
+
+            img {
+                height: 120%;
+            }
+        }
+    }
+}
+.videos.o-landingpage__body {
+    .playlist-grid {
+        margin-left: unset !important;
+    }
+
+    .video-grid {
+        margin-left: unset !important;
+
+        .m-title-bar {
+            margin: 0;
+            margin-bottom: 40px;
+
+            &::before {
+                display: none;
+            }
+            h2.title {
+                margin: 0;
+            }
+            .f-link {
+                color: $color__black--20;
+            }
+        }
+    }
+}
+main#content:has(.videos) {
+    .shorts-grid {
+        margin-left: unset !important;
+        margin-top: 56px;
+
+        .m-title-bar {
+            margin: 0;
+            margin-bottom: 40px;
+
+            &::before {
+                display: none;
+            }
+            h2.title {
+                margin: 0;
+            }
+            .f-link {
+                color: $color__black--20;
+            }
+        }
+        .m-listing__img {
+            border-radius: 8px;
+        }
+    }
+    .o-grid-block {
+        .o-grid-block__title {
+            color: $color__white;
+            font-family: $serif-font--loaded;
+            font-size: 38px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 44px;
+            letter-spacing: -0.38px;
+            text-transform: none;
+        }
+        .o-grid-block__description {
+            color: $color__black--20;
+            font-family: $sans-serif-font--loaded;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: 0.17px;
+            line-height: 28px;
+            text-transform: none;
+        }
+        .o-grid-block__subtitle {
+            font-family: $sans-serif-font--loaded;
+            font-size: 21px;
+            font-style: normal;
+            font-weight: 325;
+            letter-spacing: 1.68px;
+            line-height: 28px;
+            text-transform: uppercase;
+        }
+        .o-grid-listing {
+            margin-top: 32px;
+
+            @include breakpoint('small-') {
+                flex-flow: row;
+                overflow: hidden;
+            }
+        }
+        .m-listing {
+            @include breakpoint('small-') {
+                width: 85%;
+
+                &:not(:first-child) {
+                    margin-left: 24px;
+                    margin-top: unset;
+                }
+            }
+            .m-listing__meta {
+                min-height: unset;
+
+                .title {
+                    color: $color__white;
+                    font-size: 19px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 28px;
+                }
+                .intro {
+                    color: $color__black--20;
+                    font-size: 17px;
+                    font-style: normal;
+                    font-weight: 300;
+                    letter-spacing: 0.17px;
+                    line-height: 28px;
+                }
+            }
+            .m-listing__img-prompt {
+                background: rgba(26, 26, 26, 0.80);
+                font-family: $sans-serif-font--loaded;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 325;
+                letter-spacing: 1.82px;
+                line-height: 16px;
+                min-width: unset;
+                padding: 8px 12px;
+                text-transform: uppercase;
+            }
+        }
+    }
+    div.custom-banner-block--videos {
+        padding-top: 56px;
+
+        .text-wrapper {
+            gap: 2em;
+
+            .custom-banner-title {
+                font-family: $sans-serif-font--loaded;
+                font-size: 21px;
+                font-style: normal;
+                font-weight: 325;
+                letter-spacing: 1.68px;
+                line-height: 28px;
+                text-transform: uppercase;
+            }
+        }
+        .f-buttons {
+            background-color: transparent;
+            border: 1px solid $color__white;
+        }
+
+        @include breakpoint('medium') {
+            .text-wrapper {
+                flex-direction: row;
+            }
+        }
+        @include breakpoint('small-') {
+            .button-wrapper,
+            .f-buttons {
+                width: 100%;
+            }
+        }
+    }
+}
