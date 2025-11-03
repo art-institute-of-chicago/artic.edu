@@ -80,6 +80,10 @@ section.videos {
     }
 }
 .videos.o-landingpage__body {
+    &.o-blocks>div {
+        margin-top: 56px;
+    }
+
     .playlist-grid {
         margin-left: unset !important;
     }

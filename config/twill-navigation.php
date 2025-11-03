@@ -129,11 +129,15 @@ $nav = [
                         'module' => true,
                     ],
                     'categories' => [
-                        'title' => 'Categories',
+                        'title' => 'Article Categories',
                         'module' => true,
                     ],
                     'videos' => [
                         'title' => 'Videos',
+                        'module' => true,
+                    ],
+                    'videoCategories' => [
+                        'title' => 'Video Categories',
                         'module' => true,
                     ],
                     'playlists' => [

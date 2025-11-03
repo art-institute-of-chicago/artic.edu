@@ -7,11 +7,6 @@
 ])
 
 @section('contentFields')
-    <x-twill::checkbox
-        name='is_listed'
-        label='Show this video in listings'
-    />
-
     <x-twill::input
         name='title'
         label='Title'
@@ -91,22 +86,38 @@
 @section('fieldsets')
 
     <x-twill::formFieldset id="related_to" title="Related">
-
         <x-twill::multi-select
-            name='categories'
-            label='Categories'
-            placeholder='Select some categories'
+            name='videoCategories'
+            label='Video Categories'
+            placeholder='Select some video categories'
             unpack='true'
-            :options="$categoriesList"
+            :options="$videoCategoriesList"
         />
 
-        <p>If this is left blank, we will show the four most recently published videos.</p>
+        <x-twill::checkbox
+            name='is_listed'
+            label='Show this video in Article listings'
+        />
+        <x-twill::formConnectedFields
+            field-name='is_listed'
+            :field-values='true'
+            :keep-alive='true'
+        >
+            <x-twill::multi-select
+                name='categories'
+                label='Article Categories'
+                placeholder='Select some article categories'
+                unpack='true'
+                :options="$articleCategoriesList"
+            />
+        </x-twill::formConnectedFields>
 
         <x-twill::browser
             name='related_videos'
             label='Related videos'
             route-prefix='collection.articlesPublications'
             module-name='videos'
+            field-note="If this is left blank, we will show the four most recently published videos."
             :max='4'
         />
 
