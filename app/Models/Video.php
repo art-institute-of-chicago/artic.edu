@@ -91,6 +91,11 @@ class Video extends AbstractModel
         return $this->belongsToMany('App\Models\Category', 'video_category');
     }
 
+    public function videoCategories()
+    {
+        return $this->belongsToMany(VideoCategory::class, 'video_video_category', 'video_id', 'video_category_id');
+    }
+
     public function playlists()
     {
         return $this->belongsToMany(Playlist::class)
@@ -128,6 +133,13 @@ class Video extends AbstractModel
         });
     }
 
+    public function scopeByPlaylists($query, $playlistIds = []): Builder
+    {
+        return $query->whereHas('playlists', function ($query) use ($playlistIds) {
+            $query->whereIn('playlist_id', $playlistIds);
+        });
+    }
+
     public function getEmbedAttribute()
     {
         return EmbedConverterFacade::convertUrl($this->video_url);
@@ -149,7 +161,7 @@ class Video extends AbstractModel
     public function getUrlWithoutSlugAttribute()
     {
         // Workaround for the CMS, should be moved away from the model
-        return join([route('videos'), '/', $this->id, '-']);
+        // return join([route('videos'), '/', $this->id, '-']);
     }
 
     public function getAdminEditUrlAttribute()

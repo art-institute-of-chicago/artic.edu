@@ -25,7 +25,12 @@ class LandingPageRepository extends ModuleRepository
         HandleBlocks::getBlockBrowsers as HandleBlocksgetBlockBrowsers;
     }
 
-    protected $browsers = [];
+    protected $browsers = [
+        'videos' => [
+            'routePrefix' => 'collection',
+            'moduleName' => 'videos',
+        ],
+    ];
 
     protected $apiBrowsers = [
         'artworks' => [
