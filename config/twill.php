@@ -399,7 +399,7 @@ return [
         'acl' => env('MEDIA_LIBRARY_ACL', 'private'),
         'filesize_limit' => env('MEDIA_LIBRARY_FILESIZE_LIMIT', 50),
         'allowed_extensions' => ['svg', 'jpg', 'gif', 'png', 'jpeg', 'mp4'],
-        'init_alt_text_from_filename' => true,
+        'init_alt_text_from_filename' => false,
         'prefix_uuid_with_local_path' => config('twill.file_library.prefix_uuid_with_local_path', false),
         'translated_form_fields' => false,
         'show_file_name' => false,
