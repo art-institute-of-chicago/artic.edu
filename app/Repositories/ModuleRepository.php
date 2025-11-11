@@ -58,10 +58,12 @@ abstract class ModuleRepository extends BaseModuleRepository
         // Remove trailing newlines from block content (for `HasBlocks` only)
         if (isset($fields['blocks'])) {
             foreach ($fields['blocks'] as $blockKey => $block) {
-                foreach ($block['content'] as $contentKey => $content) {
+                if (isset($block['content']) && is_array($block['content'])) {
+                  foreach ($block['content'] as $contentKey => $content) {
                     $fields['blocks'][$blockKey]['content'][$contentKey] =
                         StringHelpers::rightTrim($content, '<p><br class="softbreak"></p>');
-                }
+                  }
+              }
             }
         }
 
