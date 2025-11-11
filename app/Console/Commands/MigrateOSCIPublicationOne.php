@@ -133,7 +133,6 @@ class MigrateOSCIPublicationOne extends Command
                     'locale' => 'en'
                 ]);
 
-        $media->alt_text = 'Alt text for the image';
         $media->caption = $caption_html;
         $media->save();
         $media->addTag('Pubs Image');
