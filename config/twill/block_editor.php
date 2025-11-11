@@ -197,6 +197,7 @@ return [
         'authors' => 'collection',
         'articles' => 'collection.articlesPublications',
         'experiences' => 'collection.interactiveFeatures',
+        'digitalExplorers' => 'collection.digitalExplorers',
         'landingPages' => 'generic',
         'genericPages' => 'generic',
         'videos' => 'collection.articlesPublications',
