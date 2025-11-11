@@ -301,6 +301,8 @@
   opacity: 0;
   transition: opacity .35s;
   max-height: calc(95vh - 70px);
+
+  position: relative !important;
 }
 
 .m-media--mirador-embed {
