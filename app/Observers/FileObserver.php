@@ -19,7 +19,7 @@ class FileObserver
      * @param  \App\File  $file
      * @return void
      */
-    public function created(File $file)
+    public function created(File $file): void
     {
         $this->handleImageSequenceZip($file);
     }
@@ -30,7 +30,7 @@ class FileObserver
      * @param  \App\File  $file
      * @return void
      */
-    public function updated(File $file)
+    public function updated(File $file): void
     {
     }
 
@@ -40,7 +40,7 @@ class FileObserver
      * @param  \App\File  $file
      * @return void
      */
-    public function deleted(File $file)
+    public function deleted(File $file): void
     {
     }
 
@@ -50,7 +50,7 @@ class FileObserver
      * @param  \App\File  $file
      * @return void
      */
-    public function restored(File $file)
+    public function restored(File $file): void
     {
     }
 
@@ -60,7 +60,7 @@ class FileObserver
      * @param  \App\File  $file
      * @return void
      */
-    public function forceDeleted(File $file)
+    public function forceDeleted(File $file): void
     {
     }
 
