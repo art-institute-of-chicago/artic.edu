@@ -106,7 +106,7 @@ class FileObserver
         $zip = new ZipArchive();
 
         if ($zip->open($zipFile) === true) {
-            $zip->extractTo(storage_path('app') . '/tempDir');
+            $zip->extractTo(storage_path('app') . '/private/tempDir');
             $zipFolderName = trim($zip->getNameIndex(0), '/');
             $zip->close();
 
