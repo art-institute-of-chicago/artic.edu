@@ -6,6 +6,7 @@ use App\Http\Controllers\ArtworkController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DigitalExplorerController;
 use App\Http\Controllers\DigitalPublicationArticleController;
 use App\Http\Controllers\DigitalPublicationsController;
 use App\Http\Controllers\EducatorResourcesController;
@@ -282,6 +283,10 @@ Route::get('enews', function () {
 Route::get('e-news', function () {
     return redirect()->route('forms.email-subscriptions', request()->all());
 });
+
+// Digital Explorer
+Route::get('/digital-explorers', [DigitalExplorerController::class, 'index'])->name('digitalExplorer.index');
+Route::get('/digital-explorers/{id}', [DigitalExplorerController::class, 'show'])->name('digitalExplorer.show');
 
 // Digital labels
 Route::get('/interactive-features', [InteractiveFeatureExperiencesController::class, 'index'])->name('interactiveFeatures');
