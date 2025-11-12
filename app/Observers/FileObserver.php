@@ -134,8 +134,8 @@ class FileObserver
         })));
 
         foreach ($images as $index => $imageName) {
-            $image_size = getimagesize(storage_path('app') . '/' . $imageName);
-            $uploaded = Storage::disk('s3')->putFile('seq', new HttpFile(storage_path('app') . '/' . $imageName), 'public');
+            $image_size = getimagesize(storage_path('app') . '/private/' . $imageName);
+            $uploaded = Storage::disk('s3')->putFile('seq', new HttpFile(storage_path('app') . '/private/' . $imageName), 'public');
             DB::table('seamless_images')->insert(
                 [
                     'file_name' => substr($uploaded, 4),
