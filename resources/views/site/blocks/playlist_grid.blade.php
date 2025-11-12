@@ -1,0 +1,76 @@
+@php
+    $gridTitle = $block->present()->input('heading');
+    $gridDescription = $block->input('description');
+    $gridLinkLabel = $block->input('grid_link_label');
+    $gridLinkHref = $block->input('grid_link_href');
+    $variation = $block->input('variation');
+    $widthSmall = '1';
+    switch ($variation) {
+        case '4-wide':
+            $width = '4';
+            break;
+        case '2-wide':
+            $width = '2';
+            break;
+        case '3-wide':
+        default:
+            $width = '3';
+            break;
+    }
+    $playlists = $block->getRelated('playlists');
+@endphp
+
+<div class="o-grid-block playlist-grid">
+    @component('components.molecules._m-title-bar')
+        @slot('links', !empty($gridLinkLabel) && !empty($gridLinkHref) ? [
+            [
+                'label' => $gridLinkLabel,
+                'href'  => $gridLinkHref,
+                'id' => Str::slug(strip_tags($gridTitle)),
+            ]
+        ] : null)
+        @if (!empty($gridTitle))
+            {!!'<span class="o-grid-block__title">'. $gridTitle .'</span>'!!}
+        @endif
+        @if (!empty($gridDescription))
+            {!!'<span class="o-grid-block__description">'. $gridDescription .'</span>'!!}
+        @endif
+    @endcomponent
+
+    <span class="o-grid-block__subtitle">Playlists</span>
+
+    @component('components.organisms._o-grid-listing')
+        @slot('cols_small', $widthSmall)
+        @slot('cols_medium', $width)
+        @slot('cols_large', $width)
+        @slot('cols_xlarge', $width)
+        @foreach ($playlists as $playlist)
+            @php
+                $videoThumbnails = $playlist->videos()
+                    ->get()
+                    ->mapWithKeys(fn($video, $key) => ['src' => $video->thumbnail_url]);
+                $videoCount = $playlist->videos()->count();
+            @endphp
+            @component('components.molecules._m-listing----playlist-grid-item')
+                @slot('url', $playlist->source_url)
+                {{-- @slot('images', $videoThumbnails) --}}
+                @slot('image', ['src' => $playlist->thumbnail_url])
+                @slot('label', $videoCount)
+                @slot('labelPosition', 'overlay')
+                @slot('title', $playlist->title)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => ImageHelpers::aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
+            @endcomponent
+        @endforeach
+    @endcomponent
+</div>
