@@ -85,9 +85,24 @@ section.videos {
     }
 
     .playlist-grid {
-        margin-left: unset !important;
+        .m-title-bar {
+            .m-title-bar__links {
+                position: absolute;
+                right: 0;
+                top: 0;
+
+                @include breakpoint('small-') {
+                    display: flex;
+                }
+            }
+            h2.title {
+                margin: 0;
+                max-width: 100%;
+            }
+        }
     }
 
+    .playlist-grid,
     .video-grid {
         margin-left: unset !important;
 
