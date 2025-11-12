@@ -13,6 +13,7 @@ use A17\Twill\Services\Listings\TableColumns;
 use App\Models\Playlist;
 use App\Models\Video;
 use App\Repositories\CategoryRepository;
+use App\Repositories\VideoCategoryRepository;
 use App\Twill\Services\Listings\Columns\ImageWithFallback;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
@@ -199,6 +200,16 @@ class VideoController extends BaseController
         return $columns;
     }
 
+    protected function getBrowserData(array $scopes = []): array
+    {
+        if ($this->request->has('connectedBrowserIds')) {
+            $playlistIds = collect(json_decode($this->request->get('connectedBrowserIds')));
+            $scopes['byPlaylists'] = $playlistIds;
+        }
+
+        return parent::getBrowserData($scopes);
+    }
+
     protected function formData($request)
     {
         $item = $this->repository->getById(request('video') ?? request('id'));
@@ -206,7 +217,8 @@ class VideoController extends BaseController
 
         return [
             'baseUrl' => $baseUrl,
-            'categoriesList' => app(CategoryRepository::class)->listAll('name'),
+            'articleCategoriesList' => app(CategoryRepository::class)->listAll('name')->sort(),
+            'videoCategoriesList' => app(VideoCategoryRepository::class)->listAll('name')->sort(),
         ];
     }
 

@@ -2,10 +2,11 @@
 
 namespace App\Repositories\Behaviors;
 
+use A17\Twill\Facades\TwillCapsules;
 use A17\Twill\Repositories\ModuleRepository;
 use A17\Twill\Services\MediaLibrary\ImageService;
-use Illuminate\Support\Str;
 use App\Helpers\UrlHelpers;
+use Illuminate\Support\Str;
 
 trait HandleApiBlocks
 {
@@ -62,8 +63,13 @@ trait HandleApiBlocks
                     }
                 } else {
                     // Load a normal edit
-                    $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . Str::camel($relation)), 'edit', [$relatedElement->id]);
-                    $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
+                    if (UrlHelpers::moduleRouteExists($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'augment')) {
+                        $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . Str::camel($relation)), 'edit', [$relatedElement->id]);
+                    }
+
+                    if (classHasTrait($relatedElement, \App\Models\Behaviors\HasMedias::class)) {
+                        $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
+                    }
                 }
 
                 return [
