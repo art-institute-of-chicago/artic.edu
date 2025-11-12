@@ -54,6 +54,7 @@ class LandingPage extends AbstractModel implements Sortable
        13 => 'Conservation and Science',
        14 => 'Research Center',
        15 => 'Educator Resources',
+       16 => 'Videos',
        99 => 'Custom',
     ];
 
@@ -380,6 +381,11 @@ class LandingPage extends AbstractModel implements Sortable
     public function researchResourcesStudyRoomMore()
     {
         return $this->belongsToMany(\App\Models\GenericPage::class, 'research_resource_study_room_more_pages')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
+    }
+
+    public function videos()
+    {
+        return $this->belongsToMany(\App\Models\Video::class);
     }
 
     public function genericPages()

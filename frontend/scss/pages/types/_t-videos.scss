@@ -1,0 +1,99 @@
+$color__videos__darkest_gray: $color__black--81;
+
+section.videos {
+    body:has(&) {
+        color: white;
+        background-color: $color__videos__darkest_gray;
+
+        .title {
+            color: white;
+            font-family: $serif-font--loaded;
+            font-size: 31px;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: -0.31px;
+            line-height: 40px;
+            text-transform: unset;
+        }
+    }
+    .videos-subnav {
+        text-align: left !important;
+        padding-bottom: 28px;
+        border-bottom: 1px solid white;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        @include breakpoint('small-') {
+            padding-bottom: 20px;
+        }
+
+        ul {
+            display: block;
+            text-align: left;
+            white-space: nowrap;
+            min-width: 100%;
+        }
+
+        li {
+            display: inline-block;
+        }
+
+        .m-links-bar__item>.f-link {
+            color: white;
+            font-family: $sans-serif-font--loaded;
+            font-size: 17px;
+            font-weight: 300;
+            line-height: 28px;
+            letter-spacing: 0.01em;
+        }
+    }
+}
+.videos.o-landingpage__body {
+    &.o-blocks>div {
+        margin-top: 56px;
+    }
+
+    .playlist-grid {
+        margin-left: unset !important;
+    }
+
+    .video-grid {
+        margin-left: unset !important;
+
+        .m-title-bar {
+            margin: 0;
+
+            &::before {
+                display: none;
+            }
+            .title {
+                margin: 0;
+            }
+        }
+    }
+
+    .o-grid-block {
+        .m-listing {
+            .m-listing__meta {
+                .title {
+                    font-size: 19px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 28px;
+                }
+            }
+            .m-listing__img-prompt {
+                background: rgba(26, 26, 26, 0.80);
+                font-family: $sans-serif-font--loaded;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 325;
+                letter-spacing: 1.82px;
+                line-height: 16px;
+                min-width: unset;
+                padding: 8px 12px;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
