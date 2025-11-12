@@ -267,5 +267,6 @@ return [
         'ranged_accordion',
         'tag_banner',
         'video_grid',
+        'playlist_grid',
     ]
 ];

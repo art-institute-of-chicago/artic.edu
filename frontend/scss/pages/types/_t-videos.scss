@@ -54,26 +54,83 @@ section.videos {
     }
 
     .playlist-grid {
-        margin-left: unset !important;
+        .m-title-bar {
+            .m-title-bar__links {
+                position: absolute;
+                right: 0;
+                top: 0;
+
+                @include breakpoint('small-') {
+                    display: flex;
+                }
+            }
+            h2.title {
+                margin: 0;
+                max-width: 100%;
+            }
+        }
     }
 
+    .playlist-grid,
     .video-grid {
         margin-left: unset !important;
 
         .m-title-bar {
             margin: 0;
+            margin-bottom: 40px;
 
             &::before {
                 display: none;
             }
-            .title {
+            h2.title {
                 margin: 0;
             }
         }
     }
 
     .o-grid-block {
+        .o-grid-block__title {
+            font-size: 31px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 40px;
+            letter-spacing: -0.31px;
+        }
+        .o-grid-block__description {
+            font-family: $sans-serif-font--loaded;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 28px;
+            letter-spacing: 0.17px;
+        }
+        .o-grid-block__subtitle {
+            font-family: $sans-serif-font--loaded;
+            font-size: 21px;
+            font-style: normal;
+            font-weight: 325;
+            line-height: 28px;
+            letter-spacing: 1.68px;
+            text-transform: uppercase;
+        }
+        .o-grid-listing {
+            flex-flow: row;
+            margin-top: 32px;
+            overflow: hidden;
+        }
         .m-listing {
+            @include breakpoint('small-') {
+                &:first-child {
+                    width: 85%;
+                }
+                &:nth-child(2) {
+                    margin-top: unset;
+                    margin-left: 24px;
+                }
+                &:nth-child(n+3) {
+                    display: none;
+                }
+            }
             .m-listing__meta {
                 .title {
                     font-size: 19px;
