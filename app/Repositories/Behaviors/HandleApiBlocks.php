@@ -71,7 +71,6 @@ trait HandleApiBlocks
                         $data['thumbnail'] = $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]);
                     }
                 }
-                $controller = '\\App\\Http\\Controllers\\Twill\\' . class_basename($relatedElement) . 'Controller';
 
                 return [
                     'id' => $relatedElement->id,
