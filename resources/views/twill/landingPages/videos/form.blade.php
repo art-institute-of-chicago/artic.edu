@@ -6,14 +6,6 @@
         type='textarea'
     />
 
-    <x-twill::browser
-        name='videos'
-        label='Featured Videos'
-        route-prefix='collection.articlesPublications'
-        module-name='videos'
-        :max='3'
-    />
-
     @php
         $blocks = BlockHelpers::getBlocksForEditor([
             'custom_banner',
