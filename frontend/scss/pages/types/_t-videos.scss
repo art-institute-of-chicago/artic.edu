@@ -1,13 +1,7 @@
-$color__videos__darkest_gray: $color__black--81;
-
 section.videos {
     body:has(&) {
-        color: white;
-        background-color: $color__videos__darkest_gray;
-
-        .g-header {
-            z-index: 0;
-        }
+        color: $color__white;
+        background-color: $color__black--81;
 
         .m-header-block {
             &::before {
@@ -37,12 +31,15 @@ section.videos {
             }
         }
     }
+    main#content:has(&) {
+        padding-top: 140px;
+    }
     .videos-subnav {
-        text-align: left !important;
-        padding-bottom: 28px;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid $color__black--54;
+        border-top: 1px solid $color__black--54;
         overflow-x: auto;
         overflow-y: hidden;
+        padding-bottom: 28px;
 
         @include breakpoint('small-') {
             padding-bottom: 20px;
@@ -50,9 +47,9 @@ section.videos {
 
         ul {
             display: block;
-            text-align: left;
-            white-space: nowrap;
             min-width: 100%;
+            text-align: center;
+            white-space: nowrap;
         }
 
         li {
@@ -60,12 +57,12 @@ section.videos {
         }
 
         .m-links-bar__item>.f-link {
-            color: white;
+            color: $color__white;
             font-family: $sans-serif-font--loaded;
             font-size: 17px;
             font-weight: 300;
-            line-height: 28px;
             letter-spacing: 0.01em;
+            line-height: 28px;
         }
     }
 
@@ -82,6 +79,10 @@ section.videos {
 .videos.o-landingpage__body {
     &.o-blocks>div {
         margin-top: 56px;
+        padding-top: 20px;
+        &:not(:first-child) {
+            border-top: 1px solid $color__black--54;
+        }
     }
 
     .playlist-grid {
