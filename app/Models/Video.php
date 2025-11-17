@@ -12,6 +12,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\App;
 
 class Video extends AbstractModel
 {
@@ -161,8 +162,7 @@ class Video extends AbstractModel
     public function getUrlWithoutSlugAttribute()
     {
         // Workaround for the CMS, should be moved away from the model
-        // TODO: uncomment when video show page is reimplemented
-        // return join([route('videos'), '/', $this->id, '-']);
+        return join([route('videos'), '/', $this->id, '-']);
     }
 
     public function getAdminEditUrlAttribute()
@@ -183,7 +183,9 @@ class Video extends AbstractModel
     protected static function booted(): void
     {
         static::addGlobalScope('available', function (Builder $query) {
-            $query->where('privacy', '<>', 'private');
+            if (!App::environment('production')) {
+                $query->where('privacy', '<>', 'private');
+            }
         });
     }
 
