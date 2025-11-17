@@ -15,13 +15,15 @@ abstract class AbstractYoutubeCommand extends Command
         {--F|force : Ignore quotas, only stop on 400s from the API}
         {--Q|quota= : The amount of quota points to use for the session}';
 
+    protected GoogleOAuthService $oAuth;
     protected YouTubeService $youtube;
 
     public function __construct(GoogleOAuthService $oAuth)
     {
+        $this->oAuth = $oAuth;
         $this->signature = Str::replace('{signature}', $this->signature, $this->signatureTemplate);
         parent::__construct();
-        $oAuth->setApplicationName(YouTubeService::SERVICE_NAME . ' (gzip)');
+        $this->oAuth->setApplicationName(YouTubeService::SERVICE_NAME);
         $this->youtube = new YouTubeService($oAuth->client);
         $this->youtube->setLogger(fn ($message, $level = 'info') => (
             $this->{$level}($message, OutputInterface::VERBOSITY_DEBUG)
@@ -30,6 +32,7 @@ abstract class AbstractYoutubeCommand extends Command
 
     public function handle()
     {
+        $this->oAuth->authorizeAccess();
         $this->info(
             "YouTube service session start",
             OutputInterface::VERBOSITY_DEBUG,

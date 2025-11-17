@@ -200,6 +200,8 @@ return [
         'landingPages' => 'generic',
         'genericPages' => 'generic',
         'videos' => 'collection.articlesPublications',
+        'videoCategories' => 'collection.articlesPublications',
+        'playlists' => 'collection.articlesPublications',
         'myMuseumTourItems' => 'visit',
     ],
     'block-order' => [
@@ -263,6 +265,8 @@ return [
         'editorial_block',
         'tombstone',
         'ranged_accordion',
-        'tag_banner'
+        'tag_banner',
+        'video_grid',
+        'playlist_grid',
     ]
 ];

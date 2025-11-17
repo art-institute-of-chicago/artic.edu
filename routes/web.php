@@ -1,24 +1,24 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Schema;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\ArticlesPublicationsController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ArtworkController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\DigitalPublicationsController;
 use App\Http\Controllers\DigitalPublicationArticleController;
+use App\Http\Controllers\DigitalPublicationsController;
 use App\Http\Controllers\EducatorResourcesController;
-use App\Http\Controllers\ExhibitionsController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ExhibitionHistoryController;
 use App\Http\Controllers\ExhibitionPressRoomController;
-use App\Http\Controllers\EventsController;
+use App\Http\Controllers\ExhibitionsController;
+use App\Http\Controllers\Forms\EducatorAdmissionController;
+use App\Http\Controllers\Forms\EmailSubscriptionsController;
+use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\GenericPagesController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GenericPagesController;
 use App\Http\Controllers\HighlightsController;
 use App\Http\Controllers\InteractiveFeatureExperiencesController;
 use App\Http\Controllers\LandingPagesController;
@@ -34,10 +34,7 @@ use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\VideoController;
-use App\Http\Controllers\Forms\EducatorAdmissionController;
-use App\Http\Controllers\Forms\EmailSubscriptionsController;
-use App\Http\Controllers\Forms\FilmingAndPhotoShootProposalController;
-use App\Models\Slugs\LandingPageSlug;
+use Illuminate\Support\Facades\Route;
 
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 
@@ -118,9 +115,7 @@ Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index'
 Route::get('/authors/{id}/{slug?}', [AuthorController::class, 'show'])->name('authors.show');
 
 // Videos routes
-Route::get('videos', function () {
-    return abort(404);
-})->name('videos');
+// TODO: uncomment when video show page is reimplemented
 Route::get('/videos/{id}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
 
 // Mirador kiosk routes

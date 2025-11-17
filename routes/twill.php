@@ -84,6 +84,8 @@ Route::group(['prefix' => 'collection'], function () {
         TwillRoutes::module('articles');
         TwillRoutes::module('categories');
         TwillRoutes::module('videos');
+        TwillRoutes::module('videoCategories');
+        TwillRoutes::module('videos.captions');
         TwillRoutes::module('playlists');
         TwillRoutes::module('playlists.videos');
         TwillRoutes::module('printedPublications');
@@ -125,5 +127,7 @@ Route::group(['prefix' => 'general'], function () {
     TwillRoutes::module('vanityRedirects');
     TwillRoutes::module('illuminatedLinks');
     Route::get('/integrations', [IntegrationController::class, 'show'])->name('general.integrations.show');
-    Route::get('/integrations/{provider}/disconnect', [IntegrationController::class, 'disconnect'])->name('general.integrations.disconnect');
+    Route::get('/integrations/service/{service}/action/{action}', [IntegrationController::class, 'action'])->name('general.integrations.service.action');
 });
+
+TwillRoutes::module('videoCategories');

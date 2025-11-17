@@ -19,7 +19,7 @@ class FileObserver
      * @param  \App\File  $file
      * @return void
      */
-    public function created(File $file)
+    public function created(File $file): void
     {
         $this->handleImageSequenceZip($file);
     }
@@ -30,7 +30,7 @@ class FileObserver
      * @param  \App\File  $file
      * @return void
      */
-    public function updated(File $file)
+    public function updated(File $file): void
     {
     }
 
@@ -40,7 +40,7 @@ class FileObserver
      * @param  \App\File  $file
      * @return void
      */
-    public function deleted(File $file)
+    public function deleted(File $file): void
     {
     }
 
@@ -50,7 +50,7 @@ class FileObserver
      * @param  \App\File  $file
      * @return void
      */
-    public function restored(File $file)
+    public function restored(File $file): void
     {
     }
 
@@ -60,7 +60,7 @@ class FileObserver
      * @param  \App\File  $file
      * @return void
      */
-    public function forceDeleted(File $file)
+    public function forceDeleted(File $file): void
     {
     }
 
@@ -106,7 +106,7 @@ class FileObserver
         $zip = new ZipArchive();
 
         if ($zip->open($zipFile) === true) {
-            $zip->extractTo(storage_path('app') . '/tempDir');
+            $zip->extractTo(storage_path('app') . '/private/tempDir');
             $zipFolderName = trim($zip->getNameIndex(0), '/');
             $zip->close();
 
@@ -134,8 +134,8 @@ class FileObserver
         })));
 
         foreach ($images as $index => $imageName) {
-            $image_size = getimagesize(storage_path('app') . '/' . $imageName);
-            $uploaded = Storage::disk('s3')->putFile('seq', new HttpFile(storage_path('app') . '/' . $imageName), 'public');
+            $image_size = getimagesize(storage_path('app') . '/private/' . $imageName);
+            $uploaded = Storage::disk('s3')->putFile('seq', new HttpFile(storage_path('app') . '/private/' . $imageName), 'public');
             DB::table('seamless_images')->insert(
                 [
                     'file_name' => substr($uploaded, 4),

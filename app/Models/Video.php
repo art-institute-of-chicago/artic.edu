@@ -12,6 +12,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\App;
 
 class Video extends AbstractModel
 {
@@ -32,11 +33,13 @@ class Video extends AbstractModel
         'description',
         'duration',
         'heading',
+        'is_captioned',
         'is_listed',
         'is_short',
         'list_description',
         'meta_description',
         'meta_title',
+        'privacy',
         'published',
         'search_tags',
         'thumbnail_url',
@@ -50,6 +53,7 @@ class Video extends AbstractModel
 
     protected $casts = [
         'date' => 'date',
+        'is_captioned' => 'boolean',
         'is_listed' => 'boolean',
         'published' => 'boolean',
         'toggle_autorelated' => 'boolean',
@@ -88,11 +92,21 @@ class Video extends AbstractModel
         return $this->belongsToMany('App\Models\Category', 'video_category');
     }
 
+    public function videoCategories()
+    {
+        return $this->belongsToMany(VideoCategory::class, 'video_video_category', 'video_id', 'video_category_id');
+    }
+
     public function playlists()
     {
         return $this->belongsToMany(Playlist::class)
             ->withTimestamps()
             ->withPivot('position');
+    }
+
+    public function captions()
+    {
+        return $this->hasMany(Caption::class);
     }
 
     public function format(): Attribute
@@ -117,6 +131,13 @@ class Video extends AbstractModel
 
         return $query->whereHas('categories', function ($query) use ($categories) {
             $query->whereIn('category_id', is_array($categories) ? $categories : [$categories]);
+        });
+    }
+
+    public function scopeByPlaylists($query, $playlistIds = []): Builder
+    {
+        return $query->whereHas('playlists', function ($query) use ($playlistIds) {
+            $query->whereIn('playlist_id', $playlistIds);
         });
     }
 
@@ -157,6 +178,15 @@ class Video extends AbstractModel
     public function getTypeAttribute()
     {
         return 'video';
+    }
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope('available', function (Builder $query) {
+            if (!App::environment('production')) {
+                $query->where('privacy', '<>', 'private');
+            }
+        });
     }
 
     protected function transformMappingInternal()

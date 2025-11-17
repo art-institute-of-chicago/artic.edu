@@ -8,6 +8,7 @@ use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
+use App\Models\Caption;
 use App\Models\Video;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
@@ -21,6 +22,11 @@ class VideoRepository extends ModuleRepository
     use HandleRevisions;
 
     protected $browsers = [
+        'captions' => [
+            'model' => Caption::class,
+            'moduleName' => 'videos.captions',
+            'routePrefix' => 'collection.articlesPublications',
+        ],
         'playlists' => [
             'routePrefix' => 'collection.articlesPublications',
         ],
@@ -65,10 +71,11 @@ class VideoRepository extends ModuleRepository
         return $this->model::published()->orderBy('date', 'desc')->whereNotIn('id', [$item->id])->limit(4)->get();
     }
 
-    public function afterSave(TwillModelContract $object, array $fields): void
+    public function afterSave(TwillModelContract $video, array $fields): void
     {
-        $object->categories()->sync($fields['categories'] ?? []);
+        $video->categories()->sync($fields['categories'] ?? []);
+        $video->videoCategories()->sync($fields['videoCategories'] ?? []);
 
-        parent::afterSave($object, $fields);
+        parent::afterSave($video, $fields);
     }
 }

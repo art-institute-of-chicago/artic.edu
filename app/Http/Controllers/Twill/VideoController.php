@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Twill;
 
+use A17\Twill\Services\Listings\Columns\NestedData;
 use A17\Twill\Services\Listings\Columns\Relation;
 use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\Filters\BasicFilter;
@@ -12,15 +13,17 @@ use A17\Twill\Services\Listings\TableColumns;
 use App\Models\Playlist;
 use App\Models\Video;
 use App\Repositories\CategoryRepository;
+use App\Repositories\VideoCategoryRepository;
 use App\Twill\Services\Listings\Columns\ImageWithFallback;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 class VideoController extends BaseController
 {
     protected function setUpController(): void
     {
         $this->enableShowImage();
+
+        $this->eagerLoadListingRelations(['captions', 'playlists']);
 
         $this->setModuleName('videos');
         $this->setPreviewView('site.videoDetail');
@@ -38,6 +41,12 @@ class VideoController extends BaseController
                         $builder->where('playlists.id', $playlistId);
                     });
                 }),
+            BasicFilter::make()
+                ->queryString('privacy')
+                ->options(collect(['private' => 'Private', 'public' => 'Public', 'unlisted' => 'Unlisted']))
+                ->apply(function (Builder $builder, string $privacy) {
+                    $builder->withoutGlobalScope('available')->where('privacy', $privacy);
+                }),
         ]);
     }
 
@@ -54,13 +63,44 @@ class VideoController extends BaseController
         );
         $filters->add(
             QuickFilter::make()
-                ->queryString('is_uploaded')
-                ->label('Uploaded')
-                ->amount(fn () => $this->repository->whereNotNull('uploaded_at')->count())
-                ->apply(fn (Builder $builder) => $builder->whereNotNull('uploaded_at'))
+                ->queryString('is_captioned')
+                ->label('Captioned')
+                ->amount(fn () => $this->repository->where('is_captioned', true)->count())
+                ->apply(fn (Builder $builder) => $builder->where('is_captioned', true))
+        );
+        $filters->add(
+            QuickFilter::make()
+                ->queryString('private')
+                ->label('Private')
+                ->amount(function () {
+                    return $this->repository->withoutGlobalScope('available')->where('privacy', 'private')->count();
+                })
+                ->apply(function (Builder $builder) {
+                    return $builder->withoutGlobalScope('available')->where('privacy', 'private');
+                })
         );
 
         return $filters->merge($afterSecondFilter);
+    }
+
+
+    protected function getDefaultQuickFilters(): QuickFilters
+    {
+        $filters = parent::getDefaultQuickFilters();
+        $withoutLast = $filters->splice(0, 4);
+        $withoutLast->add(
+            QuickFilter::make()
+                ->queryString('trash')
+                ->label(twillTrans('twill::lang.listing.filter.trash'))
+                ->onlyEnableWhen($this->getIndexOption('restore'))
+                ->amount(function () {
+                    return $this->repository->withoutGlobalScope('available')->onlyTrashed()->count();
+                })
+                ->apply(function (Builder $builder) {
+                    return $builder->withoutGlobalScope('available')->onlyTrashed();
+                })
+        );
+        return $withoutLast;
     }
 
     protected function getIndexTableColumns(): TableColumns
@@ -98,6 +138,12 @@ class VideoController extends BaseController
         );
         $columns->add(
             Text::make()
+                ->field('privacy')
+                ->title('Privacy')
+                ->customRender(fn (Video $video) => ucfirst($video->privacy))
+        );
+        $columns->add(
+            Text::make()
                 ->field('uploaded_at')
                 ->sortable()
                 ->customRender(fn (Video $video) => (string) $video->uploaded_at?->format('M j, Y'))
@@ -107,6 +153,11 @@ class VideoController extends BaseController
                 ->relation('playlists')
                 ->field('title')
                 ->title('Playlists')
+                ->optional()
+        );
+        $columns->add(
+            NestedData::make()
+                ->field('captions')
                 ->optional()
         );
         $columns->add(
@@ -142,6 +193,16 @@ class VideoController extends BaseController
         return $columns;
     }
 
+    protected function getBrowserData(array $scopes = []): array
+    {
+        if ($this->request->has('connectedBrowserIds')) {
+            $playlistIds = collect(json_decode($this->request->get('connectedBrowserIds')));
+            $scopes['byPlaylists'] = $playlistIds;
+        }
+
+        return parent::getBrowserData($scopes);
+    }
+
     protected function formData($request)
     {
         $item = $this->repository->getById(request('video') ?? request('id'));
@@ -149,7 +210,8 @@ class VideoController extends BaseController
 
         return [
             'baseUrl' => $baseUrl,
-            'categoriesList' => app(CategoryRepository::class)->listAll('name'),
+            'articleCategoriesList' => app(CategoryRepository::class)->listAll('name')->sort(),
+            'videoCategoriesList' => app(VideoCategoryRepository::class)->listAll('name')->sort(),
         ];
     }
 
