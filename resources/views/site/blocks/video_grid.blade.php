@@ -1,31 +1,35 @@
 @php
+    use App\Helpers\StringHelpers;
+
     $gridTitle = $block->present()->input('heading');
     $gridDescription = $block->input('description');
     $gridLinkLabel = $block->input('grid_link_label');
     $gridLinkHref = $block->input('grid_link_href');
     $variation = $block->input('variation');
+    $widthSmall = '1';
     switch ($variation) {
         case '4-wide':
-            $width = $widthSmall = '4';
+            $width = '4';
             break;
         case '2-wide':
-            $width = $widthSmall = '2';
+            $width = '2';
             break;
         case '3-wide':
         default:
             $width = '3';
-            $widthSmall = '2';
             break;
     }
     $display = $block->input('display');
     $playlist = $block->getRelated('playlist')->first();
     $category = $block->getRelated('videoCategories')->first();
+    $maxRows = (int) $block->input('max_rows') ?? 1;
+    $take = $maxRows * (int) $width;
     switch ($display) {
         case 'category':
-            $videos = $category->videos()->take(4)->get();
+            $videos = $category->videos;
             break;
         case 'playlist':
-            $videos = $playlist->videos()->take(4)->get();
+            $videos = $playlist->videos;
             break;
         case 'featured':
             $videos = $block->getRelated('videos');
@@ -33,6 +37,9 @@
         default:
             $videos = [];
             break;
+    }
+    if (count($videos)) {
+        $videos = $videos->take($take);
     }
     $showDescription = $block->input('show_description');
 @endphp
@@ -55,6 +62,7 @@
     @endcomponent
 
     @component('components.organisms._o-grid-listing')
+        @slot('behavior', 'dragScroll')
         @slot('cols_small', $widthSmall)
         @slot('cols_medium', $width)
         @slot('cols_large', $width)
@@ -66,8 +74,7 @@
                 @slot('label', $video->duration ?? '')
                 @slot('labelPosition', 'overlay')
                 @slot('title', $video->title ?? '')
-                @slot('tag', $video->duration ?? '')
-                @slot('description', $showDescription ? (string) $video->description : '')
+                @slot('description', $showDescription ? StringHelpers::truncateStr($video->description) : '')
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',

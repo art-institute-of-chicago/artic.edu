@@ -1,27 +1,45 @@
-$color__videos__darkest_gray: $color__black--81;
-
 section.videos {
     body:has(&) {
-        color: white;
-        background-color: $color__videos__darkest_gray;
+        color: $color__white;
+        background-color: $color__black--81;
 
-        .title {
-            color: white;
-            font-family: $serif-font--loaded;
-            font-size: 31px;
-            font-style: normal;
-            font-weight: 300;
-            letter-spacing: -0.31px;
-            line-height: 40px;
-            text-transform: unset;
+        .m-header-block {
+            &::before {
+                display: none;
+            }
+            h1.title {
+                color: $color__white;
+                font-family: $serif-font--loaded;
+                font-size: 38px;
+                font-style: normal;
+                font-weight: 300;
+                letter-spacing: -0.38px;
+                line-height: 44px;
+                text-align: center;
+                text-transform: unset;
+            }
+            & ~ .f-intro {
+                color: $color__black--20;
+                font-family: $sans-serif-font--loaded;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 300;
+                letter-spacing: 0.17px;
+                line-height: 28px;
+                margin: 16px;
+                text-align: center;
+            }
         }
     }
+    main#content:has(&) {
+        padding-top: 140px;
+    }
     .videos-subnav {
-        text-align: left !important;
-        padding-bottom: 28px;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid $color__black--54;
+        border-top: 1px solid $color__black--54;
         overflow-x: auto;
         overflow-y: hidden;
+        padding-bottom: 28px;
 
         @include breakpoint('small-') {
             padding-bottom: 20px;
@@ -29,9 +47,9 @@ section.videos {
 
         ul {
             display: block;
-            text-align: left;
-            white-space: nowrap;
             min-width: 100%;
+            text-align: center;
+            white-space: nowrap;
         }
 
         li {
@@ -39,18 +57,22 @@ section.videos {
         }
 
         .m-links-bar__item>.f-link {
-            color: white;
+            color: $color__white;
             font-family: $sans-serif-font--loaded;
             font-size: 17px;
             font-weight: 300;
-            line-height: 28px;
             letter-spacing: 0.01em;
+            line-height: 28px;
         }
     }
 }
 .videos.o-landingpage__body {
     &.o-blocks>div {
         margin-top: 56px;
+        padding-top: 20px;
+        &:not(:first-child) {
+            border-top: 1px solid $color__black--54;
+        }
     }
 
     .playlist-grid {
@@ -85,57 +107,75 @@ section.videos {
             h2.title {
                 margin: 0;
             }
+            .f-link {
+                color: $color__black--20;
+            }
         }
     }
 
     .o-grid-block {
         .o-grid-block__title {
-            font-size: 31px;
+            color: $color__white;
+            font-family: $serif-font--loaded;
+            font-size: 38px;
             font-style: normal;
             font-weight: 300;
-            line-height: 40px;
-            letter-spacing: -0.31px;
+            line-height: 44px;
+            letter-spacing: -0.38px;
+            text-transform: none;
         }
         .o-grid-block__description {
+            color: $color__black--20;
             font-family: $sans-serif-font--loaded;
             font-size: 17px;
             font-style: normal;
             font-weight: 300;
-            line-height: 28px;
             letter-spacing: 0.17px;
+            line-height: 28px;
+            text-transform: none;
         }
         .o-grid-block__subtitle {
             font-family: $sans-serif-font--loaded;
             font-size: 21px;
             font-style: normal;
             font-weight: 325;
-            line-height: 28px;
             letter-spacing: 1.68px;
+            line-height: 28px;
             text-transform: uppercase;
         }
         .o-grid-listing {
-            flex-flow: row;
             margin-top: 32px;
-            overflow: hidden;
+
+            @include breakpoint('small-') {
+                flex-flow: row;
+                overflow: hidden;
+            }
         }
         .m-listing {
             @include breakpoint('small-') {
-                &:first-child {
-                    width: 85%;
-                }
-                &:nth-child(2) {
-                    margin-top: unset;
+                width: 85%;
+
+                &:not(:first-child) {
                     margin-left: 24px;
-                }
-                &:nth-child(n+3) {
-                    display: none;
+                    margin-top: unset;
                 }
             }
             .m-listing__meta {
+                min-height: unset;
+
                 .title {
+                    color: $color__white;
                     font-size: 19px;
                     font-style: normal;
                     font-weight: 400;
+                    line-height: 28px;
+                }
+                .intro {
+                    color: $color__black--20;
+                    font-size: 17px;
+                    font-style: normal;
+                    font-weight: 300;
+                    letter-spacing: 0.17px;
                     line-height: 28px;
                 }
             }
@@ -150,6 +190,39 @@ section.videos {
                 min-width: unset;
                 padding: 8px 12px;
                 text-transform: uppercase;
+            }
+        }
+    }
+    div.custom-banner-block--videos {
+        padding-top: 56px;
+
+        .text-wrapper {
+            gap: 2em;
+
+            .custom-banner-title {
+                font-family: $sans-serif-font--loaded;
+                font-size: 21px;
+                font-style: normal;
+                font-weight: 325;
+                letter-spacing: 1.68px;
+                line-height: 28px;
+                text-transform: uppercase;
+            }
+        }
+        .f-buttons {
+            background-color: transparent;
+            border: 1px solid $color__white;
+        }
+
+        @include breakpoint('medium') {
+            .text-wrapper {
+                flex-direction: row;
+            }
+        }
+        @include breakpoint('small-') {
+            .button-wrapper,
+            .f-buttons {
+                width: 100%;
             }
         }
     }

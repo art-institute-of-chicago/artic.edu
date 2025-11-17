@@ -69,7 +69,29 @@
         :max='8'
     />
 </x-twill::formConnectedFields>
-<x-twill::checkbox
-    name="show_description"
-    label="Show video descriptions"
-/>
+<x-twill::formColumns>
+    <x-slot:left>
+        <x-twill::checkbox
+            name="show_description"
+            label="Show video descriptions"
+        />
+    </x-slot:left>
+    <x-slot:right>
+        <x-twill::radios
+            name='max_rows'
+            label='Max number of rows'
+            default='1'
+            :inline='true'
+            :options="[
+                [
+                    'value' => '1',
+                    'label' => '1'
+                ],
+                [
+                    'value' => '2',
+                    'label' => '2'
+                ],
+            ]"
+        />
+    </x-slot:right>
+</x-twill::formColumns>
