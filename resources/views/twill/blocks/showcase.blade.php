@@ -5,10 +5,10 @@
         case 'Home':
             $mediaTypes = ['image'];
             break;
+        case 'Conservation and Science';
         case 'Research Center';
             $mediaTypes = ['image', 'video', 'slideshow'];
             break;
-        case 'Conservation and Science';
         case 'Publications';
         case 'RLC':
         default:
@@ -17,6 +17,7 @@
 @endphp
 
 @twillBlockTitle('Showcase')
+@twillBlockTitleField('title')
 @twillBlockIcon('image')
 
 @include('twill.partials.theme', ['types' => [$type]])
