@@ -271,10 +271,12 @@ top: -100%;
     }
   }
 
-  .o-article__body .p--linked {
+  .o-article__body .p--linked,
+  .o-article__body .m-tombstone-block {
     @include breakpoint('xsmall') {
       padding-right: 0;
-      .p--linked__text {
+      .p--linked__text,
+      .short-description {
         width: 100%;
       }
       .p--linked__ref {
@@ -283,7 +285,8 @@ top: -100%;
     }
     @include breakpoint('small') {
       padding-right: 0;
-      .p--linked__text {
+      .p--linked__text,
+      .short-description {
         width: colspan(52, 'small');
       }
       .p--linked__ref {
@@ -291,17 +294,20 @@ top: -100%;
       }
     }
     @include breakpoint('medium') {
-      .p--linked__text {
+      .p--linked__text,
+      .short-description {
         width: colspan(38, 'medium');
       }
     }
     @include breakpoint('large') {
-      .p--linked__text {
+      .p--linked__text,
+      .short-description {
         width: colspan(28, 'large');
       }
     }
     @include breakpoint('xlarge') {
-      .p--linked__text {
+      .p--linked__text,
+      .short-description {
         width: colspan(25, 'xlarge');
       }
     }
