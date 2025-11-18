@@ -9,7 +9,7 @@
                     $hasGroupingAncestor = $item->ancestors->contains(function ($ancestor) {
                         return $ancestor->article_type === App\Enums\DigitalPublicationArticleType::Grouping;
                     });
-                    $isExpanded = !$hasGroupingAncestor;
+                    $isExpanded = $hasGroupingAncestor;
                 } else {
                     $isExpanded = true;
                 }
