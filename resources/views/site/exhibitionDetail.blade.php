@@ -119,16 +119,10 @@
 
         {{-- History Detail - Exhibition Photos --}}
         @if ($item->present()->getHistoryImages()->count() > 0)
-            @component('components.atoms._hr')
-            @endcomponent
-            @component('components.blocks._text')
-                @slot('font', 'f-subheading-1')
-                @slot('tag', 'h4')
-                Installation {{ Str::plural('Photo', $item->present()->getHistoryImages()->count()) }}
-            @endcomponent
-            @component('components.organisms._o-gallery----small-mosaic')
-                @slot('title', '')
-                @slot('variation', 'o-gallery----theme-3  o-gallery--mosaic o-blocks__block')
+            @component('components.organisms._o-gallery----mosaic')
+                @slot('title', 'Installation ' . Str::plural('Photo', $item->present()->getHistoryImages()->count()))
+                @slot('caption', '')
+                @slot('variation', 'o-gallery----theme-3')
                 @slot('items', $item->present()->getHistoryImagesForMediaComponent())
             @endcomponent
         @endif
