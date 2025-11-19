@@ -116,9 +116,6 @@ Route::get('/authors/{id}/{slug?}', [AuthorController::class, 'show'])->name('au
 
 // Videos routes
 // TODO: uncomment when video show page is reimplemented
-Route::get('videos', function () {
-    return abort(404);
-})->name('videos');
 Route::get('/videos/{id}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
 
 // Mirador kiosk routes
