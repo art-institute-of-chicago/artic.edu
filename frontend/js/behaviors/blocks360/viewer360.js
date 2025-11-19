@@ -89,7 +89,6 @@ const viewer360 = function(container) {
   };
 
 	//inputs
-	wrapper.addEventListener("wheel", handleMouseWheel.bind(this));
 	wrapper.addEventListener("mousedown", handleEvents.bind(this));
 	wrapper.addEventListener("mousemove", handleEvents.bind(this));
 	wrapper.addEventListener("mouseup", handleEvents.bind(this));
@@ -129,20 +128,6 @@ const viewer360 = function(container) {
 			default:
 				return;
 		}
-	}
-
-	function handleMouseWheel(e) {
-		e.preventDefault();
-    //if (this.state.touchX !== null) return;
-    let dir;
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      dir = Math.sign(e.deltaY);
-    } else {
-      dir = Math.sign(e.deltaX);
-		}
-		let newFrame = curFrame + dir;
-		curFrame = constrainFrame(newFrame);
-		update360(curFrame);
 	}
 
 	function _init() {
