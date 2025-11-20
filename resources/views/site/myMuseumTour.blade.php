@@ -162,6 +162,7 @@
                         @endisset
                         <a href="{{ rtrim(config('app.url')) }}/artworks/{{ $artwork['id'] }}"
                            target="_blank"
+                           rel="noopener noreferrer"
                            class="external-link f-link"
                            aria-hidden="true">
                                 View full artwork page<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>

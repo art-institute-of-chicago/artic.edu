@@ -19,10 +19,10 @@
     <div class="m-article-actions--publication__text f-secondary">
         <h3 id="h-nav-magazine-social">Stay connected</h4>
         <ul class="f-secondary" aria-labelledby="h-nav-magazine-social">
-            <li><a href="{{ $_pages['follow-facebook'] }}" data-gtm-event="facebook" data-gtm-event-category="follow" target="_blank">Facebook</a></li>
-            <li><a href="{{ $_pages['follow-twitter'] }}" data-gtm-event="twitter" data-gtm-event-category="follow" target="_blank">Twitter</a></li>
-            <li><a href="{{ $_pages['follow-instagram'] }}" data-gtm-event="instagram" data-gtm-event-category="follow" target="_blank">Instagram</a></li>
-            <li><a href="{{ $_pages['follow-youtube'] }}" data-gtm-event="youtube" data-gtm-event-category="follow" target="_blank">YouTube</a></li>
+            <li><a href="{{ $_pages['follow-facebook'] }}" data-gtm-event="facebook" data-gtm-event-category="follow" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="{{ $_pages['follow-twitter'] }}" data-gtm-event="twitter" data-gtm-event-category="follow" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+            <li><a href="{{ $_pages['follow-instagram'] }}" data-gtm-event="instagram" data-gtm-event-category="follow" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="{{ $_pages['follow-youtube'] }}" data-gtm-event="youtube" data-gtm-event-category="follow" target="_blank" rel="noopener noreferrer">YouTube</a></li>
         </ul>
     </div>
 

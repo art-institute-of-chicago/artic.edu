@@ -91,7 +91,7 @@
                             <div>
                                 <span class="f-module-title-1">{{ $location->name }}</span>
                                 <span class="f-secondary">{{ $location->street }} {{ $location->address }} {{ $location->state }} {{ $location->zip }}</span>
-                                <a class="f-link" target="_blank" rel="noopener" href="{{ $location->directions_link }}">Get directions&nbsp;<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
+                                <a class="f-link" target="_blank" rel="noopener noreferrer" href="{{ $location->directions_link }}">Get directions&nbsp;<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
                             </div>
                         @endforeach
                         @if(isset($visit_parking_link) && $visit_parking_link && isset($visit_parking_label) && $visit_parking_label)
@@ -179,7 +179,7 @@
                                                     $externalLink = !str($ageGroup['link_url'])->contains(config('app.url'), ignoreCase: true);
                                                 @endphp
                                                 <a
-                                                    @if ($externalLink) target="_blank" @endif
+                                                    @if ($externalLink) target="_blank" rel="noopener noreferrer" @endif
                                                     href="{{ $ageGroup['link_url'] }}"
                                                     class="btn btn--tertiary btn--w-icon f-buttons"
                                                 >

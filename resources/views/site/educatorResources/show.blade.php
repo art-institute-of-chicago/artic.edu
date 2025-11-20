@@ -16,14 +16,14 @@
         @if ((request()->getDefaultLocale() == 'en' && empty(request('locale'))) && $item->file('pdf', 'en'))
           <div class="m-show__secondary-action__links">
               <a class="btn f-buttons f-tertiary" href="{{$item->file('pdf', 'en')}}" download="{{Str::slug($item->title) . '.pdf'}}">Download (.pdf)</a>
-              <a class="f-link f-tertiary" target="_blank" href="{{$item->file('pdf', 'en')}}">Preview <svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
+              <a class="f-link f-tertiary" target="_blank" rel="noopener noreferrer" href="{{$item->file('pdf', 'en')}}">Preview <svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
               <a class="f-link" data-behavior="sharePage">Share <svg class="icon--share--24"><use xlink:href="#icon--share--24"></use></svg></a>
           </div>
         @endif
         @if ((request('locale') == 'es' || request()->getDefaultLocale() == 'es') && $item->file('pdf', 'es'))
           <div class="m-show__secondary-action__links">
             <a class="btn f-buttons f-tertiary" href="{{$item->file('pdf', 'es')}}" download="{{Str::slug($item->title) . '.pdf'}}">Download (.pdf)</a>
-            <a class="f-link" target="_blank" href="{{$item->file('pdf', 'es')}}">Preview <svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
+            <a class="f-link" target="_blank" rel="noopener noreferrer" href="{{$item->file('pdf', 'es')}}">Preview <svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a>
             <a class="f-link" data-behavior="sharePage">Share <svg class="icon--share--24"><use xlink:href="#icon--share--24"></use></svg></a>
           </div>
         @endif
