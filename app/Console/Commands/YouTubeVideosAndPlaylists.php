@@ -86,7 +86,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                     'description' => $source['snippet']['description'],
                     'uploaded_at' => $source['snippet']['publishedAt'],
                     'duration' => $this->convertDuration($source['contentDetails']['duration']),
-                    'thumbnail_url' => $source['snippet']['thumbnails']['maxres']['url'],
+                    'thumbnail_url' => $this->highestResolutionThumbnail($source['snippet']['thumbnails']),
                     'is_captioned' => $source['contentDetails']['caption'],
                     'privacy' => $source['status']['privacyStatus'],
                 ]);
@@ -169,5 +169,19 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
             $format = '%i:' . $format;
         }
         return $interval->format($format);
+    }
+
+    /**
+     * Retrieve the highest resolution thumbnail of those provided.
+     */
+    private function highestResolutionThumbnail(array $thumbnails): string
+    {
+        $resolutions = ['maxres', 'standard', 'high'];
+        foreach ($resolutions as $resolution) {
+            if (isset($thumbnails[$resolution])) {
+                return $thumbnails[$resolution]['url'];
+            }
+        }
+        return '';
     }
 }
