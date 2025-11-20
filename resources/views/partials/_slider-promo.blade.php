@@ -10,7 +10,7 @@
         </div>
 
         @if ($modal['variation'] !== \App\Models\Lightbox::VARIATION_DEFAULT)
-            <form class="g-slider__form" action="{{ $modal['action_url'] }}" method="post" enctype="multipart/form-data" accept-charset="UTF-8" target="_blank" data-gtm-event-category="lightbox" data-gtm-event="{{ $modal['lightbox_button_text'] ?? 'Join Now' }}">
+            <form class="g-slider__form" action="{{ $modal['action_url'] }}" method="post" enctype="multipart/form-data" accept-charset="UTF-8" target="_blank" rel="noopener noreferrer" data-gtm-event-category="lightbox" data-gtm-event="{{ $modal['lightbox_button_text'] ?? 'Join Now' }}">
                 @if ($modal['variation'] === \App\Models\Lightbox::VARIATION_NEWSLETTER)
                     <div class="g-slider__form-row">
                         @component('components.atoms._email')
