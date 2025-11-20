@@ -385,11 +385,6 @@ X cols at XXXXX breakpoint
     width: colspan(grid-cols-to-colspan(4), 'medium');
   }
 
-  .o-grid-listing--5-col\@medium>*,
-  .o-grid-listing--scroll\@medium.o-grid-listing--5-col\@medium>* {
-    width: colspan(grid-cols-to-colspan(5), 'medium');
-  }
-
   .o-grid-listing--6-col\@medium>*,
   .o-grid-listing--scroll\@medium.o-grid-listing--6-col\@medium>* {
     width: colspan(grid-cols-to-colspan(6), 'medium');
@@ -398,7 +393,6 @@ X cols at XXXXX breakpoint
   .o-grid-listing--2-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(2)~*,
   .o-grid-listing--3-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(3)~*,
   .o-grid-listing--4-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(4)~*,
-  .o-grid-listing--5-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(5)~*,
   .o-grid-listing--6-col\@medium:not(.o-grid-listing--single-row)>*:nth-child(6)~* {
     //margin-top: #{map-get($grid-margin-tops, 'medium')}px;
     margin-top: colspan(map.get($grid-padding-tops, 'medium'), 'medium');
@@ -407,7 +401,6 @@ X cols at XXXXX breakpoint
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--2-col\@medium>*:nth-child(2)~*,
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--3-col\@medium>*:nth-child(3)~*,
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--4-col\@medium>*:nth-child(4)~*,
-  .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--5-col\@medium>*:nth-child(5)~*,
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--6-col\@medium>*:nth-child(6)~* {
     display: none;
   }
