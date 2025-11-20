@@ -26,7 +26,7 @@
     var result = regexp.exec(window.location.search);
     return result && decodeURIComponent(result[1].replace(/\+/g, ' '));
   }
- 
+
 
   function get_cookie_by_name(name) {
     var regexp = new RegExp(name + '=([^;$]*)', 'g');
@@ -38,7 +38,7 @@
 
   function add_campaign_to_links() {
     var this_campaign = get_cookie_by_name(campaign_cookie_name);
-    
+
     if(this_campaign !== null) {
       var citypass_links = document.querySelectorAll('a.' + campaign_link_class);
       for(i = 0; i < citypass_links.length; i++) {
@@ -76,7 +76,7 @@
   var this_campaign = get_parameter_by_name(campaign_query_var);
 
   if(this_campaign !== null) {
-    document.cookie = campaign_cookie_name + '=' + this_campaign + ';domain=.artic.edu;';
+    document.cookie = campaign_cookie_name + '=' + this_campaign + ';domain=.artic.edu; Secure; HttpOnly';
   }
 
 
