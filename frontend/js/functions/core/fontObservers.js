@@ -1,4 +1,5 @@
-import { cookieHandler, triggerCustomEvent } from '@area17/a17-helpers';
+import { triggerCustomEvent } from '@area17/a17-helpers';
+import { cookieHandler } from '.';
 import FontFaceOnload from 'fontfaceonload';
 
 const fontObservers = function(fonts) {
@@ -15,7 +16,7 @@ const fontObservers = function(fonts) {
   var cookieName = 'A17_fonts_cookie_'+fonts.name;
 
   // Check we have cookie of fonts already loaded or not
-  var cookie = cookieHandler.read(cookieName) || '';
+  var cookie = cookieHandler.cookieRead(cookieName) || '';
 
   // When a fonts is determined to be loaded
   function loaded() {
@@ -25,7 +26,7 @@ const fontObservers = function(fonts) {
     // If we reached the total
     if (counter >= total) {
       // Write cookie
-      cookieHandler.create(cookieName, total, 1);
+      cookieHandler.cookieCreate(cookieName, total, 1);
 
       var klass = 's-'+fonts.name+'-loaded';
       var dE = document.documentElement;
