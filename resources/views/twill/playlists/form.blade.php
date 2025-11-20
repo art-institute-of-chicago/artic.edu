@@ -26,7 +26,7 @@
             label='YouTube ID'
             disabled='true'
         />
-        <a href="{{ $item->source_url }}" target="_blank">🔗 YouTube</a>
+        <a href="{{ $item->source_url }}" target="_blank" rel="noopener noreferrer">🔗 YouTube</a>
 
         <x-twill::browser
             name='videos'

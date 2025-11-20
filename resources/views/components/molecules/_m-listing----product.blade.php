@@ -1,5 +1,5 @@
 <{{ $tag ?? 'li' }} class="m-listing m-listing--w-meta-bottom">
-    <a href="{!! $item->web_url !!}" class="m-listing__link" target="_blank">
+    <a href="{!! $item->web_url !!}" class="m-listing__link" target="_blank" rel="noopener noreferrer">
         <span class="m-listing__img m-listing__img--tall">
             @if ($item->imageFront())
                 @component('components.atoms._img')

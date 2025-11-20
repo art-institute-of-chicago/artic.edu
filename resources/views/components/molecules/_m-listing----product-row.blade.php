@@ -1,5 +1,5 @@
 <{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <a href="{!! $item->web_url !!}" class="m-listing__link" target="_blank"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
+    <a href="{!! $item->web_url !!}" class="m-listing__link" target="_blank" rel="noopener noreferrer"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--tall' }}">
             @if ($item->imageFront('hero'))
                 @component('components.atoms._img')
