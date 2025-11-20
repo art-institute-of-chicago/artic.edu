@@ -36,8 +36,14 @@ class RecentlyViewedService
         // Keep 20 items max
         $recentlyViewed = $recentlyViewed->slice(0, 20);
 
-        Cookie::queue('recently_viewed_artworks', json_encode($recentlyViewed), 60 * 24 * 14, // 14 days
-                      '/', null, !app()->environment(['local']), true // path, domain, secure, httpOnly
+        Cookie::queue(
+            'recently_viewed_artworks',
+            json_encode($recentlyViewed),
+            60 * 24 * 14, // 14 days
+            '/', // path
+            null, // domain
+            !app()->environment(['local']), // secure
+            true // httpOnly
         );
     }
 
@@ -48,8 +54,14 @@ class RecentlyViewedService
      */
     public function clear()
     {
-        Cookie::queue('recently_viewed_artworks', '', 1,
-                      '/', null, !app()->environment(['local']), true // path, domain, secure, httpOnly
+        Cookie::queue(
+            'recently_viewed_artworks',
+            '',
+            1,
+            '/',
+            null,
+            !app()->environment(['local']),
+            true // path, domain, secure, httpOnly
         );
     }
 
