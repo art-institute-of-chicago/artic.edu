@@ -270,7 +270,7 @@ class LandingPagesController extends FrontController
                 break;
 
             case $types->search('Publications'):
-                $publications = PrintedPublication::published()->get()->merge(DigitalPublication::published()->get())->sortByDesc('publication_date');
+                $publications = PrintedPublication::published()->get()->merge(DigitalPublication::published()->notUnlisted()->get())->sortByDesc('publication_date');
                 $filters = $item->labels?->get('filters')
                     ? collect($item->labels->get('filters'))->map(function ($filterId) {
                         $category = CatalogCategory::find($filterId);
