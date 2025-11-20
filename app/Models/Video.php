@@ -116,7 +116,7 @@ class Video extends AbstractModel
         );
     }
 
-    public function sourceUrl(): Attribute
+    public function videoUrl(): Attribute
     {
         return Attribute::make(
             get: fn ($_, array $attributes) => "https://youtube.com/watch?v={$attributes['youtube_id']}",
