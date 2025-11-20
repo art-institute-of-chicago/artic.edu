@@ -1,4 +1,5 @@
-import { triggerCustomEvent, setFocusOnTarget, objectifyForm, cookieHandler, ajaxRequest } from '@area17/a17-helpers';
+import { triggerCustomEvent, setFocusOnTarget, objectifyForm, ajaxRequest } from '@area17/a17-helpers';
+import { cookieHandler } from '.';
 import { googleTagManagerDataFromLink } from '../core';
 
 const roadblock = function(container) {
@@ -47,7 +48,7 @@ const roadblock = function(container) {
     }
 
     // Check if the data-expires of all templates is equal, and if there's a cookie already
-    let cookie = cookieHandler.read(cookieName) || '';
+    let cookie = cookieHandler.cookieRead(cookieName) || '';
     let expiryPeriodInDaysForAll = Array.prototype.map.call($modalTemplates, function(template) {
       return template.dataset['expires'];
     });
@@ -142,7 +143,7 @@ const roadblock = function(container) {
 
     isWaitingOnGeotarget = false;
 
-    var cookie = cookieHandler.read(cookieName) || '';
+    var cookie = cookieHandler.cookieRead(cookieName) || '';
     var expiryPeriodInDays = parseInt($modalPromo.getAttribute('data-expires')) / 60 / 60 / 24;
     if (cookie && expiryPeriodInDays > 0) {
       return;
@@ -156,9 +157,9 @@ const roadblock = function(container) {
 
     $modalPromo.querySelector('form').addEventListener('submit', _roadblockSubmit, true);
     if (expiryPeriodInDays > 0) {
-      cookieHandler.create(cookieName, true, expiryPeriodInDays);
+      cookieHandler.cookieCreate(cookieName, true, expiryPeriodInDays);
     } else {
-      cookieHandler.delete(cookieName);
+      cookieHandler.cookieDelete(cookieName);
     }
     var $modalPromoButton = $modalPromo.getElementsByTagName('button')[0];
     setTimeout(function() {
@@ -197,7 +198,7 @@ const roadblock = function(container) {
     // Ensure this cookie works across subdomains
     cookieValue += ';domain=.artic.edu';
 
-    cookieHandler.create('tlc_lb_signup', cookieValue, 30);
+    cookieHandler.cookieCreate('tlc_lb_signup', cookieValue, 30);
 
     let googleTagManagerObject = googleTagManagerDataFromLink(event.target);
     if (googleTagManagerObject) {

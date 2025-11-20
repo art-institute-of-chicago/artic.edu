@@ -1,4 +1,5 @@
-import { forEach, cookieHandler, triggerCustomEvent } from '@area17/a17-helpers';
+import { forEach, triggerCustomEvent } from '@area17/a17-helpers';
+import { cookieHandler } from '../../functions/core';
 
 const notification = function(container) {
 
@@ -25,15 +26,15 @@ const notification = function(container) {
     // Now set a cookie so we don't show the notification again for the specified period of time
     if (cookieValue) {
       if (expiryPeriodInDays > 0) {
-        cookieHandler.create(cookieName, cookieValue, expiryPeriodInDays);
+        cookieHandler.cookieCreate(cookieName, cookieValue, expiryPeriodInDays);
       } else {
-        cookieHandler.create(cookieName, cookieValue, -3600);
+        cookieHandler.cookieCreate(cookieName, cookieValue, -3600);
       }
     }
   }
 
   function _init() {
-    var cookie = cookieHandler.read(cookieName) || '';
+    var cookie = cookieHandler.cookieRead(cookieName) || '';
 
     // Cookie values are always stored as strings
     if (cookieValue && cookie === cookieValue) {
