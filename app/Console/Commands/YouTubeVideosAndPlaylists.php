@@ -86,7 +86,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                     'description' => $source['snippet']['description'],
                     'uploaded_at' => $source['snippet']['publishedAt'],
                     'duration' => $this->convertDuration($source['contentDetails']['duration']),
-                    'thumbnail_url' => $source['snippet']['thumbnails']['high']['url'],
+                    'thumbnail_url' => $source['snippet']['thumbnails']['maxres']['url'],
                     'is_captioned' => $source['contentDetails']['caption'],
                     'privacy' => $source['status']['privacyStatus'],
                 ]);
