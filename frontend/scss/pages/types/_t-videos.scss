@@ -65,6 +65,21 @@ section.videos {
             line-height: 28px;
         }
     }
+
+    .shorts-grid {
+        .m-listing:last-child {
+            margin-right: 56px;
+        }
+
+        .m-listing__img {
+            aspect-ratio: 2 / 3;
+
+            img {
+                height: 120%;
+            }
+
+        }
+    }
 }
 .videos.o-landingpage__body {
     &.o-blocks>div {
@@ -97,6 +112,10 @@ section.videos {
     .video-grid {
         margin-left: unset !important;
 
+        .m-listing:last-child {
+            margin-right: 56px;
+        }
+
         .m-title-bar {
             margin: 0;
             margin-bottom: 40px;
@@ -112,7 +131,39 @@ section.videos {
             }
         }
     }
+}
+main#content:has(.videos) {
+    .shorts-grid {
+        margin-left: unset !important;
+        margin-top: 56px;
 
+        .m-title-bar {
+            margin: 0;
+            margin-bottom: 40px;
+
+            &::before {
+                display: none;
+            }
+            h2.title {
+                margin: 0;
+            }
+            .f-link {
+                color: $color__black--20;
+            }
+        }
+        .o-grid-listing {
+            flex-flow: row;
+            overflow: hidden;
+        }
+        .m-listing {
+            @include breakpoint('xsmall') {
+                // width: 75% !important;
+            }
+        }
+        .m-listing__img {
+            border-radius: 8px;
+        }
+    }
     .o-grid-block {
         .o-grid-block__title {
             color: $color__white;
@@ -145,15 +196,17 @@ section.videos {
         }
         .o-grid-listing {
             margin-top: 32px;
+            row-gap: 3.125vw;
 
-            @include breakpoint('small-') {
+            @include breakpoint('xsmall') {
                 flex-flow: row;
+                margin-right: -9.375vw;
                 overflow: hidden;
             }
         }
         .m-listing {
-            @include breakpoint('small-') {
-                width: 85%;
+            @include breakpoint('xsmall') {
+                width: 66%;
 
                 &:not(:first-child) {
                     margin-left: 24px;
