@@ -1,11 +1,11 @@
-import { cookieHandler } from '@area17/a17-helpers';
+import { cookieHandler } from '../../functions/core';
 
 const limitSearch = function(container) {
 
   let form = _findAncestor(container, 'm-search-bar');
 
   let cookieName = 'isSearchLimited';
-  let initAsLimited = cookieHandler.read(cookieName) === 'true';
+  let initAsLimited = cookieHandler.cookieRead(cookieName) === 'true';
 
   function _initSwapActions() {
     if (initAsLimited) {
@@ -16,7 +16,7 @@ const limitSearch = function(container) {
 
   function _handleClicks(event) {
     initAsLimited = !initAsLimited;
-    cookieHandler.create(cookieName, initAsLimited, 1);
+    cookieHandler.cookieCreate(cookieName, initAsLimited, 1);
 
     _swapActions();
   }
