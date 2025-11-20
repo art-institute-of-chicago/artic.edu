@@ -155,11 +155,6 @@ main#content:has(.videos) {
             flex-flow: row;
             overflow: hidden;
         }
-        .m-listing {
-            @include breakpoint('xsmall') {
-                // width: 75% !important;
-            }
-        }
         .m-listing__img {
             border-radius: 8px;
         }
