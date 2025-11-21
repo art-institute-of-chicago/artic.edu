@@ -103,7 +103,7 @@ trait HandleExperienceModule
             if (isset($relatedItemFormFields['translations'])) {
                 foreach ($relatedItemFormFields['translations'] as $key => $values) {
                     $repeatersFields[] = [
-                        'name' => "blocks[${relation}-{$relationItem->id}][${key}]",
+                        'name' => "blocks[{$relation}-{$relationItem->id}][{$key}]",
                         'value' => $values,
                     ];
 
@@ -113,7 +113,7 @@ trait HandleExperienceModule
 
             if (isset($relatedItemFormFields['medias'])) {
                 foreach ($relatedItemFormFields['medias'] as $key => $values) {
-                    $repeatersMedias["blocks[${relation}-{$relationItem->id}][${key}]"] = $values;
+                    $repeatersMedias["blocks[{$relation}-{$relationItem->id}][{$key}]"] = $values;
                 }
             }
 
@@ -123,7 +123,7 @@ trait HandleExperienceModule
                 collect($relatedItemFormFields['files'])->each(function ($rolesWithFiles, $locale) use (&$repeatersFiles, $relation, $relationItem) {
                     $repeatersFiles[] = collect($rolesWithFiles)->mapWithKeys(function ($files, $role) use ($locale, $relation, $relationItem) {
                         return [
-                            "blocks[${relation}-{$relationItem->id}][${role}][${locale}]" => $files,
+                            "blocks[{$relation}-{$relationItem->id}][{$role}][{$locale}]" => $files,
                         ];
                     })->toArray();
                 });
@@ -133,7 +133,7 @@ trait HandleExperienceModule
 
             if (isset($relatedItemFormFields['browsers'])) {
                 foreach ($relatedItemFormFields['browsers'] as $key => $values) {
-                    $repeatersBrowsers["blocks[${relation}-{$relationItem->id}][${key}]"] = $values;
+                    $repeatersBrowsers["blocks[{$relation}-{$relationItem->id}][{$key}]"] = $values;
                 }
             }
 
@@ -173,7 +173,7 @@ trait HandleExperienceModule
 
             foreach ($itemFields as $key => $value) {
                 $repeatersFields[] = [
-                    'name' => "blocks[${relation}-{$relationItem->id}][${key}]",
+                    'name' => "blocks[{$relation}-{$relationItem->id}][{$key}]",
                     'value' => $value,
                 ];
             }
