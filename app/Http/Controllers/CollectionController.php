@@ -38,6 +38,50 @@ class CollectionController extends BaseScopedController
 
     public function index()
     {
+        // Sanitize incoming query params: only allow a small set to appear in responses.
+        // If disallowed params are present, redirect to the same URL with only allowed keys.
+        $allowedQueryParameters = [
+            'angle',
+            'artist_ids',
+            'artwork_type_id',
+            'classification_ids',
+            'color',
+            'date-end',
+            'date-start',
+            'department_ids',
+            'gallery_ids',
+            'has_advanced_imaging',
+            'has_educational_resources',
+            'has_multimedia',
+            'is_deaccessioned',
+            'is_on_view',
+            'is_public_domain',
+            'is_recent_acquisition',
+            'material_ids',
+            'page',
+            'place_ids',
+            'q',
+            'sort_by',
+            'style_ids',
+            'subject_ids',
+            'technique_ids',
+            'theme_ids',
+            // Checking to see if these are used by marketing
+            // 'utm',
+            // 'utm_campaign',
+            // 'utm_content',
+            // 'utm_medium',
+            // 'utm_source',
+            // 'utm_term',
+        ];
+
+        $currentQuery = request()->query();
+        $sanitizedQuery = array_intersect_key($currentQuery, array_flip($allowedQueryParameters));
+
+        if ($sanitizedQuery !== $currentQuery) {
+            return redirect()->to(request()->url() . (empty($sanitizedQuery) ? '' : ('?' . http_build_query($sanitizedQuery))));
+        }
+
         // WEB-1287: Redirect some common boolean filters
         if (
             in_array(strtolower(request('q')), [
