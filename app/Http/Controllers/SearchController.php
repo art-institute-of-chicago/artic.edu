@@ -88,6 +88,8 @@ class SearchController extends BaseScopedController
 
     public function index()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
@@ -209,6 +211,8 @@ class SearchController extends BaseScopedController
 
     public function artworks()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
@@ -256,6 +260,8 @@ class SearchController extends BaseScopedController
 
     public function exhibitions()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
@@ -277,6 +283,8 @@ class SearchController extends BaseScopedController
 
     public function interactiveFeatures()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
@@ -298,6 +306,8 @@ class SearchController extends BaseScopedController
 
     public function highlights()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
@@ -319,6 +329,8 @@ class SearchController extends BaseScopedController
 
     public function artists()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
@@ -340,6 +352,8 @@ class SearchController extends BaseScopedController
 
     public function articles()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
@@ -361,6 +375,8 @@ class SearchController extends BaseScopedController
 
     public function events()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
@@ -382,6 +398,8 @@ class SearchController extends BaseScopedController
 
     public function pages()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
@@ -403,6 +421,8 @@ class SearchController extends BaseScopedController
 
     public function educatorResources()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
@@ -424,6 +444,8 @@ class SearchController extends BaseScopedController
 
     public function pressReleases()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
@@ -445,6 +467,8 @@ class SearchController extends BaseScopedController
 
     public function publications()
     {
+        $this->sanitizeQuery();
+
         $this->seo->setTitle('Search');
 
         if (request('q')) {
