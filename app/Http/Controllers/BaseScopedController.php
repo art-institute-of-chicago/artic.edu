@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 /**
  * Quick and oversimplified implementation of Ruby on Rails has_scope gem.
  *
@@ -62,6 +64,21 @@ class BaseScopedController extends FrontController
         'theme_ids' => 'byThemes',
         'gallery_ids' => 'byGalleryIdsOnView',
         'technique_ids' => 'byTechniques',
+    ];
+
+    /**
+     * Sanitize incoming query params: only allow valid search params to be returned in the response.
+     * If disallowed params are present, redirect to the same URL with only allowed keys.
+     */
+    protected $allowedQueryParameters = [
+        'q',
+        // Checking to see if these are used by marketing
+        // 'utm',
+        // 'utm_campaign',
+        // 'utm_content',
+        // 'utm_medium',
+        // 'utm_source',
+        // 'utm_term',
     ];
 
     /**
@@ -140,6 +157,21 @@ class BaseScopedController extends FrontController
             if (request()->input($parameter) != null) {
                 return true;
             }
+        }
+    }
+
+    protected function sanitizeQuery($allowedParams = []) {
+        if (empty($allowedParams)) {
+            $allowedParams = $this->allowedQueryParameters;
+        }
+
+        $currentQuery = request()->query();
+        $sanitizedQuery = array_intersect_key($currentQuery, array_flip($allowedParams));
+
+        if ($sanitizedQuery !== $currentQuery) {
+            throw new HttpResponseException(
+                redirect()->to(request()->url() . (empty($sanitizedQuery) ? '' : ('?' . http_build_query($sanitizedQuery))))
+            );
         }
     }
 }
