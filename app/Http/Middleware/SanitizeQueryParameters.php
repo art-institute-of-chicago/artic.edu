@@ -12,39 +12,28 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class SanitizeQueryParameters
 {
-    public const ROUTE_PARAM_KEY = 'allowed_query_params';
+    const ROUTE_PARAM_KEY = 'allowed_query_params';
 
     protected $allowedQueryParameters = [
         'q',
-        'page',
         // Checking to see if these are used by marketing
-        'utm',
-        'utm_campaign',
-        'utm_content',
-        'utm_medium',
-        'utm_source',
-        'utm_term',
+        // 'utm',
+        // 'utm_campaign',
+        // 'utm_content',
+        // 'utm_medium',
+        // 'utm_source',
+        // 'utm_term',
     ];
 
     public function handle(Request $request, Closure $next): Response
     {
-        // Get any parameters defined in the routes
-        $allowedParams = $request->route()->getAction(self::ROUTE_PARAM_KEY);
+        $allowedParams = $request->route()->getAction(self::ROUTE_PARAM_KEY) ?? $this->allowedQueryParameters;
 
-        // Merge it with our default list and clean it up
-        $allowedParams = collect($allowedParams)
-            ->merge($this->allowedQueryParameters)
-            ->unique()
-            ->filter()
-            ->values()
-            ->all();
-
-        // Sanitize the incoming request
         $currentQuery = $request->query();
         $sanitizedQuery = array_intersect_key($currentQuery, array_flip($allowedParams));
 
         if ($sanitizedQuery !== $currentQuery) {
-            abort(500, 'Invalid parameters.');
+            return redirect()->to($request->url() . (empty($sanitizedQuery) ? '' : ('?' . http_build_query($sanitizedQuery))));
         }
 
         return $next($request);
