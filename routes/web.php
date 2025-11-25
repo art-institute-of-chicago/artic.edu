@@ -34,6 +34,7 @@ use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\VideoController;
+use App\Http\Middleware\SanitizeQueryParameters;
 use Illuminate\Support\Facades\Route;
 
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
@@ -49,7 +50,45 @@ Route::get('/', [LandingPagesController::class, 'slugHome'])->name('home');
 Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
 
 // Collection routes
-Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'angle',
+        'artist_ids',
+        'artwork_type_id',
+        'classification_ids',
+        'color',
+        'date-end',
+        'date-start',
+        'department_ids',
+        'gallery_ids',
+        'has_advanced_imaging',
+        'has_educational_resources',
+        'has_multimedia',
+        'is_deaccessioned',
+        'is_on_view',
+        'is_public_domain',
+        'is_recent_acquisition',
+        'material_ids',
+        'page',
+        'place_ids',
+        'q',
+        'sort_by',
+        'style_ids',
+        'subject_ids',
+        'technique_ids',
+        'theme_ids',
+        // Checking to see if these are used by marketing
+        // 'utm',
+        // 'utm_campaign',
+        // 'utm_content',
+        // 'utm_medium',
+        // 'utm_source',
+        // 'utm_term',
+    ]
+], function () {
+    Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
+});
 /*Route::get('/collection/autocomplete', [CollectionController::class, 'autocomplete'])->name('collection.autocomplete');
 Route::get('/collection/autocomplete', function(){
 return redirect('//api.artic.edu/api/v1/autocomplete?q='.request('q'));
@@ -82,19 +121,23 @@ Route::get('/educator-resources/{id}/{slug?}', [EducatorResourcesController::cla
 Route::post('/subscribe', [SubscribeController::class, 'store'])->name('subscribe');
 
 // Search routes
-Route::get('/search', [SearchController::class, 'index'])->name('search');
-Route::get('/search/autocomplete', [SearchController::class, 'autocomplete'])->name('search.autocomplete');
-Route::get('/search/artists', [SearchController::class, 'artists'])->name('search.artists');
-Route::get('/search/articles', [SearchController::class, 'articles'])->name('search.articles');
-Route::get('/search/events', [SearchController::class, 'events'])->name('search.events');
-Route::get('/search/pages', [SearchController::class, 'pages'])->name('search.pages');
-Route::get('/search/publications', [SearchController::class, 'publications'])->name('search.publications');
-Route::get('/search/artworks', [SearchController::class, 'artworks'])->name('search.artworks');
-Route::get('/search/press-releases', [SearchController::class, 'pressReleases'])->name('search.press-releases');
-Route::get('/search/educator-resources', [SearchController::class, 'educatorResources'])->name('search.educator-resources');
-Route::get('/search/exhibitions', [SearchController::class, 'exhibitions'])->name('search.exhibitions');
-Route::get('/search/interactive-features', [SearchController::class, 'interactiveFeatures'])->name('search.interactive-features');
-Route::get('/search/highlights', [SearchController::class, 'highlights'])->name('search.highlights');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+], function () {
+    Route::get('/search', [SearchController::class, 'index'])->name('search');
+    Route::get('/search/autocomplete', [SearchController::class, 'autocomplete'])->name('search.autocomplete');
+    Route::get('/search/artists', [SearchController::class, 'artists'])->name('search.artists');
+    Route::get('/search/articles', [SearchController::class, 'articles'])->name('search.articles');
+    Route::get('/search/events', [SearchController::class, 'events'])->name('search.events');
+    Route::get('/search/pages', [SearchController::class, 'pages'])->name('search.pages');
+    Route::get('/search/publications', [SearchController::class, 'publications'])->name('search.publications');
+    Route::get('/search/artworks', [SearchController::class, 'artworks'])->name('search.artworks');
+    Route::get('/search/press-releases', [SearchController::class, 'pressReleases'])->name('search.press-releases');
+    Route::get('/search/educator-resources', [SearchController::class, 'educatorResources'])->name('search.educator-resources');
+    Route::get('/search/exhibitions', [SearchController::class, 'exhibitions'])->name('search.exhibitions');
+    Route::get('/search/interactive-features', [SearchController::class, 'interactiveFeatures'])->name('search.interactive-features');
+    Route::get('/search/highlights', [SearchController::class, 'highlights'])->name('search.highlights');
+});
 
 // Events routes
 Route::get('/events', [EventsController::class, 'index'])->name('events');
