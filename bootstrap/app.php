@@ -55,6 +55,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->web(append: [
             \App\Http\Middleware\RedirectVanityPaths::class,
+            \App\Http\Middleware\SanitizeQueryParameters::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
