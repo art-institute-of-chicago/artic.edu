@@ -1,4 +1,5 @@
 <?php
+
 // app/Models/DigitalExplorerModel.php
 
 namespace App\Models;

@@ -108,7 +108,7 @@ class DigitalExplorerController extends FrontController
             ];
 
             if ($block->input('modelType')) {
-              $data['modelType'] = $block->input('modelType');
+                $data['modelType'] = $block->input('modelType');
             }
 
             if ($block->file('model') && ($block->input('modelType')) == '3d') {
