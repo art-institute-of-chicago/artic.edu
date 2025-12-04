@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DigitalExplorer extends AbstractModel
 {
-
     use HasSlug;
     use HasFactory;
     use HasBlocks;

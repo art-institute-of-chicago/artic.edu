@@ -104,15 +104,12 @@ class InteractiveFeatureExperiencesController extends FrontController
         $view = 'site.experienceDetail';
 
         if (isset($isKiosk) && $isKiosk) {
-
-          return view('site.experienceDetail', [
+            return view('site.experienceDetail', [
               'contrastHeader' => true,
               'experience' => $experience
-          ]);
-
+            ]);
         } else {
-
-          return view($view, [
+            return view($view, [
               'contrastHeader' => true,
               'experience' => $experience,
               'furtherReadingTitle' => $this->repository->getFurtherReadingTitle($experience) ?? null,
@@ -124,8 +121,7 @@ class InteractiveFeatureExperiencesController extends FrontController
                   ]
               ),
               'unstickyHeader' => true,
-          ]);
-
+            ]);
         }
     }
 }

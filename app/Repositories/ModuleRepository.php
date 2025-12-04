@@ -59,11 +59,11 @@ abstract class ModuleRepository extends BaseModuleRepository
         if (isset($fields['blocks'])) {
             foreach ($fields['blocks'] as $blockKey => $block) {
                 if (isset($block['content']) && is_array($block['content'])) {
-                  foreach ($block['content'] as $contentKey => $content) {
-                    $fields['blocks'][$blockKey]['content'][$contentKey] =
+                    foreach ($block['content'] as $contentKey => $content) {
+                        $fields['blocks'][$blockKey]['content'][$contentKey] =
                         StringHelpers::rightTrim($content, '<p><br class="softbreak"></p>');
-                  }
-              }
+                    }
+                }
             }
         }
 
