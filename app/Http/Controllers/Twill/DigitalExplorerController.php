@@ -18,9 +18,6 @@ class DigitalExplorerController extends BaseController
         $baseUrl = config('app.url') . '/digitalExplorers/' . $item->id . '/';
 
         return [
-            // 'autoRelated' => $this->getAutoRelated($item),
-            // 'featuredRelated' => $this->getFeatureRelated($item),
-            'categoriesList' => app(DigitalExplorerRepository::class)->listAll('name'),
             'baseUrl' => $baseUrl,
         ];
     }
