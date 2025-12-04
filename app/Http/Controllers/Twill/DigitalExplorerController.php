@@ -6,13 +6,12 @@ use App\Repositories\DigitalExplorerRepository;
 
 class DigitalExplorerController extends BaseController
 {
+    protected function setUpController(): void
+    {
+        $this->setModuleName('digitalExplorers');
+    }
 
-  protected function setUpController(): void
-  {
-    $this->setModuleName('digitalExplorers');
-  }
-
-  protected function formData($request)
+    protected function formData($request)
     {
         $item = $this->repository->getById(request('digitalExplorer') ?? request('id'));
         $baseUrl = config('app.url') . '/digitalExplorers/' . $item->id . '/';
@@ -26,5 +25,4 @@ class DigitalExplorerController extends BaseController
     {
         return $this->repository->getShowData($item);
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 // app/Models/DigitalExplorerAnnotation.php
 
 namespace App\Models;

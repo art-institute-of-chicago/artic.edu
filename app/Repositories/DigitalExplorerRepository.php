@@ -20,11 +20,11 @@ class DigitalExplorerRepository extends ModuleRepository
         $this->model = $model;
     }
 
-      protected $blockEditors = [
-        'model_blocks',
-        'annotation_blocks',
-        'lighting_blocks',
-      ];
+    protected $blockEditors = [
+      'model_blocks',
+      'annotation_blocks',
+      'lighting_blocks',
+    ];
 
 
     /**
