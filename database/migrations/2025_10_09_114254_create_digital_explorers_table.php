@@ -22,38 +22,10 @@ return new class extends Migration
         Schema::create('digital_explorer_slugs', function (Blueprint $table) {
             createDefaultSlugsTableFields($table, 'digital_explorer');
         });
-
-        Schema::create('digital_explorer_annotations', function (Blueprint $table) {
-            createDefaultTableFields($table);
-            $table->string('position');
-            $table->json('settings')->nullable();
-            $table->foreignId('digital_explorer_id');
-        });
-
-        Schema::create('digital_explorer_lights', function (Blueprint $table) {
-            createDefaultTableFields($table);
-            $table->string('position');
-            $table->json('settings')->nullable();
-            $table->foreignId('digital_explorer_id');
-        });
-
-        Schema::create('digital_explorer_models', function (Blueprint $table) {
-            createDefaultTableFields($table);
-            $table->string('position');
-            $table->json('settings')->nullable();
-            $table->foreignId('digital_explorer_id');
-        });
-
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('digital_explorer_digital_explorer_annotations');
-        Schema::dropIfExists('digital_explorer_digital_explorer_lights');
-        Schema::dropIfExists('digital_explorer_digital_explorer_models');
-        Schema::dropIfExists('digital_explorer_annotations');
-        Schema::dropIfExists('digital_explorer_lights');
-        Schema::dropIfExists('digital_explorer_models');
         Schema::dropIfExists('digital_explorer_slugs');
         Schema::dropIfExists('digital_explorers');
     }
