@@ -41,6 +41,7 @@
     "@sketchfab/viewer-api": "^1.12.1",
     "closer-look": "github:art-institute-of-chicago/digital-labels-ui",
     "conic-gradient": "^1.0.0",
+    "digital-explorer": "file:../explorer",
     "fitty": "^2.4.2",
     "gl-vec3": "^1.2.0",
     "lodash": "^4.17.21",

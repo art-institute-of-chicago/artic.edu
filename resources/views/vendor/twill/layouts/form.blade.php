@@ -10,6 +10,66 @@
     @unless(config('twill.dev_mode', false))
         <link href="{{ twillAsset('main-form.css') }}" rel="stylesheet" crossorigin/>
     @endunless
+
+<style>
+.blocks > .blocks__container > div > .blocks__item > .block > .block__header {
+    background: linear-gradient(135deg, #E8F4F8 0%, #D4E9F2 100%) !important;
+    border-left: 4px solid #4A90E2 !important;
+}
+.blocks > .blocks__container > div > .blocks__item > .block > .block__content {
+    border-left: 2px solid #4A90E2 !important;
+}
+.blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__header {
+    background: linear-gradient(135deg, #F0E8F8 0%, #E2D4F2 100%) !important;
+    border-left: 4px solid #8E4AE2 !important;
+}
+
+.blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content {
+    border-left: 2px solid #8E4AE2 !important;
+}
+.blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__header {
+    background: linear-gradient(135deg, #F8F0E8 0%, #F2E2D4 100%) !important;
+    border-left: 4px solid #E2964A !important;
+}
+
+.blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content {
+    border-left: 2px solid #E2964A !important;
+}
+.blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__header {
+    background: linear-gradient(135deg, #E8F8F0 0%, #D4F2E2 100%) !important;
+    border-left: 4px solid #4AE28E !important;
+}
+.blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content {
+    border-left: 2px solid #4AE28E !important;
+}
+.blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__header {
+    background: linear-gradient(135deg, #F8E8F0 0%, #F2D4E2 100%) !important;
+    border-left: 4px solid #E24A8E !important;
+}
+.blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content .blocks > .blocks__container > div > .blocks__item > .block > .block__content {
+    border-left: 2px solid #E24A8E !important;
+}
+
+.block {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+.block__content > .blocks {
+    margin-left: 24px !important;
+    padding-left: 12px !important;
+}
+.block__title {
+    font-weight: 600 !important;
+}
+.block__counter {
+    opacity: 0.8;
+}
+.block__header:hover {
+    opacity: .8 !important;
+}
+.block__content {
+    padding-left: 8px !important;
+}
+</style>
 @endpush
 
 @push('extra_js_head')
