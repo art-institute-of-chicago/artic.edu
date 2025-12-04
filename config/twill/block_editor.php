@@ -181,6 +181,7 @@ return [
         ],
     ],
     'files' => [
+        'model',
         'attachment',
         'video',
         'audio_file',
@@ -269,5 +270,8 @@ return [
         'tag_banner',
         'video_grid',
         'playlist_grid',
+        'explorer_annotation',
+        'explorer_light',
+        'explorer_model'
     ]
 ];

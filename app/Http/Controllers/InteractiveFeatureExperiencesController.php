@@ -85,9 +85,6 @@ class InteractiveFeatureExperiencesController extends FrontController
 
     protected function show($slug)
     {
-        if (Str::startsWith(request()->host(), 'kiosk')) {
-            return $this->showKiosk($slug);
-        }
 
         $experience = $this->repository->forSlug($slug);
 
@@ -106,34 +103,29 @@ class InteractiveFeatureExperiencesController extends FrontController
 
         $view = 'site.experienceDetail';
 
-        return view($view, [
-            'contrastHeader' => true,
-            'experience' => $experience,
-            'furtherReadingTitle' => $this->repository->getFurtherReadingTitle($experience) ?? null,
-            'furtherReadingItems' => $this->repository->getFurtherReadingItems($experience) ?? null,
-            'canonicalUrl' => route(
-                'interactiveFeatures.show',
-                [
-                    'slug' => $experience->getSlug()
-                ]
-            ),
-            'unstickyHeader' => true,
-        ]);
-    }
+        if (isset($isKiosk) && $isKiosk) {
 
-    protected function showKiosk($slug)
-    {
-        $experience = $this->repository->forSlug($slug);
+          return view('site.experienceDetail', [
+              'contrastHeader' => true,
+              'experience' => $experience
+          ]);
 
-        if (!$experience) {
-            abort(404);
+        } else {
+
+          return view($view, [
+              'contrastHeader' => true,
+              'experience' => $experience,
+              'furtherReadingTitle' => $this->repository->getFurtherReadingTitle($experience) ?? null,
+              'furtherReadingItems' => $this->repository->getFurtherReadingItems($experience) ?? null,
+              'canonicalUrl' => route(
+                  'interactiveFeatures.show',
+                  [
+                      'slug' => $experience->getSlug()
+                  ]
+              ),
+              'unstickyHeader' => true,
+          ]);
+
         }
-
-        $this->seo->setTitle($experience->title);
-
-        return view('site.experienceDetailKiosk', [
-            'contrastHeader' => true,
-            'experience' => $experience
-        ]);
     }
 }
