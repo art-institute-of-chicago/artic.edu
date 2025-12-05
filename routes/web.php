@@ -155,6 +155,7 @@ Route::group([
     'allowed_query_params' => [
         'type',
         'audience',
+        'program',
         'time',
         'start',
         'end',
