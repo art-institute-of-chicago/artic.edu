@@ -19,16 +19,16 @@ class SanitizeQueryParameters
         'q',
         'page',
         // Checking to see if these are used by marketing
-        // 'utm',
-        // 'utm_campaign',
-        // 'utm_content',
-        // 'utm_medium',
-        // 'utm_source',
-        // 'utm_term',
+        'utm',
+        'utm_campaign',
+        'utm_content',
+        'utm_medium',
+        'utm_source',
+        'utm_term',
     ];
 
     protected $landingPageAllowedQueryParameters = [
-        // Publciations
+        // Publications
         'filter',
         'sort',
 
