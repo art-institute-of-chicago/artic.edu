@@ -162,7 +162,7 @@ class Video extends AbstractModel
     public function getUrlWithoutSlugAttribute()
     {
         // Workaround for the CMS, should be moved away from the model
-        return join([route('videos'), '/', $this->id, '-']);
+        return join([route('videos.show', ['id' => $this->id])]);
     }
 
     public function getAdminEditUrlAttribute()
