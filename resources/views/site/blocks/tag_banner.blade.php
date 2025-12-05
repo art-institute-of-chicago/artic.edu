@@ -8,19 +8,33 @@
 
         // Move this to a switch statement if we're adding any more category types
         if ($theme == 'educator-resources') {
-            $tags = \App\Models\ResourceCategory::whereIn('id', $categories)->get()->transform(function ($category) {
+            $tags = \App\Models\ResourceCategory::whereIn('id', $categories)->get()->map(function ($category) {
                 return (object) [
-                    'url' =>  '/educator-resources?'.$category->type.'='.Str::lower(Str::slug($category->name)),
+                    'url' => '/educator-resources?'.$category->type.'='.Str::lower(Str::slug($category->name)),
                     'label' => $category->name,
                 ];
             });
         } else {
-            $tags = \App\Models\Category::whereIn('id', $categories)->get()->transform(function ($category) {
-                return (object) [
-                    'url' => route('articles', ['category' => $category->id]),
-                    'label' => $category->name,
-                ];
-            });
+            $tags = \App\Models\Category::whereIn('id', $categories)
+                ->get()
+                ->map(function ($category) {
+                    return (object) [
+                        'url' => route('articles', ['category' => $category->id]),
+                        'label' => $category->name,
+                    ];
+                });
+
+            if ($theme == 'editorial') {
+                $tags->push((object) [
+                    'url' => route('articles', ['type' => 'interactive features']),
+                    'label' => 'Interactive Features',
+                ]);
+
+                $tags->push((object) [
+                    'url' => route('articles', ['type' => 'highlights']),
+                    'label' => 'Highlights',
+                ]);
+            }
         }
     } else {
         $tags = $block->repeater('link_tag');
