@@ -47,7 +47,13 @@ Route::get('/ajaxData', [FrontController::class, 'getAjaxData']);
 
 // Landing Page
 Route::get('/', [LandingPagesController::class, 'slugHome'])->name('home');
-Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'is_landing_page' => true,
+], function () {
+    Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
+});
+
 
 // Collection routes
 Route::group([
@@ -145,7 +151,7 @@ Route::group([
 ], function () {
     Route::get('/events', [EventsController::class, 'index'])->name('events');
 });
-    Route::get('/events-more', [EventsController::class, 'indexMore'])->name('events.more');
+Route::get('/events-more', [EventsController::class, 'indexMore'])->name('events.more');
 Route::get('/events/{id}/ics', [EventsController::class, 'ics'])->name('events.ics');
 Route::get('/events/{id}/{slug?}', [EventsController::class, 'show'])->name('events.show');
 
@@ -263,4 +269,9 @@ Route::get('/my-museum-tour/{id}/qrcode.png', [MyMuseumTourController::class, 'q
 Route::feeds();
 
 // Generic Page
-Route::get('{slug}', [GenericPagesController::class, 'show'])->where('slug', '.*')->name('pages.slug');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'is_landing_page' => true,
+], function () {
+    Route::get('{slug}', [GenericPagesController::class, 'show'])->where('slug', '.*')->name('pages.slug');
+});
