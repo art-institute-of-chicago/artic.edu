@@ -78,13 +78,6 @@ Route::group([
         'subject_ids',
         'technique_ids',
         'theme_ids',
-        // Checking to see if these are used by marketing
-        // 'utm',
-        // 'utm_campaign',
-        // 'utm_content',
-        // 'utm_medium',
-        // 'utm_source',
-        // 'utm_term',
     ]
 ], function () {
     Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
@@ -152,11 +145,7 @@ Route::group([
 ], function () {
     Route::get('/events', [EventsController::class, 'index'])->name('events');
 });
-Route::group([
-    'middleware' => [SanitizeQueryParameters::class],
-], function () {
     Route::get('/events-more', [EventsController::class, 'indexMore'])->name('events.more');
-});
 Route::get('/events/{id}/ics', [EventsController::class, 'ics'])->name('events.ics');
 Route::get('/events/{id}/{slug?}', [EventsController::class, 'show'])->name('events.show');
 
