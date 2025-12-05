@@ -140,8 +140,23 @@ Route::group([
 });
 
 // Events routes
-Route::get('/events', [EventsController::class, 'index'])->name('events');
-Route::get('/events-more', [EventsController::class, 'indexMore'])->name('events.more');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'type',
+        'audience',
+        'time',
+        'start',
+        'end',
+    ]
+], function () {
+    Route::get('/events', [EventsController::class, 'index'])->name('events');
+});
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+], function () {
+    Route::get('/events-more', [EventsController::class, 'indexMore'])->name('events.more');
+});
 Route::get('/events/{id}/ics', [EventsController::class, 'ics'])->name('events.ics');
 Route::get('/events/{id}/{slug?}', [EventsController::class, 'show'])->name('events.show');
 
@@ -169,7 +184,14 @@ Route::get('/mirador/{id}/{slug?}', [MiradorController::class, 'show'])->name('m
 
 // Exhibition history routes
 // Must remain before exhibition routes
-Route::get('exhibitions/history', [ExhibitionHistoryController::class, 'index'])->name('exhibitions.history');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'year',
+    ]
+], function () {
+    Route::get('exhibitions/history', [ExhibitionHistoryController::class, 'index'])->name('exhibitions.history');
+});
 Route::get('exhibitions/history/{id}', [ExhibitionHistoryController::class, 'show'])->name('exhibitions.history.show');
 
 // Exhibition routes
@@ -236,7 +258,14 @@ Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesC
 
 // My Museum Tour routes
 Route::get('/my-museum-tour/builder', [MyMuseumTourController::class, 'showMyMuseumTourBuilder'])->name('my-museum-tour.builder');
-Route::get('/my-museum-tour/{id}', [MyMuseumTourController::class, 'show'])->name('my-museum-tour.show');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'tourCreationComplete',
+    ]
+], function () {
+    Route::get('/my-museum-tour/{id}', [MyMuseumTourController::class, 'show'])->name('my-museum-tour.show');
+});
 
 Route::get('/my-museum-tour/{id}/pdf-layout', [MyMuseumTourController::class, 'pdfLayout'])->name('my-museum-tour.pdf-layout');
 Route::get('/my-museum-tour/{id}/qrcode.png', [MyMuseumTourController::class, 'qrcode'])->name('my-museum-tour.qrcode');
