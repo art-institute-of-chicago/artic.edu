@@ -31,12 +31,6 @@ class SanitizeQueryParameters
         // Publications
         'filter',
         'sort',
-
-        // Educator Resources
-        'content',
-        'audience',
-        'topic',
-        'locale',
     ];
     public function handle(Request $request, Closure $next): Response
     {
