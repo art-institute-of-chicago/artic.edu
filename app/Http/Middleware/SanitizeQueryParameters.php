@@ -27,8 +27,13 @@ class SanitizeQueryParameters
 
     public function handle(Request $request, Closure $next): Response
     {
-        $allowedParams = $request->route()->getAction(self::ROUTE_PARAM_KEY) ?? $this->allowedQueryParameters;
-
+        $allowedParams = $request->route()->getAction(self::ROUTE_PARAM_KEY);
+        $allowedParams = collect($allowedParams)
+            ->merge($this->allowedQueryParameters)
+            ->unique()
+            ->filter()
+            ->values()
+            ->all();
         $currentQuery = $request->query();
         $sanitizedQuery = array_intersect_key($currentQuery, array_flip($allowedParams));
 
