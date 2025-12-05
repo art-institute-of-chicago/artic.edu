@@ -493,27 +493,26 @@ top: -100%;
     .m-media__contain--spacer {
       position: relative !important;
       display: block;
+      width: 0px !important;
     }
 
     .m-media__img:not(.m-media__img--video) {
       & {
         position: relative;
-        width: max-content;
         max-width: 100%;
         max-height: 600px;
+        width: max-content;
         overflow: hidden !important;
         text-align: left !important;
         background-image: unset !important;
-        width: 100%;
-        display: block;
+        display: flex;
       }
 
       img {
-        position: absolute;
+        position: relative;
         top: 0 !important;
         left: 0 !important;
         max-height: 600px !important;
-        width: 100% !important;
         height: 100% !important;
         object-fit: contain !important;
         display: block !important;
@@ -762,6 +761,10 @@ Styling related specifically to digital publications
   }
 
   .o-article__body.o-blocks>.o-gallery {
+    .m-media__img {
+      width: max-content;
+    }
+
     &:first-child {
       .o-gallery__title {
         margin-top: 15px !important;
