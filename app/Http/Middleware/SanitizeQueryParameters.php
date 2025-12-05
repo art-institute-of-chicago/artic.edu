@@ -40,20 +40,27 @@ class SanitizeQueryParameters
     ];
     public function handle(Request $request, Closure $next): Response
     {
+        // Get any parameters defined in the routes
         $allowedParams = $request->route()->getAction(self::ROUTE_PARAM_KEY);
+
+        // Merge it with out default list
         $allowedParams = collect($allowedParams)
             ->merge($this->allowedQueryParameters);
 
+        // If it's a landing page, merge it with that list
         if ($request->route()->getAction(self::IS_LANDING_PAGE_KEY)) {
             $allowedParams = $allowedParams
                 ->merge($this->landingPageAllowedQueryParameters);
         }
 
+        // Clean up the list
         $allowedParams = $allowedParams
             ->unique()
             ->filter()
             ->values()
             ->all();
+
+        // Sanitize the incoming request
         $currentQuery = $request->query();
         $sanitizedQuery = array_intersect_key($currentQuery, array_flip($allowedParams));
 
