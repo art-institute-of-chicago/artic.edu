@@ -17,6 +17,7 @@
 @endphp
 
 @twillBlockTitle('Custom Banner')
+@twillBlockTitleField('title')
 @twillBlockIcon('image')
 
 @include('twill.partials.theme', ['types' => [$type]])
