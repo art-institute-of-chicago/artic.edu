@@ -34,6 +34,7 @@
 @endphp
 
 @twillBlockTitle('Ranged Accordion')
+@twillBlockTitleField('title')
 @twillBlockIcon('text')
     <x-twill::input
         name='title'

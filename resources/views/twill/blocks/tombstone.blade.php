@@ -1,4 +1,5 @@
 @twillBlockTitle('Tombstone')
+@twillBlockTitleField('heading')
 @twillBlockIcon('text')
 
 <x-twill::input
