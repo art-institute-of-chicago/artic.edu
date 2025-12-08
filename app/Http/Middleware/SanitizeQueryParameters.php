@@ -59,7 +59,7 @@ class SanitizeQueryParameters
         $sanitizedQuery = array_intersect_key($currentQuery, array_flip($allowedParams));
 
         if ($sanitizedQuery !== $currentQuery) {
-            abort(400, 'Invalid parameters.');
+            abort(500, 'Invalid parameters.');
         }
 
         return $next($request);
