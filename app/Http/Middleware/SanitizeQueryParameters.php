@@ -59,7 +59,7 @@ class SanitizeQueryParameters
         $sanitizedQuery = array_intersect_key($currentQuery, array_flip($allowedParams));
 
         if ($sanitizedQuery !== $currentQuery) {
-            return redirect()->to($request->url() . (empty($sanitizedQuery) ? '' : ('?' . http_build_query($sanitizedQuery))));
+            abort(400, 'Invalid parameters.');
         }
 
         return $next($request);
