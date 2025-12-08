@@ -1,4 +1,5 @@
 @twillBlockTitle('Grid')
+@twillBlockTitleField('heading')
 @twillBlockIcon('image')
 
 @include('twill.partials.gridded')
