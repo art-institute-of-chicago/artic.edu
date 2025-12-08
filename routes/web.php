@@ -283,7 +283,10 @@ Route::feeds();
 // Generic Page
 Route::group([
     'middleware' => [SanitizeQueryParameters::class],
-    'is_landing_page' => true,
+    'allowed_query_params' => [
+        'filter',
+        'sort',
+    ]
 ], function () {
     Route::get('{slug}', [GenericPagesController::class, 'show'])->where('slug', '.*')->name('pages.slug');
 });
