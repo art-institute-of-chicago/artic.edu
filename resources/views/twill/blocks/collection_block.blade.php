@@ -1,4 +1,5 @@
 @twillBlockTitle('Collection Block')
+@twillBlockTitleField('collection_heading')
 @twillBlockIcon('Image')
 
 <x-twill::input

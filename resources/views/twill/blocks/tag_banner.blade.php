@@ -47,6 +47,7 @@
 @endphp
 
 @twillBlockTitle('Tag Banner')
+@twillBlockTitleField('title')
 @twillBlockIcon('text')
 
 @include('twill.partials.theme', ['types' => [$type]])

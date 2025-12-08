@@ -21,6 +21,7 @@
 @endphp
 
 @twillBlockTitle('Image')
+@twillBlockTitleField('caption_title')
 @twillBlockIcon('image')
 
 @if ($type === 'digitalPublications')
