@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 class SanitizeQueryParameters
 {
     const ROUTE_PARAM_KEY = 'allowed_query_params';
-    const IS_LANDING_PAGE_KEY = 'is_landing_page';
 
     protected $allowedQueryParameters = [
         'q',
@@ -27,28 +26,14 @@ class SanitizeQueryParameters
         'utm_term',
     ];
 
-    protected $landingPageAllowedQueryParameters = [
-        // Publications
-        'filter',
-        'sort',
-    ];
     public function handle(Request $request, Closure $next): Response
     {
         // Get any parameters defined in the routes
         $allowedParams = $request->route()->getAction(self::ROUTE_PARAM_KEY);
 
-        // Merge it with out default list
+        // Merge it with our default list and clean it up
         $allowedParams = collect($allowedParams)
-            ->merge($this->allowedQueryParameters);
-
-        // If it's a landing page, merge it with that list
-        if ($request->route()->getAction(self::IS_LANDING_PAGE_KEY)) {
-            $allowedParams = $allowedParams
-                ->merge($this->landingPageAllowedQueryParameters);
-        }
-
-        // Clean up the list
-        $allowedParams = $allowedParams
+            ->merge($this->allowedQueryParameters)
             ->unique()
             ->filter()
             ->values()
