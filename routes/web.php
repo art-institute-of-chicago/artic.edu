@@ -43,7 +43,15 @@ Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt'
 
 Route::get('/google-oauth', [OAuthController::class, 'google'])->name('google-oauth');
 
-Route::get('/ajaxData', [FrontController::class, 'getAjaxData']);
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'id',
+        'model',
+    ]
+], function () {
+    Route::get('/ajaxData', [FrontController::class, 'getAjaxData']);
+});
 
 // Landing Page
 Route::get('/', [LandingPagesController::class, 'slugHome'])->name('home');
