@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class SanitizeQueryParameters
 {
-    const ROUTE_PARAM_KEY = 'allowed_query_params';
+    public const ROUTE_PARAM_KEY = 'allowed_query_params';
 
     protected $allowedQueryParameters = [
         'q',
