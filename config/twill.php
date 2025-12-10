@@ -123,7 +123,7 @@ return [
     | Right now this only allows you to redefine the default login redirect path.
     |
      */
-    'admin_middleware_group' => 'web',
+    'admin_middleware_group' => 'admin',
 
     /*
     |--------------------------------------------------------------------------
