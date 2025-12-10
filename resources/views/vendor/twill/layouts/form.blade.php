@@ -67,9 +67,6 @@
 .block__counter {
     opacity: 0.8;
 }
-.block__header:hover {
-    opacity: .8 !important;
-}
 .block__content {
     padding-left: 8px !important;
 }
