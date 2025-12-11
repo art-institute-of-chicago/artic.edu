@@ -27,7 +27,8 @@
         <server name="APP_MAINTENANCE_DRIVER" value="file"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_STORE" value="array"/>
-    	<server name="MAIL_MAILER" value="array"/>
+        <server name="DB_DATABASE" value="testing"/>
+        <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
