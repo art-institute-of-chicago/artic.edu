@@ -166,7 +166,7 @@ class VideoController extends BaseController
                 ->title('YouTube ID')
                 ->optional()
                 ->hide()
-                ->linkCell(fn (Video $video) => $video->source_url)
+                ->linkCell(fn (Video $video) => $video->video_url)
         );
 
         return $columns;

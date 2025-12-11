@@ -156,7 +156,7 @@
             label='YouTube ID'
             disabled='true'
         />
-        <a href="{{ $item->source_url }}" target="_blank">🔗 YouTube</a>
+        <a href="{{ $item->video_url }}" target="_blank">🔗 YouTube</a>
 
         <x-twill::input
             name='uploaded_at'

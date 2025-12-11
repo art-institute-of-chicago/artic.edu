@@ -71,7 +71,7 @@ class Video extends AbstractModel
     protected $appends = [
         'embed',
         'format',
-        'source_url',
+        'video_url',
     ];
 
     public $mediasParams = [
