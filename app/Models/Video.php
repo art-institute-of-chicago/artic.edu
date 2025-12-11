@@ -12,6 +12,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\App;
 
 class Video extends AbstractModel
@@ -23,6 +24,7 @@ class Video extends AbstractModel
     use HasRelated;
     use HasRevisions;
     use HasSlug;
+    use HasFactory;
     use Transformable;
 
     protected $presenter = 'App\Presenters\Admin\VideoPresenter';
@@ -119,7 +121,7 @@ class Video extends AbstractModel
     public function videoUrl(): Attribute
     {
         return Attribute::make(
-            get: fn ($_, array $attributes) => "https://youtube.com/watch?v={$attributes['youtube_id']}",
+            get: fn ($_, array $attributes) => $attributes['youtube_id'] ? "https://youtube.com/watch?v={$attributes['youtube_id']}" : null,
         );
     }
 
