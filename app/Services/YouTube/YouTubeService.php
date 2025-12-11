@@ -144,7 +144,9 @@ class YouTubeService
         try {
             $run();
         } catch (GoogleServiceException $exception) {
-            $message = strip_tags(json_decode($exception->getMessage())->error->message);
+            $decodedException = json_decode($exception->getMessage());
+            // The Google service exception object is inconsistent in how it is packed
+            $message = $decodedException->error?->message ?: $decodedException->error;
             DB::table(self::SESSION_TABLE)->where('created_at', $start)->update([
                 'errored_at' => now('UTC'),
                 'error' => $exception->getMessage(),

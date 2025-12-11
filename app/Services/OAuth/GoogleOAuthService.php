@@ -100,6 +100,11 @@ class GoogleOAuthService
     {
         $accessToken = $this->retrieveAccessToken();
         $refreshedAccessToken = $this->client->fetchAccessTokenWithRefreshToken($accessToken['refresh_token']);
+        if (array_key_exists('error', $refreshedAccessToken)) {
+            throw new GoogleOAuthServiceException(
+                'Unable to refresh access token: ' . $refreshedAccessToken['error_description']
+            );
+        }
 
         return $this->storeAccessToken($refreshedAccessToken);
     }
