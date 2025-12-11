@@ -159,7 +159,7 @@
                 max-height: 1000px;
                 display: flex;
                 grid-auto-flow: dense;
-                align-items: center; /* This prevents stretching to match tallest item */
+                align-items: flex-start;
                 flex-wrap: wrap;
 
                 @include breakpoint('medium') {
