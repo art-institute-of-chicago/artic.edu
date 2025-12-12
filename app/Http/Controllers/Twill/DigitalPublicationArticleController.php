@@ -154,11 +154,11 @@ class DigitalPublicationArticleController extends NestedModuleController
                     'label' => $item->title,
                 ],
             ],
-            'parents' => $this->getParents($item->id)->map(function ($parent) {
+            'parents' => ($item->parent ?? $item)->descendants()->ordered()->get()->map(function ($article) {
                 return [
-                    'id' => $parent->id,
-                    'name' => $parent->title,
-                    'edit' => $this->getModuleRoute($parent->id, 'edit'),
+                    'id' => $article->id,
+                    'name' => $article->title,
+                    'edit' => $article->getAdminEditUrlAttribute(),
                 ];
             }),
         ];

@@ -181,6 +181,11 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
         ]);
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('twill.collection.articlesPublications.digitalPublications.articles.edit', [$this->digitalPublication->id, $this->id]);
+    }
+
     protected function transformMappingInternal()
     {
         return [
