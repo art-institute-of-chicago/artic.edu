@@ -30,7 +30,7 @@
         @endcomponent
       @endif
   </div>
-  @if (isset($breadcrumb))
+  @if (isset($breadcrumb) && !empty($breadcrumb))
       <ul class="m-article-header__breadcrumb" data-blur-clip-to>
           @foreach ($breadcrumb as $link)
               @if ($loop->last)
