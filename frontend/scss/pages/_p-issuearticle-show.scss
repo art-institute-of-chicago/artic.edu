@@ -589,6 +589,10 @@
     clear: right;
   }
 
+  .m-media--l:not(.m-media--artwork):not(.m-media--layered-image-viewer-embed) .m-media__img:not(.m-media--mirador-embed):not(.m-media--360-embed) img {
+    position: relative !important;
+  }
+
   .m-title-bar > .f-list-3 {
     @include untuck();
 
