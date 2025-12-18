@@ -518,7 +518,7 @@ a.m-media__img:hover object {
   @include tucked-margin-top($f-caption, ('xsmall': 24));
   display: block;
   position: relative;
-  min-height: 36px;
+  min-height: min-content;
   padding-right: 60px;
 }
 
