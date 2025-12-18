@@ -1,6 +1,6 @@
 @php
     $page = $block->blockable;
-    $children = $page->children->sortBy('position');
+    $children = $page->children()->published()->orderBy('position')->get();
 
     if ($children->count() > 0 && $children->count() % 2 != 0) {
         $listing = $children->first();
