@@ -26,7 +26,7 @@ return new class () extends Migration {
     {
         DB::table('mediables')
             ->where('role', 'image')
-            ->where('crop', 'free')
+            ->where('crop', 'flexible')
             ->update([
                 'crop' => 'desktop',
                 'ratio' => 'desktop',
