@@ -22,14 +22,10 @@ return [
     'use_twill_blocks' => ['text', 'image'],
     'crops' => [
         'image' => [
-            'desktop' => [
-                [
-                    'name' => 'desktop',
-                    'ratio' => 16/9,
-                ],
+            'flexible' => [
                 [
                     'name' => 'free',
-                    'ratio' => null,
+                    'ratio' => 0,
                 ],
             ],
         ],
