@@ -25,11 +25,7 @@ return [
             'desktop' => [
                 [
                     'name' => 'desktop',
-                    'ratio' => 16 / 9,
-                ],
-                [
-                    'name' => 'free',
-                    'ratio' => null,
+                    'ratio' => 0,
                 ],
             ],
         ],
