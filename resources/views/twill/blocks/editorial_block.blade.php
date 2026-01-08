@@ -63,6 +63,7 @@
 @endphp
 
 @twillBlockTitle('Editorial Block')
+@twillBlockTitleField('heading')
 @twillBlockIcon('image')
 
 @include('twill.partials.theme', ['types' => [$type]])

@@ -33,7 +33,7 @@
                                 ))
                                 @slot('class', 'img-hero-mobile')
                             @endcomponent
-                        @else 
+                        @else
                             @component('components.atoms._img')
                                 @slot('image', $image ?? ($item->imageFront('listing') ?? $item->imageFront('hero') ))
                                 @slot('settings', $imageSettings ?? array(
@@ -59,7 +59,7 @@
                 </span>
             @endif
             <div class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
-                <span class="m-listing__types f-tag">{!! $item->present()->subtype ?? $item->present()->type !!}
+                <span class="m-listing__types f-tag">{!! $item->present()->type_override ?? $item->present()->subtype ?? $item->present()->type ?? $item->subtype !!}
                     @if ($item->exclusive)
                         @component('components.atoms._type')
                             @slot('variation', 'type--membership')

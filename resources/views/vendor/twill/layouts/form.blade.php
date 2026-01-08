@@ -57,14 +57,15 @@
     margin-left: 24px !important;
     padding-left: 12px !important;
 }
+
+.block__content > .block__body > hr {
+  margin: 20px -15px 20px -8px;
+}
 .block__title {
     font-weight: 600 !important;
 }
 .block__counter {
     opacity: 0.8;
-}
-.block__header:hover {
-    opacity: .8 !important;
 }
 .block__content {
     padding-left: 8px !important;

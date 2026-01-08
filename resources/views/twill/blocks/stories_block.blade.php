@@ -1,4 +1,5 @@
 @twillBlockTitle('Stories Block')
+@twillBlockTitleField('stories_heading')
 @twillBlockIcon('Image')
 
 <x-twill::input

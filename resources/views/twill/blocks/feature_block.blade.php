@@ -13,6 +13,7 @@
 @endphp
 
 @twillBlockTitle('Feature Block')
+@twillBlockTitleField('feature_heading')
 @twillBlockIcon('image')
 @php
     $options = collect($themes)->map(function($theme) {

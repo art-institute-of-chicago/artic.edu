@@ -52,6 +52,8 @@ return Application::configure(basePath: dirname(__DIR__))
             return config('aic.trust_hosts');
         });
 
+        $middleware->appendToGroup('admin', $middleware->getMiddlewareGroups()['web']);
+
         $middleware->web(append: [
             \App\Http\Middleware\RedirectVanityPaths::class,
         ]);
