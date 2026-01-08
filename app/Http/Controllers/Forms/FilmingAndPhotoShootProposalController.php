@@ -251,7 +251,7 @@ class FilmingAndPhotoShootProposalController extends FormController
 
         array_push($blocks, [
             'type' => 'text',
-            'content' => '<p>Please read the <a href="/press/filming-policy">Filming Policy</a> before submitting a request. If you have additional questions, call (312) 443-3363 or e-mail publicaffairs@artic.edu.</p>'
+            'content' => '<p>Please read the <a href="/press/filming-policy">Filming Policy</a> before submitting a request and note that personal photography does not require a proposal submission. If you have additional questions, call (312) 443-3363 or e-mail publicaffairs@artic.edu.</p>'
         ]);
 
         array_push($blocks, [
