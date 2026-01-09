@@ -1,4 +1,3 @@
-// frontend/js/behaviors/digitalExplorer/digitalExplorer.js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DigitalExplorer from 'digital-explorer';
@@ -59,18 +58,13 @@ export default function digitalExplorer(container) {
   }
 
   this.destroy = function() {
-    console.log('🔥 Destroying Digital Explorer');
-
     if (mounted) {
       ReactDOM.unmountComponentAtNode(container);
       mounted = false;
     }
 
-    // Clean up global reference
     delete window.digitalExplorer;
 
-    // Remove properties of this behavior (if you have A17.Helpers available)
-    // A17.Helpers.purgeProperties(this);
   };
 
   this.init = function() {

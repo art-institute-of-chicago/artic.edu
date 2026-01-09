@@ -14,7 +14,7 @@ class DigitalExplorerController extends BaseController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('digitalExplorer') ?? request('id'));
-        $baseUrl = config('app.url') . '/digitalExplorers/' . $item->id . '/';
+        $baseUrl = config('app.url') . '/digital-explorers/' . $item->id . '/';
 
         return [
             'baseUrl' => $baseUrl,
