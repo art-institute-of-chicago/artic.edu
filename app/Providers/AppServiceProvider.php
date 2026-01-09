@@ -70,7 +70,7 @@ class AppServiceProvider extends ServiceProvider
             'genericPages' => 'App\Models\GenericPage',
 
             'experiences' => 'App\Models\Experience',
-            // 'digitalExplorers' => 'App\Models\DigitalExplorer',
+            'digitalExplorers' => 'App\Models\DigitalExplorer',
 
             'digitalPublications' => 'App\Models\DigitalPublication',
             'digitalPublicationArticles' => 'App\Models\DigitalPublicationArticle',
