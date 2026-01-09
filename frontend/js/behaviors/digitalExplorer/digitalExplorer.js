@@ -3,13 +3,9 @@ import ReactDOM from 'react-dom';
 import DigitalExplorer from 'digital-explorer';
 
 export default function digitalExplorer(container) {
-  console.log('🎯 digitalExplorer behavior instantiated', container);
-
   let mounted = false;
 
   function _init() {
-    console.log('🚀 digitalExplorer._init() called');
-
     let explorerData;
 
     try {
@@ -17,14 +13,11 @@ export default function digitalExplorer(container) {
       const contentBundleScript = document.querySelector('[data-digitalExplorer-contentBundle]');
 
       if (!contentBundleScript) {
-        console.error('❌ No content bundle script found');
         explorerData = {};
       } else {
         explorerData = JSON.parse(contentBundleScript.innerHTML);
-        console.log('✅ Parsed explorerData:', explorerData);
       }
     } catch (e) {
-      console.error('❌ Failed to parse explorerData:', e);
       explorerData = {};
     }
 
@@ -49,7 +42,6 @@ export default function digitalExplorer(container) {
     );
 
     mounted = true;
-    console.log('✅ Digital Explorer mounted successfully');
 
     // Handle header behavior
     if (window.scrollY < 100) {
