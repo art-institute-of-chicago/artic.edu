@@ -10,6 +10,7 @@ return new class () extends Migration {
         Schema::create('digital_explorers', function (Blueprint $table) {
             createDefaultTableFields($table);
             $table->string('title');
+            $table->string('title_display')->nullable();
             $table->string('type')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();

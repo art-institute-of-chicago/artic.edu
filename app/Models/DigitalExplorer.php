@@ -21,6 +21,7 @@ class DigitalExplorer extends AbstractModel
     protected $fillable = [
         'published',
         'title',
+        'title_display',
         'type',
         'meta_title',
         'meta_description',
@@ -58,6 +59,14 @@ class DigitalExplorer extends AbstractModel
                 [
                     'name' => 'default',
                     'ratio' => 1,
+                ],
+            ],
+        ],
+        'title_media' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 0,
                 ],
             ],
         ],
