@@ -2,6 +2,8 @@
 
 namespace App\Libraries\Caption;
 
+use App\Models\Video;
+
 abstract class Parser
 {
     public array $captions;
@@ -33,24 +35,61 @@ abstract class Parser
     }
 
     /**
-     * Construct the transcript by collating the lines from each caption.
+     * Construct an HTML transcript for the given video by collating the lines
+     * from each caption.
      */
-    public function getTranscript(): string
+    public function getTranscript(Video $video): string
     {
         $transcript = collect($this->captions)
-            ->reduce( // Collect all lines in one array
-                fn ($allLines, $caption) => $allLines->concat($caption->lines),
-                collect(),
-            )
-            ->map( // Iterate thru array of lines
-                fn ($line) => str($line)->whenStartsWith(
-                    '- ',
-                    fn ($line) => $line->replace('- ', "\n"),
-                )
-            )
-            ->join(' '); // Join each line with a space
+            ->chunkWhile(fn ($caption) => !str($caption->lines[0])->startsWith('- '))
+            ->reduce( // Combine chunks into a single transcript
+                fn ($html, $chunk, $index) => $html . <<<HTML
+                    <div id="caption-{$index}" class="caption">
+                        {$this->getTimestamp($chunk->first(), $video)}
+                        {$this->getParagraph($chunk)}
+                    </div>
+                HTML,
+                ''
+            );
+        return <<<HTML
+            <div class="video-transcript">
+                $transcript
+            </div>
+        HTML;
+    }
 
-        return $transcript;
+    /**
+     *  Create a timestamp link for the caption.
+     */
+    protected function getTimestamp($caption, $video): string
+    {
+        $timestamp = str($caption->start)->before(',');
+        $seconds = $timestamp
+            ->explode(':')
+            ->map(fn ($part, $index) => (int) $part * (60 ** (2 - $index)))
+            ->sum();
+
+        return <<<HTML
+            <a class="timestamp" href="{$video->video_url}&t={$seconds}">
+                $timestamp
+            </a>
+        HTML;
+    }
+
+    /**
+     * Create a paragraph from the caption lines.
+     */
+    protected function getParagraph($captions): string
+    {
+        $paragraph = collect($captions)
+            ->flatMap(fn ($caption) => $caption->lines)
+            ->implode(fn ($line) => str($line)->ltrim('- '), ' ');
+
+        return <<<HTML
+            <p>
+                $paragraph
+            </p>
+        HTML;
     }
 
     /**
