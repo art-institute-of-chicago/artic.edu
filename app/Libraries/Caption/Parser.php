@@ -41,7 +41,7 @@ abstract class Parser
     public function getTranscript(Video $video): string
     {
         $transcript = collect($this->captions)
-            ->chunkWhile(fn ($caption) => !str($caption->lines[0])->startsWith('- '))
+            ->chunkWhile(fn ($caption) => isset($caption->lines[0]) && !str($caption->lines[0])->startsWith('- '))
             ->reduce( // Combine chunks into a single transcript
                 fn ($html, $chunk, $index) => $html . <<<HTML
                     <div id="caption-{$index}" class="caption">
