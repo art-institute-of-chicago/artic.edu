@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Libraries\Caption\Parser as CaptionParser;
+use App\Models\Video;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 class SubRipParserTest extends BaseTestCase
@@ -28,17 +29,17 @@ class SubRipParserTest extends BaseTestCase
 
     public function test_transcript_is_generated_from_captions(): void
     {
-        $transcript = $this->parser->getTranscript();
+        $transcript = $this->parser->getTranscript(Video::factory()->make());
         $this->assertIsString($transcript);
-        $this->assertStringStartsWith(
+        $this->assertStringContainsString(
             '(people chattering)',
             $transcript,
-            'The transcript starts with the correct line',
+            'The transcript contains the starting line',
         );
-        $this->assertStringEndsWith(
+        $this->assertStringContainsString(
             'Art Institute of Chicago.',
             $transcript,
-            'The transcript ends with the correct line'
+            'The transcript contains the ending line',
         );
     }
 
@@ -51,11 +52,11 @@ class SubRipParserTest extends BaseTestCase
             $secondCaptionFirstLine,
             'A `- ` at the beginning of a line denotes a newline',
         );
-        $transcript = $this->parser->getTranscript();
-        $this->assertStringContainsString(
-            "\nGood evening, and welcome.",
+        $transcript = $this->parser->getTranscript(Video::factory()->make());
+        $this->assertMatchesRegularExpression(
+            '/<p>\s*Good evening, and welcome\./',
             $transcript,
-            'The transcript contains `- ` replaced with a newline',
+            'The transcript contains `- ` replaced with a paragraph tag',
         );
     }
 

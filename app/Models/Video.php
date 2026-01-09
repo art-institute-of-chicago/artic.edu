@@ -12,11 +12,13 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\App;
 
 class Video extends AbstractModel
 {
     use HasBlocks;
+    use HasFactory;
     use HasFiles;
     use HasMedias;
     use HasMediasEloquent;
@@ -47,7 +49,6 @@ class Video extends AbstractModel
         'title_display',
         'toggle_autorelated',
         'uploaded_at',
-        'video_url',
         'youtube_id',
     ];
 
@@ -69,7 +70,7 @@ class Video extends AbstractModel
     protected $appends = [
         'embed',
         'format',
-        'source_url',
+        'video_url',
     ];
 
     public $mediasParams = [
