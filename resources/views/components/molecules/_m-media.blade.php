@@ -144,12 +144,14 @@
     <div
         @class([
             'm-media__img',
-            'm-media__img--embed' => $item['type'] !== 'youtube' && $type === 'embed', // WEB-3171: a normal embed doesn't need the video class
-            'm-media__img--video' => $type === 'video' || (in_array($item['type'], ['youtube', 'media_loop']) && $type === 'embed'), // WEB-3171: a video embed does and needs the other attributes from 'embed'
+            'm-media__img--video' => ($type === 'video' || $type === 'embed'),
             'm-media__img--alt-background' => $useAltBackground,
             'm-media__img--disable-placeholder' => $disablePlaceholder,
             'small' => isset($headerVariation) && $headerVariation === 'small',
         ])
+        @if(!empty($embed_height))
+            style="height: {{ $embed_height }}"
+        @endif
         @if(!empty($embed_height))
             style="height: {{ $embed_height }}"
         @endif
@@ -170,6 +172,10 @@
         @endif
         @if(!empty($item['credit']))
             data-credit="{{ $item['credit'] }}"
+        @endif
+    >
+        @if ($useContain && !($item['isArtwork'] ?? false) && ($size === 's' || $size === 'm' || $size === 'l'))
+          <div class="m-media__contain--spacer" style="--aspect-ratio: {{ intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100 }}%; padding-bottom: var(--aspect-ratio); width: 100%;"></div>
         @endif
     >
         @if ($type == 'image')
