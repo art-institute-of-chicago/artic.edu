@@ -81,36 +81,43 @@
     @endif
 
     @if ($relatedVideos->count() > 0)
-        @component('components.molecules._m-title-bar')
-            Related Videos
-        @endcomponent
-        @component('components.atoms._hr')
-        @endcomponent
-        @component('components.organisms._o-grid-listing')
-            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-            @slot('behavior','dragScroll')
-            @foreach ($relatedVideos as $item)
-                @component('components.molecules._m-listing----generic')
-                    @slot('item', $item)
-                    @slot('hideDate', true)
-                    @slot('imageSettings', array(
-                        'fit' => 'crop',
-                        'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
-                        'sizes' => ImageHelpers::aic_imageSizes(array(
-                              'xsmall' => '216px',
-                              'small' => '216px',
-                              'medium' => '18',
-                              'large' => '13',
-                              'xlarge' => '13',
-                        )),
-                    ))
-                @endcomponent
-            @endforeach
-        @endcomponent
+        <div class="o-article__related o-article__related--videos">
+            @component('components.molecules._m-title-bar')
+                Related Videos
+            @endcomponent
+            @component('components.organisms._o-grid-listing')
+                @slot(
+                    'variation',
+                    'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small'
+                )
+                @slot('cols_medium','4')
+                @slot('cols_large','4')
+                @slot('cols_xlarge','4')
+                @slot('behavior','dragScroll')
+                @foreach ($relatedVideos as $video)
+                    @component('components.molecules._m-listing----grid-item')
+                        @slot('url', $video->video_url ?? '')
+                        @slot('label', $video->duration ?? '')
+                        @slot('labelPosition', 'overlay')
+                        @slot('tag', $video->is_short ? 'Short' : 'Video')
+                        @slot('title', $video->title ?? '')
+                        @slot('image', ['src' => $video->thumbnail_url ?? ''])
+                        @slot('imageSettings', array(
+                            'fit' => 'crop',
+                            'ratio' => '16:9',
+                            'srcset' => array(200,400,600),
+                            'sizes' => ImageHelpers::aic_imageSizes(array(
+                                'xsmall' => '216px',
+                                'small' => '216px',
+                                'medium' => '18',
+                                'large' => '13',
+                                'xlarge' => '13',
+                            )),
+                        ))
+                    @endcomponent
+                @endforeach
+            @endcomponent
+        </div>
     @endif
 @endsection
 
