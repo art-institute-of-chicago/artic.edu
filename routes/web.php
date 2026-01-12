@@ -188,7 +188,6 @@ Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index'
 Route::get('/authors/{id}/{slug?}', [AuthorController::class, 'show'])->name('authors.show');
 
 // Videos routes
-// TODO: uncomment when video show page is reimplemented
 Route::get('/videos/{id}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
 
 // Mirador kiosk routes

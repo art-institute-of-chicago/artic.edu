@@ -279,6 +279,106 @@ main#content:has(.videos) {
     color: $color__white;
     background-color: $color__black--81;
 
+    h1.title {
+        color: $color__white;
+        font-family: $sans-serif-font--loaded;
+        font-size: 38px;
+        font-style: normal;
+        font-weight: 300;
+        letter-spacing: -0.38px;
+        line-height: 44px;
+        text-transform: unset;
+    }
+    p.title, .f-secondary {
+        display: none;
+    }
+    .o-article__primary-actions--video {
+        min-height: unset;
+    }
+    .m-article-header {
+        gap: 40px;
+        margin-bottom: 56px !important;
+        margin-top: 56px;
+        min-height: unset;
+    }
+    .m-article-actions__action .btn--icon {
+        background-color: transparent;
+        color: $color__black--30;
+        font-family: $sans-serif-font--loaded;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 300;
+        letter-spacing: 0.17px;
+        line-height: 28px;
+
+        &::before {
+            content: 'Share';
+        }
+    }
+    .o-article__body {
+        .m-media {
+            margin-bottom: 28px;
+        }
+        .o-tabbed-details {
+            margin-top: 40px;
+
+            summary {
+                color: $color__black--54;
+                font-family: $sans-serif-font--loaded;
+                font-size: 21px;
+                font-style: normal;
+                font-weight: 325;
+                line-height: 28px;
+                letter-spacing: 1.68px;
+                text-transform: uppercase;
+                padding-bottom: 22px;
+            }
+            details[open] :is(summary, .summary) {
+                color: $color__white;
+            }
+            .o-tabbed-details__content {
+                h3 {
+                    margin-top: 56px;
+                    color: $color__black--10;
+                    font-family: $serif-font--loaded;
+                    font-size: 31px;
+                    font-style: normal;
+                    font-weight: 300;
+                    letter-spacing: -0.31px;
+                    line-height: 40px;
+                }
+                .video-transcript {
+                    color: $color__black--20;
+                    font-family: $sans-serif-font--loaded;
+                    font-size: 17px;
+                    font-style: normal;
+                    font-weight: 300;
+                    letter-spacing: 0.17px;
+                    line-height: 28px;
+
+                    a {
+                        color: $color__white;
+                        text-decoration: underline;
+                    }
+                    p {
+                        margin-bottom: 1em;
+                    }
+                }
+            }
+        }
+        .o-gallery {
+            background-color: unset;
+        }
+        .o-accordion {
+            h3 {
+                padding-bottom: 0;
+            }
+            button {
+                background-color: $color__black--81;
+                color: $color__white;
+            }
+        }
+    }
     .o-article__related {
         display: block;
 

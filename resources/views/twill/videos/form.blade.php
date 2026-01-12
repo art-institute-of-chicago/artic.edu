@@ -74,7 +74,15 @@
 
     @php
         $blocks = BlockHelpers::getBlocksForEditor([
-            'paragraph', 'hr', 'artwork', 'split_block', 'quote', 'tour_stop', 'list', 'button', 'audio_player', 'membership_banner', 'mobile_app', 'artworks'
+            'accordion',
+            'artwork',
+            'button',
+            'gallery_new',
+            'hr',
+            'image',
+            'link',
+            'paragraph',
+            'split_block',
         ]);
     @endphp
 
