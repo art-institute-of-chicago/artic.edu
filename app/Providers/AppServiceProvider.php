@@ -494,6 +494,8 @@ class AppServiceProvider extends ServiceProvider
 
         $blade->component('twill.partials.featured-related', 'aic::featuredRelated');
 
+        $blade->component('components.organisms._o-tabbed-details', 'tabbed-details');
+
         if (method_exists($blade, 'aliasComponent')) {
             $blade->aliasComponent('twill.partials.featured-related', 'featuredRelated');
         }

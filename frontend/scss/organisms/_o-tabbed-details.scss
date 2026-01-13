@@ -1,0 +1,40 @@
+.o-tabbed-details {
+    --tab-count: 2; /* Default to 2 tabs, can be overridden inline */
+
+    display: grid;
+    grid-template-columns: repeat(var(--tab-count), 1fr);
+    grid-template-rows: auto 1fr;
+
+    details {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-row: 1 / span var(--tab-count);
+        grid-template-columns: subgrid;
+        grid-template-rows: subgrid;
+    }
+
+    summary {
+        border-bottom: 1px solid $color__black--80;
+        cursor: pointer;
+        display: grid;
+        grid-column: var(--tab) / span 1;
+        grid-row: 1;
+        z-index: 1;
+    }
+
+    details[open] :is(summary, .summary) {
+        border-bottom: 1px solid $color__white;
+        font-weight: bold;
+        pointer-events: none;
+    }
+
+    details::details-content {
+        grid-row: var(--tab-count);
+        grid-column: 1 / -1;
+        padding: 1rem;
+    }
+
+    details:not([open])::details-content {
+        display: none;
+    }
+}
