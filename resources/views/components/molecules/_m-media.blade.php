@@ -144,7 +144,8 @@
     <div
         @class([
             'm-media__img',
-            'm-media__img--video' => ($type === 'video' || $type === 'embed'),
+            'm-media__img--embed' => $item['type'] !== 'youtube' && $type === 'embed', // WEB-3171: a normal embed doesn't need the video class
+            'm-media__img--video' => $type === 'video' || (in_array($item['type'], ['youtube', 'media_loop']) && $type === 'embed'), // WEB-3171: a video embed does and needs the other attributes from 'embed'
             'm-media__img--alt-background' => $useAltBackground,
             'm-media__img--disable-placeholder' => $disablePlaceholder,
             'small' => isset($headerVariation) && $headerVariation === 'small',
