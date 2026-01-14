@@ -30,6 +30,16 @@ class EventController extends BaseController
                 ->field('formattedNextOccurrence')
                 ->title('Event Date')
                 ->sortable()
+                ->sortByDefault(true, 'desc')
+                ->order(function (Builder $builder, string $direction) {
+                        return $builder->orderBy(DB::raw('(
+                            SELECT date
+                            FROM event_metas
+                            WHERE event_metas.event_id = events.id
+                            ORDER BY date
+                            LIMIT 1
+                        )'), $direction);
+                    })
         );
 
         return $columns;
@@ -41,29 +51,29 @@ class EventController extends BaseController
      * We will override the index function so it works the same in all
      * respects except item order.
      */
-    protected function orderScope(): array
-    {
-        $orders = [];
+    // protected function orderScope(): array
+    // {
+    //     $orders = [];
 
-        if ($this->request->has('sortKey') && $this->request->has('sortDir')) {
-            if ($this->request->get('sortKey') === 'formattedNextOccurrence') {
-                $orders['formattedNextOccurrence'] = [
-                    'callback' => function (Builder $builder, string $direction) {
-                        return $builder->orderBy(DB::raw('(
-                            SELECT date
-                            FROM event_metas
-                            WHERE event_metas.event_id = events.id
-                            ORDER BY date
-                            LIMIT 1
-                        )'));
-                    },
-                    'direction' => $this->request->get('sortDir') ?? 'desc',
-                ];
-            }
-        }
+    //     if ($this->request->has('sortKey') && $this->request->has('sortDir')) {
+    //         if ($this->request->get('sortKey') === 'formattedNextOccurrence') {
+    //             $orders['formattedNextOccurrence'] = [
+    //                 'callback' => function (Builder $builder, string $direction) {
+    //                     return $builder->orderBy(DB::raw('(
+    //                         SELECT date
+    //                         FROM event_metas
+    //                         WHERE event_metas.event_id = events.id
+    //                         ORDER BY date
+    //                         LIMIT 1
+    //                     )'), $direction);
+    //                 },
+    //                 'direction' => $this->request->get('sortDir') ?? 'desc',
+    //             ];
+    //         }
+    //     }
 
-        return $orders + parent::orderScope();
-    }
+    //     return $orders + parent::orderScope();
+    // }
 
     protected function indexData($request)
     {
