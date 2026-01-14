@@ -5,7 +5,13 @@
         $variation .= ' m-article-header--editorial';
     }
 @endphp
-@if (isset($headerType) and $headerType === 'feature')
+@if (isset($headerType) and $headerType === 'video')
+    @component('components.molecules._m-article-header----video')
+        @slot('variation', $variation ?? null)
+        @slot('title', $title ?? null)
+        @slot('title_display', $title_display ?? null)
+    @endcomponent
+@elseif (isset($headerType) and $headerType === 'feature')
     {{-- Feature header --}}
     @component('components.molecules._m-article-header----feature')
         @slot('editorial', $editorial ?? null)
