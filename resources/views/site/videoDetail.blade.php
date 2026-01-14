@@ -39,7 +39,7 @@
 
             <x-tabbed-details :tab-count="2">
                 <x-slot name="tab1" title="Info">
-                    <div class="o-article__body o-blocks">
+                    <div class="o-article__content o-blocks">
                         {!! $item->renderBlocks(data: [
                             'pageTitle' => $item->title
                         ]) !!}
