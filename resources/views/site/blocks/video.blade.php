@@ -35,7 +35,7 @@
             {{-- variation 'o-blocks__block' ONLY for inline in article pages and NOT for inside of galleries or anywhere else --}}
             @slot('variation', 'o-blocks__block')
             @slot('item', [
-                'type' => 'embed',
+                'type' => $media_type ?: 'embed', // WEB-3171
                 'size' => $size,
                 'media' => ['embed' => $embed_code],
                 'poster' => $image,
