@@ -1,14 +1,15 @@
+// Landing page
 section.videos {
     body:has(&) {
-        color: $color__white;
-        background-color: $color__black--81;
+        color: $color__vidoes__text--primary;
+        background-color: $color__videos__bg--primary;
 
         .m-header-block {
             &::before {
                 display: none;
             }
             h1.title {
-                color: $color__white;
+                color: $color__videos__text--primary;
                 font-family: $serif-font--loaded;
                 font-size: 38px;
                 font-style: normal;
@@ -19,7 +20,7 @@ section.videos {
                 text-transform: unset;
             }
             & ~ .f-intro {
-                color: $color__black--20;
+                color: $color__videos__text--disabled;
                 font-family: $sans-serif-font--loaded;
                 font-size: 17px;
                 font-style: normal;
@@ -35,8 +36,8 @@ section.videos {
         padding-top: 140px;
     }
     .videos-subnav {
-        border-bottom: 1px solid $color__black--54;
-        border-top: 1px solid $color__black--54;
+        border-bottom: 1px solid $color__videos__text--secondary;
+        border-top: 1px solid $color__videos__text--secondary;
         overflow-x: auto;
         overflow-y: hidden;
         padding-bottom: 28px;
@@ -57,7 +58,7 @@ section.videos {
         }
 
         .m-links-bar__item>.f-link {
-            color: $color__white;
+            color: $color__videos__text--primary;
             font-family: $sans-serif-font--loaded;
             font-size: 17px;
             font-weight: 300;
@@ -86,7 +87,7 @@ section.videos {
         margin-top: 56px;
         padding-top: 20px;
         &:not(:first-child) {
-            border-top: 1px solid $color__black--54;
+            border-top: 1px solid $color__videos__text--secondary;
         }
     }
 
@@ -127,7 +128,7 @@ section.videos {
                 margin: 0;
             }
             .f-link {
-                color: $color__black--20;
+                color: $color__videos__text--disabled;
             }
         }
     }
@@ -148,7 +149,7 @@ main#content:has(.videos) {
                 margin: 0;
             }
             .f-link {
-                color: $color__black--20;
+                color: $color__videos__text--disabled;
             }
         }
         .o-grid-listing {
@@ -161,7 +162,7 @@ main#content:has(.videos) {
     }
     .o-grid-block {
         .o-grid-block__title {
-            color: $color__white;
+            color: $color__videos__text--primary;
             font-family: $serif-font--loaded;
             font-size: 38px;
             font-style: normal;
@@ -171,7 +172,7 @@ main#content:has(.videos) {
             text-transform: none;
         }
         .o-grid-block__description {
-            color: $color__black--20;
+            color: $color__videos__text--disabled;
             font-family: $sans-serif-font--loaded;
             font-size: 17px;
             font-style: normal;
@@ -212,14 +213,14 @@ main#content:has(.videos) {
                 min-height: unset;
 
                 .title {
-                    color: $color__white;
+                    color: $color__videos__text--primary;
                     font-size: 19px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: 28px;
                 }
                 .intro {
-                    color: $color__black--20;
+                    color: $color__videos__text--disabled;
                     font-size: 17px;
                     font-style: normal;
                     font-weight: 300;
@@ -228,7 +229,7 @@ main#content:has(.videos) {
                 }
             }
             .m-listing__img-prompt {
-                background: rgba(26, 26, 26, 0.80);
+                background: $color__videos__img--overlay;
                 font-family: $sans-serif-font--loaded;
                 font-size: 13px;
                 font-style: normal;
@@ -259,7 +260,7 @@ main#content:has(.videos) {
         }
         .f-buttons {
             background-color: transparent;
-            border: 1px solid $color__white;
+            border: 1px solid $color__videos__text--primary;
         }
 
         @include breakpoint('medium') {
@@ -275,12 +276,14 @@ main#content:has(.videos) {
         }
     }
 }
+
+// Detail page
 .p-video-show body {
-    color: $color__white;
-    background-color: $color__black--81;
+    color: $color__videos__text--primary;
+    background-color: $color__videos__bg--primary;
 
     h1.title {
-        color: $color__white;
+        color: $color__videos__text--primary;
         font-family: $sans-serif-font--loaded;
         font-size: 38px;
         font-style: normal;
@@ -303,7 +306,7 @@ main#content:has(.videos) {
     }
     .m-article-actions__action .btn--icon {
         background-color: transparent;
-        color: $color__black--30;
+        color: $color__videos__text--forms;
         font-family: $sans-serif-font--loaded;
         font-size: 17px;
         font-style: normal;
@@ -323,7 +326,7 @@ main#content:has(.videos) {
             margin-top: 40px;
 
             summary {
-                color: $color__black--54;
+                color: $color__videos__text--secondary;
                 font-family: $sans-serif-font--loaded;
                 font-size: 21px;
                 font-style: normal;
@@ -334,12 +337,12 @@ main#content:has(.videos) {
                 padding-bottom: 22px;
             }
             details[open] :is(summary, .summary) {
-                color: $color__white;
+                color: $color__videos__text--primary;
             }
             .o-tabbed-details__content {
                 h3 {
                     margin-top: 56px;
-                    color: $color__black--10;
+                    color: $color__videos__rules--primary;
                     font-family: $serif-font--loaded;
                     font-size: 31px;
                     font-style: normal;
@@ -348,7 +351,7 @@ main#content:has(.videos) {
                     line-height: 40px;
                 }
                 .video-transcript {
-                    color: $color__black--20;
+                    color: $color__videos__text--disabled;
                     font-family: $sans-serif-font--loaded;
                     font-size: 17px;
                     font-style: normal;
@@ -357,7 +360,7 @@ main#content:has(.videos) {
                     line-height: 28px;
 
                     a {
-                        color: $color__white;
+                        color: $color__videos__text--primary;
                         text-decoration: underline;
                     }
                     p {
@@ -374,8 +377,8 @@ main#content:has(.videos) {
                 padding-bottom: 0;
             }
             button {
-                background-color: $color__black--81;
-                color: $color__white;
+                background-color: $color__videos__bg--primary;
+                color: $color__videos__text--primary;
             }
         }
     }
@@ -387,7 +390,7 @@ main#content:has(.videos) {
                 display: none;
             }
             h2.title {
-                color: $color__black--10;
+                color: $color__videos__rules--primary;
                 font-family: $sans-serif-font--loaded;
                 font-size: 21px;
                 font-style: normal;
@@ -413,17 +416,17 @@ main#content:has(.videos) {
                 min-height: unset;
 
                 .type {
-                    color: $color__black--54;
+                    color: $color__videos__text--secondary;
                 }
                 .title {
-                    color: $color__white;
+                    color: $color__videos__text--primary;
                     font-size: 19px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: 28px;
                 }
                 .intro {
-                    color: $color__black--20;
+                    color: $color__videos__text--disabled;
                     font-size: 17px;
                     font-style: normal;
                     font-weight: 300;
@@ -432,7 +435,7 @@ main#content:has(.videos) {
                 }
             }
             .m-listing__img-prompt {
-                background: rgba(26, 26, 26, 0.80);
+                background: $color__videos__img--overlay;
                 font-family: $sans-serif-font--loaded;
                 font-size: 13px;
                 font-style: normal;
