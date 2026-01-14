@@ -4,9 +4,14 @@ $color__videos__bg--primary: $color__black--81;
 
 $color__videos__img--overlay: rgba(26, 26, 26, 0.80);
 
-$color__videos__rules--primary: $color__black--10;
+$color__videos__link: $color__white;
+$color__videos__link--accent: $color__black--30;
+$color__videos__link--tab: $color__black--42;
+$color__videos__link--tab-active: $color__white;
 
-$color__videos__text--primary: $color_white;
-$color__videos__text--secondary: $color_black--54;
-$color__videos__text--forms: $color__black--30;
-$color__videos__text--disabled: $color__black--20;
+$color__videos__rules--primary: $color__black--54;
+
+$color__videos__text--primary: $color__white;
+$color__videos__text--secondary: $color__black--10;
+$color__videos__text--tertiary: $color__black--20;
+$color__videos__text--accent: $color__black--54;
