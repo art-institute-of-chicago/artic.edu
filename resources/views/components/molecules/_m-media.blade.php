@@ -1,6 +1,11 @@
 @php
+    // WEB-3171: Specifically detect the type and cast it
+    $type = match($item['type']) {
+        'media_loop', 'youtube' => 'embed',
+        'artist' => 'image',
+        default => $item['type'],
+    };
 
-    $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
     $useContain = $item['useContain'] ?? false;
     $disablePlaceholder = $item['disablePlaceholder'] ?? false;
@@ -15,7 +20,6 @@
     $embedHeight = $embed_height ?? false;
     $hideCaption = (isset($item['hideCaption']) && $item['hideCaption']) ? true : false;
     $fitCaptionTitle = $type === 'artist';
-    $type = $type === 'artist' ? 'image' : $type;
 
     $loop = isset($item['loop']) && $item['loop'];
     $loop_or_once = isset($item['loop_or_once']) ? $item['loop_or_once'] : 'loop';
@@ -141,8 +145,8 @@
     <div
         @class([
             'm-media__img',
-            'm-media__img--embed' => $type === 'embed',
-            'm-media__img--video' => $type === 'video',
+            'm-media__img--embed' => $item['type'] !== 'youtube' && $type === 'embed', // WEB-3171: a normal embed doesn't need the video class
+            'm-media__img--video' => $type === 'video' || (in_array($item['type'], ['youtube', 'media_loop']) && $type === 'embed'), // WEB-3171: a video embed does and needs the other attributes from 'embed'
             'm-media__img--alt-background' => $useAltBackground,
             'm-media__img--disable-placeholder' => $disablePlaceholder,
             'small' => isset($headerVariation) && $headerVariation === 'small',
