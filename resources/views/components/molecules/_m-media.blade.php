@@ -1,6 +1,11 @@
 @php
+    // WEB-3171: Specifically detect the type and cast it
+    $type = match($item['type']) {
+        'media_loop', 'youtube' => 'embed',
+        'artist' => 'image',
+        default => $item['type'],
+    };
 
-    $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
     $useContain = $item['useContain'] ?? false;
     $disablePlaceholder = $item['disablePlaceholder'] ?? false;
@@ -12,10 +17,8 @@
     $manifest = isset($item['manifest']) ? $item['manifest'] : false;
     $default_view = isset($item['default_view']) ? $item['default_view'] : 'single';
 
-    $embedHeight = $embed_height ?? false;
     $hideCaption = (isset($item['hideCaption']) && $item['hideCaption']) ? true : false;
     $fitCaptionTitle = $type === 'artist';
-    $type = $type === 'artist' ? 'image' : $type;
 
     $loop = isset($item['loop']) && $item['loop'];
     $loop_or_once = isset($item['loop_or_once']) ? $item['loop_or_once'] : 'loop';
@@ -141,26 +144,36 @@
     <div
         @class([
             'm-media__img',
-            'm-media__img--embed' => $type === 'embed',
-            'm-media__img--video' => $type === 'video',
+            'm-media__img--embed' => $item['type'] !== 'youtube' && $type === 'embed', // WEB-3171: a normal embed doesn't need the video class
+            'm-media__img--video' => $type === 'video' || (in_array($item['type'], ['youtube', 'media_loop']) && $type === 'embed'), // WEB-3171: a video embed does and needs the other attributes from 'embed'
             'm-media__img--alt-background' => $useAltBackground,
             'm-media__img--disable-placeholder' => $disablePlaceholder,
             'small' => isset($headerVariation) && $headerVariation === 'small',
         ])
-        @style([
-            "height: $embedHeight" => $embedHeight,
-        ])
-        aria-label="{{ $mediaBehavior ? 'Media embed, click to play' : '' }}"
+        @if(!empty($embed_height))
+            style="height: {{ $embed_height }}"
+        @endif
         data-behavior="fitText {!! $mediaBehavior ?: '' !!}"
-        data-credit="{!! $item['credit'] ?? '' !!}"
-        data-modal-advanced="{{ ($_allowAdvancedModalFeatures ?? false) ? 'true' : '' }}"
         data-platform="{!! $item['platform'] ?? '' !!}"
-        data-restrict="{{ ($media['restrict'] ?? false) ? 'true' : '' }}"
-        data-title="{!! $media['title'] ?? '' !!}"
-        tabindex="{{ $mediaBehavior ? '0' : '-1'}}"
+        @if($mediaBehavior)
+            aria-label="Media embed, click to play"
+            tabindex="0"
+        @endif
+        @if($_allowAdvancedModalFeatures ?? false)
+            data-modal-advanced="true"
+        @endif
+        @if(isset($media['restrict']) && $media['restrict'])
+            data-restrict="true"
+        @endif
+        @if(isset($media['title']) && $media['title'])
+            data-title="{{ $media['title'] }}"
+        @endif
+        @if(!empty($item['credit']))
+            data-credit="{{ $item['credit'] }}"
+        @endif
     >
         @if ($useContain && !($item['isArtwork'] ?? false) && ($size === 's' || $size === 'm' || $size === 'l'))
-            <div class="m-media__contain--spacer" style="--aspect-ratio: {{ intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100 }}%; padding-bottom: var(--aspect-ratio); width: 100%;"></div>
+          <div class="m-media__contain--spacer" style="--aspect-ratio: {{ intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100 }}%; padding-bottom: var(--aspect-ratio); width: 100%;"></div>
         @endif
         @if ($type == 'image')
             @if ($showUrlFullscreen)
