@@ -39,8 +39,14 @@ class VideoController extends FrontController
 
         $relatedVideos = $this->repository->getRelatedVideos($item);
 
+        $transcript = null;
+        if ($item->is_captioned && $item->standardCaption->hasActiveTranslation()) {
+            $transcript = $item->standardCaption->transcript;
+        }
+
         return view('site.videoDetail', [
             'item' => $item,
+            'transcript' => $transcript,
             'relatedVideos' => $relatedVideos,
             'unstickyHeader' => true,
             'canonicalUrl' => $canonicalPath,

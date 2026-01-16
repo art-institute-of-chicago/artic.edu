@@ -111,6 +111,11 @@ class Video extends AbstractModel
         return $this->hasMany(Caption::class);
     }
 
+    public function standardCaption()
+    {
+        return $this->hasOne(Caption::class)->where('kind', 'standard');
+    }
+
     public function format(): Attribute
     {
         return Attribute::make(

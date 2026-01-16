@@ -1,7 +1,3 @@
-@import '../themes/digital-publications';
-@import '../themes/magazine';
-@import '../themes/rlc';
-
 // Main Color List - try not to use
 // Reds
 $color__red--100: #b50938;
@@ -295,3 +291,9 @@ $color__input-border--hover: $color__black--42;
 $color__input-border--focus: $color__black--80;
 $color__input-border--error: $color__red--100;
 $color__input-border--checked: $color__black--90;
+
+// Themes
+@import '../themes/digital-publications';
+@import '../themes/magazine';
+@import '../themes/rlc';
+@import '../themes/videos';
