@@ -48,6 +48,7 @@ class VideoController extends FrontController
             'item' => $item,
             'transcript' => $transcript,
             'relatedVideos' => $relatedVideos,
+            'contrastHeader' => true,
             'unstickyHeader' => true,
             'canonicalUrl' => $canonicalPath,
         ]);
