@@ -278,6 +278,9 @@ main#content:has(.videos) {
     color: $color__videos__text--primary;
     background-color: $color__videos__bg--primary;
 
+    main#content {
+        padding-top: 140px;
+    }
     h1.title {
         color: $color__videos__text--primary;
         font-family: $sans-serif-font--loaded;
@@ -288,7 +291,7 @@ main#content:has(.videos) {
         line-height: 44px;
         text-transform: unset;
     }
-    p.title, .f-secondary {
+    p.title {
         display: none;
     }
     .o-article__primary-actions--video {
@@ -321,21 +324,23 @@ main#content:has(.videos) {
         .o-tabbed-details {
             margin-top: 40px;
 
-            summary {
+            .o-tabbed-details__tab-title {
                 color: $color__videos__link--tab;
                 font-family: $sans-serif-font--loaded;
                 font-size: 21px;
                 font-style: normal;
                 font-weight: 325;
-                line-height: 28px;
                 letter-spacing: 1.68px;
-                text-transform: uppercase;
+                line-height: 28px;
                 padding-bottom: 22px;
+                padding-left: 15px;
+                padding-right: 15px;
+                text-transform: uppercase;
             }
-            details[open] summary {
+            .o-tabbed-details__tab[open] .o-tabbed-details__tab-title {
                 color: $color__videos__link--tab-active;
             }
-            .o-tabbed-details__content {
+            .o-tabbed-details__tab-content {
                 h3 {
                     margin-top: 56px;
                     color: $color__videos__text--secondary;
