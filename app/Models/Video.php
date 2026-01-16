@@ -56,6 +56,7 @@ class Video extends AbstractModel
         'date' => 'date',
         'is_captioned' => 'boolean',
         'is_listed' => 'boolean',
+        'is_short' => 'boolean',
         'published' => 'boolean',
         'toggle_autorelated' => 'boolean',
         'uploaded_at' => 'datetime',

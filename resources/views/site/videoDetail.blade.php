@@ -1,18 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <article class="o-article o-article--video">
-
-        @component('components.molecules._m-article-header')
-            @slot('headerType', 'video')
-            @slot('title', $item->present()->title)
-            @slot('title_display', $item->present()->title_display)
-        @endcomponent
-
-        <div class="o-article__body o-blocks">
+    <article @class([
+        'o-article o-article--video',
+        'video-is-short' => $item->is_short,
+    ])>
+        <div class="o-article__header">
+            @component('components.molecules._m-article-header')
+                @slot('variation', $item->is_short ? 'variation--short' : 'variation--video')
+                @slot('headerType', 'video')
+                @slot('title', $item->present()->title)
+                @slot('title_display', $item->present()->title_display)
+            @endcomponent
             @component('components.molecules._m-media')
-                @slot('variation', 'o-blocks__block')
+                @slot('variation', $item->is_short ? 'variation--short' : 'variation--video')
                 @slot('item', [
                     'type' => 'embed',
                     'size' => 'l',
@@ -21,12 +22,13 @@
                         'embed' => $item->embed,
                         'medias' => $item->medias,
                     ],
-                    'poster' => $item->imageFront('hero'),
+                    'poster' => $item->is_short ? null : $item->imageFront('hero'),
                     'hideCaption' => true,
                     'fullscreen' => false,
                 ])
             @endcomponent
-
+        </div>
+        <div class="o-article__body o-blocks">
             @if ($item->heading)
                 <div class="o-article__intro">
                 @component('components.blocks._text')
@@ -36,7 +38,6 @@
                 @endcomponent
                 </div>
             @endif
-
             <x-tabbed-details :tab-count="2">
                 <x-slot name="tab1" title="Info">
                     <div class="o-article__content o-blocks">
