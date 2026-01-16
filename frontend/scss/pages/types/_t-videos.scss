@@ -1,14 +1,15 @@
+// Landing page
 section.videos {
     body:has(&) {
-        color: $color__white;
-        background-color: $color__black--81;
+        color: $color__videos__text--primary;
+        background-color: $color__videos__bg--primary;
 
         .m-header-block {
             &::before {
                 display: none;
             }
             h1.title {
-                color: $color__white;
+                color: $color__videos__text--primary;
                 font-family: $serif-font--loaded;
                 font-size: 38px;
                 font-style: normal;
@@ -19,7 +20,7 @@ section.videos {
                 text-transform: unset;
             }
             & ~ .f-intro {
-                color: $color__black--20;
+                color: $color__videos__text--tertiary;
                 font-family: $sans-serif-font--loaded;
                 font-size: 17px;
                 font-style: normal;
@@ -35,8 +36,8 @@ section.videos {
         padding-top: 140px;
     }
     .videos-subnav {
-        border-bottom: 1px solid $color__black--54;
-        border-top: 1px solid $color__black--54;
+        border-bottom: 1px solid $color__videos__rules--primary;
+        border-top: 1px solid $color__videos__rules--primary;
         overflow-x: auto;
         overflow-y: hidden;
         padding-bottom: 28px;
@@ -57,7 +58,7 @@ section.videos {
         }
 
         .m-links-bar__item>.f-link {
-            color: $color__white;
+            color: $color__videos__text--primary;
             font-family: $sans-serif-font--loaded;
             font-size: 17px;
             font-weight: 300;
@@ -86,7 +87,7 @@ section.videos {
         margin-top: 56px;
         padding-top: 20px;
         &:not(:first-child) {
-            border-top: 1px solid $color__black--54;
+            border-top: 1px solid $color__videos__rules--primary;
         }
     }
 
@@ -127,7 +128,7 @@ section.videos {
                 margin: 0;
             }
             .f-link {
-                color: $color__black--20;
+                color: $color__videos__link;
             }
         }
     }
@@ -148,7 +149,7 @@ main#content:has(.videos) {
                 margin: 0;
             }
             .f-link {
-                color: $color__black--20;
+                color: $color__videos__link;
             }
         }
         .o-grid-listing {
@@ -161,7 +162,7 @@ main#content:has(.videos) {
     }
     .o-grid-block {
         .o-grid-block__title {
-            color: $color__white;
+            color: $color__videos__text--primary;
             font-family: $serif-font--loaded;
             font-size: 38px;
             font-style: normal;
@@ -171,7 +172,7 @@ main#content:has(.videos) {
             text-transform: none;
         }
         .o-grid-block__description {
-            color: $color__black--20;
+            color: $color__videos__text--tertiary;
             font-family: $sans-serif-font--loaded;
             font-size: 17px;
             font-style: normal;
@@ -212,14 +213,14 @@ main#content:has(.videos) {
                 min-height: unset;
 
                 .title {
-                    color: $color__white;
+                    color: $color__videos__text--primary;
                     font-size: 19px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: 28px;
                 }
                 .intro {
-                    color: $color__black--20;
+                    color: $color__videos__text--tertiary;
                     font-size: 17px;
                     font-style: normal;
                     font-weight: 300;
@@ -228,7 +229,7 @@ main#content:has(.videos) {
                 }
             }
             .m-listing__img-prompt {
-                background: rgba(26, 26, 26, 0.80);
+                background: $color__videos__img--overlay;
                 font-family: $sans-serif-font--loaded;
                 font-size: 13px;
                 font-style: normal;
@@ -259,7 +260,7 @@ main#content:has(.videos) {
         }
         .f-buttons {
             background-color: transparent;
-            border: 1px solid $color__white;
+            border: 1px solid $color__videos__text--primary;
         }
 
         @include breakpoint('medium') {
@@ -275,10 +276,112 @@ main#content:has(.videos) {
         }
     }
 }
-.p-video-show body {
-    color: $color__white;
-    background-color: $color__black--81;
 
+// Detail page
+.p-video-show body {
+    color: $color__videos__text--primary;
+    background-color: $color__videos__bg--primary;
+
+    h1.title {
+        color: $color__videos__text--primary;
+        font-family: $sans-serif-font--loaded;
+        font-size: 38px;
+        font-style: normal;
+        font-weight: 300;
+        letter-spacing: -0.38px;
+        line-height: 44px;
+        text-transform: unset;
+    }
+    p.title, .f-secondary {
+        display: none;
+    }
+    .o-article__primary-actions--video {
+        min-height: unset;
+    }
+    .m-article-header {
+        gap: 40px;
+        margin-bottom: 56px !important;
+        margin-top: 56px;
+        min-height: unset;
+    }
+    .m-article-actions__action .btn--icon {
+        background-color: transparent;
+        color: $color__videos__link--accent;
+        font-family: $sans-serif-font--loaded;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 300;
+        letter-spacing: 0.17px;
+        line-height: 28px;
+
+        &::before {
+            content: 'Share';
+        }
+    }
+    .o-article__body {
+        .m-media {
+            margin-bottom: 28px;
+        }
+        .o-tabbed-details {
+            margin-top: 40px;
+
+            summary {
+                color: $color__videos__link--tab;
+                font-family: $sans-serif-font--loaded;
+                font-size: 21px;
+                font-style: normal;
+                font-weight: 325;
+                line-height: 28px;
+                letter-spacing: 1.68px;
+                text-transform: uppercase;
+                padding-bottom: 22px;
+            }
+            details[open] summary {
+                color: $color__videos__link--tab-active;
+            }
+            .o-tabbed-details__content {
+                h3 {
+                    margin-top: 56px;
+                    color: $color__videos__text--secondary;
+                    font-family: $serif-font--loaded;
+                    font-size: 31px;
+                    font-style: normal;
+                    font-weight: 300;
+                    letter-spacing: -0.31px;
+                    line-height: 40px;
+                }
+                .video-transcript {
+                    color: $color__videos__text--tertiary;
+                    font-family: $sans-serif-font--loaded;
+                    font-size: 17px;
+                    font-style: normal;
+                    font-weight: 300;
+                    letter-spacing: 0.17px;
+                    line-height: 28px;
+
+                    a {
+                        color: $color__videos__link;
+                        text-decoration: underline;
+                    }
+                    p {
+                        margin-bottom: 1em;
+                    }
+                }
+            }
+        }
+        .o-gallery {
+            background-color: unset;
+        }
+        .o-accordion {
+            h3 {
+                padding-bottom: 0;
+            }
+            button {
+                background-color: $color__videos__bg--primary;
+                color: $color__videos__text--primary;
+            }
+        }
+    }
     .o-article__related {
         display: block;
 
@@ -287,7 +390,7 @@ main#content:has(.videos) {
                 display: none;
             }
             h2.title {
-                color: $color__black--10;
+                color: $color__videos__text--secondary;
                 font-family: $sans-serif-font--loaded;
                 font-size: 21px;
                 font-style: normal;
@@ -313,17 +416,17 @@ main#content:has(.videos) {
                 min-height: unset;
 
                 .type {
-                    color: $color__black--54;
+                    color: $color__videos__text--accent;
                 }
                 .title {
-                    color: $color__white;
+                    color: $color__videos__text--primary;
                     font-size: 19px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: 28px;
                 }
                 .intro {
-                    color: $color__black--20;
+                    color: $color__videos__text--tertiary;
                     font-size: 17px;
                     font-style: normal;
                     font-weight: 300;
@@ -332,7 +435,7 @@ main#content:has(.videos) {
                 }
             }
             .m-listing__img-prompt {
-                background: rgba(26, 26, 26, 0.80);
+                background: $color__videos__img--overlay;
                 font-family: $sans-serif-font--loaded;
                 font-size: 13px;
                 font-style: normal;
