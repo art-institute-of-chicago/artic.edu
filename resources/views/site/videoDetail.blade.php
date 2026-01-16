@@ -73,7 +73,7 @@
                 @slot('behavior','dragScroll')
                 @foreach ($relatedVideos as $video)
                     @component('components.molecules._m-listing----grid-item')
-                        @slot('url', $video->video_url ?? '')
+                        @slot('url', $video->url ?? '')
                         @slot('label', $video->duration ?? '')
                         @slot('labelPosition', 'overlay')
                         @slot('tag', $video->is_short ? 'Short' : 'Video')

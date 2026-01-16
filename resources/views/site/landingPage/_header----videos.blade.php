@@ -40,7 +40,7 @@
             @slot('cols_xlarge', 6)
             @foreach ($videos as $video)
                 @component('components.molecules._m-listing----grid-item')
-                    @slot('url', $video->source_url ?? '')
+                    @slot('url', $video->url ?? '')
                     @slot('image', ['src' => $video->thumbnail_url ?? ''])
                     @slot('label', '')
                     @slot('title', $video->title ?? '')
