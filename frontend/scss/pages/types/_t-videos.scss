@@ -281,43 +281,85 @@ main#content:has(.videos) {
     main#content {
         padding-top: 140px;
     }
-    h1.title {
-        color: $color__videos__text--primary;
-        font-family: $sans-serif-font--loaded;
-        font-size: 38px;
-        font-style: normal;
-        font-weight: 300;
-        letter-spacing: -0.38px;
-        line-height: 44px;
-        text-transform: unset;
-    }
-    p.title {
-        display: none;
-    }
-    .o-article__primary-actions--video {
-        min-height: unset;
-    }
-    .m-article-header {
-        gap: 40px;
-        margin-bottom: 56px !important;
-        margin-top: 56px;
-        min-height: unset;
-    }
-    .m-article-actions__action .btn--icon {
-        background-color: transparent;
-        color: $color__videos__link--accent;
-        font-family: $sans-serif-font--loaded;
-        font-size: 17px;
-        font-style: normal;
-        font-weight: 300;
-        letter-spacing: 0.17px;
-        line-height: 28px;
+    .o-article--video {
+        &.video-is-short {
+            margin: 0 auto;
 
-        &::before {
-            content: 'Share';
+            @include breakpoint('medium+') {
+                float: left;
+                width: colspan(38, medium);
+            }
+            @include breakpoint('large+') {
+                float: none;
+                width: colspan(28, large);
+            }
+            @include breakpoint('xlarge') {
+                width: colspan(28, xlarge);
+            }
+
+            .o-article__header {
+                display: flex;
+                flex-direction: row-reverse;
+                gap: 56px;
+
+            }
+        }
+        h1.title {
+            color: $color__videos__text--primary;
+            font-family: $sans-serif-font--loaded;
+            font-size: 38px;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: -0.38px;
+            line-height: 44px;
+            text-transform: unset;
+        }
+        p.title {
+            display: none;
+        }
+        .o-article__primary-actions--video {
+            min-height: unset;
+        }
+        .m-article-header--video {
+            gap: 40px;
+            justify-content: unset;
+            margin-bottom: 56px !important;
+            margin-top: 56px;
+            min-height: unset;
+        }
+        .m-article-header--video.variation--short {
+            border-radius: 28px;
+            flex-basis: 50%;
+            margin: unset;
+            padding: unset;
+        }
+        .m-article-actions__action .btn--icon {
+            background-color: transparent;
+            color: $color__videos__link--accent;
+            font-family: $sans-serif-font--loaded;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: 0.17px;
+            line-height: 28px;
+
+            &::before {
+                content: 'Share';
+            }
+        }
+        .m-media.variation--short {
+            aspect-ratio: 2 / 3;
+            flex-basis: 50%;
+
+            .m-media__img--embed {
+                border-radius: 28px;
+                height: 120%;
+            }
         }
     }
     .o-article__body {
+        flex-basis: 100%;
+
         .m-media {
             margin-bottom: 28px;
         }

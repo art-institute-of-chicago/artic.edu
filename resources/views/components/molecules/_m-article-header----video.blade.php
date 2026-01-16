@@ -1,4 +1,4 @@
-<{{ $tag ?? 'header' }} class="m-article-header m-article-header--default{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'header' }} class="m-article-header m-article-header--video{{ (isset($variation)) ? ' '.$variation : '' }}">
     @if (!empty($title))
         @component('components.atoms._title')
             @slot('tag','h1')
