@@ -22,6 +22,12 @@ class EventController extends BaseController
         $this->setPreviewView('site.events.detail');
     }
 
+    /**
+     * Twill has trouble ordering items by a column on related items.
+     * We need to order `events` by their next occurrence (`event_metas`).
+     * We will override the index function so it works the same in all
+     * respects except item order.
+     */
     protected function additionalIndexTableColumns(): TableColumns
     {
         $columns = new TableColumns();
@@ -44,36 +50,6 @@ class EventController extends BaseController
 
         return $columns;
     }
-
-    /**
-     * Twill has trouble ordering items by a column on related items.
-     * We need to order `events` by their next occurrence (`event_metas`).
-     * We will override the index function so it works the same in all
-     * respects except item order.
-     */
-    // protected function orderScope(): array
-    // {
-    //     $orders = [];
-
-    //     if ($this->request->has('sortKey') && $this->request->has('sortDir')) {
-    //         if ($this->request->get('sortKey') === 'formattedNextOccurrence') {
-    //             $orders['formattedNextOccurrence'] = [
-    //                 'callback' => function (Builder $builder, string $direction) {
-    //                     return $builder->orderBy(DB::raw('(
-    //                         SELECT date
-    //                         FROM event_metas
-    //                         WHERE event_metas.event_id = events.id
-    //                         ORDER BY date
-    //                         LIMIT 1
-    //                     )'), $direction);
-    //                 },
-    //                 'direction' => $this->request->get('sortDir') ?? 'desc',
-    //             ];
-    //         }
-    //     }
-
-    //     return $orders + parent::orderScope();
-    // }
 
     protected function indexData($request)
     {
