@@ -38,14 +38,14 @@ class EventController extends BaseController
                 ->sortable()
                 ->sortByDefault(true, 'desc')
                 ->order(function (Builder $builder, string $direction) {
-                        return $builder->orderBy(DB::raw('(
+                    return $builder->orderBy(DB::raw('(
                             SELECT date
                             FROM event_metas
                             WHERE event_metas.event_id = events.id
                             ORDER BY date
                             LIMIT 1
                         )'), $direction);
-                    })
+                })
         );
 
         return $columns;
