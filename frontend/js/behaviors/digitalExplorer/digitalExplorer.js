@@ -11,12 +11,8 @@ export default function digitalExplorer(container) {
     try {
       // Extract JSON from script tag, following closer-look pattern
       const contentBundleScript = document.querySelector('[data-digitalExplorer-contentBundle]');
+      explorerData = contentBundleScript ? JSON.parse(contentBundleScript.innerHTML) : {};
 
-      if (!contentBundleScript) {
-        explorerData = {};
-      } else {
-        explorerData = JSON.parse(contentBundleScript.innerHTML);
-      }
     } catch (e) {
       explorerData = {};
     }
