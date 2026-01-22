@@ -8,14 +8,8 @@ export default function digitalExplorer(container) {
   function _init() {
     let explorerData;
 
-    try {
-      // Extract JSON from script tag, following closer-look pattern
-      const contentBundleScript = document.querySelector('[data-digitalExplorer-contentBundle]');
-      explorerData = contentBundleScript ? JSON.parse(contentBundleScript.innerHTML) : {};
-
-    } catch (e) {
-      explorerData = {};
-    }
+    const contentBundleScript = document.querySelector('[data-digitalExplorer-contentBundle]');
+    explorerData = contentBundleScript ? JSON.parse(contentBundleScript.innerHTML) : {};
 
     // Store in window for debugging (optional, like closer-look does)
     window.digitalExplorer = explorerData;
