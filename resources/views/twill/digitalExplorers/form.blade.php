@@ -86,7 +86,7 @@
 
     </x-twill::formFieldset>
 
-        <x-twill::formFieldset title="Info Card" id="title-slide">
+        <x-twill::formFieldset title="Info Card" id="info-card">
 
         <x-twill::wysiwyg
             name='info_title'
