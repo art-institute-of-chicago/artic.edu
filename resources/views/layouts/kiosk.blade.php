@@ -20,7 +20,7 @@
     @include('partials._head-js')
 
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
-
+{{--
     <style>
         *, *:before, *:after {
             margin: 0;
@@ -34,7 +34,7 @@
         @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_0_0.woff2')}}) format('woff2');font-weight:normal;font-weight:400;font-style:normal;}
         @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_1_0.woff2')}}) format('woff2');font-weight:normal;font-weight:400;font-style:italic;}
         @font-face {font-family: 'Sabon';src: url({{FrontendHelpers::revAsset('fonts/3545D5_2_0.woff2')}}) format('woff2');font-weight:normal;font-weight:500;font-style:normal;}
-    </style>
+    </style> --}}
 
     {{-- Allow views to inject additional head content --}}
     @stack('head')

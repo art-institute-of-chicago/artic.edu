@@ -89,7 +89,7 @@ module.exports = async () => {
         'react': path.resolve(__dirname, 'node_modules/react'),
         'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
         'plyr$': path.resolve(__dirname, 'node_modules/plyr/dist/plyr.js'),
-        'digital-explorer': path.resolve(__dirname, '../explorer/dist/digitalExplorer.cjs')      },
+        'digital-explorer': path.resolve(__dirname, '../explorer/dist/digitalExplorer.cjs')},
       modules: ['node_modules', path.resolve(__dirname, 'node_modules'),   path.resolve(__dirname, '../explorer/node_modules')],
     },
     plugins: [

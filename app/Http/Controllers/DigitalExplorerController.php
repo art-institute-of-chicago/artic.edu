@@ -35,7 +35,7 @@ class DigitalExplorerController extends FrontController
         $explorerData = $this->transformExplorer($digitalExplorer);
 
         return view('site.digitalExplorerDetail', [
-            'contrastHeader' => true,
+            'contrastHeader' => false,
             'explorer' => $digitalExplorer,
             'explorerData' => $explorerData
         ]);
@@ -57,6 +57,12 @@ class DigitalExplorerController extends FrontController
             'title_data' => [
               'title_media' => $digitalExplorer->image('title_media'),
               'title_display' => $digitalExplorer->title_display
+            ],
+
+            'info_card_data' => [
+              'info_title' => $digitalExplorer->info_title,
+              'info_description' => $digitalExplorer->info_description,
+              'info_credits' => $digitalExplorer->info_credits,
             ],
 
             'settings' => [
@@ -108,7 +114,7 @@ class DigitalExplorerController extends FrontController
                 $data['content'] = array_merge($data['content'], [
                     'position' => $this->parseCoordinates($block->input('coordinate'), [0, 0, 0]),
                     'rotation' => $this->parseCoordinates($block->input('rotation'), [0, 0, 0]),
-                    'scale' => $this->parseScale($block->input('scale'), 1.0),
+                    'scale' => $this->parseScale($block->input('scale'), 0.1),
                     'annotationColor' => $block->input('color') ?: '#4ecdc4',
                     'annotationSize' => floatval($block->input('scale') ?: 0.5),
                     'annotationTarget' => $block->input('annotationTarget'),
