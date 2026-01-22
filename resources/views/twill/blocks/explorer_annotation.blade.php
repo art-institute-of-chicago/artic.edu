@@ -78,6 +78,7 @@ $blocks = BlockHelpers::getBlocksForEditor([
     'split_block',
     'timeline',
     'video',
+    '360_embed'
 ]);
 @endphp
 
