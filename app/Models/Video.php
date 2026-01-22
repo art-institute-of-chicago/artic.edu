@@ -154,23 +154,10 @@ class Video extends AbstractModel
         return EmbedConverterFacade::convertUrl($this->video_url);
     }
 
-    /**
-     * Generates the id-slug type of URL
-     */
-    public function getRouteKeyName()
-    {
-        return 'id_slug';
-    }
-
-    public function getIdSlugAttribute()
-    {
-        return join('-', [$this->id, $this->getSlug()]);
-    }
-
     public function getUrlWithoutSlugAttribute()
     {
         // Workaround for the CMS, should be moved away from the model
-        return join([route('videos.show', ['id' => $this->id])]);
+        return join([route('videos.show', ['video' => $this])]);
     }
 
     public function getAdminEditUrlAttribute()
@@ -180,7 +167,7 @@ class Video extends AbstractModel
 
     public function getUrlAttribute()
     {
-        return route('videos.show', ['id' => $this->id, 'slug' => $this->getSlug()], false);
+        return route('videos.show', ['video' => $this, 'slug' => $this->getSlug()], false);
     }
 
     public function getTypeAttribute()
