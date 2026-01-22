@@ -75,7 +75,35 @@
         <x-twill::wysiwyg
             name='title_display'
             label='Title Text'
-            note='Text to display next to the annotation'
+            note='Title of the Explorer'
+        />
+
+        <x-twill::wysiwyg
+            name='title_description'
+            label='Title Description'
+            note='Brief description of the explorer'
+        />
+
+    </x-twill::formFieldset>
+
+        <x-twill::formFieldset title="Info Card" id="title-slide">
+
+        <x-twill::wysiwyg
+            name='info_title'
+            label='Title'
+            note='Title on the info card'
+        />
+
+        <x-twill::wysiwyg
+            name='info_description'
+            label='Description'
+            note='Description of the explorer'
+        />
+
+        <x-twill::wysiwyg
+            name='info_credits'
+            label='Credits'
+            note='Credit fields on the explorer'
         />
 
     </x-twill::formFieldset>

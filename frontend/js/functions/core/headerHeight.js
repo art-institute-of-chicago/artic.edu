@@ -7,7 +7,7 @@ const headerHeight = function() {
 
     a17.style['padding-top'] = null;
 
-    if (header.getElementsByClassName('m-notification--header').length < 1)
+    if (!header || header.getElementsByClassName('m-notification--header').length < 1)
     {
       return null;
     }
