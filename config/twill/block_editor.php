@@ -274,6 +274,6 @@ return [
         'playlist_grid',
         'explorer_annotation',
         'explorer_light',
-        'explorer_model'
+        'explorer_model',
     ]
 ];
