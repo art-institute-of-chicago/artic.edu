@@ -211,6 +211,12 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
+
+
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
 
         $artworks = $this->collection()->perPage(self::ARTWORKS_PER_PAGE)->results();
@@ -252,6 +258,11 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
+
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $exhibitions = $this->exhibitionsRepository->searchApi(request('q'), self::EXHIBITIONS_PER_PAGE, request('time'));
 
@@ -267,6 +278,11 @@ class SearchController extends BaseScopedController
     public function interactiveFeatures()
     {
         $this->seo->setTitle('Search');
+
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $interactiveFeatures = $this->interactiveFeatureRepository->search(request('q'))->paginate(self::INTERACTIVEFEATURES_PER_PAGE);
@@ -284,6 +300,11 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
+
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $highlights = $this->highlightRepository->searchApi(request('q'), self::HIGHLIGHTS_PER_PAGE);
 
@@ -299,6 +320,11 @@ class SearchController extends BaseScopedController
     public function artists()
     {
         $this->seo->setTitle('Search');
+
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $artists = $this->artistsRepository->forSearchQuery(request('q'), self::ARTISTS_PER_PAGE);
@@ -316,6 +342,11 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
+
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $articles = $this->articlesRepository->searchApi(request('q'), self::ARTICLES_PER_PAGE);
 
@@ -331,6 +362,11 @@ class SearchController extends BaseScopedController
     public function events()
     {
         $this->seo->setTitle('Search');
+
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $events = $this->eventsRepository->searchApi(request('q'), self::EVENTS_PER_PAGE);
@@ -348,6 +384,11 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
+
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $pages = $this->pagesRepository->searchApi(request('q'), self::PAGES_PER_PAGE);
 
@@ -363,6 +404,11 @@ class SearchController extends BaseScopedController
     public function educatorResources()
     {
         $this->seo->setTitle('Search');
+
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $educatorResources = $this->educatorResourceRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
@@ -380,6 +426,11 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
+
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $press = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
 
@@ -395,6 +446,11 @@ class SearchController extends BaseScopedController
     public function publications()
     {
         $this->seo->setTitle('Search');
+
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $publications = $this->publicationsRepository->searchApi(request('q'), self::PUBLICATIONS_PER_PAGE);
