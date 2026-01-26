@@ -43,6 +43,11 @@ class ExhibitionHistoryController extends FrontController
 
         $this->seo->setTitle(implode(', ', $titles));
 
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
+
         $viewData = [
             'page' => $page,
             'years' => $years,

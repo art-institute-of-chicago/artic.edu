@@ -96,6 +96,7 @@ class CollectionController extends BaseScopedController
 
         $this->seo->setDescription($description);
         $this->seo->nofollow = $this->setNofollowMeta();
+        $this->seo->noindex = $this->setNofollowMeta();
 
         $featuredItems = $page->getRelatedWithApiModels(
             'featured_items',
@@ -167,6 +168,10 @@ class CollectionController extends BaseScopedController
      */
     protected function setNofollowMeta()
     {
+        if (request('q')) {
+            return true;
+        }
+
         $count = count(request()->input());
 
         if ($count > 1) {
