@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (isset($playlist))
+        <div class="playlist-title">
+            Playlist: {{ $playlist->title }}
+        </div>
+        @component('components.atoms._hr')@endcomponent
+    @endif
     <article @class([
         'o-article o-article--video',
         'video-is-short' => $item->is_short,
@@ -22,11 +28,17 @@
                         'embed' => $item->embed,
                         'medias' => $item->medias,
                     ],
-                    'poster' => $item->is_short ? null : $item->imageFront('hero'),
+                    'poster' => $item->is_short ? null : ($item->imageFront('hero') ?? $item->thumbnail_url),
                     'hideCaption' => true,
                     'fullscreen' => false,
                 ])
             @endcomponent
+            @if (isset($playlist))
+                @component('components.organisms._o-playlist')
+                    @slot('playlist', $playlist)
+                    @slot('currentVideo', $item)
+                @endcomponent
+            @endif
         </div>
         <div class="o-article__body o-blocks">
             @if ($item->heading)
@@ -51,7 +63,7 @@
                         <h3>Transcript</h3>
                         {!! $transcript !!}
                     @else
-                        <p>Sorry, the transcript for this video is not yet available</p>
+                        <p class="video-transcript">Sorry, the transcript for this video is not yet available</p>
                     @endif
                 </x-slot>
             </x-tabbed-details>
