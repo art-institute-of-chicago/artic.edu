@@ -90,6 +90,11 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
+        if (request('q')) {
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
+        }
+
         // General search to get featured elements and general metadata.
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $links = $this->buildSearchLinks($general, 'all');
