@@ -535,59 +535,19 @@ main#content:has(.videos) {
     }
     .o-playlist {
         background-color: $color__videos__text--title;
-        display: flex;
-        grid-column: 2;
-        grid-row: 1;
-        overflow: scroll;
-        padding: 16px 28px 0 16px;
-        max-height: 50vh;
 
-        .o-playlist__videos {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+        .playlist-video .current-video {
+            background-color: $color__videos__bg--selected;
         }
-        .playlist-video {
-            width: 100%;
-
-            &.current-video {
-                background-color: $color__videos__bg--selected;
-            }
-            .m-listing__link {
-                align-items: flex-start;
-                align-self: stretch;
-                display: flex;
-                flex-flow: row;
-                gap: 13px;
-                padding: 12px;
-            }
-            .m-listing__img {
-                width: 100px;
-            }
-            .m-listing__meta {
-                flex: unset;
-                flex-flow: unset;
-                min-height: inherit;
-
-            }
-            .m-listing__meta .title {
-                align-self: stretch;
-                color: $color__videos__text--secondary;
-                flex: 1 0 0;
-                font-family: $sans-serif-font--loaded;
-                font-size: 15px;
-                font-style: normal;
-                font-weight: 325;
-                letter-spacing: 0.15px;
-                line-height: 20px;
-                margin: unset;
-                overflow: hidden;
-                text-overflow: ellipsis;
-
-                &::before {
-                    display: none;
-                }
-            }
+        .m-listing__meta .title {
+            color: $color__videos__text--secondary;
+            font-family: $sans-serif-font--loaded;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 325;
+            letter-spacing: 0.15px;
+            line-height: 20px;
+            text-overflow: ellipsis;
         }
     }
     .o-article__body {
