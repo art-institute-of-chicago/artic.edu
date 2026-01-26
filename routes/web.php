@@ -50,7 +50,7 @@ Route::group([
     'allowed_query_params' => [
         'id',
         'model',
-    ],
+    ]
 ], function () {
     Route::get('/ajaxData', [FrontController::class, 'getAjaxData']);
 });
@@ -93,7 +93,7 @@ Route::group([
         'subject_ids',
         'technique_ids',
         'theme_ids',
-    ],
+    ]
 ], function () {
     Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
 });
@@ -130,7 +130,7 @@ Route::group([
         'topic',
         'locale',
         'filter',
-    ],
+    ]
 ], function () {
     Route::get('/educator-resources', [EducatorResourcesController::class, 'index'])->name('collection.resources.educator-resources');
     Route::get('/educator-resources/{id}/{slug?}', [EducatorResourcesController::class, 'show'])->name('collection.resources.educator-resources.show');
@@ -168,7 +168,7 @@ Route::group([
         'time',
         'start',
         'end',
-    ],
+    ]
 ], function () {
     Route::get('/events', [EventsController::class, 'index'])->name('events');
 });
@@ -208,7 +208,7 @@ Route::group([
     'middleware' => [SanitizeQueryParameters::class],
     'allowed_query_params' => [
         'year',
-    ],
+    ]
 ], function () {
     Route::get('exhibitions/history', [ExhibitionHistoryController::class, 'index'])->name('exhibitions.history');
 });
@@ -282,7 +282,7 @@ Route::group([
     'middleware' => [SanitizeQueryParameters::class],
     'allowed_query_params' => [
         'tourCreationComplete',
-    ],
+    ]
 ], function () {
     Route::get('/my-museum-tour/{id}', [MyMuseumTourController::class, 'show'])->name('my-museum-tour.show');
 });
@@ -299,7 +299,7 @@ Route::group([
     'allowed_query_params' => [
         'filter',
         'sort',
-    ],
+    ]
 ], function () {
     Route::get('{slug}', [GenericPagesController::class, 'show'])->where('slug', '.*')->name('pages.slug');
 });
