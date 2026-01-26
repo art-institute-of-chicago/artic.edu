@@ -18,8 +18,10 @@ class VideoController extends FrontController
 
     public function show(Video $video, $slug = null)
     {
+        if (!$video->published) {
+            abort(404);
+        }
         $canonicalPath = route('videos.show', ['video' => $video, 'slug' => $video->getSlug()]);
-
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
