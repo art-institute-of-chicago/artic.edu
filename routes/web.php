@@ -26,6 +26,8 @@ use App\Http\Controllers\MagazineIssueController;
 use App\Http\Controllers\MiradorController;
 use App\Http\Controllers\MyMuseumTourController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\PlaylistVideoController;
 use App\Http\Controllers\PressReleasesController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\PrintedPublicationsController;
@@ -61,7 +63,6 @@ Route::group([
 ], function () {
     Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
 });
-
 
 // Collection routes
 Route::group([
@@ -188,7 +189,12 @@ Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index'
 Route::get('/authors/{id}/{slug?}', [AuthorController::class, 'show'])->name('authors.show');
 
 // Videos routes
-Route::get('/videos/{id}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
+Route::get('/videos/{video}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
+Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
+Route::get(
+    '/playlists/{playlist}/videos/{video}/{slug?}',
+    [PlaylistVideoController::class, 'show'],
+)->scopeBindings()->name('playlists.videos.show');
 
 // Mirador kiosk routes
 Route::get('mirador', function () {
