@@ -513,24 +513,65 @@ main#content:has(.videos) {
     }
     .o-article__header {
         display: grid;
-        grid-template-columns: 2fr 1fr;
 
-        .m-article-header--video.variation--video {
-            gap: 32px;
-            grid-column: 1 / span 2;
-            grid-row: 2;
-        }
-        .m-media.variation--video {
-            grid-column: 1;
-            grid-row: 1;
-            margin: 0;
+        @include breakpoint('large+') {
+            grid-template-columns: 2fr 1fr;
 
-            .m-media__img--embed {
-                height: 50vh;
+            .m-media.variation--video {
+                grid-column: 1;
+                grid-row: 1;
+                margin: 0;
+
+                .m-media__img--embed {
+                    height: 50vh;
+                }
+                .m-listing__img {
+                    width: 33%;
+                }
+            }
+            .o-playlist {
+                grid-column: 2;
+                grid-row: 1;
+                max-height: 50vh;
+            }
+            .m-article-header--video.variation--video {
+                gap: 32px;
+                grid-column: 1 / span 2;
+                grid-row: 2;
             }
         }
-        .m-listing__img {
-            width: 33%;
+        @each $name in ('small', 'medium') {
+            @include breakpoint('#{$name}') {
+                grid-template-columns: 1fr 1fr;
+
+                .m-media.variation--video {
+                    grid-column: 1 / span 2;
+                    grid-row: 1;
+                }
+                .m-article-header--video.variation--video {
+                    grid-column: 1;
+                    grid-row: 2;
+                    margin-bottom: 34px !important;
+                    margin-top: 34px;
+                }
+                .o-playlist {
+                    grid-column: 2;
+                    grid-row: 2;
+                    max-height: 25vh;
+                }
+            }
+        }
+        @include breakpoint('xsmall') {
+            grid-template-columns: 1fr;
+
+            .m-article-header--video.variation--video {
+                grid-row: 3;
+                margin-bottom: 34px !important;
+                margin-top: 34px;
+            }
+            .o-playlist {
+                max-height: 25vh;
+            }
         }
     }
     .o-playlist {
