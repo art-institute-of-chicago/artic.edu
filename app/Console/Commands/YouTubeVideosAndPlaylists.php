@@ -81,12 +81,15 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         foreach ($sourceIds->chunk(YouTubeService::ITEMS_PER_REQUEST) as $chunkOfSourceIds) {
             $sourceVideos = $this->youtube->videosByIds($chunkOfSourceIds, $fields);
             foreach ($sourceVideos as $source) {
+                $thumbnail = $this->highestResolutionThumbnail($source['snippet']['thumbnails']);
                 $video = Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id'])->fill([
                     'title' => $source['snippet']['title'],
                     'description' => $source['snippet']['description'],
                     'uploaded_at' => $source['snippet']['publishedAt'],
                     'duration' => $this->convertDuration($source['contentDetails']['duration']),
-                    'thumbnail_url' => $this->highestResolutionThumbnail($source['snippet']['thumbnails']),
+                    'thumbnail_url' => $thumbnail['url'],
+                    'thumbnail_height' => $thumbnail['height'],
+                    'thumbnail_width' => $thumbnail['width'],
                     'is_captioned' => $source['contentDetails']['caption'],
                     'privacy' => $source['status']['privacyStatus'],
                 ]);
@@ -124,12 +127,15 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         $progress?->start();
         foreach ($this->youtube->playlists(fields: 'items(id,snippet(title,thumbnails/high/url))') as $sourcePlaylist) {
             $playlistId = $sourcePlaylist['id'];
+            $thumbnail = $this->highestResolutionThumbnail($sourcePlaylist['snippet']['thumbnails']);
             $playlist = Playlist::updateOrCreate(
                 ['youtube_id' =>  $playlistId],
                 [
                     'youtube_id' =>  $playlistId,
                     'title' => $sourcePlaylist['snippet']['title'],
-                    'thumbnail_url' => $sourcePlaylist['snippet']['thumbnails']['high']['url'],
+                    'thumbnail_url' => $thumbnail['url'],
+                    'thumbnail_height' => $thumbnail['height'],
+                    'thumbnail_width' => $thumbnail['width'],
                 ],
             );
             $fields = 'items(id,snippet(resourceId/videoId,position))';
@@ -174,14 +180,14 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
     /**
      * Retrieve the highest resolution thumbnail of those provided.
      */
-    private function highestResolutionThumbnail($thumbnails): string
+    private function highestResolutionThumbnail(array $thumbnails): array
     {
         $resolutions = ['maxres', 'standard', 'high'];
         foreach ($resolutions as $resolution) {
             if (isset($thumbnails[$resolution])) {
-                return $thumbnails[$resolution]['url'];
+                return $thumbnails[$resolution];
             }
         }
-        return '';
+        return ['url' => null, 'height' => null, 'width' => null];
     }
 }

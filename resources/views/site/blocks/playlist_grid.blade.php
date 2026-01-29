@@ -50,13 +50,13 @@
             @php
                 $videoThumbnails = $playlist->videos()
                     ->get()
-                    ->mapWithKeys(fn($video, $key) => ['src' => $video->thumbnail_url]);
+                    ->mapWithKeys(fn($video, $key) => ImageHelpers::youtubeItemAsArray($video));
                 $videoCount = $playlist->videos()->count();
             @endphp
             @component('components.molecules._m-listing----playlist-grid-item')
-                @slot('url', $playlist->source_url)
+                @slot('url', route('playlists.show', ['playlist' => $playlist]))
                 {{-- @slot('images', $videoThumbnails) --}}
-                @slot('image', ['src' => $playlist->thumbnail_url])
+                @slot('image', ImageHelpers::youtubeItemAsArray($playlist))
                 @slot('label', "$videoCount videos")
                 @slot('labelPosition', 'overlay')
                 @slot('title', $playlist->title)
