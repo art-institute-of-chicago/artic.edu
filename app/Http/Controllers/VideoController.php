@@ -168,7 +168,6 @@ class VideoController extends FrontController
             ];
         }
 
-        // TODO
         if (request('category') || request('duration')) {
             if (in_array(request()->query('category'), ['videos', 'shorts', 'playlists'], true)) {
                 $cat = Str::ucfirst(request()->query('category'));
