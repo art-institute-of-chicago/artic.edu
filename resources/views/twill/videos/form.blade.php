@@ -175,7 +175,7 @@
         <x-twill::formColumns>
             <x-slot:left>
                 <x-twill::input
-                    name='duration'
+                    name='duration_display'
                     label='Duration'
                     disabled='true'
                 />
