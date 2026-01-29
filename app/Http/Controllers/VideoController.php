@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\StringHelpers;
+use App\Models\Playlist;
 use App\Models\Video;
+use App\Models\VideoCategory;
 use App\Repositories\VideoRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Str;
 
 class VideoController extends FrontController
 {
+    public const VIDEOS_PER_PAGE = 12;
+
     protected $repository;
 
     public function __construct(VideoRepository $repository)
@@ -48,6 +54,143 @@ class VideoController extends FrontController
             'contrastHeader' => true,
             'unstickyHeader' => true,
             'canonicalUrl' => $canonicalPath,
+        ]);
+    }
+
+    public function index()
+    {
+        $this->seo->setTitle('Videos');
+
+        $videos = Video::published()
+            ->byDuration(request('duration'))
+            ->byVideoCategories(filter_var(request('category'), FILTER_VALIDATE_INT) !== false ? (int) request('category') : null)
+            ->where('is_short', false)
+            ->orderBy('uploaded_at', 'desc')
+            ->get()->map(function ($video) {
+                $video->sort_date = $video->uploaded_at;
+                return $video;
+            });
+
+        $shorts = Video::published()
+            ->byDuration(request('duration'))
+            ->byVideoCategories(filter_var(request('category'), FILTER_VALIDATE_INT) !== false ? (int) request('category') : null)
+            ->where('is_short', true)
+            ->orderBy('uploaded_at', 'desc')
+            ->get()->map(function ($video) {
+                $video->sort_date = $video->uploaded_at;
+                return $video;
+            });
+
+        $playlists = Playlist::published()
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        if (request('category') == 'videos') {
+            $items = $videos;
+        } elseif (request('category') == 'shorts') {
+            $items = $shorts;
+        } elseif (request('category') == 'playlists') {
+            $items = $playlists;
+        } else {
+            $items = $videos->concat($shorts);
+            if (!request('duration')) {
+                $items = $items->concat($playlists);
+            }
+        }
+        $items = $items->sortByDesc('sort_date');
+
+        $videosCount = $items->count();
+
+        $perPage = self::VIDEOS_PER_PAGE;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = $items->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $paginator = new LengthAwarePaginator($currentItems, count($items), $perPage, $currentPage, ['path' => LengthAwarePaginator::resolveCurrentPath()]);
+
+        $videos = $paginator;
+
+        $categories = [
+            [
+                'label' => 'All categories',
+                'href' => route('videos.archive', ['duration' => request()->query('duration')]),
+                'active' => empty(request()->query('category')),
+                'ajaxScrollTarget' => 'listing',
+            ],
+            [
+                'label' => 'Videos',
+                'href' => route('videos.archive', ['category' => 'videos', 'duration' => request()->query('duration')]),
+                'active' => request()->query('category') === 'videos',
+                'ajaxScrollTarget' => 'listing',
+            ],
+            [
+                'label' => 'Shorts',
+                'href' => route('videos.archive', ['category' => 'shorts', 'duration' => request()->query('duration')]),
+                'active' => request()->query('category') === 'shorts',
+                'ajaxScrollTarget' => 'listing',
+            ],
+            [
+                'label' => 'Playlists',
+                'href' => route('videos.archive', ['category' => 'playlists', 'duration' => request()->query('duration')]),
+                'active' => request()->query('category') === 'playlists',
+                'ajaxScrollTarget' => 'listing',
+            ],
+        ];
+
+        foreach (VideoCategory::all() as $cat) {
+            array_push(
+                $categories,
+                [
+                    'label' => $cat->title,
+                    'href' => route('videos.archive', ['category' => $cat->id, 'duration' => request()->query('duration')]),
+                    'active' => request()->query('category') === $cat->id,
+                    'ajaxScrollTarget' => 'listing',
+                ]
+            );
+        }
+
+        $durations = [
+            [
+                'label' => 'Any duration',
+                'href' => route('videos.archive', ['category' => request()->query('category')]),
+                'active' => empty(request()->query('duration')),
+                'ajaxScrollTarget' => 'listing',
+            ],
+        ];
+
+        foreach (Video::$durations as $value => $label) {
+            $durations[] = [
+                'label' => $label,
+                'href' => route('videos.archive', ['category' => request()->query('category'), 'duration' => $value]),
+                'active' => request()->query('duration') === $value,
+                'ajaxScrollTarget' => 'listing',
+            ];
+        }
+
+        // TODO
+        if (request('category') || request('duration')) {
+            if (in_array(request()->query('category'), ['videos', 'shorts', 'playlists'], true)) {
+                $cat = Str::ucfirst(request()->query('category'));
+            }
+            else {
+                $cat = VideoCategory::where('id', request()->query('category'))->pluck('name')->first();
+            }
+            $dur = Video::$durations[request()->query('duration')] ?? '';
+            $titles = array_filter([
+                'Videos',
+                $cat,
+                $dur,
+                request('page') ? 'Page ' . request('page') : null,
+            ]);
+            $this->seo->setTitle(implode(', ', $titles));
+        } else {
+            $this->seo->setTitle('Articles');
+        }
+
+        return view('site.videos', [
+            'primaryNavCurrent' => 'collection',
+            'videos' => $videos,
+            'videosCount' => $videosCount,
+            'categories' => $categories,
+            'durations' => $durations,
         ]);
     }
 }

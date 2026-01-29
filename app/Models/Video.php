@@ -95,6 +95,25 @@ class Video extends AbstractModel
         'title',
     ];
 
+    public const SHORT = 'short';
+    public const MEDIUM = 'medium';
+    public const LONG = 'long';
+    public const EXTRA_LONG = 'extra-long';
+
+    public static $durations = [
+        self::SHORT => 'Under 1 minute',
+        self::MEDIUM => '1–5 minutes',
+        self::LONG => '5–20 minutes',
+        self::EXTRA_LONG => 'Over 20 minutes',
+    ];
+
+    public static $durationLengths = [
+        self::SHORT => [0, 60],
+        self::MEDIUM => [60, 300],
+        self::LONG => [300, 1200],
+        self::EXTRA_LONG => [1200, null],
+    ];
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'video_category');
@@ -145,6 +164,33 @@ class Video extends AbstractModel
         return $query->whereHas('categories', function ($query) use ($categories) {
             $query->whereIn('category_id', is_array($categories) ? $categories : [$categories]);
         });
+    }
+
+    public function scopeByVideoCategories($query, $videoCategories = null): Builder
+    {
+        if (empty($videoCategories)) {
+            return $query;
+        }
+
+        return $query->whereHas('videoCategories', function ($query) use ($videoCategories) {
+            $query->whereIn('video_category_id', is_array($videoCategories) ? $videoCategories : [$videoCategories]);
+        });
+    }
+
+    public function scopeByDuration($query, $duration = null): Builder
+    {
+        if (empty($duration) || !array_key_exists($duration, static::$durationLengths)) {
+            return $query;
+        }
+
+        $values = static::$durationLengths[$duration];
+
+        if ($values[1]) {
+            return $query->whereBetween('duration', $values);
+        }
+        else {
+            return $query->where('duration', '>', $values[0]);
+        }
     }
 
     public function scopeByPlaylists($query, $playlistIds = []): Builder
