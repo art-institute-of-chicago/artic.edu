@@ -83,7 +83,10 @@ class VideoController extends FrontController
 
         $playlists = Playlist::published()
             ->orderBy('updated_at', 'desc')
-            ->get();
+            ->get()->map(function ($video) {
+                $video->sort_date = $video->update_at;
+                return $video;
+            });
 
         if (request('category') == 'videos') {
             $items = $videos;
