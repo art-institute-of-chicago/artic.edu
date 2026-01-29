@@ -3,11 +3,29 @@
 namespace App\Helpers;
 
 use A17\Twill\Services\MediaLibrary\ImageService;
+use App\Models\Playlist;
+use App\Models\Video;
 use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
 
 class ImageHelpers
 {
+    /**
+     * Convert a YouTube Video or Playlist into an image array.
+     */
+    public static function youtubeItemAsArray(Video|Playlist $item)
+    {
+        return [
+            'src' => $item->thumbnail_url,
+            'height' => $item->thumbnail_height,
+            'width' => $item->thumbnail_width,
+            // The below are left empty for compatibility
+            'alt' => null,
+            'caption' => null,
+            'video' => null,
+        ];
+    }
+
     /**
      * Get the UUID of a media library asset
      * `uuid` represents the full S3 path, but we only want the UUID
