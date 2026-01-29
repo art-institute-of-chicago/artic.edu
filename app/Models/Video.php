@@ -187,8 +187,7 @@ class Video extends AbstractModel
 
         if ($values[1]) {
             return $query->whereBetween('duration', $values);
-        }
-        else {
+        } else {
             return $query->where('duration', '>', $values[0]);
         }
     }
