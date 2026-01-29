@@ -185,7 +185,7 @@ class VideoController extends FrontController
             ]);
             $this->seo->setTitle(implode(', ', $titles));
         } else {
-            $this->seo->setTitle('Articles');
+            $this->seo->setTitle('Videos');
         }
 
         return view('site.videos', [
