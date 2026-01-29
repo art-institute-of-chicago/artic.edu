@@ -180,7 +180,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
     /**
      * Retrieve the highest resolution thumbnail of those provided.
      */
-    private function highestResolutionThumbnail(array $thumbnails): array
+    private function highestResolutionThumbnail($thumbnails): array
     {
         $resolutions = ['maxres', 'standard', 'high'];
         foreach ($resolutions as $resolution) {
