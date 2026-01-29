@@ -72,7 +72,7 @@
             @component('components.molecules._m-listing----grid-item')
                 @slot('url', $video->url ?? '')
                 @slot('image', ['src' => $video->thumbnail_url ?? ''])
-                @slot('label', $video->duration ?? '')
+                @slot('label', $video->duration_display ?? '')
                 @slot('labelPosition', 'overlay')
                 @slot('title', $video->title ?? '')
                 @slot('description', $showDescription ? StringHelpers::truncateStr($video->description) : '')

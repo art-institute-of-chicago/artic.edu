@@ -87,6 +87,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                     'description' => $source['snippet']['description'],
                     'uploaded_at' => $source['snippet']['publishedAt'],
                     'duration' => $this->convertDuration($source['contentDetails']['duration']),
+                    'duration_display' => $this->convertDurationDisplay($source['contentDetails']['duration']),
                     'thumbnail_url' => $thumbnail['url'],
                     'thumbnail_height' => $thumbnail['height'],
                     'thumbnail_width' => $thumbnail['width'],
@@ -165,7 +166,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
     /**
      * Convert a duration from 'PT1H1M1S' to '1:01:01'.
      */
-    private function convertDuration(string $durationSpec): string
+    private function convertDurationDisplay(string $durationSpec): string
     {
         $interval = new \DateInterval($durationSpec);
         $format = '%S';

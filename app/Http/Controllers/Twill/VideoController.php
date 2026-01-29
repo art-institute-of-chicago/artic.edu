@@ -129,7 +129,7 @@ class VideoController extends BaseController
         $columns = TableColumns::make();
         $columns->add(
             Text::make()
-                ->field('duration')
+                ->field('duration_display')
         );
         $columns->add(
             Text::make()
