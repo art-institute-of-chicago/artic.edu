@@ -6,6 +6,7 @@ use App\Models\Playlist;
 use App\Models\Video;
 use App\Services\YouTube\YouTubeService;
 use Illuminate\Support\Collection;
+use Carbon\CarbonInterval;
 
 class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
 {
@@ -179,15 +180,11 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
     }
 
     /**
-     * Convert a duration from 'PT1H1M1S' to '1:01:01'.
+     * Convert a duration from 'PT1H1M1S' to seconds
      */
     private function convertDuration(string $durationSpec): string
     {
-        $interval = new \DateInterval($durationSpec);
-        return ($interval->d * 86400) +
-           ($interval->h * 3600) +
-           ($interval->i * 60) +
-           ($interval->s);
+        return CarbonInterval::make($durationSpec)->totalSeconds;
     }
 
     /**
