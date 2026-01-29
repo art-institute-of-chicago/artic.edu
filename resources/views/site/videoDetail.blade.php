@@ -28,7 +28,9 @@
                         'embed' => $item->embed,
                         'medias' => $item->medias,
                     ],
-                    'poster' => $item->is_short ? null : ($item->imageFront('hero') ?? $item->thumbnail_url),
+                    'poster' => $item->is_short
+                        ? null
+                        : ($item->imageFront('hero') ?? ImageHelpers::youtubeItemAsArray($item)),
                     'hideCaption' => true,
                     'fullscreen' => false,
                 ])

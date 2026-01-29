@@ -45,6 +45,8 @@ class Video extends AbstractModel
         'published',
         'search_tags',
         'thumbnail_url',
+        'thumbnail_height',
+        'thumbnail_width',
         'title',
         'title_display',
         'toggle_autorelated',
@@ -60,6 +62,8 @@ class Video extends AbstractModel
         'published' => 'boolean',
         'toggle_autorelated' => 'boolean',
         'uploaded_at' => 'datetime',
+        'thumbnail_height' => 'integer',
+        'thumbnail_width' => 'integer',
     ];
 
     public $attributes = [

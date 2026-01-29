@@ -9,7 +9,7 @@
                     'slug' => $video->getSlug(),
                 ]))
                 @slot('title', $video->title ?? '')
-                @slot('image', ['src' => $video->imageFront('hero') ?? $video->thumbnail_url ?? ''])
+                @slot('image', $video->imageFront('hero') ?? ImageHelpers::youtubeItemAsArray($video))
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
