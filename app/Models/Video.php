@@ -34,6 +34,7 @@ class Video extends AbstractModel
     protected $fillable = [
         'date',
         'description',
+        'duration',
         'duration_display',
         'heading',
         'is_captioned',
