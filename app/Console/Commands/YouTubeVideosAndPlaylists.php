@@ -185,7 +185,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         $resolutions = ['maxres', 'standard', 'high'];
         foreach ($resolutions as $resolution) {
             if (isset($thumbnails[$resolution])) {
-                return $thumbnails[$resolution];
+                return (array) $thumbnails[$resolution];
             }
         }
         return ['url' => null, 'height' => null, 'width' => null];
