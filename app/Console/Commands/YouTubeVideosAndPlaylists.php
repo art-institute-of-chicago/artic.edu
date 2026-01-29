@@ -179,6 +179,18 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
     }
 
     /**
+     * Convert a duration from 'PT1H1M1S' to '1:01:01'.
+     */
+    private function convertDuration(string $durationSpec): string
+    {
+        $interval = new \DateInterval($durationSpec);
+        return ($interval->d * 86400) +
+           ($interval->h * 3600) +
+           ($interval->i * 60) +
+           ($interval->s);
+    }
+
+    /**
      * Retrieve the highest resolution thumbnail of those provided.
      */
     private function highestResolutionThumbnail($thumbnails): array
