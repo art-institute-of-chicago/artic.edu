@@ -55,7 +55,8 @@
         name='description'
         label='Description'
         type='textarea'
-        disabled='true'
+        readonly='true'
+        note='read-only'
     />
 
     <x-twill::wysiwyg
