@@ -360,6 +360,7 @@ main#content:has(.videos) {
             margin-top: 40px;
 
             .o-tabbed-details__tab-title {
+                color: $color__dark-mode__link--tab;
                 font-family: $sans-serif-font--loaded;
                 font-size: 21px;
                 font-style: normal;
@@ -370,6 +371,9 @@ main#content:has(.videos) {
                 padding-left: 15px;
                 padding-right: 15px;
                 text-transform: uppercase;
+            }
+            .o-tabbed-details__tab[open] .o-tabbed-details__tab-title {
+                color: $color__dark-mode__link--tab-active;
             }
             .o-tabbed-details__tab-content {
                 h3 {
