@@ -6,7 +6,9 @@
             <div class="short-video previous-video">
                 @if ($previousItem)
                     @component('components.atoms._link')
-                        @slot('href', route('shorts.show', ['video' => $previousItem]) . '?player')
+                        @slot('href', route('shorts.show', ['video' => $previousItem]))
+                        @slot('behavior', 'getUrl')
+                        @slot('dataHref', route('shorts.show', ['video' => $previousItem]) . '?player')
                         @component('components.molecules._m-media')
                             @slot('variation', 'variation--short')
                             @slot('item', [
