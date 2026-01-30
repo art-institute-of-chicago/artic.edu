@@ -89,7 +89,7 @@
                 @foreach ($relatedVideos as $video)
                     @component('components.molecules._m-listing----grid-item')
                         @slot('url', $video->url ?? '')
-                        @slot('label', $video->duration ?? '')
+                        @slot('label', $video->duration_display ?? '')
                         @slot('labelPosition', 'overlay')
                         @slot('tag', $video->is_short ? 'Short' : 'Video')
                         @slot('title', $video->title ?? '')

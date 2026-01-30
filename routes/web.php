@@ -189,6 +189,7 @@ Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index'
 Route::get('/authors/{id}/{slug?}', [AuthorController::class, 'show'])->name('authors.show');
 
 // Videos routes
+Route::get('/videos/archive', [VideoController::class, 'index'])->name('videos.archive');
 Route::get('/videos/{video}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
 Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
 Route::get(

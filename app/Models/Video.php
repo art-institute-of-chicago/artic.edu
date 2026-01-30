@@ -13,6 +13,7 @@ use App\Models\Behaviors\HasRelated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 
 class Video extends AbstractModel
@@ -35,6 +36,7 @@ class Video extends AbstractModel
         'date',
         'description',
         'duration',
+        'duration_display',
         'heading',
         'is_captioned',
         'is_listed',
@@ -94,6 +96,25 @@ class Video extends AbstractModel
         'title',
     ];
 
+    public const SHORT = 'short';
+    public const MEDIUM = 'medium';
+    public const LONG = 'long';
+    public const EXTRA_LONG = 'extra-long';
+
+    public static $durations = [
+        self::SHORT => 'Under 1 minute',
+        self::MEDIUM => '1–5 minutes',
+        self::LONG => '5–20 minutes',
+        self::EXTRA_LONG => 'Over 20 minutes',
+    ];
+
+    public static $durationLengths = [
+        self::SHORT => [0, 60],
+        self::MEDIUM => [60, 300],
+        self::LONG => [300, 1200],
+        self::EXTRA_LONG => [1200, null],
+    ];
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'video_category');
@@ -144,6 +165,32 @@ class Video extends AbstractModel
         return $query->whereHas('categories', function ($query) use ($categories) {
             $query->whereIn('category_id', is_array($categories) ? $categories : [$categories]);
         });
+    }
+
+    public function scopeByVideoCategories($query, $videoCategories = null): Builder
+    {
+        if (empty($videoCategories)) {
+            return $query;
+        }
+
+        return $query->whereHas('videoCategories', function ($query) use ($videoCategories) {
+            $query->whereIn('video_category_id', Collection::wrap($videoCategories));
+        });
+    }
+
+    public function scopeByDuration($query, $duration = null): Builder
+    {
+        if (empty($duration) || !array_key_exists($duration, static::$durationLengths)) {
+            return $query;
+        }
+
+        [$start, $end] = static::$durationLengths[$duration];
+
+        if ($end) {
+            return $query->whereBetween('duration', [$start, $end]);
+        } else {
+            return $query->where('duration', '>', $start);
+        }
     }
 
     public function scopeByPlaylists($query, $playlistIds = []): Builder
