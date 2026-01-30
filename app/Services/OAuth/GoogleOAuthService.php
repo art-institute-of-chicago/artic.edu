@@ -120,10 +120,18 @@ class GoogleOAuthService
     {
         $token = $this->retrieveAccessToken();
         if ($this->client->revokeToken($token)) {
-            return (bool) DB::table('oauth')->where('provider', self::PROVIDER)->delete();
+            return $this->deleteAccess();
         } else {
             throw new GoogleOAuthServiceException('Unable to revoke token access!');
         }
+    }
+
+    /**
+     * Delete the record of the access token from the database.
+     */
+    public function deleteAccess(): bool
+    {
+        return (bool) DB::table('oauth')->where('provider', self::PROVIDER)->delete();
     }
 
     /**
