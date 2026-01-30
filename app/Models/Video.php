@@ -184,12 +184,12 @@ class Video extends AbstractModel
             return $query;
         }
 
-        $values = static::$durationLengths[$duration];
+        [$start, $end] = static::$durationLengths[$duration];
 
-        if ($values[1]) {
-            return $query->whereBetween('duration', $values);
+        if ($end) {
+            return $query->whereBetween('duration', [$start, $end]);
         } else {
-            return $query->where('duration', '>', $values[0]);
+            return $query->where('duration', '>', $start);
         }
     }
 
