@@ -17,7 +17,11 @@
     </div>
 
     @php
-        $videos = App\Models\Video::where('is_short', true)->take(6)->get();
+        $videos = App\Models\Video::published()
+            ->where('is_short', true)
+            ->orderBy('uploaded_at', 'desc')
+            ->take(6)
+            ->get();
     @endphp
 
     <div class="o-grid-block shorts-grid">
@@ -25,7 +29,7 @@
             @slot('links', [
                 [
                     'label' => 'View all',
-                    'href'  => '/videos/shorts',
+                    'href'  => route('shorts.index'),
                     'id' => Str::slug(strip_tags('Art Institute Shorts')),
                 ]
             ])
@@ -40,8 +44,8 @@
             @slot('cols_xlarge', 6)
             @foreach ($videos as $video)
                 @component('components.molecules._m-listing----grid-item')
-                    @slot('url', $video->url ?? '')
-                    @slot('image', ['src' => $video->thumbnail_url ?? ''])
+                    @slot('url', route('shorts.show', ['video' => $video]))
+                    @slot('image', ImageHelpers::youtubeItemAsArray($video))
                     @slot('label', '')
                     @slot('title', $video->title ?? '')
                     @slot('imageSettings', array(
