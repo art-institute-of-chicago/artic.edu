@@ -36,7 +36,7 @@ class ShortsController extends FrontController
 
     public function show(Request $request, Video $video, $slug = null)
     {
-        if (!$video->published) {
+        if (!($video->published && $video->is_short)) {
             abort(404);
         }
         $canonicalPath = route('shorts.show', ['video' => $video, 'slug' => $video->getSlug()]);
