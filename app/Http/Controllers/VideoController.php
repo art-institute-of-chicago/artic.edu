@@ -193,8 +193,6 @@ class VideoController extends FrontController
             'videosCount' => $videosCount,
             'filterCategories' => $filterCategories,
             'filterDurations' => $filterDurations,
-            'contrastHeader' => true,
-            'darkMode' => true,
         ]);
     }
 }
