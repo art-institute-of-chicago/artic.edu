@@ -69,19 +69,19 @@ class IntegrationController extends Controller
                     ])
                 ];
             }
+            $actions[] = [
+                'name' => 'Delete',
+                'url' => route('twill.general.integrations.service.action', [
+                    'service' => $name,
+                    'action' => 'delete',
+                ])
+            ];
         } else {
             $actions[] = [
                 'name' => 'Authorize',
                 'url' => $googleOAuth->createAuthorizationUrl(),
             ];
         }
-        $actions[] = [
-            'name' => 'Delete',
-            'url' => route('twill.general.integrations.service.action', [
-                'service' => $name,
-                'action' => 'delete',
-            ])
-        ];
 
         return [
             'connection' => $connection,
