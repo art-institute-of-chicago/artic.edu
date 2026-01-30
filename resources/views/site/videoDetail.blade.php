@@ -39,6 +39,7 @@
                 @component('components.organisms._o-playlist')
                     @slot('playlist', $playlist)
                     @slot('currentVideo', $item)
+                    @slot('videos', $playlist->videos()->published()->get())
                 @endcomponent
             @endif
         </div>
