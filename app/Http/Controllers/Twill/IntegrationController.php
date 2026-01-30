@@ -27,6 +27,9 @@ class IntegrationController extends Controller
                     case 'revoke':
                         $googleOAuth->revokeAccess();
                         break;
+                    case 'delete':
+                        $googleOAuth->deleteAccess();
+                        break;
                 }
                 break;
         }
@@ -72,6 +75,13 @@ class IntegrationController extends Controller
                 'url' => $googleOAuth->createAuthorizationUrl(),
             ];
         }
+        $actions[] = [
+            'name' => 'Delete',
+            'url' => route('twill.general.integrations.service.action', [
+                'service' => $name,
+                'action' => 'delete',
+            ])
+        ];
 
         return [
             'connection' => $connection,
