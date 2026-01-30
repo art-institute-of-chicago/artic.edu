@@ -6,9 +6,9 @@ $color__videos__bg--selected: rgba($color__black, 0.30);
 $color__videos__img--overlay: $color__dark-mode__img--overlay;
 
 $color__videos__link: $color__dark-mode__link;
-$color__videos__link--accent: $color__black--30;
-$color__videos__link--tab: $color__black--42;
-$color__videos__link--tab-active: $color__white;
+$color__videos__link--accent: $color__dark-mode__link--accent;
+$color__videos__link--tab: $color__dark-mode__link--tab;
+$color__videos__link--tab-active: $color__dark-mode__link--tab-active;
 
 $color__videos__rules--primary: $color__black--54;
 
