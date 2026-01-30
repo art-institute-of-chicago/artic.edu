@@ -84,7 +84,7 @@ class VideoController extends FrontController
         $playlists = Playlist::published()
             ->orderBy('updated_at', 'desc')
             ->get()->map(function ($video) {
-                $video->sort_date = $video->update_at;
+                $video->sort_date = $video->updated_at;
                 return $video;
             });
 
@@ -144,7 +144,7 @@ class VideoController extends FrontController
                 [
                     'label' => $cat->title,
                     'href' => route('videos.archive', ['category' => $cat->id, 'duration' => request()->query('duration')]),
-                    'active' => request()->query('category') === $cat->id,
+                    'active' => request()->query('category') == $cat->id,
                     'ajaxScrollTarget' => 'listing',
                 ]
             );
