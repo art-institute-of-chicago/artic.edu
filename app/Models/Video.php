@@ -13,6 +13,7 @@ use App\Models\Behaviors\HasRelated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 
 class Video extends AbstractModel
@@ -173,7 +174,7 @@ class Video extends AbstractModel
         }
 
         return $query->whereHas('videoCategories', function ($query) use ($videoCategories) {
-            $query->whereIn('video_category_id', is_array($videoCategories) ? $videoCategories : [$videoCategories]);
+            $query->whereIn('video_category_id', Collection::wrap($videoCategories));
         });
     }
 
