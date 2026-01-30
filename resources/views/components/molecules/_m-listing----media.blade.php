@@ -34,9 +34,9 @@
                     <br>
                     <span class="subtitle f-secondary">{{ $item->timeStamp }}</span>
                 @endif
-                @if (isset($item->duration) && (!isset($hideDuration) || !$hideDuration))
+                @if (isset($item->duration_display) && (!isset($hideDuration) || !$hideDuration))
                     <br>
-                    <span class="subtitle f-secondary">{{ $item->duration }}</span>
+                    <span class="subtitle f-secondary">{{ $item->duration_display }}</span>
                 @endif
             @endif
             @if ($item->date)

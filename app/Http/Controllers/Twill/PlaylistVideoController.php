@@ -86,7 +86,7 @@ class PlaylistVideoController extends BaseController
         $columns->add(
             Relation::make()
                 ->relation('video')
-                ->field('duration')
+                ->field('duration_display')
         );
         $columns->add(
             Relation::make()
