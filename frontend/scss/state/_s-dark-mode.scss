@@ -31,17 +31,6 @@ html.s-dark-mode body {
       }
     }
 
-    .o-blocks {
-      .o-tabbed-details {
-        .o-tabbed-details__tab-title {
-          color: $color__dark-mode__link--tab;
-        }
-        .o-tabbed-details__tab[open] .o-tabbed-details__tab-title {
-          color: $color__dark-mode__link--tab-active;
-        }
-      }
-    }
-
     .m-listing {
       .m-listing__meta {
         .type {
