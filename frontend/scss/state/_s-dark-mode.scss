@@ -31,7 +31,7 @@ html.s-dark-mode body {
       }
     }
 
-    .o-article__body {
+    .o-blocks {
       .o-tabbed-details {
         .o-tabbed-details__tab-title {
           color: $color__dark-mode__link--tab;
@@ -42,26 +42,21 @@ html.s-dark-mode body {
       }
     }
 
-    .o-article__related {
-      .m-listing {
-        .m-listing__meta {
-          .type {
-            color: $color__dark-mode__text--accent;
-          }
-          .title {
-            color: $color__dark_mode__text--primary;
-          }
-          .intro {
-            color: $color__dark-mode__text--tertiary;
-          }
+    .m-listing {
+      .m-listing__meta {
+        .type {
+          color: $color__dark-mode__text--accent;
         }
-        .m-listing__img-prompt {
-          background: $color__dark-mode__img--overlay;
+        .title {
+          color: $color__dark_mode__text--primary;
         }
-
-
+        .intro {
+          color: $color__dark-mode__text--tertiary;
+        }
       }
-
+      .m-listing__img-prompt {
+        background: $color__dark-mode__img--overlay;
+      }
     }
   }
 }
