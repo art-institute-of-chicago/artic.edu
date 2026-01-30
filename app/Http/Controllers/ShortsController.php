@@ -47,13 +47,13 @@ class ShortsController extends FrontController
         $previousItem = $this->repository
             ->published()
             ->where('is_short', true)
-            ->whereDate('uploaded_at', '>', $video->uploaded_at)
+            ->where('uploaded_at', '>', $video->uploaded_at)
             ->orderBy('uploaded_at', 'asc')
             ->first();
         $nextItem = $this->repository
             ->published()
             ->where('is_short', true)
-            ->whereDate('uploaded_at', '<', $video->uploaded_at)
+            ->where('uploaded_at', '<', $video->uploaded_at)
             ->orderBy('uploaded_at', 'desc')
             ->first();
 
