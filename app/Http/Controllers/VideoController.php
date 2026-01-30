@@ -111,7 +111,7 @@ class VideoController extends FrontController
 
         $videos = $paginator;
 
-        $categories = [
+        $filterCategories = [
             [
                 'label' => 'All categories',
                 'href' => route('videos.archive', ['duration' => request()->query('duration')]),
@@ -140,7 +140,7 @@ class VideoController extends FrontController
 
         foreach (VideoCategory::all() as $cat) {
             array_push(
-                $categories,
+                $filterCategories,
                 [
                     'label' => $cat->title,
                     'href' => route('videos.archive', ['category' => $cat->id, 'duration' => request()->query('duration')]),
@@ -150,7 +150,7 @@ class VideoController extends FrontController
             );
         }
 
-        $durations = [
+        $filterDurations = [
             [
                 'label' => 'Any duration',
                 'href' => route('videos.archive', ['category' => request()->query('category')]),
@@ -160,7 +160,7 @@ class VideoController extends FrontController
         ];
 
         foreach (Video::$durations as $value => $label) {
-            $durations[] = [
+            $filterDurations[] = [
                 'label' => $label,
                 'href' => route('videos.archive', ['category' => request()->query('category'), 'duration' => $value]),
                 'active' => request()->query('duration') === $value,
@@ -190,8 +190,8 @@ class VideoController extends FrontController
             'primaryNavCurrent' => 'collection',
             'videos' => $videos,
             'videosCount' => $videosCount,
-            'categories' => $categories,
-            'durations' => $durations,
+            'filterCategories' => $filterCategories,
+            'filterDurations' => $filterDurations,
         ]);
     }
 }

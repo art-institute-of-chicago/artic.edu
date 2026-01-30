@@ -30,7 +30,7 @@
                   @slot('ariaTitle', 'Filter by')
                   @slot('variation','dropdown--filter f-link')
                   @slot('font', null)
-                  @slot('options', $categories)
+                  @slot('options', $filterCategories)
                 @endcomponent
             </li>
             <li class="m-links-bar__item m-links-bar__item--primary">
@@ -39,7 +39,7 @@
                   @slot('ariaTitle', 'Filter by')
                   @slot('variation','dropdown--filter f-link')
                   @slot('font', null)
-                  @slot('options', $durations)
+                  @slot('options', $filterDurations)
                 @endcomponent
             </li>
             @if (isset($currentCategory) || isset($currentDuration))
