@@ -596,4 +596,25 @@ main#content:has(.videos) {
             margin-top: 0;
         }
     }
+
+}
+.p-shorts-show {
+    #shorts-player {
+        display: flex;
+        gap: 90px;
+
+        .short-video {
+            flex: 1;
+            min-height: 100%;
+
+            .link::before {
+              padding: unset;
+            }
+            .m-media__img {
+                aspect-ratio: 185 / 329;
+                border-radius: 28px;
+                height: 120%;
+            }
+        }
+    }
 }

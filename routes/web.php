@@ -34,6 +34,7 @@ use App\Http\Controllers\PrintedPublicationsController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ShortsController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\VideoController;
 use App\Http\Middleware\SanitizeQueryParameters;
@@ -190,6 +191,8 @@ Route::get('/authors/{id}/{slug?}', [AuthorController::class, 'show'])->name('au
 
 // Videos routes
 Route::get('/videos/archive', [VideoController::class, 'index'])->name('videos.archive');
+Route::get('/videos/shorts', [ShortsController::class, 'index'])->name('shorts.index');
+Route::get('/videos/shorts/{video}/{slug?}', [ShortsController::class, 'show'])->name('shorts.show');
 Route::get('/videos/{video}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
 Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
 Route::get(
