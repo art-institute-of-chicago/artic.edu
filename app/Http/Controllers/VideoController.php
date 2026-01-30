@@ -53,6 +53,7 @@ class VideoController extends FrontController
             'relatedVideos' => $relatedVideos,
             'contrastHeader' => true,
             'unstickyHeader' => true,
+            'darkMode' => true,
             'canonicalUrl' => $canonicalPath,
         ]);
     }
@@ -192,6 +193,8 @@ class VideoController extends FrontController
             'videosCount' => $videosCount,
             'filterCategories' => $filterCategories,
             'filterDurations' => $filterDurations,
+            'contrastHeader' => true,
+            'darkMode' => true,
         ]);
     }
 }

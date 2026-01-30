@@ -410,6 +410,7 @@ class LandingPagesController extends FrontController
             case $types->search('Videos'):
                 $viewData = [
                     'contrastHeader' => true,
+                    'darkMode' => true,
                     'subnav' => collect(BlockHelpers::getHeadings($item->blocks)),
                 ];
                 break;
