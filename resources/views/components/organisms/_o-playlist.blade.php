@@ -1,6 +1,6 @@
 <div class="o-playlist">
     <ul class="o-playlist__videos">
-        @foreach ($playlist->videos as $video)
+        @foreach ($videos as $video)
             @component('components.molecules._m-listing----playlist-video')
                 @slot('isCurrent', $video->is($currentVideo))
                 @slot('url', route('playlists.videos.show', [
