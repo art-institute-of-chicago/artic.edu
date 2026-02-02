@@ -1,0 +1,48 @@
+html.s-dark-mode body {
+  color: $color__dark_mode__text--primary;
+  background-color: $color__dark-mode__bg--primary;
+
+  h1 {
+    color: $color__dark_mode__text--primary;
+  }
+
+  h2 {
+    color: $color__dark-mode__text--secondary;
+  }
+
+  h3 {
+    color: $color__dark-mode__text--secondary;
+  }
+
+  a {
+    color: $color__dark-mode__link;
+  }
+
+  button {
+    background-color: $color__dark-mode__bg--primary;
+    color: $color__dark_mode__text--primary;
+  }
+
+  #a17 {
+    .o-article {
+      .m-article-actions__action .btn--icon {
+        background-color: transparent;
+        color: $color__dark-mode__link--accent;
+      }
+    }
+
+    .m-listing {
+      .m-listing__meta {
+        .type {
+          color: $color__dark-mode__text--accent;
+        }
+        .title {
+          color: $color__dark_mode__text--primary;
+        }
+        .intro {
+          color: $color__dark-mode__text--tertiary;
+        }
+      }
+    }
+  }
+}

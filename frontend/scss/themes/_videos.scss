@@ -1,19 +1,19 @@
 // Video pages color list
 
-$color__videos__bg--primary: $color__black--81;
+$color__videos__bg--primary: $color__dark-mode__bg--primary;
 $color__videos__bg--selected: rgba($color__black, 0.30);
 
-$color__videos__img--overlay: rgba(26, 26, 26, 0.80);
+$color__videos__img--overlay: $color__dark-mode__img--overlay;
 
-$color__videos__link: $color__white;
-$color__videos__link--accent: $color__black--30;
-$color__videos__link--tab: $color__black--42;
-$color__videos__link--tab-active: $color__white;
+$color__videos__link: $color__dark-mode__link;
+$color__videos__link--accent: $color__dark-mode__link--accent;
+$color__videos__link--tab: $color__dark-mode__link--tab;
+$color__videos__link--tab-active: $color__dark-mode__link--tab-active;
 
 $color__videos__rules--primary: $color__black--54;
 
-$color__videos__text--primary: $color__white;
-$color__videos__text--secondary: $color__black--10;
-$color__videos__text--tertiary: $color__black--20;
-$color__videos__text--accent: $color__black--54;
+$color__videos__text--primary: $color__dark_mode__text--primary;
+$color__videos__text--secondary: $color__dark-mode__text--secondary;
+$color__videos__text--tertiary: $color__dark-mode__text--tertiary;
+$color__videos__text--accent: $color__dark-mode__text--accent;
 $color__videos__text--title: $color__black--90;

@@ -53,6 +53,7 @@ class VideoController extends FrontController
             'relatedVideos' => $relatedVideos,
             'contrastHeader' => true,
             'unstickyHeader' => true,
+            'darkMode' => true,
             'canonicalUrl' => $canonicalPath,
         ]);
     }
