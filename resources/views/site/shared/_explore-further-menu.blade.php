@@ -33,7 +33,13 @@
                         @else
                             <li class="{{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
                         @endif
-                            <a data-behavior="exploreFurther" data-ajax-url-target="{!! Str::beforeLast(request()->url(), '/') !!}/exploreFurther?ef-{{$category}}_ids={{$id}}" data-ajax-id-target="{!! $id !!}" {!! isset($ariaControls) ? ' aria-controls="'.$ariaControls.'"' : ''!!} aria-pressed="{{ (request()->input("ef-{$category}_ids") == $id) ? 'true' : 'false' }}">
+                            <a
+                                data-behavior="exploreFurther"
+                                data-ajax-url-target="{!! Str::beforeLast(request()->url(), '/') !!}/exploreFurther?ef-{{$category}}_ids={{$id}}"
+                                data-ajax-id-target="{!! $id !!}"
+                                {!! isset($ariaControls) ? ' aria-controls="'.$ariaControls.'"' : ''!!}
+                                aria-pressed="{{ (request()->input("ef-{$category}_ids") == $id) ? 'true' : 'false' }}"
+                            >
                                 {{ ucfirst($name) }}
                             </a>
                         </li>
