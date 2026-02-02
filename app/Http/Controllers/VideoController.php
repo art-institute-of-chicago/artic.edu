@@ -169,7 +169,7 @@ class VideoController extends FrontController
             ];
         }
 
-        if (request('category') || request('duration')) {
+        if (request('category') || request('duration') || request('page')) {
             if (in_array(request()->query('category'), ['videos', 'shorts', 'playlists'], true)) {
                 $cat = Str::ucfirst(request()->query('category'));
             } else {
@@ -183,6 +183,8 @@ class VideoController extends FrontController
                 request('page') ? 'Page ' . request('page') : null,
             ]);
             $this->seo->setTitle(implode(', ', $titles));
+            $this->seo->nofollow = true;
+            $this->seo->noindex = true;
         } else {
             $this->seo->setTitle('Videos');
         }
@@ -193,6 +195,8 @@ class VideoController extends FrontController
             'videosCount' => $videosCount,
             'filterCategories' => $filterCategories,
             'filterDurations' => $filterDurations,
+            'contrastHeader' => true,
+            'darkMode' => true,
         ]);
     }
 }
