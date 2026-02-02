@@ -293,6 +293,8 @@ $color__input-border--error: $color__red--100;
 $color__input-border--checked: $color__black--90;
 
 $color__dark-mode__bg--primary: $color__black--81;
+$color__dark-mode__bg--secondary: rgba($color__dark-mode__bg--primary, 0.90);
+$color__dark-mode__bg--selected: rgba($color__black, 0.30);
 
 $color__dark-mode__img--overlay: rgba(26, 26, 26, 0.80);
 
@@ -300,6 +302,8 @@ $color__dark-mode__link: $color__white;
 $color__dark-mode__link--accent: $color__black--30;
 $color__dark-mode__link--tab: $color__black--42;
 $color__dark-mode__link--tab-active: $color__white;
+
+$color__dark-mode__rules--primary: $color__black--54;
 
 $color__dark_mode__text--primary: $color__white;
 $color__dark-mode__text--secondary: $color__black--10;

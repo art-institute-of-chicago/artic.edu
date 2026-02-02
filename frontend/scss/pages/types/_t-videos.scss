@@ -302,6 +302,9 @@
         p.title {
             display: none;
         }
+        .m-links-bar {
+          z-index: 15;
+        }
         .o-article__primary-actions--video {
             min-height: unset;
         }
@@ -359,7 +362,7 @@
     .o-articles {
       .o-grid-listing--gridlines-top > ::before,
       .o-grid-listing--gridlines-rows > ::before {
-        background-color: $color__videos__rules--primary;
+        display: none;
       }
       .o-grid-listing--gridlines-right > ::after,
       .o-grid-listing--gridlines-cols > ::after {
@@ -488,6 +491,24 @@
             }
         }
     }
+    .o-article__related,
+    .o-articles {
+      .m-listing {
+        .m-listing__img-prompt {
+            background: $color__dark-mode__img--overlay;
+            font-family: $sans-serif-font--loaded;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 325;
+            letter-spacing: 1.82px;
+            line-height: 16px;
+            min-width: unset;
+            padding: 8px 12px;
+            text-transform: uppercase;
+        }
+      }
+    }
+
 }
 
 .p-playlistvideo-show body {
