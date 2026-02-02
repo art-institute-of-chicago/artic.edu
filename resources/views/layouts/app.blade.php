@@ -16,6 +16,9 @@ $pType = '';
 if (isset($item) && isset($item->article_type) && isset($item->article_type->name)) {
     $pType = 'p-t-' . Str::kebab($item->article_type->name);
 }
+elseif (isset($item) && isset($item->type)) {
+    $pType = 'p-t-' . Str::kebab($item->type);
+}
 @endphp
 <!DOCTYPE html>
 <html
