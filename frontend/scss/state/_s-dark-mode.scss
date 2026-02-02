@@ -24,11 +24,11 @@ html.s-dark-mode body {
   }
 
   .f-secondary {
-    color: $color__videos__text--secondary;
+    color: $color__dark-mode__text--secondary;
   }
 
   hr, .hr {
-    border-top: 1px solid $color__videos__rules--primary;
+    border-top: 1px solid $color__dark-mode__rules--primary;
   }
 
   #a17 {
@@ -64,27 +64,27 @@ html.s-dark-mode body {
   }
 
   .m-paginator::before {
-    background-color: $color__videos__rules--primary;
+    background-color: $color__dark-mode__rules--primary;
   }
 
   .m-paginator__pages a,
   .m-paginator__pages span {
-    border-left-color: $color__videos__rules--primary;
-    border-right-color: $color__videos__rules--primary;
+    border-left-color: $color__dark-mode__rules--primary;
+    border-right-color: $color__dark-mode__rules--primary;
   }
 
   .m-paginator__pages .f-buttons {
-    color: $color__videos__link;
+    color: $color__dark-mode__link;
   }
 
   .m-paginator__prev-next li:first-child a,
   .m-paginator__prev-next li:first-child > span {
-    border-left: 1px solid $color__videos__rules--primary;
+    border-left: 1px solid $color__dark-mode__rules--primary;
   }
 
   .m-paginator__prev-next li:last-child a,
   .m-paginator__prev-next li:last-child > span {
-    border-right: 1px solid $color__videos__rules--primary;
+    border-right: 1px solid $color__dark-mode__rules--primary;
   }
 
   .dropdown__list>li:not(:first-child) {
