@@ -18,7 +18,25 @@ if (isset($item) && isset($item->article_type) && isset($item->article_type->nam
 }
 @endphp
 <!DOCTYPE html>
-<html dir="ltr" lang="{{ app()->getLocale() }}" class="no-js{{ (isset($unstickyHeader) && $unstickyHeader) ? ' s-unsticky-header' : '' }}{{ (isset($contrastHeader) && $contrastHeader) ? ' s-contrast-header' : '' }}{{ (isset($borderlessHeader) && $borderlessHeader && empty($hour)) ? ' s-borderless-header' : '' }}{{ (isset($filledLogo) and $filledLogo) ? ' s-filled-logo' : '' }}{{ $print ? ' s-print' : '' }}  {{ !empty($roadblocks) && $roadblocks->count() > 0 ? ' s-roadblock-defined' : '' }}{{ isset($_COOKIE["A17_fonts_cookie_serif"]) ? ' s-serif-loaded' : '' }}{{ isset($_COOKIE["A17_fonts_cookie_sans-serif"]) ? ' s-sans-serif-loaded' : '' }} s-env-{{ app()->environment() }} {{ $pClass }} {{ $pType }} {{ $print ? 's-serif-loaded s-sans-serif-loaded s-print' : '' }}">
+<html
+    dir="ltr"
+    lang="{{ app()->getLocale() }}"
+    @class([
+        'no-js',
+        's-unsticky-header' => isset($unstickyHeader) && $unstickyHeader,
+        's-contrast-header' => isset($contrastHeader) && $contrastHeader,
+        's-borderless-header' => isset($borderlessHeader) && $borderlessHeader && empty($hour),
+        's-filled-logo' => isset($filledLogo) and $filledLogo,
+        's-print' => $print,
+        's-roadblock-defined' => !empty($roadblocks) && $roadblocks->count() > 0,
+        's-serif-loaded' => isset($_COOKIE["A17_fonts_cookie_serif"]) || $print,
+        's-sans-serif-loaded' => isset($_COOKIE["A17_fonts_cookie_sans-serif"]) || $print,
+        's-dark-mode' => isset($darkMode) && $darkMode,
+        's-env-' . app()->environment(),
+        $pClass,
+        $pType,
+    ])
+  >
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />

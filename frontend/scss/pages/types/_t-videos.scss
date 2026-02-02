@@ -1,15 +1,11 @@
 // Landing page
 section.videos {
     body:has(&) {
-        color: $color__videos__text--primary;
-        background-color: $color__videos__bg--primary;
-
         .m-header-block {
             &::before {
                 display: none;
             }
             h1.title {
-                color: $color__videos__text--primary;
                 font-family: $serif-font--loaded;
                 font-size: 38px;
                 font-style: normal;
@@ -276,9 +272,6 @@ main#content:has(.videos) {
 // Detail pages
 .p-playlistvideo-show body,
 .p-video-show body {
-    color: $color__videos__text--primary;
-    background-color: $color__videos__bg--primary;
-
     main#content {
         padding-top: 140px;
     }
@@ -306,7 +299,6 @@ main#content:has(.videos) {
             }
         }
         h1.title {
-            color: $color__videos__text--primary;
             font-family: $sans-serif-font--loaded;
             font-size: 38px;
             font-style: normal;
@@ -386,7 +378,6 @@ main#content:has(.videos) {
             .o-tabbed-details__tab-content {
                 h3 {
                     margin-top: 56px;
-                    color: $color__videos__text--secondary;
                     font-family: $serif-font--loaded;
                     font-size: 31px;
                     font-style: normal;
@@ -404,7 +395,6 @@ main#content:has(.videos) {
                     line-height: 28px;
 
                     a {
-                        color: $color__videos__link;
                         text-decoration: underline;
                     }
                     p {
@@ -420,10 +410,6 @@ main#content:has(.videos) {
             h3 {
                 padding-bottom: 0;
             }
-            button {
-                background-color: $color__videos__bg--primary;
-                color: $color__videos__text--primary;
-            }
         }
     }
     .o-article__related {
@@ -434,7 +420,6 @@ main#content:has(.videos) {
                 display: none;
             }
             h2.title {
-                color: $color__videos__text--secondary;
                 font-family: $sans-serif-font--loaded;
                 font-size: 21px;
                 font-style: normal;
@@ -459,18 +444,13 @@ main#content:has(.videos) {
             .m-listing__meta {
                 min-height: unset;
 
-                .type {
-                    color: $color__videos__text--accent;
-                }
                 .title {
-                    color: $color__videos__text--primary;
                     font-size: 19px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: 28px;
                 }
                 .intro {
-                    color: $color__videos__text--tertiary;
                     font-size: 17px;
                     font-style: normal;
                     font-weight: 300;

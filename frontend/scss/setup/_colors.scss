@@ -292,6 +292,20 @@ $color__input-border--focus: $color__black--80;
 $color__input-border--error: $color__red--100;
 $color__input-border--checked: $color__black--90;
 
+$color__dark-mode__bg--primary: $color__black--81;
+
+$color__dark-mode__img--overlay: rgba(26, 26, 26, 0.80);
+
+$color__dark-mode__link: $color__white;
+$color__dark-mode__link--accent: $color__black--30;
+$color__dark-mode__link--tab: $color__black--42;
+$color__dark-mode__link--tab-active: $color__white;
+
+$color__dark_mode__text--primary: $color__white;
+$color__dark-mode__text--secondary: $color__black--10;
+$color__dark-mode__text--tertiary: $color__black--20;
+$color__dark-mode__text--accent: $color__black--54;
+
 // Themes
 @import '../themes/digital-publications';
 @import '../themes/magazine';

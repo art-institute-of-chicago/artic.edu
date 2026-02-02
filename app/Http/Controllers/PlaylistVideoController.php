@@ -57,6 +57,7 @@ class PlaylistVideoController extends FrontController
             'contrastHeader' => true,
             'unstickyHeader' => true,
             'canonicalUrl' => $canonicalPath,
+            'darkMode' => true,
         ]);
     }
 }
