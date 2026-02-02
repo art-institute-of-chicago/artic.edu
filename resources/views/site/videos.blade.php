@@ -95,20 +95,24 @@
                     ))
                 @endcomponent
             @else
-                @component('components.molecules._m-listing----media')
-                    @slot('item', $item)
+                @component('components.molecules._m-listing----grid-item')
+                    @slot('url', $item->url ?? '')
+                    @slot('image', ['src' => $item->thumbnail_url ?? ''])
+                    @slot('label', $item->duration_display ?? '')
+                    @slot('labelPosition', 'overlay')
+                    @slot('title', $item->title ?? '')
                     @slot('imageSettings', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600,1000),
-                    'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
-                            'xsmall' => '1',
-                            'small' => '2',
-                            'medium' => '3',
-                            'large' => '4',
-                            'xlarge' => '4',
-                    )),
-                ))
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600),
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                            'xsmall' => '216px',
+                            'small' => '216px',
+                            'medium' => '18',
+                            'large' => '13',
+                            'xlarge' => '13',
+                        )),
+                    ))
                 @endcomponent
             @endif
         @endforeach

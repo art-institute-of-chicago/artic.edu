@@ -1,7 +1,7 @@
 // Video pages color list
 
 $color__videos__bg--primary: $color__dark-mode__bg--primary;
-$color__videos__bg--selected: rgba($color__black, 0.30);
+$color__videos__bg--selected: $color__dark-mode__bg--selected;
 
 $color__videos__img--overlay: $color__dark-mode__img--overlay;
 
@@ -10,7 +10,7 @@ $color__videos__link--accent: $color__dark-mode__link--accent;
 $color__videos__link--tab: $color__dark-mode__link--tab;
 $color__videos__link--tab-active: $color__dark-mode__link--tab-active;
 
-$color__videos__rules--primary: $color__black--54;
+$color__videos__rules--primary: $color__dark-mode__rules--primary;
 
 $color__videos__text--primary: $color__dark_mode__text--primary;
 $color__videos__text--secondary: $color__dark-mode__text--secondary;
