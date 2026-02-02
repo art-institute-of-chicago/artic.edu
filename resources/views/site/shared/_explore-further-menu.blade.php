@@ -23,7 +23,7 @@
 
         <li class="m-links-bar__item m-links-bar__item--push m-links-bar__item--overflow" data-links-bar-primary-overflow="">
           <div aria-label="More links" class="dropdown dropdown--filter dropdown--tabs f-link" data-behavior="dropdown" tabindex="0">
-            <button class="dropdown__trigger  f-link">More<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg></button>
+            <h2 class="dropdown__trigger"><button class="button f-link">More<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg></button></h2>
               <h4 class="sr-only" id="h-links-bar-more">More options</h4>
               <ul class="dropdown__list f-secondary" aria-labelledby="h-links-bar-more" data-dropdown-list>
                 @foreach ($tags as $category => $items)
@@ -33,7 +33,13 @@
                         @else
                             <li class="{{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
                         @endif
-                            <a href="{!! UrlHelpers::currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}">
+                            <a
+                                data-behavior="exploreFurther"
+                                data-ajax-url-target="{!! Str::beforeLast(request()->url(), '/') !!}/exploreFurther?ef-{{$category}}_ids={{$id}}"
+                                data-ajax-id-target="{!! $id !!}"
+                                {!! isset($ariaControls) ? ' aria-controls="'.$ariaControls.'"' : ''!!}
+                                aria-pressed="{{ (request()->input("ef-{$category}_ids") == $id) ? 'true' : 'false' }}"
+                            >
                                 {{ ucfirst($name) }}
                             </a>
                         </li>
