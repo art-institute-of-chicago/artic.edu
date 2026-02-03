@@ -63,6 +63,7 @@ class ShortsController extends FrontController
             'previousItem' => $previousItem,
             'nextItem' => $nextItem,
             'canonicalUrl' => $canonicalPath,
+            'darkMode' => true,
         ])->fragmentIf($request->has('player'), 'shorts-player');
     }
 }

@@ -164,12 +164,14 @@ const ajaxPageLoad = function() {
     _ajaxPageLoadComplete();
   }
   function modalStart(options,doc) {
+    console.log(options);
   }
   function modalComplete(options,doc) {
     // Replace content
-    document.querySelector('[data-modal]').className = 'g-modal ' + (options.modalClass ? options.modalClass : '');
+    document.getElementById('modal').className = 'g-modal ' + (options.modalClass ? options.modalClass : '');
     document.querySelector('[data-modal-content]').innerHTML = doc.querySelector('body').innerHTML;
-    triggerCustomEvent(document, 'modal:show', { opener: options.opener });
+    triggerCustomEvent(document, 'modal:open', { opener: options.opener });
+    console.log(options);
 
     _ajaxPageLoadComplete();
   }

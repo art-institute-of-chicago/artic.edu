@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+    <div
+        data-behavior="triggerMediaModal"
+        style="display: block; background-color: #fff; height: 50px; width: 50px;"
+    >
+        <textarea style="display: none;">
+            {!! $item->embed !!}
+        </textarea>
+    </div>
     @fragment('shorts-player')
         <div id="shorts-player">
             <div class="short-video previous-video">
