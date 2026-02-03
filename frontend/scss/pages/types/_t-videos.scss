@@ -361,6 +361,7 @@
         letter-spacing: -0.38px;
         line-height: 44px;
         text-transform: unset;
+        padding-right: 15px;
       }
     }
     .o-articles {
@@ -391,14 +392,17 @@
                 letter-spacing: 1.68px;
                 line-height: 28px;
                 padding-bottom: 22px;
-                padding-left: 15px;
+                padding-left: 0px;
                 padding-right: 15px;
+                margin-right: 15px;
                 text-transform: uppercase;
             }
             .o-tabbed-details__tab[open] .o-tabbed-details__tab-title {
                 color: $color__videos__link--tab-active;
             }
             .o-tabbed-details__tab-content {
+                margin-left: -15px;
+
                 h3 {
                     margin-top: 56px;
                     font-family: $serif-font--loaded;
