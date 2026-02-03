@@ -5,8 +5,10 @@ const getUrl = function(container) {
   function _handleClicks(event) {
     event.preventDefault();
     event.stopPropagation();
+    console.log(container.getAttribute('data-href'), container.getAttribute('href'));
     triggerCustomEvent(document, 'ajax:getPage', {
       url: container.getAttribute('data-href') || container.getAttribute('href') || '#',
+      type: 'modal',
     });
   }
 
