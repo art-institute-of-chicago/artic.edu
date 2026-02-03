@@ -280,8 +280,14 @@
         &.video-is-short {
             margin: 0 auto;
 
+            @include breakpoint('small+') {
+              .o-article__header {
+                  display: flex;
+                  flex-direction: row-reverse;
+                  gap: 56px;
+              }
+            }
             @include breakpoint('medium+') {
-                float: left;
                 width: colspan(38, medium);
             }
             @include breakpoint('large+') {
@@ -292,12 +298,6 @@
                 width: colspan(28, xlarge);
             }
 
-            .o-article__header {
-                display: flex;
-                flex-direction: row-reverse;
-                gap: 56px;
-
-            }
         }
         p.title {
             display: none;
@@ -341,6 +341,10 @@
         .m-media.variation--short {
             aspect-ratio: 2 / 3;
             flex-basis: 50%;
+
+            @include breakpoint('small+') {
+              padding-bottom: 10%;
+            }
 
             .m-media__img--embed {
                 border-radius: 28px;
