@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Services\Breadcrumbs\NestedBreadcrumbs;
+use A17\Twill\Services\Listings\Columns\Boolean;
 use A17\Twill\Services\Listings\Columns\Relation;
 use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\Filters\QuickFilter;
@@ -61,6 +62,19 @@ class PlaylistVideoController extends BaseController
                 ->queryString('all')
                 ->amount(fn () => $this->repository->getCountByStatusSlug('all', $scope)),
         ]);
+    }
+
+    protected function getIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+
+        $columns->add(
+            Boolean::make()
+                ->field('video.published')
+                ->title(twillTrans('twill::lang.listing.columns.published'))
+        );
+
+        return $columns->merge(parent::getIndexTableColumns());
     }
 
     protected function additionalIndexTableColumns(): TableColumns
