@@ -78,7 +78,7 @@
                 @component('components.molecules._m-listing----playlist-grid-item')
                     @slot('url', route('playlists.show', ['playlist' => $item]))
                     @slot('image', ImageHelpers::youtubeItemAsArray($item))
-                    @slot('label', $item->videos()->count() . " " . Str::plural('videos'))
+                    @slot('label', $item->videos()->published()->count() . " " . Str::plural('videos', $item->videos()->published()->count()))
                     @slot('labelPosition', 'overlay')
                     @slot('title', $item->title)
                     @slot('imageSettings', array(
