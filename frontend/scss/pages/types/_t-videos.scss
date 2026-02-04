@@ -438,6 +438,10 @@
                 padding-bottom: 0;
             }
         }
+        .o-article__intro {
+          margin-left: 0;
+          float: none;
+        }
     }
     .o-article__related {
         display: block;
@@ -497,6 +501,16 @@
                 padding: 8px 12px;
                 text-transform: uppercase;
             }
+        }
+        &:not(.o-article__related--no-description) {
+          @include breakpoint('small') {
+            float: none;
+            clear: none;
+            width: inherit;
+            margin-top: inherit;
+            margin-bottom: inherit;
+            margin-left: inherit;
+          }
         }
     }
     .o-article__related,
