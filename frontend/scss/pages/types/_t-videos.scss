@@ -502,6 +502,16 @@
                 text-transform: uppercase;
             }
         }
+        &:not(.o-article__related--no-description) {
+          @include breakpoint('small') {
+            float: none;
+            clear: none;
+            width: inherit;
+            margin-top: inherit;
+            margin-bottom: inherit;
+            margin-left: inherit;
+          }
+        }
     }
     .o-article__related,
     .o-articles {
