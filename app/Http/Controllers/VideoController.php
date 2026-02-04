@@ -7,6 +7,7 @@ use App\Models\Playlist;
 use App\Models\Video;
 use App\Models\VideoCategory;
 use App\Repositories\VideoRepository;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 
@@ -83,6 +84,9 @@ class VideoController extends FrontController
             });
 
         $playlists = Playlist::published()
+            ->whereHas('videos', function (Builder $query) {
+                $query->published();
+            })
             ->orderBy('updated_at', 'desc')
             ->get()->map(function ($video) {
                 $video->sort_date = $video->updated_at;
