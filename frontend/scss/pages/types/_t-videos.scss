@@ -585,8 +585,6 @@
         }
         @each $name in ('small', 'medium') {
             @include breakpoint('#{$name}') {
-                grid-template-columns: 1fr 1fr;
-
                 .m-media.variation--video {
                     grid-column: 1 / span 2;
                     grid-row: 1;
@@ -597,12 +595,18 @@
                     margin-bottom: 34px !important;
                     margin-top: 34px;
                 }
+
                 .o-playlist {
-                    grid-column: 2;
-                    grid-row: 2;
-                    max-height: 25vh;
+                    max-height: 300px;
+                    margin-top: 60px;
                 }
             }
+        }
+        @include breakpoint('small') {
+          grid-template-columns: 1fr 1fr;
+        }
+        @include breakpoint('medium') {
+          grid-template-columns: 2fr 1fr;
         }
         @include breakpoint('xsmall') {
             grid-template-columns: 1fr;
@@ -635,6 +639,20 @@
         }
     }
     .o-article__body {
+        @include breakpoint('medium+') {
+          float: left;
+          width: colspan(36, medium);
+        }
+
+        @include breakpoint('large+') {
+          float: none;
+          width: colspan(28, large);
+        }
+
+        @include breakpoint('xlarge') {
+          width: colspan(28, xlarge);
+        }
+
         .o-tabbed-details {
             margin-top: 0;
         }
