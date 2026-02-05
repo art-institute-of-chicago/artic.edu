@@ -125,10 +125,10 @@ html.s-dark-mode body {
 
     .level-1 {
       &>.details {
-        background: linear-gradient(to right, $color__dark-mode__bg--primary 33%, transparent 33%);
+        background: linear-gradient(to right, $color__dark-mode__bg--selected 33%, transparent 33%);
 
         @include breakpoint('large+') {
-          background: linear-gradient(to right, $color__dark-mode__bg--primary 50%, transparent 50%);
+          background: linear-gradient(to right, $color__dark-mode__bg--selected 50%, transparent 50%);
         }
 
         .description__container {
@@ -139,7 +139,7 @@ html.s-dark-mode body {
 
         &>.details__container>a,
         &>.details__container>span {
-          background-color: $color__dark-mode__bg--secondary;
+          background-color: $color__dark-mode__bg--selected;
         }
 
         &>.details__container>[role="menu"] {
@@ -153,7 +153,7 @@ html.s-dark-mode body {
 
   .g-header__menu-link {
     & {
-      background-color: $color__dark-mode__bg--primary;
+      background-color: $color__dark-mode__bg--secondary;
     }
   }
 }
