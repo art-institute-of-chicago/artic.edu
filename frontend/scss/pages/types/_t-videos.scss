@@ -302,9 +302,6 @@
         p.title {
             display: none;
         }
-        .m-links-bar {
-          z-index: 15;
-        }
         .o-article__primary-actions--video {
             min-height: unset;
         }
@@ -624,7 +621,7 @@
     .o-playlist {
         background-color: $color__videos__text--title;
 
-        .playlist-video .current-video {
+        .playlist-video.current-video {
             background-color: $color__videos__bg--selected;
         }
         .m-listing__meta .title {
