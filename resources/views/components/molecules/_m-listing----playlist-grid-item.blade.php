@@ -2,6 +2,7 @@
     $url = isset($url) ? $url : route('playlists.show', ['playlist' => $playlist]);
     $image = isset($image) ? $image : ImageHelpers::youtubeItemAsArray($playlist);
     $images = $playlist->videos()
+        ->published()
         ->wherePivot('position', '>', 0)  // The first video thumbnail is the same as the playlist thumbnail
         ->get()
         ->take(2)
