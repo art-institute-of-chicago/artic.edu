@@ -1,4 +1,74 @@
 // Landing page
+.p-t-videos body,
+.p-t-video body {
+  .playlist-grid {
+    .m-title-bar {
+        .m-title-bar__links {
+            position: absolute;
+            right: 0;
+            top: 0;
+
+            @include breakpoint('small-') {
+                display: flex;
+            }
+        }
+        h2.title {
+            margin: 0;
+            max-width: 100%;
+        }
+    }
+    .m-listing__img--multiple {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      overflow: visible;
+
+      .m-listing__img-prompt {
+        z-index: 4;
+      }
+      img {
+        aspect-ratio: 2/1;
+        box-shadow: 0 -3px 2px 0 rgba($color__black, 0.25);
+        z-index: 3;
+      }
+      img:not(:first-child) {
+        height: unset;
+        margin: 0 auto;
+      }
+      img:nth-child(2) {
+        top: -5px;
+        width: 95%;
+        z-index: 2;
+      }
+      img:nth-child(3) {
+        top: -10px;
+        width: 90%;
+        z-index: 1;
+      }
+    }
+  }
+
+  .playlist-grid,
+  .video-grid {
+      margin-left: unset !important;
+
+      .m-title-bar {
+          margin: 0;
+          margin-bottom: 40px;
+
+          &::before {
+              display: none;
+          }
+          h2.title {
+              margin: 0;
+          }
+          .f-link {
+              color: $color__videos__link;
+          }
+      }
+  }
+}
+
 .p-t-videos body {
   .m-header-block {
       &::before {
@@ -225,44 +295,6 @@
           padding-top: 20px;
           &:not(:first-child) {
               border-top: 1px solid $color__videos__rules--primary;
-          }
-      }
-
-      .playlist-grid {
-          .m-title-bar {
-              .m-title-bar__links {
-                  position: absolute;
-                  right: 0;
-                  top: 0;
-
-                  @include breakpoint('small-') {
-                      display: flex;
-                  }
-              }
-              h2.title {
-                  margin: 0;
-                  max-width: 100%;
-              }
-          }
-      }
-
-      .playlist-grid,
-      .video-grid {
-          margin-left: unset !important;
-
-          .m-title-bar {
-              margin: 0;
-              margin-bottom: 40px;
-
-              &::before {
-                  display: none;
-              }
-              h2.title {
-                  margin: 0;
-              }
-              .f-link {
-                  color: $color__videos__link;
-              }
           }
       }
   }
