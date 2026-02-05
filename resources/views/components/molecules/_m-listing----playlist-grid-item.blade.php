@@ -2,21 +2,25 @@
     @if (isset($url))
         <a href="{!! $url !!}" class="m-listing__link">
     @endif
-    <span class="m-listing__img">
-        @if (isset($images))
-            {{-- <div class="m-listing__img-multiple">
-            @foreach ($images as $image)
-                @component('components.atoms._img')
-                    @slot('image', $image)
-                    @slot('settings', $imageSettings ?? '')
-                @endcomponent
-            @endforeach
-            </div> --}}
-        @elseif (isset($image))
+    <span
+        @class([
+            'm-listing__img',
+            'm-listing__img--multiple' => isset($images),
+        ])
+    >
+        @if (isset($image))
             @component('components.atoms._img')
                 @slot('image', $image)
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
+            @if (isset($images))
+                @foreach ($images as $image)
+                    @component('components.atoms._img')
+                        @slot('image', $image)
+                        @slot('settings', $imageSettings ?? '')
+                    @endcomponent
+                @endforeach
+            @endif
         @else
             <span class="default-img"></span>
         @endif

@@ -22,6 +22,7 @@
 
 <div class="o-grid-block playlist-grid">
     @component('components.molecules._m-title-bar')
+        @slot('id', 'playlists')
         @slot('links', !empty($gridLinkLabel) && !empty($gridLinkHref) ? [
             [
                 'label' => $gridLinkLabel,
@@ -48,15 +49,17 @@
         @slot('cols_xlarge', $width)
         @foreach ($playlists as $playlist)
             @php
-                $videoThumbnails = $playlist->videos()
+                $playlistThumbnails = $playlist->videos()
+                    ->wherePivot('position', '>', 0)  // The first video thumbnail is the same as the playlist thumbnail
                     ->get()
-                    ->mapWithKeys(fn($video, $key) => ImageHelpers::youtubeItemAsArray($video));
+                    ->take(2)
+                    ->map(fn($video) => ImageHelpers::youtubeItemAsArray($video));
                 $videoCount = $playlist->videos()->count();
             @endphp
             @component('components.molecules._m-listing----playlist-grid-item')
                 @slot('url', route('playlists.show', ['playlist' => $playlist]))
-                {{-- @slot('images', $videoThumbnails) --}}
                 @slot('image', ImageHelpers::youtubeItemAsArray($playlist))
+                @slot('images', $playlistThumbnails)
                 @slot('label', "$videoCount videos")
                 @slot('labelPosition', 'overlay')
                 @slot('title', $playlist->title)
