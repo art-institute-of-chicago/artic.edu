@@ -75,10 +75,13 @@
         @slot('cols_xlarge','4')
         @foreach ($videos as $item)
             @if ($item instanceof \App\Models\Playlist)
+                @php
+                    $videosCount = $item->videos()->published()->count();
+                @endphp
                 @component('components.molecules._m-listing----playlist-grid-item')
                     @slot('url', route('playlists.show', ['playlist' => $item]))
                     @slot('image', ImageHelpers::youtubeItemAsArray($item))
-                    @slot('label', $item->videos()->published()->count() . " " . Str::plural('videos', $item->videos()->published()->count()))
+                    @slot('label', $videosCount . " " . Str::plural('videos', $videosCount))
                     @slot('labelPosition', 'overlay')
                     @slot('title', $item->title)
                     @slot('imageSettings', array(
