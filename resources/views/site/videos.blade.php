@@ -67,6 +67,7 @@
       @endcomponent
     </div>
   @else
+    <div class="o-grid-block playlist-grid">
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
         @slot('cols_small','2')
@@ -113,6 +114,7 @@
             @endif
         @endforeach
     @endcomponent
+    </div>
   @endif
 
   @php
