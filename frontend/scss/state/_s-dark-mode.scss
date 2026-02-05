@@ -105,4 +105,55 @@ html.s-dark-mode body {
     background-color: $color__dark-mode__text--tertiary;
     color: $color__input-text--focus;
   }
+
+  /* Primary nav */
+  &,
+  &:not(.s-scroll-direction-up),
+  &:not(.s-header-hide) {
+    .g-header:has([aria-expanded="true"]) {
+      background-color: rgba($color__dark-mode__bg--primary, 1);
+    }
+    .g-header:not(:has([aria-expanded="true"])) {
+      background-color: rgba($color__dark-mode__bg--primary, 1);
+    }
+  }
+
+  .g-header__nav-primary {
+    [aria-expanded="false"]+.details {
+      background: rgba($color__dark-mode__bg--primary, 0);
+    }
+
+    .level-1 {
+      &>.details {
+        background: linear-gradient(to right, $color__dark-mode__bg--primary 33%, transparent 33%);
+
+        @include breakpoint('large+') {
+          background: linear-gradient(to right, $color__dark-mode__bg--primary 50%, transparent 50%);
+        }
+
+        .description__container {
+          .title, p {
+            color: $color__dark_mode__text--primary;
+          }
+        }
+
+        &>.details__container>a,
+        &>.details__container>span {
+          background-color: $color__dark-mode__bg--secondary;
+        }
+
+        &>.details__container>[role="menu"] {
+          &:has(.details) {
+            border-right: 1px solid $color__dark-mode__rules--primary;
+          }
+        }
+      }
+    }
+  }
+
+  .g-header__menu-link {
+    & {
+      background-color: $color__dark-mode__bg--primary;
+    }
+  }
 }
