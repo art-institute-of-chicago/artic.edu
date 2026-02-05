@@ -244,6 +244,35 @@
                   max-width: 100%;
               }
           }
+          .m-listing__img--multiple {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
+
+            .m-listing__img-prompt {
+              z-index: 4;
+            }
+            img {
+              aspect-ratio: 2/1;
+              box-shadow: 0 -3px 2px 0 rgba($color__black, 0.25);
+              z-index: 3;
+            }
+            img:not(:first-child) {
+              height: unset;
+              margin: 0 auto;
+            }
+            img:nth-child(2) {
+              top: -5px;
+              width: 95%;
+              z-index: 2;
+            }
+            img:nth-child(3) {
+              top: -10px;
+              width: 90%;
+              z-index: 1;
+            }
+          }
       }
 
       .playlist-grid,
