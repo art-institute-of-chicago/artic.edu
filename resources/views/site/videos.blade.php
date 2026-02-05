@@ -67,6 +67,7 @@
       @endcomponent
     </div>
   @else
+    <div class="o-grid-block playlist-grid">
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
         @slot('cols_small','2')
@@ -75,15 +76,8 @@
         @slot('cols_xlarge','4')
         @foreach ($videos as $item)
             @if ($item instanceof \App\Models\Playlist)
-                @php
-                    $videosCount = $item->videos()->published()->count();
-                @endphp
                 @component('components.molecules._m-listing----playlist-grid-item')
-                    @slot('url', route('playlists.show', ['playlist' => $item]))
-                    @slot('image', ImageHelpers::youtubeItemAsArray($item))
-                    @slot('label', $videosCount . " " . Str::plural('videos', $videosCount))
-                    @slot('labelPosition', 'overlay')
-                    @slot('title', $item->title)
+                    @slot('playlist', $item)
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
@@ -120,6 +114,7 @@
             @endif
         @endforeach
     @endcomponent
+    </div>
   @endif
 
   @php
