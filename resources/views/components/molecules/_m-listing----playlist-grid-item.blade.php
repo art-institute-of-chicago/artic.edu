@@ -6,8 +6,8 @@
         ->get()
         ->take(2)
         ->map(fn($video) => ImageHelpers::youtubeItemAsArray($video));
-    $videoCount = $playlist->videos()->count();
-    $label = isset($label) ? $label : "$videoCount videos";
+    $videoCount = $playlist->videos()->published()->count();
+    $label = isset($label) ? $label : $videoCount . ' ' . Str::plural('videos', $videosCount);
     $labelPosition = isset($labelPosition) ? $labelPosition : 'overlay';
     $title = isset($title) ? $title : $playlist->title;
     $tag = isset($tag) ? $tag : null;
