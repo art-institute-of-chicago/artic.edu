@@ -26,17 +26,6 @@ The tricky part is, that when you scroll up and the header re-appears, it now ne
 
   &:not(.s-scroll-direction-up),
   &:not(.s-header-hide) {
-    .g-header {
-      @include breakpoint('small') {
-        height: 368px;
-      }
-      @include breakpoint('medium') {
-        height: 376px;
-      }
-      @include breakpoint('large+') {
-        height: 380px;
-      }
-    }
     .g-header:has([aria-expanded="true"]) {
       background-color: rgba($color__white, 1);
       transition: background-color .6s ease-in;
