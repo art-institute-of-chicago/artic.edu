@@ -688,23 +688,38 @@
     }
 
 }
-.p-shorts-show {
-    #shorts-player {
-        display: flex;
-        gap: 90px;
+#shorts-player {
+    backdrop-filter: blur(22px);
+    background: rgba($color__black, 0.75);
+    display: flex;
+    gap: 90px;
+    min-height: 50vh;
+    min-width: 100vw;
 
-        .short-video {
-            flex: 1;
-            min-height: 100%;
+    .g-modal:has(&) {
+      background-color: transparent;
+    }
 
-            .link::before {
-              padding: unset;
-            }
-            .m-media__img {
-                aspect-ratio: 185 / 329;
-                border-radius: 28px;
-                height: 120%;
-            }
+    .short-video {
+        flex: 1;
+        min-height: 100%;
+
+        .link::before {
+          padding: unset;
+        }
+        .m-media__img {
+            aspect-ratio: 185 / 329;
+            border-radius: 28px;
+            height: 120%;
+        }
+    }
+
+    @include breakpoint('xsmall') {
+        padding: 65px 27px 27px;
+
+        .previous-video,
+        .next-video {
+            display: none;
         }
     }
 }

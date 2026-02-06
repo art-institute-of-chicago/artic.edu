@@ -17,6 +17,7 @@
                         @slot('href', route('shorts.show', ['video' => $previousItem]))
                         @slot('behavior', 'getUrl')
                         @slot('dataHref', route('shorts.show', ['video' => $previousItem]) . '?player')
+                        @slot('type', 'modal')
                         @component('components.molecules._m-media')
                             @slot('variation', 'variation--short')
                             @slot('item', [
@@ -52,6 +53,7 @@
                         @slot('href', route('shorts.show', ['video' => $nextItem]))
                         @slot('behavior', 'getUrl')
                         @slot('dataHref', route('shorts.show', ['video' => $nextItem]) . '?player')
+                        @slot('type', 'modal')
                         @component('components.molecules._m-media')
                             @slot('variation', 'variation--short')
                             @slot('item', [
