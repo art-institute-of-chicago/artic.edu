@@ -40,8 +40,10 @@ class ShortsController extends FrontController
             abort(404);
         }
         $canonicalPath = route('shorts.show', ['video' => $video, 'slug' => $video->getSlug()]);
-        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
-            return $canonicalRedirect;
+        if ($request->missing('player')) {
+            if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
+                return $canonicalRedirect;
+            }
         }
 
         $previousItem = $this->repository

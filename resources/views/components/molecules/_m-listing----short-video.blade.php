@@ -1,6 +1,7 @@
 <li class="m-listing">
     @component('components.atoms._link')
-        @slot('dataHref', $url)
+        @slot('href', $url)
+        @slot('dataHref', $url . '?player')
         @slot('variation', 'm-listing__link')
         @slot('behavior', 'triggerShortsPlayerModal')
         @slot('gtmAttributes', 'data-gtm-event-action="' . addslashes($title) . '"')
