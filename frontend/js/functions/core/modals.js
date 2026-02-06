@@ -66,29 +66,29 @@ const modals = function() {
   function _openModal(event) {
     _resetModal();
 
-    if (event && event.data.opener) {
-      switch (event.data.opener) {
-        case 'media':
-          active = _media(event);
-          break;
-        case 'shorts':
-          active = true;
-          break;
-      }
+    switch (event?.data?.opener) {
+      case 'media':
+        active = _media(event);
+        break;
+      case 'shorts':
+        active = true;
+        break;
+      default:
+        active = false;
+    }
 
-      if (active) {
-        triggerCustomEvent(document, 'body:lock', {
-          breakpoints: 'all'
+    if (active) {
+      triggerCustomEvent(document, 'body:lock', {
+        breakpoints: 'all'
+      });
+      window.requestAnimationFrame(function(){
+        document.documentElement.classList.add(modalActiveClass);
+        setTimeout(function(){ setFocusOnTarget($modal); }, 0)
+        triggerCustomEvent(document, 'focus:trap', {
+          element: $modal
         });
-        window.requestAnimationFrame(function(){
-          document.documentElement.classList.add(modalActiveClass);
-          setTimeout(function(){ setFocusOnTarget($modal); }, 0)
-          triggerCustomEvent(document, 'focus:trap', {
-            element: $modal
-          });
-          triggerCustomEvent(document, 'page:updated');
-        });
-      }
+        triggerCustomEvent(document, 'page:updated');
+      });
     }
   }
 

@@ -1,15 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div
-        data-behavior="triggerMediaModal"
-        style="display: block; background-color: #fff; height: 50px; width: 50px;"
-    >
-        <textarea style="display: none;">
-            {!! $item->embed !!}
-        </textarea>
-    </div>
     @fragment('shorts-player')
+        <div class="g-modal__logo">
+            <svg aria-hidden="true">
+                <use xlink:href="#icon--logo--outline--80"></use>
+            </svg>
+        </div>
         <div id="shorts-player">
             <div class="short-video previous-video">
                 @if ($previousItem)

@@ -1,4 +1,4 @@
-import { triggerCustomEvent } from '@area17/a17-helpers';
+import { triggerCustomEvent, purgeProperties } from '@area17/a17-helpers';
 
 const triggerShortsPlayerModal = function(container) {
 
@@ -18,7 +18,7 @@ const triggerShortsPlayerModal = function(container) {
   }
 
   function _handleKeyUp(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       _handleClicks(event);
     }
   }
@@ -26,8 +26,7 @@ const triggerShortsPlayerModal = function(container) {
   this.destroy = function() {
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
-
-    A17.Helpers.purgeProperties(this);
+    purgeProperties(this);
   };
 
   this.init = function() {
