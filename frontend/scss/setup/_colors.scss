@@ -293,8 +293,8 @@ $color__input-border--error: $color__red--100;
 $color__input-border--checked: $color__black--90;
 
 $color__dark-mode__bg--primary: $color__black--81;
-$color__dark-mode__bg--secondary: rgba($color__dark-mode__bg--primary, 0.90);
-$color__dark-mode__bg--selected: rgba($color__black, 0.30);
+$color__dark-mode__bg--secondary: #3D3D3E;
+$color__dark-mode__bg--selected: $color__black--93;
 
 $color__dark-mode__img--overlay: rgba(26, 26, 26, 0.80);
 
