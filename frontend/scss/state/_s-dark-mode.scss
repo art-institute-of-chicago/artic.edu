@@ -111,16 +111,16 @@ html.s-dark-mode body {
   &:not(.s-scroll-direction-up),
   &:not(.s-header-hide) {
     .g-header:has([aria-expanded="true"]) {
-      background-color: rgba($color__dark-mode__bg--primary, 1);
+      background-color: $color__dark-mode__bg--primary;
     }
     .g-header:not(:has([aria-expanded="true"])) {
-      background-color: rgba($color__dark-mode__bg--primary, 1);
+      background-color: $color__dark-mode__bg--primary;
     }
   }
 
   .g-header__nav-primary {
     [aria-expanded="false"]+.details {
-      background: rgba($color__dark-mode__bg--primary, 0);
+      background: transparent;
     }
 
     .level-1 {
