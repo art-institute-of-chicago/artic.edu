@@ -164,16 +164,31 @@ const ajaxPageLoad = function() {
     _ajaxPageLoadComplete();
   }
   function modalStart(options,doc) {
-    console.log(options);
+    // noop
   }
   function modalComplete(options,doc) {
     // Replace content
     document.getElementById('modal').className = 'g-modal ' + (options.modalClass ? options.modalClass : '');
     document.querySelector('[data-modal-content]').innerHTML = doc.querySelector('body').innerHTML;
     triggerCustomEvent(document, 'modal:open', { opener: options.opener });
-    console.log(options);
 
     _ajaxPageLoadComplete();
+  }
+  function resetDocument() {
+      triggerCustomEvent(document, 'shareMenu:close');
+      triggerCustomEvent(document, 'selectDate:close');
+      triggerCustomEvent(document, 'fullScreenImage:close');
+      triggerCustomEvent(document, 'collectionSearch:close');
+      triggerCustomEvent(document, 'infoButtonInfo:close');
+      triggerCustomEvent(document, 'stickySidebar:clean');
+      triggerCustomEvent(document, 'modal:close');
+      triggerCustomEvent(document, 'roadblock:close');
+      triggerCustomEvent(document, 'globalSearch:close');
+      triggerCustomEvent(document, 'navMobile:close');
+      triggerCustomEvent(document, 'dropdown:close');
+      docTitle = null;
+      docContent = null;
+      documentContent = null;
   }
   function loadDocument(options) {
     if (!A17.ajaxLinksActive) {
@@ -184,20 +199,9 @@ const ajaxPageLoad = function() {
       return;
     }
     ajaxing = true;
-    triggerCustomEvent(document, 'shareMenu:close');
-    triggerCustomEvent(document, 'selectDate:close');
-    triggerCustomEvent(document, 'fullScreenImage:close');
-    triggerCustomEvent(document, 'collectionSearch:close');
-    triggerCustomEvent(document, 'infoButtonInfo:close');
-    triggerCustomEvent(document, 'stickySidebar:clean');
-    triggerCustomEvent(document, 'modal:close');
-    triggerCustomEvent(document, 'roadblock:close');
-    triggerCustomEvent(document, 'globalSearch:close');
-    triggerCustomEvent(document, 'navMobile:close');
-    triggerCustomEvent(document, 'dropdown:close');
-    docTitle = null;
-    docContent = null;
-    documentContent = null;
+    if (options.type !== 'modal') {
+      resetDocument();
+    }
     triggerCustomEvent(document, 'ajaxPageLoadMask:show');
     triggerCustomEvent(document, 'loader:start');
     // Do on start func
