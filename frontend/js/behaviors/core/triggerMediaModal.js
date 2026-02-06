@@ -11,7 +11,7 @@ const triggerMediaModal = function(container) {
         event.preventDefault();
         event.stopPropagation();
         triggerCustomEvent(document, 'modal:open', {
-          type: 'media',
+          opener: 'media',
           restricted: (container.parentNode.dataset.restricted == 'true') ? true : false,
           module3d: (container.parentNode.dataset.type == 'module3d') ? true : false,
           module360: (container.parentNode.dataset.type == 'module360') ? true : false,

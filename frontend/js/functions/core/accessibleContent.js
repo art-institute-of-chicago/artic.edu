@@ -13,9 +13,7 @@ const accessibleContent = function() {
       // Remove id from existing header, if any
       var old = document.querySelector('#content-h1');
       if (old) {
-        old.forEach( function(e) {
-          h1.removeAttr('id');
-        });
+        old.removeAttribute('id');
       }
 
       h1.setAttribute('id', 'content-h1');

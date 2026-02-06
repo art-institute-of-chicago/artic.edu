@@ -64,12 +64,15 @@ const modals = function() {
   }
 
   function _openModal(event) {
-    _closeModal();
+    _resetModal();
 
-    if (event && event.data.type) {
-      switch (event.data.type) {
+    if (event && event.data.opener) {
+      switch (event.data.opener) {
         case 'media':
           active = _media(event);
+          break;
+        case 'shorts':
+          active = true;
           break;
       }
 
@@ -93,8 +96,7 @@ const modals = function() {
     if (!active) {
       return;
     }
-    triggerCustomEvent(document, 'body:unlock');
-    triggerCustomEvent(document, 'focus:untrap');
+    _resetModal();
     document.documentElement.classList.remove(modalActiveClass);
     setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
     setTimeout(function(){
@@ -102,6 +104,11 @@ const modals = function() {
       $modal.querySelector('[data-modal-content]').innerHTML = '';
     },300);
     active = false;
+  }
+
+  function _resetModal() {
+    triggerCustomEvent(document, 'body:unlock');
+    triggerCustomEvent(document, 'focus:untrap');
   }
 
   function _resized() {
