@@ -40,8 +40,10 @@ class ShortsController extends FrontController
             abort(404);
         }
         $canonicalPath = route('shorts.show', ['video' => $video, 'slug' => $video->getSlug()]);
-        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
-            return $canonicalRedirect;
+        if ($request->missing('player')) {
+            if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
+                return $canonicalRedirect;
+            }
         }
 
         $previousItem = $this->repository
@@ -57,12 +59,15 @@ class ShortsController extends FrontController
             ->orderBy('uploaded_at', 'desc')
             ->first();
 
+        $this->seo->nofollow = true;
+        $this->seo->noindex = true;
 
         return view('site.shortsDetail', [
             'item' => $video,
             'previousItem' => $previousItem,
             'nextItem' => $nextItem,
             'canonicalUrl' => $canonicalPath,
+            'darkMode' => true,
         ])->fragmentIf($request->has('player'), 'shorts-player');
     }
 }

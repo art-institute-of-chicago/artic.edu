@@ -43,7 +43,7 @@
             @slot('cols_large', 6)
             @slot('cols_xlarge', 6)
             @foreach ($videos as $video)
-                @component('components.molecules._m-listing----grid-item')
+                @component('components.molecules._m-listing----short-video')
                     @slot('url', route('shorts.show', ['video' => $video]))
                     @slot('image', ImageHelpers::youtubeItemAsArray($video))
                     @slot('label', '')
