@@ -172,9 +172,6 @@
             data-credit="{{ $item['credit'] }}"
         @endif
     >
-        @if ($useContain && !($item['isArtwork'] ?? false) && ($size === 's' || $size === 'm' || $size === 'l'))
-          <div class="m-media__contain--spacer" style="--aspect-ratio: {{ intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100 }}%; padding-bottom: var(--aspect-ratio); width: 100%;"></div>
-        @endif
         @if ($type == 'image')
             @if ($showUrlFullscreen)
                 <a href="{!! $item['urlTitle'] !!}"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
@@ -255,6 +252,10 @@
             @component('components.atoms._media-play-pause-video')
             @endcomponent
         @endif
+        @if ($useContain && !($item['isArtwork'] ?? false) && ($size === 's' || $size === 'm' || $size === 'l'))
+          <div class="m-media__contain--spacer" style="--aspect-ratio: {{ intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100 }}%; padding-bottom: var(--aspect-ratio); width: 100%;"></div>
+        @endif
+
         @if (isset($item['downloadable']) and $item['downloadable'])
             @component('components.atoms._btn')
                 @slot('variation', 'btn--septenary btn--icon btn--icon-circle-48 m-media__btn-download')
