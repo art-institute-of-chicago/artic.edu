@@ -801,10 +801,6 @@ Styling related specifically to digital publications
   }
 
   .o-article__body.o-blocks>.o-gallery {
-    .m-media__img {
-      width: max-content;
-    }
-
     &:first-child {
       .o-gallery__title {
         margin-top: 15px !important;
