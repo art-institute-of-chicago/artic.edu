@@ -2,6 +2,11 @@
 
 @section('content')
     @fragment('shorts-player')
+        <div class="g-modal__logo">
+            <svg aria-hidden="true">
+                <use xlink:href="#icon--logo--outline--80"></use>
+            </svg>
+        </div>
         <div id="shorts-player">
             <div class="short-video previous-video">
                 @if ($previousItem)
@@ -9,6 +14,7 @@
                         @slot('href', route('shorts.show', ['video' => $previousItem]))
                         @slot('behavior', 'getUrl')
                         @slot('dataHref', route('shorts.show', ['video' => $previousItem]) . '?player')
+                        @slot('type', 'modal')
                         @component('components.molecules._m-media')
                             @slot('variation', 'variation--short')
                             @slot('item', [
@@ -44,6 +50,7 @@
                         @slot('href', route('shorts.show', ['video' => $nextItem]))
                         @slot('behavior', 'getUrl')
                         @slot('dataHref', route('shorts.show', ['video' => $nextItem]) . '?player')
+                        @slot('type', 'modal')
                         @component('components.molecules._m-media')
                             @slot('variation', 'variation--short')
                             @slot('item', [
