@@ -395,30 +395,52 @@ class AppServiceProvider extends ServiceProvider
                                     'url' => '/articles-videos',
                                 ],
                                 [
-                                    'name' => 'Research',
-                                    'url' => '/collection/research_resources',
+                                    'name' => 'Research Center',
+                                    'url' => '/research-center',
                                     'children' => [
                                         [
                                             'name' => 'Library',
-                                            'url' => '/library',
+                                            'url' => '/research-center/discover-our-collections/library',
                                         ],
                                         [
-                                            'name' => 'Archival Collections',
-                                            'url' => '/archival-collections',
+                                            'name' => 'Archives',
+                                            'url' => '/research-center/discover-our-collections/archives',
                                         ],
                                         [
-                                            'name' => 'Collection Information',
-                                            'url' => '/collection-information',
-                                        ],
-                                        [
-                                            'name' => 'Conservation and Science',
-                                            'url' => '/about-us/departments/conservation-and-science-2',
+                                            'name' => 'Academic Engagement',
+                                            'url' => '/about-us/departments/academic-engagement-and-research',
                                         ],
                                     ],
                                 ],
                                 [
                                     'name' => 'Publications',
                                     'url' => '/publications',
+                                ],
+                                [
+                                    'name' => 'Conservation &amp; Science',
+                                    'url' => '/conservation-science',
+                                ],
+                                [
+                                    'name' => 'Collection Information',
+                                    'url' => '/collection-information',
+                                    'children' => [
+                                        [
+                                            'name' => 'Curatorial Departments',
+                                            'url' => '/about-us/departments/curatorial-departments',
+                                        ],
+                                        [
+                                            'name' => 'Provenance Research',
+                                            'url' => '/collection-information/provenance-research',
+                                        ],
+                                        [
+                                            'name' => 'Loans',
+                                            'url' => '/collection-information/loans',
+                                        ],
+                                        [
+                                            'name' => 'Open Access',
+                                            'url' => '/collection-information/open-access',
+                                        ],
+                                    ],
                                 ],
                             ],
                         ],
