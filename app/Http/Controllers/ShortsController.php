@@ -59,6 +59,8 @@ class ShortsController extends FrontController
             ->orderBy('uploaded_at', 'desc')
             ->first();
 
+        $this->seo->nofollow = true;
+        $this->seo->noindex = true;
 
         return view('site.shortsDetail', [
             'item' => $video,
