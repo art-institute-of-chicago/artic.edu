@@ -13,9 +13,9 @@ use Illuminate\Support\Str;
   --      conditional which is not very DRY.
   --}}
 <div class="m-title-bar {{ $variation ?? '' }}"{!! isset($id) ? ' id="'.$id.'"' : '' !!}>
-  <h2 class="title {{ $titleFont ?? 'f-module-title-2' }}" id="{{ isset($id) ? $id : Str::snake(strip_tags($slot), '-') }}">{{ $slot }}</h2>
+  <h2 class="title {{ $titleFont ?? 'f-module-title-2' }}" id="{{ isset($id) ? $id : Str::slug(html_entity_decode(strip_tags($slot))) }}">{{ $slot }}</h2>
   @if (isset($links) and $links)
-  <{!! count($links) > 1 ? 'ul' : 'span' !!} class="m-title-bar__links" aria-labelledby="{{ isset($id) ? $id : Str::snake(strip_tags($slot), '-') }}">
+  <{!! count($links) > 1 ? 'ul' : 'span' !!} class="m-title-bar__links" aria-labelledby="{{ isset($id) ? $id : Str::slug(html_entity_decode(strip_tags($slot))) }}">
     @foreach ($links as $link)
     {!! count($links) > 1 ? '<li>' : '<span>' !!}
         @if (isset($link['href']))
