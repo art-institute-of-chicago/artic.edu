@@ -109,7 +109,7 @@ class Video extends AbstractModel
     ];
 
     public static $durationLengths = [
-        self::SHORT => [0, 59],
+        self::SHORT => [0, 61],
         self::MEDIUM => [60, 299],
         self::LONG => [300, 1199],
         self::EXTRA_LONG => [1200, null],
