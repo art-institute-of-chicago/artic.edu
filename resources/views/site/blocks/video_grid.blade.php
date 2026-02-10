@@ -48,6 +48,7 @@
     $showDescription = $block->input('show_description');
 @endphp
 
+@if($block->canRender())
 <div class="o-grid-block video-grid">
     @component('components.molecules._m-title-bar')
         @slot('links', !empty($gridLinkLabel) && !empty($gridLinkHref) ? [
@@ -96,3 +97,4 @@
         @endforeach
     @endcomponent
 </div>
+@endif
