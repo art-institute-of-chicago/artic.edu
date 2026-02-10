@@ -210,4 +210,21 @@ html.s-dark-mode body {
   .js-subnav-open .g-nav-mobile__close {
     background-color: $color__dark-mode__bg--secondary;
   }
+
+  /* Share menu */
+  .m-share-menu {
+    background-color: $color__dark-mode__bg--primary;
+  }
+
+  .m-share-menu ul a,
+  .m-share-menu ul button {
+    & {
+      background-color: $color__dark-mode__bg--primary;
+      color: $color__dark_mode__text--secondary;
+    }
+  }
+
+  .m-share-menu li {
+    border-top: 1px solid $color__dark-mode__rules--primary;
+  }
 }
