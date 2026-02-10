@@ -13,21 +13,39 @@
         :maxlength="255"
         :toolbar-options="[ 'italic' ]"
     />
+
+    <x-twill::medias
+        name='hero'
+        label='Hero image'
+        note='Minimum image width 3000px'
+    />
+
+    <x-twill::files
+        name='video'
+        label='Hero video'
+        note='Add an MP4 file'
+    />
+
+    <x-twill::medias
+        name='mobile_hero'
+        label='Hero image, mobile'
+        note='Minimum image width 2000px'
+    />
 @stop
 
 @section('fieldsets')
-    <x-twill::formFieldset title="Custom Content" id="conservationAndScience-custom_content">
+    <x-twill::formFieldset title="Custom Content" id="custom-custom_content">
         @php
-            $blocks = [
-                'editorial_block',
-                'event',
+            $blocks = BlockHelpers::getBlocksForEditor([
                 'gallery_new',
                 'grid',
                 'hr',
                 'image_slider',
                 'list',
                 'showcase',
-            ];
+                'paragraph',
+                'image',
+            ]);
         @endphp
         <x-twill::block-editor
             name='default'
@@ -35,12 +53,7 @@
             withoutSeparator='true'
         />
     </x-twill::formFieldset>
-    <x-twill::formFieldset title="FAQs" id="conservationAndScience-faq">
-        <x-twill::repeater
-            type='faqs'
-        />
-    </x-twill::formFieldset>
-    <x-twill::formFieldset id="conservationAndScience-metadata" title="Overwrite default metadata (optional)">
+    <x-twill::formFieldset id="custom-metadata" title="Overwrite default metadata (optional)">
         <x-twill::input
             name='meta_title'
             label='Metadata Title'
