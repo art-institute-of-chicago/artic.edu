@@ -1,6 +1,6 @@
-@php
-    use App\Helpers\StringHelpers;
+@if($block->canRender())
 
+@php
     $gridTitle = $block->present()->input('heading');
     $gridDescription = $block->input('description');
     $gridLinkLabel = $block->input('grid_link_label');
@@ -26,10 +26,14 @@
     $take = $maxRows * (int) $width;
     switch ($display) {
         case 'category':
-            $videos = $category->videos;
+            $videos = $category->videos()->published()->get();
+            $gridLinkLabel = "View all";
+            $gridLinkHref = route('videos.archive', ['category' => $category->id]);
             break;
         case 'playlist':
-            $videos = $playlist->videos;
+            $videos = $playlist->videos()->published()->get();
+            $gridLinkLabel = "View all";
+            $gridLinkHref = route('playlists.show', ['playlist' => $playlist->id]);
             break;
         case 'featured':
             $videos = $block->getRelated('videos');
@@ -75,7 +79,7 @@
                 @slot('label', $video->duration_display ?? '')
                 @slot('labelPosition', 'overlay')
                 @slot('title', $video->title ?? '')
-                @slot('description', $showDescription ? StringHelpers::truncateStr($video->description) : '')
+                @slot('description', $showDescription ? \App\Helpers\StringHelpers::truncateStr($video->description) : '')
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
@@ -92,3 +96,4 @@
         @endforeach
     @endcomponent
 </div>
+@endif
