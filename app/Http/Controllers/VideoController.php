@@ -101,7 +101,7 @@ class VideoController extends FrontController
             $items = $playlists;
         } else {
             $items = $videos->concat($shorts);
-            if (!request('duration')) {
+            if (!request('duration') && !request('category')) {
                 $items = $items->concat($playlists);
             }
         }
