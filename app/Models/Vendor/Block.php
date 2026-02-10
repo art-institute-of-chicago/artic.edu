@@ -68,14 +68,17 @@ class Block extends BaseModel
 
             if ($display == 'category') {
                 $category = $this->getRelated('videoCategories')->first();
-                if (!$category) return false;
+                if (!$category) {
+                    return false;
+                }
                 return $category->videos()
                         ->published()
                         ->exists();
-            }
-            elseif ($display == 'playlist') {
+            } elseif ($display == 'playlist') {
                 $playlist = $this->getRelated('playlist')->first();
-                if (!$playlist) return false;
+                if (!$playlist) {
+                    return false;
+                }
                 return $playlist->published
                     && $playlist->videos()
                         ->published()
