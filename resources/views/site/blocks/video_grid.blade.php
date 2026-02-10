@@ -26,7 +26,10 @@
     $take = $maxRows * (int) $width;
     switch ($display) {
         case 'category':
-            $videos = $category->videos;
+            $videos = $category->videos()->published()->get();
+            if ($videos->isEmpty()) {
+                return;
+            }
             $gridLinkLabel = "View all";
             $gridLinkHref = route('videos.archive', ['category' => $category->id]);
             break;
@@ -34,7 +37,10 @@
             if (!$playlist->published) {
                 return;
             }
-            $videos = $playlist->videos;
+            $videos = $playlist->videos()->published()->get();
+            if ($videos->isEmpty()) {
+                return;
+            }
             $gridLinkLabel = "View all";
             $gridLinkHref = route('playlists.show', ['playlist' => $playlist->id]);
             break;
