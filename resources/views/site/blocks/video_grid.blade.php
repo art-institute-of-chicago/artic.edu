@@ -31,6 +31,9 @@
             $gridLinkHref = route('videos.archive', ['category' => $category->id]);
             break;
         case 'playlist':
+            if (!$playlist->published) {
+                return;
+            }
             $videos = $playlist->videos;
             $gridLinkLabel = "View all";
             $gridLinkHref = route('playlists.show', ['playlist' => $playlist->id]);
