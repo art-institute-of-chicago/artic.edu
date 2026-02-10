@@ -60,7 +60,7 @@ class BlockHelpers
               $heading = strip_tags($block->present()->input('heading'));
               return [
                   'label' => $heading,
-                  'target' => '#' . Str::slug($heading)
+                  'target' => '#' . Str::slug(html_entity_decode($heading))
               ];
           });
     }
