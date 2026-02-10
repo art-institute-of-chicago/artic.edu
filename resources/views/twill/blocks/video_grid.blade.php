@@ -24,6 +24,13 @@
         ],
     ]"
 />
+
+<x-twill::formConnectedFields
+    field-name='display'
+    field-values='featured'
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
     <x-twill::input
         name='grid_link_label'
         label='Link Label'
@@ -36,6 +43,7 @@
         label='Link URL'
         :maxlength='60'
     />
+</x-twill::formConnectedFields>
 <x-twill::formConnectedFields
     field-name='display'
     field-values='category'

@@ -27,9 +27,13 @@
     switch ($display) {
         case 'category':
             $videos = $category->videos;
+            $gridLinkLabel = "View all";
+            $gridLinkHref = route('videos.archive', ['category' => $category->id]);
             break;
         case 'playlist':
             $videos = $playlist->videos;
+            $gridLinkLabel = "View all";
+            $gridLinkHref = route('playlists.show', ['playlist' => $playlist->id]);
             break;
         case 'featured':
             $videos = $block->getRelated('videos');
