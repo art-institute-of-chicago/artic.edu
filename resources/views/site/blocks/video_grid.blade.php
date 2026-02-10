@@ -1,6 +1,6 @@
-@php
-    use App\Helpers\StringHelpers;
+@if($block->canRender())
 
+@php
     $gridTitle = $block->present()->input('heading');
     $gridDescription = $block->input('description');
     $gridLinkLabel = $block->input('grid_link_label');
@@ -48,7 +48,6 @@
     $showDescription = $block->input('show_description');
 @endphp
 
-@if($block->canRender())
 <div class="o-grid-block video-grid">
     @component('components.molecules._m-title-bar')
         @slot('links', !empty($gridLinkLabel) && !empty($gridLinkHref) ? [
@@ -80,7 +79,7 @@
                 @slot('label', $video->duration_display ?? '')
                 @slot('labelPosition', 'overlay')
                 @slot('title', $video->title ?? '')
-                @slot('description', $showDescription ? StringHelpers::truncateStr($video->description) : '')
+                @slot('description', $showDescription ? \App\Helpers\StringHelpers::truncateStr($video->description) : '')
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
