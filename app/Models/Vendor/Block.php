@@ -60,4 +60,28 @@ class Block extends BaseModel
     {
         return $this->children()->where('type', $type)->get()->map(fn ($item) => (object) $item->content);
     }
+
+    public function canRender(): bool
+    {
+        if ($this->type == 'video_grid') {
+            $display = $this->input('display');
+
+            if ($display == 'category') {
+                $category = $this->getRelated('videoCategories')->first();
+                if (!$category) return false;
+                return $category->videos()
+                        ->published()
+                        ->exists() ?? false;
+            }
+            elseif ($display == 'playlist') {
+                $playlist = $this->getRelated('playlist')->first();
+                if (!$playlist) return false;
+                return $playlist->published
+                    && $playlist->videos()
+                        ->published()
+                        ->exists();
+            }
+        }
+        return true;
+    }
 }
