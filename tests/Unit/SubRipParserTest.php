@@ -12,6 +12,7 @@ class SubRipParserTest extends BaseTestCase
 
     public function setUp(): void
     {
+        parent::setUp();
         $this->parser = CaptionParser::parseFile(self::FILE);
     }
 
