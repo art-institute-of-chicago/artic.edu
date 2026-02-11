@@ -8,6 +8,7 @@ use App\Models\Video;
 use App\Models\VideoCategory;
 use App\Repositories\VideoRepository;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 
@@ -23,7 +24,7 @@ class VideoController extends FrontController
         parent::__construct();
     }
 
-    public function show(Video $video, $slug = null)
+    public function show(Request $request, Video $video, $slug = null)
     {
         if (!$video->published) {
             abort(404);
@@ -51,6 +52,7 @@ class VideoController extends FrontController
         return view('site.videoDetail', [
             'item' => $video,
             'transcript' => $transcript,
+            'showTranscript' => $request->query('transcript') === 'true',
             'relatedVideos' => $relatedVideos,
             'contrastHeader' => true,
             'unstickyHeader' => true,
