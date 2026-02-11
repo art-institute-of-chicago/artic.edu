@@ -87,9 +87,9 @@ class VideoController extends FrontController
             ->whereHas('videos', function (Builder $query) {
                 $query->published();
             })
-            ->orderBy('updated_at', 'desc')
+            ->orderBy('published_at', 'desc')
             ->get()->map(function ($video) {
-                $video->sort_date = $video->updated_at;
+                $video->sort_date = $video->published_at;
                 return $video;
             });
 
