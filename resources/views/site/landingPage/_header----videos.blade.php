@@ -29,7 +29,7 @@
             @slot('links', [
                 [
                     'label' => 'View all',
-                    'href'  => route('shorts.index'),
+                    'href'  => route('videos.archive', ['category' => 'shorts']),
                     'id' => Str::slug(strip_tags('Art Institute Shorts')),
                 ]
             ])
