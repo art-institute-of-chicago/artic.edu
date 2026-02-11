@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Http\Controllers\Admin\Controller;
 use App\Services\OAuth\GoogleOAuthService;
+use App\Services\YouTube\YouTubeService;
 use Illuminate\Http\RedirectResponse;
 
 class IntegrationController extends Controller
@@ -12,7 +13,14 @@ class IntegrationController extends Controller
     {
         $integrations = [$this->getGoogleOAuthIntegration()];
 
-        return view('twill.integrations.show', ['items' => $integrations]);
+        $services = [
+            'YouTube' => $this->getYouTubeService(),
+        ];
+
+        return view('twill.integrations.show', [
+            'items' => $integrations,
+            'services' => $services,
+        ]);
     }
 
     public function action(string $service, string $action): RedirectResponse
@@ -88,6 +96,17 @@ class IntegrationController extends Controller
             'name' => $name,
             'status' => $status,
             'actions' => $actions,
+        ];
+    }
+
+    private function getYouTubeService()
+    {
+        $youTubeService = app(YouTubeService::class);
+
+        return [
+            'last_succeeded_at' => $youTubeService->getLastSucceededAt(),
+            'last_failed_at' => $youTubeService->getLastFailedAt(),
+            'last_failed_reason' => $youTubeService->getLastFailedReason(),
         ];
     }
 }
