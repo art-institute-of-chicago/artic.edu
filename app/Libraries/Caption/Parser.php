@@ -55,11 +55,11 @@ abstract class Parser
                 })
                 ->chunk(3)->map(function ($sentences, $sentenceIndex) use ($paragraphIndex, $video) {
                     // Chunk into three sentences
-                    $captionsForSentence = $sentences->flatten();
+                    $captionsForParagraph = $sentences->flatten();
                     return <<<HTML
                         <div id="caption-{$paragraphIndex}-{$sentenceIndex}" class="caption">
-                            {$this->getTimestamp($captionsForSentence->first(), $video)}
-                            {$this->getParagraph($captionsForSentence)}
+                            {$this->getTimestamp($captionsForParagraph->first(), $video)}
+                            {$this->getParagraph($captionsForParagraph)}
                         </div>
                     HTML;
                 });
