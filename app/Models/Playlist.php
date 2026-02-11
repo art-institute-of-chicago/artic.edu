@@ -20,6 +20,7 @@ class Playlist extends AbstractModel
         'thumbnail_url',
         'thumbnail_height',
         'thumbnail_width',
+        'published_at',
     ];
 
     protected $casts = [
