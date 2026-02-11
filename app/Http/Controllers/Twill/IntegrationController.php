@@ -18,9 +18,7 @@ class IntegrationController extends Controller
         ];
 
 
-        return view('twill.integrations.show', [
-            'items' => $integrations,
-        ]);
+        return view('twill.integrations.show', ['items' => $integrations]);
     }
 
     public function action(string $service, string $action): RedirectResponse
@@ -116,7 +114,7 @@ class IntegrationController extends Controller
         $lastFailedReason = $youTubeService->getLastFailedReason();
 
         $status = 'red';
-        if(Carbon::parse($lastSucceededAt)->gt($lastFailedAt)) {
+        if (Carbon::parse($lastSucceededAt)->gt($lastFailedAt)) {
             $status = 'green';
         }
 
