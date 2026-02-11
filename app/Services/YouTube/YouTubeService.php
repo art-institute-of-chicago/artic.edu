@@ -359,7 +359,8 @@ class YouTubeService
         return $response;
     }
 
-    public function getLastSucceededAt() {
+    public function getLastSucceededAt()
+    {
         return DB::table(self::SESSION_TABLE)
             ->whereNull('errored_at')
             ->latest()
@@ -367,7 +368,8 @@ class YouTubeService
             ->created_at;
     }
 
-    public function getLastFailedAt() {
+    public function getLastFailedAt()
+    {
         return DB::table(self::SESSION_TABLE)
             ->whereNotNull('errored_at')
             ->latest('errored_at')
@@ -375,7 +377,8 @@ class YouTubeService
             ->errored_at;
     }
 
-    public function getLastFailedReason() {
+    public function getLastFailedReason()
+    {
         return DB::table(self::SESSION_TABLE)
             ->whereNotNull('errored_at')
             ->latest('errored_at')
