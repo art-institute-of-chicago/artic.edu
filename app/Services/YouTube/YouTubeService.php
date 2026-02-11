@@ -359,6 +359,30 @@ class YouTubeService
         return $response;
     }
 
+    public function getLastSucceededAt() {
+        return DB::table(self::SESSION_TABLE)
+            ->whereNull('errored_at')
+            ->latest()
+            ->first()
+            ->created_at;
+    }
+
+    public function getLastFailedAt() {
+        return DB::table(self::SESSION_TABLE)
+            ->whereNotNull('errored_at')
+            ->latest('errored_at')
+            ->first()
+            ->errored_at;
+    }
+
+    public function getLastFailedReason() {
+        return DB::table(self::SESSION_TABLE)
+            ->whereNotNull('errored_at')
+            ->latest('errored_at')
+            ->first()
+            ->message;
+    }
+
     /**
      * Check that there is available quota for the resource action.
      */
