@@ -109,19 +109,22 @@ class IntegrationController extends Controller
     {
         $youTubeService = app(YouTubeService::class);
 
-        $lastSucceededAt = Carbon::parse($youTubeService->getLastSucceededAt(), 'UTC');
-        $lastFailedAt = Carbon::parse($youTubeService->getLastFailedAt(), 'UTC');
+        $dbLastSucceededAt = $youTubeService->getLastSucceededAt();
+        $dbLastFailedAt = $youTubeService->getLastFailedAt();
+
+        $lastSucceededAt = $dbLastSucceededAt ? Carbon::parse($dbLastSucceededAt, 'UTC') : null;
+        $lastFailedAt = $dbLastFailedAt ? Carbon::parse($dbLastFailedAt, 'UTC') : null;
         $lastFailedReason = $youTubeService->getLastFailedReason();
 
         $status = 'red';
-        if (Carbon::parse($lastSucceededAt)->gt($lastFailedAt)) {
+        if ($lastSucceededAt && $lastSucceededAt->gt($lastFailedAt)) {
             $status = 'green';
         }
 
         return [
-            'last_succeeded_at' => $lastSucceededAt->tz('America/Chicago')->toDayDateTimeString(),
-            'last_failed_at' => $lastFailedAt->gt($lastSucceededAt) ? $lastFailedAt->tz('America/Chicago')->toDayDateTimeString() : '',
-            'message' => $lastFailedAt->gt($lastSucceededAt) ? $lastFailedReason : '',
+            'last_succeeded_at' => $lastSucceededAt ? $lastSucceededAt->tz('America/Chicago')->toDayDateTimeString() : '',
+            'last_failed_at' => $lastFailedAt && $lastFailedAt->gt($lastSucceededAt) ? $lastFailedAt->tz('America/Chicago')->toDayDateTimeString() : '',
+            'message' => $lastFailedAt && $lastFailedAt->gt($lastSucceededAt) ? $lastFailedReason : '',
             'status' => $status,
         ];
     }
