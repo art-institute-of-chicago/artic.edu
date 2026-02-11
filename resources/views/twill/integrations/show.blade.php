@@ -1,34 +1,32 @@
 @extends('twill::layouts.free')
 
 @section('customPageContent')
-    <h4>Integrations</h4>
-
-    <table class="output">
+    <table id="integrations">
         <thead>
             <tr>
-                <th>Connection</th><th>Service</th><th>Status</th><th>Actions</th>
+                <th>Status</th><th>Service</th><th>Last succeeded</th><th>Last failed</th><th>Message</th><th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($items as $integration)
+            @foreach($items as $name => $integration)
                 <tr>
                     <td>
-                        @if($integration['connection'] && $integration['connection']['enabled'] ?? false)
-                            <span style="color: green">&#11044;</span>
-                        @elseif($integration['connection'])
-                            <span style="color: yellow">&#11044;</span>
-                        @else
-                            <span style="color: red">&#11044;</span>
-                        @endif
+                        <span style="color: {{ $integration['status'] ?? 'red' }}">&#11044;</span>
                     </td>
                     <td>
-                        {{ $integration['name'] }}
+                        {{ $name }}
                     </td>
                     <td>
-                        {{ $integration['status'] }}
+                        {{ $integration['last_succeeded_at'] ?? '' }}
                     </td>
                     <td>
-                        @foreach($integration['actions'] as $action)
+                        {{ $integration['last_failed_at'] ?? '' }}
+                    </td>
+                    <td>
+                        {{ $integration['message'] ?? '' }}
+                    </td>
+                    <td>
+                        @foreach($integration['actions'] ?? [] as $action)
                             <a href="{{ $action['url'] }}">{{ $action['name'] }}</a>
                         @endforeach
                     </td>
@@ -37,66 +35,22 @@
         </tbody>
     </table>
 
-    <h4>Services</h4>
-
-    <table class="output">
-        <thead>
-            <tr>
-                <th>Status</th><th>Service</th><th>Last succeeded</th><th>Last failed</th><th>Reason</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($services as $name => $service)
-                <tr>
-                    <td>
-                        @if(\Carbon\Carbon::parse($service['last_succeeded_at'])->gt($service['last_failed_at']))
-                            <span style="color: green">&#11044;</span>
-                        @else
-                            <span style="color: red">&#11044;</span>
-                        @endif
-                    </td>
-                    <td>
-                        {{ $name }}
-                    </td>
-                    <td>
-                        {{ \Carbon\Carbon::parse($service['last_succeeded_at'])->tz('UTC')->toDayDateTimeString() }}
-                    </td>
-                    <td>
-                        @if(\Carbon\Carbon::parse($service['last_failed_at'])->gt($service['last_succeeded_at']))
-                            {{ \Carbon\Carbon::parse($service['last_failed_at'])->tz('UTC')->toDayDateTimeString() }}
-                        @endif
-                    </td>
-                    <td>
-                        @if(\Carbon\Carbon::parse($service['last_failed_at'])->gt($service['last_succeeded_at']))
-                            {{ $service['last_failed_reason'] }}
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-
     @push('extra_css')
         <style>
-            table.output {
+            table#integrations {
                 width: 75%;
                 border: 1px solid black;
                 margin-bottom: 30px;
             }
-            table.output thead {
+            table#integrations thead {
                 border-bottom: 1px solid black;
                 font-weight: bold;
             }
-            table.output tbody tr td {
+            table#integrations tbody tr td {
                 border-left: 1px solid black;
                 border-right: 1px solid black;
                 padding: 1em;
                 text-align: center;
-            }
-            h4 {
-                margin: 0 0 10px;
-                font-size: 16px;
-                font-weight: bold;
             }
         </style>
     @endpush
