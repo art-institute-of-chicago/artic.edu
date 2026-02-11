@@ -40,7 +40,6 @@
             table#integrations {
                 width: 75%;
                 border: 1px solid black;
-                margin-bottom: 30px;
             }
             table#integrations thead {
                 border-bottom: 1px solid black;
