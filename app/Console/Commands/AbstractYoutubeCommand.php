@@ -32,6 +32,7 @@ abstract class AbstractYoutubeCommand extends Command
 
     public function handle()
     {
+        $this->oAuth->refreshAccess();
         $this->oAuth->authorizeAccess();
         $this->info(
             "YouTube service session start",
