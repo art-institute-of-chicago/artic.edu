@@ -117,14 +117,14 @@ class IntegrationController extends Controller
         $lastFailedReason = $youTubeService->getLastFailedReason();
 
         $status = 'red';
-        if ($lastSucceededAt && $lastSucceededAt->gt($lastFailedAt)) {
+        if ($lastSucceededAt && $lastFailedAt && $lastSucceededAt->gt($lastFailedAt)) {
             $status = 'green';
         }
 
         return [
             'last_succeeded_at' => $lastSucceededAt ? $lastSucceededAt->tz('America/Chicago')->toDayDateTimeString() : '',
-            'last_failed_at' => $lastFailedAt && $lastFailedAt->gt($lastSucceededAt) ? $lastFailedAt->tz('America/Chicago')->toDayDateTimeString() : '',
-            'message' => $lastFailedAt && $lastFailedAt->gt($lastSucceededAt) ? $lastFailedReason : '',
+            'last_failed_at' => $lastFailedAt && $lastSucceededAt && $lastFailedAt->gt($lastSucceededAt) ? $lastFailedAt->tz('America/Chicago')->toDayDateTimeString() : '',
+            'message' => $lastFailedAt && $lastSucceededAt && $lastFailedAt->gt($lastSucceededAt) ? $lastFailedReason : '',
             'status' => $status,
         ];
     }
