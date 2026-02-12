@@ -4,29 +4,29 @@
     <table id="integrations">
         <thead>
             <tr>
-                <th>Connection</th><th>Service</th><th>Status</th><th>Actions</th>
+                <th>Status</th><th>Service</th><th>Last succeeded</th><th>Last failed</th><th>Message</th><th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($items as $integration)
+            @foreach($items as $name => $integration)
                 <tr>
                     <td>
-                        @if($integration['connection'] && $integration['connection']['enabled'] ?? false)
-                            <span style="color: green">&#11044;</span>
-                        @elseif($integration['connection'])
-                            <span style="color: yellow">&#11044;</span>
-                        @else
-                            <span style="color: red">&#11044;</span>
-                        @endif
+                        <span style="color: {{ $integration['status'] ?? 'red' }}">&#11044;</span>
                     </td>
                     <td>
-                        {{ $integration['name'] }}
+                        {{ $name }}
                     </td>
                     <td>
-                        {{ $integration['status'] }}
+                        {{ $integration['last_succeeded_at'] ?? '' }}
                     </td>
                     <td>
-                        @foreach($integration['actions'] as $action)
+                        {{ $integration['last_failed_at'] ?? '' }}
+                    </td>
+                    <td>
+                        {{ $integration['message'] ?? '' }}
+                    </td>
+                    <td>
+                        @foreach($integration['actions'] ?? [] as $action)
                             <a href="{{ $action['url'] }}">{{ $action['name'] }}</a>
                         @endforeach
                     </td>
@@ -34,6 +34,7 @@
             @endforeach
         </tbody>
     </table>
+
     @push('extra_css')
         <style>
             table#integrations {

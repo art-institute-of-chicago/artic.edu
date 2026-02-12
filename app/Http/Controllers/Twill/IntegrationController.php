@@ -4,13 +4,19 @@ namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Http\Controllers\Admin\Controller;
 use App\Services\OAuth\GoogleOAuthService;
+use App\Services\YouTube\YouTubeService;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 
 class IntegrationController extends Controller
 {
     public function show()
     {
-        $integrations = [$this->getGoogleOAuthIntegration()];
+        $integrations = [
+            'Google' => $this->getGoogleOAuthIntegration(),
+            'YouTube' => $this->getYouTubeService(),
+        ];
+
 
         return view('twill.integrations.show', ['items' => $integrations]);
     }
@@ -48,7 +54,7 @@ class IntegrationController extends Controller
 
         $connection = $hasAccess ? ['enabled' => !$isExpired] : null;
         $name = class_basename(GoogleOAuthService::class);
-        $status = $hasAccess ?
+        $message = $hasAccess ?
             ($isExpired ? 'Access token expired' : 'Access granted') :
             'Not authorized';
         $actions = array();
@@ -83,11 +89,43 @@ class IntegrationController extends Controller
             ];
         }
 
+        $status = 'red';
+        if ($connection && $connection['enabled'] ?? false) {
+            $status = 'green';
+        } elseif ($connection) {
+            $status = 'yellow';
+        }
+
         return [
             'connection' => $connection,
             'name' => $name,
             'status' => $status,
+            'message' => $message,
             'actions' => $actions,
+        ];
+    }
+
+    private function getYouTubeService()
+    {
+        $youTubeService = app(YouTubeService::class);
+
+        $dbLastSucceededAt = $youTubeService->getLastSucceededAt();
+        $dbLastFailedAt = $youTubeService->getLastFailedAt();
+
+        $lastSucceededAt = $dbLastSucceededAt ? Carbon::parse($dbLastSucceededAt, 'UTC') : null;
+        $lastFailedAt = $dbLastFailedAt ? Carbon::parse($dbLastFailedAt, 'UTC') : null;
+        $lastFailedReason = $youTubeService->getLastFailedReason();
+
+        $status = 'red';
+        if ($lastSucceededAt && (!$lastFailedAt || $lastSucceededAt->gt($lastFailedAt))) {
+            $status = 'green';
+        }
+
+        return [
+            'last_succeeded_at' => $lastSucceededAt ? $lastSucceededAt->tz('America/Chicago')->toDayDateTimeString() : '',
+            'last_failed_at' => $lastFailedAt && (!$lastSucceededAt || $lastFailedAt->gt($lastSucceededAt)) ? $lastFailedAt->tz('America/Chicago')->toDayDateTimeString() : '',
+            'message' => $lastFailedAt && (!$lastSucceededAt || $lastFailedAt->gt($lastSucceededAt)) ? $lastFailedReason : '',
+            'status' => $status,
         ];
     }
 }
