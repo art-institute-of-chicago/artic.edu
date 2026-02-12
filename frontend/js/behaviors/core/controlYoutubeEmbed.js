@@ -8,9 +8,8 @@ const controlYoutubeEmbed = function(container) {
     event.preventDefault();
     event.stopPropagation();
 
-    let player = A17.YouTube.embeds[embedId];
-    for (let command in container.dataset) {
-      console.log(command);
+    const player = A17.YouTube.embeds[embedId];
+    for (const command in container.dataset) {
       switch (command) {
         case 'pauseVideo':
           player.pauseVideo();
@@ -33,11 +32,7 @@ const controlYoutubeEmbed = function(container) {
     scrollToY({
       duration: 500,
       easing: 'easeInOut',
-      onComplete: function() {
-        setTimeout(function() {
-          setFocusOnTarget(embed);
-        }, 0)
-      },
+      onComplete: () => setTimeout(() => setFocusOnTarget(embed), 0),
     });
   }
 

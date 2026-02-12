@@ -1,3 +1,4 @@
+import { purgeProperties } from '@area17/a17-helpers';
 import { youtubeEmbed } from '../../functions/core';
 
 const triggerMediaInline = function(container) {
@@ -14,7 +15,7 @@ const triggerMediaInline = function(container) {
   }
 
   function _handleKeyUp(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       _handleClicks(event);
     }
   }
@@ -73,9 +74,7 @@ const triggerMediaInline = function(container) {
     // Remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
-
-    // Remove properties of this behavior
-    A17.Helpers.purgeProperties(this);
+    purgeProperties(this);
   };
 
   this.init = function() {
