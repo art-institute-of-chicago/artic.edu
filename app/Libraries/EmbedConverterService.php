@@ -2,11 +2,23 @@
 
 namespace App\Libraries;
 
+use DOMDocument;
+
 class EmbedConverterService
 {
-    public function __construct()
-    {
-    }
+    private const YOUTUBE_DEFAULT_TAG = 'iframe';
+    private const YOUTUBE_DEFAULT_ATTRIBUTES = [
+        'type' => 'text/html',
+        'src' => null,
+        'frameborder' => 0,
+        'allow' => 'autoplay; encrypted-media',
+        'allowfullscreen' => true,
+        'height' => 360,
+        'width' => 640,
+    ];
+    private const YOUTUBE_DEFAULT_PARAMETERS = [
+        'enablejsapi' => true,
+    ];
 
     public function convertUrl($url)
     {
@@ -15,7 +27,7 @@ class EmbedConverterService
 
             if (isset($parts['host'])) {
                 if (stripos($parts['host'], 'youtu') !== false) {
-                    return $this->getYouTubeEmbedCode($url);
+                    return $this->createYouTubeEmbed(attributes: ['src' => $url]);
                 }
 
                 if (stripos($parts['host'], 'vimeo') !== false) {
@@ -33,6 +45,34 @@ class EmbedConverterService
         }
 
         return '';
+    }
+
+    /**
+     * Dynamically construct a YouTube embed code.
+     *
+     * Returns an HTML string.
+     */
+    public function createYouTubeEmbed(
+        string $tag = self::YOUTUBE_DEFAULT_TAG,
+        array $attributes = [],
+        array $parameters = [],
+    ): string {
+        $document = new DOMDocument('1.0', 'UTF-8');
+        $element = $document->createElement($tag);
+
+        $attributes = array_merge(self::YOUTUBE_DEFAULT_ATTRIBUTES, $attributes);
+        if ($attributes['src']) {
+            $parameters = array_merge(self::YOUTUBE_DEFAULT_PARAMETERS, $parameters);
+            if (!isset($parameters['origin'])) {
+                $parameters['origin'] = config('app.url');
+            }
+            $attributes['src'] .= (str($attributes['src'])->contains('?') ? '&' : '?') . http_build_query($parameters);
+        }
+        foreach ($attributes as $key => $value) {
+            $element->setAttribute($key, $value);
+        }
+
+        return $document->saveHTML($element);
     }
 
     public function getYoutubeThumbnailImage($url)
