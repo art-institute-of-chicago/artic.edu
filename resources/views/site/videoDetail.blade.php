@@ -53,15 +53,15 @@
                 @endcomponent
                 </div>
             @endif
-            <x-tabbed-details :tab-count="2">
-                <x-slot name="tab1" title="Info">
+            <x-tabbed-details :tab-count="2" :open-tab-index="$showTranscript ? 1 : 0">
+                <x-slot name="tab0" title="Info">
                     <div class="o-article__content o-blocks">
                         {!! $item->renderBlocks(data: [
                             'pageTitle' => $item->title
                         ]) !!}
                     </div>
                 </x-slot>
-                <x-slot name="tab2" title="Transcript">
+                <x-slot name="tab1" title="Transcript">
                     @if($transcript)
                         <h3>Transcript</h3>
                         {!! $transcript !!}

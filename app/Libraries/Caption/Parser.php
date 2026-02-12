@@ -63,14 +63,15 @@ abstract class Parser
      */
     protected function getTimestamp($caption, $video): string
     {
-        $timestamp = str($caption->start)->before(',');
+        $timestamp = str($caption->start)->before('.');
         $seconds = $timestamp
             ->explode(':')
             ->map(fn ($part, $index) => (int) $part * (60 ** (2 - $index)))
             ->sum();
+        $url = ($video->url ?? '/') . '?transcript=true&start=' . $seconds;
 
         return <<<HTML
-            <a class="timestamp" href="{$video->video_url}&t={$seconds}">
+            <a class="timestamp" href="$url">
                 $timestamp
             </a>
         HTML;
