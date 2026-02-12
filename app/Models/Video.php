@@ -156,6 +156,13 @@ class Video extends AbstractModel
         );
     }
 
+    public function embedUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($_, array $attributes) => "https://www.youtube.com/embed/{$attributes['youtube_id']}",
+        );
+    }
+
     public function scopeByCategories($query, $categories = null): Builder
     {
         if (empty($categories)) {
@@ -202,7 +209,7 @@ class Video extends AbstractModel
 
     public function getEmbedAttribute()
     {
-        return EmbedConverterFacade::convertUrl($this->video_url);
+        return EmbedConverterFacade::createYouTubeEmbed(attributes: ['id' => $this->youtube_id, 'src' => $this->embed_url]);
     }
 
     public function getUrlWithoutSlugAttribute()
