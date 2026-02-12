@@ -24,13 +24,10 @@
                     'type' => 'embed',
                     'size' => 'l',
                     'media' => [
-                        'url' => $item->video_url,
-                        'embed' => $item->embed,
+                        'embed' => $embed,
                         'medias' => $item->medias,
                     ],
-                    'poster' => $item->is_short
-                        ? null
-                        : ($item->imageFront('hero') ?? ImageHelpers::youtubeItemAsArray($item)),
+                    'poster' => $poster,
                     'hideCaption' => true,
                     'fullscreen' => false,
                 ])
