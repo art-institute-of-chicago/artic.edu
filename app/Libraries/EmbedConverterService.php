@@ -95,20 +95,6 @@ class EmbedConverterService
     }
 
     /**
-     * getYouTubeEmbedCode description
-     * @param  string $url YouTube video url, eg: https://www.youtube.com/watch?v=SZFVhIji7sY
-     * @return [type]      [description]
-     */
-    private function getYouTubeEmbedCode($url)
-    {
-        $videoId = $this->getYouTubeIdCode($url);
-
-        if ($videoId) {
-            return '<iframe src="https://www.youtube.com/embed/' . $videoId . '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-        }
-    }
-
-    /**
      * [getSoundCloudEmbedCode description]
      * @param  [type] $url [description]
      * @return [type]      [description]
