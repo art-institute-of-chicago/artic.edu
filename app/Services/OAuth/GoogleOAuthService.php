@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class GoogleOAuthService
 {
     private const ACCESS_TYPE = 'offline';
+    private const PROMPT = 'consent';
     private const PROVIDER = 'google';
     private const SCOPES = [
         'https://www.googleapis.com/auth/youtube.force-ssl',
@@ -24,6 +25,7 @@ class GoogleOAuthService
         $this->client->setDeveloperKey($developerKey);
         $this->client->setAuthConfig($authConfig);
         $this->client->setAccessType(self::ACCESS_TYPE);
+        $this->client->setPrompt(self::PROMPT);
         $this->client->setScopes(self::SCOPES);
         $this->client->setTokenCallback($this->newAccessTokenCallback(...));
     }
