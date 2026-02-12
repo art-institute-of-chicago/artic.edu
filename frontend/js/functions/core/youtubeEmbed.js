@@ -1,6 +1,6 @@
 import { triggerCustomEvent } from '@area17/a17-helpers';
 
-const youtubePercentTracking = function(iframe) {
+const youtubeEmbed = function(iframe) {
   let youtubePlayer;
   let youtubePlayerTimer;
   let playedChecks = {
@@ -47,10 +47,13 @@ const youtubePercentTracking = function(iframe) {
   function _initYoutubePlayer() {
     if (A17.onYouTubeIframeAPIReady) {
       youtubePlayer = new YT.Player(iframe.id, {
-        origin: window.location.origin,
+        playerVars: {
+          'enablejsonapi': 1,
+          'origin': window.location.origin,
+        },
         events: {
-          'onStateChange': _onYouTubePlayerStateChange
-        }
+          'onStateChange': _onYouTubePlayerStateChange,
+        },
       });
     } else {
       setTimeout(_initYoutubePlayer, 250);
@@ -58,11 +61,11 @@ const youtubePercentTracking = function(iframe) {
   }
 
   if (!document.getElementById('youtubeapijs')) {
-    let tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    tag.id = 'youtubeapijs';
-    let firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    let youtubeScript = document.createElement('script');
+    youtubeScript.src = 'https://www.youtube.com/iframe_api';
+    youtubeScript.id = 'youtubeapijs';
+    let firstScript = document.getElementsByTagName('script')[0];
+    firstScript.parentNode.insertBefore(youtubeScript, firstScript);
   }
 
   if (!iframe.id) {
@@ -72,4 +75,4 @@ const youtubePercentTracking = function(iframe) {
   _initYoutubePlayer();
 };
 
-export default youtubePercentTracking;
+export default youtubeEmbed;
