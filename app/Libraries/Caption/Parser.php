@@ -40,22 +40,31 @@ abstract class Parser
      */
     public function getTranscript(Video $video): string
     {
-        $transcript = collect($this->captions)
-            ->chunkWhile(fn ($caption) => isset($caption->lines[0]) && !str($caption->lines[0])->startsWith('- '))
-            ->reduce( // Combine chunks into a single transcript
-                fn ($html, $chunk, $index) => $html . <<<HTML
-                    <div id="caption-{$index}" class="caption">
-                        {$this->getTimestamp($chunk->first(), $video)}
-                        {$this->getParagraph($chunk)}
-                    </div>
-                HTML,
-                ''
-            );
-        return <<<HTML
-            <div class="video-transcript">
-                $transcript
-            </div>
-        HTML;
+        return collect($this->captions)
+            ->chunkWhile(function ($caption) {
+                // Chunk captions into paragraphs
+                $firstLine = str(collect($caption->lines)->first());
+                return !$firstLine->startsWith('-');
+            })
+            ->flatMap(function ($paragraph, $paragraphIndex) use ($video) {
+                return $paragraph->chunkWhile(function ($caption, $index, $chunk) {
+                    // Chunk paragraph into sentences
+                    $previousChunk = $chunk->last();
+                    $previousLine = str(collect($previousChunk->lines)->last());
+                    return !$previousLine->endsWith('.');
+                })
+                ->chunk(3)->map(function ($sentences, $sentenceIndex) use ($paragraphIndex, $video) {
+                    // Chunk into three sentences
+                    $captionsForParagraph = $sentences->flatten();
+                    return <<<HTML
+                        <div id="caption-{$paragraphIndex}-{$sentenceIndex}" class="caption">
+                            {$this->getTimestamp($captionsForParagraph->first(), $video)}
+                            {$this->getParagraph($captionsForParagraph)}
+                        </div>
+                    HTML;
+                });
+            })
+            ->join('');
     }
 
     /**
