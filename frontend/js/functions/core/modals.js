@@ -1,5 +1,5 @@
 import { triggerCustomEvent, setFocusOnTarget, queryStringHandler } from '@area17/a17-helpers';
-import { parseHTML, youtubePercentTracking } from '../core';
+import { parseHTML, youtubeEmbed } from '../core';
 
 const modals = function() {
 
@@ -51,7 +51,7 @@ const modals = function() {
         $modal.querySelector('[data-modal-content]').innerHTML = '';
         $modal.querySelector('[data-modal-content]').appendChild(iframe);
         if (src.indexOf('youtube.com') > -1) {
-          youtubePercentTracking(iframe);
+          youtubeEmbed(iframe);
         }
       } catch(err) {
         console.log(err);
