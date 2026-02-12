@@ -217,7 +217,9 @@ class Video extends AbstractModel
 
     public function getUrlAttribute()
     {
-        return route('videos.show', ['video' => $this, 'slug' => $this->getSlug()], false);
+        if ($this->id) {  // Necessary for testing, should not affect production
+            return route('videos.show', ['video' => $this?->id, 'slug' => $this->getSlug()], false);
+        }
     }
 
     public function getTypeAttribute()
