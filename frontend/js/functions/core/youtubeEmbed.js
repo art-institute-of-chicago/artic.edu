@@ -48,7 +48,7 @@ const youtubeEmbed = function(iframe) {
     if (A17.onYouTubeIframeAPIReady) {
       youtubePlayer = new YT.Player(iframe.id, {
         playerVars: {
-          'enablejsonapi': 1,
+          'enablejsapi': 1,
           'origin': window.location.origin,
         },
         events: {
