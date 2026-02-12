@@ -65,6 +65,8 @@ const triggerMediaInline = function(container) {
     } else {
       container.classList.add('s-inline-media-activated');
     }
+
+    container.addEventListener('youtube:playing', () => container.classList.add('s-inline-media-activated'));
   }
 
   this.destroy = function() {

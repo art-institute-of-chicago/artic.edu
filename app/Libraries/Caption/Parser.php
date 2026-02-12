@@ -80,7 +80,14 @@ abstract class Parser
         $url = ($video->url ?? '/') . '?transcript=true&start=' . $seconds;
 
         return <<<HTML
-            <a class="timestamp" href="$url">
+            <a
+                class="timestamp"
+                href="$url"
+                data-behavior="controlYoutubeEmbed"
+                data-embed-id="$video->youtube_id"
+                data-seek-to="$seconds"
+                data-play-video
+            >
                 $timestamp
             </a>
         HTML;
