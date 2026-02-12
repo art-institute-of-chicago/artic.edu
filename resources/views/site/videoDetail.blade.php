@@ -64,7 +64,9 @@
                 <x-slot name="tab1" title="Transcript">
                     @if($transcript)
                         <h3>Transcript</h3>
-                        {!! $transcript !!}
+                        <div id="video-transcript-{{ $item->id }}" class="video-transcript">
+                            {!! $transcript !!}
+                        </div>
                     @else
                         <p class="video-transcript">Sorry, the transcript for this video is not yet available</p>
                     @endif
