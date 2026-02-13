@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\EmbedConverterFacade;
+use App\Helpers\ImageHelpers;
 use App\Helpers\StringHelpers;
 use App\Models\Playlist;
 use App\Models\Video;
 use App\Repositories\PlaylistVideoRepository;
 use App\Repositories\VideoRepository;
+use Illuminate\Http\Request;
 
 class PlaylistVideoController extends FrontController
 {
@@ -18,7 +21,7 @@ class PlaylistVideoController extends FrontController
         parent::__construct();
     }
 
-    public function show(Playlist $playlist, Video $video, $slug = null)
+    public function show(Request $request, Playlist $playlist, Video $video, $slug = null)
     {
         if (!($playlist->published && $video->published)) {
             abort(404);
@@ -44,20 +47,42 @@ class PlaylistVideoController extends FrontController
 
         $relatedVideos = app(VideoRepository::class)->getRelatedVideos($video);
 
+        $poster = null;
+        if (!$video->is_short) {
+            $poster = $video->imageFront('hero') ?? ImageHelpers::youtubeItemAsArray($video);
+        }
+
+        $embed = $video->embed;
         $transcript = null;
-        if ($video->is_captioned && $video->standardCaption->hasActiveTranslation()) {
+        if ($video->is_captioned && $video->standardCaption?->hasActiveTranslation()) {
             $transcript = $video->standardCaption->transcript;
+            if ($request->has('transcript')) {
+                $poster = null;
+                $embed = EmbedConverterFacade::createYouTubeEmbed(
+                    attributes: [
+                        'id' => $video->youtube_id,
+                        'src' => $video->embed_url,
+                    ],
+                    parameters: [
+                        'start' => $request->get('start'),
+                        'autoplay' => true,
+                    ]
+                );
+            }
         }
 
         return view('site.videoDetail', [
             'playlist' => $playlist,
             'item' => $video,
+            'poster' => $poster,
+            'embed' => $embed,
             'transcript' => $transcript,
+            'showTranscript' => $request->query('transcript') === 'true',
             'relatedVideos' => $relatedVideos,
             'contrastHeader' => true,
             'unstickyHeader' => true,
-            'canonicalUrl' => $canonicalPath,
             'darkMode' => true,
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 }
