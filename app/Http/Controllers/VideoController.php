@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\EmbedConverterFacade;
+use App\Helpers\ImageHelpers;
 use App\Helpers\StringHelpers;
 use App\Models\Playlist;
 use App\Models\Video;
@@ -44,13 +46,34 @@ class VideoController extends FrontController
 
         $relatedVideos = $this->repository->getRelatedVideos($video);
 
+        $poster = null;
+        if (!$video->is_short) {
+            $poster = $video->imageFront('hero') ?? ImageHelpers::youtubeItemAsArray($video);
+        }
+
+        $embed = $video->embed;
         $transcript = null;
-        if ($video->is_captioned && $video->standardCaption->hasActiveTranslation()) {
+        if ($video->is_captioned && $video->standardCaption?->hasActiveTranslation()) {
             $transcript = $video->standardCaption->transcript;
+            if ($request->has('transcript')) {
+                $poster = null;
+                $embed = EmbedConverterFacade::createYouTubeEmbed(
+                    attributes: [
+                        'id' => $video->youtube_id,
+                        'src' => $video->embed_url,
+                    ],
+                    parameters: [
+                        'start' => $request->get('start'),
+                        'autoplay' => true,
+                    ]
+                );
+            }
         }
 
         return view('site.videoDetail', [
             'item' => $video,
+            'poster' => $poster,
+            'embed' => $embed,
             'transcript' => $transcript,
             'showTranscript' => $request->query('transcript') === 'true',
             'relatedVideos' => $relatedVideos,
