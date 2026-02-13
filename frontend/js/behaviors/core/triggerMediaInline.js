@@ -1,3 +1,4 @@
+import { purgeProperties } from '@area17/a17-helpers';
 import { youtubeEmbed } from '../../functions/core';
 
 const triggerMediaInline = function(container) {
@@ -10,13 +11,17 @@ const triggerMediaInline = function(container) {
     event.stopPropagation();
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
-    container.classList.add('s-inline-media-activated');
+    activateMedia();
   }
 
   function _handleKeyUp(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       _handleClicks(event);
     }
+  }
+
+  function activateMedia() {
+    container.classList.add('s-inline-media-activated');
   }
 
   function _init() {
@@ -63,17 +68,18 @@ const triggerMediaInline = function(container) {
       container.addEventListener('click', _handleClicks, false);
       container.addEventListener('keyup', _handleKeyUp, false);
     } else {
-      container.classList.add('s-inline-media-activated');
+      activateMedia();
     }
+
+    container.addEventListener('youtube:playing', () => activateMedia());
   }
 
   this.destroy = function() {
     // Remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
-
-    // Remove properties of this behavior
-    A17.Helpers.purgeProperties(this);
+    container.removeEventListener('youtube:playing', () => activateMedia());
+    purgeProperties(this);
   };
 
   this.init = function() {

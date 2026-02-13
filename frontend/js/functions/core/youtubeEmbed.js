@@ -32,6 +32,7 @@ const youtubeEmbed = function(iframe) {
         'event': 'playing',
         'eventCategory': 'video-engagement',
       });
+      triggerCustomEvent(iframe, 'youtube:playing', {id: iframe.id});
     } else {
       if (youtubePlayer.getPlayerState() === 2) {
         triggerCustomEvent(document, 'gtm:push', {
@@ -48,7 +49,7 @@ const youtubeEmbed = function(iframe) {
   }
 
   function _initYoutubePlayer() {
-    if (A17.onYouTubeIframeAPIReady) {
+    if (A17.YouTube.onYouTubeIframeAPIReady) {
       youtubePlayer = new YT.Player(iframe.id, {
         playerVars: {
           'enablejsapi': 1,
@@ -58,6 +59,7 @@ const youtubeEmbed = function(iframe) {
           'onStateChange': _onYouTubePlayerStateChange,
         },
       });
+      A17.YouTube.embeds[iframe.id] = youtubePlayer;
     } else {
       setTimeout(_initYoutubePlayer, 250);
     }
