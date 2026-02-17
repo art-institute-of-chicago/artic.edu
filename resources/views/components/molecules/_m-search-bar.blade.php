@@ -12,9 +12,9 @@
         @endif
 
         @if (isset($behaviors) && strrpos($behaviors, "autocomplete") > -1)
-        <button class="m-search-bar__clear" aria-label="Clear search" data-autocomplete-clear>
+        <a href="{{ request()->url() }}" class="m-search-bar__clear" aria-label="Clear search" data-autocomplete-clear>
             <svg aria-hidden="true" class="icon--close"><use xlink:href="#icon--close" /></svg>
-        </button>
+        </a>
         @endif
 
         <span class="m-search-bar__loader"></span>
