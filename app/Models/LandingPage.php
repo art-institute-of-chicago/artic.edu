@@ -35,7 +35,7 @@ class LandingPage extends AbstractModel implements Sortable
     use HasBlocks;
     use NodeTrait;
 
-    public const DEFAULT_TYPE = 'Custom';
+    public const DEFAULT_TYPE = 'Default';
 
     public const TYPES = [
         0 => 'RLC',
