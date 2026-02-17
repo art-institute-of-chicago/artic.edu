@@ -31,7 +31,7 @@
                 'credit' => '',
                 'creditUrl' => '',
                 'alt' => $image['alt'],
-                'restrict' => $image['restict'] ?? false,
+                'restrict' => $image['restrict'] ?? false,
                 'fullscreen' => $isZoomable,
                 'iiifId' => $isZoomable
                     ? \App\Helpers\ImageHelpers::getImgixTileSource($block, 'image', 'desktop')
