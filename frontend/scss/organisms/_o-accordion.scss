@@ -20,6 +20,9 @@
     }
 
     .o-accordion__panel-content {
+      h3 {
+        padding: 0px;
+      }
       h4 {
         margin-bottom: 12px !important;
       }
