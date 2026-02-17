@@ -38,6 +38,11 @@
                     'value' => 'default',
                     'label' => 'Default'
                 ],
+                [
+                    'value' => 'categories',
+                    'label' => 'Categories'
+                ],
+
             ];
 
             $categories = \App\Models\Category::orderBy('name')->pluck('name', 'id');
