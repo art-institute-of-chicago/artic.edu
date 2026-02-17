@@ -55,7 +55,7 @@ class LandingPage extends AbstractModel implements Sortable
        14 => 'Research Center',
        15 => 'Educator Resources',
        16 => 'Videos',
-       99 => 'Custom',
+       99 => 'Default',
     ];
 
     protected $presenter = 'App\Presenters\Admin\LandingPagePresenter';
