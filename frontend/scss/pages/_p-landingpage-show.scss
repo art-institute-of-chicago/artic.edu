@@ -24,6 +24,10 @@
       }
     }
   }
+
+  .m-media:not(.m-media--soundcloud) .m-media__img iframe {
+    position: relative;
+  }
 }
 
 .m-home-header {
