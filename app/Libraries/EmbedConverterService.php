@@ -13,6 +13,7 @@ class EmbedConverterService
         'frameborder' => 0,
         'allow' => 'autoplay; encrypted-media',
         'allowfullscreen' => true,
+        'referrerpolicy' => 'strict-origin-when-cross-origin',
     ];
     private const YOUTUBE_DEFAULT_PARAMETERS = [
         'enablejsapi' => true,
