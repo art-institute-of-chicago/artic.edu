@@ -48,6 +48,7 @@ elseif (isset($item) && isset($item->type)) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="format-detection" content="telephone=no">
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
 
     @if (isset($seo))
       <meta property="twitter:card" content="summary_large_image" />
