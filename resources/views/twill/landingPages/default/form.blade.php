@@ -37,14 +37,27 @@
     <x-twill::formFieldset title="Custom Content" id="custom-custom_content">
         @php
             $blocks = BlockHelpers::getBlocksForEditor([
+                'artwork',
+                'button',
+                'custom_banner',
+                'editorial_block',
+                'event',
+                'feature_2x',
+                'feature_4x',
+                'feature_block',
+                'featured_pages_grid',
                 'gallery_new',
                 'grid',
                 'hr',
-                'image_slider',
-                'list',
-                'showcase',
-                'paragraph',
                 'image',
+                'list',
+                'media_embed',
+                'mobile_app',
+                'paragraph',
+                'showcase_multiple',
+                'showcase',
+                'split_block',
+                'tag_banner',
             ]);
         @endphp
         <x-twill::block-editor

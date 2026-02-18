@@ -3,7 +3,10 @@ $print = app('printservice')->isPrintMode();
 $pClass = 'App\Http\Controllers\GenericPagesController';
 if (env('APP_ENV') != 'testing') {
     $action = request()->route()?->getAction();
-    if (is_array($action) && isset($action['controller'])) {
+    if (request()->get('LandingPageController')) {
+        $pClass = request()->get('LandingPageController');
+    }
+    elseif (is_array($action) && isset($action['controller'])) {
         $pClass = $action['controller'];
     }
 }
