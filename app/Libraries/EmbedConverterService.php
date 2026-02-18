@@ -13,8 +13,6 @@ class EmbedConverterService
         'frameborder' => 0,
         'allow' => 'autoplay; encrypted-media',
         'allowfullscreen' => true,
-        'height' => 360,
-        'width' => 640,
     ];
     private const YOUTUBE_DEFAULT_PARAMETERS = [
         'enablejsapi' => true,
