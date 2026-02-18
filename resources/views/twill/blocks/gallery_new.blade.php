@@ -5,6 +5,9 @@
         if (in_array('landingPages', $currentUrl)) {
             $type = \App\Models\LandingPage::find(intval($currentUrl[5]))->type;
         }
+        if ($type == 'Default') {
+            $type = null;
+        }
     }
 @endphp
 
