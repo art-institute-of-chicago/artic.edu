@@ -47,3 +47,6 @@ docker-compose.override.yml
 studio.json
 .php_cs.cache
 .php-cs-fixer.cache
+
+.yalc
+yalc.lock
