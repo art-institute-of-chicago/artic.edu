@@ -1,9 +1,11 @@
-import ReactDOM from 'react-dom';
-import React from 'react';
-import MyMuseumTourBuilder from 'my-museum-tour-builder';
+import ReactDOM from 'react-dom/client';
+import React, { useEffect } from 'react';
+import MyMuseumTourBuilder from 'my-museum-tour';
 import * as Sentry from "@sentry/react";
 
 export default function myMuseumTourBuilder(container) {
+  let root = null;
+
   this.init = function () {
     const hideObjectsFromTours = JSON.parse(container.dataset.hideObjectsFromTours);
     const hideGalleriesFromTours = JSON.parse(container.dataset.hideGalleriesFromTours);
@@ -23,23 +25,31 @@ export default function myMuseumTourBuilder(container) {
       replaysOnErrorSampleRate: 1.0,
     });
 
-    ReactDOM.render(
-      <MyMuseumTourBuilder
-        hideObjectsFromTours={hideObjectsFromTours}
-        hideGalleriesFromTours={hideGalleriesFromTours}
-      />,
-      container,
-      () => {
-        // This is informed by where I think the header scroll hiding is happening
-        // See: frontend/js/functions/core/setScrollDirection.js
-        // Catch if the scroll is below the threshold and remove the class
+    const HeaderCleanup = () => {
+      useEffect(() => {
         if (window.scrollY < 100) {
           document.documentElement.classList.remove('s-header-hide');
         }
-      }
+      }, []);
+      return null;
+    };
+
+    root = ReactDOM.createRoot(container);
+    root.render(
+      <React.Fragment>
+        <MyMuseumTourBuilder
+          hideObjectsFromTours={hideObjectsFromTours}
+          hideGalleriesFromTours={hideGalleriesFromTours}
+        />
+        <HeaderCleanup />
+      </React.Fragment>
     );
   }
+
   this.destroy = function () {
-    ReactDOM.unmountComponentAtNode(container);
+    if (root) {
+      root.unmount();
+      root = null;
+    }
   }
 }
