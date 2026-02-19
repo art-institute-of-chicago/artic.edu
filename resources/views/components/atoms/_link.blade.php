@@ -6,7 +6,7 @@
     ])
     {!! (isset($behavior)) ? ' data-behavior="'.$behavior.'"' : '' !!}
     {!! (isset($dataHref)) ? ' data-href="'.$dataHref.'"' : '' !!}
-    {!! (isset($type)) ? ' data-type="'.$type.'"' : '' !!}
+    {!! (isset($dataAttributes)) ? ' '.$dataAttributes : '' !!}
     {!! (isset($gtmAttributes)) ? ' '.$gtmAttributes : '' !!}
     {!! (isset($href)) ? ' href="'.$href. '"' : '' !!}
 >

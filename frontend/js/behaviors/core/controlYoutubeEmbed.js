@@ -1,24 +1,22 @@
 import { purgeProperties, setFocusOnTarget, scrollToY } from '@area17/a17-helpers';
+import { getYouTubePlayer, controlYouTubePlayer } from '../../functions/core/youtubeEmbed';
 
 const controlYoutubeEmbed = function(container) {
   const embedId = container.dataset.embedId;
+  if (!embedId) {
+    console.error('controlYoutubeEmbed: No target <iframe> embed ID provided!');
+  }
+  const embed = document.getElementById(embedId);
 
   function handleClick(event) {
     event.preventDefault();
     event.stopPropagation();
 
-    let player = A17.YouTubeembeds[embedId];
-    console.log('controlYoutubeEmbed trying with', player);
-
-    if (container.dataset.playVideo) {
-      player.playVideo();
+    const player = getYouTubePlayer(embedId);
+    if (!player) {
+      return false;
     }
-    else if (container.dataset.pauseVideo) {
-      player.pauseVideo();
-    }
-    else if (container.dataset.stopVideo) {
-      player.stopVideo();
-    }
+    controlYouTubePlayer(player, container.dataset)
 
     if (container.dataset.seekTo) {
       console.log('controlYoutubeEmbed seekTo', 'player', player, 'container.dataset.seekTo', container.dataset.seekTo);

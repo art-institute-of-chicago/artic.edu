@@ -46,28 +46,57 @@ class ShortsController extends FrontController
             }
         }
 
-        $previousItem = $this->repository
+        $previousShorts = $this->repository
             ->published()
             ->where('is_short', true)
             ->where('uploaded_at', '>', $video->uploaded_at)
-            ->orderBy('uploaded_at', 'asc')
-            ->first();
-        $nextItem = $this->repository
+            ->orderBy('uploaded_at', 'desc')
+            ->limit(5)
+            ->get();
+        $nextShorts = $this->repository
             ->published()
             ->where('is_short', true)
             ->where('uploaded_at', '<', $video->uploaded_at)
             ->orderBy('uploaded_at', 'desc')
-            ->first();
+            ->limit(5)
+            ->get();
+
+        $dataAttributes = collect([$previousShorts, $video, $nextShorts])
+            ->flatten()
+            ->mapWithKeys(function ($short) {
+                // Keyed by video id
+                return [$short->id => $this->dataAttributes([
+                    'embedId' => 'shorts-player-iframe',
+                    'loadVideoById' => $short->youtube_id,
+                ])];
+            });
 
         $this->seo->nofollow = true;
         $this->seo->noindex = true;
 
         return view('site.shortsDetail', [
             'item' => $video,
-            'previousItem' => $previousItem,
-            'nextItem' => $nextItem,
+            'embed' => $video->embed,
+            'previousItems' => $previousShorts,
+            'nextItems' => $nextShorts,
+            'dataAttributes' => $dataAttributes,
             'canonicalUrl' => $canonicalPath,
             'darkMode' => true,
         ])->fragmentIf($request->has('player'), 'shorts-player');
+    }
+
+    /**
+     * Convert an array into a data-attribute string.
+     */
+    private function dataAttributes(array $data): string
+    {
+        return collect($data)->map(function ($value, $key) {
+            if (is_numeric($key)) {
+                $attribute = str($value)->kebab()->prepend('data-');
+            } else {
+                $attribute = str($key)->kebab()->prepend('data-')->append("='$value'");
+            }
+            return $attribute;
+        })->join(' ');
     }
 }

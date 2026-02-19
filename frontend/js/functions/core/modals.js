@@ -1,5 +1,5 @@
 import { triggerCustomEvent, setFocusOnTarget, queryStringHandler } from '@area17/a17-helpers';
-import { parseHTML, youtubeEmbed } from '../core';
+import { parseHTML, youtubeEmbed, shortsPlayer } from '.';
 
 const modals = function() {
 
@@ -63,6 +63,14 @@ const modals = function() {
     }
   }
 
+  function _shorts(event) {
+    let player = $modal.querySelector('#shorts-player');
+    if (player) {
+      return shortsPlayer(player);
+    }
+    return false;
+  }
+
   function _openModal(event) {
     _resetModal();
 
@@ -71,7 +79,7 @@ const modals = function() {
         active = _media(event);
         break;
       case 'shorts':
-        active = true;
+        active = _shorts(event);
         break;
       default:
         active = false;

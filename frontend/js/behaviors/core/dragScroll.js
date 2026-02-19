@@ -217,8 +217,11 @@ const dragScroll = function(container) {
   }
 
   function _scrollPrev(event) {
+    event.preventDefault();
+    event.stopPropagation();
     const effectiveWidth = _getEffectiveWidth();
     const scrollAmount = effectiveWidth * percentOfContainerToScrollPerClick;
+    console.log(effectiveWidth, scrollAmount, container.scrollLeft);
 
     container.scrollTo({
       top: 0,
@@ -228,8 +231,11 @@ const dragScroll = function(container) {
   }
 
   function _scrollNext(event) {
+    event.preventDefault();
+    event.stopPropagation();
     const effectiveWidth = _getEffectiveWidth();
     const scrollAmount = effectiveWidth * percentOfContainerToScrollPerClick;
+    console.log(effectiveWidth, scrollAmount, container.scrollLeft);
 
     container.scrollTo({
       top: 0,
