@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 
 const styles = theme => ({
   insideLabel: {
@@ -11,7 +11,7 @@ class ThumbnailPlugin extends Component {
   render() {
     //accessing target component and its props
     const { TargetComponent, targetProps } = this.props
-    //copy classes 
+    //copy classes
     targetProps.classes = this.props.classes;
     return (
       //return one set of thumbnails instead of two
