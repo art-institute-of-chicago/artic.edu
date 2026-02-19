@@ -85,7 +85,7 @@ module.exports = async () => {
         'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
         'react/jsx-runtime': path.resolve(__dirname, 'node_modules/react/jsx-runtime'),
         'plyr': path.resolve(__dirname, 'node_modules/plyr/dist/plyr.min.js'),
-        'digital-explorer': path.resolve(__dirname, '../explorer/dist/digitalExplorer.cjs')
+        'digital-explorer': path.resolve(__dirname, 'node_modules/digital-explorer/dist/digitalExplorer.cjs')
       },
       modules: [
         path.resolve(__dirname, 'node_modules'),
