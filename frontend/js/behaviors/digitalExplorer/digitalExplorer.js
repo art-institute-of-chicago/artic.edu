@@ -1,9 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import DigitalExplorer from 'digital-explorer';
 
 export default function digitalExplorer(container) {
   let mounted = false;
+  let root = null;
 
   function _init() {
     let explorerData;
@@ -11,10 +12,8 @@ export default function digitalExplorer(container) {
     const contentBundleScript = document.querySelector('[data-digitalExplorer-contentBundle]');
     explorerData = contentBundleScript ? JSON.parse(contentBundleScript.innerHTML) : {};
 
-    // Store in window for debugging (optional, like closer-look does)
     window.digitalExplorer = explorerData;
 
-    // Prepare props for the component
     const props = {
       models: explorerData.models || [],
       lights: explorerData.lights || [],
@@ -25,28 +24,24 @@ export default function digitalExplorer(container) {
       slug: explorerData.slug
     };
 
-    // Use React 16's render method
-    ReactDOM.render(
-      <DigitalExplorer {...props} />,
-      container
-    );
+    root = createRoot(container);
+    root.render(<DigitalExplorer {...props} />);
 
     mounted = true;
 
-    // Handle header behavior
     if (window.scrollY < 100) {
       document.documentElement.classList.remove('s-header-hide');
     }
   }
 
   this.destroy = function() {
-    if (mounted) {
-      ReactDOM.unmountComponentAtNode(container);
+    if (mounted && root) {
+      root.unmount();
+      root = null;
       mounted = false;
     }
 
     delete window.digitalExplorer;
-
   };
 
   this.init = function() {

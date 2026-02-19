@@ -79,18 +79,18 @@ module.exports = async () => {
       minimize: isProd && !isCI,
     },
     resolve: {
-      extensions: ['.js', '.jsx', '.scss', '.mjs'],
-      fullySpecified: false,
-      mainFields: ['browser', 'module', 'main'],
-      fallback: {
-        url: false,
-      },
+      symlinks: false,
       alias: {
         'react': path.resolve(__dirname, 'node_modules/react'),
         'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-        'plyr$': path.resolve(__dirname, 'node_modules/plyr/dist/plyr.js'),
-        'digital-explorer': path.resolve(__dirname, '../explorer/dist/digitalExplorer.cjs')},
-      modules: ['node_modules', path.resolve(__dirname, 'node_modules'),   path.resolve(__dirname, '../explorer/node_modules')],
+        'react/jsx-runtime': path.resolve(__dirname, 'node_modules/react/jsx-runtime'),
+        'plyr': path.resolve(__dirname, 'node_modules/plyr/dist/plyr.min.js'),
+        'digital-explorer': path.resolve(__dirname, '../explorer/dist/digitalExplorer.cjs')
+      },
+      modules: [
+        path.resolve(__dirname, 'node_modules'),
+        'node_modules'
+      ],
     },
     plugins: [
       new webpack.IgnorePlugin({
