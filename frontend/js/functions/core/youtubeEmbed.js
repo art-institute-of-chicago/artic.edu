@@ -49,7 +49,7 @@ const youtubeEmbed = function(iframe) {
   }
 
   function _initYoutubePlayer() {
-    if (A17.YouTube.onYouTubeIframeAPIReady) {
+    if (window.YT && window.YT.Player) {
       youtubePlayer = new YT.Player(iframe.id, {
         playerVars: {
           'enablejsapi': 1,

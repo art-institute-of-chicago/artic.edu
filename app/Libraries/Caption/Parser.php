@@ -72,8 +72,8 @@ abstract class Parser
      */
     protected function getTimestamp($caption, $video): string
     {
-        $timestamp = str($caption->start)->before('.');
-        $seconds = $timestamp
+        $timestamp = str($caption->start)->split('/[,.]/')->first();
+        $seconds = str($timestamp)
             ->explode(':')
             ->map(fn ($part, $index) => (int) $part * (60 ** (2 - $index)))
             ->sum();
