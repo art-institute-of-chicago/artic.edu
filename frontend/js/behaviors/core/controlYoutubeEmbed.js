@@ -2,14 +2,13 @@ import { purgeProperties, setFocusOnTarget, scrollToY } from '@area17/a17-helper
 
 const controlYoutubeEmbed = function(container) {
   const embedId = container.dataset.embedId;
-  const embed = document.getElementById(embedId);
 
   function handleClick(event) {
     event.preventDefault();
     event.stopPropagation();
 
-    const player = A17.YouTube.embeds[embedId];
-    for (const command in container.dataset) {
+    let player = A17.YouTube.embeds[embedId];
+    for (let command in container.dataset) {
       switch (command) {
         case 'pauseVideo':
           player.pauseVideo();
@@ -18,7 +17,7 @@ const controlYoutubeEmbed = function(container) {
           player.playVideo();
           break;
         case 'stopVideo':
-          player.stopVideo()
+          player.stopVideo();
           break;
         case 'seekTo':
           player.seekTo(container.dataset[command], true)
@@ -28,6 +27,8 @@ const controlYoutubeEmbed = function(container) {
           break;
       }
     }
+
+    let embed = document.getElementById(embedId);
 
     scrollToY({
       duration: 500,
