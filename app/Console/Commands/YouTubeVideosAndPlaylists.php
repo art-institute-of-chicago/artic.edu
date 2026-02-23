@@ -44,7 +44,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                 ['youtube_id' => $videoId],
                 [
                     'youtube_id' => $videoId,
-                    'title' => $upload['snippet']['title'],
+                    'title' => $this->normalizeTitle($upload['snippet']['title']),
                     'description' => $upload['snippet']['description'],
                 ],
             );
@@ -84,7 +84,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
             foreach ($sourceVideos as $source) {
                 $thumbnail = $this->highestResolutionThumbnail($source['snippet']['thumbnails']);
                 $video = Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id'])->fill([
-                    'title' => $source['snippet']['title'],
+                    'title' => $this->normalizeTitle($source['snippet']['title']),
                     'description' => $source['snippet']['description'],
                     'uploaded_at' => $source['snippet']['publishedAt'],
                     'duration' => $this->convertDuration($source['contentDetails']['duration']),
@@ -200,5 +200,13 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
             }
         }
         return ['url' => null, 'height' => null, 'width' => null];
+    }
+
+    /**
+     * Remove title suffix from Shorts.
+     */
+    private function normalizeTitle(string $title): string
+    {
+        return str($title)->before(' | Art Institute Shorts')->toString();
     }
 }
