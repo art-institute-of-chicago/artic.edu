@@ -96,6 +96,7 @@ async function getYouTubePlayer(iframeId) {
             },
             events: {
               'onReady': () => playerResolve(A17.YouTubeembeds[iframeId]),
+              'onStateChange': youtubeEmbed.onYouTubePlayerStateChange,
             },
           });
         });
