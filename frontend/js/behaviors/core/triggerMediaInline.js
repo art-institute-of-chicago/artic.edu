@@ -27,6 +27,7 @@ const triggerMediaInline = function(container) {
   function _init() {
     iframe = container.querySelector('iframe');
 
+    console.log('triggerMediaInline', iframe);
     if (!iframe) {
       return;
     }
@@ -55,6 +56,7 @@ const triggerMediaInline = function(container) {
       }
 
       if (embedSrcType === 'src') {
+        console.log('triggerMediaInline', 'starting youtubeEmbed');
         iframe.src = src;
         youtubeEmbed(iframe);
       } else {

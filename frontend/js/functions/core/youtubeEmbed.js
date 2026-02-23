@@ -12,9 +12,9 @@ const youtubeEmbed = function(iframe) {
   let youtubePlayerTimer;
 
   function _onYouTubePlayerPlaying() {
-    const playedPercent = Math.round(youtubePlayer.getCurrentTime()/youtubePlayer.getDuration() * 100);
-    for (const playedCheck in playedChecks) {
-      const percentComparison = (playedCheck === 100) ? 99 : playedCheck;
+    let playedPercent = Math.round(youtubePlayer.getCurrentTime()/youtubePlayer.getDuration() * 100);
+    for (let playedCheck in playedChecks) {
+      let percentComparison = (playedCheck === 100) ? 99 : playedCheck;
       if (playedPercent >= percentComparison && !playedChecks[playedCheck]) {
         playedChecks[playedCheck] = true;
         triggerCustomEvent(document, 'gtm:push', {
@@ -49,18 +49,21 @@ const youtubeEmbed = function(iframe) {
   }
 
   function _initYoutubePlayer() {
-    if (window.YT && window.YT.Player) {
+    if (A17.YouTubeonYouTubeIframeAPIReady) {
       youtubePlayer = new YT.Player(iframe.id, {
+        videoId: iframe.id,
         playerVars: {
           'enablejsapi': 1,
-          'origin': window.location.origin,
+          'origin': window.location.origin
         },
         events: {
-          'onStateChange': _onYouTubePlayerStateChange,
-        },
+          'onStateChange': _onYouTubePlayerStateChange
+        }
       });
-      A17.YouTube.embeds[iframe.id] = youtubePlayer;
+      A17.YouTubeembeds[iframe.id] = youtubePlayer;
+      console.debug('youtubeEmbed added', iframe.id, A17.YouTubeembeds[iframe.id]);
     } else {
+      console.debug("youtubeEmbed could't do it. Trying again is 250ms");
       setTimeout(_initYoutubePlayer, 250);
     }
   }

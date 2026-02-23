@@ -7,29 +7,26 @@ const controlYoutubeEmbed = function(container) {
     event.preventDefault();
     event.stopPropagation();
 
-    let player = A17.YouTube.embeds[embedId];
-    for (let command in container.dataset) {
-      switch (command) {
-        case 'pauseVideo':
-          player.pauseVideo();
-          break;
-        case 'playVideo':
-          player.playVideo();
-          break;
-        case 'stopVideo':
-          player.stopVideo();
-          break;
-        case 'seekTo':
-          player.seekTo(container.dataset[command], true)
-          break;
-        default:
-          // noop
-          break;
-      }
+    let player = A17.YouTubeembeds[embedId];
+    console.log('controlYoutubeEmbed trying with', player);
+
+    if (container.dataset.playVideo) {
+      player.playVideo();
+    }
+    else if (container.dataset.pauseVideo) {
+      player.pauseVideo();
+    }
+    else if (container.dataset.stopVideo) {
+      player.stopVideo();
     }
 
-    let embed = document.getElementById(embedId);
+    if (container.dataset.seekTo) {
+      console.log('controlYoutubeEmbed seekTo', 'player', player, 'container.dataset.seekTo', container.dataset.seekTo);
+      player.seekTo(container.dataset.seekTo, true);
+    }
 
+
+    let embed = document.getElementById(embedId);
     scrollToY({
       duration: 500,
       easing: 'easeInOut',
