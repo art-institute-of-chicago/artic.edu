@@ -14,19 +14,21 @@ Usage:
 @endphp
 <div class="o-tabbed-details" style="--tab-count: {{ $tabCount }}">
     @for ($tabIndex = 0; $tabIndex < $tabCount; $tabIndex++)
-        <details
-            name="tabbed-details"
-            class="o-tabbed-details__tab"
-            style="--tab: {{ $tabIndex }}"
-            @if ($tabIndex === $openTabIndex) open @endif
-        >
-            <summary class="o-tabbed-details__tab-title">
-                {{ ${'tab' . $tabIndex}->attributes->get('title') }}
-            </summary>
-            <div class="o-tabbed-details__tab-content">
-                {{ ${'tab' . $tabIndex} }}
-            </div>
-        </details>
+        @if(isset(${'tab' . $tabIndex}))
+            <details
+                name="tabbed-details"
+                class="o-tabbed-details__tab"
+                style="--tab: {{ $tabIndex }}"
+                @if ($tabIndex === $openTabIndex) open @endif
+            >
+                <summary class="o-tabbed-details__tab-title">
+                    {{ ${'tab' . $tabIndex}->attributes->get('title') }}
+                </summary>
+                <div class="o-tabbed-details__tab-content">
+                    {{ ${'tab' . $tabIndex} }}
+                </div>
+            </details>
+        @endif
     @endfor
     <div class="o-tabbed-details__spacer"></div>
 </div>
