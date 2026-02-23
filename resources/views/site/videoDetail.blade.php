@@ -58,16 +58,14 @@
                         ]) !!}
                     </div>
                 </x-slot>
-                <x-slot name="tab1" title="Transcript">
-                    @if($transcript)
+                @if($transcript)
+                    <x-slot name="tab1" title="Transcript">
                         <h3>Transcript</h3>
                         <div id="video-transcript-{{ $item->id }}" class="video-transcript">
                             {!! $transcript !!}
                         </div>
-                    @else
-                        <p class="video-transcript">Sorry, the transcript for this video is not yet available</p>
-                    @endif
-                </x-slot>
+                    </x-slot>
+                @endif
             </x-tabbed-details>
         </div>
     </article>
