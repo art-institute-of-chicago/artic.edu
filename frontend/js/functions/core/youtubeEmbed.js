@@ -86,22 +86,19 @@ const youtubeEmbed = function(iframe) {
 async function getYouTubePlayer(iframeId) {
   return new Promise((resolve) => {
     if (A17.YouTubeonYouTubeIframeAPIReady) {
-      let player;
-      if (A17.YouTubeembeds[iframeId]) {
-        player = A17.YouTubeembeds[iframeId];
-      } else {
-      player = new YT.Player(iframe.id, {
-        playerVars: {
-          'autoplay': 1,
-          'enablejsapi': 1,
-          'origin': window.location.origin,
-        },
-        events: {
-          'onStateChange': _onStateChange,
-        },
-      });
+      if (!(iframeId in A17.YouTubeembeds)) {
+        A17.YouTubeembeds[iframeId] = new YT.Player(iframeId, {
+          playerVars: {
+            'autoplay': 1,
+            'enablejsapi': 1,
+            'origin': window.location.origin,
+          },
+          events: {
+            'onStateChange': youtubeEmbed._onPlayerStateChange,
+          },
+        });
       }
-      resolve(player);
+      resolve(A17.YouTubeembeds[iframeId]);
     } else {
       setTimeout(getYouTubePlayer, 250);
     }
