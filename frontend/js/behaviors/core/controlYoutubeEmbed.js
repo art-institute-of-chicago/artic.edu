@@ -1,13 +1,15 @@
 import { purgeProperties, setFocusOnTarget, scrollToY } from '@area17/a17-helpers';
+import { getYouTubePlayer } from '../../functions/core/youtubeEmbed';
 
 const controlYoutubeEmbed = function(container) {
   const embedId = container.dataset.embedId;
 
-  function handleClick(event) {
+  async function handleClick(event) {
     event.preventDefault();
     event.stopPropagation();
 
-    let player = A17.YouTubeembeds[embedId];
+    let player = await getYouTubePlayer(embedId);
+
     console.log('controlYoutubeEmbed trying with', player);
 
     if (container.dataset.playVideo) {

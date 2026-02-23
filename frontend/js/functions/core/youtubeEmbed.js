@@ -83,4 +83,35 @@ const youtubeEmbed = function(iframe) {
   _initYoutubePlayer();
 };
 
-export default youtubeEmbed;
+async function getYouTubePlayer(iframeId) {
+  return new Promise((resolve) => {
+    if (A17.YouTubeonYouTubeIframeAPIReady) {
+      if (!(iframeId in A17.YouTubeembeds)) {
+        let playerInstance;
+        const playerPromise = new Promise((playerResolve) => {
+          playerInstance = new YT.Player(iframeId, {
+            playerVars: {
+              'autoplay': 1,
+              'enablejsapi': 1,
+              'origin': window.location.origin,
+            },
+            events: {
+              'onReady': () => playerResolve(playerInstance),
+              'onStateChange': youtubeEmbed.onYouTubePlayerStateChange,
+            },
+          });
+        });
+
+        A17.YouTubeembeds[iframeId] = playerPromise;
+
+        playerPromise.then(resolve);
+      } else {
+        resolve(A17.YouTubeembeds[iframeId]);
+      }
+    } else {
+      setTimeout(() => getYouTubePlayer(iframeId).then(resolve), 250);
+    }
+  });
+};
+
+export { getYouTubePlayer, youtubeEmbed as default };

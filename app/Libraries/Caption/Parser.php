@@ -82,7 +82,7 @@ abstract class Parser
         return <<<HTML
             <a
                 class="timestamp"
-                href="$url"
+                href="#"
                 data-behavior="controlYoutubeEmbed"
                 data-embed-id="$video->youtube_id"
                 data-seek-to="$seconds"
