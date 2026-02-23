@@ -83,4 +83,29 @@ const youtubeEmbed = function(iframe) {
   _initYoutubePlayer();
 };
 
-export default youtubeEmbed;
+async function getYouTubePlayer(iframeId) {
+  return new Promise((resolve) => {
+    if (A17.YouTubeonYouTubeIframeAPIReady) {
+      let player;
+      if (A17.YouTubeembeds[iframeId]) {
+        player = A17.YouTubeembeds[iframeId];
+      } else {
+      player = new YT.Player(iframe.id, {
+        playerVars: {
+          'autoplay': 1,
+          'enablejsapi': 1,
+          'origin': window.location.origin,
+        },
+        events: {
+          'onStateChange': _onStateChange,
+        },
+      });
+      }
+      resolve(player);
+    } else {
+      setTimeout(getYouTubePlayer, 250);
+    }
+  }, 250);
+};
+
+export { getYouTubePlayer, youtubeEmbed as default };
