@@ -32,15 +32,26 @@ const viewerMirador = function(container) {
         typography:{
           fontFamily: 'Ideal Sans A,Ideal Sans B,Helvetica,Arial,sans-serif',
         },
-        overrides: {
-          MuiToolbar: {
-            root: {
-              display: 'none',
-            },
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                backgroundColor: '#151515'
+              }
+            }
           },
           MuiTypography: {
-            root: {
-              display: 'none',
+            styleOverrides: {
+              caption: {
+                color: '#ffffff !important',
+              }
+            }
+          },
+          IIIFThumbnail: {
+            styleOverrides: {
+              label: {
+                display: 'none',
+              },
             },
           },
         },

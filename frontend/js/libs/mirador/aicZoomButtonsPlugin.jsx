@@ -32,19 +32,19 @@ const ZoomOutIcon = (props) => (
 
 const styles = theme => ({
   CustomZoomButton: {
-    backgroundColor: 'rgba(0,0,0,.5)',
+    backgroundColor: 'rgba(0,0,0,.8) !important',
     border: 0,
     borderRadius: 0,
-    color: '#ffffff',
+    color: '#ffffff !important',
     height: 48,
     width: 48,
     marginLeft: '1px',
     '&:hover': {
-      backgroundColor: 'rgba(0,0,0,.6)',
+      backgroundColor: 'rgba(0,0,0,1) !important',
     },
     '&:disabled': {
-      color: 'rgba(255,255,255,.2)',
-      backgroundColor: 'rgba(0,0,0,.5)',
+      color: 'rgba(255,255,255,.2) !important',
+      backgroundColor: 'rgba(0,0,0,.5) !important',
     },
     '&:not(:last-child)': {
       border: 0,
