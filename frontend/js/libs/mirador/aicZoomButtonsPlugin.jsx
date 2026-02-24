@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { withStyles } from '@mui/styles'; // Ensure @mui/styles is installed
 import Button from '@mui/material/Button';
