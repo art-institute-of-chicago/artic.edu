@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Experience;
 use App\Repositories\ExperienceRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 
 class InteractiveFeatureExperiencesController extends FrontController
@@ -102,6 +103,8 @@ class InteractiveFeatureExperiencesController extends FrontController
         }
 
         $view = 'site.experienceDetail';
+
+        $isKiosk = View::shared('isKiosk', false);
 
         if (isset($isKiosk) && $isKiosk) {
             return view('site.experienceDetail', [
