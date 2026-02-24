@@ -39,15 +39,15 @@ class GenericPresenter extends BasePresenter
 
     private function getExtraBreadCrumbFor($id)
     {
-        // If the page is Library, Archival Collections or Institutional Archives,
-        // add "Resources" to the breadcrumbs
-        if (in_array($id, [14, 16, 17])) {
-            $crumb = [];
-            $crumb['label'] = 'Resources';
-            $crumb['href'] = '/collection/research_resources';
-
-            return $crumb;
-        }
+        // If the page is a specific generic page, determined by ID, then
+        // add a breadcrumbs immediately after it.
+        //
+        // For example, if the passed in $id has a value,
+        // return an array structured like this:
+        //
+        //     $crumb = [];
+        //     $crumb['label'] = 'Text displayed as the bread crumb';
+        //     $crumb['href'] = '/relative/path/to/go/to';
     }
 
     public function navigation()
