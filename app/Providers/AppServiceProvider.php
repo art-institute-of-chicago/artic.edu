@@ -408,7 +408,7 @@ class AppServiceProvider extends ServiceProvider
                                         ],
                                         [
                                             'name' => 'Academic Engagement',
-                                            'url' => '/about-us/departments/academic-engagement-and-research',
+                                            'url' => '/research-center/internship-and-research-opportunities',
                                         ],
                                     ],
                                 ],
