@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (isset($playlist))
+        <div class="playlist-title">
+            Playlist: {{ $playlist->title }}
+        </div>
+        @component('components.atoms._hr')@endcomponent
+    @endif
     <article @class([
         'o-article o-article--video',
         'video-is-short' => $item->is_short,
@@ -14,7 +20,6 @@
             @endcomponent
             @component('components.molecules._m-media')
                 @slot('variation', $item->is_short ? 'variation--short' : 'variation--video')
-                @slot('variation', $item->is_short ? 'variation--short' : 'variation--video')
                 @slot('item', [
                     'type' => 'embed',
                     'size' => 'l',
@@ -22,11 +27,18 @@
                         'embed' => $embed,
                         'medias' => $item->medias,
                     ],
-                    'poster' => $item->is_short ? null : $item->imageFront('hero'),
+                    'poster' => $poster,
                     'hideCaption' => true,
                     'fullscreen' => false,
                 ])
             @endcomponent
+            @if (isset($playlist))
+                @component('components.organisms._o-playlist')
+                    @slot('playlist', $playlist)
+                    @slot('currentVideo', $item)
+                    @slot('videos', $playlist->videos()->published()->get())
+                @endcomponent
+            @endif
         </div>
         <div class="o-article__body o-blocks">
             @if ($item->heading)
@@ -38,8 +50,8 @@
                 @endcomponent
                 </div>
             @endif
-            <x-tabbed-details :tab-count="2">
-                <x-slot name="tab1" title="Info">
+            <x-tabbed-details :tab-count="2" :open-tab-index="$showTranscript ? 1 : 0">
+                <x-slot name="tab0" title="Info">
                     <div class="o-article__content o-blocks">
                         {!! $item->renderBlocks(data: [
                             'pageTitle' => $item->title
