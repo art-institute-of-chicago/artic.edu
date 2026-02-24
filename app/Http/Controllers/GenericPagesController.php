@@ -32,6 +32,7 @@ class GenericPagesController extends FrontController
 
         $landingPageSlugs = LandingPageSlug::where('active', true)->whereNull('deleted_at')->get()->pluck('slug')->toArray() ?: ['home'];
         if (in_array($slug, $landingPageSlugs)) {
+            request()->merge(['LandingPageController' => LandingPagesController::class . '@show']);
             return $this->landingPageController->slug($slug);
         }
 

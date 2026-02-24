@@ -144,7 +144,9 @@ class YouTubeService
         try {
             $run();
         } catch (GoogleServiceException $exception) {
-            $message = strip_tags(json_decode($exception->getMessage())->error->message);
+            $decodedException = json_decode($exception->getMessage());
+            // The Google service exception object is inconsistent in how it is packed
+            $message = strip_tags($decodedException->error?->message ?: $decodedException->error);
             DB::table(self::SESSION_TABLE)->where('created_at', $start)->update([
                 'errored_at' => now('UTC'),
                 'error' => $exception->getMessage(),
@@ -355,6 +357,30 @@ class YouTubeService
         $this->sessionUsage += $estimatedUsage;
 
         return $response;
+    }
+
+    public function getLastSucceededAt()
+    {
+        return DB::table(self::SESSION_TABLE)
+            ->whereNull('errored_at')
+            ->latest()
+            ->first()?->created_at;
+    }
+
+    public function getLastFailedAt()
+    {
+        return DB::table(self::SESSION_TABLE)
+            ->whereNotNull('errored_at')
+            ->latest('errored_at')
+            ->first()?->errored_at;
+    }
+
+    public function getLastFailedReason()
+    {
+        return DB::table(self::SESSION_TABLE)
+            ->whereNotNull('errored_at')
+            ->latest('errored_at')
+            ->first()?->message;
     }
 
     /**

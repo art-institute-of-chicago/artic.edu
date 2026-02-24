@@ -70,7 +70,7 @@ class GenerateSitemap extends Command
         $this->addUrl($sitemap, route('pages.slug', ['slug' => 'visit']), 1.0);
         $this->addRoute($sitemap, 'events', 0.9);
         $this->addRoute($sitemap, 'collection', 0.9);
-        $this->addRoute($sitemap, route('pages.slug', ['slug' => 'publications']), 1.0);
+        $this->addUrl($sitemap, route('pages.slug', ['slug' => 'publications']), 1.0);
         $this->addRoute($sitemap, 'articles');
         $this->addRoute($sitemap, 'exhibitions.history', 0.6);
         $this->addRoute($sitemap, 'exhibitions', 1.0);

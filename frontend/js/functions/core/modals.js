@@ -1,5 +1,5 @@
 import { triggerCustomEvent, setFocusOnTarget, queryStringHandler } from '@area17/a17-helpers';
-import { parseHTML, youtubePercentTracking } from '../core';
+import { parseHTML, youtubeEmbed } from '../core';
 
 const modals = function() {
 
@@ -51,7 +51,7 @@ const modals = function() {
         $modal.querySelector('[data-modal-content]').innerHTML = '';
         $modal.querySelector('[data-modal-content]').appendChild(iframe);
         if (src.indexOf('youtube.com') > -1) {
-          youtubePercentTracking(iframe);
+          youtubeEmbed(iframe);
         }
       } catch(err) {
         console.log(err);
@@ -64,28 +64,31 @@ const modals = function() {
   }
 
   function _openModal(event) {
-    _closeModal();
+    _resetModal();
 
-    if (event && event.data.type) {
-      switch (event.data.type) {
-        case 'media':
-          active = _media(event);
-          break;
-      }
+    switch (event?.data?.opener) {
+      case 'media':
+        active = _media(event);
+        break;
+      case 'shorts':
+        active = true;
+        break;
+      default:
+        active = false;
+    }
 
-      if (active) {
-        triggerCustomEvent(document, 'body:lock', {
-          breakpoints: 'all'
+    if (active) {
+      triggerCustomEvent(document, 'body:lock', {
+        breakpoints: 'all'
+      });
+      window.requestAnimationFrame(function(){
+        document.documentElement.classList.add(modalActiveClass);
+        setTimeout(function(){ setFocusOnTarget($modal); }, 0)
+        triggerCustomEvent(document, 'focus:trap', {
+          element: $modal
         });
-        window.requestAnimationFrame(function(){
-          document.documentElement.classList.add(modalActiveClass);
-          setTimeout(function(){ setFocusOnTarget($modal); }, 0)
-          triggerCustomEvent(document, 'focus:trap', {
-            element: $modal
-          });
-          triggerCustomEvent(document, 'page:updated');
-        });
-      }
+        triggerCustomEvent(document, 'page:updated');
+      });
     }
   }
 
@@ -93,8 +96,7 @@ const modals = function() {
     if (!active) {
       return;
     }
-    triggerCustomEvent(document, 'body:unlock');
-    triggerCustomEvent(document, 'focus:untrap');
+    _resetModal();
     document.documentElement.classList.remove(modalActiveClass);
     setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
     setTimeout(function(){
@@ -102,6 +104,11 @@ const modals = function() {
       $modal.querySelector('[data-modal-content]').innerHTML = '';
     },300);
     active = false;
+  }
+
+  function _resetModal() {
+    triggerCustomEvent(document, 'body:unlock');
+    triggerCustomEvent(document, 'focus:untrap');
   }
 
   function _resized() {

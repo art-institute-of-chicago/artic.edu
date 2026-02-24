@@ -137,6 +137,8 @@
 @import 'organisms/o-info-grid';
 @import 'organisms/o-my-museum-tour-builder';
 @import 'organisms/o-my-museum-tour-viewer';
+@import 'organisms/o-tabbed-details';
+@import 'organisms/o-playlist';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */
 
@@ -200,3 +202,4 @@
 @import 'state/s-closer-look-footer-stuck';
 @import 'state/s-layered-image-viewer-active';
 @import 'state/s-contrast-text';
+@import 'state/s-dark-mode';

@@ -6,6 +6,7 @@ use App\Models\Playlist;
 use App\Models\Video;
 use App\Services\YouTube\YouTubeService;
 use Illuminate\Support\Collection;
+use Carbon\CarbonInterval;
 
 class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
 {
@@ -43,7 +44,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                 ['youtube_id' => $videoId],
                 [
                     'youtube_id' => $videoId,
-                    'title' => $upload['snippet']['title'],
+                    'title' => $this->normalizeTitle($upload['snippet']['title']),
                     'description' => $upload['snippet']['description'],
                 ],
             );
@@ -81,12 +82,16 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         foreach ($sourceIds->chunk(YouTubeService::ITEMS_PER_REQUEST) as $chunkOfSourceIds) {
             $sourceVideos = $this->youtube->videosByIds($chunkOfSourceIds, $fields);
             foreach ($sourceVideos as $source) {
+                $thumbnail = $this->highestResolutionThumbnail($source['snippet']['thumbnails']);
                 $video = Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id'])->fill([
-                    'title' => $source['snippet']['title'],
+                    'title' => $this->normalizeTitle($source['snippet']['title']),
                     'description' => $source['snippet']['description'],
                     'uploaded_at' => $source['snippet']['publishedAt'],
                     'duration' => $this->convertDuration($source['contentDetails']['duration']),
-                    'thumbnail_url' => $source['snippet']['thumbnails']['high']['url'],
+                    'duration_display' => $this->convertDurationDisplay($source['contentDetails']['duration']),
+                    'thumbnail_url' => $thumbnail['url'],
+                    'thumbnail_height' => $thumbnail['height'],
+                    'thumbnail_width' => $thumbnail['width'],
                     'is_captioned' => $source['contentDetails']['caption'],
                     'privacy' => $source['status']['privacyStatus'],
                 ]);
@@ -122,14 +127,18 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
             $this->output->createProgressBar($this->youtube->playlistCount()) :
             null;
         $progress?->start();
-        foreach ($this->youtube->playlists(fields: 'items(id,snippet(title,thumbnails/high/url))') as $sourcePlaylist) {
+        foreach ($this->youtube->playlists(fields: 'items(id,snippet(title,thumbnails/high/url,publishedAt))') as $sourcePlaylist) {
             $playlistId = $sourcePlaylist['id'];
+            $thumbnail = $this->highestResolutionThumbnail($sourcePlaylist['snippet']['thumbnails']);
             $playlist = Playlist::updateOrCreate(
                 ['youtube_id' =>  $playlistId],
                 [
                     'youtube_id' =>  $playlistId,
                     'title' => $sourcePlaylist['snippet']['title'],
-                    'thumbnail_url' => $sourcePlaylist['snippet']['thumbnails']['high']['url'],
+                    'thumbnail_url' => $thumbnail['url'],
+                    'thumbnail_height' => $thumbnail['height'],
+                    'thumbnail_width' => $thumbnail['width'],
+                    'published_at' => $sourcePlaylist['snippet']['publishedAt'],
                 ],
             );
             $fields = 'items(id,snippet(resourceId/videoId,position))';
@@ -159,7 +168,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
     /**
      * Convert a duration from 'PT1H1M1S' to '1:01:01'.
      */
-    private function convertDuration(string $durationSpec): string
+    private function convertDurationDisplay(string $durationSpec): string
     {
         $interval = new \DateInterval($durationSpec);
         $format = '%S';
@@ -169,5 +178,35 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
             $format = '%i:' . $format;
         }
         return $interval->format($format);
+    }
+
+    /**
+     * Convert a duration from 'PT1H1M1S' to seconds
+     */
+    private function convertDuration(string $durationSpec): string
+    {
+        return CarbonInterval::make($durationSpec)->totalSeconds;
+    }
+
+    /**
+     * Retrieve the highest resolution thumbnail of those provided.
+     */
+    private function highestResolutionThumbnail($thumbnails): array
+    {
+        $resolutions = ['maxres', 'standard', 'high'];
+        foreach ($resolutions as $resolution) {
+            if (isset($thumbnails[$resolution])) {
+                return (array) $thumbnails[$resolution];
+            }
+        }
+        return ['url' => null, 'height' => null, 'width' => null];
+    }
+
+    /**
+     * Remove title suffix from Shorts.
+     */
+    private function normalizeTitle(string $title): string
+    {
+        return str($title)->before(' | Art Institute Shorts')->toString();
     }
 }

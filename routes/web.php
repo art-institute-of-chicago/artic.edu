@@ -26,14 +26,18 @@ use App\Http\Controllers\MagazineIssueController;
 use App\Http\Controllers\MiradorController;
 use App\Http\Controllers\MyMuseumTourController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\PlaylistVideoController;
 use App\Http\Controllers\PressReleasesController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\PrintedPublicationsController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ShortsController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\VideoController;
+use App\Http\Middleware\SanitizeQueryParameters;
 use Illuminate\Support\Facades\Route;
 
 Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
@@ -42,14 +46,58 @@ Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt'
 
 Route::get('/google-oauth', [OAuthController::class, 'google'])->name('google-oauth');
 
-Route::get('/ajaxData', [FrontController::class, 'getAjaxData']);
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'id',
+        'model',
+    ]
+], function () {
+    Route::get('/ajaxData', [FrontController::class, 'getAjaxData']);
+});
 
 // Landing Page
 Route::get('/', [LandingPagesController::class, 'slugHome'])->name('home');
-Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'is_landing_page' => true,
+], function () {
+    Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
+});
 
 // Collection routes
-Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'angle',
+        'artist_ids',
+        'artwork_type_id',
+        'classification_ids',
+        'color',
+        'date-end',
+        'date-start',
+        'department_ids',
+        'gallery_ids',
+        'has_advanced_imaging',
+        'has_educational_resources',
+        'has_multimedia',
+        'is_deaccessioned',
+        'is_on_view',
+        'is_public_domain',
+        'is_recent_acquisition',
+        'material_ids',
+        'page',
+        'place_ids',
+        'q',
+        'sort_by',
+        'style_ids',
+        'subject_ids',
+        'technique_ids',
+        'theme_ids',
+    ]
+], function () {
+    Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
+});
 /*Route::get('/collection/autocomplete', [CollectionController::class, 'autocomplete'])->name('collection.autocomplete');
 Route::get('/collection/autocomplete', function(){
 return redirect('//api.artic.edu/api/v1/autocomplete?q='.request('q'));
@@ -75,29 +123,56 @@ Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPubli
 Route::get('/collection/research_resources', [ResearchController::class, 'index'])->name('collection.research_resources');
 
 // Collection Resources Educator Resources
-Route::get('/educator-resources', [EducatorResourcesController::class, 'index'])->name('collection.resources.educator-resources');
-Route::get('/educator-resources/{id}/{slug?}', [EducatorResourcesController::class, 'show'])->name('collection.resources.educator-resources.show');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'content',
+        'audience',
+        'topic',
+        'locale',
+        'filter',
+    ]
+], function () {
+    Route::get('/educator-resources', [EducatorResourcesController::class, 'index'])->name('collection.resources.educator-resources');
+    Route::get('/educator-resources/{id}/{slug?}', [EducatorResourcesController::class, 'show'])->name('collection.resources.educator-resources.show');
+});
 
 // Newsletter subscription
 Route::post('/subscribe', [SubscribeController::class, 'store'])->name('subscribe');
 
 // Search routes
-Route::get('/search', [SearchController::class, 'index'])->name('search');
-Route::get('/search/autocomplete', [SearchController::class, 'autocomplete'])->name('search.autocomplete');
-Route::get('/search/artists', [SearchController::class, 'artists'])->name('search.artists');
-Route::get('/search/articles', [SearchController::class, 'articles'])->name('search.articles');
-Route::get('/search/events', [SearchController::class, 'events'])->name('search.events');
-Route::get('/search/pages', [SearchController::class, 'pages'])->name('search.pages');
-Route::get('/search/publications', [SearchController::class, 'publications'])->name('search.publications');
-Route::get('/search/artworks', [SearchController::class, 'artworks'])->name('search.artworks');
-Route::get('/search/press-releases', [SearchController::class, 'pressReleases'])->name('search.press-releases');
-Route::get('/search/educator-resources', [SearchController::class, 'educatorResources'])->name('search.educator-resources');
-Route::get('/search/exhibitions', [SearchController::class, 'exhibitions'])->name('search.exhibitions');
-Route::get('/search/interactive-features', [SearchController::class, 'interactiveFeatures'])->name('search.interactive-features');
-Route::get('/search/highlights', [SearchController::class, 'highlights'])->name('search.highlights');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+], function () {
+    Route::get('/search', [SearchController::class, 'index'])->name('search');
+    Route::get('/search/autocomplete', [SearchController::class, 'autocomplete'])->name('search.autocomplete');
+    Route::get('/search/artists', [SearchController::class, 'artists'])->name('search.artists');
+    Route::get('/search/articles', [SearchController::class, 'articles'])->name('search.articles');
+    Route::get('/search/events', [SearchController::class, 'events'])->name('search.events');
+    Route::get('/search/pages', [SearchController::class, 'pages'])->name('search.pages');
+    Route::get('/search/publications', [SearchController::class, 'publications'])->name('search.publications');
+    Route::get('/search/artworks', [SearchController::class, 'artworks'])->name('search.artworks');
+    Route::get('/search/press-releases', [SearchController::class, 'pressReleases'])->name('search.press-releases');
+    Route::get('/search/educator-resources', [SearchController::class, 'educatorResources'])->name('search.educator-resources');
+    Route::get('/search/exhibitions', [SearchController::class, 'exhibitions'])->name('search.exhibitions');
+    Route::get('/search/interactive-features', [SearchController::class, 'interactiveFeatures'])->name('search.interactive-features');
+    Route::get('/search/highlights', [SearchController::class, 'highlights'])->name('search.highlights');
+});
 
 // Events routes
-Route::get('/events', [EventsController::class, 'index'])->name('events');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'type',
+        'audience',
+        'program',
+        'time',
+        'start',
+        'end',
+    ]
+], function () {
+    Route::get('/events', [EventsController::class, 'index'])->name('events');
+});
 Route::get('/events-more', [EventsController::class, 'indexMore'])->name('events.more');
 Route::get('/events/{id}/ics', [EventsController::class, 'ics'])->name('events.ics');
 Route::get('/events/{id}/{slug?}', [EventsController::class, 'show'])->name('events.show');
@@ -115,11 +190,16 @@ Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index'
 Route::get('/authors/{id}/{slug?}', [AuthorController::class, 'show'])->name('authors.show');
 
 // Videos routes
-// TODO: uncomment when video show page is reimplemented
-Route::get('videos', function () {
-    return abort(404);
-})->name('videos');
-Route::get('/videos/{id}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
+Route::get('/videos/archive', [VideoController::class, 'index'])->name('videos.archive');
+Route::get('/videos/shorts', [ShortsController::class, 'index'])->name('shorts.index');
+Route::get('/videos/shorts/{video}/{slug?}', [ShortsController::class, 'show'])->name('shorts.show');
+Route::get('/videos/{video}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
+
+Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
+Route::get(
+    '/playlists/{playlist}/videos/{video}/{slug?}',
+    [PlaylistVideoController::class, 'show'],
+)->scopeBindings()->name('playlists.videos.show');
 
 // Mirador kiosk routes
 Route::get('mirador', function () {
@@ -129,7 +209,14 @@ Route::get('/mirador/{id}/{slug?}', [MiradorController::class, 'show'])->name('m
 
 // Exhibition history routes
 // Must remain before exhibition routes
-Route::get('exhibitions/history', [ExhibitionHistoryController::class, 'index'])->name('exhibitions.history');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'year',
+    ]
+], function () {
+    Route::get('exhibitions/history', [ExhibitionHistoryController::class, 'index'])->name('exhibitions.history');
+});
 Route::get('exhibitions/history/{id}', [ExhibitionHistoryController::class, 'show'])->name('exhibitions.history.show');
 
 // Exhibition routes
@@ -196,7 +283,14 @@ Route::get('/interactive-features/kiosk/{slug}', [InteractiveFeatureExperiencesC
 
 // My Museum Tour routes
 Route::get('/my-museum-tour/builder', [MyMuseumTourController::class, 'showMyMuseumTourBuilder'])->name('my-museum-tour.builder');
-Route::get('/my-museum-tour/{id}', [MyMuseumTourController::class, 'show'])->name('my-museum-tour.show');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'tourCreationComplete',
+    ]
+], function () {
+    Route::get('/my-museum-tour/{id}', [MyMuseumTourController::class, 'show'])->name('my-museum-tour.show');
+});
 
 Route::get('/my-museum-tour/{id}/pdf-layout', [MyMuseumTourController::class, 'pdfLayout'])->name('my-museum-tour.pdf-layout');
 Route::get('/my-museum-tour/{id}/qrcode.png', [MyMuseumTourController::class, 'qrcode'])->name('my-museum-tour.qrcode');
@@ -205,4 +299,12 @@ Route::get('/my-museum-tour/{id}/qrcode.png', [MyMuseumTourController::class, 'q
 Route::feeds();
 
 // Generic Page
-Route::get('{slug}', [GenericPagesController::class, 'show'])->where('slug', '.*')->name('pages.slug');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'filter',
+        'sort',
+    ]
+], function () {
+    Route::get('{slug}', [GenericPagesController::class, 'show'])->where('slug', '.*')->name('pages.slug');
+});

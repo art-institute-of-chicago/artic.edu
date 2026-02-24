@@ -77,3 +77,5 @@ export { default as dynamicFilterPagination } from './dynamicFilterPagination';
 export { default as dynamicFilterSearch } from './dynamicFilterSearch';
 export { default as dynamicFilterSearchBuilder } from './dynamicFilterSearchBuilder';
 export { default as slideshow } from './slideshow';
+export { default as triggerShortsPlayerModal } from './triggerShortsPlayerModal';
+export { default as controlYoutubeEmbed } from './controlYoutubeEmbed';

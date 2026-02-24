@@ -35,7 +35,7 @@ class LandingPage extends AbstractModel implements Sortable
     use HasBlocks;
     use NodeTrait;
 
-    public const DEFAULT_TYPE = 'Custom';
+    public const DEFAULT_TYPE = 'Default';
 
     public const TYPES = [
         0 => 'RLC',
@@ -55,7 +55,7 @@ class LandingPage extends AbstractModel implements Sortable
        14 => 'Research Center',
        15 => 'Educator Resources',
        16 => 'Videos',
-       99 => 'Custom',
+       99 => 'Default',
     ];
 
     protected $presenter = 'App\Presenters\Admin\LandingPagePresenter';

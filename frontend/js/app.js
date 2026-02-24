@@ -17,7 +17,9 @@ A17.currentMediaQuery = getCurrentMediaQuery();
 A17.currentPathname = window.location.pathname;
 A17.dateRangeValues = [
     '8000 BCE','7000 BCE','6000 BCE','5000 BCE','4000 BCE','3000 BCE','2000 BCE','1000 BCE','1 CE','500 CE','1000 CE','1200','1400','1600','1700','1800','1900','1910','1920','1930','1940','1950','1960','1970','1980','1990','2000','2010','2020','Present']; // For collection filters
-A17.onYouTubeIframeAPIReady = false;
+A17.YouTubeonYouTubeIframeAPIReady = false;
+A17.YouTubeembeds = {};
+
 try {
   A17.env = /s-env-([a-z]*)/ig.exec(document.documentElement.className)[1];
 } catch(err){
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 window.onYouTubeIframeAPIReady = function() {
-  A17.onYouTubeIframeAPIReady = true;
+  A17.YouTubeonYouTubeIframeAPIReady = true;
 }
 
 // Make console.log safe

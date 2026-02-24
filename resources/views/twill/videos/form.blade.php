@@ -55,7 +55,8 @@
         name='description'
         label='Description'
         type='textarea'
-        disabled='true'
+        readonly='true'
+        note='read-only'
     />
 
     <x-twill::wysiwyg
@@ -74,7 +75,15 @@
 
     @php
         $blocks = BlockHelpers::getBlocksForEditor([
-            'paragraph', 'hr', 'artwork', 'split_block', 'quote', 'tour_stop', 'list', 'button', 'audio_player', 'membership_banner', 'mobile_app', 'artworks'
+            'accordion',
+            'artwork',
+            'button',
+            'gallery_new',
+            'hr',
+            'image',
+            'link',
+            'paragraph',
+            'split_block',
         ]);
     @endphp
 
@@ -141,7 +150,7 @@
             type='textarea'
         />
 
-    <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
+    <p>Comma-separated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
 
     </x-twill::formFieldset>
 
@@ -156,7 +165,7 @@
             label='YouTube ID'
             disabled='true'
         />
-        <a href="{{ $item->video_url }}" target="_blank">🔗 YouTube</a>
+        <a href="{{ $item->video_url }}" target="_blank" rel="noopener noreferrer">🔗 YouTube</a>
 
         <x-twill::input
             name='uploaded_at'
@@ -167,7 +176,7 @@
         <x-twill::formColumns>
             <x-slot:left>
                 <x-twill::input
-                    name='duration'
+                    name='duration_display'
                     label='Duration'
                     disabled='true'
                 />

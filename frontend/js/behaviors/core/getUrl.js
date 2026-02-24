@@ -6,7 +6,8 @@ const getUrl = function(container) {
     event.preventDefault();
     event.stopPropagation();
     triggerCustomEvent(document, 'ajax:getPage', {
-      url: container.getAttribute('data-href') || container.getAttribute('href') || '#',
+      url: container.dataset.href || container.getAttribute('href') || '#',
+      type: container.dataset.type,
     });
   }
 

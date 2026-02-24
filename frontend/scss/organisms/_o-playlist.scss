@@ -1,0 +1,42 @@
+.o-playlist {
+    display: flex;
+    overflow: scroll;
+    padding: 16px 28px 0 16px;
+
+    .o-playlist__videos {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .playlist-video {
+        width: 100%;
+
+        .m-listing__link {
+            align-items: flex-start;
+            align-self: stretch;
+            display: flex;
+            flex-flow: row;
+            gap: 13px;
+            padding: 12px;
+        }
+        .m-listing__img {
+            width: 100px;
+        }
+        .m-listing__meta {
+            flex: unset;
+            flex-flow: unset;
+            min-height: inherit;
+
+        }
+        .m-listing__meta .title {
+            align-self: stretch;
+            flex: 1 0 0;
+            margin: unset;
+            overflow: hidden;
+
+            &::before {
+                display: none;
+            }
+        }
+    }
+}

@@ -2,11 +2,22 @@
 
 namespace App\Libraries;
 
+use DOMDocument;
+
 class EmbedConverterService
 {
-    public function __construct()
-    {
-    }
+    private const YOUTUBE_DEFAULT_TAG = 'iframe';
+    private const YOUTUBE_DEFAULT_ATTRIBUTES = [
+        'type' => 'text/html',
+        'src' => null,
+        'frameborder' => 0,
+        'allow' => 'autoplay; encrypted-media',
+        'allowfullscreen' => true,
+        'referrerpolicy' => 'strict-origin-when-cross-origin',
+    ];
+    private const YOUTUBE_DEFAULT_PARAMETERS = [
+        'enablejsapi' => true,
+    ];
 
     public function convertUrl($url)
     {
@@ -15,7 +26,7 @@ class EmbedConverterService
 
             if (isset($parts['host'])) {
                 if (stripos($parts['host'], 'youtu') !== false) {
-                    return $this->getYouTubeEmbedCode($url);
+                    return $this->createYouTubeEmbed(attributes: ['src' => $url]);
                 }
 
                 if (stripos($parts['host'], 'vimeo') !== false) {
@@ -35,6 +46,34 @@ class EmbedConverterService
         return '';
     }
 
+    /**
+     * Dynamically construct a YouTube embed code.
+     *
+     * Returns an HTML string.
+     */
+    public function createYouTubeEmbed(
+        string $tag = self::YOUTUBE_DEFAULT_TAG,
+        array $attributes = [],
+        array $parameters = [],
+    ): string {
+        $document = new DOMDocument('1.0', 'UTF-8');
+        $element = $document->createElement($tag);
+
+        $attributes = array_merge(self::YOUTUBE_DEFAULT_ATTRIBUTES, $attributes);
+        if ($attributes['src']) {
+            $parameters = array_merge(self::YOUTUBE_DEFAULT_PARAMETERS, $parameters);
+            if (!isset($parameters['origin'])) {
+                $parameters['origin'] = config('app.url');
+            }
+            $attributes['src'] .= (str($attributes['src'])->contains('?') ? '&' : '?') . http_build_query($parameters);
+        }
+        foreach ($attributes as $key => $value) {
+            $element->setAttribute($key, $value);
+        }
+
+        return $document->saveHTML($element);
+    }
+
     public function getYoutubeThumbnailImage($url)
     {
         if ($id = $this->getYouTubeIdCode($url)) {
@@ -52,20 +91,6 @@ class EmbedConverterService
         preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
 
         return $match[1] ?? null;
-    }
-
-    /**
-     * getYouTubeEmbedCode description
-     * @param  string $url YouTube video url, eg: https://www.youtube.com/watch?v=SZFVhIji7sY
-     * @return [type]      [description]
-     */
-    private function getYouTubeEmbedCode($url)
-    {
-        $videoId = $this->getYouTubeIdCode($url);
-
-        if ($videoId) {
-            return '<iframe src="https://www.youtube.com/embed/' . $videoId . '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-        }
     }
 
     /**

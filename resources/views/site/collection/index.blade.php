@@ -25,7 +25,7 @@
     @slot('linksPrimary', [
         ['label' => 'Artworks', 'href' => route('collection'), 'active' => true],
         ['label' => 'Publications', 'href' => '/publications'],
-        ['label' => 'Research', 'href' => route('collection.research_resources')]
+        ['label' => 'Research Center', 'href' => '/research-center']
     ])
 @endcomponent
 

@@ -9,7 +9,7 @@
     }
 @endphp
 
-@if ($embed_type == 'html' && $embed_code)
+@if ((!isset($embed_type) || $embed_type == 'html') && $embed_code)
     @component('components.molecules._m-media')
         @slot('variation', 'o-blocks__block')
         @slot('embed_height', $embed_height)

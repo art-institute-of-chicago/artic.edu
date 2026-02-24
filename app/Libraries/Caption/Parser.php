@@ -2,6 +2,8 @@
 
 namespace App\Libraries\Caption;
 
+use App\Models\Video;
+
 abstract class Parser
 {
     public array $captions;
@@ -33,24 +35,78 @@ abstract class Parser
     }
 
     /**
-     * Construct the transcript by collating the lines from each caption.
+     * Construct an HTML transcript for the given video by collating the lines
+     * from each caption.
      */
-    public function getTranscript(): string
+    public function getTranscript(Video $video): string
     {
-        $transcript = collect($this->captions)
-            ->reduce( // Collect all lines in one array
-                fn ($allLines, $caption) => $allLines->concat($caption->lines),
-                collect(),
-            )
-            ->map( // Iterate thru array of lines
-                fn ($line) => str($line)->whenStartsWith(
-                    '- ',
-                    fn ($line) => $line->replace('- ', "\n"),
-                )
-            )
-            ->join(' '); // Join each line with a space
+        return collect($this->captions)
+            ->chunkWhile(function ($caption) {
+                // Chunk captions into paragraphs
+                $firstLine = str(collect($caption->lines)->first());
+                return !$firstLine->startsWith('-');
+            })
+            ->flatMap(function ($paragraph, $paragraphIndex) use ($video) {
+                return $paragraph->chunkWhile(function ($caption, $index, $chunk) {
+                    // Chunk paragraph into sentences
+                    $previousChunk = $chunk->last();
+                    $previousLine = str(collect($previousChunk->lines)->last());
+                    return !$previousLine->endsWith('.');
+                })
+                ->chunk(3)->map(function ($sentences, $sentenceIndex) use ($paragraphIndex, $video) {
+                    // Chunk into three sentences
+                    $captionsForParagraph = $sentences->flatten();
+                    return <<<HTML
+                        <div id="caption-{$paragraphIndex}-{$sentenceIndex}" class="caption">
+                            {$this->getTimestamp($captionsForParagraph->first(), $video)}
+                            {$this->getParagraph($captionsForParagraph)}
+                        </div>
+                    HTML;
+                });
+            })
+            ->join('');
+    }
 
-        return $transcript;
+    /**
+     *  Create a timestamp link for the caption.
+     */
+    protected function getTimestamp($caption, $video): string
+    {
+        $timestamp = str($caption->start)->split('/[,.]/')->first();
+        $seconds = str($timestamp)
+            ->explode(':')
+            ->map(fn ($part, $index) => (int) $part * (60 ** (2 - $index)))
+            ->sum();
+        $url = ($video->url ?? '/') . '?transcript=true&start=' . $seconds;
+
+        return <<<HTML
+            <a
+                class="timestamp"
+                href="#"
+                data-behavior="controlYoutubeEmbed"
+                data-embed-id="$video->youtube_id"
+                data-seek-to="$seconds"
+                data-play-video
+            >
+                $timestamp
+            </a>
+        HTML;
+    }
+
+    /**
+     * Create a paragraph from the caption lines.
+     */
+    protected function getParagraph($captions): string
+    {
+        $paragraph = collect($captions)
+            ->flatMap(fn ($caption) => $caption->lines)
+            ->implode(fn ($line) => str($line)->ltrim('- '), ' ');
+
+        return <<<HTML
+            <p>
+                $paragraph
+            </p>
+        HTML;
     }
 
     /**

@@ -81,7 +81,7 @@
                             {!! $location_intro !!}
                         </div>
                         <div class="directions-link">
-                            <a class="f-link" target="_blank" rel="noopener"  href="{{ $directions_link }}">
+                            <a class="f-link" target="_blank" rel="noopener noreferrer" href="{{ $directions_link }}">
                                 {{ $directions_label }}
                             </a>
                         </div>

@@ -9,9 +9,24 @@
 @import 'types/t-videos';
 @import 'types/t-visit';
 
-.p-landingpage-show {
-  .o-landingpage__body.o-blocks * {
-    margin-left: 0;
+.p-landingpages-show {
+  .o-blocks {
+    .o-gallery,
+    .m-media--m,
+    .m-media--l,
+    .m-table--l,
+    .m-cta-banner,
+    .m-mobile-block,
+    .m-aside-newsletter--wide,
+    .o-grid-block {
+      @include breakpoint('large+') {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .m-media:not(.m-media--soundcloud) .m-media__img iframe {
+    position: relative;
   }
 }
 
@@ -35,5 +50,13 @@
     color: $color__white;
     font-family: $sans-serif-font--loaded;
     font-size: 18px;
+  }
+}
+
+.m-mobile-block {
+  .m-mobile-block__wrapper {
+    @include breakpoint('large+') {
+      margin-left: 0;
+    }
   }
 }

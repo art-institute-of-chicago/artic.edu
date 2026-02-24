@@ -38,7 +38,7 @@
                     @foreach ($item['links'] as $link)
                         {!! count($item['links']) > 1 ? '<li>' : '<span>' !!}
                             @if (isset($link['external']) and $link['external'])
-                                <a href="{!! $link['href'] !!}" target="_blank" class="external-link f-link">
+                                <a href="{!! $link['href'] !!}" target="_blank" rel="noopener noreferrer" class="external-link f-link">
                                     {!! $link['label'] !!}<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
                                 </a>
                             @else

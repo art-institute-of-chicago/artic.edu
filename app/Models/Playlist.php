@@ -18,10 +18,15 @@ class Playlist extends AbstractModel
         'title',
         'youtube_id',
         'thumbnail_url',
+        'thumbnail_height',
+        'thumbnail_width',
+        'published_at',
     ];
 
     protected $casts = [
         'published' => 'boolean',
+        'thumbnail_height' => 'integer',
+        'thumbnail_width' => 'integer',
     ];
 
     public $attributes = [

@@ -13,11 +13,13 @@ use App\Models\Behaviors\HasRelated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 
 class Video extends AbstractModel
 {
     use HasBlocks;
+    use HasFactory;
     use HasFiles;
     use HasMedias;
     use HasMediasEloquent;
@@ -34,6 +36,7 @@ class Video extends AbstractModel
         'date',
         'description',
         'duration',
+        'duration_display',
         'heading',
         'is_captioned',
         'is_listed',
@@ -45,11 +48,12 @@ class Video extends AbstractModel
         'published',
         'search_tags',
         'thumbnail_url',
+        'thumbnail_height',
+        'thumbnail_width',
         'title',
         'title_display',
         'toggle_autorelated',
         'uploaded_at',
-        'video_url',
         'youtube_id',
     ];
 
@@ -57,9 +61,12 @@ class Video extends AbstractModel
         'date' => 'date',
         'is_captioned' => 'boolean',
         'is_listed' => 'boolean',
+        'is_short' => 'boolean',
         'published' => 'boolean',
         'toggle_autorelated' => 'boolean',
         'uploaded_at' => 'datetime',
+        'thumbnail_height' => 'integer',
+        'thumbnail_width' => 'integer',
     ];
 
     public $attributes = [
@@ -89,6 +96,25 @@ class Video extends AbstractModel
         'title',
     ];
 
+    public const SHORT = 'short';
+    public const MEDIUM = 'medium';
+    public const LONG = 'long';
+    public const EXTRA_LONG = 'extra-long';
+
+    public static $durations = [
+        self::SHORT => 'Under 1 minute',
+        self::MEDIUM => '1–5 minutes',
+        self::LONG => '5–20 minutes',
+        self::EXTRA_LONG => 'Over 20 minutes',
+    ];
+
+    public static $durationLengths = [
+        self::SHORT => [0, 61],
+        self::MEDIUM => [62, 299],
+        self::LONG => [300, 1199],
+        self::EXTRA_LONG => [1200, null],
+    ];
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'video_category');
@@ -111,6 +137,11 @@ class Video extends AbstractModel
         return $this->hasMany(Caption::class);
     }
 
+    public function standardCaption()
+    {
+        return $this->hasOne(Caption::class)->where('kind', 'standard');
+    }
+
     public function format(): Attribute
     {
         return Attribute::make(
@@ -125,6 +156,13 @@ class Video extends AbstractModel
         );
     }
 
+    public function embedUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($_, array $attributes) => "https://www.youtube.com/embed/{$attributes['youtube_id']}",
+        );
+    }
+
     public function scopeByCategories($query, $categories = null): Builder
     {
         if (empty($categories)) {
@@ -136,6 +174,32 @@ class Video extends AbstractModel
         });
     }
 
+    public function scopeByVideoCategories($query, $videoCategories = null): Builder
+    {
+        if (empty($videoCategories)) {
+            return $query;
+        }
+
+        return $query->whereHas('videoCategories', function ($query) use ($videoCategories) {
+            $query->whereIn('video_category_id', Collection::wrap($videoCategories));
+        });
+    }
+
+    public function scopeByDuration($query, $duration = null): Builder
+    {
+        if (empty($duration) || !array_key_exists($duration, static::$durationLengths)) {
+            return $query;
+        }
+
+        [$start, $end] = static::$durationLengths[$duration];
+
+        if ($end) {
+            return $query->whereBetween('duration', [$start, $end]);
+        } else {
+            return $query->where('duration', '>', $start);
+        }
+    }
+
     public function scopeByPlaylists($query, $playlistIds = []): Builder
     {
         return $query->whereHas('playlists', function ($query) use ($playlistIds) {
@@ -145,26 +209,13 @@ class Video extends AbstractModel
 
     public function getEmbedAttribute()
     {
-        return EmbedConverterFacade::convertUrl($this->video_url);
-    }
-
-    /**
-     * Generates the id-slug type of URL
-     */
-    public function getRouteKeyName()
-    {
-        return 'id_slug';
-    }
-
-    public function getIdSlugAttribute()
-    {
-        return join('-', [$this->id, $this->getSlug()]);
+        return EmbedConverterFacade::createYouTubeEmbed(attributes: ['id' => $this->youtube_id, 'src' => $this->embed_url]);
     }
 
     public function getUrlWithoutSlugAttribute()
     {
         // Workaround for the CMS, should be moved away from the model
-        return join([route('videos'), '/', $this->id, '-']);
+        return join([route('videos.show', ['video' => $this])]);
     }
 
     public function getAdminEditUrlAttribute()
@@ -174,7 +225,9 @@ class Video extends AbstractModel
 
     public function getUrlAttribute()
     {
-        return route('videos.show', ['id' => $this->id, 'slug' => $this->getSlug()], false);
+        if ($this->id) {  // Necessary for testing, should not affect production
+            return route('videos.show', ['video' => $this?->id, 'slug' => $this->getSlug()], false);
+        }
     }
 
     public function getTypeAttribute()

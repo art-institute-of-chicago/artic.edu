@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class GoogleOAuthService
 {
     private const ACCESS_TYPE = 'offline';
+    private const PROMPT = 'consent';
     private const PROVIDER = 'google';
     private const SCOPES = [
         'https://www.googleapis.com/auth/youtube.force-ssl',
@@ -24,6 +25,7 @@ class GoogleOAuthService
         $this->client->setDeveloperKey($developerKey);
         $this->client->setAuthConfig($authConfig);
         $this->client->setAccessType(self::ACCESS_TYPE);
+        $this->client->setPrompt(self::PROMPT);
         $this->client->setScopes(self::SCOPES);
         $this->client->setTokenCallback($this->newAccessTokenCallback(...));
     }
@@ -100,6 +102,11 @@ class GoogleOAuthService
     {
         $accessToken = $this->retrieveAccessToken();
         $refreshedAccessToken = $this->client->fetchAccessTokenWithRefreshToken($accessToken['refresh_token']);
+        if (array_key_exists('error', $refreshedAccessToken)) {
+            throw new GoogleOAuthServiceException(
+                'Unable to refresh access token: ' . $refreshedAccessToken['error_description']
+            );
+        }
 
         return $this->storeAccessToken($refreshedAccessToken);
     }
@@ -115,10 +122,18 @@ class GoogleOAuthService
     {
         $token = $this->retrieveAccessToken();
         if ($this->client->revokeToken($token)) {
-            return (bool) DB::table('oauth')->where('provider', self::PROVIDER)->delete();
+            return $this->deleteAccess();
         } else {
             throw new GoogleOAuthServiceException('Unable to revoke token access!');
         }
+    }
+
+    /**
+     * Delete the record of the access token from the database.
+     */
+    public function deleteAccess(): bool
+    {
+        return (bool) DB::table('oauth')->where('provider', self::PROVIDER)->delete();
     }
 
     /**

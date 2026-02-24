@@ -129,12 +129,8 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
 
     public function scopePublished($query): Builder
     {
-        parent::scopePublished($query);
-
         // ...and the parent publication has to be published as well
-        return $query->whereHas('digitalPublication', function ($subquery) {
-            $subquery->published();
-        });
+        return parent::scopePublished($query)->whereRelation('digitalPublication', 'published', true);
     }
 
     public function scopeIds($query, $ids = []): Builder
@@ -179,6 +175,11 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
             'pubSlug' => $this->digitalPublication()->get()->pluck('slug'),
             'id' => $this->id,
         ]);
+    }
+
+    public function getAdminEditUrlAttribute()
+    {
+        return route('twill.collection.articlesPublications.digitalPublications.articles.edit', [$this->digitalPublication->id, $this->id]);
     }
 
     protected function transformMappingInternal()

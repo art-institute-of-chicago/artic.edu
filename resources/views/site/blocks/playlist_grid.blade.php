@@ -22,6 +22,7 @@
 
 <div class="o-grid-block playlist-grid">
     @component('components.molecules._m-title-bar')
+        @slot('id', 'playlists')
         @slot('links', !empty($gridLinkLabel) && !empty($gridLinkHref) ? [
             [
                 'label' => $gridLinkLabel,
@@ -41,24 +42,14 @@
 
     @component('components.organisms._o-grid-listing')
         @slot('behavior', 'dragScroll')
-        @slot('cols_small', $widthSmall)
+        @slot('cols_xsmall', $widthSmall)
+        @slot('cols_small', $width)
         @slot('cols_medium', $width)
         @slot('cols_large', $width)
         @slot('cols_xlarge', $width)
         @foreach ($playlists as $playlist)
-            @php
-                $videoThumbnails = $playlist->videos()
-                    ->get()
-                    ->mapWithKeys(fn($video, $key) => ['src' => $video->thumbnail_url]);
-                $videoCount = $playlist->videos()->count();
-            @endphp
             @component('components.molecules._m-listing----playlist-grid-item')
-                @slot('url', $playlist->source_url)
-                {{-- @slot('images', $videoThumbnails) --}}
-                @slot('image', ['src' => $playlist->thumbnail_url])
-                @slot('label', "$videoCount videos")
-                @slot('labelPosition', 'overlay')
-                @slot('title', $playlist->title)
+                @slot('playlist', $playlist)
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',

@@ -1,6 +1,9 @@
 @php
     $currentUrl = explode('/', request()->url());
     $type = in_array('landingPages', $currentUrl) ? \App\Models\LandingPage::find(intval($currentUrl[5]))->type : null;
+    if ($type == 'Default') {
+        $type = null;
+    }
 @endphp
 
 @include('twill.partials.theme', ['types' => [$type]])
@@ -27,19 +30,6 @@
     />
 
 </x-twill::formConnectedFields>
-
-<x-twill::input
-    name='grid_link_label'
-    label='Link Label'
-    note='Displayed at top-right of title bar'
-    :maxlength='60'
-/>
-
-<x-twill::input
-    name='grid_link_href'
-    label='Link URL'
-    :maxlength='60'
-/>
 
 <x-twill::select
     name='variation'

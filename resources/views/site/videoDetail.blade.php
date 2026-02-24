@@ -1,116 +1,113 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <article class="o-article o-article--video">
-
-        <div class="o-article__primary-actions o-article__primary-actions--video">
-            @component('components.atoms._title')
-                @slot('tag','p')
-                @slot('font', 'f-tag-2')
-                Video
-            @endcomponent
-
-            @component('components.molecules._m-article-actions')
-                @slot('articleType', 'video')
-            @endcomponent
+    @if (isset($playlist))
+        <div class="playlist-title">
+            Playlist: {{ $playlist->title }}
         </div>
-
-        @component('components.molecules._m-article-header')
-            @slot('title', $item->present()->title)
-            @slot('title_display', $item->present()->title_display)
-            @slot('formattedDate', $item->present()->date)
-        @endcomponent
-
-        <div class="o-article__body o-blocks">
+        @component('components.atoms._hr')@endcomponent
+    @endif
+    <article @class([
+        'o-article o-article--video',
+        'video-is-short' => $item->is_short,
+    ])>
+        <div class="o-article__header">
+            @component('components.molecules._m-article-header')
+                @slot('variation', $item->is_short ? 'variation--short' : 'variation--video')
+                @slot('headerType', 'video')
+                @slot('title', $item->present()->title)
+                @slot('title_display', $item->present()->title_display)
+            @endcomponent
             @component('components.molecules._m-media')
-                @slot('variation', 'o-blocks__block')
+                @slot('variation', $item->is_short ? 'variation--short' : 'variation--video')
                 @slot('item', [
                     'type' => 'embed',
                     'size' => 'l',
                     'media' => [
-                        'url' => $item->video_url,
-                        'embed' => $item->embed,
+                        'embed' => $embed,
                         'medias' => $item->medias,
                     ],
-                    'poster' => $item->imageFront('hero'),
+                    'poster' => $poster,
                     'hideCaption' => true,
                     'fullscreen' => false,
                 ])
             @endcomponent
+            @if (isset($playlist))
+                @component('components.organisms._o-playlist')
+                    @slot('playlist', $playlist)
+                    @slot('currentVideo', $item)
+                    @slot('videos', $playlist->videos()->published()->get())
+                @endcomponent
+            @endif
         </div>
-
-        @if ($item->heading)
-            <div class="o-article__intro">
-              @component('components.blocks._text')
-                  @slot('font', 'f-deck')
-                  @slot('tag', 'div')
-                  {!! $item->present()->heading !!}
-              @endcomponent
-            </div>
-        @endif
-
         <div class="o-article__body o-blocks">
-            {!! $item->renderBlocks(data: [
-                'pageTitle' => $item->title
-            ]) !!}
+            @if ($item->heading)
+                <div class="o-article__intro">
+                @component('components.blocks._text')
+                    @slot('font', 'f-deck')
+                    @slot('tag', 'div')
+                    {!! $item->present()->heading !!}
+                @endcomponent
+                </div>
+            @endif
+            <x-tabbed-details :tab-count="2" :open-tab-index="$showTranscript ? 1 : 0">
+                <x-slot name="tab0" title="Info">
+                    <div class="o-article__content o-blocks">
+                        {!! $item->renderBlocks(data: [
+                            'pageTitle' => $item->title
+                        ]) !!}
+                    </div>
+                </x-slot>
+                @if($transcript)
+                    <x-slot name="tab1" title="Transcript">
+                        <h3>Transcript</h3>
+                        <div id="video-transcript-{{ $item->id }}" class="video-transcript">
+                            {!! $transcript !!}
+                        </div>
+                    </x-slot>
+                @endif
+            </x-tabbed-details>
         </div>
-
     </article>
 
-    @if ($item->topics && count($item->topics) > 0)
-        @component('components.atoms._hr')
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-subheading-1')
-            @slot('tag', 'h4')
-            @slot('id', 'h-topics')
-            Topics
-        @endcomponent
-        <ul class="m-inline-list" aria-labelledby="h-topics">
-        @foreach ($item->topics as $category)
-            <li class="m-inline-list__item">
-                @if (!empty($category['id']))
-                    <a class="tag f-tag" href="{{ route('articles', ['category' => $category['id']]) }}">{{ $category['name'] }}</a>
-                @else
-                    <span class="tag f-tag">{{ $category['name'] }}</span>
-                @endif
-            </li>
-        @endforeach
-        </ul>
-    @endif
-
     @if ($relatedVideos->count() > 0)
-        @component('components.molecules._m-title-bar')
-            Related Videos
-        @endcomponent
-        @component('components.atoms._hr')
-        @endcomponent
-        @component('components.organisms._o-grid-listing')
-            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-            @slot('behavior','dragScroll')
-            @foreach ($relatedVideos as $item)
-                @component('components.molecules._m-listing----generic')
-                    @slot('item', $item)
-                    @slot('hideDate', true)
-                    @slot('imageSettings', array(
-                        'fit' => 'crop',
-                        'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
-                        'sizes' => ImageHelpers::aic_imageSizes(array(
-                              'xsmall' => '216px',
-                              'small' => '216px',
-                              'medium' => '18',
-                              'large' => '13',
-                              'xlarge' => '13',
-                        )),
-                    ))
-                @endcomponent
-            @endforeach
-        @endcomponent
+        <div class="o-article__related o-article__related--videos">
+            @component('components.molecules._m-title-bar')
+                Related Videos
+            @endcomponent
+            @component('components.organisms._o-grid-listing')
+                @slot(
+                    'variation',
+                    'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small'
+                )
+                @slot('cols_medium','4')
+                @slot('cols_large','4')
+                @slot('cols_xlarge','4')
+                @slot('behavior','dragScroll')
+                @foreach ($relatedVideos as $video)
+                    @component('components.molecules._m-listing----grid-item')
+                        @slot('url', $video->url ?? '')
+                        @slot('label', $video->duration_display ?? '')
+                        @slot('labelPosition', 'overlay')
+                        @slot('tag', $video->is_short ? 'Short' : 'Video')
+                        @slot('title', $video->title ?? '')
+                        @slot('image', ['src' => $video->thumbnail_url ?? ''])
+                        @slot('imageSettings', array(
+                            'fit' => 'crop',
+                            'ratio' => '16:9',
+                            'srcset' => array(200,400,600),
+                            'sizes' => ImageHelpers::aic_imageSizes(array(
+                                'xsmall' => '216px',
+                                'small' => '216px',
+                                'medium' => '18',
+                                'large' => '13',
+                                'xlarge' => '13',
+                            )),
+                        ))
+                    @endcomponent
+                @endforeach
+            @endcomponent
+        </div>
     @endif
 @endsection
 

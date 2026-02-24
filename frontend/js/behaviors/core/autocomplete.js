@@ -329,8 +329,6 @@ const autocomplete = function(container) {
 
   function _clearInput(event) {
     if (event) {
-      event.preventDefault();
-      event.stopPropagation();
     }
     _closeAutocomplete();
     textInput.value = '';

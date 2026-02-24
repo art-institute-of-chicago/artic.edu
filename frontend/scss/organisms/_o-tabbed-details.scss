@@ -1,0 +1,45 @@
+.o-tabbed-details {
+    --tab-count: 2; /* Default to 2 tabs, can be overridden inline */
+
+    display: grid;
+    grid-template-columns: auto auto minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+
+    &__spacer {
+        border-bottom: 1px solid $color__black--80;
+        grid-column: calc(var(--tab-count) + 1) / -1;
+        grid-row: 1;
+    }
+
+    &__tab:is(details) {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-row: 1 / span calc(var(--tab-count) + 1);
+        grid-template-columns: subgrid;
+        grid-template-rows: subgrid;
+    }
+
+    &__tab-title:is(summary) {
+        border-bottom: 1px solid $color__black--80;
+        cursor: pointer;
+        display: grid;
+        grid-column: calc(var(--tab) + 1) / span 1;
+        grid-row: 1;
+        z-index: 1;
+    }
+
+    &__tab[open] &__tab-title:is(summary) {
+        border-bottom: 1px solid $color__white;
+        font-weight: bold;
+        pointer-events: none;
+    }
+
+    &__tab:is(details)::details-content {
+        grid-column: 1 / -1;
+        padding: 1rem;
+    }
+
+    &__tab:is(details):not([open])::details-content {
+        display: none;
+    }
+}
