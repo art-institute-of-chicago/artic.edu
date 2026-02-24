@@ -1,5 +1,3 @@
-import ReactDOM from 'react-dom/client';
-import React from 'react';
 import mirador from 'mirador';
 import aicZoomButtonsPlugin from '../../libs/mirador/aicZoomButtonsPlugin.jsx';
 import aicNavigationButtonsPlugin from '../../libs/mirador/aicNavigationButtonsPlugin.jsx';
