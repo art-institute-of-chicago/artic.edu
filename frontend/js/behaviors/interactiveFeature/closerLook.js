@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import React from 'react';
 import * as CloserLookModule from 'closer-look';
 import getAbsoluteHeight from '../../functions/core/getAbsoluteHeight';
 
