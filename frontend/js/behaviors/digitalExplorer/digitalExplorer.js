@@ -1,4 +1,3 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 import DigitalExplorer from 'digital-explorer';
 
@@ -7,10 +6,8 @@ export default function digitalExplorer(container) {
   let root = null;
 
   function _init() {
-    let explorerData;
-
     const contentBundleScript = document.querySelector('[data-digitalExplorer-contentBundle]');
-    explorerData = contentBundleScript ? JSON.parse(contentBundleScript.innerHTML) : {};
+    const explorerData = contentBundleScript ? JSON.parse(contentBundleScript.innerHTML) : {};
 
     window.digitalExplorer = explorerData;
 
