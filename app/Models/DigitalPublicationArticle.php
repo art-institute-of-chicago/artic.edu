@@ -129,6 +129,10 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
 
     public function scopePublished($query): Builder
     {
+        if (config('aic.is_preview_mode')) {
+            return $query;
+        }
+
         // ...and the parent publication has to be published as well
         return parent::scopePublished($query)->whereRelation('digitalPublication', 'published', true);
     }
