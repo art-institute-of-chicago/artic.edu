@@ -285,7 +285,7 @@ Route::get('e-news', function () {
 });
 
 // Digital Explorer
-Route::get('/digital-explorers', [DigitalExplorerController::class, 'index'])->name('digitalExplorer.index');
+// Route::get('/digital-explorers', [DigitalExplorerController::class, 'index'])->name('digitalExplorer.index'); No index yet...
 Route::get('/digital-explorers/{id}/{slug?}', [DigitalExplorerController::class, 'show'])->name('digitalExplorer.show');
 
 // Digital labels
