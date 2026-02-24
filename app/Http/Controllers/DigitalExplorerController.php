@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\DigitalExplorer;
 use App\Repositories\DigitalExplorerRepository;
-use Illuminate\Support\Facades\Response;
 
 class DigitalExplorerController extends FrontController
 {
