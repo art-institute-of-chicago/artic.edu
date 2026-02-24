@@ -16,6 +16,7 @@ class EmbedConverterService
         'referrerpolicy' => 'strict-origin-when-cross-origin',
     ];
     private const YOUTUBE_DEFAULT_PARAMETERS = [
+        'autoplay' => true,
         'enablejsapi' => true,
     ];
 

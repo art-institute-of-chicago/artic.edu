@@ -1,10 +1,12 @@
 import { purgeProperties } from '@area17/a17-helpers';
+import { queryStringHandler } from '@area17/a17-helpers';
 import { youtubeEmbed } from '../../functions/core';
 
 const triggerMediaInline = function(container) {
   let iframe;
   let src;
   let embedSrcType;
+  let platform = container.dataset.platform;
 
   function _handleClicks(event) {
     event.preventDefault();
@@ -21,6 +23,9 @@ const triggerMediaInline = function(container) {
   }
 
   function activateMedia() {
+    src = queryStringHandler.updateParameter(src, 'autoplay', (platform == 'vimeo' ? 'true' : '1'));
+    src = queryStringHandler.updateParameter(src, 'auto_play', (platform == 'vimeo' ? 'true' : '1'));
+    iframe.src = src;
     container.classList.add('s-inline-media-activated');
   }
 
