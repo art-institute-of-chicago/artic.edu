@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\DigitalExplorerController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
 use App\Http\Controllers\InteractiveFeatureExperiencesController;
 
 Route::get(
