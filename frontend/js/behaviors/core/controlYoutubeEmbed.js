@@ -1,5 +1,5 @@
 import { purgeProperties, setFocusOnTarget, scrollToY } from '@area17/a17-helpers';
-import { getYouTubePlayer, controlYouTubePlayer } from '../../functions/core/youtubeEmbed';
+import youtubeEmbed, { controlYouTubePlayer } from '../../functions/core/youtubeEmbed';
 
 const controlYoutubeEmbed = function(container) {
   const embedId = container.dataset.embedId;
@@ -8,21 +8,12 @@ const controlYoutubeEmbed = function(container) {
   }
   const embed = document.getElementById(embedId);
 
-  function handleClick(event) {
+  async function handleClick(event) {
     event.preventDefault();
     event.stopPropagation();
 
-    const player = getYouTubePlayer(embedId);
-    if (!player) {
-      return false;
-    }
+    const player = await youtubeEmbed(embedId);
     controlYouTubePlayer(player, container.dataset)
-
-    if (container.dataset.seekTo) {
-      console.log('controlYoutubeEmbed seekTo', 'player', player, 'container.dataset.seekTo', container.dataset.seekTo);
-      player.seekTo(container.dataset.seekTo, true);
-    }
-
 
     let embed = document.getElementById(embedId);
     scrollToY({

@@ -8,7 +8,7 @@
             </svg>
         </div>
         <div id="shorts-player">
-            <ul id="shorts-list" data-behavior="dragScroll" data-scroll-extended>
+            <ul id="shorts-list">
                 @foreach ($previousItems as $index => $previousItem)
                     <li
                         id="short-{{ $previousItem->youtube_id }}"
@@ -46,7 +46,7 @@
                     </button>
                         <div
                             class="m-media__img m-media__img--embed"
-                            data-behavior="shortsPlayer"
+                            {{-- data-behavior="shortsPlayer" --}}
                             aria-label="Media embed, click to play"
                             tabindex="0"
                         >

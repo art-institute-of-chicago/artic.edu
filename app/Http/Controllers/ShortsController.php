@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\EmbedConverterFacade;
 use App\Models\Video;
 use App\Repositories\VideoRepository;
 use Illuminate\Http\Request;
@@ -74,9 +75,14 @@ class ShortsController extends FrontController
         $this->seo->nofollow = true;
         $this->seo->noindex = true;
 
+        $embed = EmbedConverterFacade::createYouTubeEmbed(attributes: [
+            'id' => 'shorts-player-iframe',
+            'src' => $video->embed_url,
+        ]);
+
         return view('site.shortsDetail', [
             'item' => $video,
-            'embed' => $video->embed,
+            'embed' => $embed,
             'previousItems' => $previousShorts,
             'nextItems' => $nextShorts,
             'dataAttributes' => $dataAttributes,
