@@ -21,7 +21,7 @@
             @endcomponent
         </div>
     @endif
-    <div class="o-gallery__media o-gallery__media--2-col@small o-gallery__media--2-col@medium o-gallery__media--2-col@large o-gallery__media--2-col@xlarge" data-behavior="pinboard">
+        <div id="{{ $id ?? '' }}" class="o-gallery__media o-gallery__media--2-col@small o-gallery__media--2-col@medium o-gallery__media--2-col@large o-gallery__media--2-col@xlarge" data-behavior="pinboard">
         @component('site.shared._mediaitems')
             @slot('items', $items)
             @slot('imageSettings', $imageSettings ?? array(
