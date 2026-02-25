@@ -116,14 +116,35 @@
                 }, $item->sites))
             @endcomponent
         @endif
-
         {{-- History Detail - Exhibition Photos --}}
-        @if ($item->present()->getHistoryImages()->count() > 0)
+
+        @php
+            $allImages = $item->present()->getHistoryImages();
+            $initialBatch = $allImages->take(50);
+        @endphp
+
+        @if ($allImages->count() > 0)
             @component('components.organisms._o-gallery----mosaic')
-                @slot('title', 'Installation ' . Str::plural('Photo', $item->present()->getHistoryImages()->count()))
+                @slot('title', 'Installation ' . Str::plural('Photo', $allImages->count()))
+                @slot('id', 'exhibitionImagesList')
+                @slot('items', $item->present()->getHistoryImagesForMediaComponent($initialBatch))
                 @slot('caption', '')
                 @slot('variation', 'o-gallery----theme-3')
-                @slot('items', $item->present()->getHistoryImagesForMediaComponent())
+            @endcomponent
+        @endif
+
+        @if ($allImages->count() > 50)
+            @component('components.molecules._m-links-bar')
+                @slot('variation', 'm-links-bar--buttons')
+                @slot('linksPrimary', array(
+                    array(
+                        'label' => 'Load more images',
+                        'href' => '#',
+                        'variation' => 'btn--secondary exhibition-history-images',
+                        'loadMoreUrl' => route('ajaxData', ['q' => 'loadExhibitionImages', 'id' => $item->id]),
+                        'loadMoreTarget' => '#exhibitionImagesList'
+                    )
+                ))
             @endcomponent
         @endif
     @endif
