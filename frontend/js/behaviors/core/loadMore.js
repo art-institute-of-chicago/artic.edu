@@ -61,7 +61,7 @@ const loadMore = function(container) {
               container.classList.add(hideKlass);
             }
 
-            if ($target.classList.contains('o-pinboard')) {
+            if ($target.classList.contains('o-pinboard') || $target.getAttribute('data-behavior') === 'pinboard') {
               triggerCustomEvent($target, 'pinboard:contentAdded');
             } else {
               triggerCustomEvent(document, 'page:updated');
