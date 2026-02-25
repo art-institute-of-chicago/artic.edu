@@ -8,27 +8,36 @@ const controlYoutubeEmbed = function(container) {
     event.preventDefault();
     event.stopPropagation();
 
-    let player = await getYouTubePlayer(embedId);
+    if (!embedId) {
+      return;
+    }
 
+    const player = await getYouTubePlayer(embedId);
     console.log('controlYoutubeEmbed trying with', player);
+    if (!player) {
+      return;
+    }
 
-    if (container.dataset.playVideo) {
+    const seekTo = Number(container.dataset.seekTo);
+
+    if (!Number.isNaN(seekTo)) {
+      console.log('controlYoutubeEmbed seekTo', 'player', player, 'container.dataset.seekTo', container.dataset.seekTo);
+      player.seekTo(seekTo, true);
+    }
+
+    if (container.dataset.pauseVideo) {
+      player.pauseVideo();
+    } else if (container.dataset.stopVideo) {
+      player.stopVideo();
+    } else if (container.dataset.playVideo || !Number.isNaN(seekTo)) {
       player.playVideo();
     }
-    else if (container.dataset.pauseVideo) {
-      player.pauseVideo();
-    }
-    else if (container.dataset.stopVideo) {
-      player.stopVideo();
-    }
 
-    if (container.dataset.seekTo) {
-      console.log('controlYoutubeEmbed seekTo', 'player', player, 'container.dataset.seekTo', container.dataset.seekTo);
-      player.seekTo(container.dataset.seekTo, true);
+    const embed = document.getElementById(embedId);
+    if (!embed) {
+      return;
     }
 
-
-    let embed = document.getElementById(embedId);
     scrollToY({
       duration: 500,
       easing: 'easeInOut',
