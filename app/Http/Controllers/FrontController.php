@@ -175,7 +175,7 @@ class FrontController extends BaseController
 
         $view['html'] = view('site.shared._featuredRelated', [
             'item' => $item,
-            'autoRelated' => $item->toggle_autorelated ? [] : $this->getAutoRelated($item),
+            'autoRelated' => isset($item->toggle_autorelated) && !$item->toggle_autorelated ? $this->getAutoRelated($item) : [],
             'featuredRelated' => $this->getFeatureRelated($item),
         ])->render();
 
