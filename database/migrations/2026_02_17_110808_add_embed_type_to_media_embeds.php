@@ -3,8 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use App\Models\Vendor\Block;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         $blocks = Block::where('type', 'media_embed')->get();
