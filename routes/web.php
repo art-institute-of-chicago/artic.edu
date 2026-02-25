@@ -53,7 +53,7 @@ Route::group([
         'model',
     ]
 ], function () {
-    Route::get('/ajaxData', [FrontController::class, 'getAjaxData']);
+    Route::get('/ajaxData', [FrontController::class, 'getAjaxData'])->name('ajaxData');
 });
 
 // Landing Page
