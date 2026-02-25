@@ -105,6 +105,33 @@ const triggerMediaInline = function(container) {
     delete A17.YouTubeembeds[iframe.id];
   }
 
+  function isYouTubeHost(urlString) {
+    if (!urlString) {
+      return false;
+    }
+
+    let parsedUrl;
+
+    try {
+      parsedUrl = new URL(urlString, window.location && window.location.href ? window.location.href : undefined);
+    } catch (e) {
+      return false;
+    }
+
+    const host = parsedUrl.hostname.toLowerCase();
+
+    if (
+      host === 'youtube.com' ||
+      host === 'www.youtube.com' ||
+      host === 'm.youtube.com' ||
+      host === 'youtu.be'
+    ) {
+      return true;
+    }
+
+    return host.endsWith('.youtube.com');
+  }
+
   function _init() {
     iframe = container.querySelector('iframe');
 
@@ -114,7 +141,7 @@ const triggerMediaInline = function(container) {
       return;
     }
 
-    const isYouTube = baseSrc.indexOf('youtube.com') > -1;
+    const isYouTube = isYouTubeHost(baseSrc);
 
     if (isYouTube) {
       if (embedSrcType === 'src') {
