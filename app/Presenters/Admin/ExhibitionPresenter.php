@@ -164,7 +164,7 @@ class ExhibitionPresenter extends BasePresenter
         $main = collect($this->entity->mainImage);
         $extra = collect($this->entity->extraImages);
 
-        return $this->cachedHistoryImages = $main->merge($extra);
+        return $this->cachedHistoryImages = $main->merge($extra)->sortBy('title')->values();
     }
 
     public function getHistoryImagesForMediaComponent($collection = null)
@@ -173,9 +173,6 @@ class ExhibitionPresenter extends BasePresenter
         $images = $collection ?: $this->getHistoryImages();
 
         return $images
-        ->sortBy(function ($image) {
-            return $image->title;
-        })
         ->map(function ($image) {
             return [
                 'type' => 'image',
