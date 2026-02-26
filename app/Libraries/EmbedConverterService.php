@@ -27,7 +27,9 @@ class EmbedConverterService
 
             if (isset($parts['host'])) {
                 if (stripos($parts['host'], 'youtu') !== false) {
-                    return $this->createYouTubeEmbed(attributes: ['src' => $url]);
+                    return $this->createYouTubeEmbed(attributes: [
+                        'src' => 'https://www.youtube.com/embed/' . $this->getYouTubeIdCode($url),
+                    ]);
                 }
 
                 if (stripos($parts['host'], 'vimeo') !== false) {
