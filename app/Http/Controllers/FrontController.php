@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\GtmHelpers;
+use App\Helpers\ImageHelpers;
 use App\Http\Controllers\Helpers\Seo;
 use A17\Twill\Http\Controllers\Front\Controller as BaseController;
 use App\Models\Api\Exhibition;
@@ -203,7 +204,7 @@ class FrontController extends BaseController
 
                 $imageSettings = [
                     'srcset' => [200, 400, 600, 1000, 1500, 3000],
-                    'sizes' => \ImageHelpers::aic_imageSizes([
+                    'sizes' => ImageHelpers::aic_imageSizes([
                         'xsmall' => '58',
                         'small'  => '28',
                         'medium' => '28',
