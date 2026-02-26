@@ -186,7 +186,16 @@ Route::get('/events/{id}/ics', [EventsController::class, 'ics'])->name('events.i
 Route::get('/events/{id}/{slug?}', [EventsController::class, 'show'])->name('events.show');
 
 // Articles routes
-Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'category',
+        'type',
+        'page',
+    ]
+], function () {
+    Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
+});
 Route::get('/articles/{id}/{slug?}', [ArticleController::class, 'show'])->name('articles.show');
 
 // Magazine issue routes
