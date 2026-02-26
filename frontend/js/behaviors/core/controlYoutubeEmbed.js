@@ -1,32 +1,19 @@
 import { purgeProperties, setFocusOnTarget, scrollToY } from '@area17/a17-helpers';
-import { getYouTubePlayer } from '../../functions/core/youtubeEmbed';
+import youtubeEmbed, { controlYouTubePlayer } from '../../functions/core/youtubeEmbed';
 
 const controlYoutubeEmbed = function(container) {
   const embedId = container.dataset.embedId;
+  if (!embedId) {
+    console.error('controlYoutubeEmbed: No target <iframe> embed ID provided!');
+  }
+  const embed = document.getElementById(embedId);
 
   async function handleClick(event) {
     event.preventDefault();
     event.stopPropagation();
 
-    let player = await getYouTubePlayer(embedId);
-
-    console.log('controlYoutubeEmbed trying with', player);
-
-    if (container.dataset.playVideo) {
-      player.playVideo();
-    }
-    else if (container.dataset.pauseVideo) {
-      player.pauseVideo();
-    }
-    else if (container.dataset.stopVideo) {
-      player.stopVideo();
-    }
-
-    if (container.dataset.seekTo) {
-      console.log('controlYoutubeEmbed seekTo', 'player', player, 'container.dataset.seekTo', container.dataset.seekTo);
-      player.seekTo(container.dataset.seekTo, true);
-    }
-
+    const player = await youtubeEmbed(embedId);
+    controlYouTubePlayer(player, container.dataset)
 
     let embed = document.getElementById(embedId);
     scrollToY({
