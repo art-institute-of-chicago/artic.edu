@@ -5,6 +5,7 @@ const controlYoutubeEmbed = function(container) {
   const embedId = container.dataset.embedId;
   if (!embedId) {
     console.error('controlYoutubeEmbed: No target <iframe> embed ID provided!');
+    return;
   }
   const embed = document.getElementById(embedId);
 
