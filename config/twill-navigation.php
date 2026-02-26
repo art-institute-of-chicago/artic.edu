@@ -202,6 +202,10 @@ $nav = [
                     ],
                 ],
             ],
+            'digitalExplorers' => [
+              'title' => 'Digital Explorers',
+              'module' => true,
+            ],
             'authors' => [
                 'title' => 'Authors',
                 'module' => true,

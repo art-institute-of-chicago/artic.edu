@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import SvgIcon from '@material-ui/core/SvgIcon';
-import IconButton from '@material-ui/core/IconButton';
-import * as actions from 'mirador/dist/es/src/state/actions';
-import {
+import SvgIcon from '@mui/material/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import { withStyles } from '@mui/styles'; // Use @mui/styles for withStyles in MUI 5
+import mirador from 'mirador';
+
+const { actions, selectors } = mirador;
+const {
   getSequenceViewingDirection,
   getNextCanvasGrouping,
-  getPreviousCanvasGrouping,
-} from 'mirador/dist/es/src/state/selectors';
-import { withStyles } from '@material-ui/core/styles';
+  getPreviousCanvasGrouping
+} = selectors;
 
 //custom icons
 const PrevIcon = (props) => (
@@ -32,7 +34,7 @@ const styles = theme => ({
   CustomButtonPrevious: {
     transform: 'scale(1.5) rotate(180deg)',
     left: '5%',
-    position: 'absolute',
+    position: 'absolute !important',
     '&:hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.0)',
     },
@@ -40,7 +42,7 @@ const styles = theme => ({
   CustomButtonNext: {
     transform: 'scale(1.5)',
     right: '5%',
-    position: 'absolute',
+    position: 'absolute !important',
     '&:hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.0)',
     },
@@ -55,11 +57,28 @@ class NavigationButtonsPlugin extends Component {
 
     return (
       <div style={{position: 'absolute', bottom: '50%', zIndex:500, width:'100%'}}>
-        <IconButton className={classes.CustomButtonPrevious} aria-label='previous canvas'  disabled={!hasPreviousCanvas} onClick={() => { hasPreviousCanvas && setPreviousCanvas(); }}>
-          <PrevIcon className={'navButtons'} />
+        <IconButton
+          className={classes.CustomButtonPrevious}
+          aria-label='previous canvas'
+          disabled={!hasPreviousCanvas}
+          onClick={() => { hasPreviousCanvas && setPreviousCanvas(); }}
+        >
+          <PrevIcon
+            className='navButtons'
+            style={{ color: !hasPreviousCanvas ? '#ffffff4d' : '#fff' }}
+          />
         </IconButton>
-        <IconButton className={classes.CustomButtonNext} aria-label='next canvas' disabled={!hasNextCanvas} onClick={() => { hasNextCanvas && setNextCanvas(); }}>
-          <NextIcon className={'navButtons'} />
+
+        <IconButton
+          className={classes.CustomButtonNext}
+          aria-label='next canvas'
+          disabled={!hasNextCanvas}
+          onClick={() => { hasNextCanvas && setNextCanvas(); }}
+        >
+          <NextIcon
+            className='navButtons'
+            style={{ color: !hasNextCanvas ? '#ffffff4d' : '#fff' }}
+          />
         </IconButton>
       </div>
     );
