@@ -3,6 +3,7 @@
   "version": "0.2.2",
   "private": true,
   "scripts": {
+    "yalc-watch": "yalc-watch",
     "dev": "cross-env NODE_ENV=development run-p svg-sprite webpack:watch",
     "build": "cross-env NODE_ENV=production run-p svg-sprite webpack:build",
     "build:dev": "cross-env NODE_ENV=development run-p svg-sprite webpack:build",
@@ -33,28 +34,47 @@
     "svg-symbol-sprite": "^1.5.2",
     "webpack": "^5.93.0",
     "webpack-bundle-analyzer": "^4.10.2",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^6.0.1",
+    "yalc-watch": "^0.0.6"
   },
   "dependencies": {
     "@area17/a17-helpers": "^0.6.7",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.7",
+    "@mui/styles": "^6.5.0",
+    "@mui/system": "^7.3.7",
     "@sentry/react": "^10.8.0",
     "@sketchfab/viewer-api": "^1.12.1",
-    "closer-look": "github:art-institute-of-chicago/digital-labels-ui",
+    "closer-look": "github:art-institute-of-chicago/digital-labels-ui#feature/staged-react-19",
     "conic-gradient": "^1.0.0",
+    "digital-explorer": "github:art-institute-of-chicago/digital-explorer",
     "fitty": "^2.4.2",
     "gl-vec3": "^1.2.0",
+    "i18next": "^25.8.4",
     "lodash": "^4.17.21",
-    "mirador": "^3.0.0",
-    "my-museum-tour-builder": "github:art-institute-of-chicago/my-museum-tour#semver:^1.0.0",
+    "mirador": "^4.0.0",
+    "my-museum-tour": "github:art-institute-of-chicago/my-museum-tour#feature/staged-react-19",
     "nouislider": "^15.8.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "plyr": "^3.8.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-i18next": "^15.7.4",
     "text-contrast": "^1.0.2",
     "video.js": "^8.23.4",
     "videojs-event-tracking": "^1.0.3"
   },
+  "overrides": {
+    "minimatch": "^10.2.1",
+    "semver": "^7.5.2"
+  },
   "engines": {
     "node": ">=22.0.0",
     "npm": ">=11.0.0"
+  },
+  "yalcWatch": {
+    "watchFolder": "dist",
+    "buildWatchCommand": "npm run build",
+    "extensions": "js,ts,json,css"
   }
 }

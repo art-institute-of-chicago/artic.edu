@@ -1,7 +1,22 @@
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import React from 'react';
-import CloserLook, { Modal } from 'closer-look';
+import * as CloserLookModule from 'closer-look';
 import getAbsoluteHeight from '../../functions/core/getAbsoluteHeight';
+
+if (typeof ReactDOM.findDOMNode !== 'function') {
+  ReactDOM.findDOMNode = (instance) => {
+    if (!instance) return null;
+    if (instance instanceof HTMLElement) return instance;
+    try {
+      return instance.updater?.getPublicInstance() || null;
+    } catch (e) {
+      return null;
+    }
+  };
+}
+
+const CloserLook = CloserLookModule.default;
+const Modal = CloserLookModule.Modal;
 
 const closerLook = function(container) {
   const elements = [];
@@ -9,12 +24,12 @@ const closerLook = function(container) {
   const nextSibling = container.nextElementSibling;
   let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   let ticking = false;
+  let root = null; // Track the React 19 root instance
 
   function update() {
     ticking = false;
 
     const diff = Math.abs(Math.min(0, container.offsetHeight - window.innerHeight - scrollTop));
-
     const fromBottom = window.innerHeight * -1 + diff;
     const isStuck = fromBottom <= 0;
 
@@ -32,7 +47,9 @@ const closerLook = function(container) {
       });
     }
 
-    $a17.style.minHeight = `${container.offsetHeight + elementsOffsetHeight}px`;
+    if ($a17) {
+      $a17.style.minHeight = `${container.offsetHeight + elementsOffsetHeight}px`;
+    }
   }
 
   function requestTick() {
@@ -65,25 +82,54 @@ const closerLook = function(container) {
     while ((target = target.nextElementSibling)) {
       elements.push(target);
     }
-    elements.push(document.getElementById('footer'));
+
+    const footer = document.getElementById('footer');
+    if (footer) {
+      elements.push(footer);
+    }
+
+    const contentBundleData = document.querySelector('[data-closerLook-contentBundle]');
+    const assetLibraryData = document.querySelector('[data-closerLook-assetLibrary]');
 
     const props = {
-      contentBundle: JSON.parse(document.querySelector('[data-closerLook-contentBundle]').innerHTML),
-      assetLibrary: JSON.parse(document.querySelector('[data-closerLook-assetLibrary]').innerHTML)
+      contentBundle: contentBundleData ? JSON.parse(contentBundleData.innerHTML) : {},
+      assetLibrary: assetLibraryData ? JSON.parse(assetLibraryData.innerHTML) : {}
     };
 
     window.closerLook = props;
 
-    Modal.setAppElement(container);
-    ReactDOM.render(<CloserLook {...props} />, container);
+    // React 19 Root Initialization
+    // Check both the named export and a potential property on the default export
+    const ActiveModal = Modal || CloserLook.Modal;
+
+    if (ActiveModal && typeof ActiveModal.setAppElement === 'function') {
+      ActiveModal.setAppElement(container);
+    } else {
+      console.warn('Modal.setAppElement not found. Modal transitions may be misaligned.');
+    }
+
+    root = ReactDOM.createRoot(container);
+    root.render(<CloserLook {...props} />);
   }
 
   this.destroy = function() {
-    window.removeEventListener('resized', handleResize);
+    // Standard cleanup
     window.removeEventListener('scroll', handleScroll);
     document.removeEventListener('focusin', handleFocus);
+
+    // React 19 Unmount
+    if (root) {
+      root.unmount();
+      root = null;
+    }
+
+    // Clean up stuck classes
+    document.documentElement.classList.remove('s-closer-look-footer-stuck');
+
     // Remove properties of this behavior
-    A17.Helpers.purgeProperties(this);
+    if (window.A17 && A17.Helpers && A17.Helpers.purgeProperties) {
+      A17.Helpers.purgeProperties(this);
+    }
   };
 
   this.init = function() {

@@ -6,6 +6,7 @@ use App\Http\Controllers\ArtworkController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DigitalExplorerController;
 use App\Http\Controllers\DigitalPublicationArticleController;
 use App\Http\Controllers\DigitalPublicationsController;
 use App\Http\Controllers\EducatorResourcesController;
@@ -94,6 +95,13 @@ Route::group([
         'subject_ids',
         'technique_ids',
         'theme_ids',
+        // Checking to see if these are used by marketing
+        // 'utm',
+        // 'utm_campaign',
+        // 'utm_content',
+        // 'utm_medium',
+        // 'utm_source',
+        // 'utm_term',
     ]
 ], function () {
     Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
@@ -275,6 +283,10 @@ Route::get('enews', function () {
 Route::get('e-news', function () {
     return redirect()->route('forms.email-subscriptions', request()->all());
 });
+
+// Digital Explorer
+// Route::get('/digital-explorers', [DigitalExplorerController::class, 'index'])->name('digitalExplorer.index'); No index yet...
+Route::get('/digital-explorers/{id}/{slug?}', [DigitalExplorerController::class, 'show'])->name('digitalExplorer.show');
 
 // Digital labels
 Route::get('/interactive-features', [InteractiveFeatureExperiencesController::class, 'index'])->name('interactiveFeatures');

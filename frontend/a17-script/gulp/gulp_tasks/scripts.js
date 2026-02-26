@@ -28,6 +28,7 @@ module.exports = function(gulp, data, util, taskName) {
           videojs: scriptsPath + 'videojs.js',
           recaptcha: scriptsPath + 'recaptcha.js',
           myMuseumTourBuilder: scriptsPath + 'myMuseumTourBuilder.js',
+          digitalExplorer: scriptsPath + 'digitalExplorer.js',
         },
         stats: {
           errorDetails: true,
