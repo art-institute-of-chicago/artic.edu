@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\GtmHelpers;
+use App\Helpers\ImageHelpers;
 use App\Http\Controllers\Helpers\Seo;
 use A17\Twill\Http\Controllers\Front\Controller as BaseController;
+use App\Models\Api\Exhibition;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -131,6 +133,8 @@ class FrontController extends BaseController
                 return $this->getEditorialHeaderData();
             case 'relatedSidebarItems':
                 return $this->getRelatedSidebarItemsData();
+            case 'loadExhibitionImages':
+                return $this->loadExhibitionImages();
             default:
                 return response()->json(['error' => 'Invalid request'], 400);
         }
@@ -180,5 +184,47 @@ class FrontController extends BaseController
         ])->render();
 
         return $view;
+    }
+
+    protected function loadExhibitionImages()
+    {
+        $exhibitionId = request()->query('id');
+        $page = (int) request()->query('page', 1);
+        $amount = 50;
+        $start = ($page - 1) * $amount;
+
+        $exhibition = Exhibition::query()->find($exhibitionId);
+
+        if ($exhibition) {
+            $allImages = collect($exhibition->present()->getHistoryImages());
+            $chunk = $allImages->slice($start, $amount);
+
+            if ($chunk->isNotEmpty()) {
+                $items = $exhibition->present()->getHistoryImagesForMediaComponent($chunk);
+
+                $imageSettings = [
+                    'srcset' => [200, 400, 600, 1000, 1500, 3000],
+                    'sizes' => ImageHelpers::aic_imageSizes([
+                        'xsmall' => '58',
+                        'small'  => '28',
+                        'medium' => '28',
+                        'large'  => '28',
+                        'xlarge' => '21',
+                    ]),
+                ];
+
+                $html = view('site.shared._mediaitems', [
+                    'items' => $items,
+                    'imageSettings' => $imageSettings
+                ])->render();
+
+                return response()->json([
+                    'html' => $html,
+                    'page' => ($allImages->count() > ($start + $amount)) ? ($page + 1) : null
+                ]);
+            }
+        }
+
+        return response()->json(['html' => '', 'page' => null]);
     }
 }

@@ -164,29 +164,28 @@ class ExhibitionPresenter extends BasePresenter
         $main = collect($this->entity->mainImage);
         $extra = collect($this->entity->extraImages);
 
-        return $this->cachedHistoryImages = $main->merge($extra);
+        return $this->cachedHistoryImages = $main->merge($extra)->sortBy('title')->values();
     }
 
-    public function getHistoryImagesForMediaComponent()
+    public function getHistoryImagesForMediaComponent($collection = null)
     {
-        return $this
-          ->getHistoryImages()
-          ->sortBy(function ($image) {
-              return $image->title;
-          })
-          ->map(function ($image) {
-              return [
-                  'type' => 'image',
-                  'useArtworkSrcset' => true,
-                  'isPublicDomain' => true,
-                  'media' => $image->imageFront(),
-                  'captionTitle' => $image->title,
-                  'isZoomable' => true,
-                  'fullscreen' => true,
-              ];
-          })
-          ->values()
-          ->toArray();
+        // If a specific subset isn't passed, use the full list
+        $images = $collection ?: $this->getHistoryImages();
+
+        return $images
+        ->map(function ($image) {
+            return [
+                'type' => 'image',
+                'useArtworkSrcset' => true,
+                'isPublicDomain' => true,
+                'media' => $image->imageFront(),
+                'captionTitle' => $image->title,
+                'isZoomable' => true,
+                'fullscreen' => true,
+            ];
+        })
+        ->values()
+        ->toArray();
     }
 
     public function navigation()

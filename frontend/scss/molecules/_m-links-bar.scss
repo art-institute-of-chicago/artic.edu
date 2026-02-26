@@ -51,6 +51,37 @@
     margin-top: 0;
   }
 
+  &:has(.exhibition-history-images) {
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $color__rules--primary;
+
+    @include breakpoint('medium+') {
+      width: colspan(58, medium);
+      margin-right: colspan(20, medium, 0, true);
+    }
+
+    @include breakpoint('large+') {
+      width: colspan(58, large);
+      margin-right: 0;
+      margin-left: colspan(15, large, 0, true);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(58, xlarge);
+      margin-left: colspan(15, xlarge, 0, true);
+    }
+
+    &::before {
+      content: none;
+    }
+
+    .m-links-bar__items-primary {
+      justify-content: center;
+    }
+  }
+
   .m-intro-block + & {
     margin-top: 20px;
   }
