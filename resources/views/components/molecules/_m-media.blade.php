@@ -153,6 +153,9 @@
         @if(!empty($embed_height))
             style="height: {{ $embed_height }}"
         @endif
+        @if(!empty($embed_height))
+            style="height: {{ $embed_height }}"
+        @endif
         data-behavior="fitText {!! $mediaBehavior ?: '' !!}"
         data-platform="{!! $item['platform'] ?? '' !!}"
         @if($mediaBehavior)
@@ -170,6 +173,10 @@
         @endif
         @if(!empty($item['credit']))
             data-credit="{{ $item['credit'] }}"
+        @endif
+    >
+        @if ($useContain && !($item['isArtwork'] ?? false) && ($size === 's' || $size === 'm' || $size === 'l'))
+          <div class="m-media__contain--spacer" style="--aspect-ratio: {{ intval($item['media']['height'] ?? 10) / intval($item['media']['width'] ?? 16) * 100 }}%; padding-bottom: var(--aspect-ratio); width: 100%;"></div>
         @endif
     >
         @if ($type == 'image')
