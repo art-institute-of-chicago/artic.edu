@@ -7,7 +7,6 @@ const controlYoutubeEmbed = function(container) {
     console.error('controlYoutubeEmbed: No target <iframe> embed ID provided!');
     return;
   }
-  const embed = document.getElementById(embedId);
 
   async function handleClick(event) {
     event.preventDefault();
@@ -16,7 +15,7 @@ const controlYoutubeEmbed = function(container) {
     const player = await youtubeEmbed(embedId);
     controlYouTubePlayer(player, container.dataset)
 
-    let embed = document.getElementById(embedId);
+    const embed = document.getElementById(embedId);
     scrollToY({
       duration: 500,
       easing: 'easeInOut',
