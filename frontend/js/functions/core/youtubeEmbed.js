@@ -1,21 +1,44 @@
 import { triggerCustomEvent } from '@area17/a17-helpers';
 
-const youtubeEmbed = function(iframe) {
+const youtubeEmbed = async function(iframe) {
+  if (!(iframe instanceof Element)) {
+    iframe = document.getElementById(iframe);
+  }
+
   const playedChecks = {
     25: false,
     50: false,
     75: false,
-    100: false
   };
 
-  let youtubePlayer;
   let youtubePlayerTimer;
 
-  function _onYouTubePlayerPlaying() {
-    let playedPercent = Math.round(youtubePlayer.getCurrentTime()/youtubePlayer.getDuration() * 100);
-    for (let playedCheck in playedChecks) {
-      let percentComparison = (playedCheck === 100) ? 99 : playedCheck;
-      if (playedPercent >= percentComparison && !playedChecks[playedCheck]) {
+  function onPlayerEnded() {
+    triggerCustomEvent(document, 'gtm:push', {
+      'event': '100%',
+      'eventCategory': 'video-engagement',
+    });
+  }
+
+  function onPlayerPlaying(player) {
+    triggerCustomEvent(document, 'gtm:push', {
+      'event': 'playing',
+      'eventCategory': 'video-engagement',
+    });
+    youtubePlayerTimer = setInterval(_checkPlayedPercent, 250, player);
+  }
+
+  function onPlayerPaused() {
+    triggerCustomEvent(document, 'gtm:push', {
+      'event': 'paused',
+      'eventCategory': 'video-engagement',
+    });
+  }
+
+  function _checkPlayedPercent(player) {
+    const playedPercent = Math.round(player.getCurrentTime() / player.getDuration() * 100);
+    for (const playedCheck in playedChecks) {
+      if (playedPercent >= playedCheck && !playedChecks[playedCheck]) {
         playedChecks[playedCheck] = true;
         triggerCustomEvent(document, 'gtm:push', {
           'event': `${playedCheck}%`,
@@ -25,48 +48,60 @@ const youtubeEmbed = function(iframe) {
     }
   }
 
-  function _onYouTubePlayerStateChange() {
-    if (youtubePlayer.getPlayerState() === 1) {
-      youtubePlayerTimer = setInterval(_onYouTubePlayerPlaying,250);
-      triggerCustomEvent(document, 'gtm:push', {
-        'event': 'playing',
-        'eventCategory': 'video-engagement',
-      });
-      triggerCustomEvent(iframe, 'youtube:playing', {id: iframe.id});
-    } else {
-      if (youtubePlayer.getPlayerState() === 2) {
-        triggerCustomEvent(document, 'gtm:push', {
-          'event': 'paused',
-          'eventCategory': 'video-engagement',
-        });
-      }
-      try {
-        clearInterval(youtubePlayerTimer);
-      } catch(err) {
-        // noop
-      }
+  function _onStateChange(event) {
+    const player = event.target;
+    try {
+      clearInterval(youtubePlayerTimer);
+    } catch (err) {
+      // noop
+    }
+    switch (player.getPlayerState()) {
+      case YT.PlayerState.ENDED:
+        triggerCustomEvent(iframe, 'youtube:ended', {id: iframe.id});
+        onPlayerEnded(player);
+        break;
+      case YT.PlayerState.PLAYING:
+        triggerCustomEvent(iframe, 'youtube:playing', {id: iframe.id});
+        onPlayerPlaying(player);
+        break;
+      case YT.PlayerState.PAUSED:
+        triggerCustomEvent(iframe, 'youtube:paused', {id: iframe.id});
+        onPlayerPaused(player);
+        break;
+      case YT.PlayerState.BUFFERING:
+        triggerCustomEvent(iframe, 'youtube:buffering', {id: iframe.id});
+        break;
+      case YT.PlayerState.CUED:
+        triggerCustomEvent(iframe, 'youtube:cued', {id: iframe.id});
+        break;
     }
   }
 
-  function _initYoutubePlayer() {
-    if (A17.YouTubeonYouTubeIframeAPIReady) {
-      youtubePlayer = new YT.Player(iframe.id, {
-        videoId: iframe.id,
-        playerVars: {
-          'enablejsapi': 1,
-          'origin': window.location.origin
-        },
-        events: {
-          'onStateChange': _onYouTubePlayerStateChange
+  async function _initYoutubePlayer(iframeId) {
+    return new Promise(async (resolve) => {
+      if (A17.YouTubeonYouTubeIframeAPIReady) {
+        if (!(iframeId in A17.YouTubeembeds)) {
+          A17.YouTubeembeds[iframeId] = new Promise((playerResolve) => {
+            playerResolve(new YT.Player(iframeId, {
+              playerVars: {
+                'autoplay': 1,
+                'enablejsapi': 1,
+                'origin': window.location.origin,
+              },
+              events: {
+                'onStateChange': _onStateChange,
+              },
+            }));
+          })
+          resolve(await A17.YouTubeembeds[iframeId]);
+        } else {
+          resolve(await A17.YouTubeembeds[iframeId]);
         }
-      });
-      A17.YouTubeembeds[iframe.id] = youtubePlayer;
-      console.debug('youtubeEmbed added', iframe.id, A17.YouTubeembeds[iframe.id]);
-    } else {
-      console.debug("youtubeEmbed could't do it. Trying again is 250ms");
-      setTimeout(_initYoutubePlayer, 250);
-    }
-  }
+      } else {
+        setTimeout(() => _initYoutubePlayer(iframeId).then(resolve), 250);
+      }
+    });
+  };
 
   if (!document.getElementById('youtubeapijs')) {
     const youtubeScript = document.createElement('script');
@@ -79,39 +114,32 @@ const youtubeEmbed = function(iframe) {
   if (!iframe.id) {
     iframe.id = `youtube_${Math.random().toString(36).substring(2, 9)}`;
   }
-
-  _initYoutubePlayer();
+  return await _initYoutubePlayer(iframe.id);
 };
 
-async function getYouTubePlayer(iframeId) {
-  return new Promise((resolve) => {
-    if (A17.YouTubeonYouTubeIframeAPIReady) {
-      if (!(iframeId in A17.YouTubeembeds)) {
-        let playerInstance;
-        const playerPromise = new Promise((playerResolve) => {
-          playerInstance = new YT.Player(iframeId, {
-            playerVars: {
-              'autoplay': 1,
-              'enablejsapi': 1,
-              'origin': window.location.origin,
-            },
-            events: {
-              'onReady': () => playerResolve(playerInstance),
-              'onStateChange': youtubeEmbed.onYouTubePlayerStateChange,
-            },
-          });
-        });
-
-        A17.YouTubeembeds[iframeId] = playerPromise;
-
-        playerPromise.then(resolve);
-      } else {
-        resolve(A17.YouTubeembeds[iframeId]);
-      }
-    } else {
-      setTimeout(() => getYouTubePlayer(iframeId).then(resolve), 250);
+function controlYouTubePlayer(player, commands) {
+  for (const command in commands) {
+    switch (command) {
+      case 'loadVideoById':
+        player.loadVideoById(commands[command]);
+        break;
+      case 'pauseVideo':
+        player.pauseVideo();
+        break;
+      case 'playVideo':
+        player.playVideo();
+        break;
+      case 'seekTo':
+        player.seekTo(commands[command], true)
+        break;
+      case 'stopVideo':
+        player.stopVideo()
+        break;
+      default:
+        // noop
+        break;
     }
-  });
-};
+  }
+}
 
-export { getYouTubePlayer, youtubeEmbed as default };
+export { controlYouTubePlayer, youtubeEmbed as default };
