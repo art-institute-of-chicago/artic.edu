@@ -119,13 +119,13 @@
         {{-- History Detail - Exhibition Photos --}}
 
         @php
-            $allImages = $item->present()->getHistoryImages();
-            $initialBatch = $allImages->take(50);
+            $imagesCount = $item->present()->getHistoryImages()->count();
+            $initialBatch = $item->present()->getHistoryImages()->take(50);
         @endphp
 
-        @if ($allImages->count() > 0)
+        @if ($imagesCount > 0)
             @component('components.organisms._o-gallery----mosaic')
-                @slot('title', 'Installation ' . Str::plural('Photo', $allImages->count()))
+                @slot('title', 'Installation ' . Str::plural('Photo', $imagesCount))
                 @slot('id', 'exhibitionImagesList')
                 @slot('items', $item->present()->getHistoryImagesForMediaComponent($initialBatch))
                 @slot('caption', '')
@@ -133,7 +133,7 @@
             @endcomponent
         @endif
 
-        @if ($allImages->count() > 50)
+        @if ($imagesCount > 50)
             @component('components.molecules._m-links-bar')
                 @slot('variation', 'm-links-bar--buttons')
                 @slot('linksPrimary', array(
