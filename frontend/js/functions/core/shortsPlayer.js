@@ -21,6 +21,7 @@ const shortsPlayer = async function(container) {
       return false;
     }
     iframe.id = SHORTS_PLAYER_ID;
+    await youtubeEmbed(SHORTS_PLAYER_ID);
     iframe.addEventListener('youtube:ended', _handleEnded);
 
     const list = container.querySelector(SHORTS_LIST_SELECTOR);
