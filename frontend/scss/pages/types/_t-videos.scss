@@ -735,31 +735,89 @@
 
 }
 #shorts-player {
+  display: block;
+  width: 100vw;
+
+  #shorts-list {
     display: flex;
     gap: 90px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    width: 100vw;
+  }
+  .g-modal:has(&) {
+    background-color: transparent;
+  }
+  .short-video {
+    display: flex;
+    flex: 1;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
 
-    .g-modal:has(&) {
-      background-color: transparent;
+    &:first-child {
+      margin-left: 50vw;
     }
-
-    .short-video {
-        flex: 1;
-        min-height: 100%;
-
-        .link::before {
-          padding: unset;
-        }
-        .m-media__img {
-            aspect-ratio: 185 / 329;
-            border-radius: 28px;
-            height: 120%;
-        }
+    &:last-child {
+      margin-right: 50vw;
     }
-
-    @include breakpoint('xsmall') {
-        .previous-video,
-        .next-video {
-            display: none;
-        }
+    &:not(.current-video) .m-media__img {
+      filter: brightness(25%);
     }
+    .link::before {
+      padding: unset;
+    }
+    .m-media__img {
+      aspect-ratio: 185 / 329;
+      border-radius: 28px;
+      min-height: 50vh;
+
+      img {
+        height: 120%;
+        filter: unset;
+      }
+    }
+    button {
+      background: transparent;
+      padding: unset;
+      position: relative;
+
+      svg {
+        height: 64px;
+        margin: unset;
+        transform-origin: unset;
+        width: 64px;
+      }
+    }
+  }
+  .previous-video button {
+    left: 16px;
+    width: 0;
+  }
+  .next-video button {
+    right: 80px;
+    width: 0;
+  }
+  .current-video  {
+    [data-type="embed"] {
+      display: flex;
+    }
+    [data-type="image"] {
+      display: none;
+    }
+    iframe {
+      position: absolute;
+    }
+  }
+  @include breakpoint('xsmall') {
+      .previous-video,
+      .next-video {
+          display: none;
+      }
+  }
+  .s-moving-viewport {
+    .m-media__img--embed {
+      filter: blur(10px) brightness(0.25);
+    }
+  }
 }
