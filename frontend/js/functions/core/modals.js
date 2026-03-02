@@ -63,8 +63,8 @@ const modals = function() {
     }
   }
 
-  function _shorts(event) {
-    let player = $modal.querySelector('#shorts-player');
+  function _shorts() {
+    const player = $modal.querySelector('#shorts-player');
     if (player) {
       return shortsPlayer(player);
     }
