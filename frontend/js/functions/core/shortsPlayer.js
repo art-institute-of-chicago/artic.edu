@@ -19,7 +19,6 @@ const FIRST_VIDEO_SELECTOR = `${SHORT_VIDEO_SELECTOR}:first-child`;
 const LAST_VIDEO_SELECTOR = `${SHORT_VIDEO_SELECTOR}:last-child`;
 
 const shortsPlayer = async function(container) {
-  console.debug('shortsPlayer');
   const list = container.querySelector(SHORTS_LIST_SELECTOR);
   const viewport = container.querySelector(VIEWPORT_SELECTOR);
   const previousArrow = container.querySelector(PREVIOUS_ARROW_SELECTOR);
@@ -42,16 +41,13 @@ const shortsPlayer = async function(container) {
   }
 
   function _handleClick(event) {
-    console.debug('handleClick');
     const selectedItem = event.currentTarget;
-    console.log(selectedItem);
     if (selectedItem.classList.contains('previous-video') || selectedItem.classList.contains('next-video')) {
       _scrollToVideo(selectedItem);
     }
   }
 
   function _handleEnded() {
-    console.debug('handleEnded');
     const nextVideo = container.querySelector(NEXT_VIDEO_SELECTOR);
     if (nextVideo) {
       _scrollToVideo(nextVideo);
@@ -59,7 +55,6 @@ const shortsPlayer = async function(container) {
   }
 
   async function _scrollToVideo(video, behavior='smooth') {
-    console.log('scrollToVideo');
     const list = container.querySelector(SHORTS_LIST_SELECTOR);
     const listScrolled = list.scrollLeft;
     const listBounds = list.getBoundingClientRect();
@@ -67,7 +62,6 @@ const shortsPlayer = async function(container) {
     const videoCenter = videoBounds.x + (videoBounds.width / 2);
     const listCenter = listBounds.width / 2;
     let toLeft = listScrolled + videoCenter - listCenter;
-    console.log(listScrolled, videoCenter, listCenter, toLeft, behavior);
     list.scrollTo({
       top: 0,
       left: toLeft,
@@ -76,7 +70,6 @@ const shortsPlayer = async function(container) {
   }
 
   function _handleScrollEnd() {
-    console.debug('handleScrollEnd');
     const bounds = list.getBoundingClientRect();
     let centerX = (bounds.width / 2) + bounds.x;
     let centerY = (bounds.height / 2) + bounds.y;
@@ -86,12 +79,10 @@ const shortsPlayer = async function(container) {
   }
 
   async function _moveViewportToVideo(video) {
-    console.debug('moveViewportToVideo');
     const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
     if (video && video === currentVideo) {
       // The snap-to scrolling can cause `scrollend` to fire multiple times on
       // the same video.
-      console.debug('Same video, noop')
       return;
     }
     container.addEventListener('youtube:playing', () => {
@@ -105,7 +96,6 @@ const shortsPlayer = async function(container) {
   }
 
   function _loadMore() {
-    console.debug('loadMore');
     const currentVideo = container.querySelector(CURRENT_VIDEO_SELECTOR);
     const firstVideo = list.querySelector(FIRST_VIDEO_SELECTOR);
     const lastVideo = list.querySelector(LAST_VIDEO_SELECTOR);
@@ -121,7 +111,6 @@ const shortsPlayer = async function(container) {
       url: `/videos/shorts/${currentVideo.id}/${path}`,
       type: 'GET',
       onSuccess: function(response, status) {
-        console.debug(status)
         const html = parseHTML(response, 'native');
         if (path == 'previous') {
           Array.from(html.querySelectorAll('li')).reverse().forEach((video) => list.insertBefore(video, list.firstChild));
@@ -137,14 +126,12 @@ const shortsPlayer = async function(container) {
   }
 
   function _updateVideoNavigation(video) {
-    console.debug('updateVideoNavigation');
     _updateCurrentVideo(video);
     _updatePreviousVideo(video.previousElementSibling);
     _updateNextVideo(video.nextElementSibling);
   }
 
   function _updateCurrentVideo(currentVideo) {
-    console.debug('updateCurrentVideo');
     const oldCurrentVideo = container.querySelector(CURRENT_VIDEO_SELECTOR);
     oldCurrentVideo.classList.remove(CURRENT_VIDEO_CLASS);
     currentVideo.classList.add(CURRENT_VIDEO_CLASS);
@@ -153,7 +140,6 @@ const shortsPlayer = async function(container) {
   }
 
   function _updatePreviousVideo(previousVideo) {
-    console.debug('updatePreviousVideo');
     const oldPreviousVideo = container.querySelector(PREVIOUS_VIDEO_SELECTOR);
     oldPreviousVideo?.classList.remove(PREVIOUS_VIDEO_CLASS);
     if (previousVideo) {
@@ -167,7 +153,6 @@ const shortsPlayer = async function(container) {
   }
 
   function _updateNextVideo(nextVideo) {
-    console.debug('updateNextVideo');
     const oldNextVideo = container.querySelector(NEXT_VIDEO_SELECTOR);
     oldNextVideo?.classList.remove(NEXT_VIDEO_CLASS);
     if (nextVideo) {
