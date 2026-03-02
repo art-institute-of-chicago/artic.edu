@@ -30,9 +30,9 @@ const shortsPlayer = async function(container) {
   await youtubeEmbed(embed);
   _init();
 
-  async function _init() {
+  function _init() {
     const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
-    await _scrollToVideo(currentVideo, 'instant');
+    _scrollToVideo(currentVideo, 'instant');
     embed.addEventListener('youtube:ended', _handleEnded);
     list.addEventListener('scrollend', _handleScrollEnd);
     const videos = list.querySelectorAll(SHORT_VIDEO_SELECTOR);
