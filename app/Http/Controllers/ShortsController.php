@@ -51,7 +51,7 @@ class ShortsController extends FrontController
             ->published()
             ->where('is_short', true)
             ->where('uploaded_at', '>', $video->uploaded_at)
-            ->orderBy('uploaded_at', 'desc')
+            ->orderBy('uploaded_at', 'asc')
             ->limit(5)
             ->get();
         $nextShorts = $this->repository
