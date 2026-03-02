@@ -124,7 +124,8 @@ class ShortsController extends FrontController
             ->where('uploaded_at', '>', $video->uploaded_at)
             ->orderBy('uploaded_at', 'asc')
             ->limit($count)
-            ->get();
+            ->get()
+            ->reverse();
     }
 
     private function getNextVideos(Video $video, int $count = 3)
