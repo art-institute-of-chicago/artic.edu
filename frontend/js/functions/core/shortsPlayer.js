@@ -15,8 +15,7 @@ const PREVIOUS_VIDEO_SELECTOR = `li.${PREVIOUS_VIDEO_CLASS}`;
 const NEXT_ARROW_SELECTOR = '.next-arrow';
 const NEXT_VIDEO_CLASS = 'next-video';
 const NEXT_VIDEO_SELECTOR = `li.${NEXT_VIDEO_CLASS}`;
-const FIRST_VIDEO_SELECTOR = `${SHORT_VIDEO_SELECTOR}:first-child`;
-const LAST_VIDEO_SELECTOR = `${SHORT_VIDEO_SELECTOR}:last-child`;
+const BUFFER = 3; // Amount of videos to either side of the current one
 
 const shortsPlayer = async function(container) {
   const list = container.querySelector(SHORTS_LIST_SELECTOR);
@@ -96,27 +95,44 @@ const shortsPlayer = async function(container) {
 
   function _loadMore() {
     const currentVideo = container.querySelector(CURRENT_VIDEO_SELECTOR);
-    const firstVideo = list.querySelector(FIRST_VIDEO_SELECTOR);
-    const lastVideo = list.querySelector(LAST_VIDEO_SELECTOR);
-    let path = '';
-    if (currentVideo == firstVideo) {
-      path = 'previous';
-    } else if (currentVideo == lastVideo) {
-      path = 'next';
-    } else {
-      return; // Unless this is the first or last video, do not load any more
+    const previousBuffer = Array.from(list.querySelectorAll(`${SHORT_VIDEO_SELECTOR}:nth-child(-n+${BUFFER})`));
+    if (previousBuffer.includes(currentVideo)) {
+      _requestVideos('previous', currentVideo, previousBuffer, _addPreviousVideos);
     }
+    const nextBuffer = Array.from(list.querySelectorAll(`${SHORT_VIDEO_SELECTOR}:nth-last-child(-n+${BUFFER})`));
+    if (nextBuffer.includes(currentVideo)) {
+      _requestVideos('next', currentVideo, nextBuffer, _addNextVideos);
+    }
+  }
+
+  function _addPreviousVideos(currentVideo, previousVideos, newVideos) {
+    for (const index in previousVideos) {
+      if (currentVideo === previousVideos[index]) {
+        break;
+      }
+      newVideos.pop();
+    }
+    newVideos.reverse().forEach((video) => list.insertBefore(video, list.firstChild));
+  }
+
+  function _addNextVideos(currentVideo, nextVideos, newVideos) {
+    for (const index in nextVideos.reverse()) {
+      if (currentVideo === nextVideos[index]) {
+        break;
+      }
+      newVideos.shift();
+    }
+    newVideos.forEach((video) => list.appendChild(video));
+  }
+
+  function _requestVideos(path, currentVideo, buffer, addNewVideos) {
     ajaxRequestCustom({
       url: `/videos/shorts/${currentVideo.id}/${path}`,
       type: 'GET',
       onSuccess: (response) => {
         const html = parseHTML(response, 'native');
-        if (path == 'previous') {
-          Array.from(html.querySelectorAll('li')).reverse().forEach((video) => list.insertBefore(video, list.firstChild));
-        }
-        if (path == 'next') {
-          html.querySelectorAll('li').forEach((video) => list.appendChild(video));
-        }
+        const newVideos = Array.from(html.querySelectorAll('li'));
+        addNewVideos(currentVideo, buffer, newVideos);
         const videos = list.querySelectorAll(SHORT_VIDEO_SELECTOR);
         videos.forEach((video) => video.addEventListener('click', _handleClick));
         _updateVideoNavigation(currentVideo);
