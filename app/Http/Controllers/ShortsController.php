@@ -86,6 +86,10 @@ class ShortsController extends FrontController
                 'loadVideoById' => $short->youtube_id,
             ])];
         });
+
+        $this->seo->nofollow = true;
+        $this->seo->noindex = true;
+
         return view('site.moreShorts', [
             'items' => $videos,
             'dataAttributes' => $dataAttributes,
@@ -102,6 +106,10 @@ class ShortsController extends FrontController
                 'loadVideoById' => $short->youtube_id,
             ])];
         });
+
+        $this->seo->nofollow = true;
+        $this->seo->noindex = true;
+
         return view('site.moreShorts', [
             'items' => $videos,
             'dataAttributes' => $dataAttributes,
