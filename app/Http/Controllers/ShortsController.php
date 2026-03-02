@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Facades\EmbedConverterFacade;
 use App\Models\Video;
 use App\Repositories\VideoRepository;
-use Illuminate\Http\Request;
 
 class ShortsController extends FrontController
 {
@@ -35,32 +34,18 @@ class ShortsController extends FrontController
         abort(404);
     }
 
-    public function show(Request $request, Video $video, $slug = null)
+    public function show(Video $video)
     {
         if (!($video->published && $video->is_short)) {
             abort(404);
         }
-        $canonicalPath = route('shorts.show', ['video' => $video, 'slug' => $video->getSlug()]);
-        if ($request->missing('player')) {
-            if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
-                return $canonicalRedirect;
-            }
+        $canonicalPath = route('shorts.show', ['video' => $video]);
+        if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
+            return $canonicalRedirect;
         }
 
-        $previousShorts = $this->repository
-            ->published()
-            ->where('is_short', true)
-            ->where('uploaded_at', '>', $video->uploaded_at)
-            ->orderBy('uploaded_at', 'asc')
-            ->limit(5)
-            ->get();
-        $nextShorts = $this->repository
-            ->published()
-            ->where('is_short', true)
-            ->where('uploaded_at', '<', $video->uploaded_at)
-            ->orderBy('uploaded_at', 'desc')
-            ->limit(5)
-            ->get();
+        $previousShorts = $this->getPreviousVideos($video, 2);
+        $nextShorts = $this->getNextVideos($video, 2);
 
         $dataAttributes = collect([$previousShorts, $video, $nextShorts])
             ->flatten()
@@ -88,7 +73,69 @@ class ShortsController extends FrontController
             'dataAttributes' => $dataAttributes,
             'canonicalUrl' => $canonicalPath,
             'darkMode' => true,
-        ])->fragmentIf($request->has('player'), 'shorts-player');
+        ]);
+    }
+
+    public function previous(Video $video)
+    {
+        $videos = $this->getPreviousVideos($video, 3);
+        $dataAttributes = $videos->mapWithKeys(function ($short) {
+            // Keyed by video id
+            return [$short->id => $this->dataAttributes([
+                'embedId' => 'shorts-player-iframe',
+                'loadVideoById' => $short->youtube_id,
+            ])];
+        });
+
+        $this->seo->nofollow = true;
+        $this->seo->noindex = true;
+
+        return view('site.moreShorts', [
+            'items' => $videos,
+            'dataAttributes' => $dataAttributes,
+        ]);
+    }
+
+    public function next(Video $video)
+    {
+        $videos = $this->getNextVideos($video, 3);
+        $dataAttributes = $videos->mapWithKeys(function ($short) {
+            // Keyed by video id
+            return [$short->id => $this->dataAttributes([
+                'embedId' => 'shorts-player-iframe',
+                'loadVideoById' => $short->youtube_id,
+            ])];
+        });
+
+        $this->seo->nofollow = true;
+        $this->seo->noindex = true;
+
+        return view('site.moreShorts', [
+            'items' => $videos,
+            'dataAttributes' => $dataAttributes,
+        ]);
+    }
+
+    private function getPreviousVideos(Video $video, int $count = 3)
+    {
+        return $this->repository
+            ->published()
+            ->where('is_short', true)
+            ->where('uploaded_at', '>', $video->uploaded_at)
+            ->orderBy('uploaded_at', 'asc')
+            ->limit($count)
+            ->get();
+    }
+
+    private function getNextVideos(Video $video, int $count = 3)
+    {
+        return $this->repository
+            ->published()
+            ->where('is_short', true)
+            ->where('uploaded_at', '<', $video->uploaded_at)
+            ->orderBy('uploaded_at', 'desc')
+            ->limit($count)
+            ->get();
     }
 
     /**
