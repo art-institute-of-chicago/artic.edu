@@ -38,6 +38,13 @@
             class="short-video current-video"
             {!! $dataAttributes[$item->id] !!}
         >
+            @if($nextItems->count() == 0)
+                <button class="next-arrow btn arrow-link" style="display: none">
+                    <svg class="icon--arrow--64">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use>
+                    </svg>
+                </button>
+            @endif
             <figure
                 class="m-media m-media--l variation--short"
                 data-type="embed"
@@ -60,6 +67,13 @@
                     'fullscreen' => false,
                 ])
             @endcomponent
+            @if($previousItems->count() == 0)
+                <button class="previous-arrow btn arrow-link arrow-link--back" style="display: none">
+                    <svg class="icon--arrow--64">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use>
+                    </svg>
+                </button>
+            @endif
         </li>
         @foreach ($nextItems as $index => $nextItem)
             <li
