@@ -53,7 +53,9 @@ const shortsPlayer = async function(container) {
   function _handleEnded() {
     console.debug('handleEnded');
     const nextVideo = container.querySelector(NEXT_VIDEO_SELECTOR);
-    _scrollToVideo(nextVideo);
+    if (nextVideo) {
+      _scrollToVideo(nextVideo);
+    }
   }
 
   async function _scrollToVideo(video, behavior='smooth') {
