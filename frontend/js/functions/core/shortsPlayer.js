@@ -88,7 +88,7 @@ const shortsPlayer = async function(container) {
   async function _moveViewportToVideo(video) {
     console.debug('moveViewportToVideo');
     const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
-    if (video === currentVideo) {
+    if (video && video === currentVideo) {
       // The snap-to scrolling can cause `scrollend` to fire multiple times on
       // the same video.
       console.debug('Same video, noop')
