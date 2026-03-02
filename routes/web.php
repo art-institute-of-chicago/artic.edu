@@ -221,9 +221,10 @@ Route::get('/authors/{id}/{slug?}', [AuthorController::class, 'show'])->name('au
 // Videos routes
 Route::get('/videos/archive', [VideoController::class, 'index'])->name('videos.archive');
 Route::get('/videos/shorts', [ShortsController::class, 'index'])->name('shorts.index');
-Route::get('/videos/shorts/{video}/{slug?}', [ShortsController::class, 'show'])->name('shorts.show');
+Route::get('/videos/shorts/{video}', [ShortsController::class, 'show'])->name('shorts.show');
+Route::get('/videos/shorts/{video}/previous', [ShortsController::class, 'previous'])->name('shorts.previous');
+Route::get('/videos/shorts/{video}/next', [ShortsController::class, 'next'])->name('shorts.next');
 Route::get('/videos/{video}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
-
 Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
 Route::get(
     '/playlists/{playlist}/videos/{video}/{slug?}',
