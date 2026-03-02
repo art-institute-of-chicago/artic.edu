@@ -54,25 +54,24 @@ const shortsPlayer = async function(container) {
     }
   }
 
-  async function _scrollToVideo(video, behavior='smooth') {
-    const list = container.querySelector(SHORTS_LIST_SELECTOR);
+  function _scrollToVideo(video, behavior='smooth') {
     const listScrolled = list.scrollLeft;
     const listBounds = list.getBoundingClientRect();
     const videoBounds = video.getBoundingClientRect();
     const videoCenter = videoBounds.x + (videoBounds.width / 2);
     const listCenter = listBounds.width / 2;
-    let toLeft = listScrolled + videoCenter - listCenter;
+    const toLeft = listScrolled + videoCenter - listCenter;
     list.scrollTo({
       top: 0,
       left: toLeft,
-      behavior: behavior,
+      behavior: behavior
     });
   }
 
   function _handleScrollEnd() {
     const bounds = list.getBoundingClientRect();
-    let centerX = (bounds.width / 2) + bounds.x;
-    let centerY = (bounds.height / 2) + bounds.y;
+    const centerX = (bounds.width / 2) + bounds.x;
+    const centerY = (bounds.height / 2) + bounds.y;
     const centeredElement = document.elementFromPoint(centerX, centerY);
     const centeredVideo = centeredElement.closest(SHORT_VIDEO_SELECTOR);
     _moveViewportToVideo(centeredVideo);
@@ -110,7 +109,7 @@ const shortsPlayer = async function(container) {
     ajaxRequestCustom({
       url: `/videos/shorts/${currentVideo.id}/${path}`,
       type: 'GET',
-      onSuccess: function(response, status) {
+      onSuccess: (response) => {
         const html = parseHTML(response, 'native');
         if (path == 'previous') {
           Array.from(html.querySelectorAll('li')).reverse().forEach((video) => list.insertBefore(video, list.firstChild));
