@@ -8,6 +8,9 @@ use App\Repositories\VideoRepository;
 
 class ShortsController extends FrontController
 {
+    // See frontend/js/functions/core/shortsPlayer.js
+    public const SHORTS_PLAYER_ID = 'shorts-player-iframe';
+
     protected $repository;
 
     public function __construct(VideoRepository $repository)
@@ -61,7 +64,7 @@ class ShortsController extends FrontController
         $this->seo->noindex = true;
 
         $embed = EmbedConverterFacade::createYouTubeEmbed(attributes: [
-            'id' => 'shorts-player-iframe',
+            'id' => self::SHORTS_PLAYER_ID,
             'src' => $video->embed_url,
         ]);
 
@@ -82,7 +85,7 @@ class ShortsController extends FrontController
         $dataAttributes = $videos->mapWithKeys(function ($short) {
             // Keyed by video id
             return [$short->id => $this->dataAttributes([
-                'embedId' => 'shorts-player-iframe',
+                'embedId' => self::SHORTS_PLAYER_ID,
                 'loadVideoById' => $short->youtube_id,
             ])];
         });
