@@ -15,7 +15,7 @@ const PREVIOUS_VIDEO_SELECTOR = `li.${PREVIOUS_VIDEO_CLASS}`;
 const NEXT_ARROW_SELECTOR = '.next-arrow';
 const NEXT_VIDEO_CLASS = 'next-video';
 const NEXT_VIDEO_SELECTOR = `li.${NEXT_VIDEO_CLASS}`;
-const BUFFER = 3; // Amount of videos to either side of the current one
+const BUFFER = 5; // Amount of videos to either side of the current one
 
 const shortsPlayer = async function(container) {
   const list = container.querySelector(SHORTS_LIST_SELECTOR);

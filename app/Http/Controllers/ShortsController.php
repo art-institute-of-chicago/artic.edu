@@ -44,8 +44,8 @@ class ShortsController extends FrontController
             return $canonicalRedirect;
         }
 
-        $previousShorts = $this->getPreviousVideos($video, 2);
-        $nextShorts = $this->getNextVideos($video, 2);
+        $previousShorts = $this->getPreviousVideos($video, 5);
+        $nextShorts = $this->getNextVideos($video, 5);
 
         $dataAttributes = collect([$previousShorts, $video, $nextShorts])
             ->flatten()
@@ -78,7 +78,7 @@ class ShortsController extends FrontController
 
     public function previous(Video $video)
     {
-        $videos = $this->getPreviousVideos($video, 3);
+        $videos = $this->getPreviousVideos($video, 5);
         $dataAttributes = $videos->mapWithKeys(function ($short) {
             // Keyed by video id
             return [$short->id => $this->dataAttributes([
@@ -98,7 +98,7 @@ class ShortsController extends FrontController
 
     public function next(Video $video)
     {
-        $videos = $this->getNextVideos($video, 3);
+        $videos = $this->getNextVideos($video, 5);
         $dataAttributes = $videos->mapWithKeys(function ($short) {
             // Keyed by video id
             return [$short->id => $this->dataAttributes([
