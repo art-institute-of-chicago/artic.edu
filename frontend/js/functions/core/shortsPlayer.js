@@ -1,7 +1,7 @@
 import youtubeEmbed, { controlYouTubePlayer } from './youtubeEmbed';
 import { ajaxRequestCustom, parseHTML } from '.';
 
-const SHORTS_PLAYER_ID = 'shorts-player-iframe';
+const SHORTS_PLAYER_ID = 'shorts-player-iframe'; // See app/Http/Controllers/ShortsController.php
 const SHORTS_LIST_SELECTOR = '#shorts-list';
 const EMBED_SELECTOR = 'iframe';
 const VIEWPORT_SELECTOR = '[data-type="embed"]';
