@@ -376,17 +376,21 @@
             }
 
         }
+        .o-article__header {
+            margin-top: 56px;
+        }
         p.title {
             display: none;
         }
         .o-article__primary-actions--video {
+            margin: unset;
             min-height: unset;
+            padding: unset;
         }
         .m-article-header--video {
-            gap: 40px;
+            gap: 24px;
             justify-content: unset;
             margin-bottom: 56px !important;
-            margin-top: 56px;
             min-height: unset;
         }
         .m-article-header--video.variation--short {
