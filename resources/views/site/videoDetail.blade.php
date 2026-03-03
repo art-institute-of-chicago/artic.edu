@@ -2,8 +2,16 @@
 
 @section('content')
     @if (isset($playlist))
-        <div class="playlist-title">
-            Playlist: {{ $playlist->title }}
+        <div class="playlist-header">
+            <span class="playlist-prefix">
+                Playlist:
+            </span>
+            <span class="playlist-title">
+                {{ $playlist->title }}
+            </span>
+            <span class="video-count">
+                ({{ $playlist->videos()->published()->count() }} videos)
+            </span>
         </div>
         @component('components.atoms._hr')@endcomponent
     @endif
