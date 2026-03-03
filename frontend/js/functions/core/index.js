@@ -27,3 +27,4 @@ export { default as ajaxRequestCustom } from './ajaxRequestCustom';
 export { default as roadblock } from './roadblock';
 export { default as getOffsetTop } from './getOffsetTop';
 export { default as cookieHandler } from './cookieHandler';
+export { default as shortsPlayer } from './shortsPlayer';
