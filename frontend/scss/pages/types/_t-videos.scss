@@ -612,21 +612,30 @@
 }
 
 .p-playlistvideo-show body {
-    .playlist-title {
+    .playlist-header {
         color: $color__videos__text--secondary;
         font-family: $sans-serif-font--loaded;
-        font-size: 21px;
         font-style: normal;
-        font-weight: 325;
-        letter-spacing: 1.68px;
-        line-height: 28px;
         margin-bottom: 16px;
         margin-top: 56px;
-        text-transform: uppercase;
 
         & ~ .hr {
             margin: 24px 0;
         }
+    }
+    .playlist-prefix,
+    .playlist-title {
+        font-size: 21px;
+        font-weight: 325;
+        letter-spacing: 1.68px;
+        line-height: 28px;
+        text-transform: uppercase;
+    }
+    .video-count {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 28px;
+        letter-spacing: 0.18px;
     }
     .o-article__header {
         display: grid;
