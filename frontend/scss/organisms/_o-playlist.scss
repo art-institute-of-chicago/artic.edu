@@ -21,13 +21,15 @@
             padding: 12px;
         }
         .m-listing__img {
+            max-height: 56px;
             width: 100px;
         }
         .m-listing__meta {
+            max-height: 56px;
             flex: unset;
             flex-flow: unset;
             min-height: inherit;
-
+            overflow: hidden;
         }
         .m-listing__meta .title {
             align-self: stretch;
