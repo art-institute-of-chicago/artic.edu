@@ -17,7 +17,7 @@
             $width = '3';
             break;
     }
-    $playlists = $block->getRelated('playlists');
+    $playlists = $block->getRelated('playlists')->where('published', true);
 @endphp
 
 <div class="o-grid-block playlist-grid">
