@@ -87,6 +87,11 @@
           line-height: 44px;
           text-align: center;
           text-transform: unset;
+
+          @include breakpoint('small-') {
+            font-size: 28px;
+            line-height: 32px;
+          }
       }
       & ~ .f-intro {
           color: $color__videos__text--tertiary;
@@ -98,6 +103,11 @@
           line-height: 28px;
           margin: 16px;
           text-align: center;
+
+          @include breakpoint('small-') {
+            font-size: 16px;
+          }
+
       }
   }
   main#content {
@@ -143,6 +153,11 @@
               line-height: 44px;
               letter-spacing: -0.38px;
               text-transform: none;
+
+              @include breakpoint('small-') {
+                font-size: 28px;
+                line-height: 32px;
+              }
           }
           .o-grid-block__description {
               color: $color__videos__text--tertiary;
