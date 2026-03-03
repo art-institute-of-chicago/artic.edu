@@ -23,7 +23,6 @@ class PlaylistController extends FrontController
                 'playlist' => $playlist,
                 'video' => $video,
                 'slug' => $video->getSlug(),
-                'darkMode' => true,
             ]);
         }
         abort(404);
