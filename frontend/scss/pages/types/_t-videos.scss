@@ -119,7 +119,11 @@
           }
           .o-grid-listing {
               flex-flow: row;
-              overflow: hidden;
+              overflow-x: hidden;
+
+              a::after{
+                margin-bottom: 0px;
+              }
           }
           .m-listing__img {
               border-radius: 8px;
