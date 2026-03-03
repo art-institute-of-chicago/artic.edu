@@ -8,6 +8,9 @@ use App\Repositories\VideoRepository;
 
 class ShortsController extends FrontController
 {
+    // See frontend/js/functions/core/shortsPlayer.js
+    public const SHORTS_PLAYER_ID = 'shorts-player-iframe';
+
     protected $repository;
 
     public function __construct(VideoRepository $repository)
@@ -44,8 +47,8 @@ class ShortsController extends FrontController
             return $canonicalRedirect;
         }
 
-        $previousShorts = $this->getPreviousVideos($video, 2);
-        $nextShorts = $this->getNextVideos($video, 2);
+        $previousShorts = $this->getPreviousVideos($video, 5);
+        $nextShorts = $this->getNextVideos($video, 5);
 
         $dataAttributes = collect([$previousShorts, $video, $nextShorts])
             ->flatten()
@@ -61,7 +64,7 @@ class ShortsController extends FrontController
         $this->seo->noindex = true;
 
         $embed = EmbedConverterFacade::createYouTubeEmbed(attributes: [
-            'id' => 'shorts-player-iframe',
+            'id' => self::SHORTS_PLAYER_ID,
             'src' => $video->embed_url,
         ]);
 
@@ -78,11 +81,11 @@ class ShortsController extends FrontController
 
     public function previous(Video $video)
     {
-        $videos = $this->getPreviousVideos($video, 3);
+        $videos = $this->getPreviousVideos($video, 5);
         $dataAttributes = $videos->mapWithKeys(function ($short) {
             // Keyed by video id
             return [$short->id => $this->dataAttributes([
-                'embedId' => 'shorts-player-iframe',
+                'embedId' => self::SHORTS_PLAYER_ID,
                 'loadVideoById' => $short->youtube_id,
             ])];
         });
@@ -98,7 +101,7 @@ class ShortsController extends FrontController
 
     public function next(Video $video)
     {
-        $videos = $this->getNextVideos($video, 3);
+        $videos = $this->getNextVideos($video, 5);
         $dataAttributes = $videos->mapWithKeys(function ($short) {
             // Keyed by video id
             return [$short->id => $this->dataAttributes([
@@ -124,7 +127,8 @@ class ShortsController extends FrontController
             ->where('uploaded_at', '>', $video->uploaded_at)
             ->orderBy('uploaded_at', 'asc')
             ->limit($count)
-            ->get();
+            ->get()
+            ->reverse();
     }
 
     private function getNextVideos(Video $video, int $count = 3)
