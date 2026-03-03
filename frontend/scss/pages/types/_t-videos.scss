@@ -383,10 +383,12 @@
             display: none;
         }
         .o-article__primary-actions--video {
+            margin: unset;
             min-height: unset;
+            padding: unset;
         }
         .m-article-header--video {
-            gap: 40px;
+            gap: 24px;
             justify-content: unset;
             margin-bottom: 56px !important;
             min-height: unset;
