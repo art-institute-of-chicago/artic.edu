@@ -329,7 +329,6 @@
     @include breakpoint('xsmall') {
       .g-modal__content {
         background: linear-gradient(to bottom, $color__black 65px, transparent);
-        padding: 0 27px;
 
         &::before {
           height: 65px;
@@ -770,7 +769,11 @@
     .m-media__img {
       aspect-ratio: 185 / 329;
       border-radius: 28px;
-      min-height: 50vh;
+      min-height: 60vh;
+
+      @include breakpoint('xsmall') {
+        min-width: 80vw;
+      }
 
       img {
         height: 120%;
@@ -810,9 +813,9 @@
     }
   }
   @include breakpoint('xsmall') {
-      .previous-video,
-      .next-video {
-          display: none;
+      .previous-arrow,
+      .next-arrow {
+          visibility: hidden;
       }
   }
   .s-moving-viewport {
