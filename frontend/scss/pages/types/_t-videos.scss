@@ -672,47 +672,57 @@
                 max-height: 50vh;
             }
             .m-article-header--video.variation--video {
-                gap: 32px;
                 grid-column: 1 / span 2;
                 grid-row: 2;
-            }
-        }
-        @each $name in ('small', 'medium') {
-            @include breakpoint('#{$name}') {
-                .m-media.variation--video {
-                    grid-column: 1 / span 2;
-                    grid-row: 1;
-                }
-                .m-article-header--video.variation--video {
-                    grid-column: 1;
-                    grid-row: 2;
-                    margin-bottom: 34px !important;
-                    margin-top: 34px;
-                }
+                margin-top: 34px;
 
-                .o-playlist {
-                    max-height: 300px;
-                    margin-top: 60px;
+                .title {
+                  margin: 0;
+
+                  &::before {
+                    display: none;
+                  }
                 }
             }
-        }
-        @include breakpoint('small') {
-          grid-template-columns: 1fr 1fr;
         }
         @include breakpoint('medium') {
-          grid-template-columns: 2fr 1fr;
-        }
-        @include breakpoint('xsmall') {
-            grid-template-columns: 1fr;
+            grid-template-columns: 2fr 1fr;
 
+            .m-media.variation--video {
+                grid-column: 1 / span 2;
+                grid-row: 1;
+                margin-top: unset;
+            }
             .m-article-header--video.variation--video {
-                grid-row: 3;
+                grid-column: 1;
+                grid-row: 2;
                 margin-bottom: 34px !important;
                 margin-top: 34px;
             }
-            .o-playlist {
-                max-height: 25vh;
+            .m-media__img--embed {
+                height: 610px;
             }
+            .o-playlist {
+                top: 660px;
+                max-height: 300px;
+                max-width: 33%;
+                position: absolute;
+                right: 0;
+            }
+        }
+        @each $name in ('xsmall', 'small') {
+          @include breakpoint('#{$name}') {
+              grid-template-columns: 1fr;
+
+              .m-article-header--video.variation--video {
+                  grid-row: 3;
+                  margin-bottom: 34px !important;
+                  margin-top: 34px;
+              }
+              .o-playlist {
+                  max-height: 25vh;
+              }
+          }
         }
     }
     .o-playlist {
@@ -729,13 +739,12 @@
             font-weight: 325;
             letter-spacing: 0.15px;
             line-height: 20px;
-            text-overflow: ellipsis;
         }
     }
     .o-article__body {
-        @include breakpoint('medium+') {
+        @include breakpoint('small+') {
           float: left;
-          width: colspan(36, medium);
+          width: colspan(36, small);
         }
 
         @include breakpoint('large+') {
