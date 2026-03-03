@@ -376,6 +376,9 @@
             }
 
         }
+        .o-article__header {
+            margin-top: 56px;
+        }
         p.title {
             display: none;
         }
@@ -386,7 +389,6 @@
             gap: 40px;
             justify-content: unset;
             margin-bottom: 56px !important;
-            margin-top: 56px;
             min-height: unset;
         }
         .m-article-header--video.variation--short {
