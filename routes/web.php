@@ -44,7 +44,16 @@ Route::get('p/{hash}', [PreviewController::class, 'show'])->name('previewLink');
 
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 
-Route::get('/google-oauth', [OAuthController::class, 'google'])->name('google-oauth');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'iss',
+        'code',
+        'scope',
+    ]
+], function () {
+    Route::get('/google-oauth', [OAuthController::class, 'google'])->name('google-oauth');
+});
 
 Route::group([
     'middleware' => [SanitizeQueryParameters::class],
