@@ -207,7 +207,15 @@ Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index'
 Route::get('/authors/{id}/{slug?}', [AuthorController::class, 'show'])->name('authors.show');
 
 // Videos routes
-Route::get('/videos/archive', [VideoController::class, 'index'])->name('videos.archive');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'category',
+        'duration',
+    ]
+], function () {
+    Route::get('/videos/archive', [VideoController::class, 'index'])->name('videos.archive');
+});
 Route::get('/videos/shorts', [ShortsController::class, 'index'])->name('shorts.index');
 Route::get('/videos/shorts/{video}', [ShortsController::class, 'show'])->name('shorts.show');
 Route::get('/videos/shorts/{video}/previous', [ShortsController::class, 'previous'])->name('shorts.previous');
