@@ -39,11 +39,15 @@
         top: -5px;
         width: 95%;
         z-index: 2;
+        opacity: 60%;
+        filter: brightness(60%);
       }
       img:nth-child(3) {
         top: -10px;
         width: 90%;
         z-index: 1;
+        opacity: 60%;
+        filter: brightness(60%);
       }
     }
   }
@@ -119,7 +123,11 @@
           }
           .o-grid-listing {
               flex-flow: row;
-              overflow: hidden;
+              overflow-x: hidden;
+
+              a::after{
+                margin-bottom: 0px;
+              }
           }
           .m-listing__img {
               border-radius: 8px;

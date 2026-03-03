@@ -38,8 +38,6 @@
         @endif
     @endcomponent
 
-    <span class="o-grid-block__subtitle">Playlists</span>
-
     @component('components.organisms._o-grid-listing')
         @slot('behavior', 'dragScroll')
         @slot('cols_xsmall', $widthSmall)
