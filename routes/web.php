@@ -225,18 +225,11 @@ Route::get('/videos/shorts/{video}', [ShortsController::class, 'show'])->name('s
 Route::get('/videos/shorts/{video}/previous', [ShortsController::class, 'previous'])->name('shorts.previous');
 Route::get('/videos/shorts/{video}/next', [ShortsController::class, 'next'])->name('shorts.next');
 Route::get('/videos/{video}/{slug?}', [VideoController::class, 'show'])->name('videos.show');
-Route::group([
-    'middleware' => [SanitizeQueryParameters::class],
-    'allowed_query_params' => [
-        'darkMode',
-    ]
-], function () {
-    Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
-    Route::get(
-        '/playlists/{playlist}/videos/{video}/{slug?}',
-        [PlaylistVideoController::class, 'show'],
-    )->scopeBindings()->name('playlists.videos.show');
-});
+Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
+Route::get(
+    '/playlists/{playlist}/videos/{video}/{slug?}',
+    [PlaylistVideoController::class, 'show'],
+)->scopeBindings()->name('playlists.videos.show');
 
 // Mirador kiosk routes
 Route::get('mirador', function () {
