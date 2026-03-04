@@ -29,7 +29,10 @@ const controlYoutubeEmbed = function(container) {
   };
 
   this.init = function() {
-    container.addEventListener('click', handleClick);
+    const iframe = document.getElementById(embedId);
+    iframe.addEventListener('youtube:ready', () => {
+      container.addEventListener('click', handleClick);
+    });
   };
 };
 
