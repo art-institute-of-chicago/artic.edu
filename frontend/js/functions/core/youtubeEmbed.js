@@ -78,30 +78,28 @@ const youtubeEmbed = async function(iframe) {
   }
 
   function _onPlayerReady(event) {
-    A17.Youtubeembeds[iframe.id] = event.target;
+    console.log('onPlayerReady')
+    A17.YouTubeembeds[iframe.id] = event.target;
+    triggerCustomEvent(iframe, 'youtube:ready', {id: iframe.id});
   }
 
-
   async function _initYoutubePlayer(iframeId) {
-    return new Promise(async (resolve) => {
+    return new Promise((resolve) => {
       if (A17.YouTubeonYouTubeIframeAPIReady) {
         if (!(iframeId in A17.YouTubeembeds)) {
-          A17.YouTubeembeds[iframeId] = new Promise((playerResolve) => {
-            playerResolve(new YT.Player(iframeId, {
-              playerVars: {
-                'autoplay': 1,
-                'enablejsapi': 1,
-                'origin': window.location.origin,
-              },
-              events: {
-                'onStateChange': _onStateChange,
-                'onReady': _onPlayerReady,
-              },
-            }));
-          })
-          resolve(await A17.YouTubeembeds[iframeId]);
+          new YT.Player(iframeId, {
+            playerVars: {
+              'autoplay': 1,
+              'enablejsapi': 1,
+              'origin': window.location.origin,
+            },
+            events: {
+              'onStateChange': _onStateChange,
+              'onReady': _onPlayerReady,
+            },
+          });
         } else {
-          resolve(await A17.YouTubeembeds[iframeId]);
+          resolve(A17.YouTubeembeds[iframeId]);
         }
       } else {
         setTimeout(() => _initYoutubePlayer(iframeId).then(resolve), 250);
