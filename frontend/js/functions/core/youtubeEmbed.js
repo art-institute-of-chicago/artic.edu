@@ -4,6 +4,9 @@ const youtubeEmbed = async function(iframe) {
   if (!(iframe instanceof Element)) {
     iframe = document.getElementById(iframe);
   }
+  if (!iframe) {
+    return null;
+  }
 
   const playedChecks = {
     25: false,
@@ -118,6 +121,10 @@ const youtubeEmbed = async function(iframe) {
 };
 
 function controlYouTubePlayer(player, commands) {
+  if (!player) {
+    return;
+  }
+
   for (const command in commands) {
     switch (command) {
       case 'loadVideoById':

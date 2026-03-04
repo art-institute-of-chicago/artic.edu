@@ -13,6 +13,9 @@ const controlYoutubeEmbed = function(container) {
     event.stopPropagation();
 
     const player = await youtubeEmbed(embedId);
+    if (!player) {
+      return;
+    }
     controlYouTubePlayer(player, container.dataset)
 
     const embed = document.getElementById(embedId);
