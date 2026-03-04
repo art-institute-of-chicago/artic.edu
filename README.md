@@ -20,37 +20,18 @@ Portions of the website rely heavily on our [API](https://api.artic.edu). Check 
 ## Requirements
 
 * PHP 8.2
-* Node 20.17.0 (lts/iron)
-* NPM 10.8.2
+* Node 24.13.0 (lts/krypton)
+* NPM 11.6.2
 * PostgreSQL 17
-* Homestead stable `release` branch
+* [AIC Docker](https://github.com/art-institute-of-chicago/aic-docker) `main` branch
 
 
 
 ## Installing
 
-### Homestead
+### Docker
 
-For local development, we run our website in a [Homestead](https://laravel.com/docs/master/homestead) environment which provides all the software required to run the website.
-
-* Run `composer install` to install composer dependencies. This step should typically be done inside the VM, but in order to get the VM running, you may need to install the dependencies from outside the VM.
-* Run `vagrant up` to provision your vagrant machine.
-* In case the system didn't update your `/etc/hosts` file automatically:
-  * Add the IP and domain defined at `Homestead.yaml` to your local `/etc/hosts` file.
-
-Once Homestead is set up, then install the website code itself:
-
-* Run `vagrant ssh` to ssh into the VM.
-* `cd` into the website project directory that you mapped in your `Homestead.yaml`.
-* Set the PHP version for the VM shell by running `php82`.
-* Run `composer install` inside the VM to ensure dependencies are installed.
-* Copy `.env.example` as `.env` and update with your local settings (if necessary).
-* Run `php artisan key:generate` to generate your application key.
-* Run `php artisan migrate` to migrate the database schema.
-* Run `php artisan twill:superadmin` to create a superadmin user.
-* Build all necessary Twill assets: `php artisan twill:build`
-* Access the frontend at http://{your_dev_domain}.
-* Access the CMS at http://admin.{your_dev_domain}.
+For local development, we run the website in a Docker environment which provides all the software required to run the application. This replaces the previous Vagrant/Homestead setup that is no longer maintained. Download the [docker app here](https://www.docker.com/products/docker-desktop/)
 
 ## Developing
 
