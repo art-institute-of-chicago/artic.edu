@@ -400,6 +400,13 @@
         }
         .o-article__header {
             margin-top: 56px;
+
+            @include breakpoint('small') {
+              margin-top: 28px;
+            }
+            @include breakpoint('xsmall') {
+              margin-top: 28px;
+            }
         }
         p.title {
             display: none;
@@ -414,6 +421,29 @@
             justify-content: unset;
             margin-bottom: 56px !important;
             min-height: unset;
+
+            @include breakpoint('small') {
+              padding-top: 0;
+
+              .title {
+                margin-top: 0;
+
+                &::before {
+                  display: none;
+                }
+              }
+            }
+            @include breakpoint('xsmall') {
+              padding-top: 0;
+
+              .title {
+                margin-top: 0;
+
+                &::before {
+                  display: none;
+                }
+              }
+            }
         }
         .m-article-header--video.variation--short {
             border-radius: 28px;
