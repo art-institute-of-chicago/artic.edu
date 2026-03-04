@@ -133,7 +133,7 @@
           }
           .o-grid-listing {
               flex-flow: row;
-              overflow-x: hidden;
+              overflow: hidden;
 
               a::after{
                 margin-bottom: 0px;
@@ -185,7 +185,6 @@
               @include breakpoint('xsmall') {
                   flex-flow: row;
                   margin-right: -9.375vw;
-                  overflow: hidden;
               }
           }
           .m-listing {
