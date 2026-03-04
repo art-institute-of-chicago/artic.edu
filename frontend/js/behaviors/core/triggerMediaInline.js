@@ -86,6 +86,10 @@ const triggerMediaInline = function(container) {
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
     container.removeEventListener('youtube:playing', () => activateMedia());
+
+    if (iframe?.id && A17?.YouTubeembeds?.[iframe.id]) {
+      delete A17.YouTubeembeds[iframe.id];
+    }
     purgeProperties(this);
   };
 
