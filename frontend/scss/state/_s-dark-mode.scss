@@ -6,11 +6,15 @@ html.s-dark-mode body {
     color: $color__dark_mode__text--primary;
   }
 
-  h2 {
+  h2, h2:not([class*=f-]) {
     color: $color__dark-mode__text--secondary;
   }
 
-  h3 {
+  h3, h3:not([class*=f-]) {
+    color: $color__dark-mode__text--secondary;
+  }
+
+  h4, h4:not([class*=f-]) {
     color: $color__dark-mode__text--secondary;
   }
 
