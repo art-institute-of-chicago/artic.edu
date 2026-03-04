@@ -71,6 +71,11 @@
           }
       }
   }
+
+  .icon--close {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 .p-t-videos body {
@@ -866,9 +871,4 @@
       filter: blur(10px) brightness(0.25);
     }
   }
-}
-
-.icon--close {
-  width: 32px;
-  height: 32px;
 }
