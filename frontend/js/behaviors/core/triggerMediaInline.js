@@ -78,7 +78,9 @@ const triggerMediaInline = function(container) {
       activateMedia();
     }
 
-    container.addEventListener('youtube:playing', () => activateMedia());
+    container.addEventListener('youtube:playing', () => {
+      container.classList.add('s-inline-media-activated');
+    });
   }
 
   this.destroy = function() {
