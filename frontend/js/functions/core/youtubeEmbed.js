@@ -80,11 +80,19 @@ const youtubeEmbed = async function(iframe) {
     }
   }
 
-  async function _initYoutubePlayer(iframeId) {
-    return new Promise(async (resolve) => {
-      if (A17.YouTubeonYouTubeIframeAPIReady) {
-        if (!(iframeId in A17.YouTubeembeds)) {
-          A17.YouTubeembeds[iframeId] = new Promise((playerResolve) => {
+  function _isValidPlayer(player) {
+    return (
+      player &&
+      typeof player.playVideo === 'function' &&
+      typeof player.pauseVideo === 'function' &&
+      typeof player.seekTo === 'function' &&
+      typeof player.loadVideoById === 'function' &&
+      typeof player.stopVideo === 'function'
+    );
+  }
+
+  function _createPlayer(iframeId) {
+    return new Promise((playerResolve) => {
             playerResolve(new YT.Player(iframeId, {
               playerVars: {
                 'autoplay': 1,
@@ -95,11 +103,23 @@ const youtubeEmbed = async function(iframe) {
                 'onStateChange': _onStateChange,
               },
             }));
-          })
-          resolve(await A17.YouTubeembeds[iframeId]);
-        } else {
-          resolve(await A17.YouTubeembeds[iframeId]);
+    });
+  }
+
+  async function _initYoutubePlayer(iframeId) {
+    return new Promise(async (resolve) => {
+      if (A17.YouTubeonYouTubeIframeAPIReady) {
+        let player = null;
+        if (iframeId in A17.YouTubeembeds) {
+          player = await A17.YouTubeembeds[iframeId];
         }
+
+        if (!_isValidPlayer(player)) {
+          A17.YouTubeembeds[iframeId] = _createPlayer(iframeId);
+          player = await A17.YouTubeembeds[iframeId];
+        }
+
+        resolve(player);
       } else {
         setTimeout(() => _initYoutubePlayer(iframeId).then(resolve), 250);
       }
@@ -137,7 +157,7 @@ function controlYouTubePlayer(player, commands) {
         player.playVideo();
         break;
       case 'seekTo':
-        player.seekTo(commands[command], true)
+        player.seekTo(parseFloat(commands[command]), true);
         break;
       case 'stopVideo':
         player.stopVideo()
