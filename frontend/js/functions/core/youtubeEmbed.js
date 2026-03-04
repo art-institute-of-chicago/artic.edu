@@ -77,6 +77,11 @@ const youtubeEmbed = async function(iframe) {
     }
   }
 
+  function _onPlayerReady(event) {
+    A17.Youtubeembeds[iframe.id] = event.target;
+  }
+
+
   async function _initYoutubePlayer(iframeId) {
     return new Promise(async (resolve) => {
       if (A17.YouTubeonYouTubeIframeAPIReady) {
@@ -90,6 +95,7 @@ const youtubeEmbed = async function(iframe) {
               },
               events: {
                 'onStateChange': _onStateChange,
+                'onReady': _onPlayerReady,
               },
             }));
           })
