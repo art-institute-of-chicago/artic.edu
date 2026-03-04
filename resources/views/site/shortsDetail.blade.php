@@ -10,7 +10,7 @@
                 id="{{ $previousItem->id }}"
                 @class([
                     'short-video',
-                    'previous-video' => $index + 1 == $previousItems->count(),
+                    'previous-video' => $loop->last,
                 ])
                 {!! $dataAttributes[$previousItem->id] !!}
             >
@@ -24,7 +24,7 @@
                         'fullscreen' => false,
                     ])
                 @endcomponent
-                @if($index + 1 == $previousItems->count())
+                @if($loop->last)
                     <button class="previous-arrow btn arrow-link arrow-link--back">
                         <svg class="icon--arrow--64">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use>
@@ -80,11 +80,11 @@
                 id="{{ $nextItem->id }}"
                 @class([
                     'short-video',
-                    'next-video' => $index == 0,
+                    'next-video' => $loop->first,
                 ])
                 {!! $dataAttributes[$nextItem->id] !!}
             >
-                @if($index == 0)
+                @if($loop->first)
                     <button class="next-arrow btn arrow-link">
                         <svg class="icon--arrow--64">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow--24"></use>
