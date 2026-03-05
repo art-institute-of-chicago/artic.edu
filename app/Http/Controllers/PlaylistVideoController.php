@@ -64,7 +64,6 @@ class PlaylistVideoController extends FrontController
                         'src' => $video->embed_url,
                     ],
                     parameters: [
-                        'start' => $request->get('start'),
                         'autoplay' => true,
                     ]
                 );

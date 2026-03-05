@@ -1,18 +1,18 @@
 import { purgeProperties } from '@area17/a17-helpers';
-import { queryStringHandler } from '@area17/a17-helpers';
-import { youtubeEmbed } from '../../functions/core';
+import youtubeEmbed, { controlYouTubePlayer } from '../../functions/core/youtubeEmbed';
 
 const triggerMediaInline = function(container) {
   let iframe;
   let src;
   let embedSrcType;
-  let platform = container.dataset.platform;
 
   function _handleClicks(event) {
     event.preventDefault();
     event.stopPropagation();
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
+    const player = A17.YouTubeembeds[iframe.id];
+    controlYouTubePlayer(player, { 'playVideo': true });
     activateMedia();
   }
 
@@ -23,16 +23,12 @@ const triggerMediaInline = function(container) {
   }
 
   function activateMedia() {
-    src = queryStringHandler.updateParameter(src, 'autoplay', (platform == 'vimeo' ? 'true' : '1'));
-    src = queryStringHandler.updateParameter(src, 'auto_play', (platform == 'vimeo' ? 'true' : '1'));
-    iframe.src = src;
     container.classList.add('s-inline-media-activated');
   }
 
   function _init() {
     iframe = container.querySelector('iframe');
 
-    console.log('triggerMediaInline', iframe);
     if (!iframe) {
       return;
     }
@@ -61,13 +57,10 @@ const triggerMediaInline = function(container) {
       }
 
       if (embedSrcType === 'src') {
-        console.log('triggerMediaInline', 'starting youtubeEmbed');
         iframe.src = src;
         youtubeEmbed(iframe);
       } else {
-        iframe.addEventListener('load',function(){
-          youtubeEmbed(iframe);
-        }, false);
+        iframe.addEventListener('load', () => youtubeEmbed(iframe), false);
       }
     }
 
@@ -78,14 +71,14 @@ const triggerMediaInline = function(container) {
       activateMedia();
     }
 
-    container.addEventListener('youtube:playing', () => activateMedia());
+    iframe.addEventListener('youtube:playing', activateMedia);
   }
 
   this.destroy = function() {
     // Remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
-    container.removeEventListener('youtube:playing', () => activateMedia());
+    iframe.removeEventListener('youtube:playing', activateMedia);
     purgeProperties(this);
   };
 
