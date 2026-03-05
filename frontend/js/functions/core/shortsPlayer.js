@@ -1,4 +1,4 @@
-import youtubeEmbed, { controlYouTubePlayer } from './youtubeEmbed';
+import youtubeEmbed, { controlYouTubePlayer, unsetEmbed } from './youtubeEmbed';
 import { ajaxRequestCustom, parseHTML } from '.';
 
 const SHORTS_PLAYER_ID = 'shorts-player-iframe'; // See app/Http/Controllers/ShortsController.php
@@ -17,7 +17,7 @@ const NEXT_VIDEO_CLASS = 'next-video';
 const NEXT_VIDEO_SELECTOR = `li.${NEXT_VIDEO_CLASS}`;
 const BUFFER = 5; // Amount of videos to either side of the current one
 
-const shortsPlayer = async function(container) {
+const shortsPlayer = function(container) {
   const list = container.querySelector(SHORTS_LIST_SELECTOR);
   const viewport = container.querySelector(VIEWPORT_SELECTOR);
   const previousArrow = container.querySelector(PREVIOUS_ARROW_SELECTOR);
@@ -27,16 +27,33 @@ const shortsPlayer = async function(container) {
     return false;
   }
   embed.id = SHORTS_PLAYER_ID;
-  await youtubeEmbed(embed);
-  _init();
+  list.addEventListener('scrollend', _handleScrollEnd);
+  document.addEventListener('page:updated', _modalInit)
+  document.addEventListener('youtube:ready', _playerInit)
+  document.addEventListener('modal:close', _destroy);
+  youtubeEmbed(embed);
 
-  function _init() {
+  function _modalInit(event) {
     const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
     _scrollToVideo(currentVideo, 'instant');
     embed.addEventListener('youtube:ended', _handleEnded);
-    list.addEventListener('scrollend', _handleScrollEnd);
     const videos = list.querySelectorAll(SHORT_VIDEO_SELECTOR);
     videos.forEach((video) => video.addEventListener('click', _handleClick));
+  }
+
+  function _playerInit(event) {
+    controlYouTubePlayer(event.data.player, { 'playVideo': true });
+  }
+
+  function _destroy() {
+    document.removeEventListener('modal:close', _destroy);
+    document.removeEventListener('page:updated', _modalInit);
+    document.removeEventListener('youtube:ready', _playerInit)
+    embed.removeEventListener('youtube:ended', _handleEnded);
+    list.removeEventListener('scrollend', _handleScrollEnd);
+    const videos = list.querySelectorAll(SHORT_VIDEO_SELECTOR);
+    videos.forEach((video) => video.removeEventListener('click', _handleClick));
+    unsetEmbed(embed);
   }
 
   function _handleClick(event) {
@@ -76,7 +93,7 @@ const shortsPlayer = async function(container) {
     _moveViewportToVideo(centeredVideo);
   }
 
-  async function _moveViewportToVideo(video) {
+  function _moveViewportToVideo(video) {
     const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
     if (video && video === currentVideo) {
       // The snap-to scrolling can cause `scrollend` to fire multiple times on
@@ -89,7 +106,7 @@ const shortsPlayer = async function(container) {
       _loadMore();
     }, { once: true });
     list.classList.add('s-moving-viewport');
-    const player = await youtubeEmbed(SHORTS_PLAYER_ID);
+    const player = A17.YouTubeembeds[embed.id];
     controlYouTubePlayer(player, video.dataset);
   }
 

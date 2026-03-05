@@ -1,6 +1,6 @@
 import { triggerCustomEvent } from '@area17/a17-helpers';
 
-const youtubeEmbed = async function(iframe) {
+const youtubeEmbed = function(iframe) {
   if (!(iframe instanceof Element)) {
     iframe = document.getElementById(iframe);
   }
@@ -48,25 +48,32 @@ const youtubeEmbed = async function(iframe) {
     }
   }
 
-  function _onStateChange(event) {
+  function _onReady(event) {
     const player = event.target;
+    iframe = player.getIframe();
+    A17.YouTubeembeds[iframe.id] = player;
+    triggerCustomEvent(iframe, 'youtube:ready', {id: iframe.id, player: player});
+  }
+
+  function _onStateChange(event) {
     try {
       clearInterval(youtubePlayerTimer);
     } catch (err) {
       // noop
     }
-    switch (player.getPlayerState()) {
+    iframe = event.target.getIframe();
+    switch (event.data) {
       case YT.PlayerState.ENDED:
         triggerCustomEvent(iframe, 'youtube:ended', {id: iframe.id});
-        onPlayerEnded(player);
+        onPlayerEnded();
         break;
       case YT.PlayerState.PLAYING:
         triggerCustomEvent(iframe, 'youtube:playing', {id: iframe.id});
-        onPlayerPlaying(player);
+        onPlayerPlaying(event.target);
         break;
       case YT.PlayerState.PAUSED:
         triggerCustomEvent(iframe, 'youtube:paused', {id: iframe.id});
-        onPlayerPaused(player);
+        onPlayerPaused();
         break;
       case YT.PlayerState.BUFFERING:
         triggerCustomEvent(iframe, 'youtube:buffering', {id: iframe.id});
@@ -74,33 +81,30 @@ const youtubeEmbed = async function(iframe) {
       case YT.PlayerState.CUED:
         triggerCustomEvent(iframe, 'youtube:cued', {id: iframe.id});
         break;
+      default:
+        // noop
+        break;
     }
   }
 
-  async function _initYoutubePlayer(iframeId) {
-    return new Promise(async (resolve) => {
-      if (A17.YouTubeonYouTubeIframeAPIReady) {
-        if (!(iframeId in A17.YouTubeembeds)) {
-          A17.YouTubeembeds[iframeId] = new Promise((playerResolve) => {
-            playerResolve(new YT.Player(iframeId, {
-              playerVars: {
-                'autoplay': 1,
-                'enablejsapi': 1,
-                'origin': window.location.origin,
-              },
-              events: {
-                'onStateChange': _onStateChange,
-              },
-            }));
-          })
-          resolve(await A17.YouTubeembeds[iframeId]);
-        } else {
-          resolve(await A17.YouTubeembeds[iframeId]);
-        }
-      } else {
-        setTimeout(() => _initYoutubePlayer(iframeId).then(resolve), 250);
+  function _initYoutubePlayer(iframeId) {
+    if (A17.YouTubeonYouTubeIframeAPIReady) {
+      if (!(iframeId in A17.YouTubeembeds)) {
+        new YT.Player(iframeId, {
+          playerVars: {
+            'autoplay': 1,
+            'enablejsapi': 1,
+            'origin': window.location.origin,
+          },
+          events: {
+            'onReady': _onReady,
+            'onStateChange': _onStateChange,
+          },
+        });
       }
-    });
+    } else {
+      setTimeout(() => _initYoutubePlayer(iframeId), 10);
+    }
   };
 
   if (!document.getElementById('youtubeapijs')) {
@@ -114,7 +118,7 @@ const youtubeEmbed = async function(iframe) {
   if (!iframe.id) {
     iframe.id = `youtube_${Math.random().toString(36).substring(2, 9)}`;
   }
-  return await _initYoutubePlayer(iframe.id);
+  _initYoutubePlayer(iframe.id);
 };
 
 function controlYouTubePlayer(player, commands) {
@@ -133,7 +137,10 @@ function controlYouTubePlayer(player, commands) {
         player.seekTo(commands[command], true)
         break;
       case 'stopVideo':
-        player.stopVideo()
+        player.stopVideo();
+        break;
+      case 'destroy':
+        player.destroy();
         break;
       default:
         // noop
@@ -142,4 +149,9 @@ function controlYouTubePlayer(player, commands) {
   }
 }
 
-export { controlYouTubePlayer, youtubeEmbed as default };
+function unsetEmbed(iframe) {
+  controlYouTubePlayer(A17.YouTubeembeds[iframe.id], { 'destroy': true });
+  delete A17.YouTubeembeds[iframe.id];
+}
+
+export { controlYouTubePlayer, unsetEmbed, youtubeEmbed as default };
