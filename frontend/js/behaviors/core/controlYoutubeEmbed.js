@@ -1,5 +1,5 @@
 import { purgeProperties, setFocusOnTarget, scrollToY } from '@area17/a17-helpers';
-import youtubeEmbed, { controlYouTubePlayer } from '../../functions/core/youtubeEmbed';
+import { controlYouTubePlayer } from '../../functions/core/youtubeEmbed';
 
 const controlYoutubeEmbed = function(container) {
   const embedId = container.dataset.embedId;
@@ -8,18 +8,17 @@ const controlYoutubeEmbed = function(container) {
     return;
   }
 
-  async function handleClick(event) {
+  let player;
+
+  function handleClick(event) {
     event.preventDefault();
     event.stopPropagation();
 
-    const player = await youtubeEmbed(embedId);
     controlYouTubePlayer(player, container.dataset)
-
-    const embed = document.getElementById(embedId);
     scrollToY({
       duration: 500,
       easing: 'easeInOut',
-      onComplete: () => setTimeout(() => setFocusOnTarget(embed), 0),
+      onComplete: () => setTimeout(() => setFocusOnTarget(player.getIframe()), 0),
     });
   }
 
@@ -29,7 +28,11 @@ const controlYoutubeEmbed = function(container) {
   };
 
   this.init = function() {
-    container.addEventListener('click', handleClick);
+    const iframe = document.getElementById(embedId);
+    iframe.addEventListener('youtube:ready', (event) => {
+      player = event.data.player;
+      container.addEventListener('click', handleClick);
+    });
   };
 };
 
