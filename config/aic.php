@@ -29,6 +29,9 @@ return [
 
     'trust_hosts' => env('TRUST_HOSTS') ? explode(',', env('TRUST_HOSTS')) : [],
 
+    'zerotrust_client_id' => env('CLOUDFLARE_ZEROTRUST_CLIENT_ID'),
+    'zerotrust_client_secret' => env('CLOUDFLARE_ZEROTRUST_CLIENT_SECRET'),
+
     // Feature flags
     'is_preview_mode' => (bool) env('ALWAYS_PREVIEW_MODE', false),
     'show_design_grids' => (bool) env('SHOW_DESIGN_GRIDS', false),
