@@ -401,10 +401,7 @@
         .o-article__header {
             margin-top: 56px;
 
-            @include breakpoint('small') {
-              margin-top: 28px;
-            }
-            @include breakpoint('xsmall') {
+            @include breakpoint('small-') {
               margin-top: 28px;
             }
         }
@@ -422,18 +419,7 @@
             margin-bottom: 56px !important;
             min-height: unset;
 
-            @include breakpoint('small') {
-              padding-top: 0;
-
-              .title {
-                margin-top: 0;
-
-                &::before {
-                  display: none;
-                }
-              }
-            }
-            @include breakpoint('xsmall') {
+            @include breakpoint('small-') {
               padding-top: 0;
 
               .title {
