@@ -21,7 +21,6 @@ const triggerMediaInline = function(container) {
   }
 
   function activateMedia() {
-    A17.YouTubeembeds[iframe.id].playVideo();
     container.classList.add('s-inline-media-activated');
   }
 
