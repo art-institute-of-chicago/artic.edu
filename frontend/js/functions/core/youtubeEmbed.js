@@ -50,7 +50,7 @@ const youtubeEmbed = async function(iframe) {
 
   function _onReady(event) {
     const player = event.target;
-    const iframe = player.getIframe();
+    iframe = player.getIframe();
     A17.YouTubeembeds[iframe.id] = player;
     triggerCustomEvent(iframe, 'youtube:ready', {id: iframe.id, player: player});
   }
@@ -61,7 +61,7 @@ const youtubeEmbed = async function(iframe) {
     } catch (err) {
       // noop
     }
-    const iframe = event.target.getIframe();
+    iframe = event.target.getIframe();
     switch (event.data) {
       case YT.PlayerState.ENDED:
         triggerCustomEvent(iframe, 'youtube:ended', {id: iframe.id});
@@ -80,6 +80,9 @@ const youtubeEmbed = async function(iframe) {
         break;
       case YT.PlayerState.CUED:
         triggerCustomEvent(iframe, 'youtube:cued', {id: iframe.id});
+        break;
+      default:
+        // noop
         break;
     }
   }
@@ -138,6 +141,9 @@ function controlYouTubePlayer(player, commands) {
         break;
       case 'destroy':
         player.destroy();
+        break;
+      default:
+        // noop
         break;
     }
   }
