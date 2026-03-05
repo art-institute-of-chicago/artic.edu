@@ -27,25 +27,32 @@ const shortsPlayer = function(container) {
     return false;
   }
   embed.id = SHORTS_PLAYER_ID;
-  embed.addEventListener('youtube:ready', _init)
+  list.addEventListener('scrollend', _handleScrollEnd);
+  document.addEventListener('page:updated', _modalInit)
+  document.addEventListener('youtube:ready', _playerInit)
   document.addEventListener('modal:close', _destroy);
   youtubeEmbed(embed);
 
-  function _init(event) {
+  function _modalInit(event) {
     const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
     _scrollToVideo(currentVideo, 'instant');
     embed.addEventListener('youtube:ended', _handleEnded);
-    list.addEventListener('scrollend', _handleScrollEnd);
     const videos = list.querySelectorAll(SHORT_VIDEO_SELECTOR);
     videos.forEach((video) => video.addEventListener('click', _handleClick));
+  }
+
+  function _playerInit(event) {
     controlYouTubePlayer(event.data.player, { 'playVideo': true });
   }
 
   function _destroy() {
     document.removeEventListener('modal:close', _destroy);
-    embed.removeEventListener('youtube:ready', _init);
+    document.removeEventListener('page:updated', _modalInit);
+    document.removeEventListener('youtube:ready', _playerInit)
     embed.removeEventListener('youtube:ended', _handleEnded);
     list.removeEventListener('scrollend', _handleScrollEnd);
+    const videos = list.querySelectorAll(SHORT_VIDEO_SELECTOR);
+    videos.forEach((video) => video.removeEventListener('click', _handleClick));
     unsetEmbed(embed);
   }
 
