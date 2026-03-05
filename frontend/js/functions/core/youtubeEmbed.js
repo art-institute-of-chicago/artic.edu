@@ -1,6 +1,6 @@
 import { triggerCustomEvent } from '@area17/a17-helpers';
 
-const youtubeEmbed = async function(iframe) {
+const youtubeEmbed = function(iframe) {
   if (!(iframe instanceof Element)) {
     iframe = document.getElementById(iframe);
   }
