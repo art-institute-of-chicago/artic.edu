@@ -52,15 +52,6 @@ class VideoController extends FrontController
         }
 
         $embed = $video->embed;
-        $embed = EmbedConverterFacade::createYouTubeEmbed(
-            attributes: [
-                'id' => $video->youtube_id,
-                'src' => $video->embed_url,
-            ],
-            parameters: [
-                // 'autoplay' => true,
-            ]
-        );
         $transcript = null;
         if ($video->is_captioned && $video->standardCaption?->hasActiveTranslation()) {
             $transcript = $video->standardCaption->transcript;
