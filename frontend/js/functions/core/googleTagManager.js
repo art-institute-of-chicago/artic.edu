@@ -16,7 +16,7 @@ const googleTagManager = function() {
           datum.eventPagePathName = window.location.pathname;
           datum.eventPageUrl = window.location.href;
           if (A17.env !== 'production') {
-            console.log('gtm:dataLayerPush', datum);
+            // console.log('gtm:dataLayerPush', datum);
           }
           window.dataLayer.push({
             event: 'dataLayerPush',
