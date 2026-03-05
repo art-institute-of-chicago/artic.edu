@@ -1,5 +1,5 @@
 import { purgeProperties } from '@area17/a17-helpers';
-import { youtubeEmbed } from '../../functions/core';
+import youtubeEmbed, { controlYouTubePlayer } from '../../functions/core/youtubeEmbed';
 
 const triggerMediaInline = function(container) {
   let iframe;
@@ -11,6 +11,8 @@ const triggerMediaInline = function(container) {
     event.stopPropagation();
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
+    const player = A17.YouTubeembeds[iframe.id];
+    controlYouTubePlayer(player, { 'playVideo': true });
     activateMedia();
   }
 
@@ -69,14 +71,14 @@ const triggerMediaInline = function(container) {
       activateMedia();
     }
 
-    iframe.addEventListener('youtube:playing', () => activateMedia());
+    iframe.addEventListener('youtube:playing', activateMedia);
   }
 
   this.destroy = function() {
     // Remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
-    iframe.removeEventListener('youtube:playing', () => activateMedia());
+    iframe.removeEventListener('youtube:playing', activateMedia);
     purgeProperties(this);
   };
 
