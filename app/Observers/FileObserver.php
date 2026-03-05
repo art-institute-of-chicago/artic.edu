@@ -6,6 +6,7 @@ use A17\Twill\Models\File;
 use Exception;
 use Illuminate\Http\File as HttpFile;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -96,7 +97,7 @@ class FileObserver
     {
         $fileUrl = ($file->toCmsArray())['src'];
         $zipFile = storage_path('app') . '/tempFile.zip';
-        file_put_contents($zipFile, fopen($fileUrl, 'r'));
+        file_put_contents($zipFile, $this->fetch($fileUrl));
 
         return $zipFile;
     }
@@ -152,5 +153,51 @@ class FileObserver
     {
         Storage::disk('local')->delete('tempFile.zip');
         Storage::disk('local')->deleteDirectory('tempDir');
+    }
+
+    private function fetch($url)
+    {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+
+        if (App::environment('test')) {
+            $headers = [];
+            $headers[] = 'CF-Access-Client-Id:' . config('aic.zerotrust_client_id');
+            $headers[] = 'CF-Access-Client-Secret: ' . config('aic.zerotrust_client_secret');
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        }
+
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+        // WEB-874: If connection or response take longer than 30 seconds, give up
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+        ob_start();
+
+        $retries = 3;
+
+        do {
+            curl_exec($ch);
+            $retries--;
+        } while (curl_errno($ch) === 28 && $retries > 0);
+
+        if (curl_errno($ch)) {
+            throw new \Exception(curl_error($ch));
+        }
+
+        curl_close($ch);
+
+        $contents = ob_get_contents();
+
+        ob_end_clean();
+
+        if (is_null($contents)) {
+            throw new \Exception('Cannot fetch URL: ' . $url);
+        }
+
+        return $contents;
     }
 }
