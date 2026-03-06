@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController as BaseModuleController;
+use A17\Twill\Services\Listings\Columns\Relation;
+use A17\Twill\Services\Listings\TableColumns;
 
 class VideoCategoryController extends BaseModuleController
 {
@@ -15,5 +17,20 @@ class VideoCategoryController extends BaseModuleController
         $this->setTitleColumnKey('name');
         $this->setTitleColumnLabel('Name');
         $this->setModuleName('videoCategories');
+    }
+
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $columns = TableColumns::make();
+        $columns->add(
+            Relation::make()
+                ->title('Videos')
+                ->field('title')
+                ->relation('videos')
+                ->optional()
+                ->hide()
+        );
+
+        return $columns;
     }
 }

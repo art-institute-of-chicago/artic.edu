@@ -156,6 +156,13 @@ class VideoController extends BaseController
                 ->optional()
         );
         $columns->add(
+            Relation::make()
+                ->title('Categories')
+                ->field('name')
+                ->relation('videoCategories')
+                ->optional()
+        );
+        $columns->add(
             NestedData::make()
                 ->field('captions')
                 ->optional()
