@@ -17,6 +17,7 @@ class EmbedConverterService
     ];
     private const YOUTUBE_DEFAULT_PARAMETERS = [
         'enablejsapi' => true,
+        'autoplay' => true,
     ];
 
     public function convertUrl($url)
