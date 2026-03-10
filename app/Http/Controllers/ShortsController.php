@@ -63,10 +63,15 @@ class ShortsController extends FrontController
         $this->seo->nofollow = true;
         $this->seo->noindex = true;
 
-        $embed = EmbedConverterFacade::createYouTubeEmbed(attributes: [
-            'id' => self::SHORTS_PLAYER_ID,
-            'src' => $video->embed_url,
-        ]);
+        $embed = EmbedConverterFacade::createYouTubeEmbed(
+            attributes: [
+                'id' => self::SHORTS_PLAYER_ID,
+                'src' => $video->embed_url,
+            ],
+            parameters: [
+                'autoplay' => true
+            ]
+        );
 
         return view('site.shortsDetail', [
             'item' => $video,
