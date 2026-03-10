@@ -38,7 +38,7 @@
         @component('components.organisms._o-grid-listing')
             @slot('behavior', 'dragScroll')
             @slot('cols_xsmall', 3)
-            @slot('cols_small', 4)
+            @slot('cols_small', 3)
             @slot('cols_medium', 5)
             @slot('cols_large', 5)
             @slot('cols_xlarge', 5)
