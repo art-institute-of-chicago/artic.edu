@@ -20,7 +20,7 @@
         $videos = App\Models\Video::published()
             ->where('is_short', true)
             ->orderBy('uploaded_at', 'desc')
-            ->take(6)
+            ->take(5)
             ->get();
     @endphp
 
