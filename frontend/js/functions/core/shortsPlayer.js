@@ -41,8 +41,19 @@ const shortsPlayer = function(container) {
     videos.forEach((video) => video.addEventListener('click', _handleClick));
   }
 
+  let awaitingInsertBeforeReload = false;
+
   function _playerInit(event) {
-    controlYouTubePlayer(event.data.player, { 'playVideo': true });
+    if (awaitingInsertBeforeReload) {
+      // In Safari, insertBefore reloads the iframe, resetting the player.
+      // Re-apply the correct video now that the player has reinitialized.
+      const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
+      currentVideo.dataset.playVideo = true;
+      controlYouTubePlayer(event.data.player, currentVideo.dataset);
+      awaitingInsertBeforeReload = false;
+    } else {
+      controlYouTubePlayer(event.data.player, { 'playVideo': true });
+    }
   }
 
   function _destroy() {
@@ -171,6 +182,7 @@ const shortsPlayer = function(container) {
     if (currentVideo.moveBefore) {
       currentVideo.moveBefore(viewport, currentVideo.firstChild);
     } else {
+      awaitingInsertBeforeReload = true;
       currentVideo.insertBefore(viewport, currentVideo.firstChild);
     }
   }
