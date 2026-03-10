@@ -168,7 +168,11 @@ const shortsPlayer = function(container) {
     oldCurrentVideo.classList.remove(CURRENT_VIDEO_CLASS);
     currentVideo.classList.add(CURRENT_VIDEO_CLASS);
     // Move the viewport on top of the current video's cover image
-    currentVideo.moveBefore(viewport, currentVideo.firstChild);
+    if (currentVideo.moveBefore) {
+      currentVideo.moveBefore(viewport, currentVideo.firstChild);
+    } else {
+      currentVideo.insertBefore(viewport, currentVideo.firstChild);
+    }
   }
 
   function _updatePreviousVideo(previousVideo) {
@@ -178,7 +182,11 @@ const shortsPlayer = function(container) {
       previousVideo.classList.add(PREVIOUS_VIDEO_CLASS);
       previousArrow.style.display = 'block';
       // Move the "previous arrow" to the previous video, after the cover image
-      previousVideo.moveBefore(previousArrow, null);
+      if (previousVideo.moveBefore) {
+        previousVideo.moveBefore(previousArrow, null);
+      } else {
+        previousVideo.insertBefore(previousArrow, null);
+      }
     } else {
       previousArrow.style.display = 'none';
     }
@@ -191,7 +199,11 @@ const shortsPlayer = function(container) {
       nextVideo.classList.add(NEXT_VIDEO_CLASS);
       nextArrow.style.display = 'block';
       // Move the "next arrow" to the next video, before the cover image
-      nextVideo.moveBefore(nextArrow, nextVideo.querySelector(COVER_IMAGE_SELECTOR));
+      if (nextVideo.moveBefore) {
+        nextVideo.moveBefore(nextArrow, nextVideo.querySelector(COVER_IMAGE_SELECTOR));
+      } else {
+        nextVideo.insertBefore(nextArrow, nextVideo.querySelector(COVER_IMAGE_SELECTOR));
+      }
     } else {
       nextArrow.style.display = 'none';
     }
