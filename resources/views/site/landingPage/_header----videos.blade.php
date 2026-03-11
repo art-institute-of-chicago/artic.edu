@@ -36,6 +36,37 @@
             <span class="o-grid-block__title">Art Institute Shorts</span>
         @endcomponent
         @component('components.organisms._o-grid-listing')
+            @slot('variation', 'u-show-flex@small+')
+            @slot('cols_xsmall', 3)
+            @slot('cols_small', 3)
+            @slot('cols_medium', 5)
+            @slot('cols_large', 5)
+            @slot('cols_xlarge', 5)
+            @foreach ($videos as $video)
+                @component('components.molecules._m-listing----short-video')
+                    @slot('url', route('shorts.show', ['video' => $video]))
+                    @slot('image', ImageHelpers::youtubeItemAsArray($video))
+                    @slot('label', '')
+                    @slot('title', $video->title ?? '')
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600),
+                        'sizes' => ImageHelpers::aic_imageSizes(array(
+                            'xsmall' => '216px',
+                            'small' => '216px',
+                            'medium' => '18',
+                            'large' => '13',
+                            'xlarge' => '13',
+                        )),
+                    ))
+                @endcomponent
+            @endforeach
+        @endcomponent
+
+        {{-- dupe 😢 - add dragScroll to xsmall --}}
+        @component('components.organisms._o-grid-listing')
+            @slot('variation', 'u-show-flex@xsmall')
             @slot('behavior', 'dragScroll')
             @slot('cols_xsmall', 3)
             @slot('cols_small', 3)
