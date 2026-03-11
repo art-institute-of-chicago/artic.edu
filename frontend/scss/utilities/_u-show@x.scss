@@ -27,7 +27,20 @@
 .u-show\@small\+,
 .u-show\@medium\+,
 .u-show\@large\+,
-.u-show\@xlarge {
+.u-show\@xlarge,
+.u-show-flex\@xsmall,
+.u-show-flex\@small,
+.u-show-flex\@medium,
+.u-show-flex\@large,
+.u-show-flex\@xlarge,
+.u-show-flex\@small\-,
+.u-show-flex\@medium\-,
+.u-show-flex\@large\-,
+.u-show-flex\@xlarge\-,
+.u-show-flex\@small\+,
+.u-show-flex\@medium\+,
+.u-show-flex\@large\+,
+.u-show-flex\@xlarge {
   display: none;
 }
 
@@ -35,11 +48,20 @@
   .u-show\@xsmall {
     display: block;
   }
+
+  .u-show-flex\@xsmall {
+    display: flex;
+  }
+
 }
 
 @include breakpoint('small') {
   .u-show\@small {
     display: block;
+  }
+
+  .u-show-flex\@small {
+    display: flex;
   }
 }
 
@@ -47,17 +69,29 @@
   .u-show\@medium {
     display: block;
   }
+
+  .u-show-flex\@medium {
+    display: flex;
+  }
 }
 
 @include breakpoint('large') {
   .u-show\@large {
     display: block;
   }
+
+  .u-show-flex\@large {
+    display: flex;
+  }
 }
 
 @include breakpoint('xlarge') {
   .u-show\@xlarge {
     display: block;
+  }
+
+  .u-show-flex\@xlarge {
+    display: flex;
   }
 }
 
@@ -66,11 +100,19 @@
   .u-show\@small\- {
     display: block;
   }
+
+  .u-show-flex\@small\- {
+    display: flex;
+  }
 }
 
 @include breakpoint('medium-') {
   .u-show\@medium\- {
     display: block;
+  }
+
+  .u-show-flex\@medium\- {
+    display: flex;
   }
 }
 
@@ -78,11 +120,19 @@
   .u-show\@large\- {
     display: block;
   }
+
+  .u-show-flex\@large\- {
+    display: flex;
+  }
 }
 
 @include breakpoint('small+') {
   .u-show\@small\+ {
     display: block;
+  }
+
+  .u-show-flex\@small\+ {
+    display: flex;
   }
 }
 
@@ -90,16 +140,28 @@
   .u-show\@medium\+ {
     display: block;
   }
+
+  .u-show-flex\@medium\+ {
+    display: flex;
+  }
 }
 
 @include breakpoint('large+') {
   .u-show\@large\+ {
     display: block;
   }
+
+  .u-show-flex\@large\+ {
+    display: flex;
+  }
 }
 
 @include breakpoint('xlarge') {
   .u-show\@xlarge {
     display: block;
+  }
+
+  .u-show-flex\@xlarge {
+    display: flex;
   }
 }
