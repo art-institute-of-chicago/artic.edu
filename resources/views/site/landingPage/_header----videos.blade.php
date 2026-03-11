@@ -36,7 +36,6 @@
             <span class="o-grid-block__title">Art Institute Shorts</span>
         @endcomponent
         @component('components.organisms._o-grid-listing')
-            @slot('behavior', 'dragScroll')
             @slot('cols_xsmall', 3)
             @slot('cols_small', 3)
             @slot('cols_medium', 5)
