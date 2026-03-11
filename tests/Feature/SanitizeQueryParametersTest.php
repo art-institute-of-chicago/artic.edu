@@ -31,7 +31,6 @@ class SanitizeQueryParametersTest extends BaseTestCase
             'uses' => function () {
                 return 'ok';
             },
-            'is_landing_page' => true,
         ])->middleware(\App\Http\Middleware\SanitizeQueryParameters::class);
     }
 
