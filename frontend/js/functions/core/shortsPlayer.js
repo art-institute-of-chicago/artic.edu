@@ -41,8 +41,19 @@ const shortsPlayer = function(container) {
     videos.forEach((video) => video.addEventListener('click', _handleClick));
   }
 
+  let awaitingInsertBeforeReload = false;
+
   function _playerInit(event) {
-    controlYouTubePlayer(event.data.player, { 'playVideo': true });
+    if (awaitingInsertBeforeReload) {
+      // In Safari, insertBefore reloads the iframe, resetting the player.
+      // Re-apply the correct video now that the player has reinitialized.
+      const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
+      currentVideo.dataset.playVideo = true;
+      controlYouTubePlayer(event.data.player, currentVideo.dataset);
+      awaitingInsertBeforeReload = false;
+    } else {
+      controlYouTubePlayer(event.data.player, { 'playVideo': true });
+    }
   }
 
   function _destroy() {
@@ -168,7 +179,12 @@ const shortsPlayer = function(container) {
     oldCurrentVideo.classList.remove(CURRENT_VIDEO_CLASS);
     currentVideo.classList.add(CURRENT_VIDEO_CLASS);
     // Move the viewport on top of the current video's cover image
-    currentVideo.moveBefore(viewport, currentVideo.firstChild);
+    if (currentVideo.moveBefore) {
+      currentVideo.moveBefore(viewport, currentVideo.firstChild);
+    } else {
+      awaitingInsertBeforeReload = true;
+      currentVideo.insertBefore(viewport, currentVideo.firstChild);
+    }
   }
 
   function _updatePreviousVideo(previousVideo) {
@@ -178,7 +194,11 @@ const shortsPlayer = function(container) {
       previousVideo.classList.add(PREVIOUS_VIDEO_CLASS);
       previousArrow.style.display = 'block';
       // Move the "previous arrow" to the previous video, after the cover image
-      previousVideo.moveBefore(previousArrow, null);
+      if (previousVideo.moveBefore) {
+        previousVideo.moveBefore(previousArrow, null);
+      } else {
+        previousVideo.insertBefore(previousArrow, null);
+      }
     } else {
       previousArrow.style.display = 'none';
     }
@@ -191,7 +211,11 @@ const shortsPlayer = function(container) {
       nextVideo.classList.add(NEXT_VIDEO_CLASS);
       nextArrow.style.display = 'block';
       // Move the "next arrow" to the next video, before the cover image
-      nextVideo.moveBefore(nextArrow, nextVideo.querySelector(COVER_IMAGE_SELECTOR));
+      if (nextVideo.moveBefore) {
+        nextVideo.moveBefore(nextArrow, nextVideo.querySelector(COVER_IMAGE_SELECTOR));
+      } else {
+        nextVideo.insertBefore(nextArrow, nextVideo.querySelector(COVER_IMAGE_SELECTOR));
+      }
     } else {
       nextArrow.style.display = 'none';
     }
