@@ -27,7 +27,20 @@
 .u-show\@small\+,
 .u-show\@medium\+,
 .u-show\@large\+,
-.u-show\@xlarge {
+.u-show\@xlarge,
+.u-show-flex\@xsmall,
+.u-show-flex\@small,
+.u-show-flex\@medium,
+.u-show-flex\@large,
+.u-show-flex\@xlarge,
+.u-show-flex\@small\-,
+.u-show-flex\@medium\-,
+.u-show-flex\@large\-,
+.u-show-flex\@xlarge\-,
+.u-show-flex\@small\+,
+.u-show-flex\@medium\+,
+.u-show-flex\@large\+,
+.u-show-flex\@xlarge {
   display: none;
 }
 
@@ -101,5 +114,79 @@
 @include breakpoint('xlarge') {
   .u-show\@xlarge {
     display: block;
+  }
+}
+
+/** Same thing, but for flex blocks **/
+@include breakpoint('xsmall') {
+  .u-show-flex\@xsmall {
+    display: flex;
+  }
+}
+
+@include breakpoint('small') {
+  .u-show-flex\@small {
+    display: flex;
+  }
+}
+
+@include breakpoint('medium') {
+  .u-show-flex\@medium {
+    display: flex;
+  }
+}
+
+@include breakpoint('large') {
+  .u-show-flex\@large {
+    display: flex;
+  }
+}
+
+@include breakpoint('xlarge') {
+  .u-show-flex\@xlarge {
+    display: flex;
+  }
+}
+
+
+@include breakpoint('small-') {
+  .u-show-flex\@small\- {
+    display: flex;
+  }
+}
+
+@include breakpoint('medium-') {
+  .u-show-flex\@medium\- {
+    display: flex;
+  }
+}
+
+@include breakpoint('large-') {
+  .u-show-flex\@large\- {
+    display: flex;
+  }
+}
+
+@include breakpoint('small+') {
+  .u-show-flex\@small\+ {
+    display: flex;
+  }
+}
+
+@include breakpoint('medium+') {
+  .u-show-flex\@medium\+ {
+    display: flex;
+  }
+}
+
+@include breakpoint('large+') {
+  .u-show-flex\@large\+ {
+    display: flex;
+  }
+}
+
+@include breakpoint('xlarge') {
+  .u-show-flex\@xlarge {
+    display: flex;
   }
 }
