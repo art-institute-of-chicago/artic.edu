@@ -48,11 +48,20 @@
   .u-show\@xsmall {
     display: block;
   }
+
+  .u-show-flex\@xsmall {
+    display: flex;
+  }
+
 }
 
 @include breakpoint('small') {
   .u-show\@small {
     display: block;
+  }
+
+  .u-show-flex\@small {
+    display: flex;
   }
 }
 
@@ -60,17 +69,29 @@
   .u-show\@medium {
     display: block;
   }
+
+  .u-show-flex\@medium {
+    display: flex;
+  }
 }
 
 @include breakpoint('large') {
   .u-show\@large {
     display: block;
   }
+
+  .u-show-flex\@large {
+    display: flex;
+  }
 }
 
 @include breakpoint('xlarge') {
   .u-show\@xlarge {
     display: block;
+  }
+
+  .u-show-flex\@xlarge {
+    display: flex;
   }
 }
 
@@ -79,11 +100,19 @@
   .u-show\@small\- {
     display: block;
   }
+
+  .u-show-flex\@small\- {
+    display: flex;
+  }
 }
 
 @include breakpoint('medium-') {
   .u-show\@medium\- {
     display: block;
+  }
+
+  .u-show-flex\@medium\- {
+    display: flex;
   }
 }
 
@@ -91,11 +120,19 @@
   .u-show\@large\- {
     display: block;
   }
+
+  .u-show-flex\@large\- {
+    display: flex;
+  }
 }
 
 @include breakpoint('small+') {
   .u-show\@small\+ {
     display: block;
+  }
+
+  .u-show-flex\@small\+ {
+    display: flex;
   }
 }
 
@@ -103,11 +140,19 @@
   .u-show\@medium\+ {
     display: block;
   }
+
+  .u-show-flex\@medium\+ {
+    display: flex;
+  }
 }
 
 @include breakpoint('large+') {
   .u-show\@large\+ {
     display: block;
+  }
+
+  .u-show-flex\@large\+ {
+    display: flex;
   }
 }
 
@@ -115,77 +160,7 @@
   .u-show\@xlarge {
     display: block;
   }
-}
 
-/** Same thing, but for flex blocks **/
-@include breakpoint('xsmall') {
-  .u-show-flex\@xsmall {
-    display: flex;
-  }
-}
-
-@include breakpoint('small') {
-  .u-show-flex\@small {
-    display: flex;
-  }
-}
-
-@include breakpoint('medium') {
-  .u-show-flex\@medium {
-    display: flex;
-  }
-}
-
-@include breakpoint('large') {
-  .u-show-flex\@large {
-    display: flex;
-  }
-}
-
-@include breakpoint('xlarge') {
-  .u-show-flex\@xlarge {
-    display: flex;
-  }
-}
-
-
-@include breakpoint('small-') {
-  .u-show-flex\@small\- {
-    display: flex;
-  }
-}
-
-@include breakpoint('medium-') {
-  .u-show-flex\@medium\- {
-    display: flex;
-  }
-}
-
-@include breakpoint('large-') {
-  .u-show-flex\@large\- {
-    display: flex;
-  }
-}
-
-@include breakpoint('small+') {
-  .u-show-flex\@small\+ {
-    display: flex;
-  }
-}
-
-@include breakpoint('medium+') {
-  .u-show-flex\@medium\+ {
-    display: flex;
-  }
-}
-
-@include breakpoint('large+') {
-  .u-show-flex\@large\+ {
-    display: flex;
-  }
-}
-
-@include breakpoint('xlarge') {
   .u-show-flex\@xlarge {
     display: flex;
   }
