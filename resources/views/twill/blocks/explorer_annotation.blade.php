@@ -1,5 +1,6 @@
 @twillBlockTitle('Explorer Annotation')
 @twillBlockIcon('info')
+@twillBlockTitleField('label')
 
 <x-twill::input
     name='label'
@@ -69,6 +70,7 @@ $blocks = BlockHelpers::getBlocksForEditor([
     'accordion',
     'hr',
     'image',
+    'layout_block',
     'link',
     'list',
     'media_embed',
