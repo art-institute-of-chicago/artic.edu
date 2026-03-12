@@ -23,6 +23,60 @@ body {
     text-align: center;
     padding: 0;
   }
+
+  .o-blocks {
+    .paragraph-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      h2, p {
+        color: $color__white !important;
+        font-family: $serif-font--loaded;
+        text-align: start;
+        text-transform: none;
+      }
+
+      h2 {
+        padding-top: 2rem;
+        letter-spacing: unset;
+        font-size: 3.5rem;
+        line-height: normal !important;
+      }
+
+      p {
+        font-size: 1.25rem !important;
+        line-height: 130% !important;
+      }
+    }
+
+    & .m-media:not(:only-child) {
+      min-height: 0;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      width: inherit;
+    }
+
+    .m-media__img {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        max-height: unset !important;
+        object-fit: cover;
+        height: 100% !important;
+      }
+    }
+
+    .f-caption {
+      padding-right: 0;
+      color: #f6f6f6 !important;
+      font-family: $sans-serif-font--loaded !important;
+      text-align: left;
+    }
+  }
 }
 
 #a17:has(.kioskMode) {
