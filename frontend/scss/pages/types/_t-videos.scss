@@ -145,7 +145,7 @@
               }
           }
           .o-grid-listing {
-              flex-flow: row;
+              flex-flow: row wrap;
               overflow: hidden;
 
               @include breakpoint('xsmall') {
@@ -159,6 +159,11 @@
           .m-listing__img {
               border-radius: 8px;
           }
+      }
+      .shorts-grid {
+        .o-grid-listing {
+          flex-flow: row;
+        }
       }
       .o-grid-block {
           .o-grid-block__title {
