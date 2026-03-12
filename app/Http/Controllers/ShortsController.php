@@ -57,6 +57,7 @@ class ShortsController extends FrontController
                 return [$short->id => $this->dataAttributes([
                     'embedId' => 'shorts-player-iframe',
                     'loadVideoById' => $short->youtube_id,
+                    'fullVideoUrl' => EmbedConverterFacade::sanitizeUrl($short->embedUrl, ['autoplay' => true])
                 ])];
             });
 
