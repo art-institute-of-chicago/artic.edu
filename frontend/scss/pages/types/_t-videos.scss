@@ -10,6 +10,10 @@
             right: 0;
             bottom: 0;
 
+            a.f-link::after {
+              margin-bottom: -3px;
+            }
+
             @include breakpoint('small-') {
                 display: flex;
             }
