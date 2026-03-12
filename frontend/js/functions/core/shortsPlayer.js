@@ -181,6 +181,7 @@ const shortsPlayer = function(container) {
       currentVideo.moveBefore(viewport, currentVideo.firstChild);
     } else {
       awaitingInsertBeforeReload = true;
+      embed.src = currentVideo.dataset.fullVideoUrl
       currentVideo.insertBefore(viewport, currentVideo.firstChild);
     }
   }
