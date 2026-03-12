@@ -111,12 +111,10 @@ const shortsPlayer = function(container) {
       // the same video.
       return;
     }
-    container.addEventListener('youtube:playing', () => {
+    list.classList.add('s-moving-viewport');
       _updateVideoNavigation(video);
       list.classList.remove('s-moving-viewport');
       _loadMore();
-    }, { once: true });
-    list.classList.add('s-moving-viewport');
     const player = A17.YouTubeembeds[embed.id];
     controlYouTubePlayer(player, video.dataset);
   }
