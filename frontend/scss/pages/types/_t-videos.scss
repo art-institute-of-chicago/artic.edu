@@ -2,12 +2,17 @@
 .p-t-videos body,
 .p-video-index body {
   .playlist-grid,
+  .video-grid,
   .shorts-grid {
     .m-title-bar {
         .m-title-bar__links {
             position: absolute;
             right: 0;
-            top: 0;
+            bottom: 0;
+
+            a.f-link::after {
+              margin-bottom: -3px;
+            }
 
             @include breakpoint('small-') {
                 display: flex;
@@ -140,7 +145,7 @@
               }
           }
           .o-grid-listing {
-              flex-flow: row;
+              flex-flow: row wrap;
               overflow: hidden;
 
               @include breakpoint('xsmall') {
@@ -154,6 +159,11 @@
           .m-listing__img {
               border-radius: 8px;
           }
+      }
+      .shorts-grid {
+        .o-grid-listing {
+          flex-flow: row;
+        }
       }
       .o-grid-block {
           .o-grid-block__title {
