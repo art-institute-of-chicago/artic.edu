@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DigitalExplorer;
 use App\Repositories\DigitalExplorerRepository;
+use Illuminate\Support\Facades\View;
 
 class DigitalExplorerController extends FrontController
 {
@@ -31,12 +32,15 @@ class DigitalExplorerController extends FrontController
             }
         ]);
 
+        // Renders paragraph wrapper for style targetting
+        View::share('hasWrapper', true);
+
         $explorerData = $this->transformExplorer($digitalExplorer);
 
         return view('site.digitalExplorerDetail', [
             'contrastHeader' => false,
             'explorer' => $digitalExplorer,
-            'explorerData' => $explorerData
+            'explorerData' => $explorerData,
         ]);
     }
 
@@ -80,10 +84,10 @@ class DigitalExplorerController extends FrontController
                     'makeDefault' => true
                 ],
                 'camera' => [
-                    'position' => [2, 0, 0],
-                    'fov' => 75,
-                    'near' => 0.1,
-                    'far' => 2000
+                    'position' => $this->parseCoordinates($digitalExplorer->settings?->get('cameraPosition')) ?? [2, 0, 0],
+                    'fov' => floatval($digitalExplorer->settings?->get('cameraFov') ?? 15),
+                    'near' => floatval($digitalExplorer->settings?->get('minDistance') ?? 0.1),
+                    'far' => intval($digitalExplorer->settings?->get('maxDistance') ?? 10)
                 ]
             ],
 
@@ -114,7 +118,7 @@ class DigitalExplorerController extends FrontController
                     'position' => $this->parseCoordinates($block->input('coordinate'), [0, 0, 0]),
                     'rotation' => $this->parseCoordinates($block->input('rotation'), [0, 0, 0]),
                     'scale' => $this->parseScale($block->input('scale'), 0.1),
-                    'annotationColor' => $block->input('color') ?: '#4ecdc4',
+                    'annotationColor' => $block->input('color') ?: '#4B9CA3',
                     'annotationSize' => floatval($block->input('scale') ?: 0.5),
                     'annotationTarget' => $block->input('annotationTarget'),
                     'showLabel' => in_array('showLabel', $block->input('annotationSettings') ?? []),
