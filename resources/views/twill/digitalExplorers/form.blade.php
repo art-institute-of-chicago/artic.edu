@@ -138,16 +138,21 @@
     <x-twill::formFieldset title="Camera Offset" id="camera">
         <p>By default the camera will orbit the first model. These settings will be used for the initial offset</p>
         <x-twill::input
-            name="settings.position"
+            name="settings.cameraPosition"
             label="Position"
         />
         <x-twill::input
-            name="settings.rotation"
-            label="Rotation"
+            name="settings.cameraFov"
+            label="FOV"
         />
         <x-twill::input
-            name="settings.scale"
-            label="Scale"
+            name="settings.minDistance"
+            label="Minimum Distance"
+        />
+
+        <x-twill::input
+            name="settings.maxDistance"
+            label="Maximum Distance"
         />
     </x-twill::formFieldset>
 @stop
