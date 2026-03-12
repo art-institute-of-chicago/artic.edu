@@ -11,9 +11,6 @@ const triggerMediaInline = function(container) {
     event.stopPropagation();
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
-    const player = A17.YouTubeembeds[iframe.id];
-    controlYouTubePlayer(player, { 'playVideo': true });
-    activateMedia();
   }
 
   function _handleKeyUp(event) {
@@ -24,6 +21,12 @@ const triggerMediaInline = function(container) {
 
   function activateMedia() {
     container.classList.add('s-inline-media-activated');
+  }
+
+  function readyMedia(event) {
+    const player = A17.YouTubeembeds[event.data.id];
+    controlYouTubePlayer(player, { 'playVideo': true });
+    activateMedia();
   }
 
   function _init() {
@@ -72,6 +75,7 @@ const triggerMediaInline = function(container) {
     }
 
     iframe.addEventListener('youtube:playing', activateMedia);
+    iframe.addEventListener('youtube:ready', readyMedia);
   }
 
   this.destroy = function() {
