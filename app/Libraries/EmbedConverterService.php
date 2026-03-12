@@ -66,17 +66,25 @@ class EmbedConverterService
 
         $attributes = array_merge(self::YOUTUBE_DEFAULT_ATTRIBUTES, $attributes);
         if ($attributes['src']) {
-            $parameters = array_merge(self::YOUTUBE_DEFAULT_PARAMETERS, $parameters);
-            if (!isset($parameters['origin'])) {
-                $parameters['origin'] = config('app.url');
-            }
-            $attributes['src'] .= (str($attributes['src'])->contains('?') ? '&' : '?') . http_build_query($parameters);
+            $attributes['src'] = $this->sanitizeUrl($attributes['src'], $parameters);
         }
         foreach ($attributes as $key => $value) {
             $element->setAttribute($key, $value);
         }
 
         return $document->saveHTML($element);
+    }
+
+    public function sanitizeUrl(
+        string $url,
+        array $parameters = [],
+    ): string {
+        $parameters = array_merge(self::YOUTUBE_DEFAULT_PARAMETERS, $parameters);
+        if (!isset($parameters['origin'])) {
+            $parameters['origin'] = config('app.url');
+        }
+        $url .= (str($url)->contains('?') ? '&' : '?') . http_build_query($parameters);
+        return $url;
     }
 
     public function getYoutubeThumbnailImage($url)

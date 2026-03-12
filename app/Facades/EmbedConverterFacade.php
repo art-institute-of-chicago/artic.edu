@@ -27,4 +27,11 @@ class EmbedConverterFacade extends Facade
 
         return $service->convertUrl($url);
     }
+
+    public static function sanitizeUrl($url, $parameters = [])
+    {
+        $service = App::make('embedconverterservice');
+
+        return $service->sanitizeUrl($url, $parameters);
+    }
 }
