@@ -10,6 +10,7 @@
     switch ($variation) {
         case '4-wide':
             $width = '4';
+            $widthMedium = '2';
             break;
         case '2-wide':
             $width = '2';
@@ -68,8 +69,8 @@
     @component('components.organisms._o-grid-listing')
         @slot('behavior', 'dragScroll')
         @slot('cols_xsmall', $widthSmall)
-        @slot('cols_small', $width)
-        @slot('cols_medium', $width)
+        @slot('cols_small', $widthMedium ?? $width)
+        @slot('cols_medium', $widthMedium ?? $width)
         @slot('cols_large', $width)
         @slot('cols_xlarge', $width)
         @foreach ($videos as $video)
