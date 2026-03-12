@@ -28,6 +28,9 @@ class DigitalExplorer extends AbstractModel
         'short_description',
         'listing_description',
         'settings',
+        'info_title',
+        'info_description',
+        'info_credits',
     ];
 
     public $casts = [
