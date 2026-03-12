@@ -143,6 +143,10 @@
               flex-flow: row;
               overflow: hidden;
 
+              @include breakpoint('xsmall') {
+                overflow: scroll;
+              }
+
               a::after{
                 margin-bottom: 0px;
               }
