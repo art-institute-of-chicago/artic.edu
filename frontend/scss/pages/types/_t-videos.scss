@@ -144,7 +144,7 @@
               overflow: hidden;
 
               @include breakpoint('xsmall') {
-                overflow: scroll;
+                overflow-x: scroll;
               }
 
               a::after{
