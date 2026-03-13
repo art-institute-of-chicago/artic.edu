@@ -6,14 +6,30 @@ const triggerMediaInline = function(container) {
   let src;
   let embedSrcType;
   let isYoutube = false;
+  let pendingPlay = false;
+
+  function _youtubePlayAndActivate() {
+    const player = A17.YouTubeembeds[iframe.id];
+    controlYouTubePlayer(player, { 'playVideo': true });
+    activateMedia();
+  }
+
+  function _onYoutubeReady() {
+    iframe.removeEventListener('youtube:ready', _onYoutubeReady);
+    if (pendingPlay) {
+      _youtubePlayAndActivate();
+    }
+  }
 
   function _handleClicks(event) {
     event.preventDefault();
     event.stopPropagation();
     if (isYoutube === true) {
-      const player = A17.YouTubeembeds[iframe.id];
-      controlYouTubePlayer(player, { 'playVideo': true });
-      activateMedia();
+      if (A17.YouTubeembeds[iframe.id]) {
+        _youtubePlayAndActivate();
+      } else {
+        pendingPlay = true;
+      }
     }
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
@@ -55,6 +71,7 @@ const triggerMediaInline = function(container) {
 
     if (src.indexOf('youtube.com') > -1) {
       isYoutube = true;
+      iframe.addEventListener('youtube:ready', _onYoutubeReady);
 
       if (embedSrcType === 'data-src') {
         iframe.setAttribute('data-src', src);
@@ -82,6 +99,7 @@ const triggerMediaInline = function(container) {
     // Remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('keyup', _handleKeyUp);
+    iframe.removeEventListener('youtube:ready', _onYoutubeReady);
     iframe.removeEventListener('youtube:playing', activateMedia);
     purgeProperties(this);
   };
