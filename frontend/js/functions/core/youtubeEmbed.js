@@ -25,7 +25,7 @@ const youtubeEmbed = function(iframe) {
       'event': 'playing',
       'eventCategory': 'video-engagement',
     });
-    youtubePlayerTimer = setInterval(_checkPlayedPercent, 250, player);
+    youtubePlayerTimer = setInterval(() => _checkPlayedPercent(player), 250);
   }
 
   function onPlayerPaused() {
