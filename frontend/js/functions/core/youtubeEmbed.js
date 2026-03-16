@@ -93,7 +93,7 @@ const youtubeEmbed = function(iframe) {
     if (A17.YouTubeonYouTubeIframeAPIReady) {
       if (!(iframeId in A17.YouTubeembeds)) {
         console.log('building the player in _initYoutubePlayer');
-        new YT.Player(iframeId, {
+        const player = new YT.Player(iframeId, {
           playerVars: {
             'autoplay': 1,
             'enablejsapi': 1,
@@ -104,6 +104,16 @@ const youtubeEmbed = function(iframe) {
             'onStateChange': _onStateChange,
           },
         });
+        const onReadyPollInterval = setInterval(() => {
+          console.log('checking if onReady should be called in _initYoutubePlayer');
+          if (player.getPlayerState !== undefined) {
+            clearInterval(onReadyPollInterval);
+            if (!(iframeId in A17.YouTubeembeds)) {
+              console.log('calling onReady in _initYoutubePlayer');
+              _onReady({ target: player });
+            }
+          }
+        }, 50);
       }
     } else {
       setTimeout(() => _initYoutubePlayer(iframeId), 10);
