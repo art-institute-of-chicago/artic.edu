@@ -106,8 +106,8 @@ const youtubeEmbed = function(iframe) {
           },
         });
         const onReadyPollInterval = setInterval(() => {
-          console.log('checking if onReady should be called in _initYoutubePlayer');
-          if (typeof player.getPlayerState === 'function' && typeof player.getPlayerState() === 'number') {
+          console.log('checking if onReady should be called in _initYoutubePlayer', player.getPlayerState !== undefined);
+          if (player.getPlayerState !== undefined) {
             clearInterval(onReadyPollInterval);
             if (!(iframeId in A17.YouTubeembeds)) {
               console.log('calling onReady in _initYoutubePlayer');
