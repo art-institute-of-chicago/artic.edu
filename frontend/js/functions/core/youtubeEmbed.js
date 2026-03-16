@@ -51,6 +51,7 @@ const youtubeEmbed = function(iframe) {
   function _onReady(event) {
     const player = event.target;
     iframe = player.getIframe();
+    if (iframe.id in A17.YouTubeembeds) return;
     A17.YouTubeembeds[iframe.id] = player;
     console.log(A17.YouTubeembeds);
     triggerCustomEvent(iframe, 'youtube:ready', {id: iframe.id, player: player});
@@ -106,7 +107,7 @@ const youtubeEmbed = function(iframe) {
         });
         const onReadyPollInterval = setInterval(() => {
           console.log('checking if onReady should be called in _initYoutubePlayer');
-          if (player.getPlayerState !== undefined) {
+          if (typeof player.getPlayerState === 'function' && typeof player.getPlayerState() === 'number') {
             clearInterval(onReadyPollInterval);
             if (!(iframeId in A17.YouTubeembeds)) {
               console.log('calling onReady in _initYoutubePlayer');
