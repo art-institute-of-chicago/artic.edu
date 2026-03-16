@@ -52,6 +52,7 @@ const youtubeEmbed = function(iframe) {
     const player = event.target;
     iframe = player.getIframe();
     A17.YouTubeembeds[iframe.id] = player;
+    console.log(A17.YouTubeembeds);
     triggerCustomEvent(iframe, 'youtube:ready', {id: iframe.id, player: player});
   }
 
@@ -88,8 +89,10 @@ const youtubeEmbed = function(iframe) {
   }
 
   function _initYoutubePlayer(iframeId) {
+    console.log('trying in _initYoutubePlayer');
     if (A17.YouTubeonYouTubeIframeAPIReady) {
       if (!(iframeId in A17.YouTubeembeds)) {
+        console.log('building the player in _initYoutubePlayer');
         new YT.Player(iframeId, {
           playerVars: {
             'autoplay': 1,
