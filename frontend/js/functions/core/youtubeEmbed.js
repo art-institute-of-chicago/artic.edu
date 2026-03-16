@@ -50,7 +50,11 @@ const youtubeEmbed = function(iframe) {
 
   function _onReady(event) {
     const player = event.target;
-    iframe = player.getIframe();
+    try {
+      iframe = player.getIframe();
+    } catch(e) {
+      return;
+    }
     if (iframe.id in A17.YouTubeembeds) return;
     A17.YouTubeembeds[iframe.id] = player;
     console.log(A17.YouTubeembeds);
@@ -105,6 +109,8 @@ const youtubeEmbed = function(iframe) {
             'onStateChange': _onStateChange,
           },
         });
+        // If the onReady event doesn't get called on its own, check the element manually
+        // and call `onReady` once it's available.
         const onReadyPollInterval = setInterval(() => {
           console.log('checking if onReady should be called in _initYoutubePlayer', player.getPlayerState !== undefined);
           if (player.getPlayerState !== undefined) {
@@ -115,6 +121,14 @@ const youtubeEmbed = function(iframe) {
             }
           }
         }, 50);
+        // After 5 solid seconds of trying, stop trying and just call onReady anyway.
+        setTimeout(() => {
+          clearInterval(onReadyPollInterval);
+          if (!(iframeId in A17.YouTubeembeds)) {
+            console.log('calling onReady in _initYoutubePlayer anyway no matter what');
+            _onReady({ target: player });
+          }
+        }, 5000);
       }
     } else {
       setTimeout(() => _initYoutubePlayer(iframeId), 10);
