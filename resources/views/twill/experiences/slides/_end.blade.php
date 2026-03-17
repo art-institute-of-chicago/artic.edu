@@ -26,9 +26,14 @@
         />
 
         <x-twill::wysiwyg
-            name='end_credit_copy'
-            label='Copy'
-            :toolbar-options="[ ['header' => 2], 'bold', 'italic' ]"
+            name="end_credit_copy"
+            label="Copy"
+            :toolbar-options="[
+                ['header' => [2]],
+                'bold',
+                'italic',
+                'link'
+            ]"
         />
 
         <x-twill::repeater
