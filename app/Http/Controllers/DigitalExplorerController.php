@@ -84,7 +84,7 @@ class DigitalExplorerController extends FrontController
                     'makeDefault' => true
                 ],
                 'camera' => [
-                    'position' => $this->parseCoordinates($digitalExplorer->settings?->get('cameraPosition')) ?? [2, 0, 0],
+                    'position' => $this->parseCoordinates($digitalExplorer->settings?->get('cameraPosition'), [2, 0, 0]),
                     'fov' => floatval($digitalExplorer->settings?->get('cameraFov') ?? 15),
                     'near' => floatval($digitalExplorer->settings?->get('minDistance') ?? 0.1),
                     'far' => intval($digitalExplorer->settings?->get('maxDistance') ?? 10)
