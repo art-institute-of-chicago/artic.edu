@@ -3,6 +3,8 @@ import { triggerCustomEvent, purgeProperties } from '@area17/a17-helpers';
 const triggerShortsPlayerModal = function(container) {
 
   function _handleClicks(event) {
+    // WEB-3326 Redirect Safari users to Shorts detail page
+    if (isSafari()) return;
     event.preventDefault();
     event.stopPropagation();
     triggerCustomEvent(document, 'ajax:getPage', {
@@ -21,6 +23,12 @@ const triggerShortsPlayerModal = function(container) {
     if (event.keyCode === 13) {
       _handleClicks(event);
     }
+  }
+
+  function isSafari() {
+    const isSafari = navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome');
+    console.debug(`isSafari: ${isSafari}`);
+    return isSafari;
   }
 
   this.destroy = function() {
