@@ -54,6 +54,11 @@
                     ['value' => 'Linear', 'label' => 'Linear']
                 ]"
             />
+
+            <x-twill::checkbox
+              name="settings.brailleButton"
+              label="Show braille button?"
+            />
         </x-slot>
     </x-twill::formColumns>
 @stop
