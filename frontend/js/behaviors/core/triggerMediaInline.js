@@ -24,6 +24,7 @@ const triggerMediaInline = function(container) {
   function _handleClicks(event) {
     event.preventDefault();
     event.stopPropagation();
+    activateMedia();
     if (isYoutube === true) {
       if (A17.YouTubeembeds[iframe.id]) {
         _youtubePlayAndActivate();
