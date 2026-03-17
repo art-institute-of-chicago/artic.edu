@@ -121,13 +121,9 @@ const youtubeEmbed = function(iframe) {
             }
           }
         }, 50);
-        // After 5 solid seconds of trying, stop trying and just call onReady anyway.
+        // After 5 solid seconds of trying, stop.
         setTimeout(() => {
           clearInterval(onReadyPollInterval);
-          if (!(iframeId in A17.YouTubeembeds)) {
-            console.log('calling onReady in _initYoutubePlayer anyway no matter what');
-            _onReady({ target: player });
-          }
         }, 5000);
       }
     } else {
