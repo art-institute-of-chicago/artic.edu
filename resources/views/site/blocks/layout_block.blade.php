@@ -33,8 +33,8 @@
 @endphp
 
 <div
-    id="{{ $block->input('custom_id') }}"
-    class="{{ "o-blocks o-layout_block". $block->input('custom_class') }}"
+    id="{{ (isset($block->input('custom_id')) ? $block->input('custom_id') : $block->id) }}"
+    class="{{ "o-blocks o-layout_block ". $block->input('custom_class') }}"
     style="{{ 'max-height: 100%; height: 100%; '. $styleLine }}"
 >
     {!! $renderData->renderChildren('layout_block_blocks') !!}
