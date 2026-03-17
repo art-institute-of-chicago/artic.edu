@@ -70,6 +70,7 @@ class DigitalExplorerController extends FrontController
 
             'settings' => [
                 'debug' => $digitalExplorer->settings->get('debug', false),
+                'brailleButton' => $digitalExplorer->settings->get('brailleButton', false),
                 'sceneSettings' => [
                     'antialiasing' => in_array('antialiasing', $digitalExplorer->settings?->get('sceneSettings', []) ?? []),
                     'shadows' => in_array('shadows', $digitalExplorer->settings?->get('sceneSettings', []) ?? []),
