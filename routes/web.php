@@ -70,7 +70,10 @@ Route::group([
 Route::get('/', [LandingPagesController::class, 'slugHome'])->name('home');
 Route::group([
     'middleware' => [SanitizeQueryParameters::class],
-    'is_landing_page' => true,
+    'allowed_query_params' => [
+        'filter',
+        'sort',
+    ]
 ], function () {
     Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
 });

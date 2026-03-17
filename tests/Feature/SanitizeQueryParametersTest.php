@@ -31,7 +31,6 @@ class SanitizeQueryParametersTest extends BaseTestCase
             'uses' => function () {
                 return 'ok';
             },
-            'is_landing_page' => true,
         ])->middleware(\App\Http\Middleware\SanitizeQueryParameters::class);
     }
 
@@ -39,20 +38,20 @@ class SanitizeQueryParametersTest extends BaseTestCase
     {
         $response = $this->get('/collection?foo=bar&page=2');
 
-        $response->assertStatus(500);
+        $response->assertRedirect('/collection?page=2');
     }
 
     public function test_events_keeps_only_allowed_params()
     {
         $response = $this->get('/events?type=tour&spam=1');
 
-        $response->assertStatus(500);
+        $response->assertRedirect('/events?type=tour');
     }
 
     public function test_landing_page_keeps_landing_allowed_params()
     {
         $response = $this->get('/landingpages/1/test?filter=popular&badparam=xyz');
 
-        $response->assertStatus(500);
+        $response->assertRedirect('/landingpages/1/test?filter=popular');
     }
 }
