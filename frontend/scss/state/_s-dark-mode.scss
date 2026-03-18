@@ -110,6 +110,24 @@ html.s-dark-mode body {
     color: $color__input-text--focus;
   }
 
+  .o-blocks>p:not([class*='f-']) a:not(.btn):not(.reset),
+  .o-blocks>blockquote:not([class*='f-']) a:not(.btn):not(.reset),
+  .o-blocks>ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
+  .o-blocks>ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
+  .o-blocks>.f-body a:not(.btn) {
+    color: $color__dark-mode__link;
+    text-decoration: none;
+
+    &:hover,
+    &:focus:hover {
+      @include text-underline(1.02em, $color__dark-mode__link);
+    }
+
+    &:active:hover {
+      @include text-underline(1.02em, $color__dark-mode__rules--primary);
+    }
+  }
+
   /* Primary nav - desktop */
   &,
   &:not(.s-scroll-direction-up),
