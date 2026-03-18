@@ -68,7 +68,13 @@ class VideoRepository extends ModuleRepository
             return $customRelatedVideos;
         }
 
-        return $this->model::published()->orderBy('date', 'desc')->whereNotIn('id', [$item->id])->limit(4)->get();
+        $videosQuery = $this->model::published()->orderBy('date', 'desc')->whereNotIn('id', [$item->id]);
+
+        if ($item->is_short) {
+            $videosQuery = $videosQuery->where('is_short', true);
+        }
+
+        return $videosQuery->limit(4)->get();
     }
 
     public function afterSave(TwillModelContract $video, array $fields): void
