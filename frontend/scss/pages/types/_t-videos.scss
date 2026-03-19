@@ -33,7 +33,7 @@
         z-index: 4;
       }
       img {
-        aspect-ratio: 2/1;
+        aspect-ratio: 2 / 1;
         box-shadow: 0 -3px 2px 0 rgba($color__black, 0.25);
         z-index: 3;
       }
@@ -320,7 +320,7 @@
 
       .shorts-grid {
           .m-listing__img {
-              aspect-ratio: 2 / 3;
+              aspect-ratio: 9 / 16;
 
               img {
                   height: 120%;
@@ -473,7 +473,7 @@
           background-color: $color__videos__rules--primary;
         }
         .m-media.variation--short {
-            aspect-ratio: 2 / 3;
+            aspect-ratio: 9 / 16;
             flex-basis: 50%;
 
             @include breakpoint('small+') {
@@ -481,6 +481,7 @@
             }
 
             .m-media__img--embed {
+                aspect-ratio: 9 / 16;
                 border-radius: 28px;
                 height: 120%;
             }
@@ -844,7 +845,7 @@
       padding: unset;
     }
     .m-media__img {
-      aspect-ratio: 185 / 329;
+      aspect-ratio: 9 / 16;
       border-radius: 28px;
       min-height: 60vh;
 
