@@ -17,17 +17,17 @@
     @endif
     <article @class([
         'o-article o-article--video',
-        'video-is-short' => $item->is_short,
+        'video-is-short' => !isset($playlist) && $item->is_short,
     ])>
         <div class="o-article__header">
             @component('components.molecules._m-article-header')
-                @slot('variation', $item->is_short ? 'variation--short' : 'variation--video')
+                @slot('variation', !isset($playlist) && $item->is_short ? 'variation--short' : 'variation--video')
                 @slot('headerType', 'video')
                 @slot('title', $item->present()->title)
                 @slot('title_display', $item->present()->title_display)
             @endcomponent
             @component('components.molecules._m-media')
-                @slot('variation', $item->is_short ? 'variation--short' : 'variation--video')
+                @slot('variation', !isset($playlist) && $item->is_short ? 'variation--short' : 'variation--video')
                 @slot('item', [
                     'type' => 'embed',
                     'size' => 'l',
