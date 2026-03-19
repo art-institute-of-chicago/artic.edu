@@ -35,6 +35,8 @@
         </tbody>
     </table>
 
+    <p>For instructions on authorizing the Google service, see here: <a href="https://art-institute-of-chicago.atlassian.net/wiki/spaces/MUS/pages/702578690/Authenticating+with+YouTube+via+Google+OAuth+Integration">Authenticating with YouTube via Google OAuth Integration</a></p>
+
     @push('extra_css')
         <style>
             table#integrations {
@@ -50,6 +52,9 @@
                 border-right: 1px solid black;
                 padding: 1em;
                 text-align: center;
+            }
+            p {
+                margin-top: 25px;
             }
         </style>
     @endpush
