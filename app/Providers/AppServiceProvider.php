@@ -394,6 +394,16 @@ class AppServiceProvider extends ServiceProvider
                                 [
                                     'name' => 'Articles &amp; Videos',
                                     'url' => '/articles-videos',
+                                    'children' => [
+                                        [
+                                            'name' => 'Articles',
+                                            'url' => '/articles-videos',
+                                        ],
+                                        [
+                                            'name' => 'Videos',
+                                            'url' => '/videos',
+                                        ],
+                                    ]
                                 ],
                                 [
                                     'name' => 'Research Center',
