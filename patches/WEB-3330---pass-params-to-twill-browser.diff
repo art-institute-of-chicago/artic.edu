@@ -1,0 +1,106 @@
+diff --git a/frontend/js/components/Browser.vue b/frontend/js/components/Browser.vue
+index 013c1f71..981206cf 100755
+--- a/frontend/js/components/Browser.vue
++++ b/frontend/js/components/Browser.vue
+@@ -95,6 +95,7 @@
+         endpoint: state => state.browser.endpoint,
+         endpointName: state => state.browser.endpointName,
+         endpoints: state => state.browser.endpoints,
++        params: state => state.browser.params,
+         browserTitle: state => state.browser.title,
+         browserNote: state => state.browser.note,
+         selected: state => state.browser.selected
+@@ -150,9 +151,9 @@
+ 
+         const form = this.$refs.form
+         const list = this.$refs.list
+-        const formdata = this.getFormData(form)
++        const params = { ...this.getFormData(form), ...this.params }
+ 
+-        this.$http.get(this.endpoint, { params: formdata }).then((resp) => {
++        this.$http.get(this.endpoint, { params: params }).then((resp) => {
+           // add items here
+           if (hardReload) {
+             this.clearFullItems()
+diff --git a/frontend/js/components/BrowserField.vue b/frontend/js/components/BrowserField.vue
+index 95222ea9..b1de75b8 100755
+--- a/frontend/js/components/BrowserField.vue
++++ b/frontend/js/components/BrowserField.vue
+@@ -77,6 +77,10 @@
+         type: Array,
+         default: () => []
+       },
++      params: {
++        type: Array,
++        default: () => []
++      },
+       draggable: {
+         type: Boolean,
+         default: true
+@@ -187,6 +191,7 @@
+             label: this.name
+           })
+         }
++        this.$store.commit(BROWSER.UPDATE_BROWSER_PARAMS, this.params)
+         this.$store.commit(BROWSER.UPDATE_BROWSER_MAX, this.max)
+         this.$store.commit(BROWSER.UPDATE_BROWSER_TITLE, this.browserTitle)
+         this.$store.commit(BROWSER.UPDATE_BROWSER_NOTE, this.browserNote)
+diff --git a/frontend/js/store/modules/browser.js b/frontend/js/store/modules/browser.js
+index 1f5f78f4..0b87595b 100644
+--- a/frontend/js/store/modules/browser.js
++++ b/frontend/js/store/modules/browser.js
+@@ -11,6 +11,7 @@ const state = {
+   endpoint: '',
+   endpointName: '',
+   endpoints: [],
++  params: [],
+   max: 0,
+   selected: window[process.env.VUE_APP_NAME].STORE.browser.selected || {}
+ }
+@@ -102,6 +103,13 @@ const mutations = {
+   [BROWSER.DESTROY_BROWSER_ENDPOINTS] (state) {
+     state.endpoints = []
+   },
++  [BROWSER.UPDATE_BROWSER_PARAMS] (state, params) {
++    if (!params && !params.length > 0) return
++    state.params = params
++  },
++  [BROWSER.DESTROY_BROWSER_PARAMS] (state) {
++    state.params = []
++  },
+   [BROWSER.ADD_BROWSERS] (state, { browsers }) {
+     state.selected = Object.assign({}, state.selected, browsers)
+   }
+diff --git a/frontend/js/store/mutations/browser.js b/frontend/js/store/mutations/browser.js
+index c43b90ed..e7f4a99c 100644
+--- a/frontend/js/store/mutations/browser.js
++++ b/frontend/js/store/mutations/browser.js
+@@ -12,6 +12,8 @@ export const UPDATE_BROWSER_ENDPOINT = 'updateBrowserEndpoint'
+ export const UPDATE_BROWSER_ENDPOINTS = 'updateBrowserEndpoints'
+ export const DESTROY_BROWSER_ENDPOINT = 'destroyBrowserEndpoint'
+ export const DESTROY_BROWSER_ENDPOINTS = 'destroyBrowserEndpoints'
++export const UPDATE_BROWSER_PARAMS = 'updateBrowserParams'
++export const DESTROY_BROWSER_PARAMS = 'destroyBrowserParams'
+ export const ADD_BROWSERS = 'addBrowsers'
+ 
+ export default {
+@@ -28,5 +30,7 @@ export default {
+   DESTROY_BROWSER_ENDPOINT,
+   UPDATE_BROWSER_ENDPOINTS,
+   DESTROY_BROWSER_ENDPOINTS,
++  UPDATE_BROWSER_PARAMS,
++  DESTROY_BROWSER_PARAMS,
+   ADD_BROWSERS
+ }
+diff --git a/views/partials/form/_browser.blade.php b/views/partials/form/_browser.blade.php
+index 4bfc0033..95209d5e 100644
+--- a/views/partials/form/_browser.blade.php
++++ b/views/partials/form/_browser.blade.php
+@@ -6,6 +6,7 @@
+         :wide="{{ json_encode($wide) }}"
+         endpoint="{{ $endpoint }}"
+         :endpoints="{{ json_encode($endpoints) }}"
++        :params="{{ json_encode($params) }}"
+         modal-title="{{ twillTrans('twill::lang.fields.browser.attach') . ' ' . strtolower($label) }}"
+         :draggable="{{ json_encode($sortable) }}"
+         browser-note="{{ $browserNote }}"
