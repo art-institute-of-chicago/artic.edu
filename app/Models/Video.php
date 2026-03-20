@@ -235,15 +235,6 @@ class Video extends AbstractModel
         return 'video';
     }
 
-    protected static function booted(): void
-    {
-        static::addGlobalScope('available', function (Builder $query) {
-            if (!App::environment('production')) {
-                $query->where('privacy', '<>', 'private');
-            }
-        });
-    }
-
     protected function transformMappingInternal()
     {
         return [
