@@ -76,7 +76,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         $fields = 'items(' .
             'id,' .
             'contentDetails(caption,duration),' .
-            'snippet(title,description,publishedAt,thumbnails/high/url),' .
+            'snippet(title,description,publishedAt,thumbnails),' .
             'status/privacyStatus' .
         ')';
         foreach ($sourceIds->chunk(YouTubeService::ITEMS_PER_REQUEST) as $chunkOfSourceIds) {
@@ -127,7 +127,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
             $this->output->createProgressBar($this->youtube->playlistCount()) :
             null;
         $progress?->start();
-        foreach ($this->youtube->playlists(fields: 'items(id,snippet(title,thumbnails/high/url,publishedAt))') as $sourcePlaylist) {
+        foreach ($this->youtube->playlists(fields: 'items(id,snippet(title,thumbnails,publishedAt))') as $sourcePlaylist) {
             $playlistId = $sourcePlaylist['id'];
             $thumbnail = $this->highestResolutionThumbnail($sourcePlaylist['snippet']['thumbnails']);
             $playlist = Playlist::updateOrCreate(
