@@ -65,6 +65,25 @@ class VideoController extends BaseController
         return $filters->merge($afterSecondFilter);
     }
 
+    protected function getDefaultQuickFilters(): QuickFilters
+    {
+        $filters = parent::getDefaultQuickFilters();
+        $withoutLast = $filters->splice(0, 4);
+        $withoutLast->add(
+            QuickFilter::make()
+                ->queryString('trash')
+                ->label(twillTrans('twill::lang.listing.filter.trash'))
+                ->onlyEnableWhen($this->getIndexOption('restore'))
+                ->amount(function () {
+                    return $this->repository->withoutGlobalScope('available')->onlyTrashed()->count();
+                })
+                ->apply(function (Builder $builder) {
+                    return $builder->withoutGlobalScope('available')->onlyTrashed();
+                })
+        );
+        return $withoutLast;
+    }
+
     protected function getIndexTableColumns(): TableColumns
     {
         $columns = parent::getIndexTableColumns();
