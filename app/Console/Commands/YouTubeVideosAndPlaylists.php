@@ -84,7 +84,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
             foreach ($sourceVideos as $source) {
                 if ($source['status']['privacyStatus'] !== 'public') {
                     // Remove private and unlisted videos
-                    Video::withoutGlobalScopes()->firstWhere('youbute_id', $source['id'])->delete();
+                    Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id'])->delete();
                     continue;
                 }
                 $thumbnail = $this->highestResolutionThumbnail($source['snippet']['thumbnails']);
