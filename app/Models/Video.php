@@ -238,9 +238,7 @@ class Video extends AbstractModel
     protected static function booted(): void
     {
         static::addGlobalScope('available', function (Builder $query) {
-            if (!App::environment('production')) {
-                $query->where('privacy', '<>', 'private');
-            }
+            $query->where('privacy', '<>', 'private');
         });
         // Sort videos by most recent `uploaded_at` date.
         static::addGlobalScope('byRecent', function (Builder $query) {
