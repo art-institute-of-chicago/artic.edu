@@ -82,6 +82,11 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         foreach ($sourceIds->chunk(YouTubeService::ITEMS_PER_REQUEST) as $chunkOfSourceIds) {
             $sourceVideos = $this->youtube->videosByIds($chunkOfSourceIds, $fields);
             foreach ($sourceVideos as $source) {
+                if ($source['status']['privacyStatus'] !== 'public') {
+                    // Remove private and unlisted videos
+                    Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id'])->delete();
+                    continue;
+                }
                 $thumbnail = $this->highestResolutionThumbnail($source['snippet']['thumbnails']);
                 $video = Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id'])->fill([
                     'title' => $this->normalizeTitle($source['snippet']['title']),
