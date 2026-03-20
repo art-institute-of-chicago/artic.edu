@@ -53,10 +53,10 @@
 
     <x-twill::input
         name='description'
-        label='Description'
+        label='YouTube description'
         type='textarea'
-        readonly='true'
-        note='read-only'
+        note='(Does not publish to web)'
+        :read-only='true'
     />
 
     <x-twill::wysiwyg
