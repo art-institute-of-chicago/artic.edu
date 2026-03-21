@@ -60,6 +60,22 @@ class SubViewerParserTest extends BaseTestCase
         );
     }
 
+    public function test_blank_captions_are_ignored(): void
+    {
+        $this->parser = CaptionParser::parseFile(self::BLANK_CAPTION_FILE);
+        $transcript = $this->parser->getTranscript(Video::factory()->make());
+        $this->assertStringNotContainsString(
+            '0:00:00',
+            $transcript,
+            'The blank caption has been ignored',
+        );
+        $this->assertStringContainsString(
+            '0:00:05',
+            $transcript,
+            'The subsequent caption is included',
+        );
+    }
+
     private const FILE = <<<'FILE'
         0:00:00.246,0:00:03.413
         (audience applauding)
@@ -79,5 +95,12 @@ class SubViewerParserTest extends BaseTestCase
 
         0:00:11.880,0:00:14.820
         Thank you all for joining us this evening.
+        FILE;
+
+    private const BLANK_CAPTION_FILE = <<<'FILE'
+        0:00:00.000,0:00:03.413
+
+        0:00:05.370,0:00:06.810
+        But this is not blank.
         FILE;
 }
