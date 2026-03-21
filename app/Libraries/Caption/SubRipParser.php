@@ -25,6 +25,7 @@ class SubRipParser extends Parser
             if ($index = $matches['index']) {
                 $caption = new \stdClass();
                 $caption->index = $index;
+                $caption->lines = [];
                 $this->captions[] = $caption;
             } elseif ($matches['interval']) {
                 $caption = $this->captions[array_key_last($this->captions)];
