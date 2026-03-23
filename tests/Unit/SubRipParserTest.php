@@ -61,6 +61,22 @@ class SubRipParserTest extends BaseTestCase
         );
     }
 
+    public function test_blank_captions_are_ignored(): void
+    {
+        $this->parser = CaptionParser::parseFile(self::BLANK_CAPTION_FILE);
+        $transcript = $this->parser->getTranscript(Video::factory()->make());
+        $this->assertStringNotContainsString(
+            '0:00:00',
+            $transcript,
+            'The blank caption has been ignored',
+        );
+        $this->assertStringContainsString(
+            '0:00:05',
+            $transcript,
+            'The subsequent caption is included',
+        );
+    }
+
     private const FILE = <<<'FILE'
         1
         00:00:00,472 --> 00:00:03,472
@@ -83,5 +99,14 @@ class SubRipParserTest extends BaseTestCase
         00:00:12,780 --> 00:00:16,093
         and Byzantium here at the
         Art Institute of Chicago.
+        FILE;
+
+    private const BLANK_CAPTION_FILE = <<<'FILE'
+        1
+        00:00:00,472 --> 00:00:03,472
+
+        2
+        00:00:05,280 --> 00:00:07,020
+        But this is not blank.
         FILE;
 }
