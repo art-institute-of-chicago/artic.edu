@@ -24,6 +24,7 @@ class SubViewerParser extends Parser
                 $caption = new \stdClass();
                 $caption->start = $matches[2];
                 $caption->end = $matches[3];
+                $caption->lines = [];
                 $this->captions[] = $caption;
             } elseif ($line = $matches['line']) {
                 $caption = $this->captions[array_key_last($this->captions)];
