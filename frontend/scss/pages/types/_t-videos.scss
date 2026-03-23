@@ -485,6 +485,9 @@
                 border-radius: 28px;
             }
         }
+        .m-media .m-media__img--embed {
+          overflow-x: unset;
+        }
     }
     .o-article {
       h1.title {
