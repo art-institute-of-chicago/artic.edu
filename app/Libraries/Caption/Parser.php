@@ -56,6 +56,9 @@ abstract class Parser
                 ->chunk(3)->map(function ($sentences, $sentenceIndex) use ($paragraphIndex, $video) {
                     // Chunk into three sentences
                     $captionsForParagraph = $sentences->flatten()->filter(fn ($sentence) => !empty($sentence->lines));
+                    if ($captionsForParagraph->isEmpty()) {
+                        return;  // If this chunk only contains empty captions, output nothing
+                    }
                     return <<<HTML
                         <div id="caption-{$paragraphIndex}-{$sentenceIndex}" class="caption">
                             {$this->getTimestamp($captionsForParagraph->first(), $video)}
