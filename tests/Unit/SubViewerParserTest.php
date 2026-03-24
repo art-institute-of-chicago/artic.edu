@@ -67,10 +67,25 @@ class SubViewerParserTest extends BaseTestCase
         $this->assertStringNotContainsString(
             '0:00:00',
             $transcript,
-            'The blank caption has been ignored',
+            'The blank captions have been ignored',
+        );
+        $this->assertStringNotContainsString(
+            '0:00:05',
+            $transcript,
+            'The blank captions have been ignored',
+        );
+        $this->assertStringNotContainsString(
+            '0:00:06',
+            $transcript,
+            'The blank captions have been ignored',
+        );
+        $this->assertStringNotContainsString(
+            '0:00:08',
+            $transcript,
+            'The blank captions have been ignored',
         );
         $this->assertStringContainsString(
-            '0:00:05',
+            'But this is not blank.',
             $transcript,
             'The subsequent caption is included',
         );
@@ -100,7 +115,13 @@ class SubViewerParserTest extends BaseTestCase
     private const BLANK_CAPTION_FILE = <<<'FILE'
         0:00:00.000,0:00:03.413
 
-        0:00:05.370,0:00:06.810
+        0:00:05.000,0:00:06.810
+
+        0:00:06.000,0:00:08.310
+
+        0:00:08.000,0:00:10.530
+
+        0:00:10.000,0:00:11.880
         But this is not blank.
         FILE;
 }
