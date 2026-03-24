@@ -31,7 +31,8 @@
         ];
 
         // Append full source for viewer
-        $mediaItem['media']['full_src'] = strtok($mediaItem['media']['src'], '?');
+        $src = $mediaItem['media']['src'] ?? '';
+        $mediaItem['media']['full_src'] = $src ? strtok($src, '?') : null;
 
         if ($child['type'] == 'layered_image_viewer_img') {
             $images[] = $mediaItem;
