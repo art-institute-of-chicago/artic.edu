@@ -2,14 +2,16 @@
 
 namespace App\Console\Commands;
 
-use App\Models\MyMuseumTour;
 use App\Models\DigitalPublicationArticle;
+use App\Models\MyMuseumTour;
+use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
 use Prince\Prince;
 
 class GeneratePdfs extends Command
@@ -99,7 +101,20 @@ class GeneratePdfs extends Command
 
         // Now, produce the PDF
         set_time_limit(0);
-        $html = Http::get($fullUrl, ['print' => true])->body();
+        $client = Http::withOptions([
+            'connect_timeout' => 30,
+            'timeout' => 30,
+            'verify' => false,
+        ])->retry(3, 0, function (Exception $exception) {
+            return $exception instanceof ConnectionException;
+        });
+        if (App::environment('test')) {
+            $client = $client->withHeaders([
+                'CF-Access-Client-Id' => config('aic.zerotrust_client_id'),
+                'CF-Access-Client-Secret' => config('aic.zerotrust_client_secret'),
+            ]);
+        }
+        $html = $client->get($fullUrl, ['print' => true])->body();
         $fileName = self::fileName($model);
         $class = class_basename($model);
         if ($this->prince->convertStringToFile($html, self::localPath($fileName))) {
