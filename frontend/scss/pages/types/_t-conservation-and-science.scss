@@ -376,7 +376,7 @@
     }
   }
 
-  .o-grid-block:has(#resources) {
+  .o-grid-block:has(.img-placeholder) {
     .m-listing__img {
       display: none;
     }
