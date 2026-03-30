@@ -26,7 +26,7 @@
     $take = $maxRows * (int) $width;
     switch ($display) {
         case 'category':
-            $videos = $category->videos()->published()->get();
+            $videos = $category->videos()->published()->orderBy('uploaded_at', 'desc')->get();
             $gridLinkLabel = "View all";
             $gridLinkHref = route('videos.archive', ['category' => $category->id]);
             break;
