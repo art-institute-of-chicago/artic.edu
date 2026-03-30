@@ -240,6 +240,10 @@ class Video extends AbstractModel
         static::addGlobalScope('available', function (Builder $query) {
             $query->where('privacy', '<>', 'private')->where('privacy', '<>', 'unlisted');
         });
+        // Sort videos by most recent `uploaded_at` date.
+        static::addGlobalScope('byRecent', function (Builder $query) {
+            $query->orderBy('uploaded_at', 'desc');
+        });
     }
 
     protected function transformMappingInternal()
