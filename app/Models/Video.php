@@ -244,6 +244,10 @@ class Video extends AbstractModel
         static::addGlobalScope('byRecent', function (Builder $query) {
             $query->orderBy('uploaded_at', 'desc');
         });
+        // Sort videos by most recent `uploaded_at` date.
+        static::addGlobalScope('byRecent', function (Builder $query) {
+            $query->orderBy('uploaded_at', 'desc');
+        });
     }
 
     protected function transformMappingInternal()
