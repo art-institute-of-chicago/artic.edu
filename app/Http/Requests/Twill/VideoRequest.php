@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Twill;
 
 use A17\Twill\Http\Requests\Admin\Request;
+use App\Rules\InnerTextLength;
 
 class VideoRequest extends Request
 {
@@ -10,6 +11,7 @@ class VideoRequest extends Request
     {
         return [
             'title' => 'required',
+            'list_description' => [new InnerTextLength(max: 255)],
         ];
     }
 
@@ -17,6 +19,7 @@ class VideoRequest extends Request
     {
         return [
             'title' => 'required',
+            'list_description' => [new InnerTextLength(max: 255)],
         ];
     }
 }
