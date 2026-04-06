@@ -429,7 +429,7 @@ class AppServiceProvider extends ServiceProvider
                                 ],
                                 [
                                     'name' => 'Conservation &amp; Science',
-                                    'url' => '/conservation-science',
+                                    'url' => '/conservation-and-science',
                                 ],
                                 [
                                     'name' => 'Collection Information',
