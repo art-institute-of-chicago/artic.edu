@@ -165,7 +165,7 @@
             label='YouTube ID'
             disabled='true'
         />
-        <a href="{{ $item->source_url }}" target="_blank" rel="noopener noreferrer">🔗 YouTube</a>
+        <a href="{{ $item->video_url }}" target="_blank" rel="noopener noreferrer">🔗 YouTube</a>
 
         <x-twill::input
             name='uploaded_at'

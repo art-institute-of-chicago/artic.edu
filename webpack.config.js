@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const fs = require('fs').promises;
+const fs = require('fs').promises; // Use promises for async operations (not the default)
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -22,6 +22,7 @@ class TimestampPlugin {
 
 const outputDir = path.resolve(__dirname, 'public', 'dist');
 
+// Async delete any directories passed in and wait for all deletions to complete
 async function cleanDirectories(dirs) {
   const deletePromises = dirs.map(async (dir) => {
     const dirPath = path.resolve(outputDir, dir);
@@ -32,6 +33,7 @@ async function cleanDirectories(dirs) {
         console.log(`Deleted directory: ${dirPath}`);
       }
     } catch (err) {
+      // n.b. ENOENT is expected if the directory doesn't exist
       if (err.code !== 'ENOENT') {
         console.error(`Failed to delete ${dirPath}:`, err);
       }
@@ -41,13 +43,18 @@ async function cleanDirectories(dirs) {
   await Promise.all(deletePromises);
 }
 
+// Use async function to trigger webpack to wait for the promise to resolve
 module.exports = async () => {
+  // Clean scripts and styles directories before the build process starts
   await cleanDirectories(['scripts', 'styles', 'images']);
 
+  // Define if the environment is production
   const isProd = process.env.NODE_ENV === 'production';
-  const isCI = process.env.CI === '1';
+  const isCI = process.env.CI === '1'; // Set in GitHub Action
+  // Use content hash and generate manifest in production or when explicitly set
   const useContentHash = process.env.USE_COMPILED_REVASSETS === 'true' || isProd;
 
+  // Resolve implicit promise with the Webpack configuration object
   return {
     mode: isProd ? 'production' : 'development',
     entry: {
@@ -55,7 +62,6 @@ module.exports = async () => {
       blocks3D: ['./frontend/js/blocks3D.js'],
       blocks360: ['./frontend/js/blocks360.js'],
       collectionSearch: ['./frontend/js/collectionSearch.js'],
-      digitalExplorer: ['./frontend/js/digitalExplorer.js'],
       head: ['./frontend/js/head.js'],
       interactiveFeatures: ['./frontend/js/interactiveFeatures.js'],
       layeredImageViewer: ['./frontend/js/layeredImageViewer.js'],
@@ -79,20 +85,13 @@ module.exports = async () => {
       minimize: isProd && !isCI,
     },
     resolve: {
-      symlinks: false,
-      alias: {
-        'react': path.resolve(__dirname, 'node_modules/react'),
-        'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-        'react/jsx-runtime': path.resolve(__dirname, 'node_modules/react/jsx-runtime'),
-        'plyr': path.resolve(__dirname, 'node_modules/plyr/dist/plyr.min.js'),
-        'digital-explorer': path.resolve(__dirname, 'node_modules/digital-explorer/dist/digitalExplorer.cjs')
+      extensions: ['.js', '.jsx', '.scss'],
+      fallback: {
+        url: false,
       },
-      modules: [
-        path.resolve(__dirname, 'node_modules'),
-        'node_modules'
-      ],
     },
     plugins: [
+      // Ignore unused libraries if CI is detected
       new webpack.IgnorePlugin({
         resourceRegExp: /@blueprintjs\/(core|icons)/,
       }),
@@ -114,40 +113,23 @@ module.exports = async () => {
           },
         ],
       }),
+      // Only generate manifest if contentHashes are used
       ...(useContentHash
         ? [
-            new generateRevManifestPlugin({
-              manifestPath: path.resolve(outputDir, 'rev-manifest.json'),
-            }),
-          ]
-        : []
+          new generateRevManifestPlugin({
+            manifestPath: path.resolve(outputDir, 'rev-manifest.json'),
+          }),
+        ] : []
       ),
       new TimestampPlugin(),
     ],
     module: {
       rules: [
+        // Transpile JavaScript files using Babel
         {
-          test: /\.m?jsx?$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                [
-                  '@babel/preset-env',
-                  {
-                    modules: false,
-                    targets: {
-                      browsers: ['last 2 versions', 'ie >= 11'],
-                    },
-                  },
-                ],
-                '@babel/preset-react',
-              ],
-              plugins: [],
-              cacheDirectory: true,
-            },
-          },
+          use: ['babel-loader'],
         },
         {
           test: /\.scss$/,

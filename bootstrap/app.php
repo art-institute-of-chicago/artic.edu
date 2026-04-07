@@ -40,7 +40,6 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks::class,
             \Illuminate\Http\Middleware\TrustHosts::class,
             \App\Http\Middleware\TrustProxies::class,
-            \App\Http\Middleware\KioskMode::class,
             \Illuminate\Http\Middleware\HandleCors::class,
             \Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance::class,
             \Illuminate\Http\Middleware\ValidatePostSize::class,
@@ -56,7 +55,6 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->web(append: [
             \App\Http\Middleware\RedirectVanityPaths::class,
-            \App\Http\Middleware\SanitizeQueryParameters::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

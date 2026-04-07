@@ -19,6 +19,6 @@ jobs:
             - name: Remove private NPM package
               run: npm uninstall closer-look --save
             - name: Install Javascript dependencies
-              run: npm ci --legacy-peer-deps
+              run: npm ci
             - name: Run PHPStan
               run: composer analyze --no-interaction --no-ansi

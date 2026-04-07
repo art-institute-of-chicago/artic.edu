@@ -68,8 +68,6 @@ Route::group(['prefix' => 'collection'], function () {
         TwillRoutes::module('experiences.slides');
     });
 
-    TwillRoutes::module('digitalExplorers');
-
     TwillRoutes::module('authors');
 
     TwillRoutes::module('categoryTerms');
