@@ -119,6 +119,11 @@ class VideoController extends BaseController
         );
         $columns->add(
             Text::make()
+                ->field('privacy')
+                ->title('Privacy')
+        );
+        $columns->add(
+            Text::make()
                 ->field('uploaded_at')
                 ->sortable()
                 ->customRender(fn (Video $video) => (string) $video->uploaded_at?->format('M j, Y'))
