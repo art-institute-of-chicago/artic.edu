@@ -28,7 +28,7 @@ class VideoController extends FrontController
 
     public function show(Request $request, Video $video, $slug = null)
     {
-        if (!$video->published || !$video->available) {
+        if (!$video->published || $video->privacy != 'public') {
             abort(404);
         }
         $canonicalPath = route('videos.show', ['video' => $video, 'slug' => $video->getSlug()]);
