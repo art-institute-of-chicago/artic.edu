@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Console\Command;
 
 class Release extends Command
@@ -23,10 +22,6 @@ class Release extends Command
     {
         $version = $this->argument('version');
 
-        Storage::disk('local')->put('VERSION', $version);
-
-        $dest = base_path('VERSION');
-
-        copy(storage_path('app/VERSION'), $dest);
+        file_put_contents(base_path('VERSION'), $version);
     }
 }
