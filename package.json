@@ -39,25 +39,19 @@
     "@area17/a17-helpers": "^0.6.7",
     "@sentry/react": "^10.8.0",
     "@sketchfab/viewer-api": "^1.12.1",
-    "closer-look": "github:art-institute-of-chicago/digital-labels-ui#semver:^2.0.0",
+    "closer-look": "github:art-institute-of-chicago/digital-labels-ui#semver:1.0.0",
     "conic-gradient": "^1.0.0",
-    "digital-explorer": "github:art-institute-of-chicago/digital-explorer#semver:^1.0.1",
     "fitty": "^2.4.2",
     "gl-vec3": "^1.2.0",
     "lodash": "^4.17.21",
-    "mirador": "^4.0.0",
-    "my-museum-tour": "github:art-institute-of-chicago/my-museum-tour#semver:1.19.0",
+    "mirador": "^3.0.0",
+    "my-museum-tour-builder": "github:art-institute-of-chicago/my-museum-tour#semver:1.18.3",
     "nouislider": "^15.8.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "text-contrast": "^1.0.2",
     "video.js": "^8.23.4",
     "videojs-event-tracking": "^1.0.3"
-  },
-  "overrides": {
-    "axios": "0.30.3",
-    "minimatch": "^10.2.1",
-    "semver": "^7.5.2"
   },
   "engines": {
     "node": ">=22.0.0",
