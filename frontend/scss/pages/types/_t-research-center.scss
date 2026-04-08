@@ -40,6 +40,18 @@
     .m-showcase-wrapper {
       flex-direction: row-reverse;
       gap: 18px 38px;
+
+      .showcase-header {
+        flex-basis: 0%;
+      }
+
+      .m-showcase-media {
+        margin-top: 0px;
+      }
+    }
+
+    .m-showcase-block__text-wrapper {
+        padding-top: 0px;
     }
 
     .showcase-header {

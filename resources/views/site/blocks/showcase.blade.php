@@ -17,7 +17,7 @@
 
 <div id="{{ str(strip_tags($heading))->kebab() }}" class="m-showcase-block {{ $theme ? 'showcase--'.$theme : '' }} {{ $variation ? 'showcase--variation-'.$variation : '' }}">
     <div class="m-showcase-wrapper">
-        @if ($heading)
+        @if ($theme == 'rlc' && $heading)
             <h3 id="{{ Str::slug(strip_tags($heading)) }}" class="showcase-header">{!! $heading !!}</h3>
         @endif
         @if ($theme == 'rlc')
@@ -52,6 +52,10 @@
             </div>
         @endif
         <div class="m-showcase-block__text-wrapper">
+            @if ($theme != 'rlc' && $heading)
+                <h3 id="{{ Str::slug(strip_tags($heading)) }}" class="showcase-header">{!! $heading !!}</h3>
+            @endif
+
             @if ($tag)
                 @component('components.atoms._title')
                     @slot('tag', 'span')
