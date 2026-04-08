@@ -152,11 +152,13 @@ class YouTubeService
                 'error' => $exception->getMessage(),
                 'message' => $message,
             ]);
-            $this->log("YouTube service error - message: '$message'");
+            $this->log("Google service exception - message: '$message'", 'error');
         } catch (YouTubeServiceException $exception) {
+            $message = $exception->getMessage();
             DB::table(self::SESSION_TABLE)->where('created_at', $start)->update([
-                'message' => $exception->getMessage(),
+                'message' => $message,
             ]);
+            $this->log("YouTube service exception - message: '$message'", 'error');
         } finally {
             DB::table(self::SESSION_TABLE)->where('created_at', $start)->update([
                 'updated_at' => now('UTC'),
@@ -333,14 +335,18 @@ class YouTubeService
     public function request(Resource $resource, string $action, array $required, array $optional = [])
     {
         $estimatedUsage = $this->checkQuota($resource, $action);
-
-        if ($action == 'download') {
-            $details = '';
-        } else {
+        if ($action != 'download') {
             $optional['fields'] = trim(($optional['fields'] ?? '') . ',' . self::REQUEST_FIELDS, ',');
-            $details = ", parts: '$required[0]', fields: '{$optional['fields']}'";
         }
-        $this->log("YouTube service request #$this->requestCount - action: $action" . $details);
+
+        $requiredData = collect($required)->join('|');
+        $optionalData = collect($optional)->map(fn($value, $key) => "$key:'$value'")->join('|');
+        $this->log(
+            "YouTube service request #$this->requestCount - " .
+                "action: $action, " .
+                "required: $requiredData, " .
+                "optional: $optionalData"
+        );
 
         $response = $resource->{$action}(...array_merge($required, [$optional]));
 
@@ -392,7 +398,7 @@ class YouTubeService
         $errored = $this->todaysSessionsQuery()->whereNotNull('errored_at');
         if ($session = $errored->whereJsonContains('error->error->errors->0->reason', 'quotaExceeded')->first()) {
             $this->log("YouTube service quota - exceeded: $session->errored_at", 'error');
-            throw new YouTubeServiceException("Today's daily quota previously been exceeded at $session->errored_at");
+            throw new YouTubeServiceException("Today's daily quota previously exceeded at $session->errored_at");
         }
 
         $resourceName = class_basename($resource);

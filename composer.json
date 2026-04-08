@@ -76,7 +76,7 @@
         "ramsey/uuid": "^4.0",
         "rlanvin/php-rrule": "^2.0",
         "sendgrid/sendgrid": "^8.1",
-        "sentry/sentry-laravel": "^4.9",
+        "sentry/sentry-laravel": "^4.15.0",
         "spatie/calendar-links": "^1.0",
         "spatie/laravel-feed": "^4.0",
         "spatie/laravel-sitemap": "^7.0",
