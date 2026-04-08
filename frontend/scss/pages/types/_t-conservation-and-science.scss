@@ -196,6 +196,10 @@
         line-height: 28px;
       }
 
+      .f-caption::before {
+        padding-top: 14px;
+      }
+
       .f-link {
         color: $color__grey--100 !important;
       }
@@ -322,6 +326,7 @@
         .title {
           font-size: 22px;
           line-height: 28px;
+          margin-top: 0px;
         }
 
         .intro {
@@ -341,6 +346,12 @@
 
     .title {
       margin-top: 0;
+    }
+
+    .m-listing__meta {
+      .title::before {
+        padding-top: 14px;
+      }
     }
 
     @each $name, $point in $breakpoints {
