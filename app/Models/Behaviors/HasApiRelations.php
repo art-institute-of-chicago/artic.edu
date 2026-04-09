@@ -72,6 +72,9 @@ trait HasApiRelations
                 } else {
                     return $items->map(function ($relatedElement) {
                         $element = $relatedElement->related;
+                        if (!$element) {
+                            return false;
+                        }
                         $element->position = $relatedElement->position;
 
                         if ($element->isNotUnlisted === false) {
