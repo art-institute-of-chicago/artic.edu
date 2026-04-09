@@ -45,6 +45,10 @@ class YouTubeCaptions extends AbstractYoutubeCommand
                     // Bypass captions with languages not supported by the app
                     continue;
                 }
+                if ($source['snippet']['trackKind'] != 'standard') {
+                    // Bypass non-standard, automated speech recognition captions
+                    continue;
+                }
                 $caption = $video->captions()->updateOrCreate(
                     ['kind' => $source['snippet']['trackKind']],
                     [
