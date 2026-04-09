@@ -41,8 +41,16 @@ class YouTubeCaptions extends AbstractYoutubeCommand
             $fields = 'items(id,snippet(language,lastUpdated,name,trackKind))';
             $sourceCaptions = $this->youtube->captionsForVideo($video->youtube_id, $fields);
             foreach ($sourceCaptions as $source) {
-                if (collect(getLocales())->doesntContain($source['snippet']['language'])) {
+                // Only use the language code and disregard the region code,
+                // if present. For example, with the code "en-US", we only care
+                // about "en".
+                $languageCode = substr($source['snippet']['language'], 0, 2);
+                if (collect(getLocales())->doesntContain($languageCode)) {
                     // Bypass captions with languages not supported by the app
+                    continue;
+                }
+                if ($source['snippet']['trackKind'] != 'standard') {
+                    // Bypass non-standard, automated speech recognition captions
                     continue;
                 }
                 $caption = $video->captions()->updateOrCreate(
