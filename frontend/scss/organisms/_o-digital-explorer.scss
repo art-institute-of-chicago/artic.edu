@@ -25,6 +25,12 @@ body {
   }
 
   .o-blocks {
+    &.o-layout_block {
+      .m-media {
+        height: 100%;
+      }
+    }
+
     .paragraph-wrapper {
       display: flex;
       flex-direction: column;
