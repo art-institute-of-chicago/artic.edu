@@ -9,7 +9,7 @@ const triggerMediaInline = function(container) {
   let pendingPlay = false;
 
   function _youtubePlayAndActivate() {
-    const player = A17.YouTubeembeds[iframe.id];
+    const player = AIC.YouTubeembeds[iframe.id];
     controlYouTubePlayer(player, { 'playVideo': true });
     activateMedia();
   }
@@ -26,7 +26,7 @@ const triggerMediaInline = function(container) {
     event.stopPropagation();
     activateMedia();
     if (isYoutube === true) {
-      if (A17.YouTubeembeds[iframe.id]) {
+      if (AIC.YouTubeembeds[iframe.id]) {
         _youtubePlayAndActivate();
       } else {
         pendingPlay = true;

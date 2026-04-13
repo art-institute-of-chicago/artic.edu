@@ -115,7 +115,7 @@ const shortsPlayer = function(container) {
       _updateVideoNavigation(video);
       list.classList.remove('s-moving-viewport');
       _loadMore();
-    const player = A17.YouTubeembeds[embed.id];
+    const player = AIC.YouTubeembeds[embed.id];
     controlYouTubePlayer(player, video.dataset);
   }
 
