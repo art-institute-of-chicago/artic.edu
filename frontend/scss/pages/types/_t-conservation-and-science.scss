@@ -164,6 +164,10 @@
 
     @include breakpoint('small+') {
       margin-top: 100px;
+
+      .m-media__img:not(.m-media__img--video) img {
+        max-width: 20vw;
+      }
     }
   }
 
