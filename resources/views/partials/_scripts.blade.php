@@ -1,5 +1,7 @@
 <script>
     var AIC = window.AIC || {};
+    AIC.YouTubeonYouTubeIframeAPIReady = false;
+    AIC.YouTubeembeds = {};
 </script>
 
 <script src="{{FrontendHelpers::revAsset('scripts/app.js')}}"></script>
