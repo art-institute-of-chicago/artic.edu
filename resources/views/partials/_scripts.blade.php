@@ -1,3 +1,9 @@
+<script>
+    var AIC = window.AIC || {};
+    AIC.YouTubeonYouTubeIframeAPIReady = false;
+    AIC.YouTubeembeds = {};
+</script>
+
 <script src="{{FrontendHelpers::revAsset('scripts/app.js')}}"></script>
 
 @if (!config('aic.disable_extra_scripts'))
