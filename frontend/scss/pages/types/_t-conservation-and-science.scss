@@ -162,7 +162,7 @@
   .o-gallery {
     margin-left: unset !important;
 
-    @include breakpoint('small+') {
+    @include breakpoint('medium+') {
       margin-top: 100px;
 
       .m-media__img:not(.m-media__img--video) img {
