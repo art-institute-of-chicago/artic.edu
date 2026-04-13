@@ -55,9 +55,9 @@ const youtubeEmbed = function(iframe) {
     } catch(e) {
       return;
     }
-    if (iframe.id in A17.YouTubeembeds) return;
-    A17.YouTubeembeds[iframe.id] = player;
-    console.log(A17.YouTubeembeds);
+    if (iframe.id in AIC.YouTubeembeds) return;
+    AIC.YouTubeembeds[iframe.id] = player;
+    console.log(AIC.YouTubeembeds);
     triggerCustomEvent(iframe, 'youtube:ready', {id: iframe.id, player: player});
   }
 
@@ -95,8 +95,8 @@ const youtubeEmbed = function(iframe) {
 
   function _initYoutubePlayer(iframeId) {
     console.log('trying in _initYoutubePlayer');
-    if (A17.YouTubeonYouTubeIframeAPIReady) {
-      if (!(iframeId in A17.YouTubeembeds)) {
+    if (AIC.YouTubeonYouTubeIframeAPIReady) {
+      if (!(iframeId in AIC.YouTubeembeds)) {
         console.log('building the player in _initYoutubePlayer');
         const player = new YT.Player(iframeId, {
           playerVars: {
@@ -112,10 +112,10 @@ const youtubeEmbed = function(iframe) {
         // If the onReady event doesn't get called on its own, check the element manually
         // and call `onReady` once it's available.
         const onReadyPollInterval = setInterval(() => {
-          console.log('checking if onReady should be called in _initYoutubePlayer', player.getPlayerState !== undefined);
+          console.log(' ', player.getPlayerState !== undefined);
           if (player.getPlayerState !== undefined) {
             clearInterval(onReadyPollInterval);
-            if (!(iframeId in A17.YouTubeembeds)) {
+            if (!(iframeId in AIC.YouTubeembeds)) {
               console.log('calling onReady in _initYoutubePlayer');
               _onReady({ target: player });
             }
@@ -174,8 +174,8 @@ function controlYouTubePlayer(player, commands) {
 }
 
 function unsetEmbed(iframe) {
-  controlYouTubePlayer(A17.YouTubeembeds[iframe.id], { 'destroy': true });
-  delete A17.YouTubeembeds[iframe.id];
+  controlYouTubePlayer(AIC.YouTubeembeds[iframe.id], { 'destroy': true });
+  delete AIC.YouTubeembeds[iframe.id];
 }
 
 export { controlYouTubePlayer, unsetEmbed, youtubeEmbed as default };
