@@ -116,7 +116,9 @@ const shortsPlayer = function(container) {
       list.classList.remove('s-moving-viewport');
       _loadMore();
     const player = AIC.YouTubeembeds[embed.id];
-    controlYouTubePlayer(player, video.dataset);
+    if (player) {
+      controlYouTubePlayer(player, video.dataset);
+    }
   }
 
   function _loadMore() {
@@ -177,11 +179,13 @@ const shortsPlayer = function(container) {
     oldCurrentVideo.classList.remove(CURRENT_VIDEO_CLASS);
     currentVideo.classList.add(CURRENT_VIDEO_CLASS);
     // Move the viewport on top of the current video's cover image
+    // Always update embed.src so the new video loads via URL (required in Chrome,
+    // where the YouTube JS API may not connect and moveBefore won't reload the iframe).
+    embed.src = currentVideo.dataset.fullVideoUrl;
     if (currentVideo.moveBefore) {
       currentVideo.moveBefore(viewport, currentVideo.firstChild);
     } else {
       awaitingInsertBeforeReload = true;
-      embed.src = currentVideo.dataset.fullVideoUrl
       currentVideo.insertBefore(viewport, currentVideo.firstChild);
     }
   }
