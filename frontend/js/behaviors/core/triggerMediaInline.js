@@ -1,4 +1,4 @@
-import { purgeProperties } from '@area17/a17-helpers';
+import { purgeProperties, queryStringHandler } from '@area17/a17-helpers';
 import youtubeEmbed, { controlYouTubePlayer } from '../../functions/core/youtubeEmbed';
 
 const triggerMediaInline = function(container) {
@@ -30,6 +30,9 @@ const triggerMediaInline = function(container) {
         _youtubePlayAndActivate();
       } else {
         pendingPlay = true;
+        // activateMedia() has reloaded the iframe fresh with autoplay=1.
+        // Create a new player now that the iframe is loading and the API is ready.
+        youtubeEmbed(iframe);
       }
     }
     container.removeEventListener('click', _handleClicks);
@@ -43,6 +46,14 @@ const triggerMediaInline = function(container) {
   }
 
   function activateMedia() {
+    // If the YouTube player hasn't connected yet, reload the iframe with autoplay
+    // so the fresh handshake fires while the API is already listening. This is
+    // required in Chrome/Safari, which don't re-establish the connection after
+    // the iframe's initial handshake is missed (when the API loaded too late).
+    if (isYoutube && !AIC.YouTubeembeds[iframe.id]) {
+      src = queryStringHandler.updateParameter(src, 'autoplay', '1');
+      iframe.src = src;
+    }
     container.classList.add('s-inline-media-activated');
   }
 
