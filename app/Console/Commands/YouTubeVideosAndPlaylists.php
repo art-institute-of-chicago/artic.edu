@@ -82,13 +82,16 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         foreach ($sourceIds->chunk(YouTubeService::ITEMS_PER_REQUEST) as $chunkOfSourceIds) {
             $sourceVideos = $this->youtube->videosByIds($chunkOfSourceIds, $fields);
             foreach ($sourceVideos as $source) {
+                $video = Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id']);
                 if ($source['status']['privacyStatus'] !== 'public') {
                     // Remove private and unlisted videos
-                    Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id'])->delete();
+                    $video->delete();
                     continue;
+                } else {
+                    $video->restore();
                 }
                 $thumbnail = $this->highestResolutionThumbnail($source['snippet']['thumbnails']);
-                $video = Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id'])->fill([
+                $video->fill([
                     'title' => $this->normalizeTitle($source['snippet']['title']),
                     'description' => $source['snippet']['description'],
                     'uploaded_at' => $source['snippet']['publishedAt'],
@@ -99,8 +102,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                     'thumbnail_width' => $thumbnail['width'],
                     'is_captioned' => $source['contentDetails']['caption'],
                     'privacy' => $source['status']['privacyStatus'],
-                ]);
-                $video->save();
+                ])->save();
                 $progress?->advance();
             }
         }
