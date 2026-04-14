@@ -179,13 +179,16 @@ const shortsPlayer = function(container) {
     oldCurrentVideo.classList.remove(CURRENT_VIDEO_CLASS);
     currentVideo.classList.add(CURRENT_VIDEO_CLASS);
     // Move the viewport on top of the current video's cover image
-    // Always update embed.src so the new video loads via URL (required in Chrome,
-    // where the YouTube JS API may not connect and moveBefore won't reload the iframe).
-    embed.src = currentVideo.dataset.fullVideoUrl;
     if (currentVideo.moveBefore) {
       currentVideo.moveBefore(viewport, currentVideo.firstChild);
+      if (!AIC.YouTubeembeds[embed.id]) {
+        // Chrome on non-localhost: the YT API never connected, so the JS API
+        // can't change the video. Fall back to reloading via src (with autoplay).
+        embed.src = currentVideo.dataset.fullVideoUrl;
+      }
     } else {
       awaitingInsertBeforeReload = true;
+      embed.src = currentVideo.dataset.fullVideoUrl;
       currentVideo.insertBefore(viewport, currentVideo.firstChild);
     }
   }
