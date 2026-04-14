@@ -7,6 +7,7 @@ const triggerMediaInline = function(container) {
   let embedSrcType;
   let isYoutube = false;
   let pendingPlay = false;
+  let _youtubeLoadHandler = null;
 
   function _youtubePlayAndActivate() {
     const player = AIC.YouTubeembeds[iframe.id];
@@ -31,7 +32,12 @@ const triggerMediaInline = function(container) {
       } else {
         pendingPlay = true;
         // activateMedia() has reloaded the iframe fresh with autoplay=1.
-        // Create a new player now that the iframe is loading and the API is ready.
+        // Remove the load listener first to prevent a second youtubeEmbed()
+        // call when the reloaded iframe fires its load event.
+        if (_youtubeLoadHandler) {
+          iframe.removeEventListener('load', _youtubeLoadHandler, false);
+          _youtubeLoadHandler = null;
+        }
         youtubeEmbed(iframe);
       }
     }
@@ -93,7 +99,8 @@ const triggerMediaInline = function(container) {
         iframe.src = src;
         youtubeEmbed(iframe);
       } else {
-        iframe.addEventListener('load', () => youtubeEmbed(iframe), false);
+        _youtubeLoadHandler = () => youtubeEmbed(iframe);
+        iframe.addEventListener('load', _youtubeLoadHandler, false);
       }
     }
 
@@ -113,6 +120,9 @@ const triggerMediaInline = function(container) {
     container.removeEventListener('keyup', _handleKeyUp);
     iframe.removeEventListener('youtube:ready', _onYoutubeReady);
     iframe.removeEventListener('youtube:playing', activateMedia);
+    if (_youtubeLoadHandler) {
+      iframe.removeEventListener('load', _youtubeLoadHandler, false);
+    }
     purgeProperties(this);
   };
 
