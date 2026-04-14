@@ -4,7 +4,7 @@
         @slot('dataHref', $dataUrl ?? $url)
         @slot('variation', 'm-listing__link')
         {{-- Temporarily disabled functionality. We will revisit this after the production deploy. --}}
-        {{-- @slot('behavior', 'triggerShortsPlayerModal') --}}
+        @slot('behavior', 'triggerShortsPlayerModal')
         @slot('gtmAttributes', 'data-gtm-event-action="' . addslashes($title) . '"')
 
         <span class="m-listing__img">

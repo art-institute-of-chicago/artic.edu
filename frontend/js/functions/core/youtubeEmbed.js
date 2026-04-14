@@ -1,9 +1,13 @@
 import { triggerCustomEvent } from '@area17/a17-helpers';
 
+const activeEmbeds = {};
+let apiLoadAttempted = false;
+
 const youtubeEmbed = function(iframe) {
   if (!(iframe instanceof Element)) {
     iframe = document.getElementById(iframe);
   }
+  if (!iframe) return;
 
   const playedChecks = {
     25: false,
@@ -12,6 +16,7 @@ const youtubeEmbed = function(iframe) {
   };
 
   let youtubePlayerTimer;
+  let initRetries = 0;
 
   function onPlayerEnded() {
     triggerCustomEvent(document, 'gtm:push', {
@@ -25,6 +30,7 @@ const youtubeEmbed = function(iframe) {
       'event': 'playing',
       'eventCategory': 'video-engagement',
     });
+    clearInterval(youtubePlayerTimer);
     youtubePlayerTimer = setInterval(() => _checkPlayedPercent(player), 250);
   }
 
@@ -36,12 +42,16 @@ const youtubeEmbed = function(iframe) {
   }
 
   function _checkPlayedPercent(player) {
-    const playedPercent = Math.round(player.getCurrentTime() / player.getDuration() * 100);
+    const duration = player.getDuration();
+    if (!duration) return;
+
+    const playedPercent = Math.round((player.getCurrentTime() / duration) * 100);
     for (const playedCheck in playedChecks) {
-      if (playedPercent >= playedCheck && !playedChecks[playedCheck]) {
+      const checkValue = parseInt(playedCheck, 10);
+      if (playedPercent >= checkValue && !playedChecks[playedCheck]) {
         playedChecks[playedCheck] = true;
         triggerCustomEvent(document, 'gtm:push', {
-          'event': `${playedCheck}%`,
+          'event': `${checkValue}%`,
           'eventCategory': 'video-engagement',
         });
       }
@@ -50,15 +60,15 @@ const youtubeEmbed = function(iframe) {
 
   function _onReady(event) {
     const player = event.target;
+    let currentIframe;
     try {
-      iframe = player.getIframe();
+      currentIframe = player.getIframe();
     } catch(e) {
       return;
     }
-    if (iframe.id in AIC.YouTubeembeds) return;
-    AIC.YouTubeembeds[iframe.id] = player;
-    console.log(AIC.YouTubeembeds);
-    triggerCustomEvent(iframe, 'youtube:ready', {id: iframe.id, player: player});
+    if (currentIframe.id in activeEmbeds) return;
+    activeEmbeds[currentIframe.id] = player;
+    triggerCustomEvent(currentIframe, 'youtube:ready', {id: currentIframe.id, player: player});
   }
 
   function _onStateChange(event) {
@@ -67,25 +77,25 @@ const youtubeEmbed = function(iframe) {
     } catch (err) {
       // noop
     }
-    iframe = event.target.getIframe();
+    const currentIframe = event.target.getIframe();
     switch (event.data) {
       case YT.PlayerState.ENDED:
-        triggerCustomEvent(iframe, 'youtube:ended', {id: iframe.id});
+        triggerCustomEvent(currentIframe, 'youtube:ended', {id: currentIframe.id});
         onPlayerEnded();
         break;
       case YT.PlayerState.PLAYING:
-        triggerCustomEvent(iframe, 'youtube:playing', {id: iframe.id});
+        triggerCustomEvent(currentIframe, 'youtube:playing', {id: currentIframe.id});
         onPlayerPlaying(event.target);
         break;
       case YT.PlayerState.PAUSED:
-        triggerCustomEvent(iframe, 'youtube:paused', {id: iframe.id});
+        triggerCustomEvent(currentIframe, 'youtube:paused', {id: currentIframe.id});
         onPlayerPaused();
         break;
       case YT.PlayerState.BUFFERING:
-        triggerCustomEvent(iframe, 'youtube:buffering', {id: iframe.id});
+        triggerCustomEvent(currentIframe, 'youtube:buffering', {id: currentIframe.id});
         break;
       case YT.PlayerState.CUED:
-        triggerCustomEvent(iframe, 'youtube:cued', {id: iframe.id});
+        triggerCustomEvent(currentIframe, 'youtube:cued', {id: currentIframe.id});
         break;
       default:
         // noop
@@ -94,11 +104,9 @@ const youtubeEmbed = function(iframe) {
   }
 
   function _initYoutubePlayer(iframeId) {
-    console.log('trying in _initYoutubePlayer');
-    if (AIC.YouTubeonYouTubeIframeAPIReady) {
-      if (!(iframeId in AIC.YouTubeembeds)) {
-        console.log('building the player in _initYoutubePlayer');
-        const player = new YT.Player(iframeId, {
+    if (window.YT && window.YT.Player) {
+      if (!(iframeId in activeEmbeds)) {
+        new YT.Player(iframeId, {
           playerVars: {
             'autoplay': 1,
             'enablejsapi': 1,
@@ -109,29 +117,17 @@ const youtubeEmbed = function(iframe) {
             'onStateChange': _onStateChange,
           },
         });
-        // If the onReady event doesn't get called on its own, check the element manually
-        // and call `onReady` once it's available.
-        const onReadyPollInterval = setInterval(() => {
-          console.log(' ', player.getPlayerState !== undefined);
-          if (player.getPlayerState !== undefined) {
-            clearInterval(onReadyPollInterval);
-            if (!(iframeId in AIC.YouTubeembeds)) {
-              console.log('calling onReady in _initYoutubePlayer');
-              _onReady({ target: player });
-            }
-          }
-        }, 50);
-        // After 5 solid seconds of trying, stop.
-        setTimeout(() => {
-          clearInterval(onReadyPollInterval);
-        }, 5000);
       }
     } else {
-      setTimeout(() => _initYoutubePlayer(iframeId), 10);
+      initRetries++;
+      if (initRetries < 50) {
+        setTimeout(() => _initYoutubePlayer(iframeId), 100);
+      }
     }
-  };
+  }
 
-  if (!document.getElementById('youtubeapijs')) {
+  if (!apiLoadAttempted && !document.getElementById('youtubeapijs')) {
+    apiLoadAttempted = true;
     const youtubeScript = document.createElement('script');
     youtubeScript.src = 'https://www.youtube.com/iframe_api';
     youtubeScript.id = 'youtubeapijs';
@@ -145,26 +141,31 @@ const youtubeEmbed = function(iframe) {
   _initYoutubePlayer(iframe.id);
 };
 
-function controlYouTubePlayer(player, commands) {
+function controlYouTubePlayer(iframeRef, commands) {
+  const iframeEl = iframeRef instanceof Element ? iframeRef : document.getElementById(iframeRef);
+  if (!iframeEl || !activeEmbeds[iframeEl.id]) return;
+
+  const player = activeEmbeds[iframeEl.id];
+
   for (const command in commands) {
     switch (command) {
       case 'loadVideoById':
-        player.loadVideoById(commands[command]);
+        if (typeof player.loadVideoById === 'function') player.loadVideoById(commands[command]);
         break;
       case 'pauseVideo':
-        player.pauseVideo();
+        if (typeof player.pauseVideo === 'function') player.pauseVideo();
         break;
       case 'playVideo':
-        player.playVideo();
+        if (typeof player.playVideo === 'function') player.playVideo();
         break;
       case 'seekTo':
-        player.seekTo(commands[command], true)
+        if (typeof player.seekTo === 'function') player.seekTo(commands[command], true);
         break;
       case 'stopVideo':
-        player.stopVideo();
+        if (typeof player.stopVideo === 'function') player.stopVideo();
         break;
       case 'destroy':
-        player.destroy();
+        if (typeof player.destroy === 'function') player.destroy();
         break;
       default:
         // noop
@@ -174,8 +175,11 @@ function controlYouTubePlayer(player, commands) {
 }
 
 function unsetEmbed(iframe) {
-  controlYouTubePlayer(AIC.YouTubeembeds[iframe.id], { 'destroy': true });
-  delete AIC.YouTubeembeds[iframe.id];
+  const iframeEl = iframe instanceof Element ? iframe : document.getElementById(iframe);
+  if (iframeEl && activeEmbeds[iframeEl.id]) {
+    controlYouTubePlayer(iframeEl, { 'destroy': true });
+    delete activeEmbeds[iframeEl.id];
+  }
 }
 
 export { controlYouTubePlayer, unsetEmbed, youtubeEmbed as default };

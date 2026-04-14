@@ -23,14 +23,19 @@ const shortsPlayer = function(container) {
   const previousArrow = container.querySelector(PREVIOUS_ARROW_SELECTOR);
   const nextArrow = container.querySelector(NEXT_ARROW_SELECTOR);
   const embed = container.querySelector(EMBED_SELECTOR);
+
   if (!embed) {
     return false;
   }
+
   embed.id = SHORTS_PLAYER_ID;
   list.addEventListener('scrollend', _handleScrollEnd);
   document.addEventListener('page:updated', _modalInit)
-  document.addEventListener('youtube:ready', _playerInit)
+
+  // Bound directly to the embed to catch the custom event reliably
+  embed.addEventListener('youtube:ready', _playerInit)
   document.addEventListener('modal:close', _destroy);
+
   youtubeEmbed(embed);
 
   function _modalInit(event) {
@@ -49,17 +54,18 @@ const shortsPlayer = function(container) {
       // Re-apply the correct video now that the player has reinitialized.
       const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
       currentVideo.dataset.playVideo = true;
-      controlYouTubePlayer(event.data.player, currentVideo.dataset);
+
+      controlYouTubePlayer(embed, currentVideo.dataset);
       awaitingInsertBeforeReload = false;
     } else {
-      controlYouTubePlayer(event.data.player, { 'playVideo': true });
+      controlYouTubePlayer(embed, { 'playVideo': true });
     }
   }
 
   function _destroy() {
     document.removeEventListener('modal:close', _destroy);
     document.removeEventListener('page:updated', _modalInit);
-    document.removeEventListener('youtube:ready', _playerInit)
+    embed.removeEventListener('youtube:ready', _playerInit)
     embed.removeEventListener('youtube:ended', _handleEnded);
     list.removeEventListener('scrollend', _handleScrollEnd);
     const videos = list.querySelectorAll(SHORT_VIDEO_SELECTOR);
@@ -112,11 +118,11 @@ const shortsPlayer = function(container) {
       return;
     }
     list.classList.add('s-moving-viewport');
-      _updateVideoNavigation(video);
-      list.classList.remove('s-moving-viewport');
-      _loadMore();
-    const player = AIC.YouTubeembeds[embed.id];
-    controlYouTubePlayer(player, video.dataset);
+    _updateVideoNavigation(video);
+    list.classList.remove('s-moving-viewport');
+    _loadMore();
+
+    controlYouTubePlayer(embed, video.dataset);
   }
 
   function _loadMore() {
