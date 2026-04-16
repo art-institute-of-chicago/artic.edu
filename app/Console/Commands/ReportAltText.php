@@ -199,10 +199,6 @@ class ReportAltText extends Command
                 return 'https://www.artic.edu/publications';
             }
 
-            if ($item->id == 3) {
-                return 'https://www.artic.edu';
-            }
-
             if ($item->id == 4) {
                 return 'https://www.artic.edu/exhibitions';
             }

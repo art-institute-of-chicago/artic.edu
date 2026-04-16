@@ -23,27 +23,6 @@ class PageController extends \App\Http\Controllers\Twill\ModuleController
         ];
     }
 
-    public function home(PageRepository $pages)
-    {
-        abort_unless($page = $pages->byName('Home'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put('pages_back_link', route('twill.homepage.landing'));
-
-        $additionalFieldsets = [
-            ['fieldset' => 'plan-your-visit', 'label' => 'Plan Your Visit'],
-            ['fieldset' => 'video-carousel', 'label' => 'Video Carousel'],
-            ['fieldset' => 'call-to-action', 'label' => 'Call to Action'],
-            ['fieldset' => 'highlights', 'label' => 'Highlights'],
-            ['fieldset' => 'artists', 'label' => 'Artists'],
-            ['fieldset' => 'from-the-collection', 'label' => 'From the Collection'],
-            ['fieldset' => 'from-the-shop', 'label' => 'From the Shop'],
-            ['fieldset' => 'exhibitions-and-events', 'label' => 'Exhibitions and Events'],
-        ];
-        $fields = $this->form($page->id);
-        $fields['additionalFieldsets'] = $additionalFieldsets;
-
-        return view('twill.pages.form', $fields);
-    }
-
     public function exhibitions(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Exhibitions and Events'), 500, self::MISSING_CMS_PAGE_MESSAGE);
