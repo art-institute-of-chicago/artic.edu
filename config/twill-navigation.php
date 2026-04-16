@@ -21,10 +21,6 @@ $nav = [
                 'title' => 'Admission Categories',
                 'module' => true,
             ],
-            'hours' => [
-                'title' => 'Hours',
-                'module' => true,
-            ],
             'buildingClosures' => [
                 'title' => 'Closures',
                 'module' => true,
@@ -179,7 +175,7 @@ $nav = [
     ],
     'generic' => [
         'title' => 'Pages',
-        'route' => 'twill.generic.genericPages.index',
+        'route' => 'twill.generic.landingPages.index',
 
         'primary_navigation' => [
             'landingPages' => [
@@ -188,6 +184,10 @@ $nav = [
             ],
             'genericPages' => [
                 'title' => 'Generic Pages',
+                'module' => true,
+            ],
+            'lightboxes' => [
+                'title' => 'Lightboxes',
                 'module' => true,
             ],
             'pageFeatures' => [
