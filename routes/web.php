@@ -32,7 +32,6 @@ use App\Http\Controllers\PlaylistVideoController;
 use App\Http\Controllers\PressReleasesController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\PrintedPublicationsController;
-use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShortsController;
@@ -138,9 +137,6 @@ Route::get('/digital-publications', [DigitalPublicationsController::class, 'inde
 Route::get('/digital-publications/{id}/{slug?}', [DigitalPublicationsController::class, 'show'])->name('collection.publications.digital-publications.show');
 Route::get('/digital-publications/{id}/{slug?}/content', [DigitalPublicationsController::class, 'showListing'])->name('collection.publications.digital-publications.showListing');
 Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPublicationArticleController::class, 'show'])->name('collection.publications.digital-publications-articles.show');
-
-// Collection Research
-Route::get('/collection/research_resources', [ResearchController::class, 'index'])->name('collection.research_resources');
 
 // Collection Resources Educator Resources
 Route::group([

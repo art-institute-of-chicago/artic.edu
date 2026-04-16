@@ -153,20 +153,10 @@ $nav = [
                         'module' => true,
                     ],
                 ],
-            ],
-            'researchResources' => [
-                'title' => 'Resources',
-                'route' => 'twill.collection.researchResources.landing',
-                'secondary_navigation' => [
-                    'landing' => [
-                        'title' => 'Landing',
-                        'route' => 'twill.collection.researchResources.landing',
                     ],
                     'educatorResources' => [
                         'title' => 'Educator Resources',
                         'module' => true,
-                    ]
-                ],
             ],
             'artists' => [
                 'title' => 'Artists',
