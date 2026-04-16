@@ -1,34 +1,13 @@
 <?php
 
 $nav = [
-    'homepage' => [
-        'title' => 'Homepage',
-        'route' => 'twill.homepage.landing',
-
-        'primary_navigation' => [
-            'landing' => [
-                'title' => 'Landing',
-                'route' => 'twill.homepage.landing',
-            ],
-            'homeFeatures' => [
-                'title' => 'Home Features',
-                'module' => true,
-            ],
-
-            'lightboxes' => [
-                'title' => 'Lightboxes',
-                'module' => true,
-            ],
-        ]
-    ],
-
     'visit' => [
         'title' => 'Visit',
-        'route' => 'twill.visit.landing',
+        'route' => 'twill.visit.hours.index',
         'primary_navigation' => [
-            'landing' => [
-                'title' => 'Landing',
-                'route' => 'twill.visit.landing',
+            'hours' => [
+                'title' => 'Hours',
+                'module' => true,
             ],
             'fees' => [
                 'title' => 'Admission Fees',

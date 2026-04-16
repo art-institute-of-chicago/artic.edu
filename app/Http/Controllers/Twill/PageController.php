@@ -68,29 +68,6 @@ class PageController extends \App\Http\Controllers\Twill\ModuleController
         return view('twill.pages.form', $fields);
     }
 
-    public function visit(PageRepository $pages)
-    {
-        abort_unless($page = $pages->byName('Visit'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put('pages_back_link', route('twill.homepage.landing'));
-
-        $additionalFieldsets = [
-            ['fieldset' => 'hours', 'label' => 'Hours'],
-            ['fieldset' => 'call-to-action', 'label' => 'CTA'],
-            ['fieldset' => 'expect', 'label' => 'Expect'],
-            ['fieldset' => 'admissions', 'label' => 'Adm.'],
-            ['fieldset' => 'faq', 'label' => 'FAQ'],
-            ['fieldset' => 'citypass', 'label' => 'CityPASS'],
-            ['fieldset' => 'accessibility', 'label' => 'A11y'],
-            ['fieldset' => 'directions', 'label' => 'Dir.'],
-            ['fieldset' => 'explore', 'label' => 'Explore'],
-        ];
-
-        $fields = $this->form($page->id);
-        $fields['additionalFieldsets'] = $additionalFieldsets;
-
-        return view('twill.pages.form', $fields);
-    }
-
     public function articles(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Articles'), 500, self::MISSING_CMS_PAGE_MESSAGE);
