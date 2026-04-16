@@ -37,7 +37,6 @@ class Page extends AbstractModel
         4 => 'Articles',
         5 => 'Exhibition History',
         6 => 'Collection',
-        8 => 'Articles and Publications',
     ];
 
     protected $fillable = [

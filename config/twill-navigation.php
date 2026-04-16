@@ -114,12 +114,8 @@ $nav = [
             ],
             'articlesPublications' => [
                 'title' => 'Writings',
-                'route' => 'twill.collection.articlesPublications.landing',
+                'route' => 'twill.collection.articlesPublications.articles_landing',
                 'secondary_navigation' => [
-                    'landing' => [
-                        'title' => 'Landing',
-                        'route' => 'twill.collection.articlesPublications.landing',
-                    ],
                     'articles_landing' => [
                         'title' => 'Articles Landing',
                         'route' => 'twill.collection.articlesPublications.articles_landing',
@@ -153,10 +149,10 @@ $nav = [
                         'module' => true,
                     ],
                 ],
-                    ],
-                    'educatorResources' => [
-                        'title' => 'Educator Resources',
-                        'module' => true,
+            ],
+            'educatorResources' => [
+                'title' => 'Educator Resources',
+                'module' => true,
             ],
             'artists' => [
                 'title' => 'Artists',
