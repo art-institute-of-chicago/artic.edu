@@ -138,17 +138,6 @@ class PageController extends \App\Http\Controllers\Twill\ModuleController
         return view('twill.pages.form', $fields);
     }
 
-    public function research(PageRepository $pages)
-    {
-        abort_unless($page = $pages->byName('Research and Resources'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-
-        $additionalFieldsets = [];
-        $fields = $this->form($page->id);
-        $fields['additionalFieldsets'] = $additionalFieldsets;
-
-        return view('twill.pages.form', $fields);
-    }
-
     protected function moduleHas($behavior)
     {
         return $behavior === 'revisions' ? false : parent::moduleHas($behavior);

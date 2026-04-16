@@ -135,7 +135,7 @@ class EducatorResource extends AbstractModel
 
     public function getAdminEditUrlAttribute()
     {
-        return route('twill.collection.researchResources.educatorResources.edit', $this->id);
+        return route('twill.collection.educatorResources.edit', $this->id);
     }
 
     public function hasFileForLocale($role, $locale)

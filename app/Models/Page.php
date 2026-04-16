@@ -37,7 +37,6 @@ class Page extends AbstractModel
         4 => 'Articles',
         5 => 'Exhibition History',
         6 => 'Collection',
-        7 => 'Research and Resources',
         8 => 'Articles and Publications',
     ];
 
@@ -84,10 +83,6 @@ class Page extends AbstractModel
 
         // Printed catalogs
         'printed_publications_intro',
-
-        // Resources Landing page
-        'resources_landing_title',
-        'resources_landing_intro',
 
         // Visit page
         'visit_hide_hours',
@@ -217,14 +212,6 @@ class Page extends AbstractModel
                 [
                     'name' => 'default',
                     'ratio' => 25 / 4,
-                ],
-            ],
-        ],
-        'research_landing_image' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 40 / 27,
                 ],
             ],
         ],
@@ -385,21 +372,6 @@ class Page extends AbstractModel
     public function visitTourPages()
     {
         return $this->belongsToMany('App\Models\GenericPage', 'visit_tour_page')->withPivot('position')->orderBy('visit_tour_page.position', 'asc');
-    }
-
-    public function researchResourcesFeaturePages()
-    {
-        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_feature_page')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
-    }
-
-    public function researchResourcesStudyRooms()
-    {
-        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_pages')->withPivot('position')->orderBy('research_resource_study_room_pages.position', 'asc');
-    }
-
-    public function researchResourcesStudyRoomMore()
-    {
-        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_more_pages')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
     }
 
     public static function getIconTypes()

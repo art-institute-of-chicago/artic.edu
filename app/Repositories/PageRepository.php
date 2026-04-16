@@ -48,20 +48,6 @@ class PageRepository extends ModuleRepository
         'digitalPublications' => [
             'routePrefix' => 'collection.articlesPublications'
         ],
-
-        // Research landing
-        'researchResourcesFeaturePages' => [
-            'routePrefix' => 'generic',
-            'moduleName' => 'genericPages',
-        ],
-        'researchResourcesStudyRooms' => [
-            'routePrefix' => 'generic',
-            'moduleName' => 'genericPages',
-        ],
-        'researchResourcesStudyRoomMore' => [
-            'routePrefix' => 'generic',
-            'moduleName' => 'genericPages',
-        ],
     ];
 
     protected $relatedBrowsers = [
@@ -134,9 +120,6 @@ class PageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
-
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesStudyRooms', 'position', 'GenericPage');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesStudyRoomMore', 'position', 'GenericPage');
 
         $this->hydrateOrderedBelongsTomany($object, $fields, 'articles', 'position', 'Article');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'printedPublications', 'position', 'PrintedPublication');
