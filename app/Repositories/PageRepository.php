@@ -20,44 +20,7 @@ class PageRepository extends ModuleRepository
     use HandleApiRelations;
     use HandleTranslations;
 
-    protected $browsers = [
-        // Homepage landing
-        'homeEvents' => [
-            'routePrefix' => 'exhibitionsEvents',
-            'moduleName' => 'events',
-        ],
-        'mainHomeFeatures' => [
-            'routePrefix' => 'homepage',
-            'moduleName' => 'homeFeatures',
-        ],
-        'secondaryHomeFeatures' => [
-            'routePrefix' => 'homepage',
-            'moduleName' => 'homeFeatures',
-        ],
-
-    ];
-
-    protected $relatedBrowsers = [
-        // Homepage landing
-        'homeVideos',
-        'homeHighlights',
-        'articlesCategories'
-    ];
-
     protected $apiBrowsers = [
-        // Homepage landing
-        'homeExhibitions' => [
-            'moduleName' => 'exhibitions',
-            'routePrefix' => 'exhibitionsEvents'
-        ],
-        'homeShopItems' => [
-            'moduleName' => 'shopItems',
-        ],
-        'homeArtworks' => [
-            'routePrefix' => 'collection',
-            'moduleName' => 'artworks',
-        ],
-
         // Exhibition and events landing
         'exhibitionsCurrent' => [
             'moduleName' => 'exhibitions',

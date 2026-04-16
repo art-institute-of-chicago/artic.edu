@@ -30,7 +30,6 @@ class Page extends AbstractModel
     ];
 
     public static $types = [
-        0 => 'Home',
         1 => 'Exhibitions and Events',
         2 => 'Art and Ideas', // WEB-2262: now The Collection
         4 => 'Articles',
@@ -43,30 +42,6 @@ class Page extends AbstractModel
         'position',
         'type',
         'title',
-
-        // Homepage
-        'home_intro',
-        'home_visit_button_text',
-        'home_visit_button_url',
-        'home_plan_your_visit_link_1_text',
-        'home_plan_your_visit_link_1_url',
-        'home_plan_your_visit_link_2_text',
-        'home_plan_your_visit_link_2_url',
-        'home_plan_your_visit_link_3_text',
-        'home_plan_your_visit_link_3_url',
-
-        'home_cta_module_action_url',
-        'home_cta_module_image',
-        'home_cta_module_header',
-        'home_cta_module_body',
-        'home_cta_module_button_text',
-        'home_cta_module_variation',
-        'home_cta_module_form_id',
-        'home_cta_module_form_token',
-        'home_cta_module_form_tlc_source',
-
-        'home_video_title',
-        'home_video_description',
 
         // Exhibition
         'exhibition_intro',
@@ -120,14 +95,6 @@ class Page extends AbstractModel
                 ],
             ],
         ],
-        'home_cta_module_image' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 25 / 4,
-                ],
-            ],
-        ],
     ];
 
     /**
@@ -159,11 +126,6 @@ class Page extends AbstractModel
         return $query->whereIn('id', $ids);
     }
 
-    public function homeExhibitions()
-    {
-        return $this->apiElements()->where('relation', 'homeExhibitions');
-    }
-
     public function exhibitionsCurrent()
     {
         return $this->apiElements()->where('relation', 'exhibitionsCurrent');
@@ -172,49 +134,6 @@ class Page extends AbstractModel
     public function exhibitionsUpcomingListing()
     {
         return $this->apiElements()->where('relation', 'exhibitionsUpcomingListing');
-    }
-
-    public function homeEvents()
-    {
-        return $this->belongsToMany('App\Models\Event', 'page_home_event')->withPivot('position')->orderBy('position');
-    }
-
-    /**
-     * WEB-2254: Finish deprecating homeFeatures relationship
-     */
-    public function homeFeatures()
-    {
-        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_home_feature')->withPivot('position')->orderBy('position');
-    }
-
-    public function mainHomeFeatures()
-    {
-        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_main_home_feature')->withPivot('position')->orderBy('position');
-    }
-
-    public function secondaryHomeFeatures()
-    {
-        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_secondary_home_feature')->withPivot('position')->orderBy('position');
-    }
-
-    public function homeShopItems()
-    {
-        return $this->apiElements()->where('relation', 'homeShopItems');
-    }
-
-    public function homeArtworks()
-    {
-        return $this->apiElements()->where('relation', 'homeArtworks');
-    }
-
-    public function admissions()
-    {
-        return $this->hasMany(Admission::class)->orderBy('position');
-    }
-
-    public function homeArtists()
-    {
-        return $this->hasMany(HomeArtist::class)->orderBy('position');
     }
 
     public function articlesCategories()
@@ -275,15 +194,6 @@ class Page extends AbstractModel
                 'type' => 'integer',
                 'value' => function () {
                     return $this->type;
-                },
-            ],
-
-            [
-                'name' => 'home_intro',
-                'doc' => 'Home Intro',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->home_intro;
                 },
             ],
 

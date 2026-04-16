@@ -97,8 +97,9 @@ Route::group(['prefix' => 'collection'], function () {
 });
 
 Route::group(['prefix' => 'generic'], function () {
-    TwillRoutes::module('genericPages');
     TwillRoutes::module('landingPages');
+    TwillRoutes::module('genericPages');
+    TwillRoutes::module('lightboxes');
     TwillRoutes::module('pageFeatures');
     TwillRoutes::module('pressReleases');
     TwillRoutes::module('exhibitionPressRooms');
