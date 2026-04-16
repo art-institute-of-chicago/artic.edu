@@ -75,10 +75,9 @@ Route::group(['prefix' => 'collection'], function () {
     TwillRoutes::module('categoryTerms');
     Route::get('categoryTerms/augment/{datahub_id}', [CategoryTermController::class, 'augment'])->name('collection.categoryTerms.augment');
 
-        TwillRoutes::module('educatorResources');
+    TwillRoutes::module('educatorResources');
 
     Route::group(['prefix' => 'articlesPublications'], function () {
-        Route::get('landing', [PageController::class, 'articlesPublications'])->name('collection.articlesPublications.landing');
         Route::get('articles_landing', [PageController::class, 'articles'])->name('collection.articlesPublications.articles_landing');
         TwillRoutes::module('articles');
         TwillRoutes::module('categories');

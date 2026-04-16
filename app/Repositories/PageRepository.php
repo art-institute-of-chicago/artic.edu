@@ -121,10 +121,6 @@ class PageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsTomany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
 
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'articles', 'position', 'Article');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'printedPublications', 'position', 'PrintedPublication');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'digitalPublications', 'position', 'DigitalPublication');
-
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeArtists', 'position', 'HomeArtist');
 
         return parent::hydrate($object, $fields);
