@@ -33,7 +33,6 @@ class Page extends AbstractModel
         0 => 'Home',
         1 => 'Exhibitions and Events',
         2 => 'Art and Ideas', // WEB-2262: now The Collection
-        3 => 'Visit',
         4 => 'Articles',
         5 => 'Exhibition History',
         6 => 'Collection',
@@ -83,43 +82,6 @@ class Page extends AbstractModel
         // Printed catalogs
         'printed_publications_intro',
 
-        // Visit page
-        'visit_hide_hours',
-        'visit_dining_link',
-        'visit_transportation_link',
-        'visit_parking_link',
-        'visit_buy_tickets_link',
-        'visit_become_member_link',
-        'visit_faq_accessibility_link',
-        'visit_faq_more_link',
-        'visit_accessibility_link_url',
-        'visit_cta_module_action_url',
-        'visit_what_to_expect_more_link',
-        'visit_capacity_btn_url_1',
-        'visit_capacity_btn_url_2',
-        'visit_intro',
-        'visit_hour_header',
-        'visit_hour_subheader',
-        'visit_hour_intro',
-        'visit_hour_image_caption',
-        'visit_city_pass_title',
-        'visit_city_pass_text',
-        'visit_city_pass_button_label',
-        'visit_city_pass_link',
-        'visit_admission_description',
-        'visit_buy_tickets_label',
-        'visit_become_member_label',
-        'visit_accessibility_text',
-        'visit_accessibility_link_text',
-        'visit_cta_module_header',
-        'visit_cta_module_body',
-        'visit_cta_module_button_text',
-        'visit_what_to_expect_more_text',
-        'visit_capacity_alt',
-        'visit_capacity_heading',
-        'visit_capacity_text',
-        'visit_capacity_btn_text_1',
-        'visit_capacity_btn_text_2',
         'active',
     ];
 
@@ -136,54 +98,6 @@ class Page extends AbstractModel
     ];
 
     public $mediasParams = [
-        'visit_hero' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 21 / 9,
-                ],
-            ],
-        ],
-        'visit_mobile' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 1,
-                ],
-            ],
-        ],
-        'visit_featured_hour' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 16 / 9,
-                ],
-            ],
-        ],
-        'visit_accessibility' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 16 / 9,
-                ],
-            ],
-        ],
-        'visit_map' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 1,
-                ],
-            ],
-        ],
-        'visit_city_pass' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 9 / 5,
-                ],
-            ],
-        ],
         'hero' => [
             'default' => [
                 [
@@ -303,36 +217,6 @@ class Page extends AbstractModel
         return $this->hasMany(HomeArtist::class)->orderBy('position');
     }
 
-    public function locations()
-    {
-        return $this->hasMany(Location::class)->orderBy('position');
-    }
-
-    public function dining_hours() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
-    {
-        return $this->hasMany(DiningHour::class)->orderBy('position');
-    }
-
-    public function faqs()
-    {
-        return $this->hasMany(Faq::class)->orderBy('position');
-    }
-
-    public function families()
-    {
-        return $this->hasMany(Family::class)->orderBy('position');
-    }
-
-    public function featured_hours() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
-    {
-        return $this->hasMany(FeaturedHour::class)->orderBy('position');
-    }
-
-    public function whatToExpects()
-    {
-        return $this->hasMany(WhatToExpect::class)->orderBy('position');
-    }
-
     public function articlesCategories()
     {
         return $this->belongsToMany(\App\Models\Category::class, 'page_article_category')->withPivot('position')->orderBy('position');
@@ -366,11 +250,6 @@ class Page extends AbstractModel
     public function printedPublications()
     {
         return $this->belongsToMany('App\Models\PrintedPublication')->withPivot('position')->orderBy('position');
-    }
-
-    public function visitTourPages()
-    {
-        return $this->belongsToMany('App\Models\GenericPage', 'visit_tour_page')->withPivot('position')->orderBy('visit_tour_page.position', 'asc');
     }
 
     public static function getIconTypes()
@@ -468,60 +347,6 @@ class Page extends AbstractModel
                 'type' => 'string',
                 'value' => function () {
                     return $this->exhibition_intro;
-                },
-            ],
-
-            [
-                'name' => 'visit_intro',
-                'doc' => 'visit_intro',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_intro;
-                },
-            ],
-
-            [
-                'name' => 'visit_hour_header',
-                'doc' => 'visit_hour_header',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_hour_header;
-                },
-            ],
-
-            [
-                'name' => 'visit_hour_subheader',
-                'doc' => 'visit_hour_subheader',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_hour_subheader;
-                },
-            ],
-
-            [
-                'name' => 'visit_city_pass_title',
-                'doc' => 'visit_city_pass_title',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_city_pass_title;
-                },
-            ],
-
-            [
-                'name' => 'visit_city_pass_text',
-                'doc' => 'visit_city_pass_text',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_city_pass_text;
-                },
-            ],
-
-            [
-                'name' => 'visit_admission_description',
-                'doc' => 'visit_admission_description',
-                'type' => 'string',
-                'value' => function () {
-                    return $this->visit_admission_description;
                 },
             ],
 
