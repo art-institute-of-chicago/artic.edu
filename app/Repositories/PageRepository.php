@@ -35,19 +35,6 @@ class PageRepository extends ModuleRepository
             'moduleName' => 'homeFeatures',
         ],
 
-        // Visit
-        'articles' => [
-            'routePrefix' => 'collection.articlesPublications'
-        ],
-        'experiences' => [
-            'routePrefix' => 'collection.interactiveFeatures'
-        ],
-        'printedPublications' => [
-            'routePrefix' => 'collection.articlesPublications'
-        ],
-        'digitalPublications' => [
-            'routePrefix' => 'collection.articlesPublications'
-        ],
     ];
 
     protected $relatedBrowsers = [
@@ -88,42 +75,9 @@ class PageRepository extends ModuleRepository
         ],
     ];
 
-    protected array $repeaters = [
-        // Homepage landing
-        'artists' => [
-            'relation' => 'homeArtists',
-            'model' => 'HomeArtist'
-        ],
-
-        // Visit
-        'locations',
-        'featured_hours' => [
-            'relation' => 'featured_hours'
-        ],
-        'faqs',
-        'families',
-        'what_to_expects',
-    ];
-
     public function __construct(Page $model)
     {
         $this->model = $model;
-    }
-
-    public function hydrate(TwillModelContract $object, array $fields): TwillModelContract
-    {
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeExhibitions', 'position', 'Exhibition');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeEvents', 'position', 'Event');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'mainHomeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'secondaryHomeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
-
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeArtists', 'position', 'HomeArtist');
-
-        return parent::hydrate($object, $fields);
     }
 
     public function afterSave(TwillModelContract $object, array $fields): void

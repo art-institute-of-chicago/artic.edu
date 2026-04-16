@@ -15,15 +15,7 @@ use App\Http\Controllers\Twill\ShopItemController;
 
 TwillRoutes::module('pages');
 
-Route::group(['prefix' => 'homepage'], function () {
-    Route::name('homepage.landing')->get('landing', [PageController::class, 'home']);
-    TwillRoutes::module('homeFeatures');
-    TwillRoutes::module('lightboxes');
-    TwillRoutes::module('homeArtists');
-});
-
 Route::group(['prefix' => 'visit'], function () {
-    Route::name('visit.landing')->get('landing', [PageController::class, 'visit']);
     TwillRoutes::module('hours');
     TwillRoutes::module('buildingClosures');
     TwillRoutes::module('questions');
