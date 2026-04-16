@@ -195,10 +195,6 @@ class ReportAltText extends Command
         }
 
         if (\App\Models\Page::class == get_class($item)) {
-            if ($item->id == 1) {
-                return 'https://www.artic.edu/collection/research_resources';
-            }
-
             if ($item->id == 2) {
                 return 'https://www.artic.edu/publications';
             }
