@@ -68,18 +68,6 @@ class PageController extends \App\Http\Controllers\Twill\ModuleController
         return view('twill.pages.form', $fields);
     }
 
-    public function articlesPublications(PageRepository $pages)
-    {
-        abort_unless($page = $pages->byName('Articles and Publications'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put('pages_back_link', route('twill.collection.articlesPublications.landing'));
-
-        $additionalFieldsets = [];
-        $fields = $this->form($page->id);
-        $fields['additionalFieldsets'] = $additionalFieldsets;
-
-        return view('twill.pages.form', $fields);
-    }
-
     public function visit(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Visit'), 500, self::MISSING_CMS_PAGE_MESSAGE);
@@ -106,7 +94,6 @@ class PageController extends \App\Http\Controllers\Twill\ModuleController
     public function articles(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Articles'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put('pages_back_link', route('twill.collection.articlesPublications.landing'));
         $additionalFieldsets = [];
         $fields = $this->form($page->id);
         $fields['additionalFieldsets'] = $additionalFieldsets;
