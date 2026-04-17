@@ -34,6 +34,9 @@ const dynamicFilterSearch = function (container) {
           container.querySelector('.m-search-bar__clear').addEventListener('click', _handleClear);
         }
       }
+    } else if (clearBtn) {
+      clearBtn.removeEventListener('click', _handleClear);
+      clearBtn.remove();
     }
   }
 
