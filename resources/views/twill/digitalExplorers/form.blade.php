@@ -59,6 +59,11 @@
               name="settings.brailleButton"
               label="Show braille button?"
             />
+
+            <x-twill::checkbox
+              name="settings.builderEnabled"
+              label="Enable builder?"
+            />
         </x-slot>
     </x-twill::formColumns>
 @stop
