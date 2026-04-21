@@ -3,6 +3,7 @@ body {
 }
 
 html:has(.o-digital-explorer) {
+  left: unset !important;
   right: unset !important;
 }
 
