@@ -2,9 +2,12 @@ body {
   background-color: $color__black--91;
 }
 
+html:has(.o-digital-explorer):not(:has(.kioskMode)) {
+  right: unset !important;
+}
+
 html:has(.o-digital-explorer) {
   left: unset !important;
-  right: unset !important;
 }
 
 .o-digital-explorer {
