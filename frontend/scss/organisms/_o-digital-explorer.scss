@@ -2,6 +2,10 @@ body {
   background-color: $color__black--91;
 }
 
+html:has(.o-digital-explorer) {
+  right: unset !important;
+}
+
 .o-digital-explorer {
   width: 100vw;
   position: relative;
