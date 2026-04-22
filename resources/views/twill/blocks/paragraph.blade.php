@@ -17,4 +17,5 @@
         'link',
     ]"
     :translated='true'
+    :edit-source="auth()->user()->role === 'ADMIN'"
 />
