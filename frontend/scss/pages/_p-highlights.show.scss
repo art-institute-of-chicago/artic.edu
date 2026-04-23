@@ -1,0 +1,7 @@
+.p-highlights-show {
+  @include breakpoint('small-'){
+    .o-article__related {
+      width: 100%;
+    }
+  }
+}

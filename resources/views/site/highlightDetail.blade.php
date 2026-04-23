@@ -34,19 +34,11 @@
 
   </div>
 
-  <div class="o-article__secondary-actions">
+  <div class="o-article__secondary-actions u-show@medium+">
     @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
     @endcomponent
   </div>
-
-  @if ($item->hasFeaturedRelated())
-    <div class="o-article__related">
-        @component('site.shared._loadRelatedSidebar')
-            @slot('item', $item)
-        @endcomponent
-    </div>
-  @endif
 
   @if ($item->short_copy)
         <div class="o-article__intro">
@@ -110,6 +102,14 @@
         @slot('articleType', $item->articleType)
     @endcomponent
   </div>
+
+  @if ($item->hasFeaturedRelated())
+    <div class="o-article__related">
+        @component('site.shared._loadRelatedSidebar')
+            @slot('item', $item)
+        @endcomponent
+    </div>
+  @endif
 
 </article>
 
