@@ -231,6 +231,7 @@ Route::group([
     ]
 ], function () {
     Route::get('/videos/archive', [VideoController::class, 'index'])->name('videos.archive');
+    Route::redirect('/videos/archives', '/videos/archive');
 });
 Route::get('/videos/shorts', [ShortsController::class, 'index'])->name('shorts.index');
 Route::get('/videos/shorts/{video}', [ShortsController::class, 'show'])->name('shorts.show');
@@ -291,6 +292,7 @@ Route::get('/highlights', [HighlightsController::class, 'index'])->name('highlig
 // About
 Route::get('/press/press-releases', [PressReleasesController::class, 'index'])->name('about.press');
 Route::get('/press/archive', [PressReleasesController::class, 'archive'])->name('about.press.archive');
+Route::redirect('/press/archives', '/press/archive');
 Route::get('/press/press-releases/{id}/{slug?}', [PressReleasesController::class, 'show'])->name('about.press.show');
 
 Route::get('/press/exhibition-press-room', [ExhibitionPressRoomController::class, 'index'])->name('about.exhibitionPressRooms');
