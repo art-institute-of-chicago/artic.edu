@@ -15,15 +15,7 @@ use App\Http\Controllers\Twill\ShopItemController;
 
 TwillRoutes::module('pages');
 
-Route::group(['prefix' => 'homepage'], function () {
-    Route::name('homepage.landing')->get('landing', [PageController::class, 'home']);
-    TwillRoutes::module('homeFeatures');
-    TwillRoutes::module('lightboxes');
-    TwillRoutes::module('homeArtists');
-});
-
 Route::group(['prefix' => 'visit'], function () {
-    Route::name('visit.landing')->get('landing', [PageController::class, 'visit']);
     TwillRoutes::module('hours');
     TwillRoutes::module('buildingClosures');
     TwillRoutes::module('questions');
@@ -75,13 +67,9 @@ Route::group(['prefix' => 'collection'], function () {
     TwillRoutes::module('categoryTerms');
     Route::get('categoryTerms/augment/{datahub_id}', [CategoryTermController::class, 'augment'])->name('collection.categoryTerms.augment');
 
-    Route::group(['prefix' => 'researchResources'], function () {
-        Route::get('landing', [PageController::class, 'research'])->name('collection.researchResources.landing');
-        TwillRoutes::module('educatorResources');
-    });
+    TwillRoutes::module('educatorResources');
 
     Route::group(['prefix' => 'articlesPublications'], function () {
-        Route::get('landing', [PageController::class, 'articlesPublications'])->name('collection.articlesPublications.landing');
         Route::get('articles_landing', [PageController::class, 'articles'])->name('collection.articlesPublications.articles_landing');
         TwillRoutes::module('articles');
         TwillRoutes::module('categories');
@@ -109,8 +97,9 @@ Route::group(['prefix' => 'collection'], function () {
 });
 
 Route::group(['prefix' => 'generic'], function () {
-    TwillRoutes::module('genericPages');
     TwillRoutes::module('landingPages');
+    TwillRoutes::module('genericPages');
+    TwillRoutes::module('lightboxes');
     TwillRoutes::module('pageFeatures');
     TwillRoutes::module('pressReleases');
     TwillRoutes::module('exhibitionPressRooms');

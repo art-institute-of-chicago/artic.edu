@@ -79,7 +79,6 @@ class GenerateSitemap extends Command
         $this->addRoute($sitemap, 'about.press.archive', 0.6);
         $this->addRoute($sitemap, 'collection.publications.printed-publications', 0.6);
         $this->addRoute($sitemap, 'collection.publications.digital-publications', 0.6);
-        $this->addRoute($sitemap, 'collection.research_resources');
         $this->addRoute($sitemap, 'collection.resources.educator-resources');
     }
 

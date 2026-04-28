@@ -1,34 +1,13 @@
 <?php
 
 $nav = [
-    'homepage' => [
-        'title' => 'Homepage',
-        'route' => 'twill.homepage.landing',
-
-        'primary_navigation' => [
-            'landing' => [
-                'title' => 'Landing',
-                'route' => 'twill.homepage.landing',
-            ],
-            'homeFeatures' => [
-                'title' => 'Home Features',
-                'module' => true,
-            ],
-
-            'lightboxes' => [
-                'title' => 'Lightboxes',
-                'module' => true,
-            ],
-        ]
-    ],
-
     'visit' => [
         'title' => 'Visit',
-        'route' => 'twill.visit.landing',
+        'route' => 'twill.visit.hours.index',
         'primary_navigation' => [
-            'landing' => [
-                'title' => 'Landing',
-                'route' => 'twill.visit.landing',
+            'hours' => [
+                'title' => 'Hours',
+                'module' => true,
             ],
             'fees' => [
                 'title' => 'Admission Fees',
@@ -40,10 +19,6 @@ $nav = [
             ],
             'feeCategories' => [
                 'title' => 'Admission Categories',
-                'module' => true,
-            ],
-            'hours' => [
-                'title' => 'Hours',
                 'module' => true,
             ],
             'buildingClosures' => [
@@ -114,12 +89,8 @@ $nav = [
             ],
             'articlesPublications' => [
                 'title' => 'Writings',
-                'route' => 'twill.collection.articlesPublications.landing',
+                'route' => 'twill.collection.articlesPublications.articles_landing',
                 'secondary_navigation' => [
-                    'landing' => [
-                        'title' => 'Landing',
-                        'route' => 'twill.collection.articlesPublications.landing',
-                    ],
                     'articles_landing' => [
                         'title' => 'Articles Landing',
                         'route' => 'twill.collection.articlesPublications.articles_landing',
@@ -154,19 +125,9 @@ $nav = [
                     ],
                 ],
             ],
-            'researchResources' => [
-                'title' => 'Resources',
-                'route' => 'twill.collection.researchResources.landing',
-                'secondary_navigation' => [
-                    'landing' => [
-                        'title' => 'Landing',
-                        'route' => 'twill.collection.researchResources.landing',
-                    ],
-                    'educatorResources' => [
-                        'title' => 'Educator Resources',
-                        'module' => true,
-                    ]
-                ],
+            'educatorResources' => [
+                'title' => 'Educator Resources',
+                'module' => true,
             ],
             'artists' => [
                 'title' => 'Artists',
@@ -214,7 +175,7 @@ $nav = [
     ],
     'generic' => [
         'title' => 'Pages',
-        'route' => 'twill.generic.genericPages.index',
+        'route' => 'twill.generic.landingPages.index',
 
         'primary_navigation' => [
             'landingPages' => [
@@ -223,6 +184,10 @@ $nav = [
             ],
             'genericPages' => [
                 'title' => 'Generic Pages',
+                'module' => true,
+            ],
+            'lightboxes' => [
+                'title' => 'Lightboxes',
                 'module' => true,
             ],
             'pageFeatures' => [
