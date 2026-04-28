@@ -128,7 +128,15 @@ Route::group([
 ], function () {
     Route::get('api/v1/msuggest')->name('collection.autocomplete');
 });
-Route::get('/collection/categorySearch/{categoryName}', [CollectionController::class, 'categorySearch'])->name('collection.categorySearch');
+
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'categoryQuery',
+    ]
+], function () {
+    Route::get('/collection/categorySearch/{categoryName}', [CollectionController::class, 'categorySearch'])->name('collection.categorySearch');
+});
 
 // Collection Publications Printed Publications
 Route::get('/print-publications', [PrintedPublicationsController::class, 'index'])->name('collection.publications.printed-publications');
