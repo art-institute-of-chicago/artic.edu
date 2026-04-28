@@ -7,6 +7,7 @@ use App\Services\YouTube\YouTubeService;
 use App\Services\YouTube\YouTubeServiceException;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class AbstractYoutubeCommand extends Command
@@ -25,19 +26,14 @@ abstract class AbstractYoutubeCommand extends Command
         parent::__construct();
         $this->oAuth->setApplicationName(YouTubeService::SERVICE_NAME);
         $this->youtube = new YouTubeService($oAuth->client);
-        $this->youtube->setLogger(fn ($message, $level = 'info') => (
-            $this->{$level}($message, OutputInterface::VERBOSITY_DEBUG)
-        ));
+        $this->youtube->setLogger($this->log(...));
     }
 
     public function handle()
     {
         $this->oAuth->refreshAccess();
         $this->oAuth->authorizeAccess();
-        $this->info(
-            "YouTube service session start",
-            OutputInterface::VERBOSITY_DEBUG,
-        );
+        $this->log("YouTube service session start");
         // If the options are null, let them be, otherwise cast their types.
         $quota = is_null($this->option('quota')) ? $this->option('quota') : (int) $this->option('quota');
         $force = is_null($this->option('force')) ? $this->option('force') : (bool) $this->option('force');
@@ -45,27 +41,32 @@ abstract class AbstractYoutubeCommand extends Command
             $this->youtube->clearSession()->session(fn () => $this->handleCommand(), $quota, $force);
         } catch (YouTubeServiceException $exception) {
             $code = $exception->getCode();
-            $this->error($exception->getMessage(), OutputInterface::VERBOSITY_QUIET);
+            $this->log($exception->getMessage(), 'error');
         }
         $requestCount = $this->youtube->getRequestCount();
         $sessionUsage = $this->youtube->getSessionUsage();
         $remainingQuota = $this->youtube->getRemainingQuota(quiet: true);
         $level = 'info';
-        // Less than 10% of the daily limit
         if ($remainingQuota <= 0) {
             $level = 'error';
-        } elseif ($remainingQuota < YouTubeService::QUOTA_LIMIT * .10) {
+        } elseif ($remainingQuota < YouTubeService::QUOTA_LIMIT * .10) { // Less than 10% of the daily limit
             $level = 'warn';
         }
-        $this->{$level}(
+        $this->log(
             'YouTube service session end - ' .
                 "request count: $requestCount, " .
                 "quota usage: $sessionUsage, " .
                 "remaining quota: $remainingQuota",
-            OutputInterface::VERBOSITY_DEBUG
+            $level,
         );
 
         return $code ?? 0;
+    }
+
+    protected function log($message, $level = 'info')
+    {
+        Log::channel('sentry')->{$level}($message);
+        $this->{$level}($message, OutputInterface::VERBOSITY_DEBUG);
     }
 
     abstract protected function handleCommand();
