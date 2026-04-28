@@ -192,19 +192,6 @@ Route::group([
     ]
 ], function () {
     Route::get('/events', [EventsController::class, 'index'])->name('events');
-});
-
-Route::group([
-    'middleware' => [SanitizeQueryParameters::class],
-    'allowed_query_params' => [
-        'type',
-        'audience',
-        'program',
-        'time',
-        'start',
-        'end',
-    ]
-], function () {
     Route::get('/events-more', [EventsController::class, 'indexMore'])->name('events.more');
 });
 Route::get('/events/{id}/ics', [EventsController::class, 'ics'])->name('events.ics');
