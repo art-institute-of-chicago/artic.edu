@@ -65,7 +65,7 @@ abstract class AbstractYoutubeCommand extends Command
 
     protected function log($message, $level = 'info')
     {
-        Log::channel('sentry')->{$level}($message);
+        Log::channel('sentry_logs')->{$level}($message);
         $this->{$level}($message, OutputInterface::VERBOSITY_DEBUG);
     }
 
