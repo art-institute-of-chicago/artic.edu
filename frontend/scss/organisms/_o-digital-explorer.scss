@@ -36,6 +36,11 @@ html:has(.o-digital-explorer):not(:has(.kioskMode)) {
   }
 
   .o-blocks {
+
+    .m-media--360-embed {
+      height: 100% !important;
+    }
+
     &.o-layout_block {
       .m-media {
         height: 100%;
@@ -49,7 +54,7 @@ html:has(.o-digital-explorer):not(:has(.kioskMode)) {
 
       h2, p {
         color: $color__white !important;
-        font-family: $serif-font--loaded;
+        font-family: $serif-font--loaded !important;
         text-align: start;
         text-transform: none;
       }
@@ -79,11 +84,13 @@ html:has(.o-digital-explorer):not(:has(.kioskMode)) {
       flex: 1;
       overflow: hidden;
       position: relative;
+      background-color: transparent;
 
       img {
         max-height: unset !important;
         object-fit: cover;
         height: 100% !important;
+        margin: 0;
       }
     }
 
