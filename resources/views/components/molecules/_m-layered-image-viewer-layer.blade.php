@@ -1,15 +1,15 @@
 @php
     $layerType = isset($layerType) ? $layerType : 'image';
     $size = isset($size) ? $size : 'm';
-    $media = $item['media'];
+    $media = $item['media'] ?? null;
 
     if ($media) {
-        $alt = $media['alt'];
-        $width = $media['width'];
-        $height = $media['height'];
+        $alt = $media['alt'] ?? '';
+        $width = $media['width'] ?? '';
+        $height = $media['height'] ?? '';
         $crop_x = $media['crop_x'] ?? 0;
         $crop_y = $media['crop_y'] ?? 0;
-        $startingView = $item['starting_view'] ? $item['starting_view'] : false;
+        $startingView = isset($item['starting_view']) && $item['starting_view'] ? $item['starting_view'] : false;
 
         // Set empty $imageSettings, this will be populated based on $size
         $imageSettings = [];
@@ -72,7 +72,7 @@
         <figure class="m-media m-media--{{ (isset($size)) ? $size : 'm' }} m-media--layered-image-viewer-embed m-media--contain">
             <div class="m-media__img" data-behavior="fitText">
                 <img
-                    src="{{ $media['src'] }}"
+                    src="{{ $media['src'] ?? '' }}"
                     alt="{{ $alt }}"
 
                     @if ($layerType == 'image')
@@ -85,7 +85,7 @@
                     @endif
 
                     {{-- Important to include this, must be largest size available: --}}
-                    data-viewer-src="{{ $media['full_src'] }}"
+                    data-viewer-src="{{ $media['full_src'] ?? '' }}"
                 />
             </div>
             @if (isset($item['label']))
