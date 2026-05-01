@@ -48,6 +48,13 @@
     note="Size of the annotation icon"
 />
 
+<x-twill::input
+    name='annotationZoom'
+    label='Zoom Distance'
+    placeholder="auto"
+    note="Camera distance when this annotation is opened (leave empty for default)"
+/>
+
 <x-twill::multi-select
     name='annotationSettings'
     label='Annotation Settings'

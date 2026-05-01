@@ -1,6 +1,12 @@
 @twillBlockTitle('Explorer Model')
 @twillBlockIcon('image')
 
+    <x-twill::input
+        name='label'
+        label='Label'
+        note='Label for the model'
+    />
+
     <x-twill::select
       name='modelType'
       label='Model Type'
