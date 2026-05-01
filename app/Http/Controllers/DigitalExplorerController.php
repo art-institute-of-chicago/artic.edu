@@ -33,7 +33,7 @@ class DigitalExplorerController extends FrontController
         ]);
 
         // Renders paragraph wrapper for style targetting
-        View::share('hasWrapper', true);
+        View::share(['hasWrapper' => true, 'isDigitalExplorer' => true]);
 
         $explorerData = $this->transformExplorer($digitalExplorer);
 
@@ -72,6 +72,11 @@ class DigitalExplorerController extends FrontController
                 'debug' => $digitalExplorer->settings->get('debug', false),
                 'brailleButton' => $digitalExplorer->settings->get('brailleButton', false),
                 'builderEnabled' => $digitalExplorer->settings->get('builderEnabled', false),
+                'enableCustomBounds' => (bool) $digitalExplorer->settings->get('enableCustomBounds', false),
+                'customBounds' => $this->parseCoordinates($digitalExplorer->settings->get('customBounds'), [10.5, 5.2, 8.0]),
+                'customBoundsOffset' => $this->parseCoordinates($digitalExplorer->settings->get('customBoundsOffset'), [0.0, 1.5, 0.0]),
+                'zoomLimits' => $this->parseNumberArray($digitalExplorer->settings->get('zoomLimits'), [0.0, 150.0]),
+                'deactivateForcefield' => (bool) $digitalExplorer->settings->get('deactivateForcefield', false),
                 'sceneSettings' => [
                     'antialiasing' => in_array('antialiasing', $digitalExplorer->settings?->get('sceneSettings', []) ?? []),
                     'shadows' => in_array('shadows', $digitalExplorer->settings?->get('sceneSettings', []) ?? []),
@@ -121,8 +126,9 @@ class DigitalExplorerController extends FrontController
                     'rotation' => $this->parseCoordinates($block->input('rotation'), [0, 0, 0]),
                     'scale' => $this->parseScale($block->input('scale'), 0.1),
                     'annotationColor' => $block->input('color') ?: '#4B9CA3',
-                    'annotationSize' => floatval($block->input('scale') ?: 0.5),
+                    'annotationSize' => floatval($block->input('scale') ?: 0.07),
                     'annotationTarget' => $block->input('annotationTarget'),
+                    'annotationZoom' => $block->input('annotationZoom') ? floatval($block->input('annotationZoom')) : null,
                     'showLabel' => in_array('showLabel', $block->input('annotationSettings') ?? []),
                     'sizeAttenuation' => !in_array('sizeAttenuation', $block->input('annotationSettings') ?? []),
                     'labelText' => $block->input('label') ?? '',
@@ -133,6 +139,7 @@ class DigitalExplorerController extends FrontController
                 }
             } elseif ($block->type === 'explorer_model') {
                 $data['content'] = array_merge($data['content'], [
+                    'label' => $block->input('label') ?? '',
                     'position' => $this->parseCoordinates($block->input('coordinate'), [0, 0, 0]),
                     'rotation' => $this->parseCoordinates($block->input('rotation'), [0, 0, 0]),
                     'scale' => $this->parseScale($block->input('scale'), 1.0),
@@ -201,6 +208,23 @@ class DigitalExplorerController extends FrontController
         }
 
         return floatval($scale);
+    }
+
+    // Parses "[v1, v2, ...]" string into float array
+    protected function parseNumberArray(?string $values, array $default = []): array
+    {
+        if (!$values) {
+            return $default;
+        }
+
+        $values = trim($values, '[]');
+        if (empty($values)) {
+            return $default;
+        }
+
+        $parts = array_map('trim', explode(',', $values));
+
+        return array_map('floatval', $parts);
     }
 
     protected function renderBlockChildren($parentBlock): string

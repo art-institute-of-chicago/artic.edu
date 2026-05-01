@@ -6,6 +6,17 @@ export default function digitalExplorer(container) {
   let mounted = false;
   let root = null;
 
+  const preventPinchZoom = (e) => {
+    if (e.ctrlKey) {
+      e.preventDefault();
+    }
+  };
+
+  const preventGesture = (e) => {
+    e.preventDefault();
+  };
+
+
   function _init() {
     const contentBundleScript = document.querySelector('[data-digitalExplorer-contentBundle]');
     const explorerData = contentBundleScript ? JSON.parse(contentBundleScript.innerHTML) : {};
@@ -27,6 +38,12 @@ export default function digitalExplorer(container) {
 
     mounted = true;
 
+    document.addEventListener('wheel', preventPinchZoom, { passive: false });
+    document.addEventListener('gesturestart', preventGesture);
+    document.addEventListener('gesturechange', preventGesture);
+    document.addEventListener('gestureend', preventGesture);
+
+
     if (window.scrollY < 100) {
       document.documentElement.classList.remove('s-header-hide');
     }
@@ -38,6 +55,12 @@ export default function digitalExplorer(container) {
       root = null;
       mounted = false;
     }
+
+    document.removeEventListener('wheel', preventPinchZoom);
+    document.removeEventListener('gesturestart', preventGesture);
+    document.removeEventListener('gesturechange', preventGesture);
+    document.removeEventListener('gestureend', preventGesture);
+
 
     delete window.digitalExplorer;
   };
