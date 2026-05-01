@@ -63,11 +63,6 @@ class DigitalExplorerRepository extends ModuleRepository
     {
         parent::afterSave($object, $fields);
 
-        \Log::info('DigitalExplorerRepository afterSave', [
-            'has_jsonOutput' => !empty($fields['jsonOutput']),
-            'jsonOutput_preview' => substr($fields['jsonOutput'] ?? '', 0, 100),
-        ]);
-
         if (!empty($fields['jsonOutput'])) {
             $data = json_decode($fields['jsonOutput'], true);
             if (json_last_error() === JSON_ERROR_NONE && is_array($data)) {
@@ -76,10 +71,6 @@ class DigitalExplorerRepository extends ModuleRepository
                 if (isset($data['settings']) && is_array($data['settings'])) {
                     $this->processJsonSettingsAfterSave($object, $data['settings']);
                 }
-            } else {
-                \Log::error('DigitalExplorerRepository afterSave JSON Decode Failed', [
-                    'error' => json_last_error_msg(),
-                ]);
             }
         }
     }
@@ -141,12 +132,6 @@ class DigitalExplorerRepository extends ModuleRepository
                 $block = $blocks->get($modelId);
                 $content = $block->content ?? [];
 
-                \Log::info('processJsonBlocksAfterSave model', [
-                    'modelId' => $modelId,
-                    'oldContent' => $content,
-                    'incomingContent' => $modelData['content'] ?? null,
-                ]);
-
                 if (isset($modelData['content'])) {
                     if (isset($modelData['content']['coordinate'])) {
                         $content['coordinate'] = $stringify($modelData['content']['coordinate']);
@@ -159,17 +144,8 @@ class DigitalExplorerRepository extends ModuleRepository
                     }
                 }
 
-                \Log::info('processJsonBlocksAfterSave model updated content', [
-                    'newContent' => $content,
-                ]);
-
                 $block->content = $content;
                 $block->save();
-            } else {
-                \Log::info('processJsonBlocksAfterSave model block NOT FOUND', [
-                    'modelId' => $modelId,
-                    'availableBlocks' => $blocks->keys()->toArray()
-                ]);
             }
 
             $childPosition = 1;
