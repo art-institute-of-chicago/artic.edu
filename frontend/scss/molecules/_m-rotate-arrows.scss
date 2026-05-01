@@ -1,0 +1,64 @@
+.m-rotate-arrows {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #4B9CA3;
+  color: #fff;
+  padding: 0.5rem .75rem;
+  border-radius: 2rem;
+
+  &__text {
+    font-family: $sans-serif-font--loaded;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    line-height: 1;
+    text-transform: uppercase;
+    padding: 10px;
+    white-space: nowrap;
+  }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--left {
+      transform: rotate(180deg);
+      animation: m-rotate-arrows-out-left 2s infinite ease-out;
+    }
+
+    &--right {
+      animation: m-rotate-arrows-out-right 2s infinite ease-out;
+    }
+  }
+}
+
+@keyframes m-rotate-arrows-out-left {
+  0% {
+    transform: rotate(180deg) translateX(-12px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(180deg) translateX(8px);
+    opacity: 0;
+  }
+}
+
+@keyframes m-rotate-arrows-out-right {
+  0% {
+    transform: translateX(-12px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(8px);
+    opacity: 0;
+  }
+}
