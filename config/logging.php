@@ -118,8 +118,8 @@ return [
             'replace_placeholders' => true,
         ],
 
-        'sentry' => [
-            'driver' => 'sentry',
+        'sentry_logs' => [
+            'driver' => 'sentry_logs',
             'level' => env('SENTRY_LOG_LEVEL', 'info'),
         ],
 
