@@ -18,11 +18,7 @@ Schedule::command('send:confirmations')->everyTwoMinutes()->withoutOverlapping()
 Schedule::command('exhibitions:featured')->dailyAt('00:00');
 
 // Let production have the whole API quota
-if (App::environment('production') || App::environment('test')) {
-    // TODO: Remove after getting caught up with the YouTube api
-    Schedule::command('youtube:captions', ['--downloads-only'])->daily();
-
-    // These will always remain
+if (App::environment('production')) {
     Schedule::command('youtube:videos-and-playlists')->hourlyAt(17);
     Schedule::command('youtube:captions')->hourlyAt(47);
 }
