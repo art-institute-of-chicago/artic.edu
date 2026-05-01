@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Services\OAuth\GoogleOAuthService;
 use App\Services\YouTube\YouTubeService;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class YouTubeQuota extends Command
@@ -19,7 +20,7 @@ class YouTubeQuota extends Command
         parent::__construct();
         $oAuth->setApplicationName(YouTubeService::SERVICE_NAME);
         $this->youtube = new YouTubeService($oAuth->client);
-        $this->youtube->setLogger(fn ($message) => $this->info($message, OutputInterface::VERBOSITY_DEBUG));
+        $this->youtube->setLogger($this->log(...));
     }
 
     public function handle()
@@ -35,5 +36,11 @@ class YouTubeQuota extends Command
             "YouTube service quota - remaining: $remaining, resets in: $hours $minutes ($resets)",
             OutputInterface::VERBOSITY_QUIET,
         );
+    }
+
+    protected function log($message, $level = 'info')
+    {
+        Log::channel('sentry_logs')->{$level}($message);
+        $this->{$level}($message, OutputInterface::VERBOSITY_DEBUG);
     }
 }
