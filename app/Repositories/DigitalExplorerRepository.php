@@ -79,12 +79,7 @@ class DigitalExplorerRepository extends ModuleRepository
     {
         $settings = $object->settings ?? collect();
 
-        $stringify = function ($val) {
-            if (is_array($val)) {
-                return '[' . implode(', ', $val) . ']';
-            }
-            return (string)$val;
-        };
+
 
         if (isset($settingsData['enableCustomBounds'])) {
             $settings->put('enableCustomBounds', $settingsData['enableCustomBounds'] ? '1' : '0');
@@ -95,15 +90,15 @@ class DigitalExplorerRepository extends ModuleRepository
         }
 
         if (isset($settingsData['customBounds'])) {
-            $settings->put('customBounds', $stringify($settingsData['customBounds']));
+            $settings->put('customBounds', \App\Helpers\DigitalExplorerHelpers::encodeSettings($settingsData['customBounds']));
         }
 
         if (isset($settingsData['customBoundsOffset'])) {
-            $settings->put('customBoundsOffset', $stringify($settingsData['customBoundsOffset']));
+            $settings->put('customBoundsOffset', \App\Helpers\DigitalExplorerHelpers::encodeSettings($settingsData['customBoundsOffset']));
         }
 
         if (isset($settingsData['zoomLimits'])) {
-            $settings->put('zoomLimits', $stringify($settingsData['zoomLimits']));
+            $settings->put('zoomLimits', \App\Helpers\DigitalExplorerHelpers::encodeSettings($settingsData['zoomLimits']));
         }
 
         $object->settings = $settings;
@@ -115,12 +110,7 @@ class DigitalExplorerRepository extends ModuleRepository
         $blocks = $object->blocks()->get()->keyBy('id');
         $maxPosition = $blocks->whereNull('parent_id')->max('position') ?? 0;
 
-        $stringify = function ($val) {
-            if (is_array($val)) {
-                return '[' . implode(', ', $val) . ']';
-            }
-            return (string)$val;
-        };
+
 
         foreach ($data['models'] ?? [] as $modelData) {
             $modelId = $modelData['id'] ?? null;
@@ -134,13 +124,13 @@ class DigitalExplorerRepository extends ModuleRepository
 
                 if (isset($modelData['content'])) {
                     if (isset($modelData['content']['coordinate'])) {
-                        $content['coordinate'] = $stringify($modelData['content']['coordinate']);
+                        $content['coordinate'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($modelData['content']['coordinate']);
                     }
                     if (isset($modelData['content']['rotation'])) {
-                        $content['rotation'] = $stringify($modelData['content']['rotation']);
+                        $content['rotation'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($modelData['content']['rotation']);
                     }
                     if (isset($modelData['content']['scale'])) {
-                        $content['scale'] = $stringify($modelData['content']['scale']);
+                        $content['scale'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($modelData['content']['scale']);
                     }
                 }
 
@@ -158,19 +148,19 @@ class DigitalExplorerRepository extends ModuleRepository
                 $childContent = [];
                 if (isset($childData['content'])) {
                     if (isset($childData['content']['coordinate'])) {
-                        $childContent['coordinate'] = $stringify($childData['content']['coordinate']);
+                        $childContent['coordinate'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($childData['content']['coordinate']);
                     }
                     if (isset($childData['content']['rotation'])) {
-                        $childContent['rotation'] = $stringify($childData['content']['rotation']);
+                        $childContent['rotation'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($childData['content']['rotation']);
                     }
                     if (isset($childData['content']['scale'])) {
-                        $childContent['scale'] = $stringify($childData['content']['scale']);
+                        $childContent['scale'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($childData['content']['scale']);
                     }
                     if (isset($childData['content']['labelText'])) {
-                        $childContent['label'] = $stringify($childData['content']['labelText']);
+                        $childContent['label'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($childData['content']['labelText']);
                     }
                     if (isset($childData['content']['annotationZoom'])) {
-                        $childContent['annotationZoom'] = $stringify($childData['content']['annotationZoom']);
+                        $childContent['annotationZoom'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($childData['content']['annotationZoom']);
                     }
                 }
 
@@ -208,19 +198,19 @@ class DigitalExplorerRepository extends ModuleRepository
             $childContent = [];
             if (isset($annotationData['content'])) {
                 if (isset($annotationData['content']['coordinate'])) {
-                    $childContent['coordinate'] = $stringify($annotationData['content']['coordinate']);
+                    $childContent['coordinate'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($annotationData['content']['coordinate']);
                 }
                 if (isset($annotationData['content']['rotation'])) {
-                    $childContent['rotation'] = $stringify($annotationData['content']['rotation']);
+                    $childContent['rotation'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($annotationData['content']['rotation']);
                 }
                 if (isset($annotationData['content']['scale'])) {
-                    $childContent['scale'] = $stringify($annotationData['content']['scale']);
+                    $childContent['scale'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($annotationData['content']['scale']);
                 }
                 if (isset($annotationData['content']['labelText'])) {
-                    $childContent['label'] = $stringify($annotationData['content']['labelText']);
+                    $childContent['label'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($annotationData['content']['labelText']);
                 }
                 if (isset($annotationData['content']['annotationZoom'])) {
-                    $childContent['annotationZoom'] = $stringify($annotationData['content']['annotationZoom']);
+                    $childContent['annotationZoom'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($annotationData['content']['annotationZoom']);
                 }
             }
 
@@ -267,10 +257,10 @@ class DigitalExplorerRepository extends ModuleRepository
                     $lightContent['lightType'] = $lightTypeMap[$lc['lightType']] ?? $lc['lightType'];
                 }
                 if (isset($lc['position'])) {
-                    $lightContent['coordinate'] = $stringify($lc['position']);
+                    $lightContent['coordinate'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($lc['position']);
                 }
                 if (isset($lc['intensity'])) {
-                    $lightContent['intensity'] = $stringify($lc['intensity']);
+                    $lightContent['intensity'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($lc['intensity']);
                 }
                 if (isset($lc['color'])) {
                     $lightContent['color'] = $lc['color'];
@@ -279,10 +269,10 @@ class DigitalExplorerRepository extends ModuleRepository
                     $lightContent['castShadow'] = $lc['castShadow'] ? '1' : '0';
                 }
                 if (isset($lc['angle'])) {
-                    $lightContent['angle'] = $stringify($lc['angle']);
+                    $lightContent['angle'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($lc['angle']);
                 }
                 if (isset($lc['penumbra'])) {
-                    $lightContent['penumbra'] = $stringify($lc['penumbra']);
+                    $lightContent['penumbra'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($lc['penumbra']);
                 }
             }
 
