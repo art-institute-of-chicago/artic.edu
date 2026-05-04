@@ -237,13 +237,6 @@ class DigitalExplorerRepository extends ModuleRepository
         }
 
         // --- Lights ---
-        $lightTypeMap = [
-            'point' => 'pointLight',
-            'directional' => 'directionalLight',
-            'spot' => 'spotLight',
-            'ambient' => 'ambient',
-        ];
-
         foreach ($data['lights'] ?? [] as $lightData) {
             $lightId = $lightData['id'] ?? null;
             if (!$lightId) {
@@ -254,7 +247,7 @@ class DigitalExplorerRepository extends ModuleRepository
             if (isset($lightData['content'])) {
                 $lc = $lightData['content'];
                 if (isset($lc['lightType'])) {
-                    $lightContent['lightType'] = $lightTypeMap[$lc['lightType']] ?? $lc['lightType'];
+                    $lightContent['lightType'] = DigitalExplorer::LIGHT_TYPE_MAP[$lc['lightType']] ?? $lc['lightType'];
                 }
                 if (isset($lc['position'])) {
                     $lightContent['coordinate'] = \App\Helpers\DigitalExplorerHelpers::encodeSettings($lc['position']);
