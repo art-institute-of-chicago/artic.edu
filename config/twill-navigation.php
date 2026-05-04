@@ -35,7 +35,6 @@ $nav = [
             ],
         ]
     ],
-
     'exhibitionsEvents' => [
         'title' => 'Exhibitions & Events',
         'route' => 'twill.exhibitionsEvents.landing',
@@ -52,29 +51,24 @@ $nav = [
                 'title' => 'Events',
                 'module' => true,
             ],
-            'sponsors' => [
-                'title' => 'Sponsors',
-                'module' => true,
-            ],
             'history' => [
                 'title' => 'History Landing',
                 'route' => 'twill.exhibitionsEvents.history',
+            ],
+            'sponsors' => [
+                'title' => 'Sponsors',
+                'module' => true,
             ],
             'emailSeries' => [
                 'title' => 'Email Series',
                 'module' => true
             ],
-            'magazineIssues' => [
-                'title' => 'Magazine Issues',
-                'module' => true
+            'eventPrograms' => [
+                'title' => 'Event Programs',
+                'module' => true,
             ],
-            'miradors' => [
-                'title' => 'Mirador',
-                'module' => true
-            ]
         ]
     ],
-
     'collection' => [
         'title' => 'Collection',
         'route' => 'twill.collection.landing',
@@ -87,48 +81,6 @@ $nav = [
                 'title' => 'Quick Filters',
                 'module' => true,
             ],
-            'articlesPublications' => [
-                'title' => 'Writings',
-                'route' => 'twill.collection.articlesPublications.articles_landing',
-                'secondary_navigation' => [
-                    'articles_landing' => [
-                        'title' => 'Articles Landing',
-                        'route' => 'twill.collection.articlesPublications.articles_landing',
-                    ],
-                    'articles' => [
-                        'title' => 'Articles',
-                        'module' => true,
-                    ],
-                    'categories' => [
-                        'title' => 'Article Categories',
-                        'module' => true,
-                    ],
-                    'videos' => [
-                        'title' => 'Videos',
-                        'module' => true,
-                    ],
-                    'videoCategories' => [
-                        'title' => 'Video Categories',
-                        'module' => true,
-                    ],
-                    'playlists' => [
-                        'title' => 'Playlists',
-                        'module' => true,
-                    ],
-                    'printedPublications' => [
-                        'title' => 'Print Publications',
-                        'module' => true,
-                    ],
-                    'digitalPublications' => [
-                        'title' => 'Digital Publications',
-                        'module' => true,
-                    ],
-                ],
-            ],
-            'educatorResources' => [
-                'title' => 'Educator Resources',
-                'module' => true,
-            ],
             'artists' => [
                 'title' => 'Artists',
                 'module' => true,
@@ -137,16 +89,20 @@ $nav = [
                 'title' => 'Artworks',
                 'module' => true,
             ],
-            'highlights' => [
-                'title' => 'Highlights',
-                'module' => true,
-            ],
             'galleries' => [
                 'title' => 'Galleries',
                 'module' => true,
             ],
             'departments' => [
                 'title' => 'Departments',
+                'module' => true,
+            ],
+            'educatorResources' => [
+                'title' => 'Educator Resources',
+                'module' => true,
+            ],
+            'resourceCategories' => [
+                'title' => 'Resource Categories',
                 'module' => true,
             ],
             'interactiveFeatures' => [
@@ -167,13 +123,82 @@ $nav = [
               'title' => 'Digital Explorers',
               'module' => true,
             ],
+            'miradors' => [
+                'title' => 'Mirador',
+                'module' => true
+            ]
+        ]
+    ],
+    'content' => [
+        'title' => 'Content',
+        'route' => 'twill.collection.authors.index',
+
+        'primary_navigation' => [
             'authors' => [
                 'title' => 'Authors',
                 'module' => true,
             ],
+            'editorial' => [
+                'title' => 'Editorial',
+                'route' => 'twill.collection.articlesPublications.articles.index',
+                'secondary_navigation' => [
+                    'articles' => [
+                        'title' => 'Articles',
+                        'module' => true,
+                    ],
+                    'categories' => [
+                        'title' => 'Article Categories',
+                        'module' => true,
+                    ],
+                    'highlights' => [
+                        'title' => 'Highlights',
+                        'module' => true,
+                    ],
+                    'magazineIssues' => [
+                        'title' => 'Magazine Issues',
+                        'module' => true
+                    ],
+                ],
+            ],
+            'video' => [
+                'title' => 'Video',
+                'route' => 'twill.collection.articlesPublications.videos.index',
+                'secondary_navigation' => [
+                    'videos' => [
+                        'title' => 'Videos',
+                        'module' => true,
+                    ],
+                    'videoCategories' => [
+                        'title' => 'Video Categories',
+                        'module' => true,
+                    ],
+                    'playlists' => [
+                        'title' => 'Playlists',
+                        'module' => true,
+                    ],
+                ],
+            ],
+            'publications' => [
+                'title' => 'Publications',
+                'route' => 'twill.collection.articlesPublications.printedPublications.index',
+                'secondary_navigation' => [
+                    'printedPublications' => [
+                        'title' => 'Print Publications',
+                        'module' => true,
+                    ],
+                    'digitalPublications' => [
+                        'title' => 'Digital Publications',
+                        'module' => true,
+                    ],
+                    'catalogCategories' => [
+                        'title' => 'Catalog Categories',
+                        'module' => true,
+                    ],
+                ],
+            ],
         ]
     ],
-    'generic' => [
+    'pages' => [
         'title' => 'Pages',
         'route' => 'twill.generic.landingPages.index',
 
@@ -206,53 +231,28 @@ $nav = [
     ],
 
     'general' => [
-        'title' => 'General Elements',
-        'route' => 'twill.general.siteTags.index',
+        'title' => 'Site Settings',
+        'route' => 'twill.general.searchTerms.index',
 
         'primary_navigation' => [
-            'siteTags' => [
-                'title' => 'Tags',
-                'module' => true,
-            ],
             'searchTerms' => [
                 'title' => 'Search Terms',
-                'module' => true,
-            ],
-            'pageCategories' => [
-                'title' => 'Page Categories',
-                'module' => true,
-            ],
-            'catalogCategories' => [
-                'title' => 'Catalog Categories',
-                'module' => true,
-            ],
-            'resourceCategories' => [
-                'title' => 'Resource Categories',
-                'module' => true,
-            ],
-            'shopItems' => [
-                'title' => 'Shop',
-                'module' => true,
-            ],
-            'eventPrograms' => [
-                'title' => 'Event Programs',
                 'module' => true,
             ],
             'vanityRedirects' => [
                 'title' => 'Vanity Redirects',
                 'module' => true
             ],
-            'illuminatedLinks' => [
-                'title' => 'Illuminated Links',
-                'module' => true,
-            ],
             'integrations' => [
                 'title' => 'Integrations',
                 'route' => 'twill.general.integrations.show',
             ],
+            'illuminatedLinks' => [
+                'title' => 'Illuminated Links',
+                'module' => true,
+            ],
         ],
     ],
-
 ];
 
 return $nav;
