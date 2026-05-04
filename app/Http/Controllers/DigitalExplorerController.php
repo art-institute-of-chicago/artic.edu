@@ -10,6 +10,19 @@ class DigitalExplorerController extends FrontController
 {
     protected $repository;
 
+    const MIN_ZOOM = 0.0;
+    const MAX_ZOOM = 150.0;
+    const ANNOTATION_DEFAULT_SCALE = 0.07;
+    const ANNOTATION_DEFAULT_COLOR = '#4B9CA3';
+    const ANNOTATION_DEFAULT_ROTATION = [0, 0, 0];
+    const CUSTOM_BOUNDS_DEFAULT = [10.5, 5.2, 8.0];
+    const CUSTOM_BOUNDS_OFFSET_DEFAULT = [0.0, 1.5, 0.0];
+    const CAMERA_POSITION_DEFAULT = [2, 0, 0];
+    const CAMERA_FOV_DEFAULT = 15;
+    const CAMERA_NEAR_DEFAULT = 0.1;
+    const CAMERA_FAR_DEFAULT = 10;
+
+
     public function __construct(DigitalExplorerRepository $repository)
     {
         $this->repository = $repository;
@@ -73,9 +86,9 @@ class DigitalExplorerController extends FrontController
                 'brailleButton' => $digitalExplorer->settings->get('brailleButton', false),
                 'builderEnabled' => $digitalExplorer->settings->get('builderEnabled', false),
                 'enableCustomBounds' => (bool) $digitalExplorer->settings->get('enableCustomBounds', false),
-                'customBounds' => $this->parseCoordinates($digitalExplorer->settings->get('customBounds'), [10.5, 5.2, 8.0]),
-                'customBoundsOffset' => $this->parseCoordinates($digitalExplorer->settings->get('customBoundsOffset'), [0.0, 1.5, 0.0]),
-                'zoomLimits' => $this->parseNumberArray($digitalExplorer->settings->get('zoomLimits'), [0.0, 150.0]),
+                'customBounds' => $this->parseCoordinates($digitalExplorer->settings->get('customBounds'), self::CUSTOM_BOUNDS_DEFAULT),
+                'customBoundsOffset' => $this->parseCoordinates($digitalExplorer->settings->get('customBoundsOffset'), self::CUSTOM_BOUNDS_OFFSET_DEFAULT),
+                'zoomLimits' => \App\Helpers\DigitalExplorerHelpers::decodeSettings($digitalExplorer->settings->get('zoomLimits'), [self::MIN_ZOOM, self::MAX_ZOOM]),
                 'deactivateForcefield' => (bool) $digitalExplorer->settings->get('deactivateForcefield', false),
                 'sceneSettings' => [
                     'antialiasing' => in_array('antialiasing', $digitalExplorer->settings?->get('sceneSettings', []) ?? []),
@@ -91,10 +104,10 @@ class DigitalExplorerController extends FrontController
                     'makeDefault' => true
                 ],
                 'camera' => [
-                    'position' => $this->parseCoordinates($digitalExplorer->settings?->get('cameraPosition'), [2, 0, 0]),
-                    'fov' => floatval($digitalExplorer->settings?->get('cameraFov') ?? 15),
-                    'near' => floatval($digitalExplorer->settings?->get('minDistance') ?? 0.1),
-                    'far' => intval($digitalExplorer->settings?->get('maxDistance') ?? 10)
+                    'position' => $this->parseCoordinates($digitalExplorer->settings?->get('cameraPosition'), self::CAMERA_POSITION_DEFAULT),
+                    'fov' => floatval($digitalExplorer->settings?->get('cameraFov') ?? self::CAMERA_FOV_DEFAULT),
+                    'near' => floatval($digitalExplorer->settings?->get('minDistance') ?? self::CAMERA_NEAR_DEFAULT),
+                    'far' => intval($digitalExplorer->settings?->get('maxDistance') ?? self::CAMERA_FAR_DEFAULT)
                 ]
             ],
 
@@ -124,9 +137,9 @@ class DigitalExplorerController extends FrontController
                 $data['content'] = array_merge($data['content'], [
                     'position' => $this->parseCoordinates($block->input('coordinate'), [0, 0, 0]),
                     'rotation' => $this->parseCoordinates($block->input('rotation'), [0, 0, 0]),
-                    'scale' => $this->parseScale($block->input('scale'), 0.1),
-                    'annotationColor' => $block->input('color') ?: '#4B9CA3',
-                    'annotationSize' => floatval($block->input('scale') ?: 0.07),
+                    'scale' => $this->parseScale($block->input('scale'), self::ANNOTATION_DEFAULT_SCALE),
+                    'annotationColor' => $block->input('color') ?: self::ANNOTATION_DEFAULT_COLOR,
+                    'annotationSize' => floatval($block->input('scale') ?: self::ANNOTATION_DEFAULT_SCALE),
                     'annotationTarget' => $block->input('annotationTarget'),
                     'annotationZoom' => $block->input('annotationZoom') ? floatval($block->input('annotationZoom')) : null,
                     'showLabel' => in_array('showLabel', $block->input('annotationSettings') ?? []),
@@ -210,22 +223,7 @@ class DigitalExplorerController extends FrontController
         return floatval($scale);
     }
 
-    // Parses "[v1, v2, ...]" string into float array
-    protected function parseNumberArray(?string $values, array $default = []): array
-    {
-        if (!$values) {
-            return $default;
-        }
 
-        $values = trim($values, '[]');
-        if (empty($values)) {
-            return $default;
-        }
-
-        $parts = array_map('trim', explode(',', $values));
-
-        return array_map('floatval', $parts);
-    }
 
     protected function renderBlockChildren($parentBlock): string
     {
