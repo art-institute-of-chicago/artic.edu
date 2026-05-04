@@ -47,6 +47,7 @@ $isKioskMode = isset($isKiosk) && $isKiosk;
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <meta name="svg-sprite-src" content="{{ FrontendHelpers::revAsset('icons/icons.svg') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     @endpush
 @endif
 

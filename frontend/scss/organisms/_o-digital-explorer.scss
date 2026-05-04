@@ -6,8 +6,11 @@ html:has(.o-digital-explorer):not(:has(.kioskMode)) {
   right: unset !important;
 }
 
-html:has(.o-digital-explorer) {
-  left: unset !important;
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: pan-x pan-y;
+  overscroll-behavior: none;
 }
 
 .o-digital-explorer {
@@ -33,6 +36,11 @@ html:has(.o-digital-explorer) {
   }
 
   .o-blocks {
+
+    .m-media--360-embed {
+      height: 100% !important;
+    }
+
     &.o-layout_block {
       .m-media {
         height: 100%;
@@ -46,7 +54,7 @@ html:has(.o-digital-explorer) {
 
       h2, p {
         color: $color__white !important;
-        font-family: $serif-font--loaded;
+        font-family: $serif-font--loaded !important;
         text-align: start;
         text-transform: none;
       }
@@ -76,11 +84,13 @@ html:has(.o-digital-explorer) {
       flex: 1;
       overflow: hidden;
       position: relative;
+      background-color: transparent;
 
       img {
         max-height: unset !important;
         object-fit: cover;
         height: 100% !important;
+        margin: 0;
       }
     }
 

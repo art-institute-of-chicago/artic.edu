@@ -40,7 +40,7 @@
     name='size'
     label='Size'
     placeholder='Select size'
-    default='$default'
+    :default='$default'
     :options='$options'
 />
 
@@ -52,15 +52,15 @@
 <x-twill::checkbox
     name='use_contain'
     label='Always show the whole image instead of cropping to the container'
-    default='$default'
-    disabled='$disabled'
+    :default='$default'
+    :disabled='$disabled'
 />
 
 <x-twill::checkbox
     name='use_alt_background'
     label='Use white instead of gray to pillarbox the image'
-    default='$default'
-    disabled='$disabled'
+    :default='$default'
+    :disabled='$disabled'
 />
 
 <x-twill::checkbox
