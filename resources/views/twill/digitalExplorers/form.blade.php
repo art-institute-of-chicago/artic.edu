@@ -43,6 +43,26 @@
               name="settings.debug"
               label="Show debugger?"
             />
+
+            <x-twill::checkbox
+              name="settings.brailleButton"
+              label="Show braille button?"
+            />
+
+            <x-twill::checkbox
+              name="settings.builderEnabled"
+              label="Enable builder?"
+            />
+
+            <x-twill::checkbox
+              name="settings.enableCustomBounds"
+              label="Enable custom bounds?"
+            />
+
+            <x-twill::checkbox
+              name="settings.deactivateForcefield"
+              label="Deactivate forcefield?"
+            />
         </x-slot>
 
         <x-slot name="right">
@@ -55,14 +75,32 @@
                 ]"
             />
 
-            <x-twill::checkbox
-              name="settings.brailleButton"
-              label="Show braille button?"
+            <x-twill::input
+              type="text"
+              name="jsonOutput"
+              label="JSON Output"
+              note="JSON output of the explorer"
             />
 
-            <x-twill::checkbox
-              name="settings.builderEnabled"
-              label="Enable builder?"
+            <x-twill::input
+              type="text"
+              name="settings.customBounds"
+              label="Custom Bounds"
+              note="Coordinate defining the bounds of the explorer"
+            />
+
+            <x-twill::input
+              type="text"
+              name="settings.customBoundsOffset"
+              label="Custom Bounds Offset"
+              note="Coordinate offset for custom bounds"
+            />
+
+            <x-twill::input
+              type="text"
+              name="settings.zoomLimits"
+              label="Zoom Limits"
+              note="Distance limits for zoom (min, max)"
             />
         </x-slot>
     </x-twill::formColumns>
