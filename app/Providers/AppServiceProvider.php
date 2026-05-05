@@ -308,7 +308,6 @@ class AppServiceProvider extends ServiceProvider
                 NavigationLink::make()->forModule('landingPages')->title('Landing Pages'),
                 NavigationLink::make()->forModule('genericPages')->title('Generic Pages'),
                 NavigationLink::make()->forModule('lightboxes'),
-                NavigationLink::make()->forModule('pageFeatures')->title('Page Features'),
                 NavigationLink::make()->forModule('pressReleases')->title('Press Releases'),
                 NavigationLink::make()->forModule('exhibitionPressRooms')->title('Exhibition Press Rooms'),
             ]),

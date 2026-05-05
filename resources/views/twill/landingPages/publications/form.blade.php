@@ -84,23 +84,6 @@
 
 </x-twill::formConnectedFields>
 
-<x-twill::formConnectedFields
-    field-name='header_variation'
-    field-values="feature"
-    :render-for-blocks='false'
->
-
-    <x-twill::browser
-        name='primaryFeatures'
-        label='Main feature'
-        note='Queue up to 3 home features for the large hero area'
-        route-prefix='generic'
-        module-name='pageFeatures'
-        :max='3'
-    />
-
-</x-twill::formConnectedFields>
-
 <x-twill::wysiwyg
     name='listing_description'
     label='Listing description'
