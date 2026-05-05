@@ -161,13 +161,6 @@
             label='Datahub ID'
             disabled='true'
         />
-
-        <x-twill::multi-select
-            name='siteTags'
-            label='Tags'
-            placeholder='Select some tags'
-            :options='$siteTagsList'
-        />
     </x-twill::formFieldset>
     <x-twill::formFieldset id="related" title="Related">
         <x-twill::browser

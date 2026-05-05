@@ -43,7 +43,6 @@ class HighlightRepository extends ModuleRepository
 
     public function afterSave(TwillModelContract $object, array $fields): void
     {
-        $object->siteTags()->sync($fields['siteTags'] ?? []);
         $object->categories()->sync($fields['categories'] ?? []);
 
         parent::afterSave($object, $fields);

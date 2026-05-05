@@ -12,13 +12,6 @@
     />
 
     <x-twill::multi-select
-        name='siteTags'
-        label='Tags'
-        placeholder='Select some tags'
-        :options='$siteTagsList'
-    />
-
-    <x-twill::multi-select
         name='categories'
         label='Categories'
         placeholder='Select some categories'
