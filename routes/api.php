@@ -21,7 +21,6 @@ use App\Http\Controllers\API\HoursController;
 use App\Http\Controllers\API\InteractiveFeaturesController;
 use App\Http\Controllers\API\LandingPagesController;
 use App\Http\Controllers\API\LocationsController;
-use App\Http\Controllers\API\PageFeaturesController;
 use App\Http\Controllers\API\PressReleasesController;
 use App\Http\Controllers\API\PrintedPublicationsController;
 use App\Http\Controllers\API\SponsorsController;
@@ -136,12 +135,6 @@ Route::group(['prefix' => 'v1'], function () {
      */
     Route::get('genericpages', [GenericPagesController::class, 'index']);
     Route::get('genericpages/{id}', [GenericPagesController::class, 'show']);
-
-    /**
-     * Page features ------------------------------------------------------
-     */
-    Route::get('pagefeatures', [PageFeaturesController::class, 'index']);
-    Route::get('pagefeatures/{id}', [PageFeaturesController::class, 'show']);
 
     /**
      * Press releases ------------------------------------------------------

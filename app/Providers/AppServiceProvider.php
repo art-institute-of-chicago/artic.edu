@@ -246,11 +246,11 @@ class AppServiceProvider extends ServiceProvider
             ->setChildren([
                 NavigationLink::make()->forRoute('twill.exhibitionsEvents.landing')->title('Landing'),
                 NavigationLink::make()->forModule('exhibitions'),
-                NavigationLink::make()->forModule('events'),
                 NavigationLink::make()->forRoute('twill.exhibitionsEvents.history')->title('History Landing'),
-                NavigationLink::make()->forModule('sponsors'),
+                NavigationLink::make()->forModule('events'),
                 NavigationLink::make()->forModule('emailSeries')->title('Email Series'),
                 NavigationLink::make()->forModule('eventPrograms')->title('Event Programs'),
+                NavigationLink::make()->forModule('sponsors'),
             ]),
         );
 
@@ -259,8 +259,8 @@ class AppServiceProvider extends ServiceProvider
             ->setChildren([
                 NavigationLink::make()->forRoute('twill.collection.landing')->title('Landing'),
                 NavigationLink::make()->forModule('categoryTerms')->title('Quick Filters'),
-                NavigationLink::make()->forModule('artists'),
                 NavigationLink::make()->forModule('artworks'),
+                NavigationLink::make()->forModule('artists'),
                 NavigationLink::make()->forModule('galleries'),
                 NavigationLink::make()->forModule('departments'),
                 NavigationLink::make()->forModule('educatorResources')->title('Educator Resources'),
@@ -277,21 +277,20 @@ class AppServiceProvider extends ServiceProvider
         );
 
         TwillNavigation::addLink(
-            NavigationLink::make()->forModule('authors')->title('Content')->doNotAddSelfAsFirstChild()
+            NavigationLink::make()->forModule('articles')->title('Content')->doNotAddSelfAsFirstChild()
             ->setChildren([
-                NavigationLink::make()->forModule('authors'),
                 NavigationLink::make()->forModule('articles')->title('Editorial')->doNotAddSelfAsFirstChild()
                 ->setChildren([
                     NavigationLink::make()->forModule('articles'),
-                    NavigationLink::make()->forModule('categories')->title('Article Categories'),
                     NavigationLink::make()->forModule('highlights'),
                     NavigationLink::make()->forModule('magazineIssues')->title('Magazine Issues'),
+                    NavigationLink::make()->forModule('categories')->title('Article Categories'),
                 ]),
                 NavigationLink::make()->forModule('videos')->title('Video')->doNotAddSelfAsFirstChild()
                 ->setChildren([
                     NavigationLink::make()->forModule('videos'),
-                    NavigationLink::make()->forModule('videoCategories')->title('Video Categories'),
                     NavigationLink::make()->forModule('playlists'),
+                    NavigationLink::make()->forModule('videoCategories')->title('Video Categories'),
                 ]),
                 NavigationLink::make()->forModule('printedPublications')->title('Publications')->doNotAddSelfAsFirstChild()
                 ->setChildren([
@@ -299,6 +298,7 @@ class AppServiceProvider extends ServiceProvider
                     NavigationLink::make()->forModule('digitalPublications')->title('Digital Publications'),
                     NavigationLink::make()->forModule('catalogCategories')->title('Catalogue Categories'),
                 ]),
+                NavigationLink::make()->forModule('authors'),
             ]),
         );
 
@@ -308,7 +308,6 @@ class AppServiceProvider extends ServiceProvider
                 NavigationLink::make()->forModule('landingPages')->title('Landing Pages'),
                 NavigationLink::make()->forModule('genericPages')->title('Generic Pages'),
                 NavigationLink::make()->forModule('lightboxes'),
-                NavigationLink::make()->forModule('pageFeatures')->title('Page Features'),
                 NavigationLink::make()->forModule('pressReleases')->title('Press Releases'),
                 NavigationLink::make()->forModule('exhibitionPressRooms')->title('Exhibition Press Rooms'),
             ]),
