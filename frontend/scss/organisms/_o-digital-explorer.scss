@@ -5,6 +5,8 @@ html:has(.o-digital-explorer) {
 
   &:has(.kioskMode) {
     left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
   }
 }
 
