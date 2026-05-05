@@ -26,7 +26,6 @@ use App\Http\Controllers\API\PressReleasesController;
 use App\Http\Controllers\API\PrintedPublicationsController;
 use App\Http\Controllers\API\SponsorsController;
 use App\Http\Controllers\API\StaticPagesController;
-use App\Http\Controllers\API\TagsController;
 use App\Http\Controllers\API\VideosController;
 use App\Http\Controllers\API\MyMuseumTourController;
 use App\Http\Controllers\SeamlessImagesController;
@@ -52,12 +51,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/', function () {
         return 'API';
     });
-
-    /**
-     * Tags ------------------------------------------------------
-     */
-    Route::get('tags', [TagsController::class, 'index']);
-    Route::get('tags/{id}', [TagsController::class, 'show']);
 
     /**
      * Locations ------------------------------------------------------

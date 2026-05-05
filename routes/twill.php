@@ -106,9 +106,7 @@ Route::group(['prefix' => 'generic'], function () {
 });
 
 Route::group(['prefix' => 'general'], function () {
-    TwillRoutes::module('siteTags');
     TwillRoutes::module('searchTerms');
-    TwillRoutes::module('pageCategories');
     TwillRoutes::module('catalogCategories');
     TwillRoutes::module('resourceCategories');
     TwillRoutes::module('shopItems');
