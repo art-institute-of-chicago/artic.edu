@@ -182,11 +182,6 @@ class Highlight extends AbstractModel
         });
     }
 
-    public function siteTags()
-    {
-        return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
-    }
-
     public function scopeIds($query, $ids = []): Builder
     {
         return $query->whereIn('id', $ids);

@@ -18,10 +18,6 @@ class HighlightPresenter extends BasePresenter
 
     public function type()
     {
-        if ($this->entity->siteTags->first()) {
-            return $this->entity->type = $this->entity->siteTags->first()->name;
-        }
-
         return 'Highlights'; // For detail header
     }
 

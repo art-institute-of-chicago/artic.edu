@@ -140,11 +140,6 @@ class Exhibition extends AbstractModel
         return $this->apiElements()->where('relation', 'shopItems');
     }
 
-    public function siteTags()
-    {
-        return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
-    }
-
     public function sponsors()
     {
         return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
