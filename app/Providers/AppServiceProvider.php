@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
+use A17\Twill\Facades\TwillNavigation;
+use A17\Twill\View\Components\Navigation\NavigationLink;
 use Aic\Hub\Foundation\Library\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\DamsImageService;
 use App\Libraries\EmbedConverterService;
@@ -34,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerDebugMethod();
         $this->registerVendorClasses();
         $this->registerAliases();
+        $this->registerTwillNav();
         $this->composeTemplatesViews();
         File::observe(FileObserver::class);
         $this->extendBlade();
@@ -221,6 +224,106 @@ class AppServiceProvider extends ServiceProvider
         $loader->alias('UrlHelpers', \App\Helpers\UrlHelpers::class);
         $loader->alias('QueryHelpers', \App\Helpers\QueryHelpers::class);
         $loader->alias('StringHelpers', \App\Helpers\StringHelpers::class);
+    }
+
+    public function registerTwillNav(): void
+    {
+        TwillNavigation::addLink(
+            NavigationLink::make()->forModule('hours')->title('Visit')->doNotAddSelfAsFirstChild()
+            ->setChildren([
+                NavigationLink::make()->forModule('hours'),
+                NavigationLink::make()->forModule('fees')->title('Admission Fees'),
+                NavigationLink::make()->forModule('feeAges')->title('Admission Ages'),
+                NavigationLink::make()->forModule('feeCategories')->title('Admission Categories'),
+                NavigationLink::make()->forModule('buildingClosures')->title('Closures'),
+                NavigationLink::make()->forModule('questions')->title('FAQ'),
+                NavigationLink::make()->forModule('myMuseumTourItems')->title('My Museum Tour'),
+            ]),
+        );
+
+        TwillNavigation::addLink(
+            NavigationLink::make()->forRoute('twill.exhibitionsEvents.landing')->title('Exhibitions & Events')->doNotAddSelfAsFirstChild()
+            ->setChildren([
+                NavigationLink::make()->forRoute('twill.exhibitionsEvents.landing')->title('Landing'),
+                NavigationLink::make()->forModule('exhibitions'),
+                NavigationLink::make()->forModule('events'),
+                NavigationLink::make()->forRoute('twill.exhibitionsEvents.history')->title('History Landing'),
+                NavigationLink::make()->forModule('sponsors'),
+                NavigationLink::make()->forModule('emailSeries')->title('Email Series'),
+                NavigationLink::make()->forModule('eventPrograms')->title('Event Programs'),
+            ]),
+        );
+
+        TwillNavigation::addLink(
+            NavigationLink::make()->forRoute('twill.collection.landing')->title('Collection')->doNotAddSelfAsFirstChild()
+            ->setChildren([
+                NavigationLink::make()->forRoute('twill.collection.landing')->title('Landing'),
+                NavigationLink::make()->forModule('categoryTerms')->title('Quick Filters'),
+                NavigationLink::make()->forModule('artists'),
+                NavigationLink::make()->forModule('artworks'),
+                NavigationLink::make()->forModule('galleries'),
+                NavigationLink::make()->forModule('departments'),
+                NavigationLink::make()->forModule('educatorResources')->title('Educator Resources'),
+                NavigationLink::make()->forModule('resourceCategories')->title('Resource Categories'),
+                NavigationLink::make()->forModule('experiences')->title('Interactive Features')->doNotAddSelfAsFirstChild()
+                ->setChildren([
+                    NavigationLink::make()->forModule('experiences'),
+                    NavigationLink::make()->forModule('interactiveFeatures')->title('Groupings'),
+                ]),
+                NavigationLink::make()->forModule('digitalExplorers')->title('Digital Explorers'),
+                NavigationLink::make()->forModule('miradors'),
+
+            ]),
+        );
+
+        TwillNavigation::addLink(
+            NavigationLink::make()->forModule('authors')->title('Content')->doNotAddSelfAsFirstChild()
+            ->setChildren([
+                NavigationLink::make()->forModule('authors'),
+                NavigationLink::make()->forModule('articles')->title('Editorial')->doNotAddSelfAsFirstChild()
+                ->setChildren([
+                    NavigationLink::make()->forModule('articles'),
+                    NavigationLink::make()->forModule('categories')->title('Article Categories'),
+                    NavigationLink::make()->forModule('highlights'),
+                    NavigationLink::make()->forModule('magazineIssues')->title('Magazine Issues'),
+                ]),
+                NavigationLink::make()->forModule('videos')->title('Video')->doNotAddSelfAsFirstChild()
+                ->setChildren([
+                    NavigationLink::make()->forModule('videos'),
+                    NavigationLink::make()->forModule('videoCategories')->title('Video Categories'),
+                    NavigationLink::make()->forModule('playlists'),
+                ]),
+                NavigationLink::make()->forModule('printedPublications')->title('Publications')->doNotAddSelfAsFirstChild()
+                ->setChildren([
+                    NavigationLink::make()->forModule('printedPublications')->title('Printed Publications'),
+                    NavigationLink::make()->forModule('digitalPublications')->title('Digital Publications'),
+                    NavigationLink::make()->forModule('catalogCategories')->title('Catalogue Categories'),
+                ]),
+            ]),
+        );
+
+        TwillNavigation::addLink(
+            NavigationLink::make()->forModule('landingPages')->title('Pages')->doNotAddSelfAsFirstChild()
+            ->setChildren([
+                NavigationLink::make()->forModule('landingPages')->title('Landing Pages'),
+                NavigationLink::make()->forModule('genericPages')->title('Generic Pages'),
+                NavigationLink::make()->forModule('lightboxes'),
+                NavigationLink::make()->forModule('pageFeatures')->title('Page Features'),
+                NavigationLink::make()->forModule('pressReleases')->title('Press Releases'),
+                NavigationLink::make()->forModule('exhibitionPressRooms')->title('Exhibition Press Rooms'),
+            ]),
+        );
+
+        TwillNavigation::addLink(
+            NavigationLink::make()->forModule('searchTerms')->title('Site Settings')->doNotAddSelfAsFirstChild()
+            ->setChildren([
+                NavigationLink::make()->forModule('searchTerms')->title('Search Terms'),
+                NavigationLink::make()->forModule('vanityRedirects')->title('Vanity Redirects'),
+                NavigationLink::make()->forRoute('twill.general.integrations.show')->title('Integrations'),
+                NavigationLink::make()->forModule('illuminatedLinks')->title('Illuminated Links'),
+                NavigationLink::make()->forModule('shopItems')->title('Shop'),
+            ]),
+        );
     }
 
     /**
