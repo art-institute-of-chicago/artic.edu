@@ -99,17 +99,6 @@ class LandingPagesController extends FrontController
         $feeTitles = $admission->present()->feeTitles();
         $feePrices = $admission->present()->feePrices();
 
-        // Home
-        $primaryFeatures = $item->primaryFeatures()->published()->limit(1)->get();
-        $secondaryFeatures = $item->secondaryFeatures()->published()->limit(2)->get();
-
-        $mainFeatures = $primaryFeatures->concat($secondaryFeatures);
-
-        // WEB-2254: Finish deprecating `homeFeatures` relationship
-        if ($mainFeatures->count() < 1) {
-            $mainFeatures = $item->features()->published()->limit(3)->get();
-        }
-
         // Visit
         if ($video_url = $item->file('video', 'en')) {
             $headerImage = $item->imageFront('mobile_hero');
@@ -193,7 +182,7 @@ class LandingPagesController extends FrontController
             case $types->search('Home'):
                 $viewData = [
                     'contrastHeader' => true,
-                    'filledLogo' => sizeof($mainFeatures) > 0,
+                    'filledLogo' => false,
                     'hours' => $hours,
                     'cta_module_image' => $item->imageFront('home_cta_module_image'),
                     'roadblocks' => $this->getLightboxes(),
