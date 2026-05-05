@@ -1,9 +1,12 @@
-body {
-  background-color: $color__black--91;
+html:has(.o-digital-explorer) {
+  body {
+    background-color: $color__black--91;
+  }
 }
 
-html:has(.o-digital-explorer):not(:has(.kioskMode)) {
-  right: unset !important;
+#a17:has(.o-digital-explorer) {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 * {
@@ -16,8 +19,6 @@ html:has(.o-digital-explorer):not(:has(.kioskMode)) {
 .o-digital-explorer {
   width: 100vw;
   position: relative;
-  left: 50%;
-  margin-left: -50vw;
   min-height: 100vh;
   background: #fff;
   z-index: 1;
@@ -36,7 +37,6 @@ html:has(.o-digital-explorer):not(:has(.kioskMode)) {
   }
 
   .o-blocks {
-
     .m-media--360-embed {
       height: 100% !important;
     }
@@ -52,7 +52,8 @@ html:has(.o-digital-explorer):not(:has(.kioskMode)) {
       flex-direction: column;
       gap: 1.5rem;
 
-      h2, p {
+      h2,
+      p {
         color: $color__white !important;
         font-family: $serif-font--loaded !important;
         text-align: start;
