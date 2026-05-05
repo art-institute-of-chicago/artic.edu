@@ -277,7 +277,7 @@ class AppServiceProvider extends ServiceProvider
         );
 
         TwillNavigation::addLink(
-            NavigationLink::make()->forModule('authors')->title('Content')->doNotAddSelfAsFirstChild()->onlyWhen(fn () => auth()->user()->role === 'ADMIN')
+            NavigationLink::make()->forModule('authors')->title('Content')->doNotAddSelfAsFirstChild()
             ->setChildren([
                 NavigationLink::make()->forModule('authors'),
                 NavigationLink::make()->forModule('articles')->title('Editorial')->doNotAddSelfAsFirstChild()
@@ -315,7 +315,7 @@ class AppServiceProvider extends ServiceProvider
         );
 
         TwillNavigation::addLink(
-            NavigationLink::make()->forModule('searchTerms')->title('Site Settings')->doNotAddSelfAsFirstChild()
+            NavigationLink::make()->forModule('searchTerms')->title('Site Settings')->doNotAddSelfAsFirstChild()->onlyWhen(fn () => auth()->user()->role === 'ADMIN')
             ->setChildren([
                 NavigationLink::make()->forModule('searchTerms')->title('Search Terms'),
                 NavigationLink::make()->forModule('vanityRedirects')->title('Vanity Redirects'),
