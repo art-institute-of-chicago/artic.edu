@@ -2,6 +2,10 @@ html:has(.o-digital-explorer) {
   body {
     background-color: $color__black--91;
   }
+
+  &:has(.kioskMode) {
+    left: 0 !important;
+  }
 }
 
 #a17:has(.o-digital-explorer) {
