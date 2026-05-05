@@ -277,7 +277,7 @@ class AppServiceProvider extends ServiceProvider
         );
 
         TwillNavigation::addLink(
-            NavigationLink::make()->forModule('authors')->title('Content')->doNotAddSelfAsFirstChild()
+            NavigationLink::make()->forModule('authors')->title('Content')->doNotAddSelfAsFirstChild()->onlyWhen(fn () => auth()->user()->role === 'ADMIN')
             ->setChildren([
                 NavigationLink::make()->forModule('authors'),
                 NavigationLink::make()->forModule('articles')->title('Editorial')->doNotAddSelfAsFirstChild()
