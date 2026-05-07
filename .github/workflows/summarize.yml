@@ -991,14 +991,29 @@ jobs:
             echo "EOF"
           } >> $GITHUB_ENV
 
-      - name: Dismiss previous bot reviews
+      - name: Clean up previous bot reviews
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { owner, repo } = context.repo;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
             const pull_number = context.payload.pull_request.number;
             const botLogin = 'github-actions[bot]';
+
+            const reviewComments = await github.paginate(
+              github.rest.pulls.listReviewComments,
+              { owner, repo, pull_number }
+            );
+
+            for (const comment of reviewComments) {
+              if (comment.user.login === botLogin) {
+                await github.rest.pulls.deleteReviewComment({
+                  owner, repo,
+                  comment_id: comment.id
+                });
+              }
+            }
 
             const reviews = await github.paginate(
               github.rest.pulls.listReviews,
@@ -1007,10 +1022,10 @@ jobs:
 
             for (const review of reviews) {
               if (review.user.login === botLogin && review.body.includes('<!-- azure-ai-review -->')) {
-                await github.rest.pulls.dismissReview({
+                await github.rest.pulls.updateReview({
                   owner, repo, pull_number,
                   review_id: review.id,
-                  message: 'Superseded by updated analysis.'
+                  body: '<!-- azure-ai-review -->\n_Superseded by updated analysis._'
                 });
               }
             }
