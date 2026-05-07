@@ -12,7 +12,8 @@
     {{-- This section will always be shown --}}
     <p>Artwork content is defined in CITI.</p>
 
-    @if (request()->input('showAIData') === 'true')
+    @if (auth()->user()->role->id == \App\Enums\UserRole::Admin->value ||
+         auth()->user()->role->id == \App\Enums\UserRole::XDPublisher->value)
       <x-twill::input
           name='semantic_search_description'
           label='Semantic Search Description'
