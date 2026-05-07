@@ -1043,10 +1043,28 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issue_number = context.payload.pull_request.number;
+
+            const reactions = await github.paginate(
+              github.rest.reactions.listForIssue,
+              { owner, repo, issue_number }
+            );
+
+            const eyesReaction = reactions.find(r =>
+              r.content === 'eyes' && r.user.login === 'github-actions[bot]'
+            );
+
+            if (eyesReaction) {
+              await github.rest.reactions.deleteForIssue({
+                owner, repo, issue_number,
+                reaction_id: eyesReaction.id
+              });
+            }
+
             const hasComments = ${{ steps.post-review.outputs.has_comments }};
             await github.rest.reactions.createForIssue({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
+              owner, repo, issue_number,
               content: hasComments ? 'rocket' : 'hooray'
             });
