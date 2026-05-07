@@ -76,7 +76,7 @@ class LandingPagesController extends FrontController
             default:
                 $this->seo->setTitle($item->meta_title ?: $item->title);
                 $this->seo->setDescription($item->meta_description);
-                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('mobile_hero'));
+                $this->seo->setImage($item->imageFront('hero') ?? $item->imageFront('mobile_hero') ?? $item->imageFront('listing_image'));
 
                 if (request('search')) {
                     $this->seo->nofollow = true;
