@@ -6,6 +6,11 @@
         type='textarea'
     />
 
+    <x-twill::medias
+        name='listing_image'
+        label='Listing image'
+    />
+
     @php
         $blocks = BlockHelpers::getBlocksForEditor([
             'custom_banner',
