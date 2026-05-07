@@ -7,6 +7,18 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
+      - name: React with eyes
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.reactions.createForIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              content: 'eyes'
+            });
+
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
@@ -988,6 +1000,7 @@ jobs:
             }
 
       - name: Post inline review comments
+        id: post-review
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -1021,4 +1034,19 @@ jobs:
               event: 'COMMENT',
               body: `<!-- azure-ai-review -->\n${parsed.summary || ''}`,
               comments
+            });
+
+            core.setOutput('has_comments', comments.length > 0);
+
+      - name: React with result
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const hasComments = ${{ steps.post-review.outputs.has_comments }};
+            await github.rest.reactions.createForIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              content: hasComments ? 'rocket' : 'hooray'
             });
