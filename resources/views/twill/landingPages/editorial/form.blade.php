@@ -17,6 +17,10 @@
         :toolbar-options="[ 'italic' ]"
     />
 
+    <x-twill::medias
+        name='listing_image'
+        label='Listing image'
+    />
 @stop
 
 @section('fieldsets')
