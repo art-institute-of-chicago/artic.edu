@@ -12,10 +12,26 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issue_number = context.payload.pull_request.number;
+
+            const reactions = await github.paginate(
+              github.rest.reactions.listForIssue,
+              { owner, repo, issue_number }
+            );
+
+            for (const reaction of reactions) {
+              if (['rocket', 'hooray'].includes(reaction.content) && reaction.user.login === 'github-actions[bot]') {
+                await github.rest.reactions.deleteForIssue({
+                  owner, repo, issue_number,
+                  reaction_id: reaction.id
+                });
+              }
+            }
+
             await github.rest.reactions.createForIssue({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
+              owner, repo, issue_number,
               content: 'eyes'
             });
 
