@@ -12,7 +12,7 @@
     {{-- This section will always be shown --}}
     <p>Artwork content is defined in CITI.</p>
 
-    @if (request()->input('showAIData') === 'true')
+    @if (auth()->user()->role->id == 1 || auth()->user()->role->id == 3) {{-- Admin or XD Publisher --}}
       <x-twill::input
           name='semantic_search_description'
           label='Semantic Search Description'
