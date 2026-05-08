@@ -27,8 +27,8 @@ const youtubeEmbed = function(iframe) {
   }
 
   function onPlayerPlaying(player) {
-    let currentTime = player.getCurrentTime();
-    let status = currentTime < 1 ? 'start' : 'resume';
+    const currentTime = player.getCurrentTime();
+    const status = currentTime < 1 ? 'start' : 'resume';
     triggerCustomEvent(document, 'gtm:push', {
       'event': 'gtm.video',
       'gtm.videoStatus': status,
