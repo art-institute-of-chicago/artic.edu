@@ -456,13 +456,12 @@ jobs:
             **For null checks:**
 
               - Use explicit comparisons with null rather than relying on truthiness checks
-              - Write `null !== $variable` or `$variable === null` instead of just `if ($variable)`
+              - Use is_null() to check a null value instead of just `if ($variable)`
               - Avoid variable assignments within conditional statements when checking for null
 
             **For type declarations:**
 
               - Always use the nullable operator (`?`) for parameters and return types that can be null
-              - Make docblocks consistent with type declarations by documenting nullable types
               - Ensure parameters with null defaults are always declared as nullable
 
             **For function parameters:**
@@ -560,9 +559,8 @@ jobs:
             Key principles:
 
               1. Rethrow caught exceptions when you can't handle them
-              2. Catch \Throwable instead of \Exception for comprehensive error handling
-              3. Keep exception handling scope narrow and focused
-              4. Avoid generic catch blocks that mask the original error
+              2. Keep exception handling scope narrow and focused
+              3. Avoid generic catch blocks that mask the original error
 
             Example:
 
