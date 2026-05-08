@@ -555,11 +555,11 @@ jobs:
 
             # Propagate errors with context
 
-            Always propagate errors appropriately by rethrowing caught exceptions and maintaining error context. Catch exceptions only when you can handle them meaningfully, and ensure errors aren’t silently swallowed.
+            Always propagate errors appropriately by rethrowing caught exceptions and maintaining error context. Catch exceptions only when you can handle them meaningfully, and ensure errors aren't silently swallowed.
 
             Key principles:
 
-              1. Rethrow caught exceptions when you can’t handle them
+              1. Rethrow caught exceptions when you can't handle them
               2. Catch \Throwable instead of \Exception for comprehensive error handling
               3. Keep exception handling scope narrow and focused
               4. Avoid generic catch blocks that mask the original error
@@ -608,7 +608,7 @@ jobs:
                     ->implode(', ');
                 ```
 
-              2. **Column names that are SQL keywords**: Database column names might conflict with SQL reserved keywords (like ‘create’, ‘table’, ‘order’). Always properly wrap these identifiers:
+              2. **Column names that are SQL keywords**: Database column names might conflict with SQL reserved keywords (like 'create', 'table', 'order'). Always properly wrap these identifiers:
 
                 ```php
                 // DON'T rely on plain string interpolation
@@ -619,7 +619,7 @@ jobs:
 
                 ```
 
-              3. **Cross-database compatibility**: Different database systems use different identifier quoting (MySQL uses backticks, PostgreSQL uses double quotes). Always use the database grammar’s `wrap()` method instead of hardcoding quote characters.
+              3. **Cross-database compatibility**: Different database systems use different identifier quoting (MySQL uses backticks, PostgreSQL uses double quotes). Always use the database grammar's `wrap()` method instead of hardcoding quote characters.
 
             This practice prevents SQL errors when working with reserved words as column names, functional expressions in indexes, and ensures consistent behavior across different database systems.
 
@@ -674,7 +674,7 @@ jobs:
 
             # Assert response fully always
 
-            Always validate all relevant aspects of API responses in tests, including status codes, headers, and body content. Don’t partially validate responses or make assumptions about response structure.
+            Always validate all relevant aspects of API responses in tests, including status codes, headers, and body content. Don't partially validate responses or make assumptions about response structure.
 
             Example of incomplete testing:
 
@@ -845,7 +845,7 @@ jobs:
             'maintenance_bypass_cookie_lifetime_minutes' => (int) env('SESSION_MAINTENANCE_BYPASS_COOKIE_LIFETIME_MINUTES', 720),
             ```
 
-            This approach makes configuration self-documenting, reduces the need to consult documentation, and prevents errors from unit mismatches or incorrect assumptions about value types. When environment variables serve as configuration sources, maintain this same naming convention to ensure consistency across your application’s configuration system.
+            This approach makes configuration self-documenting, reduces the need to consult documentation, and prevents errors from unit mismatches or incorrect assumptions about value types. When environment variables serve as configuration sources, maintain this same naming convention to ensure consistency across your application's configuration system.
 
             # Minimize file memory footprint
 
