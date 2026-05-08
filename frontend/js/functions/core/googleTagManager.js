@@ -8,21 +8,20 @@ const googleTagManager = function() {
 
       // WEB-2436: Support pushing multiple events
       data.forEach(function (datum) {
+        let push = {};
         window.dataLayer = window.dataLayer || [];
-        if (datum.event === 'Pageview') {
-          window.dataLayer.push(datum);
+        if (datum.event == 'Pageview' || datum.event == 'gtm.video') {
+          push = datum;
         } else {
           datum.eventPageTitle = document.title.replace(/ \| The Art Institute of Chicago/ig, '');
           datum.eventPagePathName = window.location.pathname;
           datum.eventPageUrl = window.location.href;
-          if (A17.env !== 'production') {
-            console.log('gtm:dataLayerPush', datum);
-          }
-          window.dataLayer.push({
-            event: 'dataLayerPush',
-            data: datum
-          });
+          push = { event: 'dataLayerPush', data: datum };
         }
+        if (A17.env !== 'production') {
+          console.log('gtm:dataLayerPush', push);
+        }
+        window.dataLayer.push(push);
       });
     }
   }, false);
