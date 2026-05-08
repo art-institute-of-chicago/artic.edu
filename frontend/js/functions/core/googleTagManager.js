@@ -10,7 +10,7 @@ const googleTagManager = function() {
       data.forEach(function (datum) {
         let push = {};
         window.dataLayer = window.dataLayer || [];
-        if (datum.event == 'Pageview' || datum.event == 'gtm.video') {
+        if (datum.event === 'Pageview' || datum.event === 'gtm.video') {
           push = datum;
         } else {
           datum.eventPageTitle = document.title.replace(/ \| The Art Institute of Chicago/ig, '');
