@@ -13,36 +13,66 @@ const youtubeEmbed = function(iframe) {
 
   let youtubePlayerTimer;
 
-  function onPlayerEnded() {
+  function onPlayerEnded(player) {
     triggerCustomEvent(document, 'gtm:push', {
-      'event': '100%',
-      'eventCategory': 'video-engagement',
+      'event': 'gtm.video',
+      'gtm.videoStatus': 'complete',
+      'gtm.videoTitle': player.getVideoData().title,
+      'gtm.videoUrl': player.getVideoUrl(),
+      'gtm.videoDuration': player.getDuration(),
+      'gtm.videoCurrentTime': player.getCurrentTime(),
+      'gtm.videoPercent': _playedPercent(player),
+      'gtm.videoVisible': true,
     });
   }
 
   function onPlayerPlaying(player) {
+    let currentTime = player.getCurrentTime();
+    let status = currentTime < 1 ? 'start' : 'resume';
     triggerCustomEvent(document, 'gtm:push', {
-      'event': 'playing',
-      'eventCategory': 'video-engagement',
+      'event': 'gtm.video',
+      'gtm.videoStatus': status,
+      'gtm.videoTitle': player.getVideoData().title,
+      'gtm.videoUrl': player.getVideoUrl(),
+      'gtm.videoDuration': player.getDuration(),
+      'gtm.videoCurrentTime': currentTime,
+      'gtm.videoPercent': _playedPercent(player),
+      'gtm.videoVisible': true,
     });
     youtubePlayerTimer = setInterval(() => _checkPlayedPercent(player), 250);
   }
 
-  function onPlayerPaused() {
+  function onPlayerPaused(player) {
     triggerCustomEvent(document, 'gtm:push', {
-      'event': 'paused',
-      'eventCategory': 'video-engagement',
+      'event': 'gtm.video',
+      'gtm.videoStatus': 'pause',
+      'gtm.videoTitle': player.getVideoData().title,
+      'gtm.videoUrl': player.getVideoUrl(),
+      'gtm.videoDuration': player.getDuration(),
+      'gtm.videoCurrentTime': player.getCurrentTime(),
+      'gtm.videoPercent': _playedPercent(player),
+      'gtm.videoVisible': true,
     });
   }
 
+  function _playedPercent(player) {
+    return Math.round(player.getCurrentTime() / player.getDuration() * 100);
+  }
+
   function _checkPlayedPercent(player) {
-    const playedPercent = Math.round(player.getCurrentTime() / player.getDuration() * 100);
+    const playedPercent = _playedPercent(player);
     for (const playedCheck in playedChecks) {
       if (playedPercent >= playedCheck && !playedChecks[playedCheck]) {
         playedChecks[playedCheck] = true;
         triggerCustomEvent(document, 'gtm:push', {
-          'event': `${playedCheck}%`,
-          'eventCategory': 'video-engagement',
+          'event': 'gtm.video',
+          'gtm.videoStatus': 'progresss',
+          'gtm.videoTitle': player.getVideoData().title,
+          'gtm.videoUrl': player.getVideoUrl(),
+          'gtm.videoDuration': player.getDuration(),
+          'gtm.videoCurrentTime': player.getCurrentTime(),
+          'gtm.videoPercent': _playedPercent,
+          'gtm.videoVisible': true,
         });
       }
     }
@@ -71,7 +101,7 @@ const youtubeEmbed = function(iframe) {
     switch (event.data) {
       case YT.PlayerState.ENDED:
         triggerCustomEvent(iframe, 'youtube:ended', {id: iframe.id});
-        onPlayerEnded();
+        onPlayerEnded(event.target);
         break;
       case YT.PlayerState.PLAYING:
         triggerCustomEvent(iframe, 'youtube:playing', {id: iframe.id});
@@ -79,7 +109,7 @@ const youtubeEmbed = function(iframe) {
         break;
       case YT.PlayerState.PAUSED:
         triggerCustomEvent(iframe, 'youtube:paused', {id: iframe.id});
-        onPlayerPaused();
+        onPlayerPaused(event.target);
         break;
       case YT.PlayerState.BUFFERING:
         triggerCustomEvent(iframe, 'youtube:buffering', {id: iframe.id});
