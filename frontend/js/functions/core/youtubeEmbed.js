@@ -66,7 +66,7 @@ const youtubeEmbed = function(iframe) {
         playedChecks[playedCheck] = true;
         triggerCustomEvent(document, 'gtm:push', {
           'event': 'gtm.video',
-          'gtm.videoStatus': 'progresss',
+          'gtm.videoStatus': 'progress',
           'gtm.videoTitle': player.getVideoData().title,
           'gtm.videoUrl': player.getVideoUrl(),
           'gtm.videoDuration': player.getDuration(),
