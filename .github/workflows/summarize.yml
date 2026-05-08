@@ -1007,7 +1007,7 @@ jobs:
             );
 
             for (const review of reviews) {
-              if (review.user.login === botLogin && ['APPROVED', 'CHANGES_REQUESTED'].includes(review.state)) {
+              if (review.user.login === botLogin && ['CHANGES_REQUESTED'].includes(review.state)) {
                 await github.rest.pulls.dismissReview({
                   owner, repo, pull_number,
                   review_id: review.id,
@@ -1046,7 +1046,7 @@ jobs:
               body: c.body
             }));
 
-            const event = comments.length > 0 ? 'REQUEST_CHANGES' : 'APPROVE';
+            const event = comments.length > 0 ? 'REQUEST_CHANGES' : '';
 
             await github.rest.pulls.createReview({
               owner, repo, pull_number, commit_id,
