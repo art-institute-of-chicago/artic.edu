@@ -1049,7 +1049,7 @@ jobs:
             await github.rest.pulls.createReview({
               owner, repo, pull_number, commit_id,
               event,
-              body: event === 'REQUEST_CHANGES' ? (parsed.summary || '') : '',
+              body: parsed.summary,
               comments
             });
 
