@@ -275,6 +275,6 @@ return [
         'explorer_annotation',
         'explorer_light',
         'explorer_model',
-        'layout_block'
+        'explorer_annotation_overlay_block'
     ]
 ];
