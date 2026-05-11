@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DigitalExplorer;
 use App\Repositories\DigitalExplorerRepository;
+use App\Helpers\DigitalExplorerHelpers;
 use Illuminate\Support\Facades\View;
 
 class DigitalExplorerController extends FrontController
@@ -88,7 +89,7 @@ class DigitalExplorerController extends FrontController
                 'enableCustomBounds' => (bool) $digitalExplorer->settings->get('enableCustomBounds', false),
                 'customBounds' => $this->parseCoordinates($digitalExplorer->settings->get('customBounds'), self::CUSTOM_BOUNDS_DEFAULT),
                 'customBoundsOffset' => $this->parseCoordinates($digitalExplorer->settings->get('customBoundsOffset'), self::CUSTOM_BOUNDS_OFFSET_DEFAULT),
-                'zoomLimits' => \App\Helpers\DigitalExplorerHelpers::decodeSettings($digitalExplorer->settings->get('zoomLimits'), [self::MIN_ZOOM, self::MAX_ZOOM]),
+                'zoomLimits' => DigitalExplorerHelpers::decodeSettings($digitalExplorer->settings->get('zoomLimits'), [self::MIN_ZOOM, self::MAX_ZOOM]),
                 'deactivateForcefield' => (bool) $digitalExplorer->settings->get('deactivateForcefield', false),
                 'sceneSettings' => [
                     'antialiasing' => in_array('antialiasing', $digitalExplorer->settings?->get('sceneSettings', []) ?? []),
