@@ -285,6 +285,9 @@ class DigitalExplorerController extends FrontController
 
                 $html = '';
                 foreach ($this->block->children as $child) {
+                    if ($fieldName && $child->child_key !== $fieldName) {
+                        continue;
+                    }
                     $html .= $this->controller->renderSingleBlock($child, $this->block);
                 }
 
