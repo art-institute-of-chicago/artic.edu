@@ -47,25 +47,6 @@ html:has(.o-digital-explorer) {
       height: 100% !important;
     }
 
-    &.o-layout_block {
-      .m-media {
-        height: 100%;
-        width: 100%;
-        &:only-child {
-          .m-media__img img {
-            width: 100%;
-            object-fit: cover;
-          }
-        }
-
-        &:not(:only-child) {
-          height: 100%;
-          display: flex;
-          align-items: flex-start;
-          justify-content: flex-start;
-        }
-      }
-    }
 
     .paragraph-wrapper {
       display: flex;
