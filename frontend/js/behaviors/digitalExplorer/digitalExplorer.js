@@ -19,7 +19,12 @@ export default function digitalExplorer(container) {
 
   function _init() {
     const contentBundleScript = document.querySelector('[data-digitalExplorer-contentBundle]');
-    const explorerData = contentBundleScript ? JSON.parse(contentBundleScript.innerHTML) : {};
+    
+    if (!contentBundleScript) {
+      return;
+    }
+
+    const explorerData = JSON.parse(contentBundleScript.innerHTML);
 
     window.digitalExplorer = explorerData;
 
