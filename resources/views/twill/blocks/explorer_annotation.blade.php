@@ -73,21 +73,7 @@
 
 @php
 $blocks = BlockHelpers::getBlocksForEditor([
-    '3d_model',
-    'accordion',
-    'hr',
-    'image',
     'explorer_annotation_overlay_block',
-    'link',
-    'list',
-    'media_embed',
-    'membership_banner',
-    'newsletter_signup_inline',
-    'paragraph',
-    'split_block',
-    'timeline',
-    'video',
-    '360_embed'
 ]);
 @endphp
 
