@@ -268,7 +268,15 @@ Route::get('/exhibitions/{id}/{slug?}', [ExhibitionsController::class, 'show'])-
 Route::get('/artworks/recentlyViewed', [ArtworkController::class, 'recentlyViewed'])->name('artworks.recentlyViewed');
 Route::get('/artworks/clearRecentlyViewed', [ArtworkController::class, 'clearRecentlyViewed'])->name('artworks.clearRecentlyViewed');
 Route::get('/artworks/addRecentlyViewed/{id}/{slug?}', [ArtworkController::class, 'addRecentlyViewed'])->name('artworks.addRecentlyViewed');
-Route::get('/artworks/{id}/exploreFurther', [ArtworkController::class, 'exploreFurther'])->name('artworks.exploreFurther');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => array_merge(
+        \App\Libraries\ExploreFurther\BaseService::VALID_FILTERS,
+        ['ef-all_ids']
+    ),
+], function () {
+    Route::get('/artworks/{id}/exploreFurther', [ArtworkController::class, 'exploreFurther'])->name('artworks.exploreFurther');
+});
 Route::get('/artworks/{id}/{slug?}', [ArtworkController::class, 'show'])->name('artworks.show');
 
 // Gallery / tag page
