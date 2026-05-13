@@ -92,8 +92,8 @@ class DigitalExplorerController extends FrontController
                 'zoomLimits' => DigitalExplorerHelpers::decodeSettings($digitalExplorer->settings->get('zoomLimits'), [self::MIN_ZOOM, self::MAX_ZOOM]),
                 'deactivateForcefield' => (bool) $digitalExplorer->settings->get('deactivateForcefield', false),
                 'sceneSettings' => [
-                    'antialiasing' => in_array('antialiasing', $digitalExplorer->settings?->get('sceneSettings', []) ?? []),
-                    'shadows' => in_array('shadows', $digitalExplorer->settings?->get('sceneSettings', []) ?? []),
+                    'antialiasing' => (bool) $digitalExplorer->settings?->get('antialiasing', false),
+                    'shadows' => (bool) $digitalExplorer->settings?->get('shadows', false),
                 ],
                 'toneMapping' => $digitalExplorer->settings?->get('toneMapping', 'ACESFilmicToneMapping'),
                 'colorSpace' => $digitalExplorer->settings?->get('colorSpace', 'SRGB'),
@@ -143,8 +143,8 @@ class DigitalExplorerController extends FrontController
                     'annotationSize' => floatval($block->input('scale') ?: self::ANNOTATION_DEFAULT_SCALE),
                     'annotationTarget' => $block->input('annotationTarget'),
                     'annotationZoom' => $block->input('annotationZoom') ? floatval($block->input('annotationZoom')) : null,
-                    'showLabel' => in_array('showLabel', $block->input('annotationSettings') ?? []),
-                    'sizeAttenuation' => !in_array('sizeAttenuation', $block->input('annotationSettings') ?? []),
+                    'showLabel' => (bool) $block->input('showLabel'),
+                    'sizeAttenuation' => !((bool) $block->input('sizeAttenuation')),
                     'labelText' => $block->input('label') ?? '',
                 ]);
 
