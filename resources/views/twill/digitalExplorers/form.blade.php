@@ -36,13 +36,13 @@
                   note="Paste JSON output from builder"
                 />
 
-                <x-twill::multi-select
-                    name="settings.sceneSettings"
-                    label="Scene Settings"
-                    :options="[
-                        ['value' => 'antialiasing', 'label' => 'Antialiasing'],
-                        ['value' => 'shadows', 'label' => 'Shadows']
-                    ]"
+                <x-twill::checkbox
+                    name="settings.antialiasing"
+                    label="Antialiasing"
+                />
+                <x-twill::checkbox
+                    name="settings.shadows"
+                    label="Shadows"
                 />
                 <x-twill::select
                     name="settings.toneMapping"
