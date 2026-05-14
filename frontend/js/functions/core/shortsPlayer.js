@@ -1,5 +1,6 @@
 import youtubeEmbed, { controlYouTubePlayer, unsetEmbed } from './youtubeEmbed';
 import { ajaxRequestCustom, parseHTML } from '.';
+import { triggerCustomEvent } from '@area17/a17-helpers';
 
 const SHORTS_PLAYER_ID = 'shorts-player-iframe'; // See app/Http/Controllers/ShortsController.php
 const SHORTS_LIST_SELECTOR = '#shorts-list';
@@ -69,7 +70,17 @@ const shortsPlayer = function(container) {
 
   function _handleClick(event) {
     const selectedItem = event.currentTarget;
-    if (selectedItem.classList.contains('previous-video') || selectedItem.classList.contains('next-video')) {
+    if (selectedItem.classList.contains('previous-video')) {
+      _scrollToVideo(selectedItem);
+    } else if (selectedItem.classList.contains('next-video')) {
+      const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
+      triggerCustomEvent(document, 'gtm:push', {
+        'event': 'video_advance',
+        'source_video_id': currentVideo.dataset.id,
+        'source_video_title': currentVideo.dataset.title,
+        'destination_video_id': selectedItem.dataset.id,
+        'destination_video_title': selectedItem.dataset.title,
+      });
       _scrollToVideo(selectedItem);
     }
   }
