@@ -43,16 +43,21 @@ const youtubeEmbed = function(iframe) {
   }
 
   function onPlayerPaused(player) {
-    triggerCustomEvent(document, 'gtm:push', {
-      'event': 'gtm.video',
-      'gtm.videoStatus': 'pause',
-      'gtm.videoTitle': player.getVideoData().title,
-      'gtm.videoUrl': player.getVideoUrl(),
-      'gtm.videoDuration': player.getDuration(),
-      'gtm.videoCurrentTime': player.getCurrentTime(),
-      'gtm.videoPercent': _playedPercent(player),
-      'gtm.videoVisible': true,
-    });
+    // Before playing a new video, the player pauses the current video and sets
+    // it's duration to 0. We only want to push user-initiated pause data to
+    // GTM.
+    if (player.getDuration() > 0) {
+      triggerCustomEvent(document, 'gtm:push', {
+        'event': 'gtm.video',
+        'gtm.videoStatus': 'pause',
+        'gtm.videoTitle': player.getVideoData().title,
+        'gtm.videoUrl': player.getVideoUrl(),
+        'gtm.videoDuration': player.getDuration(),
+        'gtm.videoCurrentTime': player.getCurrentTime(),
+        'gtm.videoPercent': _playedPercent(player),
+        'gtm.videoVisible': true,
+      });
+    }
   }
 
   function _playedPercent(player) {
@@ -71,7 +76,7 @@ const youtubeEmbed = function(iframe) {
           'gtm.videoUrl': player.getVideoUrl(),
           'gtm.videoDuration': player.getDuration(),
           'gtm.videoCurrentTime': player.getCurrentTime(),
-          'gtm.videoPercent': _playedPercent,
+          'gtm.videoPercent': _playedPercent(player),
           'gtm.videoVisible': true,
         });
       }
