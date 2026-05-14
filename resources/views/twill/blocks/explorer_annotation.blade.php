@@ -59,20 +59,13 @@
                 note="Camera distance to annotation"
             />
 
-            <x-twill::multi-select
-                name='annotationSettings'
-                label='Annotation Settings'
-                :unpack='true'
-                :options="[
-                    [
-                        'value' => 'showLabel',
-                        'label' => 'Show Label'
-                    ],
-                    [
-                        'value' => 'sizeAttenuation',
-                        'label' => 'Fixed Size (no perspective scaling)'
-                    ],
-                ]"
+            <x-twill::checkbox
+                name='showLabel'
+                label='Show Label'
+            />
+            <x-twill::checkbox
+                name='sizeAttenuation'
+                label='Fixed Size (no perspective scaling)'
             />
         </x-slot>
     </x-twill::formColumns>
@@ -80,21 +73,7 @@
 
 @php
 $blocks = BlockHelpers::getBlocksForEditor([
-    '3d_model',
-    'accordion',
-    'hr',
-    'image',
     'explorer_annotation_overlay_block',
-    'link',
-    'list',
-    'media_embed',
-    'membership_banner',
-    'newsletter_signup_inline',
-    'paragraph',
-    'split_block',
-    'timeline',
-    'video',
-    '360_embed'
 ]);
 @endphp
 
