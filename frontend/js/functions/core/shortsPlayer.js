@@ -17,6 +17,7 @@ const NEXT_ARROW_SELECTOR = '.next-arrow';
 const NEXT_VIDEO_CLASS = 'next-video';
 const NEXT_VIDEO_SELECTOR = `li.${NEXT_VIDEO_CLASS}`;
 const BUFFER = 5; // Amount of videos to either side of the current one
+const KEY_LOCATION_NUMPAD = 3; // See https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/location
 
 const shortsPlayer = function(container) {
   const list = container.querySelector(SHORTS_LIST_SELECTOR);
@@ -40,6 +41,7 @@ const shortsPlayer = function(container) {
     embed.addEventListener('youtube:ended', _handleEnded);
     const videos = list.querySelectorAll(SHORT_VIDEO_SELECTOR);
     videos.forEach((video) => video.addEventListener('click', _handleClick));
+    document.addEventListener('keyup', _handleKeyUp);
   }
 
   let awaitingInsertBeforeReload = false;
@@ -65,24 +67,56 @@ const shortsPlayer = function(container) {
     list.removeEventListener('scrollend', _handleScrollEnd);
     const videos = list.querySelectorAll(SHORT_VIDEO_SELECTOR);
     videos.forEach((video) => video.removeEventListener('click', _handleClick));
+    document.removeEventListener('keyup', _handleKeyUp);
     unsetEmbed(embed);
   }
 
   function _handleClick(event) {
     const selectedItem = event.currentTarget;
     if (selectedItem.classList.contains('previous-video')) {
-      _scrollToVideo(selectedItem);
+      navigateToPrevious(selectedItem);
     } else if (selectedItem.classList.contains('next-video')) {
-      const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
-      triggerCustomEvent(document, 'gtm:push', {
-        'event': 'video_advance',
-        'source_video_id': currentVideo.dataset.id,
-        'source_video_title': currentVideo.dataset.title,
-        'destination_video_id': selectedItem.dataset.id,
-        'destination_video_title': selectedItem.dataset.title,
-      });
-      _scrollToVideo(selectedItem);
+      navigateToNext(selectedItem);
     }
+  }
+
+  function _handleKeyUp(event) {
+    if (isLeftKey(event)) {
+      const previousVideo = container.querySelector(PREVIOUS_VIDEO_SELECTOR);
+      if (previousVideo) {
+        navigateToPrevious(previousVideo);
+      };
+
+    } else if (isRightKey(event)) {
+      const nextVideo = container.querySelector(NEXT_VIDEO_SELECTOR);
+      if (nextVideo) {
+        navigateToPrevious(nextVideo);
+      }
+    }
+  }
+
+  function isLeftKey(event) {
+    return event.key === 'ArrowLeft' || (event.location === KEY_LOCATION_NUMPAD && event.key === '4');
+  }
+
+  function isRightKey(event) {
+    return event.key === 'ArrowRight' || (event.location === KEY_LOCATION_NUMPAD && event.key === '6');
+  }
+
+  function navigateToPrevious(previousVideo) {
+    _scrollToVideo(previousVideo);
+  }
+
+  function navigateToNext(nextVideo) {
+    const currentVideo = list.querySelector(CURRENT_VIDEO_SELECTOR);
+    triggerCustomEvent(document, 'gtm:push', {
+      'event': 'video_advance',
+      'source_video_id': currentVideo.dataset.id,
+      'source_video_title': currentVideo.dataset.title,
+      'destination_video_id': nextVideo.dataset.id,
+      'destination_video_title': nextVideo.dataset.title,
+    });
+    _scrollToVideo(selectedItem);
   }
 
   function _handleEnded() {
