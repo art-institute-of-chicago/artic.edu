@@ -55,7 +55,9 @@ class ShortsController extends FrontController
             ->mapWithKeys(function ($short) {
                 // Keyed by video id
                 return [$short->id => $this->dataAttributes([
-                    'embedId' => 'shorts-player-iframe',
+                    'id' => $short->id,
+                    'title' => $short->title,
+                    'embedId' => self::SHORTS_PLAYER_ID,
                     'loadVideoById' => $short->youtube_id,
                     'fullVideoUrl' => EmbedConverterFacade::sanitizeUrl($short->embedUrl, ['autoplay' => true])
                 ])];
@@ -91,6 +93,8 @@ class ShortsController extends FrontController
         $dataAttributes = $videos->mapWithKeys(function ($short) {
             // Keyed by video id
             return [$short->id => $this->dataAttributes([
+                'id' => $short->id,
+                'title' => $short->title,
                 'embedId' => self::SHORTS_PLAYER_ID,
                 'loadVideoById' => $short->youtube_id,
                 'fullVideoUrl' => EmbedConverterFacade::sanitizeUrl($short->embedUrl, ['autoplay' => true])
@@ -112,7 +116,9 @@ class ShortsController extends FrontController
         $dataAttributes = $videos->mapWithKeys(function ($short) {
             // Keyed by video id
             return [$short->id => $this->dataAttributes([
-                'embedId' => 'shorts-player-iframe',
+                'id' => $short->id,
+                'title' => $short->title,
+                'embedId' => self::SHORTS_PLAYER_ID,
                 'loadVideoById' => $short->youtube_id,
                 'fullVideoUrl' => EmbedConverterFacade::sanitizeUrl($short->embedUrl, ['autoplay' => true])
             ])];
