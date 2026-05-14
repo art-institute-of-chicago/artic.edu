@@ -33,15 +33,17 @@
 @endif
 
 @php
-    $default = $type === 'digitalPublications' ? 'l' : 'm';
+    $defaultSize = $type === 'digitalPublications' ? 'l' : ($type === 'digitalExplorers' ? 's' : 'm');
+    $disableSize = $type === 'digitalExplorers' ? true : false;
 @endphp
 
 <x-twill::select
     name='size'
     label='Size'
     placeholder='Select size'
-    :default='$default'
+    :default='$defaultSize'
     :options='$options'
+    :disabled='$disableSize'
 />
 
 @php
