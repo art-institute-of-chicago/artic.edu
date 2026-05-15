@@ -90,7 +90,7 @@ const shortsPlayer = function(container) {
     } else if (isRightKey(event)) {
       const nextVideo = container.querySelector(NEXT_VIDEO_SELECTOR);
       if (nextVideo) {
-        navigateToPrevious(nextVideo);
+        navigateToNext(nextVideo);
       }
     }
   }
@@ -116,7 +116,7 @@ const shortsPlayer = function(container) {
       'destination_video_id': nextVideo.dataset.id,
       'destination_video_title': nextVideo.dataset.title,
     });
-    _scrollToVideo(selectedItem);
+    _scrollToVideo(nextVideo);
   }
 
   function _handleEnded() {
