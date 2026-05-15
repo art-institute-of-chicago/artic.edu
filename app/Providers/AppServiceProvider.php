@@ -314,7 +314,7 @@ class AppServiceProvider extends ServiceProvider
         );
 
         TwillNavigation::addLink(
-            NavigationLink::make()->forModule('searchTerms')->title('Site Settings')->doNotAddSelfAsFirstChild()->onlyWhen(fn () => auth()->user()->role === 'ADMIN')
+            NavigationLink::make()->forModule('searchTerms')->title('Site Settings')->doNotAddSelfAsFirstChild()->onlyWhen(fn () => auth()->user()->role->id == \App\Enums\UserRole::Admin->value)
             ->setChildren([
                 NavigationLink::make()->forModule('searchTerms')->title('Search Terms'),
                 NavigationLink::make()->forModule('vanityRedirects')->title('Vanity Redirects'),
