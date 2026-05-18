@@ -3,6 +3,9 @@
     $rightImage = \App\Helpers\ImageHelpers::getImgixTileSource($block, 'right_image');
 
     $referenceImage = $block->imageAsArray('left_image', 'default');
+    $rightReferenceImage = $block->imageAsArray('right_image', 'default');
+    
+    $restrictDownload = ($referenceImage['restrict'] ?? false) || ($rightReferenceImage['restrict'] ?? false);
 @endphp
 
 @if (isset($leftImage) && isset($rightImage))
@@ -17,5 +20,6 @@
         @slot('width', $referenceImage['width'] ?? 16)
         @slot('height', $referenceImage['height'] ?? 10)
         @slot('isSliderZoomable', $block->input('is_slider_zoomable'))
+        @slot('restrictDownload', $restrictDownload)
     @endcomponent
 @endif

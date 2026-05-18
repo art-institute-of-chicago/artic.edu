@@ -14,7 +14,7 @@
 <figure class="m-media m-media--contain m-media--{{ $size }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     <div class="m-media__img">
         <div class="m-media__contain--spacer" style="padding-bottom: {{ min(2/3, intval($height ?? 10) / intval($width ?? 16)) * 100 }}%"></div>
-        <div class="m-image-slider">
+        <div class="m-image-slider"{!! (isset($restrictDownload) && $restrictDownload) ? ' data-behavior="restrictDownload"' : '' !!}>
             <div class="m-image-slider__viewer" data-behavior="imageSlider" data-images="{{ json_encode($imageData) }}">
                 @if (app('printservice')->isPrintMode())
                     @component('components.atoms._img')
