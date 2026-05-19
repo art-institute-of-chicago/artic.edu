@@ -2,7 +2,13 @@
 
 @section('content')
     @if (isset($playlist))
-        <div class="playlist-header">
+        <div
+            class="playlist-header"
+            data-behavior="trackPlaylist"
+            data-playlist-id="{{ $playlist->id }}"
+            data-playlist-title="{{ $playlist->title }}"
+            data-playlist-position="{{ $item->pivot->position + 1 }}"
+        >
             <span class="playlist-prefix">
                 Playlist:
             </span>
