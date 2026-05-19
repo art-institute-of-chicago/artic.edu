@@ -57,13 +57,13 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => array(200,400,600,1000,1500),
                     'sizes' => ImageHelpers::aic_imageSizes(array(
-                          'xsmall' => '216px',
-                          'small' => '216px',
-                          'medium' => '18',
-                          'large' => '13',
-                          'xlarge' => '13',
+                          'xsmall' => '58',
+                          'small' => '58',
+                          'medium' => '38',
+                          'large' => '28',
+                          'xlarge' => '28',
                     )),
                 ))
             @endcomponent
