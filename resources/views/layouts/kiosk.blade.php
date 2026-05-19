@@ -19,6 +19,10 @@
 
     @include('partials._head-js')
 
+    <link rel="preload" href="https://www.artic.edu/fonts/sabon/3545D5_0_0.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="https://www.artic.edu/fonts/sabon/3545D5_1_0.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="https://www.artic.edu/fonts/sabon/3545D5_2_0.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
 
     {{-- Allow views to inject additional head content --}}
