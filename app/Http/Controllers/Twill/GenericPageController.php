@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Twill;
 
+use App\Repositories\PageCategoryRepository;
+
 class GenericPageController extends BaseController
 {
     protected function setUpController(): void
@@ -66,6 +68,8 @@ class GenericPageController extends BaseController
             }),
             'breadcrumb' => (empty($breadcrumb) ? null : $breadcrumb),
             'baseUrl' => $baseUrl,
+
+            'categoriesList' => app(PageCategoryRepository::class)->listAll('name'),
         ];
     }
 
