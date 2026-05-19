@@ -45,10 +45,13 @@ html:has(.o-digital-explorer) {
   }
 
   .o-blocks {
-    .m-media--360-embed {
+    .m-viewer-360 {
       height: 100% !important;
     }
 
+    .m-media--360-embed {
+      height: 100% !important;
+    }
 
     .paragraph-wrapper {
       display: flex;
@@ -64,7 +67,6 @@ html:has(.o-digital-explorer) {
       }
 
       h2 {
-        padding-top: 2rem;
         letter-spacing: unset;
         font-size: 3.5rem;
         line-height: normal !important;
