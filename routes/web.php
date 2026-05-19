@@ -32,7 +32,6 @@ use App\Http\Controllers\PlaylistVideoController;
 use App\Http\Controllers\PressReleasesController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\PrintedPublicationsController;
-use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShortsController;
@@ -128,7 +127,15 @@ Route::group([
 ], function () {
     Route::get('api/v1/msuggest')->name('collection.autocomplete');
 });
-Route::get('/collection/categorySearch/{categoryName}', [CollectionController::class, 'categorySearch'])->name('collection.categorySearch');
+
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'categoryQuery',
+    ]
+], function () {
+    Route::get('/collection/categorySearch/{categoryName}', [CollectionController::class, 'categorySearch'])->name('collection.categorySearch');
+});
 
 // Collection Publications Printed Publications
 Route::get('/print-publications', [PrintedPublicationsController::class, 'index'])->name('collection.publications.printed-publications');
@@ -138,9 +145,6 @@ Route::get('/digital-publications', [DigitalPublicationsController::class, 'inde
 Route::get('/digital-publications/{id}/{slug?}', [DigitalPublicationsController::class, 'show'])->name('collection.publications.digital-publications.show');
 Route::get('/digital-publications/{id}/{slug?}/content', [DigitalPublicationsController::class, 'showListing'])->name('collection.publications.digital-publications.showListing');
 Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPublicationArticleController::class, 'show'])->name('collection.publications.digital-publications-articles.show');
-
-// Collection Research
-Route::get('/collection/research_resources', [ResearchController::class, 'index'])->name('collection.research_resources');
 
 // Collection Resources Educator Resources
 Route::group([
@@ -227,6 +231,7 @@ Route::group([
     ]
 ], function () {
     Route::get('/videos/archive', [VideoController::class, 'index'])->name('videos.archive');
+    Route::redirect('/videos/archives', '/videos/archive');
 });
 Route::get('/videos/shorts', [ShortsController::class, 'index'])->name('shorts.index');
 Route::get('/videos/shorts/{video}', [ShortsController::class, 'show'])->name('shorts.show');
@@ -295,6 +300,7 @@ Route::get('/highlights', [HighlightsController::class, 'index'])->name('highlig
 // About
 Route::get('/press/press-releases', [PressReleasesController::class, 'index'])->name('about.press');
 Route::get('/press/archive', [PressReleasesController::class, 'archive'])->name('about.press.archive');
+Route::redirect('/press/archives', '/press/archive');
 Route::get('/press/press-releases/{id}/{slug?}', [PressReleasesController::class, 'show'])->name('about.press.show');
 
 Route::get('/press/exhibition-press-room', [ExhibitionPressRoomController::class, 'index'])->name('about.exhibitionPressRooms');

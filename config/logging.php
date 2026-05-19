@@ -118,9 +118,9 @@ return [
             'replace_placeholders' => true,
         ],
 
-        'sentry' => [
-            'driver' => 'sentry',
-            'level' => env('LOG_LEVEL', 'error'),
+        'sentry_logs' => [
+            'driver' => 'sentry_logs',
+            'level' => env('SENTRY_LOG_LEVEL', 'info'),
         ],
 
         // WEB-2129: Optional channel to disable log files

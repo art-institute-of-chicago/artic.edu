@@ -84,23 +84,6 @@
 
 </x-twill::formConnectedFields>
 
-<x-twill::formConnectedFields
-    field-name='header_variation'
-    field-values="feature"
-    :render-for-blocks='false'
->
-
-    <x-twill::browser
-        name='primaryFeatures'
-        label='Main feature'
-        note='Queue up to 3 home features for the large hero area'
-        route-prefix='generic'
-        module-name='pageFeatures'
-        :max='3'
-    />
-
-</x-twill::formConnectedFields>
-
 @stop
 
 @section('fieldsets')
@@ -170,22 +153,17 @@
         name='meta_title'
         label='Metadata Title'
     />
-
     <x-twill::input
         name='meta_description'
         label='Metadata Description'
         type='textarea'
     />
-
-
     <x-twill::input
         name='search_tags'
         label='Internal Search Tags'
         type='textarea'
     />
-
     <p>Comma-separated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
-
 </x-twill::formFieldset>
 
 @stop

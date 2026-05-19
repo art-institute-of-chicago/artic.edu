@@ -63,7 +63,6 @@ class ExhibitionRepository extends BaseApiRepository
 
     public function afterSave(TwillModelContract $object, array $fields): void
     {
-        $object->siteTags()->sync($fields['siteTags'] ?? []);
         parent::afterSave($object, $fields);
     }
 

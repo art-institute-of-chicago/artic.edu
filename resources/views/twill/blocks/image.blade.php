@@ -33,15 +33,17 @@
 @endif
 
 @php
-    $default = $type === 'digitalPublications' ? 'l' : 'm';
+    $defaultSize = $type === 'digitalPublications' ? 'l' : ($type === 'digitalExplorers' ? 's' : 'm');
+    $disableSize = $type === 'digitalExplorers' ? true : false;
 @endphp
 
 <x-twill::select
     name='size'
     label='Size'
     placeholder='Select size'
-    default='$default'
+    :default='$defaultSize'
     :options='$options'
+    :disabled='$disableSize'
 />
 
 @php
@@ -52,15 +54,15 @@
 <x-twill::checkbox
     name='use_contain'
     label='Always show the whole image instead of cropping to the container'
-    default='$default'
-    disabled='$disabled'
+    :default='$default'
+    :disabled='$disabled'
 />
 
 <x-twill::checkbox
     name='use_alt_background'
     label='Use white instead of gray to pillarbox the image'
-    default='$default'
-    disabled='$disabled'
+    :default='$default'
+    :disabled='$disabled'
 />
 
 <x-twill::checkbox

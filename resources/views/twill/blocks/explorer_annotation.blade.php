@@ -21,66 +21,59 @@
     placeholder='#4ecdc4'
 />
 
-<x-twill::input
-    name='annotationTarget'
-    label='Annotation target ID'
-    note='Reference the ID of a model or element to target'
-/>
+@if (auth()->user()->role->id == \App\Enums\UserRole::Admin->value ||
+     auth()->user()->role->id == \App\Enums\UserRole::XDPublisher->value)
+    <hr>
+    <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Developer Settings</h2>
 
-<x-twill::input
-    name="coordinate"
-    label="Position"
-    placeholder="[0, 0, 0]"
-    note="X, Y, Z coordinates"
-/>
+    <x-twill::formColumns>
+        <x-slot name="left">
 
-<x-twill::input
-    name="rotation"
-    label="Rotation"
-    placeholder="[0, 0, 0]"
-    note="Rotation in radians"
-/>
+            <x-twill::input
+                name="coordinate"
+                label="Position"
+                placeholder="[0, 0, 0]"
+                note="X, Y, Z coordinates"
+            />
 
-<x-twill::input
-    name='scale'
-    label='Scale'
-    placeholder="0.5"
-    note="Size of the annotation icon"
-/>
+            <x-twill::input
+                name="rotation"
+                label="Rotation"
+                placeholder="[0, 0, 0]"
+                note="Rotation in radians"
+            />
 
-<x-twill::multi-select
-    name='annotationSettings'
-    label='Annotation Settings'
-    :unpack='true'
-    :options="[
-        [
-            'value' => 'showLabel',
-            'label' => 'Show Label'
-        ],
-        [
-            'value' => 'sizeAttenuation',
-            'label' => 'Fixed Size (no perspective scaling)'
-        ],
-    ]"
-/>
+            <x-twill::input
+                name='scale'
+                label='Scale'
+                placeholder="0.5"
+                note="Size of the annotation icon"
+            />
+        </x-slot>
+
+        <x-slot name="right">
+            <x-twill::input
+                name='annotationZoom'
+                label='Zoom Distance'
+                placeholder="auto"
+                note="Camera distance to annotation"
+            />
+
+            <x-twill::checkbox
+                name='showLabel'
+                label='Show Label'
+            />
+            <x-twill::checkbox
+                name='sizeAttenuation'
+                label='Fixed Size (no perspective scaling)'
+            />
+        </x-slot>
+    </x-twill::formColumns>
+@endif
 
 @php
 $blocks = BlockHelpers::getBlocksForEditor([
-    '3d_model',
-    'accordion',
-    'hr',
-    'image',
-    'layout_block',
-    'link',
-    'list',
-    'media_embed',
-    'membership_banner',
-    'newsletter_signup_inline',
-    'paragraph',
-    'split_block',
-    'timeline',
-    'video',
-    '360_embed'
+    'explorer_annotation_overlay_block',
 ]);
 @endphp
 

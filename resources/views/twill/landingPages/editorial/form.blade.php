@@ -17,6 +17,10 @@
         :toolbar-options="[ 'italic' ]"
     />
 
+    <x-twill::medias
+        name='listing_image'
+        label='Listing image'
+    />
 @stop
 
 @section('fieldsets')
@@ -98,6 +102,24 @@
         :blocks='$blocks'
     />
 
+</x-twill::formFieldset>
+
+<x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
+    <x-twill::input
+        name='meta_title'
+        label='Metadata Title'
+    />
+    <x-twill::input
+        name='meta_description'
+        label='Metadata Description'
+        type='textarea'
+    />
+    <x-twill::input
+        name='search_tags'
+        label='Internal Search Tags'
+        type='textarea'
+    />
+    <p>Comma-separated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
 </x-twill::formFieldset>
 
 @stop

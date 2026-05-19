@@ -1,12 +1,32 @@
-body {
-  background-color: $color__black--91;
+html:has(.o-digital-explorer) {
+  body {
+    background-color: $color__black--91;
+  }
+
+  &:has(.kioskMode) {
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+#a17:has(.o-digital-explorer) {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html:has(.o-digital-explorer) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    touch-action: pan-x pan-y;
+    overscroll-behavior: none;
+  }
 }
 
 .o-digital-explorer {
   width: 100vw;
   position: relative;
-  left: 50%;
-  margin-left: -50vw;
   min-height: 100vh;
   background: #fff;
   z-index: 1;
@@ -25,10 +45,12 @@ body {
   }
 
   .o-blocks {
-    &.o-layout_block {
-      .m-media {
-        height: 100%;
-      }
+    .m-viewer-360 {
+      height: 100% !important;
+    }
+
+    .m-media--360-embed {
+      height: 100% !important;
     }
 
     .paragraph-wrapper {
@@ -36,15 +58,15 @@ body {
       flex-direction: column;
       gap: 1.5rem;
 
-      h2, p {
+      h2,
+      p {
         color: $color__white !important;
-        font-family: $serif-font--loaded;
+        font-family: $serif-font--loaded !important;
         text-align: start;
         text-transform: none;
       }
 
       h2 {
-        padding-top: 2rem;
         letter-spacing: unset;
         font-size: 3.5rem;
         line-height: normal !important;
@@ -68,11 +90,15 @@ body {
       flex: 1;
       overflow: hidden;
       position: relative;
+      background-color: transparent;
+      background-image: none;
 
       img {
+        display: unset;
         max-height: unset !important;
         object-fit: cover;
         height: 100% !important;
+        margin: 0;
       }
     }
 

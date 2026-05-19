@@ -93,7 +93,7 @@ Special JS bundles: `mirador.js` (IIIF viewer), `myMuseumTourBuilder.js` (tour b
 
 ### CMS (Twill)
 
-Twill handles content authoring. CMS navigation is configured in `config/twill-navigation.php`. Run `php artisan twill:build` after Twill upgrades.
+Twill handles content authoring. CMS navigation is configured in `AppServiceProvider->registerTwillNav`. Run `php artisan twill:build` after Twill upgrades.
 
 ### Key Config Files
 

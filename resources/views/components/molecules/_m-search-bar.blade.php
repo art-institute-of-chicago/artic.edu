@@ -1,7 +1,7 @@
 <form class="m-search-bar{{ (isset($variation)) ? ' '.$variation : '' }}" action="{{ $action ?? '' }}"{!! (isset($behaviors)) ? ' data-behavior="'.$behaviors.'"' : '' !!}{!! (isset($dataAttributes)) ? ' '.$dataAttributes.'' : '' !!}{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
     <div class="m-search-bar__inner">
 
-        <label class="m-search-bar__label--hiden" for="{{ $name ?? '' }}">Search</label>
+        <label class="m-search-bar__label--hidden" for="{{ $name ?? '' }}">Search</label>
 
         <input class="f-secondary{{ (isset($value) and $value and isset($clearLink) and $clearLink) ? ' s-populated' : '' }}" id="{{ $name ?? '' }}" name="{{ $name ?? '' }}" placeholder="{!! $placeholder ?? '' !!}" type="text" value="{{ $value ?? '' }}" autocomplete="off">
 

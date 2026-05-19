@@ -23,27 +23,6 @@ class PageController extends \App\Http\Controllers\Twill\ModuleController
         ];
     }
 
-    public function home(PageRepository $pages)
-    {
-        abort_unless($page = $pages->byName('Home'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put('pages_back_link', route('twill.homepage.landing'));
-
-        $additionalFieldsets = [
-            ['fieldset' => 'plan-your-visit', 'label' => 'Plan Your Visit'],
-            ['fieldset' => 'video-carousel', 'label' => 'Video Carousel'],
-            ['fieldset' => 'call-to-action', 'label' => 'Call to Action'],
-            ['fieldset' => 'highlights', 'label' => 'Highlights'],
-            ['fieldset' => 'artists', 'label' => 'Artists'],
-            ['fieldset' => 'from-the-collection', 'label' => 'From the Collection'],
-            ['fieldset' => 'from-the-shop', 'label' => 'From the Shop'],
-            ['fieldset' => 'exhibitions-and-events', 'label' => 'Exhibitions and Events'],
-        ];
-        $fields = $this->form($page->id);
-        $fields['additionalFieldsets'] = $additionalFieldsets;
-
-        return view('twill.pages.form', $fields);
-    }
-
     public function exhibitions(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Exhibitions and Events'), 500, self::MISSING_CMS_PAGE_MESSAGE);
@@ -68,45 +47,9 @@ class PageController extends \App\Http\Controllers\Twill\ModuleController
         return view('twill.pages.form', $fields);
     }
 
-    public function articlesPublications(PageRepository $pages)
-    {
-        abort_unless($page = $pages->byName('Articles and Publications'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put('pages_back_link', route('twill.collection.articlesPublications.landing'));
-
-        $additionalFieldsets = [];
-        $fields = $this->form($page->id);
-        $fields['additionalFieldsets'] = $additionalFieldsets;
-
-        return view('twill.pages.form', $fields);
-    }
-
-    public function visit(PageRepository $pages)
-    {
-        abort_unless($page = $pages->byName('Visit'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put('pages_back_link', route('twill.homepage.landing'));
-
-        $additionalFieldsets = [
-            ['fieldset' => 'hours', 'label' => 'Hours'],
-            ['fieldset' => 'call-to-action', 'label' => 'CTA'],
-            ['fieldset' => 'expect', 'label' => 'Expect'],
-            ['fieldset' => 'admissions', 'label' => 'Adm.'],
-            ['fieldset' => 'faq', 'label' => 'FAQ'],
-            ['fieldset' => 'citypass', 'label' => 'CityPASS'],
-            ['fieldset' => 'accessibility', 'label' => 'A11y'],
-            ['fieldset' => 'directions', 'label' => 'Dir.'],
-            ['fieldset' => 'explore', 'label' => 'Explore'],
-        ];
-
-        $fields = $this->form($page->id);
-        $fields['additionalFieldsets'] = $additionalFieldsets;
-
-        return view('twill.pages.form', $fields);
-    }
-
     public function articles(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Articles'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put('pages_back_link', route('twill.collection.articlesPublications.landing'));
         $additionalFieldsets = [];
         $fields = $this->form($page->id);
         $fields['additionalFieldsets'] = $additionalFieldsets;
@@ -130,17 +73,6 @@ class PageController extends \App\Http\Controllers\Twill\ModuleController
     {
         abort_unless($page = $pages->byName('Collection'), 500, self::MISSING_CMS_PAGE_MESSAGE);
         Session::put('pages_back_link', route('twill.collection.landing'));
-
-        $additionalFieldsets = [];
-        $fields = $this->form($page->id);
-        $fields['additionalFieldsets'] = $additionalFieldsets;
-
-        return view('twill.pages.form', $fields);
-    }
-
-    public function research(PageRepository $pages)
-    {
-        abort_unless($page = $pages->byName('Research and Resources'), 500, self::MISSING_CMS_PAGE_MESSAGE);
 
         $additionalFieldsets = [];
         $fields = $this->form($page->id);

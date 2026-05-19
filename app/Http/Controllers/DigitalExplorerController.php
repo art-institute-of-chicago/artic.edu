@@ -4,11 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\DigitalExplorer;
 use App\Repositories\DigitalExplorerRepository;
+use App\Helpers\DigitalExplorerHelpers;
 use Illuminate\Support\Facades\View;
 
 class DigitalExplorerController extends FrontController
 {
     protected $repository;
+
+    const MIN_ZOOM = 0.0;
+    const MAX_ZOOM = 150.0;
+    const ANNOTATION_DEFAULT_SCALE = 0.07;
+    const ANNOTATION_DEFAULT_COLOR = '#4B9CA3';
+    const ANNOTATION_DEFAULT_ROTATION = [0, 0, 0];
+    const CUSTOM_BOUNDS_DEFAULT = [10.5, 5.2, 8.0];
+    const CUSTOM_BOUNDS_OFFSET_DEFAULT = [0.0, 1.5, 0.0];
+    const CAMERA_POSITION_DEFAULT = [2, 0, 0];
+    const CAMERA_FOV_DEFAULT = 15;
+    const CAMERA_NEAR_DEFAULT = 0.1;
+    const CAMERA_FAR_DEFAULT = 10;
+
 
     public function __construct(DigitalExplorerRepository $repository)
     {
@@ -33,7 +47,7 @@ class DigitalExplorerController extends FrontController
         ]);
 
         // Renders paragraph wrapper for style targetting
-        View::share('hasWrapper', true);
+        View::share(['hasWrapper' => true, 'isDigitalExplorer' => true]);
 
         $explorerData = $this->transformExplorer($digitalExplorer);
 
@@ -71,9 +85,15 @@ class DigitalExplorerController extends FrontController
             'settings' => [
                 'debug' => $digitalExplorer->settings->get('debug', false),
                 'brailleButton' => $digitalExplorer->settings->get('brailleButton', false),
+                'builderEnabled' => $digitalExplorer->settings->get('builderEnabled', false),
+                'enableCustomBounds' => (bool) $digitalExplorer->settings->get('enableCustomBounds', false),
+                'customBounds' => $this->parseCoordinates($digitalExplorer->settings->get('customBounds'), self::CUSTOM_BOUNDS_DEFAULT),
+                'customBoundsOffset' => $this->parseCoordinates($digitalExplorer->settings->get('customBoundsOffset'), self::CUSTOM_BOUNDS_OFFSET_DEFAULT),
+                'zoomLimits' => DigitalExplorerHelpers::decodeSettings($digitalExplorer->settings->get('zoomLimits'), [self::MIN_ZOOM, self::MAX_ZOOM]),
+                'deactivateForcefield' => (bool) $digitalExplorer->settings->get('deactivateForcefield', false),
                 'sceneSettings' => [
-                    'antialiasing' => in_array('antialiasing', $digitalExplorer->settings?->get('sceneSettings', []) ?? []),
-                    'shadows' => in_array('shadows', $digitalExplorer->settings?->get('sceneSettings', []) ?? []),
+                    'antialiasing' => (bool) $digitalExplorer->settings?->get('antialiasing', false),
+                    'shadows' => (bool) $digitalExplorer->settings?->get('shadows', false),
                 ],
                 'toneMapping' => $digitalExplorer->settings?->get('toneMapping', 'ACESFilmicToneMapping'),
                 'colorSpace' => $digitalExplorer->settings?->get('colorSpace', 'SRGB'),
@@ -85,10 +105,10 @@ class DigitalExplorerController extends FrontController
                     'makeDefault' => true
                 ],
                 'camera' => [
-                    'position' => $this->parseCoordinates($digitalExplorer->settings?->get('cameraPosition'), [2, 0, 0]),
-                    'fov' => floatval($digitalExplorer->settings?->get('cameraFov') ?? 15),
-                    'near' => floatval($digitalExplorer->settings?->get('minDistance') ?? 0.1),
-                    'far' => intval($digitalExplorer->settings?->get('maxDistance') ?? 10)
+                    'position' => $this->parseCoordinates($digitalExplorer->settings?->get('cameraPosition'), self::CAMERA_POSITION_DEFAULT),
+                    'fov' => floatval($digitalExplorer->settings?->get('cameraFov') ?? self::CAMERA_FOV_DEFAULT),
+                    'near' => floatval($digitalExplorer->settings?->get('minDistance') ?? self::CAMERA_NEAR_DEFAULT),
+                    'far' => intval($digitalExplorer->settings?->get('maxDistance') ?? self::CAMERA_FAR_DEFAULT)
                 ]
             ],
 
@@ -118,12 +138,13 @@ class DigitalExplorerController extends FrontController
                 $data['content'] = array_merge($data['content'], [
                     'position' => $this->parseCoordinates($block->input('coordinate'), [0, 0, 0]),
                     'rotation' => $this->parseCoordinates($block->input('rotation'), [0, 0, 0]),
-                    'scale' => $this->parseScale($block->input('scale'), 0.1),
-                    'annotationColor' => $block->input('color') ?: '#4B9CA3',
-                    'annotationSize' => floatval($block->input('scale') ?: 0.5),
+                    'scale' => $this->parseScale($block->input('scale'), self::ANNOTATION_DEFAULT_SCALE),
+                    'annotationColor' => $block->input('color') ?: self::ANNOTATION_DEFAULT_COLOR,
+                    'annotationSize' => floatval($block->input('scale') ?: self::ANNOTATION_DEFAULT_SCALE),
                     'annotationTarget' => $block->input('annotationTarget'),
-                    'showLabel' => in_array('showLabel', $block->input('annotationSettings') ?? []),
-                    'sizeAttenuation' => !in_array('sizeAttenuation', $block->input('annotationSettings') ?? []),
+                    'annotationZoom' => $block->input('annotationZoom') ? floatval($block->input('annotationZoom')) : null,
+                    'showLabel' => (bool) $block->input('showLabel'),
+                    'sizeAttenuation' => !((bool) $block->input('sizeAttenuation')),
                     'labelText' => $block->input('label') ?? '',
                 ]);
 
@@ -132,6 +153,7 @@ class DigitalExplorerController extends FrontController
                 }
             } elseif ($block->type === 'explorer_model') {
                 $data['content'] = array_merge($data['content'], [
+                    'label' => $block->input('label') ?? '',
                     'position' => $this->parseCoordinates($block->input('coordinate'), [0, 0, 0]),
                     'rotation' => $this->parseCoordinates($block->input('rotation'), [0, 0, 0]),
                     'scale' => $this->parseScale($block->input('scale'), 1.0),
@@ -202,6 +224,8 @@ class DigitalExplorerController extends FrontController
         return floatval($scale);
     }
 
+
+
     protected function renderBlockChildren($parentBlock): string
     {
         if (!$parentBlock->children || $parentBlock->children->isEmpty()) {
@@ -262,6 +286,9 @@ class DigitalExplorerController extends FrontController
 
                 $html = '';
                 foreach ($this->block->children as $child) {
+                    if ($fieldName && ($child->child_key ?? null) !== $fieldName) {
+                        continue;
+                    }
                     $html .= $this->controller->renderSingleBlock($child, $this->block);
                 }
 

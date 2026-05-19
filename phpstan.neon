@@ -9,7 +9,6 @@ parameters:
     - node_modules
     - vendor
     - storage
-    - app/Models/SiteTag.php
 
   ignoreErrors:
     -

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Twill;
 use A17\Twill\Services\Listings\Columns\Presenter;
 use A17\Twill\Services\Listings\TableColumns;
 use App\Repositories\Api\ExhibitionRepository;
-use App\Repositories\SiteTagRepository;
 
 class ExhibitionController extends BaseApiController
 {
@@ -17,7 +16,7 @@ class ExhibitionController extends BaseApiController
         $this->disableDelete();
         $this->disableRestore();
         $this->disablePublish();
-        $this->eagerLoadFormRelations(['revisions', 'siteTags']);
+        $this->eagerLoadFormRelations(['revisions']);
         $this->enableAugmentedModel();
         $this->setModuleName('exhibitions');
         $this->setPreviewView('site.exhibitionDetail');
@@ -44,7 +43,6 @@ class ExhibitionController extends BaseApiController
 
         return [
             'autoRelated' => $this->getAutoRelated($item),
-            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
             'exhibitionTypesList' => $this->repository->getExhibitionTypesList(),
             'exhibitionStatusesList' => $this->repository->getExhibitionStatusesList(),
             'editableTitle' => false,

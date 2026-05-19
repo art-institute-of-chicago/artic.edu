@@ -18,6 +18,13 @@ class DigitalExplorer extends AbstractModel
     use HasFiles;
     use HasMedias;
 
+    public const LIGHT_TYPE_MAP = [
+        'point' => 'pointLight',
+        'directional' => 'directionalLight',
+        'spot' => 'spotLight',
+        'ambient' => 'ambient',
+    ];
+
     protected $fillable = [
         'published',
         'title',

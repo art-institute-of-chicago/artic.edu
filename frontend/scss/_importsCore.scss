@@ -101,8 +101,8 @@
 @import 'molecules/m-patron-banner';
 @import 'molecules/m-tombstone-block';
 @import 'molecules/m-tag-banner';
+@import 'molecules/m-rotate-arrows';
 @import 'molecules/m-slideshow';
-@import 'molecules/m-layout-block';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 
@@ -130,6 +130,7 @@
 @import 'organisms/o-search-results';
 @import 'organisms/o-closer-look';
 @import 'organisms/o-digital-explorer';
+@import 'organisms/o-explorer-annotation-overlay';
 @import 'organisms/o-editors-note';
 @import 'organisms/o-publication-footer';
 @import 'organisms/o-article__primary-actions';
@@ -155,6 +156,7 @@
 @import 'pages/p-issue-show';
 @import 'pages/p-issuearticle-show';
 @import 'pages/p-landingpage-show';
+@import 'pages/p-highlights.show';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ sections */
 
