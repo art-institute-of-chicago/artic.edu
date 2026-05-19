@@ -56,18 +56,6 @@ class PlaylistVideoController extends FrontController
         $transcript = null;
         if ($video->is_captioned && $video->standardCaption?->hasActiveTranslation()) {
             $transcript = $video->standardCaption->transcript;
-            if ($request->has('transcript')) {
-                $poster = null;
-                $embed = EmbedConverterFacade::createYouTubeEmbed(
-                    attributes: [
-                        'id' => $video->youtube_id,
-                        'src' => $video->embed_url,
-                    ],
-                    parameters: [
-                        'autoplay' => true,
-                    ]
-                );
-            }
         }
 
         return view('site.videoDetail', [
