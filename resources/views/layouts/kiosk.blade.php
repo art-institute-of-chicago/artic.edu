@@ -9,21 +9,29 @@
     <meta name="robots" content="noindex">
 
     <!-- Main Favicon -->
-    <link rel="shortcut icon" type="image/png" href="{{FrontendHelpers::revAsset('images/favicon-16.png')}}">
-    <link rel="apple-touch-icon-precomposed" href="{{FrontendHelpers::revAsset('images/favicon-152.png')}}">
-    <link rel="apple-touch-icon-precomposed" type="image/png" href="{{FrontendHelpers::revAsset('images/favicon-120.png')}}" sizes="120x120">
-    <link rel="apple-touch-icon-precomposed" type="image/png" href="{{FrontendHelpers::revAsset('images/favicon-76.png')}}" sizes="76x76">
+    <link rel="shortcut icon" type="image/png" href="{{FrontendHelpers::revAsset('images/aic-favicon.svg')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{FrontendHelpers::revAsset('images/aic-favicon.svg')}}">
+    <link rel="apple-touch-icon-precomposed" type="image/png" href="{{FrontendHelpers::revAsset('images/aic-favicon.svg')}}" sizes="120x120">
+    <link rel="apple-touch-icon-precomposed" type="image/png" href="{{FrontendHelpers::revAsset('images/aic-favicon.svg')}}" sizes="76x76">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="svg-sprite-src" content="{{ FrontendHelpers::revAsset('icons/icons.svg') }}">
 
     @include('partials._head-js')
 
-    <link rel="preload" href="https://www.artic.edu/fonts/sabon/3545D5_0_0.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="https://www.artic.edu/fonts/sabon/3545D5_1_0.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="https://www.artic.edu/fonts/sabon/3545D5_2_0.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
 
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
+
+    <style>
+      @font-face {font-family: 'Sabon';src: url('https://www.artic.edu/fonts/sabon/3545D5_0_0.woff2') format('woff2');font-weight:400;font-style:normal;}
+      @font-face {font-family: 'Sabon';src: url('https://www.artic.edu/fonts/sabon/3545D5_1_0.woff2') format('woff2');font-weight:400;font-style:italic;}
+      @font-face {font-family: 'Sabon';src: url('https://www.artic.edu/fonts/sabon/3545D5_2_0.woff2') format('woff2');font-weight:500;font-style:normal;}
+    </style>
 
     {{-- Allow views to inject additional head content --}}
     @stack('head')
