@@ -35,8 +35,8 @@ class PlaylistVideo extends AbstractModel implements Sortable
         return Attribute::make(
             get: function () {
                 $videoId = $this->video->youtube_id;
-                $playlistid = $this->playlist->youtube_id;
-                return "https://youtube.com/watch?v=$videoId&list=$playlistid";
+                $playlistId = $this->playlist->youtube_id;
+                return "https://youtube.com/watch?v=$videoId&list=$playlistId";
             }
         );
     }
