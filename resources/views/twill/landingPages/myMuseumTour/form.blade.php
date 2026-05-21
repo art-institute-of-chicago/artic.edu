@@ -110,28 +110,6 @@
 
 <x-twill::formConnectedFields
     field-name='header_variation'
-    field-values="feature"
-    :render-for-blocks='false'
-    :keep-alive='true'
->
-
-    <x-twill::formFieldset title="Home Features" id="home-features">
-
-        <x-twill::browser
-            name='mainHomeFeatures'
-            label='Main feature'
-            note='Queue up to 3 home features for the large hero area'
-            route-prefix='homepage'
-            module-name='homeFeatures'
-            :max='3'
-        />
-
-    </x-twill::formFieldset>
-
-</x-twill::formConnectedFields>
-
-<x-twill::formConnectedFields
-    field-name='header_variation'
     field-values="my_museum_tour"
     :render-for-blocks='false'
     :keep-alive='true'
