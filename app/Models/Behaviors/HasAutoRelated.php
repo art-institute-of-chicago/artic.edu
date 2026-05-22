@@ -96,6 +96,9 @@ trait HasAutoRelated
         // Filter out null items
         $relatedItems = array_filter($relatedItems);
 
+        // Filter out items that are currently in the member magazine
+        $relatedItems = array_filter($relatedItems, fn ($item) => !($item->is_in_magazine ?? false));
+
         // Set types that should be weighted to the top
         $weightedTypes = ['article', 'highlight', 'experience'];
 
