@@ -17,6 +17,7 @@ class SanitizeQueryParameters
     protected $allowedQueryParameters = [
         'q',
         'page',
+        'nocache',
         // Checking to see if these are used by marketing
         'utm',
         'utm_campaign',
