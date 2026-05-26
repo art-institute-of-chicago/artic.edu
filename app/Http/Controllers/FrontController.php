@@ -117,7 +117,7 @@ class FrontController extends BaseController
 
     protected function getFeatureRelated($item)
     {
-        if (!$item) {
+        if (!$item || !method_exists($item, 'getFeaturedRelated')) {
             return collect([]);
         }
 
