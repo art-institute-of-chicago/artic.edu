@@ -42,8 +42,7 @@ class EventsController extends FrontController
             $eventsByDay = $this->repository->groupByDate($collection);
 
             $programName = null;
-            if (request('program')) {
-                $programName = EventProgram::find(request('program'))->name;
+            if (request()->filled('program') && $programName = EventProgram::find(request()->integer('program'))?->name) {
                 $subtitle = 'These are events related to ' . $programName . '.';
             }
 
