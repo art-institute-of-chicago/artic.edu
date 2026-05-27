@@ -8,9 +8,9 @@ const triggerShortsPlayerModal = function(container) {
   this.init = function() {
     const data = container.dataset;
     triggerCustomEvent(document, 'gtm:push', {
-      'playlist_id': data.playlistId,
+      'playlist_id': parseInt(data.playlistId),
       'playlist_title': data.playlistTitle,
-      'playlist_position': data.playlistPosition,
+      'playlist_position': parseInt(data.playlistPosition),
     });
   };
 };
