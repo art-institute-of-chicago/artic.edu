@@ -2,6 +2,7 @@
 
 namespace App\Presenters\Admin;
 
+use App\Models\Api\Exhibition;
 use Carbon\Carbon;
 use App\Presenters\BasePresenter;
 use App\Models\Page;
@@ -165,9 +166,9 @@ class ExhibitionPresenter extends BasePresenter
         $extra = collect();
         $from = 0;
         do {
-            $batch = $this->entity->extraImages(50, $from)->get();
+            $batch = $this->entity->extraImages(Exhibition::EXTRA_IMAGES_PER_BATCH, $from)->get();
             $extra = $extra->merge($batch);
-            $from += 50;
+            $from += Exhibition::EXTRA_IMAGES_PER_BATCH;
         } while (!$batch->isEmpty());
 
         return $this->cachedHistoryImages = $main->merge($extra)->sortBy('title')->values();
