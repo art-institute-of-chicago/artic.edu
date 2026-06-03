@@ -169,7 +169,7 @@ class ExhibitionPresenter extends BasePresenter
             $batch = $this->entity->extraImages(Exhibition::EXTRA_IMAGES_PER_BATCH, $from)->get();
             $extra = $extra->merge($batch);
             $from += Exhibition::EXTRA_IMAGES_PER_BATCH;
-        } while (!$batch->isEmpty());
+        } while (!$batch->isEmpty() && $from <= Exhibition::EXTRA_IMAGES_PER_BATCH * 10);
 
         return $this->cachedHistoryImages = $main->merge($extra)->sortBy('title')->values();
     }
