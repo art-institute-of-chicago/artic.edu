@@ -411,9 +411,9 @@ class Exhibition extends BaseApiModel
         return $this->hasMany(\App\Models\Api\Image::class, 'image_id');
     }
 
-    public function extraImages()
+    public function extraImages($limit = 50, $from = 0)
     {
-        return $this->hasMany(\App\Models\Api\Image::class, 'alt_image_ids');
+        return $this->hasMany(\App\Models\Api\Image::class, 'alt_image_ids', $limit, $from);
     }
 
     public function historyDocuments()

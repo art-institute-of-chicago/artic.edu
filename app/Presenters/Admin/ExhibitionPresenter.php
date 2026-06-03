@@ -162,7 +162,13 @@ class ExhibitionPresenter extends BasePresenter
         }
 
         $main = collect($this->entity->mainImage);
-        $extra = collect($this->entity->extraImages);
+        $extra = collect();
+        $from = 0;
+        do {
+            $batch = $this->entity->extraImages(50, $from)->get();
+            $extra = $extra->concat($batch);
+            $from += 50;
+        } while (!$batch->isEmpty());
 
         return $this->cachedHistoryImages = $main->merge($extra)->sortBy('title')->values();
     }
