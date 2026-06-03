@@ -37,6 +37,8 @@ class Exhibition extends BaseApiModel
      */
     public const SEARCH_FIELDS = ['id', 'title', 'status', 'aic_start_at', 'aic_end_at', 'is_boosted', 'thumbnail', 'short_description', 'gallery_title', 'gallery_id', 'image_id', 'api_model'];
 
+    public const EXTRA_IMAGES_PER_BATCH = 50;
+
     // Don't define the mediasParams here, so it will fall back to the augmented model
     public $mediasParams = [
         'null' => [],
@@ -411,9 +413,9 @@ class Exhibition extends BaseApiModel
         return $this->hasMany(\App\Models\Api\Image::class, 'image_id');
     }
 
-    public function extraImages()
+    public function extraImages($limit = self::EXTRA_IMAGES_PER_BATCH, $from = 0)
     {
-        return $this->hasMany(\App\Models\Api\Image::class, 'alt_image_ids');
+        return $this->hasMany(\App\Models\Api\Image::class, 'alt_image_ids', $limit, $from);
     }
 
     public function historyDocuments()
