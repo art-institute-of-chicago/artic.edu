@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Helpers\QuoteHelpers;
 use Illuminate\Console\Command;
 use App\Models\ApiRelation;
 use App\Models\Api\Exhibition;
@@ -82,7 +83,7 @@ class UpdateFeaturedExhibitions extends Command
             return "{$exhibition['title']} - {$exhibition['status']}";
         }, $updatedExhibitions));
 
-        $emailContent .= "\n\n" . Artisan::call('inspire');
+        $emailContent .= "\n\n" . QuoteHelpers::quote();
 
         if (!config('aic.exhibition_update_recipients')) {
             $this->info('No recipients configured for exhibition updates');
