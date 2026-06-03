@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
+use App\Helpers\QuoteHelpers;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
 
 Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
+    $this->comment(QuoteHelpers::quote());
 })->purpose('Display an inspiring quote');
 
 Schedule::command('cache:prune-stale-tags')->hourly();
