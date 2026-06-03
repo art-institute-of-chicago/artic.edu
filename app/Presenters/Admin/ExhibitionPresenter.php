@@ -166,7 +166,7 @@ class ExhibitionPresenter extends BasePresenter
         $from = 0;
         do {
             $batch = $this->entity->extraImages(50, $from)->get();
-            $extra = $extra->concat($batch);
+            $extra = $extra->merge($batch);
             $from += 50;
         } while (!$batch->isEmpty());
 
