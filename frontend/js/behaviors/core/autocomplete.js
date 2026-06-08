@@ -248,9 +248,32 @@ const autocomplete = function(container) {
       googleTagManagerObject['event'] = _fixedEncodeURIComponent(textInput.value);
       triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
     }
+
+    // Serialize the form to include all fields (including restricted ones) for the AJAX request
+    const baseUrl = container.action.split('?')[0];
+    const formData = new FormData(container);
+    const params = new URLSearchParams();
+
+    for (const [name, value] of formData.entries()) {
+      // Skip the main text input; we will add it as 'q'
+      if (name !== textInput.name) {
+        params.append(name, value);
+      }
+    }
+
+    // Add the main search term as 'q'
+    params.set('q', textInput.value);
+
+    const url = `${baseUrl}?${params.toString()}`;
+
+    // Update the browser's URL to reflect the search state
+    if (window.history && window.history.pushState) {
+      window.history.pushState(null, '', url);
+    }
+
     // Trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
-      url: queryStringHandler.updateParameter(container.action, 'q', _fixedEncodeURIComponent(textInput.value)),
+      url: url
     });
   }
 

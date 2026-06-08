@@ -101,6 +101,7 @@ Route::group([
         'page',
         'place_ids',
         'q',
+        'search_field',
         'sort_by',
         'style_ids',
         'subject_ids',

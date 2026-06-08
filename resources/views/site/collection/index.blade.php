@@ -29,14 +29,34 @@
     ])
 @endcomponent
 
-@component('components.molecules._m-search-bar')
-    @slot('placeholder','Search by keyword, artist, or reference')
+@php
+    $currentField = request('search_field');
+    $promptText = 'All Fields';
+    if ($currentField === 'title') $promptText = 'Title';
+    elseif ($currentField === 'artist_title') $promptText = 'Artist Name';
+    elseif ($currentField === 'credit_line') $promptText = 'Credit Line';
+
+    $searchOptions = [
+        ['label' => 'All Fields', 'value' => '', 'active' => !$currentField],
+        ['label' => 'Title', 'value' => 'title', 'active' => $currentField === 'title'],
+        ['label' => 'Artist Name', 'value' => 'artist_title', 'active' => $currentField === 'artist_title'],
+        ['label' => 'Credit Line', 'value' => 'credit_line', 'active' => $currentField === 'credit_line'],
+    ];
+@endphp
+
+@component('components.molecules._m-search-restricted-field')
+    {{-- Dropdown slots --}}
+    @slot('prompt', $promptText)
+    @slot('options', $searchOptions)
+    {{-- Search bar slots --}}
+    @slot('placeholder', 'Search by keyword, artist, or reference')
     @slot('name', 'collection-search')
     @slot('value', request('q'))
-    @slot('behaviors','autocomplete')
-    @slot('dataAttributes','data-autocomplete-url="'. UrlHelpers::secureRoute('collection.autocomplete') .'"')
+    @slot('hiddenFields', request()->except(['q', 'collection-search', 'page']))
+    @slot('behaviors', 'autocomplete')
+    @slot('dataAttributes', 'data-autocomplete-url="'. UrlHelpers::secureRoute('collection.autocomplete') .'"')
     @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-search"')
-    @slot('action', route('collection'))
+    @slot('action', request()->fullUrlWithQuery([]))
 @endcomponent
 
 {{-- Component extraction to have a clearer code --}}
@@ -126,11 +146,16 @@
 @endcomponent
 
 <div class="o-collection-search" data-behavior="collectionSearch">
-    @component('components.molecules._m-search-bar')
+    @component('components.molecules._m-search-restricted-field')
+        {{-- Dropdown slots --}}
+        @slot('prompt', $promptText)
+        @slot('options', $searchOptions)
+        {{-- Search bar slots --}}
         @slot('placeholder','Search…')
         @slot('name', 'collection-search')
         @slot('value', request('q'))
-        @slot('action', route('collection'))
+        @slot('hiddenFields', request()->except(['q', 'collection-search', 'page']))
+        @slot('action', request()->fullUrlWithQuery([]))
         @slot('behaviors','autocomplete')
         @slot('dataAttributes','data-autocomplete-url="'. UrlHelpers::secureRoute('collection.autocomplete') .'"')
         @slot('gtmAttributes', 'data-gtm-old-label="search" data-gtm-event-category="collection-search"')
