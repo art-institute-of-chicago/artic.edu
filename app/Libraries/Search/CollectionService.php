@@ -50,6 +50,14 @@ class CollectionService
         $this->chain = Search::query();
     }
 
+    public function searchField($value)
+    {
+        if ($value) {
+            $this->chain->rawQuery(['search_field' => $value]);
+        }
+        return $this;
+    }
+
     /**
      * Execute the query built in the chain. Save aggregations
      * to build filters.

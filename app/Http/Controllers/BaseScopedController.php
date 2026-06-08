@@ -39,6 +39,7 @@ class BaseScopedController extends FrontController
      */
     protected $scopes = [
         'q' => 'search',
+        'search_field' => 'searchField',
         'artist_ids' => 'byArtists',
         'style_ids' => 'byStyles',
         'subject_ids' => 'bySubjects',

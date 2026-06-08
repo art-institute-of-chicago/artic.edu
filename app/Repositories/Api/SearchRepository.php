@@ -13,10 +13,10 @@ class SearchRepository extends BaseApiRepository
         $this->model = $model;
     }
 
-    public function forSearchQuery($string, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [])
+    public function forSearchQuery($string, $searchField = null, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [])
     {
         // Build the search query
-        $search = $this->model->search($string)
+        $search = $this->model->search($string, $searchField)
             ->resources([
                 'artworks',
                 'exhibitions',

@@ -13,6 +13,21 @@ class ArtistRepository extends BaseApiRepository
         $this->model = $model;
     }
 
+    public function forSearchQuery($term, $searchField = null, $perPage = 20, $page = 1)
+    {
+        return $this->search($term, $searchField)->getPaginated(
+            $perPage,
+            $this->model->getFillable(),
+            'page',
+            $page
+        );
+    }
+
+    public function search($term, $searchField = null)
+    {
+        return $this->model->search($term, $searchField)->resources(['agents']);
+    }
+
     public function getRelatedItems($item)
     {
         $relatedItems = $this->getCustomRelatedItems($item);

@@ -51,6 +51,19 @@ class Search extends BaseApiModel
         return new ApiModelBuilderSearch($query);
     }
 
+    public function scopeSearch($query, $term, $searchField = null)
+    {
+        if ($term) {
+            $query->where('q', $term);
+        }
+
+        if ($searchField) {
+            $query->rawQuery(['search_field' => $searchField]);
+        }
+
+        return $query;
+    }
+
     protected function buildListAggregation($name, array $parameter, $queryFilter = null)
     {
         $agg = [
