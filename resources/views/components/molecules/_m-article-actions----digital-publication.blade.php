@@ -35,20 +35,6 @@
                 @slot('dataAttributes',' data-share-url="' . ($shareUrl ?? '') . '"')
             @endcomponent
         </li>
-
-        @if (isset($pdfDownloadPath))
-            <li class="m-article-actions__action">
-                @component('components.atoms._btn')
-                    @slot('variation', 'btn--icon ' . ((isset($btnVariation)) ? ' '.$btnVariation : ''))
-                    @slot('font', '')
-                    @slot('tag', 'a')
-                    @slot('href', $pdfDownloadPath)
-                    @slot('icon', 'icon--download--24')
-                    @slot('ariaLabel','Download PDF')
-                @endcomponent
-            </li>
-        @endif
-
     </ul>
 </div>
 
