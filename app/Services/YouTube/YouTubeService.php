@@ -340,7 +340,7 @@ class YouTubeService
         }
 
         $requiredData = collect($required)->join('|');
-        $optionalData = collect($optional)->map(fn($value, $key) => "$key:'$value'")->join('|');
+        $optionalData = collect($optional)->map(fn ($value, $key) => "$key:'$value'")->join('|');
         $this->log(
             "YouTube service request #$this->requestCount - " .
                 "action: $action, " .
