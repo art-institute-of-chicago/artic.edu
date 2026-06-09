@@ -3,8 +3,7 @@
 use A17\Twill\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         $role1 = Role::find(1);
