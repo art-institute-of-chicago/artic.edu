@@ -74,6 +74,7 @@ class AppServiceProvider extends ServiceProvider
 
             'experiences' => 'App\Models\Experience',
             'digitalExplorers' => 'App\Models\DigitalExplorer',
+            'digitalExplorerTitleMedia' => 'App\Models\DigitalExplorerTitleMedia',
 
             'digitalPublications' => 'App\Models\DigitalPublication',
             'digitalPublicationArticles' => 'App\Models\DigitalPublicationArticle',
