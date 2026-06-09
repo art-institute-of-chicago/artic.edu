@@ -37,7 +37,6 @@
         @component('components.molecules._m-article-actions----digital-publication')
             @slot('digitalPublication', $item->digitalPublication)
             @slot('currentArticle', $item)
-            @slot('pdfDownloadPath', $item->present()->pdfDownloadPath())
             @slot('citeAs', $item->cite_as)
         @endcomponent
     </div>
@@ -135,6 +134,14 @@
             @slot('references', $item->present()->references())
             @slot('citeAs', $item->present()->citeAs())
         @endcomponent
+
+        @if (isset($pdfDownloadPath))
+            @component('components.molecules._m-download-link')
+                @slot('pdfDownloadPath', $pdfDownloadPath)
+                @slot('ariaLabel','Download PDF')
+                Download printable PDF
+            @endcomponent
+        @endif
     </div>
 </article>
 
