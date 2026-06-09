@@ -35,6 +35,7 @@ class DigitalExplorerController extends FrontController
         $digitalExplorer = $this->repository->published()->findOrFail($id);
 
         $digitalExplorer->load([
+            'explorerTitleMedia.medias',
             'blocks' => function ($query) {
                 $query->with([
                     'children.children.children.children.children',
@@ -72,7 +73,10 @@ class DigitalExplorerController extends FrontController
             'listing_description' => $digitalExplorer->listing_description,
 
             'title_data' => [
-              'title_media' => $digitalExplorer->image('title_media'),
+              'title_media' => $digitalExplorer->explorerTitleMedia->map(function ($media) {
+                  $image = $media->imageAsArray('explorer_title_media', 'default');
+                  return !empty($image) ? $image : null;
+              })->filter()->values()->toArray(),
               'title_display' => $digitalExplorer->title_display
             ],
 

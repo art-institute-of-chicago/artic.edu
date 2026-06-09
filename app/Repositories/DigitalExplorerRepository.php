@@ -27,7 +27,6 @@ class DigitalExplorerRepository extends ModuleRepository
       'lighting_blocks',
     ];
 
-
     /**
      * Map custom block editor names to the standard 'blocks' key
      * so Twill's HandleBlocks can process them properly
@@ -37,7 +36,7 @@ class DigitalExplorerRepository extends ModuleRepository
         $fields = parent::prepareFieldsBeforeSave($object, $fields);
 
         // Merge all custom block editors into the main 'blocks' array
-        $allBlocks = [];
+        $allBlocks = $fields['blocks'] ?? [];
 
         if (isset($fields['model_blocks'])) {
             $allBlocks = array_merge($allBlocks, $fields['model_blocks']);
@@ -59,9 +58,22 @@ class DigitalExplorerRepository extends ModuleRepository
         return $fields;
     }
 
+    public function getFormFields(TwillModelContract $object): array
+    {
+        $fields = parent::getFormFields($object);
+
+        // Manually handle morphMany repeater for explorer_title_media
+        $fields = $this->getFormFieldsForRepeater($object, $fields, 'explorerTitleMedia', 'DigitalExplorerTitleMedia', 'explorer_title_media');
+
+        return $fields;
+    }
+
     public function afterSave(TwillModelContract $object, array $fields): void
     {
         parent::afterSave($object, $fields);
+
+        // Manually handle morphMany repeater for explorer_title_media
+        $this->updateRepeaterMorphMany($object, $fields, 'explorerTitleMedia', 'mediable', 'DigitalExplorerTitleMedia', 'explorer_title_media');
 
         if (!empty($fields['jsonOutput'])) {
             $data = json_decode($fields['jsonOutput'], true);
