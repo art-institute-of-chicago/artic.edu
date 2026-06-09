@@ -11,17 +11,17 @@ class DigitalExplorerController extends FrontController
 {
     protected $repository;
 
-    const MIN_ZOOM = 0.0;
-    const MAX_ZOOM = 150.0;
-    const ANNOTATION_DEFAULT_SCALE = 0.07;
-    const ANNOTATION_DEFAULT_COLOR = '#4B9CA3';
-    const ANNOTATION_DEFAULT_ROTATION = [0, 0, 0];
-    const CUSTOM_BOUNDS_DEFAULT = [10.5, 5.2, 8.0];
-    const CUSTOM_BOUNDS_OFFSET_DEFAULT = [0.0, 1.5, 0.0];
-    const CAMERA_POSITION_DEFAULT = [2, 0, 0];
-    const CAMERA_FOV_DEFAULT = 15;
-    const CAMERA_NEAR_DEFAULT = 0.1;
-    const CAMERA_FAR_DEFAULT = 10;
+    public const MIN_ZOOM = 0.0;
+    public const MAX_ZOOM = 150.0;
+    public const ANNOTATION_DEFAULT_SCALE = 0.07;
+    public const ANNOTATION_DEFAULT_COLOR = '#4B9CA3';
+    public const ANNOTATION_DEFAULT_ROTATION = [0, 0, 0];
+    public const CUSTOM_BOUNDS_DEFAULT = [10.5, 5.2, 8.0];
+    public const CUSTOM_BOUNDS_OFFSET_DEFAULT = [0.0, 1.5, 0.0];
+    public const CAMERA_POSITION_DEFAULT = [2, 0, 0];
+    public const CAMERA_FOV_DEFAULT = 15;
+    public const CAMERA_NEAR_DEFAULT = 0.1;
+    public const CAMERA_FAR_DEFAULT = 10;
 
 
     public function __construct(DigitalExplorerRepository $repository)
