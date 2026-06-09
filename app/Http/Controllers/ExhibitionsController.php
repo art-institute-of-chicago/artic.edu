@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\Api\Exhibition;
+use App\Models\Hour;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\EventRepository;
 use Carbon\Carbon;
@@ -51,6 +52,7 @@ class ExhibitionsController extends FrontController
             'upcoming' => $upcoming,
             'featured' => $featured,
             'primaryNavCurrent' => 'exhibitions_and_events',
+            'hour' => Hour::today()->first(),
         ]);
     }
 
