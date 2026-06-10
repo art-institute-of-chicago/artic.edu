@@ -279,6 +279,15 @@ class LandingPage extends AbstractModel implements Sortable
         });
     }
 
+    public function scopeType($query, $type = null): Builder
+    {
+        if (empty($type)) {
+            return $query;
+        }
+
+        return $query->where('type_id', collect(LandingPage::TYPES)->search($type));
+    }
+
     public function artworks()
     {
         return $this->apiElements()->where('relation', 'landingArtworks');
