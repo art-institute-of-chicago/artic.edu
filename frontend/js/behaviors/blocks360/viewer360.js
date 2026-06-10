@@ -135,7 +135,6 @@ const viewer360 = function(container) {
 				const diff = (pageX - touchX) * delta;
 				let newFrame = constrainFrame(touchFrame + diff);
 				if (viewerType === 'digital-explorer') {
-          console.log('test');
 					let wrapped = touchFrame - diff;
 					let nextTarget = wrapFrame(wrapped);
 					if (Math.abs(nextTarget - currentFrame) > loadedFrameIndexes.length / 2) {
