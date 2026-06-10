@@ -41,9 +41,11 @@ return new class extends Migration
             }
         }
 
-        $lp = LandingPage::published()->type('Publications')->firstOrNew();
-        $filters = $lp->labels?->get('filters') ?? [];
-        $filters[] = $categoryId;
+        $lp = LandingPage::published()->type('Publications')->firstOrNew(['labels' => collect(['filters' => []])]);
+        $filters = $lp->labels->get('filters');
+        if (!in_array($categoryId, $filters)) {
+            $filters[] = $categoryId;
+        }
         $lp->labels->put('filters', $filters);
         $lp->save();
     }
