@@ -156,7 +156,7 @@ class PrintedPublication extends AbstractModel
 
     public function getHasPdfAvailableAttribute()
     {
-        return $this->categories->contains(CatalogCategory::where('name', 'PDF Available')->first());
+        return $this->categories->contains('name', 'PDF Available');
     }
 
     protected function transformMappingInternal()
