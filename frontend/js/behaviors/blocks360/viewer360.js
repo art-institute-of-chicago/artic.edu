@@ -101,8 +101,8 @@ const viewer360 = function(container) {
 	if (viewerType === 'digital-explorer') {
 		wrapper.style.cursor = 'grab';
     control360.style.margin = 0;
-		control360.style.width = '100% !important';
-		input360.style.width = '100% !important';
+		control360.style.width = '100%';
+		input360.style.width = '100%';
 		wrapper.addEventListener('mousedown', () => { wrapper.style.cursor = 'grabbing'; });
 		wrapper.addEventListener('mouseup', () => { wrapper.style.cursor = 'grab'; });
 		wrapper.addEventListener('mouseleave', () => { wrapper.style.cursor = 'grab'; });
