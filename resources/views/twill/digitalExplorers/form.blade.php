@@ -64,6 +64,12 @@
                     ]"
                 />
 
+                <x-twill::color
+                    name="settings.backgroundColor"
+                    label="Background Color"
+                    note="Hex color for scene background"
+                />
+
                 <h3 style="margin-top: 1rem; margin-bottom: 1rem;">Toggles</h3>
                 <x-twill::checkbox
                   name="settings.builderEnabled"
