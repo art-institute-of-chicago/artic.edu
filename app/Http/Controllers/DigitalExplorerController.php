@@ -53,7 +53,7 @@ class DigitalExplorerController extends FrontController
         $explorerData = $this->transformExplorer($digitalExplorer);
 
         return view('site.digitalExplorerDetail', [
-            'contrastHeader' => false,
+            'contrastHeader' => true,
             'explorer' => $digitalExplorer,
             'explorerData' => $explorerData,
         ]);
