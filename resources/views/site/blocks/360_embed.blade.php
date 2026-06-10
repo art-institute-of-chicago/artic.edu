@@ -13,7 +13,7 @@
         <script type="application/json" id="assetLibrary-{!!$sequence_id!!}">
             {!! json_encode($block->assetLibrary) !!}
         </script>
-        <div class="m-media__img m-media--360-embed" data-behavior="fitText">
+        <div class="m-media__img m-media--360-embed" data-behavior="fitText" {{ ($isDigitalExplorer ?? false) ? 'data-360-type="digital-explorer"' : '' }}>
             @component('components.molecules._m-viewer-360')
                 @slot('type', 'standalone')
                 @slot('title', $alt_text ?? (isset($pageTitle) ? $pageTitle.' - Inline 360' : 'Inline 360'))
