@@ -101,7 +101,7 @@ class DigitalExplorerController extends FrontController
                 ],
                 'toneMapping' => $digitalExplorer->settings?->get('toneMapping', 'ACESFilmicToneMapping'),
                 'colorSpace' => $digitalExplorer->settings?->get('colorSpace', 'SRGB'),
-                'backgroundColor' => $digitalExplorer->settings?->get('backgroundColor', '#1a1a1a'),
+                'backgroundColor' => $digitalExplorer->settings?->get('backgroundColor', '#4B4B4B'),
                 'environmentPreset' => $digitalExplorer->settings?->get('environmentPreset'),
                 'toneMappingExposure' => (float) ($digitalExplorer->settings?->get('toneMappingExposure', 1)),
                 'orbitControls' => [
