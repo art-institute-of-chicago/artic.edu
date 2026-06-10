@@ -41,7 +41,7 @@ return new class extends Migration
             }
         }
 
-        $lp = LandingPage::published()->type('Publications')->firstOrNew([], ['labels' => ['filters' => []]]);
+        $lp = LandingPage::published()->type('Publications')->firstOrNew([], ['title' => 'Publications', 'labels' => ['filters' => []]]);
         if (!$lp->labels) {
             $lp->labels = collect(['filters' => []]);
         }
