@@ -154,6 +154,11 @@ class PrintedPublication extends AbstractModel
         return route('twill.collection.articlesPublications.printedPublications.edit', $this->id);
     }
 
+    public function getHasPdfAvailableAttribute()
+    {
+        return $this->categories->contains(CatalogCategory::where('name', 'PDF Available')->first());
+    }
+
     protected function transformMappingInternal()
     {
         return [
