@@ -29,6 +29,8 @@
             @endif
             @if ((isset($landingPageType) && $landingPageType === 'publications') && $item->type === 'digital_publication')
                 <span class="digital__overlay">Digital</span>
+            @elseif ((isset($landingPageType) && $landingPageType === 'publications') && $item->hasPdfAvailable)
+                <span class="digital__overlay">PDF Download</span>
             @endif
             <span class="m-listing__img__overlay">
                 <svg class="icon--slideshow--24">
