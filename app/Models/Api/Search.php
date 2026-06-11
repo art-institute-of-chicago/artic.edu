@@ -51,14 +51,24 @@ class Search extends BaseApiModel
         return new ApiModelBuilderSearch($query);
     }
 
-    public function scopeSearch($query, $term, $searchField = null)
+    public function scopeSearch($query, $term, $searchField = null, $semanticOnly = null)
     {
         if ($term) {
             $query->where('q', $term);
         }
 
+        $rawQuery = [];
+
         if ($searchField) {
-            $query->rawQuery(['search_field' => $searchField]);
+            $rawQuery['search_field'] = $searchField;
+        }
+
+        if ($semanticOnly) {
+            $rawQuery['semantic_only'] = $semanticOnly;
+        }
+
+        if ($rawQuery) {
+            $query->rawQuery($rawQuery);
         }
 
         return $query;

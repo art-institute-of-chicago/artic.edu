@@ -53,26 +53,36 @@ const searchFieldDropdown = function(container) {
         inputs.forEach(input => {
             const searchForm = input.closest('form');
             if (searchForm) {
-                let hiddenInput = searchForm.querySelector('input[name="search_field"]');
-                if (val) {
-                    if (!hiddenInput) {
-                        hiddenInput = document.createElement('input');
-                        hiddenInput.type = 'hidden';
-                        hiddenInput.name = 'search_field';
-                        searchForm.appendChild(hiddenInput);
-                    }
+                // Remove any existing search_field or semantic_only hidden inputs
+                const existingSearchField = searchForm.querySelector('input[name="search_field"]');
+                const existingSemanticOnly = searchForm.querySelector('input[name="semantic_only"]');
+                if (existingSearchField) existingSearchField.remove();
+                if (existingSemanticOnly) existingSemanticOnly.remove();
+
+                if (val === 'semantic') {
+                    // Set semantic_only=1 for semantic search
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'semantic_only';
+                    hiddenInput.value = '1';
+                    searchForm.appendChild(hiddenInput);
+                } else if (val) {
+                    // Set search_field for field-specific search
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'search_field';
                     hiddenInput.value = val;
-                } else if (hiddenInput) {
-                    // if the value is empty, we remove the hidden field
-                    hiddenInput.remove();
+                    searchForm.appendChild(hiddenInput);
                 }
 
                 // Update form action for autocomplete.js
                 const qsObj = queryStringHandler.toObject(searchForm.action);
-                if (val) {
+                delete qsObj['search_field'];
+                delete qsObj['semantic_only'];
+                if (val === 'semantic') {
+                    qsObj['semantic_only'] = '1';
+                } else if (val) {
                     qsObj['search_field'] = val;
-                } else {
-                    delete qsObj['search_field'];
                 }
                 const baseUrl = searchForm.action.split('?')[0];
                 searchForm.action = baseUrl + queryStringHandler.fromObject(qsObj);

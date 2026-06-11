@@ -40,6 +40,7 @@ class BaseScopedController extends FrontController
     protected $scopes = [
         'q' => 'search',
         'search_field' => 'searchField',
+        'semantic_only' => 'semanticOnly',
         'artist_ids' => 'byArtists',
         'style_ids' => 'byStyles',
         'subject_ids' => 'bySubjects',

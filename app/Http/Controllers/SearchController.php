@@ -96,7 +96,7 @@ class SearchController extends BaseScopedController
         }
 
         // General search to get featured elements and general metadata.
-        $general = $this->searchRepository->forSearchQuery(request('q'), 0, [], 'page', null, ['search_field' => request('search_field')]);
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0, [], 'page', null, ['search_field' => request('search_field'), 'semantic_only' => request('semantic_only')]);
         $links = $this->buildSearchLinks($general, 'all');
 
         // Specific elements search. We run separate queries because we want to ensure elements
