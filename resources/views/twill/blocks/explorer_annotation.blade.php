@@ -66,6 +66,7 @@
             <x-twill::checkbox
                 name='sizeAttenuation'
                 label='Fixed Size (no perspective scaling)'
+                default="true"
             />
         </x-slot>
     </x-twill::formColumns>
