@@ -30,9 +30,9 @@ const viewer360 = function(container) {
 	frames360 = frames360.map(frame => ({
 		frame: frame.frame,
 		src: assetURL(frame.src, {
-		  w: isLarge ? (windowWidth - 120) * (window.devicePixelRatio || 1) : windowWidth * (window.devicePixelRatio || 1),
-		  h: isLarge ? (windowHeight - 80) * (window.devicePixelRatio || 1) : windowHeight * (window.devicePixelRatio || 1),
-		  q: 75
+			w: isLarge ? (windowWidth - 120) * (window.devicePixelRatio || 1) : windowWidth * (window.devicePixelRatio || 1),
+			h: isLarge ? (windowHeight - 80) * (window.devicePixelRatio || 1) : windowHeight * (window.devicePixelRatio || 1),
+			q: 75
 		})
 	}));
 
@@ -57,17 +57,17 @@ const viewer360 = function(container) {
 
 	//find closest frame based on input
 	var findClosestFrame = memoize((frames, target) => {
-    if (!frames.length) return null;
-    if (includes(frames, target)) return target;
-    return frames.reduce(function(prev, curr) {
-      return Math.abs(curr - target) < Math.abs(prev - target)
-        ? curr
-        : prev;
-    });
-  }, (frames, target) => `${frames.join(',')}@${target}`);
+		if (!frames.length) return null;
+		if (includes(frames, target)) return target;
+		return frames.reduce(function(prev, curr) {
+			return Math.abs(curr - target) < Math.abs(prev - target)
+				? curr
+				: prev;
+		});
+	}, (frames, target) => `${frames.join(',')}@${target}`);
 
 	function constrainFrame(frame) {
-    return Math.max(0, Math.min(loadedFrameIndexes.length - 1, parseInt(frame, 10)));
+		return Math.max(0, Math.min(loadedFrameIndexes.length - 1, parseInt(frame, 10)));
 	};
 
 	function wrapFrame(frame) {
@@ -78,11 +78,11 @@ const viewer360 = function(container) {
 	//preload all 360 images for smoother transition
 	function preloadFrameIndexes(frameIndexesToLoad) {
 		let fetchedAll = 0;
-    frameIndexesToLoad.map(frame => {
-      if( !frames360[frame] ) return [];
-      return frames360[frame];
-    }).forEach(({ src, frame }) => {
-      fetchImageBlob(src, protect((blob) => {
+		frameIndexesToLoad.map(frame => {
+			if( !frames360[frame] ) return [];
+			return frames360[frame];
+		}).forEach(({ src, frame }) => {
+			fetchImageBlob(src, protect((blob) => {
 				const url = URL.createObjectURL(blob);
 				Object.assign( loadedFrames, {
 					[frame]: url
@@ -95,12 +95,12 @@ const viewer360 = function(container) {
 
 		})
 
-  };
+	};
 
 	//cursor
 	if (viewerType === 'digital-explorer') {
 		wrapper.style.cursor = 'grab';
-    control360.style.margin = 0;
+		control360.style.margin = 0;
 		control360.style.width = '100%';
 		input360.style.width = '100%';
 		wrapper.addEventListener('mousedown', () => { wrapper.style.cursor = 'grabbing'; });
@@ -122,8 +122,8 @@ const viewer360 = function(container) {
 		let { pageX, touches } = e;
 		if (touches && touches.length) pageX = touches[0].pageX;
 		switch (e.type) {
-      case "mousedown":
-      case "touchstart":
+			case "mousedown":
+			case "touchstart":
 				touchX = pageX;
 				touchFrame = currentFrame;
 				break;
@@ -186,9 +186,9 @@ const viewer360 = function(container) {
 			_init();
 	};
 
-  this.destroy = function() {
-    A17.Helpers.purgeProperties(this);
-  }
+	this.destroy = function() {
+		A17.Helpers.purgeProperties(this);
+	}
 }
 
 export default viewer360;
