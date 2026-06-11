@@ -110,6 +110,7 @@ Route::group([
         'place_ids',
         'q',
         'search_field',
+        'semantic_only',
         'sort_by',
         'style_ids',
         'subject_ids',

@@ -17,7 +17,8 @@ class SearchRepository extends BaseApiRepository
     {
         // Build the search query
         $searchField = $options['search_field'] ?? null;
-        $search = $this->model->search($string, $searchField)
+        $semanticOnly = $options['semantic_only'] ?? null;
+        $search = $this->model->search($string, $searchField, $semanticOnly)
             ->resources([
                 'artworks',
                 'exhibitions',

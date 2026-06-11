@@ -53,7 +53,17 @@ class CollectionService
     public function searchField($value)
     {
         if ($value) {
-            $this->chain->rawQuery(['search_field' => $value]);
+            $current = $this->chain->rawQuery ?? [];
+            $this->chain->rawQuery(array_merge($current, ['search_field' => $value]));
+        }
+        return $this;
+    }
+
+    public function semanticOnly($value)
+    {
+        if ($value) {
+            $current = $this->chain->rawQuery ?? [];
+            $this->chain->rawQuery(array_merge($current, ['semantic_only' => $value]));
         }
         return $this;
     }

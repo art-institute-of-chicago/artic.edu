@@ -31,16 +31,19 @@
 
 @php
     $currentField = request('search_field');
+    $isSemantic = request('semantic_only');
     $promptText = 'All Fields';
-    if ($currentField === 'title') $promptText = 'Title';
+    if ($isSemantic) $promptText = 'Semantic';
+    elseif ($currentField === 'title') $promptText = 'Title';
     elseif ($currentField === 'artist_title') $promptText = 'Artist Name';
     elseif ($currentField === 'credit_line') $promptText = 'Credit Line';
 
     $searchOptions = [
-        ['label' => 'All Fields', 'value' => '', 'active' => !$currentField],
+        ['label' => 'All Fields', 'value' => '', 'active' => !$currentField && !$isSemantic],
         ['label' => 'Title', 'value' => 'title', 'active' => $currentField === 'title'],
         ['label' => 'Artist Name', 'value' => 'artist_title', 'active' => $currentField === 'artist_title'],
         ['label' => 'Credit Line', 'value' => 'credit_line', 'active' => $currentField === 'credit_line'],
+        ['label' => 'Semantic', 'value' => 'semantic', 'active' => $isSemantic],
     ];
 @endphp
 
