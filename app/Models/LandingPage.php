@@ -285,7 +285,7 @@ class LandingPage extends AbstractModel implements Sortable
             return $query;
         }
 
-        return $query->where('type_id', collect(LandingPage::TYPES)->search($type));
+        return $query->where('type_id', collect(LandingPage::TYPES)->search($type) ?? 99);
     }
 
     public function artworks()
