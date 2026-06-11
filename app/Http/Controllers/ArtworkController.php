@@ -8,6 +8,7 @@ use App\Helpers\GtmHelpers;
 use App\Libraries\RecentlyViewedService;
 use App\Libraries\Search\CollectionService;
 use App\Libraries\ExploreFurther\ArtworkService as ExploreFurther;
+use App\Models\Hour;
 
 class ArtworkController extends BaseScopedController
 {
@@ -65,6 +66,7 @@ class ArtworkController extends BaseScopedController
             'primaryNavCurrent' => 'collection',
             'canonicalUrl' => $canonicalPath,
             'pageMetaData' => $this->getPageMetaData($item),
+            'hour' => Hour::today()->first(),
         ];
 
         // Build Explore further module
