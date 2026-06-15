@@ -303,13 +303,10 @@
     transform: translate(-50%, -50%);
     transition: opacity 0.5s ease 2s, visibility 0.5s ease 2s;
     pointer-events: none;
-  }
 
-  &:active {
-    .m-rotate-arrows {
+    &.is-interacting {
       opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease 0s, visibility 0.3s ease 0s;
+      transition: none;
     }
   }
 }
