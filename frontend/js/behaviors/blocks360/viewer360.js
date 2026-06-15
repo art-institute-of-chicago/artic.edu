@@ -16,6 +16,7 @@ const viewer360 = function(container) {
 	let image360Src = wrapper.querySelector('.m-viewer-360-image');
 	let control360 = wrapper.querySelector('.m-viewer-360-control');
 	let input360 = wrapper.querySelector('.m-viewer-360-control .input360');
+	let rotateArrows = wrapper.closest('.m-media--360-embed')?.querySelector('.m-rotate-arrows');
 	let loadedFrames = {};
 	let protect = protectFromUnmount();
 
@@ -126,6 +127,7 @@ const viewer360 = function(container) {
 			case "touchstart":
 				touchX = pageX;
 				touchFrame = currentFrame;
+				if (rotateArrows) rotateArrows.classList.add('is-interacting');
 				break;
 
 			case "mousemove":
@@ -157,11 +159,13 @@ const viewer360 = function(container) {
 			case "mouseup":
 				touchX = null;
 				touchFrame = null;
+				if (rotateArrows) rotateArrows.classList.remove('is-interacting');
 				break;
 
 			case "mouseleave":
 				touchX = null;
 				touchFrame = null;
+				if (rotateArrows) rotateArrows.classList.remove('is-interacting');
 				break;
 		}
 	}

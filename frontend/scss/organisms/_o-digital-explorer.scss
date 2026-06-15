@@ -81,8 +81,8 @@ html:has(.o-digital-explorer) {
       }
 
       p {
-        font-size: 1.25rem !important;
-        line-height: 130% !important;
+        font-size: 1.4rem !important;
+        line-height: 135% !important;
       }
     }
 
@@ -114,6 +114,9 @@ html:has(.o-digital-explorer) {
       padding-right: 0;
       color: #f6f6f6 !important;
       font-family: $sans-serif-font--loaded !important;
+      font-size: 0.8rem;
+      font-weight: 400;
+      line-height: 130%;
       text-align: left;
     }
   }
