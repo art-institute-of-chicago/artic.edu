@@ -14,9 +14,13 @@
     &__tab:is(details) {
         display: grid;
         grid-column: 1 / -1;
-        grid-row: 1 / span calc(var(--tab-count) + 1);
+        grid-row: 1;
         grid-template-columns: subgrid;
         grid-template-rows: subgrid;
+    }
+
+    &__tab:is(details)[open] {
+        grid-row: 1 / span calc(var(--tab-count) + 1);
     }
 
     &__tab-title:is(summary) {
