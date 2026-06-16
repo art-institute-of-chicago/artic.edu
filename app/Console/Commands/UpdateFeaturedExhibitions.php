@@ -83,7 +83,7 @@ class UpdateFeaturedExhibitions extends Command
             return "{$exhibition['title']} - {$exhibition['status']}";
         }, $updatedExhibitions));
 
-        $emailContent .= "\n\n" . QuoteHelpers::quote();
+        $emailContent .= "\n\n--------\n" . QuoteHelpers::quote();
 
         if (!config('aic.exhibition_update_recipients')) {
             $this->info('No recipients configured for exhibition updates');
