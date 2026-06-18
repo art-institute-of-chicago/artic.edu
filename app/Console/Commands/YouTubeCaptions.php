@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Caption;
 use App\Models\Video;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 
 class YouTubeCaptions extends AbstractYoutubeCommand
 {
@@ -15,7 +16,9 @@ class YouTubeCaptions extends AbstractYoutubeCommand
     protected function handleCommand()
     {
         if (!$this->option('downloads-only')) {
-            $this->info('Import captions');
+            $this->info('Check for updated captions');
+            $this->updateExistingCaptions();
+            $this->info('Import new captions');
             $this->importCaptions();
         }
 
@@ -24,8 +27,43 @@ class YouTubeCaptions extends AbstractYoutubeCommand
     }
 
     /**
-     * For every uncaptioned, uploaded video, create records for each
-     * caption by language.
+     * For every captioned, public video, update the records for each caption
+     * if they have since been update.
+     */
+    private function updateExistingCaptions(): void
+    {
+        $captionedVideos = Video::where('is_captioned', true)
+            ->where('privacy', 'public')
+            ->whereHas('captions', function (Builder $query) {
+                $query->whereHas('translations', function (Builder $query) {
+                    $query->whereNotNull('file');
+                });
+            })
+            ->latest('uploaded_at');
+        $progress = !$this->output->isDebug() ?
+            $this->output->createProgressBar($captionedVideos->count()) :
+            null;
+        $progress?->start();
+        foreach ($captionedVideos->get() as $video) {
+            $fields = 'items(id,snippet(language,lastUpdated,name,trackKind))';
+            $sourceCaptions = $this->youtube->captionsForVideo($video->youtube_id, $fields);
+            foreach ($sourceCaptions as $source) {
+                $sourceLastUpdated = Carbon::create($source['snippet']['lastUpdated']);
+                if ($sourceLastUpdated->lessThanOrEqualTo($video->updated_at)) {
+                    // Bypass source videos that have not been updated
+                    continue;
+                }
+                $this->updateCaptionAndTranslation($source, $video);
+                $progress?->advance();
+            }
+        }
+        $progress?->finish();
+        !$this->output->isDebug() ? $this->newLine() : null;
+    }
+
+    /**
+     * For every uncaptioned, uploaded video, create records for each caption by
+     * language.
      */
     private function importCaptions(): void
     {
@@ -53,22 +91,7 @@ class YouTubeCaptions extends AbstractYoutubeCommand
                     // Bypass non-standard, automated speech recognition captions
                     continue;
                 }
-                $caption = $video->captions()->updateOrCreate(
-                    ['kind' => $source['snippet']['trackKind']],
-                    [
-                        'kind' => $source['snippet']['trackKind'],
-                        'updated_at' => $source['snippet']['lastUpdated'],
-                    ],
-                );
-                $caption->translations()->updateOrCreate(
-                    ['youtube_id' => $source['id']],
-                    [
-                        'active' => true,
-                        'locale' => $source['snippet']['language'],
-                        'name' => $source['snippet']['name'],
-                        'youtube_id' => $source['id'],
-                    ],
-                );
+                $this->updateCaptionAndTranslation($source, $video);
                 $progress?->advance();
             }
         }
@@ -84,6 +107,9 @@ class YouTubeCaptions extends AbstractYoutubeCommand
         $captionsMissingText = Caption::where('kind', 'standard')
             ->whereHas('translations', function (Builder $query) {
                 $query->whereNull('file');
+            })
+            ->whereHas('video', function (Builder $query) {
+                $query->where('privacy', 'public');
             })
             ->latest('updated_at');
         $progress = !$this->output->isDebug() ?
@@ -102,5 +128,25 @@ class YouTubeCaptions extends AbstractYoutubeCommand
         }
         $progress?->finish();
         !$this->output->isDebug() ? $this->newLine() : null;
+    }
+
+    private function updateCaptionAndTranslation($source, Video $video): void
+    {
+        $caption = $video->captions()->updateOrCreate(
+            ['kind' => $source['snippet']['trackKind']],
+            [
+                'kind' => $source['snippet']['trackKind'],
+                'updated_at' => $source['snippet']['lastUpdated'],
+            ],
+        );
+        $caption->translations()->updateOrCreate(
+            ['youtube_id' => $source['id']],
+            [
+                'active' => true,
+                'locale' => $source['snippet']['language'],
+                'name' => $source['snippet']['name'],
+                'youtube_id' => $source['id'],
+            ],
+        );
     }
 }
