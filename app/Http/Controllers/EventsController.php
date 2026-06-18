@@ -82,13 +82,15 @@ class EventsController extends FrontController
             $eventsByDay = $this->repository->groupByDate($recurrent);
 
             // Check if the dates of $ongoing events are in the $eventsByDay array
-            $ongoing->each(function ($item) use ($eventsByDay) {
-                $keys = $eventsByDay->keys();
+            if (!is_null($ongoing)) {
+                $ongoing->each(function ($item) use ($eventsByDay) {
+                    $keys = $eventsByDay->keys();
 
-                if (!$keys->contains($item->date->format('Y-m-d'))) {
-                    $eventsByDay->prepend([], $item->date->format('Y-m-d'));
-                }
-            });
+                    if (!$keys->contains($item->date->format('Y-m-d'))) {
+                        $eventsByDay->prepend([], $item->date->format('Y-m-d'));
+                    }
+                });
+            }
             $eventsByDay = $eventsByDay->sortKeys();
         }
 
