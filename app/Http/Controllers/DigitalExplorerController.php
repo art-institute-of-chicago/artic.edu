@@ -11,17 +11,17 @@ class DigitalExplorerController extends FrontController
 {
     protected $repository;
 
-    const MIN_ZOOM = 0.0;
-    const MAX_ZOOM = 150.0;
-    const ANNOTATION_DEFAULT_SCALE = 0.07;
-    const ANNOTATION_DEFAULT_COLOR = '#4B9CA3';
-    const ANNOTATION_DEFAULT_ROTATION = [0, 0, 0];
-    const CUSTOM_BOUNDS_DEFAULT = [10.5, 5.2, 8.0];
-    const CUSTOM_BOUNDS_OFFSET_DEFAULT = [0.0, 1.5, 0.0];
-    const CAMERA_POSITION_DEFAULT = [2, 0, 0];
-    const CAMERA_FOV_DEFAULT = 15;
-    const CAMERA_NEAR_DEFAULT = 0.1;
-    const CAMERA_FAR_DEFAULT = 10;
+    public const MIN_ZOOM = 0.0;
+    public const MAX_ZOOM = 150.0;
+    public const ANNOTATION_DEFAULT_SCALE = 0.07;
+    public const ANNOTATION_DEFAULT_COLOR = '#4B9CA3';
+    public const ANNOTATION_DEFAULT_ROTATION = [0, 0, 0];
+    public const CUSTOM_BOUNDS_DEFAULT = [10.5, 5.2, 8.0];
+    public const CUSTOM_BOUNDS_OFFSET_DEFAULT = [0.0, 1.5, 0.0];
+    public const CAMERA_POSITION_DEFAULT = [2, 0, 0];
+    public const CAMERA_FOV_DEFAULT = 15;
+    public const CAMERA_NEAR_DEFAULT = 0.1;
+    public const CAMERA_FAR_DEFAULT = 10;
 
 
     public function __construct(DigitalExplorerRepository $repository)
@@ -35,6 +35,7 @@ class DigitalExplorerController extends FrontController
         $digitalExplorer = $this->repository->published()->findOrFail($id);
 
         $digitalExplorer->load([
+            'explorerTitleMedia.medias',
             'blocks' => function ($query) {
                 $query->with([
                     'children.children.children.children.children',
@@ -52,7 +53,7 @@ class DigitalExplorerController extends FrontController
         $explorerData = $this->transformExplorer($digitalExplorer);
 
         return view('site.digitalExplorerDetail', [
-            'contrastHeader' => false,
+            'contrastHeader' => true,
             'explorer' => $digitalExplorer,
             'explorerData' => $explorerData,
         ]);
@@ -72,7 +73,10 @@ class DigitalExplorerController extends FrontController
             'listing_description' => $digitalExplorer->listing_description,
 
             'title_data' => [
-              'title_media' => $digitalExplorer->image('title_media'),
+              'title_media' => $digitalExplorer->explorerTitleMedia->map(function ($media) {
+                  $image = $media->imageAsArray('explorer_title_media', 'default');
+                  return !empty($image) ? $image : null;
+              })->filter()->values()->toArray(),
               'title_display' => $digitalExplorer->title_display
             ],
 
@@ -97,7 +101,7 @@ class DigitalExplorerController extends FrontController
                 ],
                 'toneMapping' => $digitalExplorer->settings?->get('toneMapping', 'ACESFilmicToneMapping'),
                 'colorSpace' => $digitalExplorer->settings?->get('colorSpace', 'SRGB'),
-                'backgroundColor' => $digitalExplorer->settings?->get('backgroundColor', '#1a1a1a'),
+                'backgroundColor' => $digitalExplorer->settings?->get('backgroundColor', '#4B4B4B'),
                 'environmentPreset' => $digitalExplorer->settings?->get('environmentPreset'),
                 'toneMappingExposure' => (float) ($digitalExplorer->settings?->get('toneMappingExposure', 1)),
                 'orbitControls' => [

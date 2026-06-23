@@ -60,6 +60,7 @@ class DigitalPublicationArticleController extends FrontController
             'unstickyHeader' => true,
             'canonicalUrl' => $canonicalPath,
             'bgcolor' => $item->digitalPublication->bgcolor,
+            'pdfDownloadPath' => $item->present()->pdfDownloadPath(),
         ]);
     }
 }

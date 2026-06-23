@@ -64,6 +64,12 @@
                     ]"
                 />
 
+                <x-twill::color
+                    name="settings.backgroundColor"
+                    label="Background Color"
+                    note="Hex color for scene background"
+                />
+
                 <h3 style="margin-top: 1rem; margin-bottom: 1rem;">Toggles</h3>
                 <x-twill::checkbox
                   name="settings.builderEnabled"
@@ -134,9 +140,8 @@
 @section('fieldsets')
     <x-twill::formFieldset title="Title Slide" id="title-slide">
 
-        <x-twill::medias
-            name="title_media"
-            label="Title Media"
+        <x-twill::repeater
+            type="explorer_title_media"
         />
 
         <x-twill::wysiwyg

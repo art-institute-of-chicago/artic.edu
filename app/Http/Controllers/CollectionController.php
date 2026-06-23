@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Libraries\Search\CollectionService;
+use App\Models\Hour;
 
 class CollectionController extends BaseScopedController
 {
@@ -124,6 +125,7 @@ class CollectionController extends BaseScopedController
             'hasAnyFilter' => $this->hasAnyScope(),
             'featuredItemsHero' => $featuredItemsHero ?? null,
             'featuredItems' => $featuredItems ?? null,
+            'hour' => Hour::today()->first(),
         ]);
     }
 

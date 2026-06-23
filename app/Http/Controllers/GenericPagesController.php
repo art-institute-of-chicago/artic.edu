@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\GenericPageRepository;
 use App\Http\Controllers\LandingPagesController;
+use App\Models\Hour;
 use App\Models\Slugs\LandingPageSlug;
 use Illuminate\Http\Request;
 
@@ -72,6 +73,7 @@ class GenericPagesController extends FrontController
             'blocks' => null,
             'page' => $page,
             'addFareHarborJS' => $addFareHarborJS,
+            'hour' => Hour::today()->first(),
         ]);
     }
 

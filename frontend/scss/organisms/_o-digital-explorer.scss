@@ -11,15 +11,21 @@ html:has(.o-digital-explorer) {
 }
 
 #a17:has(.o-digital-explorer) {
-  margin: 0 !important;
   padding: 0 !important;
+  min-height: auto;
+  overflow: visible;
+
+  .m-aside-newsletter {
+    margin-top: 0;
+  }
 }
 
-html:has(.o-digital-explorer) {
-  * {
+.o-digital-explorer {
+  *,
+  *::before,
+  *::after {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
-    touch-action: pan-x pan-y;
     overscroll-behavior: none;
   }
 }
@@ -27,7 +33,9 @@ html:has(.o-digital-explorer) {
 .o-digital-explorer {
   width: 100vw;
   position: relative;
-  min-height: 100vh;
+  left: 50%;
+  margin-left: -50vw;
+  height: 100vh;
   background: #fff;
   z-index: 1;
 
@@ -73,8 +81,8 @@ html:has(.o-digital-explorer) {
       }
 
       p {
-        font-size: 1.25rem !important;
-        line-height: 130% !important;
+        font-size: 1.4rem !important;
+        line-height: 135% !important;
       }
     }
 
@@ -106,6 +114,9 @@ html:has(.o-digital-explorer) {
       padding-right: 0;
       color: #f6f6f6 !important;
       font-family: $sans-serif-font--loaded !important;
+      font-size: 0.8rem;
+      font-weight: 400;
+      line-height: 130%;
       text-align: left;
     }
   }
@@ -113,4 +124,69 @@ html:has(.o-digital-explorer) {
 
 #a17:has(.kioskMode) {
   padding: 0 !important;
+}
+
+.o-digital-explorer__exit {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  height: 48px;
+  overflow: hidden;
+  background: rgba(23, 23, 23, 0.9);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: height 0.35s ease, background 0.35s ease, opacity 0.35s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+
+  &:hover,
+  &:focus-within {
+    height: 30vh;
+    background: rgba(23, 23, 23, 0.95);
+
+    .o-digital-explorer__exit-inner {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &-inner {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    color: $color__white;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-family: $sans-serif-font--loaded;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  &-handle {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: $color__white;
+    opacity: 0.5;
+    font-family: $sans-serif-font--loaded;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &.s-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
 }

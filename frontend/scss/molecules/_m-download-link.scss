@@ -1,0 +1,11 @@
+.m-download-link {
+  display: flex;
+  align-items: baseline;
+  position: relative;
+
+  margin-top: 16px;
+
+  .f-link {
+    padding-left: 12px;
+  }
+}

@@ -45,6 +45,11 @@ class DigitalExplorer extends AbstractModel
         'published' => 'boolean'
     ];
 
+    public function explorerTitleMedia()
+    {
+        return $this->morphMany(DigitalExplorerTitleMedia::class, 'mediable')->orderBy('position');
+    }
+
     public $slugAttributes = [
         'title',
     ];
@@ -72,16 +77,7 @@ class DigitalExplorer extends AbstractModel
                 ],
             ],
         ],
-        'title_media' => [
-            'default' => [
-                [
-                    'name' => 'default',
-                    'ratio' => 0,
-                ],
-            ],
-        ],
     ];
-
     public $filesParams = ['model'];
 
     /**
