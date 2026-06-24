@@ -129,6 +129,14 @@ class GoogleOAuthService
     }
 
     /**
+     * Get the last time the access token was refreshed.
+     */
+    public function lastRefreshedAt(): string
+    {
+        return DB::table('oauth')->where('provider', self::PROVIDER)->pluck('updated_at')->first();
+    }
+
+    /**
      * Delete the record of the access token from the database.
      */
     public function deleteAccess(): bool

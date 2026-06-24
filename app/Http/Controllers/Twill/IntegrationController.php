@@ -13,7 +13,7 @@ class IntegrationController extends Controller
     public function show()
     {
         $integrations = [
-            'Google' => $this->getGoogleOAuthIntegration(),
+            'Google' => $this->getGoogleOAuthService(),
             'YouTube' => $this->getYouTubeService(),
         ];
 
@@ -43,7 +43,7 @@ class IntegrationController extends Controller
         return redirect()->route('twill.general.integrations.show');
     }
 
-    private function getGoogleOAuthIntegration()
+    private function getGoogleOAuthService()
     {
         $googleOAuth = app(GoogleOAuthService::class);
         $hasAccess = $googleOAuth->hasAccess();
@@ -52,13 +52,16 @@ class IntegrationController extends Controller
         }
         $isExpired = $googleOAuth->isAccessTokenExpired();
 
-        $connection = $hasAccess ? ['enabled' => !$isExpired] : null;
-        $name = class_basename(GoogleOAuthService::class);
+        $status = $hasAccess ?
+            ($isExpired ? 'yellow' : 'green') :
+            'red';
+        $updatedAt = Carbon::parse($googleOAuth->lastRefreshedAt(), 'UTC')->tz('America/Chicago');
         $message = $hasAccess ?
             ($isExpired ? 'Access token expired' : 'Access granted') :
             'Not authorized';
         $actions = array();
         if ($hasAccess) {
+            $name = class_basename(GoogleOAuthService::class);
             $actions[] = [
                 'name' => 'Revoke',
                 'url' => route('twill.general.integrations.service.action', [
@@ -89,17 +92,9 @@ class IntegrationController extends Controller
             ];
         }
 
-        $status = 'red';
-        if ($connection && $connection['enabled'] ?? false) {
-            $status = 'green';
-        } elseif ($connection) {
-            $status = 'yellow';
-        }
-
         return [
-            'connection' => $connection,
-            'name' => $name,
             'status' => $status,
+            'updated_at' => $updatedAt->toDayDateTimeString(),
             'message' => $message,
             'actions' => $actions,
         ];
@@ -108,24 +103,25 @@ class IntegrationController extends Controller
     private function getYouTubeService()
     {
         $youTubeService = app(YouTubeService::class);
+        $lastCompletedAt = Carbon::parse($youTubeService->getLastCompletedAt(), 'UTC')->tz('America/Chicago');
+        $lastFailedAt = Carbon::parse($youTubeService->getLastFailedAt(), 'UTC')->tz('America/Chicago');
+        $remainingQuota = $youTubeService->getRemainingQuota(quiet: true);
 
-        $dbLastSucceededAt = $youTubeService->getLastCompletedAt();
-        $dbLastFailedAt = $youTubeService->getLastFailedAt();
-
-        $lastSucceededAt = $dbLastSucceededAt ? Carbon::parse($dbLastSucceededAt, 'UTC') : null;
-        $lastFailedAt = $dbLastFailedAt ? Carbon::parse($dbLastFailedAt, 'UTC') : null;
-        $lastFailedReason = $youTubeService->getLastFailedReason();
-
-        $status = 'red';
-        if ($lastSucceededAt && (!$lastFailedAt || $lastSucceededAt->gt($lastFailedAt))) {
-            $status = 'green';
+        $status = $lastCompletedAt->gt($lastFailedAt) ?
+            ($remainingQuota ? 'green' : 'yellow') :
+            'red';
+        $message = '';
+        if ($lastCompletedAt->equalTo($lastFailedAt)) {
+            $message = $youTubeService->getLastFailedReason();
+        } else {
+            $message = 'Remaining quota: ' . $remainingQuota . '/' . $youTubeService::QUOTA_LIMIT;
         }
 
         return [
-            'last_succeeded_at' => $lastSucceededAt ? $lastSucceededAt->tz('America/Chicago')->toDayDateTimeString() : '',
-            'last_failed_at' => $lastFailedAt && (!$lastSucceededAt || $lastFailedAt->gt($lastSucceededAt)) ? $lastFailedAt->tz('America/Chicago')->toDayDateTimeString() : '',
-            'message' => $lastFailedAt && (!$lastSucceededAt || $lastFailedAt->gt($lastSucceededAt)) ? $lastFailedReason : '',
             'status' => $status,
+            'updated_at' => $lastCompletedAt->toDayDateTimeString(),
+            'message' => $message,
+            'actions' => [],
         ];
     }
 }
