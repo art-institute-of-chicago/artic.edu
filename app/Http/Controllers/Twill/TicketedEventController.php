@@ -7,7 +7,7 @@ class TicketedEventController extends \App\Http\Controllers\Twill\BaseApiControl
     public function setUpController(): void
     {
         $this->setTitleColumnKey('cmsTitle');
-        $this->setSearchColumns(['name', 'id']);
+        $this->setSearchColumns(['name', 'id', 'title']);
         $this->setModuleName('ticketedEvents');
     }
 }
