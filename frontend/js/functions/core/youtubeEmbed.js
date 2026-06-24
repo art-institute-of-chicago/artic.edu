@@ -40,6 +40,7 @@ const youtubeEmbed = function(iframe) {
   };
 
   let youtubePlayerTimer;
+  let currentVideoId = null;
 
   function onPlayerEnded(player) {
     triggerCustomEvent(document, 'gtm:push', {
@@ -55,8 +56,18 @@ const youtubeEmbed = function(iframe) {
   }
 
   function onPlayerPlaying(player) {
-    const currentTime = player.getCurrentTime();
-    const status = currentTime < 1 ? 'start' : 'resume';
+    const videoId = player.getVideoData().video_id;
+    const status = videoId !== currentVideoId ? 'start' : 'resume';
+    if (status === 'start') {
+      // A new video is playing (as opposed to a resume after pause/buffer).
+      // Track it and reset the played-percent checks so progress is tracked
+      // for this video instead of carrying over thresholds already hit by a
+      // previous video in the same player (e.g. advancing between shorts).
+      currentVideoId = videoId;
+      for (const playedCheck in playedChecks) {
+        playedChecks[playedCheck] = false;
+      }
+    }
     triggerCustomEvent(document, 'gtm:push', {
       'event': 'gtm.video',
       'gtm.videoStatus': status,
