@@ -282,6 +282,7 @@ Route::group([
 ], function () {
     Route::get('/artworks/{id}/exploreFurther', [ArtworkController::class, 'exploreFurther'])->name('artworks.exploreFurther');
 });
+Route::get('/artworks/{id}/size.jpg', [ArtworkController::class, 'size'])->name('artworks.size');
 Route::get('/artworks/{id}/{slug?}', [ArtworkController::class, 'show'])->name('artworks.show');
 
 // Gallery / tag page

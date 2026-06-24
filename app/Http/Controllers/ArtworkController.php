@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
 use App\Helpers\GtmHelpers;
+use App\Libraries\ArtworkSizeComparisonService;
 use App\Libraries\RecentlyViewedService;
 use App\Libraries\Search\CollectionService;
 use App\Libraries\ExploreFurther\ArtworkService as ExploreFurther;
 use App\Models\Hour;
+use Illuminate\Support\Facades\Response;
 
 class ArtworkController extends BaseScopedController
 {
@@ -82,6 +84,23 @@ class ArtworkController extends BaseScopedController
         }
 
         return view('site.artworkDetail', $viewData);
+    }
+
+    public function size($id)
+    {
+        $item = Artwork::query()->findOrFail((int) $id);
+
+        $dimension = collect($item->dimensions_detail)
+            ->map(fn ($detail) => (array) $detail)
+            ->first(fn ($detail) => !empty($detail['width']) && !empty($detail['height']));
+
+        if (!$dimension) {
+            abort(404);
+        }
+
+        $image = (new ArtworkSizeComparisonService())->generate($dimension['width'], $dimension['height']);
+
+        return Response::make($image, 200, ['Content-Type' => 'image/jpeg']);
     }
 
     /**
