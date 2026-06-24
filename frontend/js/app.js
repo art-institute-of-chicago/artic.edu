@@ -118,10 +118,6 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
-window.onYouTubeIframeAPIReady = function() {
-  AIC.YouTubeonYouTubeIframeAPIReady = true;
-}
-
 // Make console.log safe
 if (typeof console === 'undefined') {
   window.console = {

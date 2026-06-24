@@ -1,5 +1,33 @@
 import { triggerCustomEvent } from '@area17/a17-helpers';
 
+// Load the YouTube IFrame API once, as soon as this module runs (page load),
+// rather than waiting for the first embed to be created. An embed's iframe
+// starts loading its own content the moment it's inserted into the DOM, and
+// broadcasts a "ready" handshake to whichever code is listening for it at
+// that moment. If the IFrame API is still loading when that happens (because
+// it was only requested on-demand), the handshake is missed and that
+// player's event listeners (onReady/onStateChange) never attach. Giving the
+// API a head start at page load avoids that race for every embed, including
+// the first one created in a fresh document.
+function _loadYouTubeIframeApi() {
+  return new Promise((resolve) => {
+    if (window.YT && window.YT.Player) {
+      resolve();
+      return;
+    }
+    window.onYouTubeIframeAPIReady = resolve;
+    if (!document.getElementById('youtubeapijs')) {
+      const youtubeScript = document.createElement('script');
+      youtubeScript.src = 'https://www.youtube.com/iframe_api';
+      youtubeScript.id = 'youtubeapijs';
+      const firstScript = document.getElementsByTagName('script')[0];
+      firstScript.parentNode.insertBefore(youtubeScript, firstScript);
+    }
+  });
+}
+
+const youtubeApiReady = _loadYouTubeIframeApi();
+
 const youtubeEmbed = function(iframe) {
   if (!(iframe instanceof Element)) {
     iframe = document.getElementById(iframe);
@@ -35,7 +63,7 @@ const youtubeEmbed = function(iframe) {
       'gtm.videoTitle': player.getVideoData().title,
       'gtm.videoUrl': player.getVideoUrl(),
       'gtm.videoDuration': player.getDuration(),
-      'gtm.videoCurrentTime': currentTime,
+      'gtm.videoCurrentTime': player.getCurrentTime(),
       'gtm.videoPercent': _playedPercent(player),
       'gtm.videoVisible': true,
     });
@@ -129,11 +157,8 @@ const youtubeEmbed = function(iframe) {
   }
 
   function _initYoutubePlayer(iframeId) {
-    console.log('trying in _initYoutubePlayer');
-    if (AIC.YouTubeonYouTubeIframeAPIReady) {
-      if (!(iframeId in AIC.YouTubeembeds)) {
-        console.log('building the player in _initYoutubePlayer');
-        const player = new YT.Player(iframeId, {
+    if (iframeId in AIC.YouTubeembeds) return;
+    new YT.Player(iframeId, {
           playerVars: {
             'autoplay': 1,
             'enablejsapi': 1,
@@ -144,40 +169,12 @@ const youtubeEmbed = function(iframe) {
             'onStateChange': _onStateChange,
           },
         });
-        // If the onReady event doesn't get called on its own, check the element manually
-        // and call `onReady` once it's available.
-        const onReadyPollInterval = setInterval(() => {
-          console.log(' ', player.getPlayerState !== undefined);
-          if (player.getPlayerState !== undefined) {
-            clearInterval(onReadyPollInterval);
-            if (!(iframeId in AIC.YouTubeembeds)) {
-              console.log('calling onReady in _initYoutubePlayer');
-              _onReady({ target: player });
-            }
-          }
-        }, 50);
-        // After 5 solid seconds of trying, stop.
-        setTimeout(() => {
-          clearInterval(onReadyPollInterval);
-        }, 5000);
-      }
-    } else {
-      setTimeout(() => _initYoutubePlayer(iframeId), 10);
-    }
   };
-
-  if (!document.getElementById('youtubeapijs')) {
-    const youtubeScript = document.createElement('script');
-    youtubeScript.src = 'https://www.youtube.com/iframe_api';
-    youtubeScript.id = 'youtubeapijs';
-    const firstScript = document.getElementsByTagName('script')[0];
-    firstScript.parentNode.insertBefore(youtubeScript, firstScript);
-  }
 
   if (!iframe.id) {
     iframe.id = `youtube_${Math.random().toString(36).substring(2, 9)}`;
   }
-  _initYoutubePlayer(iframe.id);
+  youtubeApiReady.then(() => _initYoutubePlayer(iframe.id));
 };
 
 function controlYouTubePlayer(player, commands) {

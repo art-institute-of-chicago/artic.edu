@@ -2,6 +2,5 @@
 
 <script>
     var AIC = window.AIC || {};
-    AIC.YouTubeonYouTubeIframeAPIReady = false;
     AIC.YouTubeembeds = {};
 </script>
