@@ -4,7 +4,7 @@
     <table id="integrations">
         <thead>
             <tr>
-                <th>Status</th><th>Service</th><th>Last succeeded</th><th>Last failed</th><th>Message</th><th>Actions</th>
+                <th>Status</th><th>Service</th><th>Updated</th><th>Message</th><th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -17,10 +17,7 @@
                         {{ $name }}
                     </td>
                     <td>
-                        {{ $integration['last_succeeded_at'] ?? '' }}
-                    </td>
-                    <td>
-                        {{ $integration['last_failed_at'] ?? '' }}
+                        {{ $integration['updated_at'] ?? '' }}
                     </td>
                     <td>
                         {{ $integration['message'] ?? '' }}

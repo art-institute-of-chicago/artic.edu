@@ -38,7 +38,12 @@ abstract class AbstractYoutubeCommand extends Command
         $quota = is_null($this->option('quota')) ? $this->option('quota') : (int) $this->option('quota');
         $force = is_null($this->option('force')) ? $this->option('force') : (bool) $this->option('force');
         try {
-            $this->youtube->clearSession()->session(fn () => $this->handleCommand(), $quota, $force);
+            $this->youtube->clearSession()->session(
+                fn () => $this->handleCommand(),
+                class_basename($this),
+                $quota,
+                $force,
+            );
         } catch (YouTubeServiceException $exception) {
             $code = $exception->getCode();
             $this->log($exception->getMessage(), 'error');
@@ -46,12 +51,7 @@ abstract class AbstractYoutubeCommand extends Command
         $requestCount = $this->youtube->getRequestCount();
         $sessionUsage = $this->youtube->getSessionUsage();
         $remainingQuota = $this->youtube->getRemainingQuota(quiet: true);
-        $level = 'info';
-        if ($remainingQuota <= 0) {
-            $level = 'error';
-        } elseif ($remainingQuota < YouTubeService::QUOTA_LIMIT * .10) { // Less than 10% of the daily limit
-            $level = 'warn';
-        }
+        $level = $remainingQuota <= 0 ? 'error' : 'info';
         $this->log(
             'YouTube service session end - ' .
                 "request count: $requestCount, " .
