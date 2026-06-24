@@ -8,7 +8,7 @@
 @endphp
 @if ($items->count() > 0)
     @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--feature-2x m-media--l')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
         @slot('cols_small','2')
         @slot('cols_medium','2')
         @slot('cols_large','2')
