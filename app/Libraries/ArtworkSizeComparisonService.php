@@ -36,7 +36,8 @@ class ArtworkSizeComparisonService
         imagefill($canvas, 0, 0, imagecolorallocate($canvas, 255, 255, 255));
 
         $silhouetteX = self::PADDING_PX;
-        imagecopy($canvas, $silhouette, $silhouetteX, $ceilingY, 0, 0, $silhouetteWidth, $silhouetteHeight);
+        $silhouetteY = $artworkRectHeight < $silhouetteHeight ? self::PADDING_PX : $canvasHeight - self::PADDING_PX - $silhouetteHeight;
+        imagecopy($canvas, $silhouette, $silhouetteX, $silhouetteY, 0, 0, $silhouetteWidth, $silhouetteHeight);
         imagedestroy($silhouette);
 
         $rectX = $silhouetteX + $silhouetteWidth + self::GAP_PX;
