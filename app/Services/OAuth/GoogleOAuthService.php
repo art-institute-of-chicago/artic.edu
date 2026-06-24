@@ -62,7 +62,7 @@ class GoogleOAuthService
             throw new GoogleOAuthServiceException('Error fetching access token: ' . $accessToken['error_description']);
         }
         return (bool) DB::table('oauth')->insert([
-            'created_at' => now(),
+            'created_at' => now('UTC'),
             'provider' => self::PROVIDER,
             'access_token' => json_encode($accessToken),
         ]);
@@ -174,7 +174,7 @@ class GoogleOAuthService
         $updatedAccessToken = array_merge($accessToken, $newAccessToken);
         if (
             DB::table('oauth')->where('provider', self::PROVIDER)->update([
-                'updated_at' => now(),
+                'updated_at' => now('UTC'),
                 'access_token' => $updatedAccessToken,
             ])
         ) {
