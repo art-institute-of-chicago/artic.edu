@@ -174,6 +174,10 @@ const autocomplete = function(container) {
    * Handle ajax search
    */
   function _doAjax() {
+    if (_hasRestrictedSearch()) {
+      return;
+    }
+
     clearTimeout(ajaxTimer);
 
     _showLoader();
@@ -277,10 +281,20 @@ const autocomplete = function(container) {
     });
   }
 
+  function _hasRestrictedSearch() {
+    const searchField = container.querySelector('input[name="search_field"]');
+    const semanticOnly = container.querySelector('input[name="semantic_only"]');
+    return (searchField && searchField.value) || (semanticOnly && semanticOnly.value);
+  }
+
   /**
    * Handle search input
    */
   function _handleInput() {
+    if (_hasRestrictedSearch()) {
+      return;
+    }
+
     searchTerm = textInput.value;
     if(searchTerm.length >= 3){
       // Do ajax

@@ -34,7 +34,7 @@ const searchFieldDropdown = function(container) {
         const item = link.closest('li[data-search-value]');
         if (!item) return;
 
-        const val = item.getAttribute('data-search-value');
+        const searchFieldValue = item.getAttribute('data-search-value');
         const label = link.textContent.trim();
 
         // Update trigger button label
@@ -53,36 +53,50 @@ const searchFieldDropdown = function(container) {
         inputs.forEach(input => {
             const searchForm = input.closest('form');
             if (searchForm) {
-                // Remove any existing search_field or semantic_only hidden inputs
-                const existingSearchField = searchForm.querySelector('input[name="search_field"]');
-                const existingSemanticOnly = searchForm.querySelector('input[name="semantic_only"]');
-                if (existingSearchField) existingSearchField.remove();
-                if (existingSemanticOnly) existingSemanticOnly.remove();
+                let searchFieldInput = searchForm.querySelector('input[name="search_field"]');
+                let semanticOnlyInput = searchForm.querySelector('input[name="semantic_only"]');
 
-                if (val === 'semantic') {
-                    // Set semantic_only=1 for semantic search
-                    const hiddenInput = document.createElement('input');
-                    hiddenInput.type = 'hidden';
-                    hiddenInput.name = 'semantic_only';
-                    hiddenInput.value = '1';
-                    searchForm.appendChild(hiddenInput);
-                } else if (val) {
-                    // Set search_field for field-specific search
-                    const hiddenInput = document.createElement('input');
-                    hiddenInput.type = 'hidden';
-                    hiddenInput.name = 'search_field';
-                    hiddenInput.value = val;
-                    searchForm.appendChild(hiddenInput);
+                if (searchFieldValue === 'semantic') {
+                    // Remove search_field, set semantic_only
+                    if (searchFieldInput) searchFieldInput.remove();
+                    searchFieldInput = null;
+                    if (!semanticOnlyInput) {
+                        semanticOnlyInput = document.createElement('input');
+                        semanticOnlyInput.type = 'hidden';
+                        semanticOnlyInput.name = 'semantic_only';
+                        searchForm.appendChild(semanticOnlyInput);
+                    }
+                    semanticOnlyInput.value = '1';
+                } else {
+                    // Remove semantic_only if present
+                    if (semanticOnlyInput) {
+                        semanticOnlyInput.remove();
+                        semanticOnlyInput = null;
+                    }
+
+                    if (searchFieldValue) {
+                        // update search_field
+                        if (!searchFieldInput) {
+                            searchFieldInput = document.createElement('input');
+                            searchFieldInput.type = 'hidden';
+                            searchFieldInput.name = 'search_field';
+                            searchForm.appendChild(searchFieldInput);
+                        }
+                        searchFieldInput.value = searchFieldValue;
+                    } else {
+                        // if all fields remove search_field
+                        if (searchFieldInput) searchFieldInput.remove();
+                    }
                 }
 
                 // Update form action for autocomplete.js
                 const qsObj = queryStringHandler.toObject(searchForm.action);
                 delete qsObj['search_field'];
                 delete qsObj['semantic_only'];
-                if (val === 'semantic') {
+                if (searchFieldValue === 'semantic') {
                     qsObj['semantic_only'] = '1';
-                } else if (val) {
-                    qsObj['search_field'] = val;
+                } else if (searchFieldValue) {
+                    qsObj['search_field'] = searchFieldValue;
                 }
                 const baseUrl = searchForm.action.split('?')[0];
                 searchForm.action = baseUrl + queryStringHandler.fromObject(qsObj);
