@@ -32,6 +32,7 @@ class YouTubeCaptions extends AbstractYoutubeCommand
      */
     private function updateExistingCaptions(): void
     {
+        $videoImport = class_basename(\App\Console\Commands\YouTubeVideosAndPlaylists::class);
         $captionedVideos = Video::where('is_captioned', true)
             ->where('privacy', 'public')
             ->whereHas('captions', function (Builder $query) {
@@ -39,6 +40,7 @@ class YouTubeCaptions extends AbstractYoutubeCommand
                     $query->whereNotNull('file');
                 });
             })
+            ->where('uploaded_at', '>', $this->youtube->getLastCompletedAt($videoImport))
             ->latest('uploaded_at');
         $progress = !$this->output->isDebug() ?
             $this->output->createProgressBar($captionedVideos->count()) :

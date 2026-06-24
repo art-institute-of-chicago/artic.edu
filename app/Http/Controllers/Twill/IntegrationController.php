@@ -109,7 +109,7 @@ class IntegrationController extends Controller
     {
         $youTubeService = app(YouTubeService::class);
 
-        $dbLastSucceededAt = $youTubeService->getLastSucceededAt();
+        $dbLastSucceededAt = $youTubeService->getLastCompletedAt();
         $dbLastFailedAt = $youTubeService->getLastFailedAt();
 
         $lastSucceededAt = $dbLastSucceededAt ? Carbon::parse($dbLastSucceededAt, 'UTC') : null;

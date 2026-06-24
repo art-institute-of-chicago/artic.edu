@@ -6,6 +6,7 @@ use Google\Client;
 use Google\Service\Exception as GoogleServiceException;
 use Google\Service\Resource;
 use Google\Service\YouTube;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
@@ -133,14 +134,14 @@ class YouTubeService
     /**
      * Run tasks in the context of a session, tracking quota usage and requests.
      */
-    public function session(\Closure $run, ?int $quota = null, bool $force = false): void
+    public function session(\Closure $run, string $command, ?int $quota = null, bool $force = false): void
     {
         if (!is_null($quota)) {
             $this->setSessionQuota($quota);
         }
         $this->setForceLimit($force);
         $start = now('UTC');
-        DB::table(self::SESSION_TABLE)->insert(['created_at' => $start]);
+        DB::table(self::SESSION_TABLE)->insert(['command' => $command, 'created_at' => $start]);
         try {
             $run();
         } catch (GoogleServiceException $exception) {
@@ -365,15 +366,20 @@ class YouTubeService
         return $response;
     }
 
-    public function getLastSucceededAt()
+    public function getLastCompletedAt(?string $command = null): ?string
     {
-        return DB::table(self::SESSION_TABLE)
-            ->whereNull('errored_at')
+        $query = DB::table(self::SESSION_TABLE);
+        if ($command) {
+            $query = $query->where('command', $command);
+        }
+
+        return $query
+            ->where(fn (Builder $query) => $query->whereNotNull('errored_at')->orWhereNotNull('updated_at'))
             ->latest()
             ->first()?->created_at;
     }
 
-    public function getLastFailedAt()
+    public function getLastFailedAt(): ?string
     {
         return DB::table(self::SESSION_TABLE)
             ->whereNotNull('errored_at')
@@ -381,7 +387,7 @@ class YouTubeService
             ->first()?->errored_at;
     }
 
-    public function getLastFailedReason()
+    public function getLastFailedReason(): ?string
     {
         return DB::table(self::SESSION_TABLE)
             ->whereNotNull('errored_at')

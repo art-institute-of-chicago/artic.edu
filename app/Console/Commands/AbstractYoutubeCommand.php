@@ -38,7 +38,12 @@ abstract class AbstractYoutubeCommand extends Command
         $quota = is_null($this->option('quota')) ? $this->option('quota') : (int) $this->option('quota');
         $force = is_null($this->option('force')) ? $this->option('force') : (bool) $this->option('force');
         try {
-            $this->youtube->clearSession()->session(fn () => $this->handleCommand(), $quota, $force);
+            $this->youtube->clearSession()->session(
+                fn () => $this->handleCommand(),
+                class_basename($this),
+                $quota,
+                $force,
+            );
         } catch (YouTubeServiceException $exception) {
             $code = $exception->getCode();
             $this->log($exception->getMessage(), 'error');
