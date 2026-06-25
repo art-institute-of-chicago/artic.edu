@@ -64,7 +64,7 @@ html:has(.o-digital-explorer) {
     .paragraph-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 2rem;
 
       h2,
       p {
@@ -76,13 +76,13 @@ html:has(.o-digital-explorer) {
 
       h2 {
         letter-spacing: unset;
-        font-size: 3.5rem;
-        line-height: normal !important;
+        font-size: 4rem;
       }
 
       p {
-        font-size: 1.4rem !important;
-        line-height: 135% !important;
+        font-size: 1.62rem !important;
+        font-weight: 500;
+        line-height: 130% !important;
       }
     }
 
@@ -110,11 +110,15 @@ html:has(.o-digital-explorer) {
       }
     }
 
+    figcaption {
+      margin-top: 10px;
+    }
+
     .f-caption {
       padding-right: 0;
       color: #f6f6f6 !important;
       font-family: $sans-serif-font--loaded !important;
-      font-size: 0.8rem;
+      font-size: 1.1rem;
       font-weight: 400;
       line-height: 130%;
       text-align: left;
