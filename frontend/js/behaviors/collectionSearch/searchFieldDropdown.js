@@ -107,7 +107,43 @@ const searchFieldDropdown = function(container) {
         close();
     }
 
+    function syncFromForm() {
+
+        const searchForm = document.querySelector('form.m-search-bar');
+        if (!searchForm) return;
+
+        const searchFieldInput = searchForm.querySelector('input[name="search_field"]');
+        const semanticOnlyInput = searchForm.querySelector('input[name="semantic_only"]');
+
+        let activeValue = '';
+        if (semanticOnlyInput && semanticOnlyInput.value) {
+            activeValue = 'semantic';
+        } else if (searchFieldInput && searchFieldInput.value) {
+            activeValue = searchFieldInput.value;
+        }
+
+        // Update trigger text and active item to match
+        items.forEach(item => {
+            const itemValue = item.getAttribute('data-search-value');
+            if (itemValue === activeValue) {
+                item.classList.add('s-active');
+                const link = item.querySelector('a');
+                if (link && triggerText) {
+                    const label = link.textContent.trim();
+                    if (triggerText.childNodes.length > 0 && triggerText.childNodes[0].nodeType === Node.TEXT_NODE) {
+                        triggerText.childNodes[0].textContent = label;
+                    } else {
+                        triggerText.insertBefore(document.createTextNode(label), triggerText.firstChild);
+                    }
+                }
+            } else {
+                item.classList.remove('s-active');
+            }
+        });
+    }
+
     function _init() {
+        syncFromForm();
         triggerBtn.addEventListener('click', toggle);
         items.forEach(item => {
             const link = item.querySelector('a');
