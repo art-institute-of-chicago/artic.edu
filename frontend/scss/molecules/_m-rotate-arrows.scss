@@ -2,20 +2,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.8rem;
   background-color: #4B9CA3;
   color: #fff;
-  padding: 0.5rem .75rem;
-  border-radius: 2rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 3.2rem;
 
   &__text {
     font-family: $sans-serif-font--loaded;
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 3px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.21em;
     line-height: 1;
     text-transform: uppercase;
-    padding: 10px;
+    padding: 1rem;
     white-space: nowrap;
   }
 
@@ -23,6 +23,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    svg {
+      width: 2.625rem;
+      height: 2.625rem;
+    }
 
     &--left {
       transform: rotate(180deg);
@@ -37,28 +42,28 @@
 
 @keyframes m-rotate-arrows-out-left {
   0% {
-    transform: rotate(180deg) translateX(-12px);
+    transform: rotate(180deg) translateX(-1.2rem);
     opacity: 0;
   }
   20% {
     opacity: 1;
   }
   100% {
-    transform: rotate(180deg) translateX(8px);
+    transform: rotate(180deg) translateX(0.8rem);
     opacity: 0;
   }
 }
 
 @keyframes m-rotate-arrows-out-right {
   0% {
-    transform: translateX(-12px);
+    transform: translateX(-1.2rem);
     opacity: 0;
   }
   20% {
     opacity: 1;
   }
   100% {
-    transform: translateX(8px);
+    transform: translateX(0.8rem);
     opacity: 0;
   }
 }
