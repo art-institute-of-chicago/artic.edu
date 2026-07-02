@@ -34,6 +34,9 @@ class DigitalExplorerController extends FrontController
     {
         $digitalExplorer = $this->repository->published()->findOrFail($id);
 
+        $this->seo->setTitle($digitalExplorer->meta_title ?: $digitalExplorer->title);
+        $this->seo->setDescription($digitalExplorer->meta_description ?? $digitalExplorer->listing_description);
+
         $digitalExplorer->load([
             'explorerTitleMedia.medias',
             'blocks' => function ($query) {
