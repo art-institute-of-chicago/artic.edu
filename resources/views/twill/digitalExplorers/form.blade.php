@@ -1,5 +1,12 @@
 @extends('twill::layouts.form')
 
+@section('sideFieldset')
+    <x-twill::checkbox
+        name='is_unlisted'
+        label="Don't show this digital explorer in listings"
+    />
+@endsection
+
 @section('contentFields')
     <x-twill::formColumns>
         <x-slot name="left">
@@ -204,6 +211,19 @@
             name="lighting_blocks"
             :blocks="$light"
             withoutSeparator="true"
+        />
+    </x-twill::formFieldset>
+
+    <x-twill::formFieldset id="metadata" title="Overwrite default metadata (optional)">
+        <x-twill::input
+            name='meta_title'
+            label='Metadata Title'
+        />
+
+        <x-twill::input
+            name='meta_description'
+            label='Metadata Description'
+            type='textarea'
         />
     </x-twill::formFieldset>
 @stop

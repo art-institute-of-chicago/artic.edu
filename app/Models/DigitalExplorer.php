@@ -6,6 +6,8 @@ use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
+use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasUnlisted;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,6 +19,8 @@ class DigitalExplorer extends AbstractModel
     use HasBlocks;
     use HasFiles;
     use HasMedias;
+    use HasMediasEloquent;
+    use HasUnlisted;
 
     public const LIGHT_TYPE_MAP = [
         'point' => 'pointLight',
@@ -34,6 +38,7 @@ class DigitalExplorer extends AbstractModel
         'meta_description',
         'short_description',
         'listing_description',
+        'is_unlisted',
         'settings',
         'info_title',
         'info_description',
@@ -42,7 +47,12 @@ class DigitalExplorer extends AbstractModel
 
     public $casts = [
         'settings' => AsCollection::class,
-        'published' => 'boolean'
+        'published' => 'boolean',
+        'is_unlisted' => 'boolean'
+    ];
+
+    public $attributes = [
+        'is_unlisted' => false,
     ];
 
     public function explorerTitleMedia()
