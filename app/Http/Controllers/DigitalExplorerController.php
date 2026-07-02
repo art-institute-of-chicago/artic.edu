@@ -37,7 +37,7 @@ class DigitalExplorerController extends FrontController
         $this->seo->setTitle($digitalExplorer->meta_title ?: $digitalExplorer->title);
         $this->seo->setDescription($digitalExplorer->meta_description ?? $digitalExplorer->listing_description);
         $this->seo->setImage($digitalExplorer->imageFront('listing'));
-        if ($digitalExplorer->is_unlisted) {
+        if ($digitalExplorer->is_unlisted === true) {
             $this->seo->nofollow = true;
             $this->seo->noindex = true;
         }
