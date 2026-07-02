@@ -1,5 +1,12 @@
 @extends('twill::layouts.form')
 
+@section('sideFieldset')
+    <x-twill::checkbox
+        name='is_unlisted'
+        label="Don't show this digital explorer in listings"
+    />
+@endsection
+
 @section('contentFields')
     <x-twill::formColumns>
         <x-slot name="left">
