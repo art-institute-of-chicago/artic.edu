@@ -6,6 +6,7 @@ use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
+use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasUnlisted;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -18,6 +19,7 @@ class DigitalExplorer extends AbstractModel
     use HasBlocks;
     use HasFiles;
     use HasMedias;
+    use HasMediasEloquent;
     use HasUnlisted;
 
     public const LIGHT_TYPE_MAP = [
