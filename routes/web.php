@@ -318,7 +318,15 @@ Route::post('/press/filming-policy/filming-photo-shoot-proposal-form', [FilmingA
 Route::get('/press/filming-policy/filming-photo-shoot-proposal-form/thanks', [FilmingAndPhotoShootProposalController::class, 'thanks'])->name('forms.filming-proposal.thanks');
 
 // Email subscriptions request
-Route::get('/email-subscriptions', [EmailSubscriptionsController::class, 'index'])->name('forms.email-subscriptions');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'e',
+    ]
+], function () {
+    Route::get('/email-subscriptions', [EmailSubscriptionsController::class, 'index'])->name('forms.email-subscriptions');
+});
+
 Route::post('/email-subscriptions', [EmailSubscriptionsController::class, 'store'])->name('forms.email-subscriptions.store');
 Route::get('/email-subscriptions/thanks', [EmailSubscriptionsController::class, 'thanks'])->name('forms.email-subscriptions.thanks');
 
