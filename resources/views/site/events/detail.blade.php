@@ -46,16 +46,18 @@
 
   <div class="o-article__secondary-actions{{ ($item->present()->ticketStatus == '') ? ' o-article__secondary-actions--empty@small-' : '' }}">
 
-    @component('components.molecules._m-ticket-actions----event')
-        @slot('ticketLink', $item->buy_tickets_link);
-        @slot('buttonText', $item->present()->buyButtonText);
-        @slot('buttonCaption', $item->buy_button_caption);
-        @slot('isTicketed', $item->present()->isTicketed);
-        @if ($item->present()->isSoldOut)
-            @slot('disabled',true)
-        @endif
-        @slot('eventName',$item->present()->title)
-    @endcomponent
+    @if ($item->is_future)
+        @component('components.molecules._m-ticket-actions----event')
+            @slot('ticketLink', $item->buy_tickets_link);
+            @slot('buttonText', $item->present()->buyButtonText);
+            @slot('buttonCaption', $item->buy_button_caption);
+            @slot('isTicketed', $item->present()->isTicketed);
+            @if ($item->present()->isSoldOut)
+                @slot('disabled',true)
+            @endif
+            @slot('eventName',$item->present()->title)
+        @endcomponent
+    @endif
 
     @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
