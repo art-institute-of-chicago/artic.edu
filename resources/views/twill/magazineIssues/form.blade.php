@@ -82,7 +82,7 @@
 
         @php
             $blocks = BlockHelpers::getBlocksForEditor([
-                'exhibitions', 'events', 'magazine_item', 'magazine_call_to_action'
+                'exhibitions', 'events', 'magazine_item', 'magazine_call_to_action', 'custom_banner'
             ]);
         @endphp
 
