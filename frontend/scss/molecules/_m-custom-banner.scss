@@ -317,7 +317,8 @@
     }
 }
 
-.o-article {
+.p-magazineissue-latest,
+.p-magazineissue-show {
   .m-custom-banner-block {
     @each $name,
     $point in ('xsmall', 'small', 'medium') {
