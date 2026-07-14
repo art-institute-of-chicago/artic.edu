@@ -11,7 +11,6 @@ class EmailSubscriptionsRequest extends FormRequest
             'encrypted_email' => 'sometimes',
             'subscriptions' => 'sometimes',
             'unsubscribeFromMuseum' => 'sometimes',
-            'unsubscribeFromShop' => 'sometimes',
             'unsubscribeFromAll' => 'sometimes',
             'first_name' => 'sometimes',
             'last_name' => 'sometimes',

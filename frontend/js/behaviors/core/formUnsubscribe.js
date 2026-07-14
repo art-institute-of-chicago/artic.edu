@@ -2,16 +2,13 @@ import { forEach } from '@area17/a17-helpers';
 
 const formUnsubscribe = function(container) {
   let optMuseum = document.getElementById('subscriptions-OptMuseum');
-  let optShop = document.getElementById('subscriptions-OptShop');
   let optOthers = Array.from(document.querySelectorAll(
     'input[type=checkbox]' +
     '[name^="subscriptions[]"]' +
-    ':not([id="subscriptions-OptMuseum"])' +
-    ':not([id="subscriptions-OptShop"])'
+    ':not([id="subscriptions-OptMuseum"])'
   ));
 
   let unsubscribeFromMuseum = document.getElementById('unsubscribeFromMuseum');
-  let unsubscribeFromShop = document.getElementById('unsubscribeFromShop');
   let unsubscribeFromAll = document.getElementById('unsubscribeFromAll');
 
   let checkbox = container.querySelector('input[type=checkbox][name^="unsubscribe"]');
@@ -26,19 +23,18 @@ const formUnsubscribe = function(container) {
 
     if (checkbox.id == 'unsubscribeFromAll') {
       unsubscribeFromMuseum.checked = unsubscribeFromAll.checked;
-      unsubscribeFromShop.checked = unsubscribeFromAll.checked;
     }
 
     if ((
-      checkbox.id == 'unsubscribeFromMuseum' || checkbox.id == 'unsubscribeFromShop'
+      checkbox.id == 'unsubscribeFromMuseum'
     ) && (
-      unsubscribeFromMuseum.checked && unsubscribeFromShop.checked
+      unsubscribeFromMuseum.checked
     )) {
       unsubscribeFromAll.checked = true;
     }
 
     if (unsubscribeFromAll.checked && (
-      !unsubscribeFromMuseum.checked || !unsubscribeFromShop.checked
+      !unsubscribeFromMuseum.checked
     )) {
       unsubscribeFromAll.checked = false
     }
@@ -47,12 +43,6 @@ const formUnsubscribe = function(container) {
       _disable(optOthers);
     } else {
       _enable(optOthers);
-    }
-
-    if (unsubscribeFromShop.checked) {
-      _disable([optShop]);
-    } else {
-      _enable([optShop]);
     }
 
     optMuseum.checked = !unsubscribeFromMuseum.checked;

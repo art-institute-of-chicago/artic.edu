@@ -104,10 +104,6 @@ class EmailSubscriptionsController extends FormController
                             : false,
                     ]
                 ),
-                // $this->getUnsubscribeBlocks(
-                //     'unsubscribeFromShop',
-                //     'I no longer wish to receive museum shop emails.'
-                // ),
                 $this->getUnsubscribeBlocks(
                     'unsubscribeFromAll',
                     'I no longer wish to receive any Art Institute emails.'
@@ -312,14 +308,9 @@ class EmailSubscriptionsController extends FormController
         );
 
         $unsubscribeFromMuseum = $this->getCheckbox('unsubscribeFromMuseum', $validated);
-        $unsubscribeFromShop = $this->getCheckbox('unsubscribeFromShop', $validated);
         $unsubscribeFromAll = $this->getCheckbox('unsubscribeFromAll', $validated);
 
-        if (!in_array('OptShop', $validated['subscriptions'] ?? [])) {
-            $unsubscribeFromShop = true;
-        }
-
-        if ($unsubscribeFromShop && $unsubscribeFromMuseum) {
+        if ($unsubscribeFromMuseum) {
             $unsubscribeFromAll = true;
         }
 
@@ -357,7 +348,7 @@ class EmailSubscriptionsController extends FormController
 
         foreach ($subs as $value => $label) {
             $isChecked = $this->getOld($value) ?? false;
-            $isDisabled = $this->getOld('OptMuseum') === false && $value !== 'OptShop';
+            $isDisabled = $this->getOld('OptMuseum') === false;
 
             if ($value === 'OptMuseum') {
                 $isChecked = $this->getOld($value) ?? true;
