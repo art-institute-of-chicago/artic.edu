@@ -96,17 +96,8 @@ class EmailSubscriptionsController extends FormController
             'variation' => 'm-fieldset__field--group',
             'blocks' => array_merge(
                 $this->getUnsubscribeBlocks(
-                    'unsubscribeFromMuseum',
-                    'I no longer wish to receive museum marketing emails.',
-                    [
-                        'checked' => $this->getOld('OptMuseum') === false
-                            ? 'checked'
-                            : false,
-                    ]
-                ),
-                $this->getUnsubscribeBlocks(
                     'unsubscribeFromAll',
-                    'I no longer wish to receive any Art Institute emails.'
+                    'I no longer wish to receive Art Institute emails.'
                 )
             ),
         ];
@@ -307,12 +298,7 @@ class EmailSubscriptionsController extends FormController
             $wasFormPrefilled
         );
 
-        $unsubscribeFromMuseum = $this->getCheckbox('unsubscribeFromMuseum', $validated);
         $unsubscribeFromAll = $this->getCheckbox('unsubscribeFromAll', $validated);
-
-        if ($unsubscribeFromMuseum) {
-            $unsubscribeFromAll = true;
-        }
 
         if ($unsubscribeFromAll) {
             $response = $exactTarget->unsubscribe();

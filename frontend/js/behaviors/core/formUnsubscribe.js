@@ -8,7 +8,6 @@ const formUnsubscribe = function(container) {
     ':not([id="subscriptions-OptMuseum"])'
   ));
 
-  let unsubscribeFromMuseum = document.getElementById('unsubscribeFromMuseum');
   let unsubscribeFromAll = document.getElementById('unsubscribeFromAll');
 
   let checkbox = container.querySelector('input[type=checkbox][name^="unsubscribe"]');
@@ -21,31 +20,14 @@ const formUnsubscribe = function(container) {
 
     checkbox.checked = !checkbox.checked;
 
-    if (checkbox.id == 'unsubscribeFromAll') {
-      unsubscribeFromMuseum.checked = unsubscribeFromAll.checked;
-    }
-
-    if ((
-      checkbox.id == 'unsubscribeFromMuseum'
-    ) && (
-      unsubscribeFromMuseum.checked
-    )) {
-      unsubscribeFromAll.checked = true;
-    }
-
-    if (unsubscribeFromAll.checked && (
-      !unsubscribeFromMuseum.checked
-    )) {
-      unsubscribeFromAll.checked = false
-    }
-
-    if (unsubscribeFromMuseum.checked) {
+    if (unsubscribeFromAll.checked) {
       _disable(optOthers);
-    } else {
+    }
+    else {
       _enable(optOthers);
     }
 
-    optMuseum.checked = !unsubscribeFromMuseum.checked;
+    optMuseum.checked = !unsubscribeFromAll.checked;
   }
 
   function _disable(targets) {

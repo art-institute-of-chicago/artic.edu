@@ -10,7 +10,6 @@ class EmailSubscriptionsRequest extends FormRequest
             'email' => 'required',
             'encrypted_email' => 'sometimes',
             'subscriptions' => 'sometimes',
-            'unsubscribeFromMuseum' => 'sometimes',
             'unsubscribeFromAll' => 'sometimes',
             'first_name' => 'sometimes',
             'last_name' => 'sometimes',
