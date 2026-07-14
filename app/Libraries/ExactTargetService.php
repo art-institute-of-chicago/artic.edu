@@ -93,7 +93,7 @@ class ExactTargetService
         }
 
         $response = Http::withToken($accessToken)->post(
-            config('exact-target.client.baseUrl') . "hub/v1/dataeventsasync/key:$dataExtensionKey/rowset",
+            config('exact-target.client.baseUrl') . "hub/v1/dataevents/key:$dataExtensionKey/rowset",
             [
                 [
                     'keys' => [
