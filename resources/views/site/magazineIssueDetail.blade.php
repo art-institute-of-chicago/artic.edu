@@ -29,36 +29,16 @@
             </div>
         @endif
 
-        @php
-            $fullWidthBlocks = ['custom_banner'];
+        @component('components.organisms._o-grid-listing')
+            @slot('variation', 'o-grid-listing--journal')
+            @slot('cols_xsmall','1')
+            @slot('cols_small','2')
+            @slot('cols_medium','2')
+            @slot('cols_large','2')
+            @slot('cols_xlarge','2')
 
-            $sections = $item->blocks
-                ->where('editor_name', 'default')
-                ->where('parent_id', null)
-                ->sortBy('position')
-                ->chunkWhile(function ($block, $key, $chunk) use ($fullWidthBlocks) {
-                    return !in_array($block->type, $fullWidthBlocks) && !in_array($chunk->last()->type, $fullWidthBlocks);
-                });
-        @endphp
-
-        @foreach ($sections as $section)
-            @if (in_array($section->first()->type, $fullWidthBlocks))
-                @include('site.blocks.' . $section->first()->type, ['block' => $section->first()])
-            @else
-                @component('components.organisms._o-grid-listing')
-                    @slot('variation', 'o-grid-listing--journal')
-                    @slot('cols_xsmall','1')
-                    @slot('cols_small','2')
-                    @slot('cols_medium','2')
-                    @slot('cols_large','2')
-                    @slot('cols_xlarge','2')
-
-                    @foreach ($section as $block)
-                        @include('site.blocks.' . $block->type, ['block' => $block])
-                    @endforeach
-                @endcomponent
-            @endif
-        @endforeach
+            {!! $item->renderBlocks() !!}
+        @endcomponent
     </div>
 
 </article>

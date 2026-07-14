@@ -317,3 +317,21 @@
     }
 }
 
+.o-article {
+  .m-custom-banner-block {
+    @each $name,
+    $point in ('xsmall', 'small', 'medium') {
+      @include breakpoint('#{$name}') {
+        width: colspan(58, $name) !important;
+      }
+    }
+
+    @each $name,
+    $point in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        width: colspan(42, $name) !important;
+      }
+    }
+  }
+}
+
