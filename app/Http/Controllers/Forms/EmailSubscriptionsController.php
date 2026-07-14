@@ -271,7 +271,7 @@ class EmailSubscriptionsController extends FormController
             'value' => $fieldName,
             'error' => null,
             'optional' => null,
-            'hint' => "You may still receive emails about current/future purchases.",
+            'hint' => null,
             'autocomplete' => false,
             'disabled' => false,
             'checked' => $this->getOld($fieldName) ?? false,
