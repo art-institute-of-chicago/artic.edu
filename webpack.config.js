@@ -164,6 +164,7 @@ module.exports = async () => {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
+                additionalData: `$styles-service: '${process.env.STYLES_SERVICE_URL}';`,
               },
             },
           ],
