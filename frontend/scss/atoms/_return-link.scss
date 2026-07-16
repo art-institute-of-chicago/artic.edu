@@ -17,15 +17,15 @@ Used in article references, demo'd inside a list:
 
 .return-link {
   position: relative;
-  color: $color__blue;
+  color: var(--colors-themes-light-mode-link-alternative-primary);
 
   &:hover,
   &:focus:hover {
-    color: $color__blue--hover;
+    color: var(--colors-themes-light-mode-link-alternative-hover);
   }
 
   &:active:hover {
-    color: $color__blue--active;
+    color: var(--colors-themes-light-mode-link-alternative-active);
   }
 
   .o-blocks >.f-secondary & {
@@ -49,14 +49,14 @@ Used in article references, demo'd inside a list:
 }
 
 .o-article--editorial .return-link {
-  color: $color__link--editorial;
+  color: var(--colors-themes-light-mode-link-alternative-primary);
 
   &:hover,
   &:focus:hover {
-    color: $color__link--editorial-hover;
+    color: var(--colors-themes-light-mode-link-alternative-hover);
   }
 
   &:active:hover {
-    color: $color__link--editorial-active;
+    color: var(--colors-themes-light-mode-link-alternative-active);
   }
 }

@@ -26,7 +26,7 @@
   @include f-secondary;
 
   & {
-    color: $color__text--type;
+    color: var(--colors-themes-light-mode-text-type);
   }
 }
 
@@ -70,7 +70,7 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: var(--colors-themes-light-mode-rules-primary);
 }
 
 .m-link-list__item:only-child::before {
@@ -79,11 +79,11 @@
 }
 
 .m-link-list__item.s-active::after {
-  background-color: $color__rules--secondary;
+  background-color: var(--colors-themes-light-mode-rules-secondary);
 }
 
 .m-link-list__sub-list .m-link-list__item::after {
-  background-color: $color__rules--tertiary;
+  background-color: var(--colors-themes-light-mode-rules-tertiary);
 }
 
 .m-link-list__trigger {
@@ -97,7 +97,7 @@
   @include tucked-align-top($f-module-title-1);
 
   & {
-    color: $color__text--title;
+    color: var(--colors-themes-light-mode-text-title);
   }
 }
 
@@ -105,11 +105,11 @@ a.m-link-list__trigger.f-module-title-1 {
 
   &:hover,
   &:focus:hover {
-    color: $color__link--hover;
+    color: var(--colors-themes-light-mode-link-hover);
   }
 
   &:active:hover {
-    color: $color__link--accent;
+    color: var(--colors-themes-light-mode-link-accent-primary);
   }
 }
 
@@ -117,40 +117,40 @@ a.m-link-list__trigger.f-module-title-1 {
   @include tucked-align-top($f-secondary);
 
   & {
-    color: $color__link;
+    color: var(--colors-themes-light-mode-link-primary);
   }
 }
 
 
 .m-link-list__trigger.f-secondary.closing-soon {
-  color: $color__text--limited;
+  color: var(--colors-themes-light-mode-link-limited-primary);
 }
 
 a.m-link-list__trigger.f-secondary {
-  color: $color__text--accent;
+  color: var(--colors-themes-light-mode-text-accent);
 
   &:hover,
   &:focus:hover,
   &:active:hover {
-    color: $color__text--accent;
+    color: var(--colors-themes-light-mode-text-accent);
   }
 
   &:hover .m-link-list__label,
   &:focus:hover .m-link-list__label {
-    @include text-underline(1.02em, $color__link--hover);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-link-hover));
   }
 
   &:active:hover .m-link-list__label {
-    @include text-underline(1.02em, $color__link--active);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-link-active));
   }
 
   .m-link-list--quiet & {
-    color: $color__link--active;
+    color: var(--colors-themes-light-mode-link-active);
 
     &:hover,
     &:focus:hover,
     &:active:hover {
-      color: $color__link--hover;
+      color: var(--colors-themes-light-mode-link-hover);
     }
   }
 }
@@ -158,12 +158,12 @@ a.m-link-list__trigger.f-secondary {
 // TODO: Is this needed anymore? Related to PUB-132
 .m-link-list__item.s-active>.m-link-list__trigger.f-module-title-1,
 .m-link-list__item.s-active>.m-link-list__trigger.f-secondary {
-  color: $color__text--accent;
+  color: var(--colors-themes-light-mode-text-accent);
 
   &:hover,
   &:focus:hover,
   &:active:hover {
-    color: $color__text--accent;
+    color: var(--colors-themes-light-mode-text-accent);
   }
 }
 
@@ -179,7 +179,7 @@ a.m-link-list__trigger.f-secondary {
 
 .m-link-list--download .m-link-list__trigger:hover .icon--download--24,
 .m-link-list--download .m-link-list__trigger:focus .icon--download--24 {
-  color: $color__text--accent;
+  color: var(--colors-themes-light-mode-text-accent);
 }
 
 .m-link-list--download .m-link-list__trigger {
@@ -209,7 +209,7 @@ a.m-link-list__trigger.f-secondary {
 }
 
 .m-link-list__trigger-file-meta {
-  color: $color__text--secondary;
+  color: var(--colors-themes-light-mode-text-secondary);
 
   @include breakpoint('medium+') {
     width: 33%;

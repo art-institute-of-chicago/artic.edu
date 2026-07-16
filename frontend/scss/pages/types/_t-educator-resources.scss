@@ -29,7 +29,7 @@
             width: 100%;
             text-transform: none !important;
             font-family: $sans-serif-font--loaded;
-            color: $color__black--75;
+            color: var(--colors-scales-grey-75);
             font-size: 17px;
             font-weight: 200;
             letter-spacing: 0 !important;
@@ -73,14 +73,14 @@
         }
 
         h2 {
-            color: $color__black;
+            color: var(--colors-scales-grey-100);
             font-family: $serif-font--loaded;
             font-size: 28px;
             margin-bottom: 11px;
         }
 
         p {
-            color: $color__black;
+            color: var(--colors-scales-grey-100);
             font-family: $serif-font--loaded;
             font-size: 17px;
             font-weight: 200;
@@ -89,7 +89,7 @@
         }
 
         a {
-            color: $color__rules--brand;
+            color: var(--colors-themes-light-mode-rules-brand);
             font-family: $sans-serif-font--loaded;
             font-size: 17px;
             font-weight: 200;
@@ -111,7 +111,7 @@
         }
 
         h3 {
-            color: $color__black--80;
+            color: var(--colors-scales-grey-80);
             font-weight: 200;
             font-size: 17px;
             font-family: $sans-serif-font--loaded;
@@ -154,7 +154,7 @@
 .o-landingpage__body.o-blocks.educator-resources {
     .m-editorial-block {
       &:has(+ .m-custom-banner-block) {
-        border-bottom: 1px solid $color__black--20 !important;
+        border-bottom: 1px solid var(--colors-scales-grey-20) !important;
       }
 
       .editorial-block__featured {

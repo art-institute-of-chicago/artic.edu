@@ -7,8 +7,8 @@
   margin-bottom: 80px;
   padding-top: 10px;
   padding-bottom: 18px;
-  border-top: 1px solid $color__input-border;
-  border-bottom: 1px solid $color__input-border;
+  border-top: 1px solid var(--colors-themes-light-mode-input-border-primary);
+  border-bottom: 1px solid var(--colors-themes-light-mode-input-border-primary);
 
   @include breakpoint('medium') {
     .f-buttons {
@@ -24,8 +24,8 @@
       overflow: scroll;
       width: 100%;
       padding: 18px 0;
-      border-top: 1px solid $color__input-border;
-      border-bottom: 1px solid $color__input-border;
+      border-top: 1px solid var(--colors-themes-light-mode-input-border-primary);
+      border-bottom: 1px solid var(--colors-themes-light-mode-input-border-primary);
     }
   }
   @include breakpoint('xsmall') {
@@ -37,8 +37,8 @@
       overflow: scroll;
       width: 100%;
       padding: 18px 0;
-      border-top: 1px solid $color__input-border;
-      border-bottom: 1px solid $color__input-border;
+      border-top: 1px solid var(--colors-themes-light-mode-input-border-primary);
+      border-bottom: 1px solid var(--colors-themes-light-mode-input-border-primary);
     }
   }
 }
@@ -53,7 +53,7 @@
 
 .links_block li {
   padding-top: 0;
-  color: $color__text;
+  color: var(--colors-themes-light-mode-text-primary);
 }
 
 .links_block a::before {
@@ -61,5 +61,5 @@
 }
 
 .links_block ul li a {
-  color: $color__text !important;
+  color: var(--colors-themes-light-mode-text-primary) !important;
 }

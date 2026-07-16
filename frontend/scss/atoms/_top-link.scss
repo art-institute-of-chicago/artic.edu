@@ -26,8 +26,8 @@ The top link - on the site it hides and shows as you scroll up and down on mediu
   padding: 0;
   border: 0 none;
   border-radius: $border-radius;
-  background-color: rgba($color__black, .7);
-  color: $color__white;
+  background-color: rgba(var(--colors-scales-grey-100), .7);
+  color: var(--colors-scales-grey-0);
   line-height: 45px;
   text-align: center;
   cursor: pointer;
@@ -49,8 +49,8 @@ The top link - on the site it hides and shows as you scroll up and down on mediu
 .top-link:hover,
 .top-link:focus,
 .top-link:active {
-  background-color: rgba($color__black, .9);
-  color: $color__white;
+  background-color: rgba(var(--colors-scales-grey-100), .9);
+  color: var(--colors-scales-grey-0);
 }
 
 .top-link svg {
@@ -67,7 +67,7 @@ The top link - on the site it hides and shows as you scroll up and down on mediu
   top: 16px;
   bottom: 16px;
   width: 1.5px;
-  background-color: $color__white;
+  background-color: var(--colors-scales-grey-0);
 }
 
 .top-link::after {

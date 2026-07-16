@@ -78,7 +78,7 @@ Creates a load spinner.
   height: 40px;
   border-radius: 50%;
   border: 2px solid transparent;
-  border-top-color: $color__red--100;
+  border-top-color: var(--colors-scales-red-100);
   transform: translate(-50%, -50%) rotate(0deg);
   transform-origin: 20px 20px;
   animation: ajax-loader .9s linear infinite;

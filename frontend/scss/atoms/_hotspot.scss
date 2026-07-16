@@ -39,7 +39,7 @@
   }
 
   &--selected &__point {
-    background-color: rgba($color__rules--brand, 0.7);
+    background-color: rgba(var(--colors-themes-light-mode-rules-brand), 0.7);
   }
 
   @include breakpoint('large') {

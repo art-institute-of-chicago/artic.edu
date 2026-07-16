@@ -60,7 +60,7 @@ Demonstrated in **statics/article**
   margin-top: 20px;
   padding-right: 20px;
   padding-top: .02px;
-  color: $color__text--title;
+  color: var(--colors-themes-light-mode-text-title);
 
   &:first-child {
     margin-top: 0;
@@ -82,7 +82,7 @@ Demonstrated in **statics/article**
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: var(--colors-themes-light-mode-rules-primary);
 }
 
 @supports (display: grid) {
@@ -153,7 +153,7 @@ Demonstrated in **statics/article**
       right: 0;
       top: 0;
       height: 1px;
-      background-color: $color__rules--primary;
+      background-color: var(--colors-themes-light-mode-rules-primary);
     }
   }
 }
@@ -177,14 +177,14 @@ Demonstrated in **statics/article**
 
 
 .deflist .f-secondary a {
-  @include text-underline(1.02em, $color__rules--secondary);
+  @include text-underline(1.02em, var(--colors-themes-light-mode-rules-secondary));
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__link--hover);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-link-hover));
   }
 
   &:active:hover {
-    @include text-underline(1.02em, $color__link--active);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-link-active));
   }
 }

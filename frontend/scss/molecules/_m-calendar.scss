@@ -48,7 +48,7 @@
   position: absolute;
   z-index: map.get($zindexs, 'calendar');
   flex-flow: column nowrap;
-  background-color: $color__white;
+  background-color: var(--colors-scales-grey-0);
 }
 
 .m-calendar:not(.m-calendar--inline) {
@@ -63,7 +63,7 @@
 
 .m-calendar--inline {
   position: relative;
-  border: 1px solid $color__rules--primary;
+  border: 1px solid var(--colors-themes-light-mode-rules-primary);
 }
 
 .m-calendar a {
@@ -106,7 +106,7 @@
   right: 0;
   top: 64px;
   height: 48px;
-  background-color: $color__black--90;
+  background-color: var(--colors-scales-grey-90);
 
   @include breakpoint('medium+') {
     content: none;
@@ -133,7 +133,7 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: $color__rules--tertiary;
+  background-color: var(--colors-themes-light-mode-rules-tertiary);
 }
 
 .m-calendar__header,
@@ -168,22 +168,22 @@
 }
 
 .m-calendar .btn--secondary {
-  color: $color__text--secondary;
+  color: var(--colors-themes-light-mode-text-secondary);
 }
 
 .m-calendar .btn--secondary.s-has-date {
-  color: $color__text;
+  color: var(--colors-themes-light-mode-text-primary);
 }
 
 .m-calendar .btn--secondary.s-active {
-  border-color: $color__rules--brand;
-  color: $color__text--accent;
+  border-color: var(--colors-themes-light-mode-rules-brand);
+  color: var(--colors-themes-light-mode-text-accent);
 }
 
 .m-calendar__footer {
   flex-direction: row-reverse;
   padding-top: 11px;
-  border-top: 1px solid $color__rules--primary;
+  border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
 }
 
 .m-calendar__footer .btn {
@@ -200,7 +200,7 @@
   padding: 0;
   border: 0 none;
   background: transparent;
-  color: $color__text--title;
+  color: var(--colors-themes-light-mode-text-title);
 
   &::after {
     content: '';
@@ -213,7 +213,7 @@
 }
 
 .m-calendar__calendar:not(:first-child) {
-  border-left: 1px solid $color__rules--tertiary;
+  border-left: 1px solid var(--colors-themes-light-mode-rules-tertiary);
 }
 
 .m-calendar__title {
@@ -221,8 +221,8 @@
   height: 48px;
   margin: 0 -12px;
   padding: 0 64px;
-  background-color: $color__black--90;
-  color: $color__white;
+  background-color: var(--colors-scales-grey-90);
+  color: var(--colors-scales-grey-0);
   font-weight: normal;
   line-height: 48px;
   text-align: center;
@@ -276,7 +276,7 @@
   top: 50%;
   margin-top: -8px;
   margin-left: -8px;
-  color: $color__white;
+  color: var(--colors-scales-grey-0);
 }
 
 .m-calendar__prev .icon--arrow {
@@ -288,12 +288,12 @@
 .m-calendar__prev .icon--arrow:hover,
 .m-calendar__next .icon--arrow:focus,
 .m-calendar__prev .icon--arrow:focus {
-  color: $color__black--30;
+  color: var(--colors-scales-grey-30);
 }
 
 .m-calendar__next .icon--arrow:active,
 .m-calendar__prev .icon--arrow:active {
-  color: $color__black--42;
+  color: var(--colors-scales-grey-42);
 }
 
 
@@ -301,7 +301,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  color: $color__black--20;
+  color: var(--colors-scales-grey-20);
   text-align: center;
   table-layout: fixed;
   border-collapse: collapse;
@@ -317,8 +317,8 @@
 
 .m-calendar thead th {
   height: 48px;
-  border-bottom: 1px solid $color__black--5;
-  color: $color__text--secondary;
+  border-bottom: 1px solid var(--colors-scales-grey-5);
+  color: var(--colors-themes-light-mode-text-secondary);
   font-weight: normal;
 }
 
@@ -333,35 +333,35 @@
 }
 
 .m-calendar__today {
-  color: $color__red--100;
+  color: var(--colors-scales-red-100);
 }
 
 .m-calendar table a {
   display: inline-block;
   width: 40px;
   height: 40px;
-  color: $color__black--54;
+  color: var(--colors-scales-grey-54);
   line-height: 40px;
   text-align: center;
   vertical-align: middle;
 
   &:hover,
   &:focus:hover {
-    background-color: $color__black--15;
-    color: $color__black--90;
+    background-color: var(--colors-scales-grey-15);
+    color: var(--colors-scales-grey-90);
   }
 
   &:active:hover {
-    background-color: $color__red--100;
-    color: $color__white;
+    background-color: var(--colors-scales-red-100);
+    color: var(--colors-scales-grey-0);
   }
 }
 
 .m-calendar table .m-calendar__today a {
-  color: $color__link--accent;
+  color: var(--colors-themes-light-mode-link-accent-primary);
 
   &:active:hover {
-    color: $color__white;
+    color: var(--colors-scales-grey-0);
   }
 }
 
@@ -369,18 +369,18 @@
 .m-calendar table .s-range.m-calendar__today a,
 .m-calendar table .s-range a,
 .m-calendar table .s-range.m-calendar__today a {
-  background-color: $color__black--5;
+  background-color: var(--colors-scales-grey-5);
 }
 
 .m-calendar table .s-start a,
 .m-calendar table .s-start.m-calendar__today a,
 .m-calendar table .s-end a,
 .m-calendar table .s-end.m-calendar__today a {
-  background-color: $color__link--accent;
-  color: $color__white;
+  background-color: var(--colors-themes-light-mode-link-accent-primary);
+  color: var(--colors-scales-grey-0);
 
   &:active:hover {
-    background-color: $color__link--accent-active;
+    background-color: var(--colors-themes-light-mode-link-accent-active);
   }
 }
 

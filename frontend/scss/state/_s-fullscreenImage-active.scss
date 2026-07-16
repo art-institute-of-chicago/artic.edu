@@ -34,7 +34,7 @@ Shows the image zoom area.
     }
 
     @media screen and (min-width: 1280px), screen and (min-height: 1024px) {
-      background-color: rgba($color__black--80, .5);
+      background-color: rgba(var(--colors-scales-grey-80), .5);
       opacity: 1;
     }
   }

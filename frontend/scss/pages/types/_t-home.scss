@@ -13,7 +13,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 20px;
-    border-bottom: 1px solid $color__rules--primary;
+    border-bottom: 1px solid var(--colors-themes-light-mode-rules-primary);
 
     @include breakpoint('small-') {
       flex-direction: column;
@@ -27,9 +27,9 @@
       }
 
       .home-callout-text {
-        color: $color__text--tertiary;
+        color: var(--colors-themes-light-mode-text-tertiary);
         a {
-          color: $color__rules--brand;
+          color: var(--colors-themes-light-mode-rules-brand);
           text-decoration: underline;
           text-decoration-thickness: 2px;
         }
@@ -46,7 +46,7 @@
         min-width: 100%;
       }
       > div {
-        border-top: 1px solid $color__rules--primary;
+        border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
         padding: 20px 0;
         span {
           font-family: $sans-serif-font--loaded;
@@ -54,8 +54,8 @@
           align-items: center;
           font-size: 17px;
           svg {
-            color: $color__rules--brand;
-            fill: $color__rules--brand;
+            color: var(--colors-themes-light-mode-rules-brand);
+            fill: var(--colors-themes-light-mode-rules-brand);
             height: 24px;
             width: 24px;
             margin-right: 8px;
@@ -67,11 +67,11 @@
           font-family: $sans-serif-font--loaded;
           font-size: 12px;
           font-weight: 500;
-          color: $color__text--secondary;
+          color: var(--colors-themes-light-mode-text-secondary);
           letter-spacing: 1px;
         }
         svg {
-          color: $color__link;
+          color: var(--colors-themes-light-mode-link-primary);
           margin-top: 16px;
           margin-right: 16px;
           height: 24px;

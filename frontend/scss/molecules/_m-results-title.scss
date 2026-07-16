@@ -17,17 +17,17 @@
   @include tucked-margin-top($f-list-3, ('xsmall': 60));
 
   a {
-    @include text-underline(.8em, $color__rules--secondary);
-    color: $color__link--accent;
+    @include text-underline(.8em, var(--colors-themes-light-mode-rules-secondary));
+    color: var(--colors-themes-light-mode-link-accent-primary);
     text-decoration: none;
 
     &:hover,
     &:focus:hover {
-      @include text-underline(.8em, $color__link--accent);
+      @include text-underline(.8em, var(--colors-themes-light-mode-link-accent-primary));
     }
 
     &:active:hover {
-      @include text-underline(.8em, $color__rules--secondary);
+      @include text-underline(.8em, var(--colors-themes-light-mode-rules-secondary));
     }
   }
 }
@@ -56,18 +56,18 @@
 }
 
 .m-results-title__links a {
-  color: $color__link--accent;
+  color: var(--colors-themes-light-mode-link-accent-primary);
 
   &:hover,
   &:focus:hover {
-    color: $color__link--accent-hover;
+    color: var(--colors-themes-light-mode-link-accent-hover);
   }
 
   &:active:hover {
-    color: $color__link--accent-active;
+    color: var(--colors-themes-light-mode-link-accent-active);
   }
 }
 
 .m-results-title__links span {
-  color: $color__text--secondary;
+  color: var(--colors-themes-light-mode-text-secondary);
 }

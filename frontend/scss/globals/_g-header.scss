@@ -1,6 +1,6 @@
 @use "sass:map";
 #a17:has(.level-1>[aria-expanded="true"])+.g-mask {
-  background-color: rgba($color__black--80, 50%);
+  background-color: rgba(var(--colors-scales-grey-80), 50%);
   bottom: 0;
   opacity: 1;
   right: 0;
@@ -29,13 +29,13 @@
 }
 
 .g-header:not(:has([aria-expanded="true"])) {
-  background-color: rgba($color__white, 1);
+  background-color: rgba(var(--colors-scales-grey-0), 1);
   transition: background-color .3s ease-out;
 }
 
 .g-header:has([aria-expanded="true"]) {
   z-index: map.get($zindexs, 'header');
-  background-color: rgba($color__white, 1);
+  background-color: rgba(var(--colors-scales-grey-0), 1);
   transition: background-color .6s ease-in;
 
   &:has(.m-notification--header) {
@@ -73,7 +73,7 @@
   @extend %container;
   position: relative;
   min-height: 112px;
-  border-bottom: 1px solid $color__rules--primary;
+  border-bottom: 1px solid var(--colors-themes-light-mode-rules-primary);
 
   .g-header__nav-primary__container {
     @include breakpoint('small+') {
@@ -92,7 +92,7 @@
   top: 16px;
   width: 80px;
   height: 80px;
-  color: $color__black;
+  color: var(--colors-scales-grey-100);
 
   @include breakpoint('small+') {
     top: 20px;
@@ -146,7 +146,7 @@
   left: 120px;
   top: 12px;
   margin-top: 0;
-  color: $color__text--secondary;
+  color: var(--colors-themes-light-mode-text-secondary);
 
   @include breakpoint('medium+') {
     display: block;
@@ -164,7 +164,7 @@
   right: 0;
 
   [aria-expanded="false"]+.details {
-    background: rgba($color__white, 0);
+    background: rgba(var(--colors-scales-grey-0), 0);
     opacity: 0;
     visibility: collapse;
   }
@@ -225,11 +225,11 @@
 
 .g-header__nav-primary a,
 .g-header__nav-primary button {
-  color: $color__text--secondary;
+  color: var(--colors-themes-light-mode-text-secondary);
   transition: color .6s linear;
 
   @include breakpoint('small+') {
-    color: $color__text--title;
+    color: var(--colors-themes-light-mode-text-title);
   }
 }
 
@@ -248,10 +248,10 @@
 }
 
 .g-header__nav-primary .s-current a {
-  color: $color__link--accent;
+  color: var(--colors-themes-light-mode-link-accent-primary);
 
   &:hover {
-    @include text-underline(1.12em, $color__link--accent);
+    @include text-underline(1.12em, var(--colors-themes-light-mode-link-accent-primary));
   }
 
   &:active {
@@ -280,7 +280,7 @@
     }
 
     &[aria-expanded="true"] {
-      color: $color__red--100;
+      color: var(--colors-scales-red-100);
       transition: color .6s;
 
       & .icon--arrow {
@@ -297,8 +297,8 @@
   }
 
   &>.details {
-    background: linear-gradient(to right, $color__black--5 33%, transparent 33%);
-    box-shadow: 0 4px 20px -20px rgba($color__black, 15%);
+    background: linear-gradient(to right, var(--colors-scales-grey-5) 33%, transparent 33%);
+    box-shadow: 0 4px 20px -20px rgba(var(--colors-scales-grey-100), 15%);
     height: 240px;
     left: -6px;
     margin-top: 16px;
@@ -306,7 +306,7 @@
     width: 100vw;
 
     @include breakpoint('large+') {
-      background: linear-gradient(to right, $color__black--5 50%, transparent 50%);
+      background: linear-gradient(to right, var(--colors-scales-grey-5) 50%, transparent 50%);
       margin-top: 20px;
     }
 
@@ -326,7 +326,7 @@
 
     &>.details__container>a,
     &>.details__container>span {
-      background-color: $color__black--5;
+      background-color: var(--colors-scales-grey-5);
       display: flex;
       flex-basis: 33%;
 
@@ -352,7 +352,7 @@
     }
 
     .description__container {
-      color: $color__black--54;
+      color: var(--colors-scales-grey-54);
       font-size: 16px;
       line-height: 24px;
       margin: 32px;
@@ -362,7 +362,7 @@
       }
 
       .title {
-        color: $color__black--80;
+        color: var(--colors-scales-grey-80);
         font-size: 24px;
         line-height: 28px;
         padding-bottom: .5em;
@@ -370,7 +370,7 @@
       }
 
       .cta {
-        color: $color__red--100;
+        color: var(--colors-scales-red-100);
         font-size: 17px;
         line-height: 28px;
       }
@@ -393,7 +393,7 @@
       }
 
       &:has(.details) {
-        border-right: 1px solid $color__black--20;
+        border-right: 1px solid var(--colors-scales-grey-20);
       }
     }
   }
@@ -402,7 +402,7 @@
 .g-header__nav-primary .level-1.exhibitions {
   &>.details {
     .supertitle {
-      color: $color__grey--100;
+      color: var(--colors-scales-grey-52);
       font-size: 12px;
       font-weight: 325;
       line-height: 16px;
@@ -442,7 +442,7 @@
 
 .g-header__nav-primary [role="menu"]:has(>li>a:hover, >li>a:focus, >li>a[aria-expanded="true"]) {
   &>li>a:not(:hover, :focus, [aria-expanded="true"]) {
-    color: $color__black--30;
+    color: var(--colors-scales-grey-30);
     transition: color .3s ease-out;
   }
 }
@@ -459,10 +459,10 @@
 
 .g-header__opening-hours a,
 .g-header__nav-secondary a {
-  color: $color__text--secondary;
+  color: var(--colors-themes-light-mode-text-secondary);
 
   @include breakpoint('xsmall') {
-    color: $color__text--title;
+    color: var(--colors-themes-light-mode-text-title);
   }
 }
 
@@ -471,7 +471,7 @@
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__text--secondary);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-text-secondary));
   }
 
   &:active {
@@ -490,7 +490,7 @@
     padding: 0;
     border: 0 none;
     background-color: transparent;
-    color: $color__text--title;
+    color: var(--colors-themes-light-mode-text-title);
     cursor: pointer;
   }
 
@@ -500,11 +500,11 @@
 
   &:hover,
   &:focus:hover {
-    color: $color__text;
+    color: var(--colors-themes-light-mode-text-primary);
   }
 
   &:active:hover {
-    color: $color__text--secondary;
+    color: var(--colors-themes-light-mode-text-secondary);
   }
 }
 

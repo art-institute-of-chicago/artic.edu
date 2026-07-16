@@ -15,18 +15,18 @@ Sets colors for type tags:
 ***/
 
 .type {
-  color: $color__text--type;
+  color: var(--colors-themes-light-mode-text-type);
   font-style: normal;
 }
 
 .type--membership {
-  color: $color__text--membership;
+  color: var(--colors-themes-membership-text-primary);
 }
 
 .type--new {
-  color: $color__text--new;
+  color: var(--colors-themes-light-mode-link-new-primary);
 }
 
 .type--limited {
-  color: $color__text--limited;
+  color: var(--colors-themes-light-mode-link-limited-primary);
 }

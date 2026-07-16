@@ -1,6 +1,6 @@
 .research-center-subnav {
-  border-bottom: 1px solid $color__black--10;
-  border-top: 1px solid $color__black--10;
+  border-bottom: 1px solid var(--colors-scales-grey-10);
+  border-top: 1px solid var(--colors-scales-grey-10);
   overflow-x: auto;
   overflow-y: hidden;
   padding-bottom: 28px;
@@ -22,7 +22,7 @@
   }
 
   .m-links-bar__item>.f-link {
-    color: $color__black--90;
+    color: var(--colors-scales-grey-90);
     font-family: $sans-serif-font--loaded;
     font-size: 17px;
     font-weight: 300;
@@ -55,7 +55,7 @@
     }
 
     .showcase-header {
-      color: $color__black--54;
+      color: var(--colors-scales-grey-54);
       font-family: $sans-serif-font--loaded;
       font-size: 13px;
       line-height: 16px;
@@ -92,7 +92,7 @@
     padding-top: 0;
 
     .background-wrapper::before {
-      background-color: $color__black--10;
+      background-color: var(--colors-scales-grey-10);
     }
 
     .body-wrapper {
@@ -200,20 +200,20 @@
       }
 
       .custom-banner-heading {
-        color: $color__black--54;
+        color: var(--colors-scales-grey-54);
         display: unset;
         font-size: 13px;
         line-height: 16px;
       }
 
       .custom-banner-title {
-        color: $color__black--90 !important;
+        color: var(--colors-scales-grey-90) !important;
         font-size: 22px;
         line-height: 28px;
       }
 
       .custom-banner-body {
-        color: $color__black--80 !important;
+        color: var(--colors-scales-grey-80) !important;
         font-size: 17px;
         line-height: 28px;
         margin: unset;
@@ -233,7 +233,7 @@
       }
 
       .btn {
-        background-color: $color__yankees-blue;
+        background-color: var(--colors-names-research-center-yankees-blue);
         width: 100%;
       }
     }
@@ -263,7 +263,7 @@
 
     .editorial-block__heading {
       h2 {
-        color: $color__black;
+        color: var(--colors-scales-grey-100);
         font-family: $sans-serif-font--loaded;
         font-size: 21px;
         font-weight: normal;
@@ -278,11 +278,11 @@
     }
 
     .editorial-block__content-wrapper {
-      border-top: 1px solid $color__black--20;
+      border-top: 1px solid var(--colors-scales-grey-20);
     }
 
     .author {
-      color: $color__black--54;
+      color: var(--colors-scales-grey-54);
       font-family: $sans-serif-font--loaded;
       font-size: 15px;
       font-weight: 325;
@@ -309,7 +309,7 @@
       }
 
       .intro {
-        color: $color__black--81;
+        color: var(--colors-scales-grey-81);
         font-size: 16px;
         line-height: 24px;
       }
@@ -341,7 +341,7 @@
         }
 
         .intro {
-          color: $color__black--81;
+          color: var(--colors-scales-grey-81);
           font-size: 19px;
           line-height: 28px;
         }
@@ -383,7 +383,7 @@
         }
 
         .intro {
-          color: $color__black--80;
+          color: var(--colors-scales-grey-80);
           font-size: 17px;
           line-height: 28px;
           font-weight: 300;

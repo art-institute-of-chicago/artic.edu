@@ -27,7 +27,7 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: var(--colors-themes-light-mode-rules-primary);
 }
 
 
@@ -76,43 +76,43 @@
 }
 
 .m-author a {
-  color: $color__link--accent;
+  color: var(--colors-themes-light-mode-link-accent-primary);
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__link--accent-hover);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-link-accent-hover));
 
     & {
-      color: $color__link--accent-hover;
+      color: var(--colors-themes-light-mode-link-accent-hover);
     }
   }
 
   &:active:hover {
-    @include text-underline(1.02em, $color__link--accent-active);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-link-accent-active));
 
     & {
-      color: $color__link--accent-active;
+      color: var(--colors-themes-light-mode-link-accent-active);
     }
   }
 }
 
 .m-author--editorial a {
-  color: $color__link--editorial;
+  color: var(--colors-themes-light-mode-link-alternative-primary);
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__link--editorial-hover);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-link-alternative-hover));
 
     & {
-      color: $color__link--editorial-hover;
+      color: var(--colors-themes-light-mode-link-alternative-hover);
     }
   }
 
   &:active:hover {
-    @include text-underline(1.02em, $color__link--editorial-active);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-link-alternative-active));
 
     & {
-      color: $color__link--editorial-active;
+      color: var(--colors-themes-light-mode-link-alternative-active);
     }
   }
 }

@@ -4,7 +4,7 @@
     margin-left: calc(50% - 50vw);
     display: flex;
     flex-direction: row;
-    background-color: $color__bg--secondary;
+    background-color: var(--colors-themes-light-mode-background-secondary);
     padding: 4.6875vw;
 
     @include breakpoint('small-') {
@@ -192,7 +192,7 @@
             .collection-desc {
                 width: 65%;
                 font-family: $serif-font--loaded;
-                color: $color__black--54;
+                color: var(--colors-scales-grey-54);
                 line-height: 36px;
                 font-size: 28px;
 

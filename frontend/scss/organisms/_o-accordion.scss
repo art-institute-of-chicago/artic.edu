@@ -32,7 +32,7 @@
     }
 
     >h3 {
-      border-top: 1px solid $color__rules--primary;
+      border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
       padding: 16px 0 !important;
     }
 
@@ -72,7 +72,7 @@
   position: relative;
   padding-right: 60px;
   padding-left: 0px;
-  color: $color__text--title;
+  color: var(--colors-themes-light-mode-text-title);
   cursor: pointer;
   border: 0;
   width: 100%;
@@ -86,37 +86,37 @@
 
 .o-accordion__trigger.f-module-title-2 {
   padding-top: 44px - 24px - 1px;
-  border-top: 1px solid $color__rules--primary;
+  border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
 
   @include breakpoint('small+') {
     padding-top: 48px - 28px - 1px;
   }
 
   &[aria-expanded=true] {
-    border-top-color: $color__rules--secondary;
+    border-top-color: var(--colors-themes-light-mode-rules-secondary);
   }
 }
 
 .o-accordion__trigger.f-list-3 {
   padding-top: 44px - 24px - 1px;
-  border-top: 1px solid $color__rules--primary;
+  border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
 
   @include breakpoint('small+') {
     padding-top: 48px - 28px - 1px;
   }
 
   &[aria-expanded=true] {
-    border-top-color: $color__rules--secondary;
+    border-top-color: var(--colors-themes-light-mode-rules-secondary);
   }
 }
 
 // For collection filters
 .o-accordion__trigger.f-tag-2 {
   padding-bottom: 22px - 1px;
-  border-bottom: 1px solid $color__rules--primary;
+  border-bottom: 1px solid var(--colors-themes-light-mode-rules-primary);
 
   &[aria-expanded="true"] {
-    color: $color__blue--100 !important;
+    color: var(--colors-scales-blue-100) !important;
   }
 
   @include breakpoint('medium+') {
@@ -144,7 +144,7 @@
 
 .o-accordion__trigger.f-list-4 {
   padding-top: 20px - 1px;
-  border-top: 1px solid $color__rules--primary;
+  border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
 
   @include breakpoint('small+') {
     padding-top: 28px - 1px;
@@ -159,7 +159,7 @@
   }
 
   &[aria-expanded="true"] {
-    border-top-color: $color__rules--quaternary;
+    border-top-color: var(--colors-themes-light-mode-rules-quaternary);
   }
 }
 
@@ -176,7 +176,7 @@
 }
 
 .o-accordion__trigger:not(.s-inactive):hover {
-  color: $color__link--tab-hover;
+  color: var(--colors-themes-light-mode-link-tab-hover);
 }
 
 .o-accordion__trigger:not(.s-inactive):focus:not([data-focus-method="mouse"]) {
@@ -225,7 +225,7 @@
     width: 32px;
     height: 32px;
     padding: 7px;
-    border: 1px solid $color__rules--primary;
+    border: 1px solid var(--colors-themes-light-mode-rules-primary);
     border-radius: 50%;
 
     @include breakpoint('small+') {
@@ -253,9 +253,9 @@
   }
 
   .o-accordion--alt .o-accordion__trigger[aria-expanded="true"] & {
-    border-color: $color__black--90;
-    background-color: $color__black--90;
-    color: $color__bg;
+    border-color: var(--colors-scales-grey-90);
+    background-color: var(--colors-scales-grey-90);
+    color: var(--colors-themes-editorial-background-default);
   }
 }
 
@@ -433,10 +433,10 @@
     }
 
     &:not(.s-inactive) {
-      color: $color__black--90;
+      color: var(--colors-scales-grey-90);
 
       &:hover {
-        color: $color__grey--110;
+        color: var(--colors-scales-grey-58);
       }
     }
   }
@@ -470,7 +470,7 @@
   .o-accordion__panel-content {
     padding-top: 5px;
     padding-bottom: 20px;
-    border-bottom: 1px solid $color__rules--primary;
+    border-bottom: 1px solid var(--colors-themes-light-mode-rules-primary);
 
     &.m-link-list__item:first-of-type::after {
       content: none;
@@ -482,7 +482,7 @@
       }
       &.active {
         font-weight: 400;
-        color: $color__black--90 !important;
+        color: var(--colors-scales-grey-90) !important;
       }
     }
 
@@ -491,16 +491,16 @@
     }
 
     .m-link-list__sublabel {
-      color: $color__grey--120;
+      color: var(--colors-scales-grey-65);
     }
 
     a.m-link-list__trigger.f-secondary {
-      color: $color__black--54;
+      color: var(--colors-scales-grey-54);
 
       &:hover,
       &:focus:hover,
       &:active:hover {
-        color: $color__grey--110;
+        color: var(--colors-scales-grey-58);
       }
     }
 
@@ -510,19 +510,19 @@
 
     .m-link-list__item.s-active {
       &::after {
-        background-color: $color__rules--primary;
+        background-color: var(--colors-themes-light-mode-rules-primary);
       }
 
       > a.m-link-list__trigger.f-secondary {
-        color: $color__blue;
+        color: var(--colors-themes-light-mode-link-alternative-primary);
 
         &:hover,
         &:focus:hover {
-          color: $color__blue--hover;
+          color: var(--colors-themes-light-mode-link-alternative-hover);
         }
 
         &:active:hover {
-          color: $color__blue--active;
+          color: var(--colors-themes-light-mode-link-alternative-active);
         }
       }
     }
