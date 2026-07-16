@@ -12,16 +12,16 @@
   padding: 0 40px 0 0;
   border: 0 none;
   background: transparent;
-  color: $color__link;
+  color: var(--colors-themes-light-mode-link-primary);
   cursor: pointer;
 
   &:hover,
   &:focus:hover {
-    color: $color__link--hover;
+    color: var(--colors-themes-light-mode-link-hover);
   }
 
   &:active:hover {
-    color: $color__link--active;
+    color: var(--colors-themes-light-mode-link-active);
   }
 
   @include breakpoint('large+') {
@@ -68,7 +68,7 @@
   max-height: 80vh;
   margin-top: 0;
   padding-bottom: 16px;
-  background-color: $color__white;
+  background-color: var(--colors-scales-grey-0);
   box-shadow: $shadow;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;

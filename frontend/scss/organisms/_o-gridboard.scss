@@ -27,7 +27,7 @@
 .o-gridboard {
   position: relative;
   padding-top: 0.02px;
-  border-top: 1px solid $color__rules--primary;
+  border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
 }
 
 .m-title-bar+.o-gridboard {
@@ -71,7 +71,7 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: $color__rules--tertiary;
+  background-color: var(--colors-themes-light-mode-rules-tertiary);
   pointer-events: none;
 }
 
@@ -82,7 +82,7 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: var(--colors-themes-light-mode-rules-primary);
   pointer-events: none;
 }
 
@@ -98,7 +98,7 @@
 .o-gridboard__footer {
   margin-top: 40px;
   padding-top: 25px;
-  border-top: 1px solid $color__rules--primary;
+  border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
 
   @include breakpoint('small+') {
     margin-top: 0;
@@ -143,13 +143,13 @@ $point in $breakpoints {
       @else if ($name=='small') {
         margin-top: colspan(1.5, small);
         padding-top: colspan(1.5, small, -1px);
-        border-top: 1px solid $color__rules--primary;
+        border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
       }
 
       @else {
         margin-top: #{map.get($grid-margin-tops, $name)}px;
         padding-top: #{map.get($grid-padding-tops, $name) - 1}px;
-        border-top: 1px solid $color__rules--primary;
+        border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
       }
 
       opacity: 0;
@@ -309,8 +309,8 @@ $point in $breakpoints {
     display: block;
     left: colspan(14, large);
     width: colspan(15, large);
-    border-right: 1px solid $color__rules--tertiary;
-    border-left: 1px solid $color__rules--tertiary;
+    border-right: 1px solid var(--colors-themes-light-mode-rules-tertiary);
+    border-left: 1px solid var(--colors-themes-light-mode-rules-tertiary);
     background: transparent;
   }
 
@@ -364,8 +364,8 @@ $point in $breakpoints {
     display: block;
     left: colspan(14, xlarge);
     width: colspan(15, xlarge);
-    border-right: 1px solid $color__rules--tertiary;
-    border-left: 1px solid $color__rules--tertiary;
+    border-right: 1px solid var(--colors-themes-light-mode-rules-tertiary);
+    border-left: 1px solid var(--colors-themes-light-mode-rules-tertiary);
     background: transparent;
   }
 
@@ -420,8 +420,8 @@ $point in $breakpoints {
       display: block;
       left: colspan(18, large);
       width: colspan(22, large);
-      border-right: 1px solid $color__rules--tertiary;
-      border-left: 1px solid $color__rules--tertiary;
+      border-right: 1px solid var(--colors-themes-light-mode-rules-tertiary);
+      border-left: 1px solid var(--colors-themes-light-mode-rules-tertiary);
       background: transparent;
     }
 
@@ -440,8 +440,8 @@ $point in $breakpoints {
       display: block;
       left: colspan(18, xlarge);
       width: colspan(22, xlarge);
-      border-right: 1px solid $color__rules--tertiary;
-      border-left: 1px solid $color__rules--tertiary;
+      border-right: 1px solid var(--colors-themes-light-mode-rules-tertiary);
+      border-left: 1px solid var(--colors-themes-light-mode-rules-tertiary);
       background: transparent;
     }
 
@@ -464,19 +464,19 @@ $point in $breakpoints {
     left: 0;
     right: 0;
     height: 1px;
-    background-color: $color__white;
+    background-color: var(--colors-scales-grey-0);
     z-index: 2;
   }
 }
 
 .o-gallery--small-mosaic.o-gallery----theme-1 {
   .o-gridboard {
-    border-top-color: $color__rules--contrast;
+    border-top-color: var(--colors-themes-light-mode-rules-contrast);
   }
 
   .o-gridboard::before,
   .o-gridboard::after {
-    background-color: $color__rules--focus;
+    background-color: var(--colors-themes-light-mode-rules-focus);
   }
 
   @each $name,
@@ -493,15 +493,15 @@ $point in $breakpoints {
 
   @include breakpoint('large') {
     .o-gridboard--3-col\@large::before {
-      border-right: 1px solid $color__rules--contrast;
-      border-left: 1px solid $color__rules--contrast;
+      border-right: 1px solid var(--colors-themes-light-mode-rules-contrast);
+      border-left: 1px solid var(--colors-themes-light-mode-rules-contrast);
     }
   }
 
   @include breakpoint('xlarge') {
     .o-gridboard--3-col\@xlarge::before {
-      border-right: 1px solid $color__rules--contrast;
-      border-left: 1px solid $color__rules--contrast;
+      border-right: 1px solid var(--colors-themes-light-mode-rules-contrast);
+      border-left: 1px solid var(--colors-themes-light-mode-rules-contrast);
     }
   }
 }
@@ -515,7 +515,7 @@ $point in $breakpoints {
         @if ($name=='xsmall') {}
 
         @else {
-          border-top: 1px solid $color__rules--primary;
+          border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
           margin-top: -1px;
         }
       }
@@ -524,15 +524,15 @@ $point in $breakpoints {
 
   @include breakpoint('large') {
     .o-gridboard--3-col\@large::before {
-      border-right: 1px solid $color__rules--primary;
-      border-left: 1px solid $color__rules--primary;
+      border-right: 1px solid var(--colors-themes-light-mode-rules-primary);
+      border-left: 1px solid var(--colors-themes-light-mode-rules-primary);
     }
   }
 
   @include breakpoint('xlarge') {
     .o-gridboard--3-col\@xlarge::before {
-      border-right: 1px solid $color__rules--primary;
-      border-left: 1px solid $color__rules--primary;
+      border-right: 1px solid var(--colors-themes-light-mode-rules-primary);
+      border-left: 1px solid var(--colors-themes-light-mode-rules-primary);
     }
   }
 }
@@ -553,7 +553,7 @@ $point in $breakpoints {
     @include breakpoint('#{$name}') {
       .o-gridboard[class*="col@#{$name}"]>* {
         @if ($name!='xsmall') {
-          border-top: 1px solid $color__rules--primary;
+          border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
           margin-top: -1px;
         }
       }

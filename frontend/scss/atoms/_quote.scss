@@ -36,7 +36,7 @@ Has a variant for editorial articles:
   position: relative;
   padding-top: 56px;
   padding-bottom: 0.02px;
-  color: $color__text--title;
+  color: var(--colors-themes-light-mode-text-title);
 
   @include breakpoint('small+') {
     padding-top: 68px;
@@ -58,7 +58,7 @@ Has a variant for editorial articles:
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: var(--colors-themes-light-mode-rules-primary);
 }
 
 .quote cite {
@@ -75,7 +75,7 @@ Has a variant for editorial articles:
   top: 16px;
   width: 48px;
   height: 29px;
-  color: $color__text--accent;
+  color: var(--colors-themes-light-mode-text-accent);
   transform: rotate(180deg);
   transform-origin: 24px 14.5px;
 
@@ -131,7 +131,7 @@ Has a variant for editorial articles:
 .o-article--editorial .o-blocks .quote {
   padding: 12px 40px 60px 12px;
   border-radius: $border-radius;
-  background-color: $color__bg--editorial;
+  background-color: var(--colors-themes-editorial-background-primary);
 
   @include breakpoint('small+') {
     padding: 16px 40px 80px 20px;
@@ -154,7 +154,7 @@ Has a variant for editorial articles:
 .quote--editorial .f-quote,
 .o-article--editorial .o-blocks .quote .f-quote {
   font-style: italic;
-  color: $color__text--title;
+  color: var(--colors-themes-light-mode-text-title);
 }
 
 .quote--editorial .quote__icon,
@@ -164,7 +164,7 @@ Has a variant for editorial articles:
   right: 16px;
   top: auto;
   bottom: 16px;
-  color: $color__text--editorial;
+  color: var(--colors-themes-editorial-text-primary);
   transform: none;
 
   @include breakpoint('medium+') {
@@ -176,7 +176,7 @@ Has a variant for editorial articles:
 .o-article .quote.o-blocks__block {
   padding: 12px 40px 60px 12px;
   border-radius: $border-radius;
-  background-color: $color__bg--editorial;
+  background-color: var(--colors-themes-editorial-background-primary);
 
   @include breakpoint('small+') {
     padding: 16px 40px 80px 20px;
@@ -195,7 +195,7 @@ Has a variant for editorial articles:
 
 .o-article .quote.o-blocks__block .f-quote {
   font-style: italic;
-  color: $color__text--title;
+  color: var(--colors-themes-light-mode-text-title);
 }
 
 .o-article .quote.o-blocks__block .quote__icon {

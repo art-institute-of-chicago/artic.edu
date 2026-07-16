@@ -3,8 +3,8 @@
     margin-left: calc(50% - 50vw);
     display: flex;
     flex-direction: row;
-    background-color: $color__teal--my-museum-tour;
-    color: $color__white;
+    background-color: var(--colors-aliases-japanese-indigo);
+    color: var(--colors-scales-grey-0);
     padding: 56px;
 
     @include breakpoint('small-') {
@@ -27,7 +27,7 @@
                 width: 35%;
                 font-size: 56px;
                 line-height: 65px;
-                color: $color__white;
+                color: var(--colors-scales-grey-0);
                 font-family: $serif-font--loaded;
 
                 @include breakpoint('medium-') {
@@ -72,7 +72,7 @@
                     &:nth-of-type(2) {
                         margin-top: 30px;
                         background-color: transparent;
-                        border: 2px solid $color__white;
+                        border: 2px solid var(--colors-scales-grey-0);
 
                         @include breakpoint('small-') {
                             margin-top: 20px;
@@ -139,7 +139,7 @@
                 }
 
                 svg {
-                    color: $color__white;
+                    color: var(--colors-scales-grey-0);
                 }
 
                 >div {
@@ -184,7 +184,7 @@
         a:focus:hover .my-museum-tour-header__icons p,
         a.s-active .my-museum-tour-header__icons p,
         a:active:hover .my-museum-tour-header__icons p {
-          color: $color__white;
+          color: var(--colors-scales-grey-0);
         }
     }
 }

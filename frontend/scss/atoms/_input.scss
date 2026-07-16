@@ -17,26 +17,26 @@ Basic text input:
   height: 48px;
   margin: 0;
   padding: 0 15px 4px;
-  border: 1px solid $color__input-border;
+  border: 1px solid var(--colors-themes-light-mode-input-border-primary);
   border-radius: $border-radius;
-  background-color: $color__white;
-  color: $color__input-text;
+  background-color: var(--colors-scales-grey-0);
+  color: var(--colors-themes-light-mode-input-text-primary);
   -webkit-appearance: none;
   -moz-appearance: none;
   font-variant-numeric: lining-nums;
 
   @include placeholder() {
-    color: $color__text--forms;
+    color: var(--colors-themes-light-mode-text-forms);
   }
 
   &:hover {
-    border-color: $color__input-border--hover;
-    color: $color__input-text--hover;
+    border-color: var(--colors-themes-light-mode-input-border-hover);
+    color: var(--colors-themes-light-mode-input-text-hover);
   }
 
   &:focus {
-    border-color: $color__input-border--focus;
-    color: $color__input-text--focus;
+    border-color: var(--colors-themes-light-mode-input-border-focus);
+    color: var(--colors-themes-light-mode-input-text-focus);
   }
 
   &:disabled {
@@ -45,7 +45,7 @@ Basic text input:
   }
 
   .s-error > & {
-    border-color: $color__input-border--error;
+    border-color: var(--colors-themes-light-mode-input-border-error);
   }
 
   label + & {
@@ -106,7 +106,7 @@ Basic text input, with counter:
   right: 16px;
   top: 50%;
   margin-top: -1px;
-  color: $color__input-output;
+  color: var(--colors-themes-light-mode-input-output-primary);
   text-align: right;
   transform: translateY(-50%);
 

@@ -220,7 +220,7 @@
   @include tucked-margin-top($f-caption, ('xsmall': 48));
 
   & {
-    color: $color__text--secondary;
+    color: var(--colors-themes-light-mode-text-secondary);
   }
 
   &:first-child {
@@ -229,13 +229,13 @@
 }
 
 .o-blocks>.f-caption a {
-  color: $color__text--secondary;
+  color: var(--colors-themes-light-mode-text-secondary);
   text-decoration: none;
 
   &:hover,
   &:focus:hover,
   &:active:hover {
-    @include text-underline(1.02em, $color__rules--secondary);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-rules-secondary));
   }
 }
 
@@ -466,7 +466,7 @@
         top: 0;
         width: colspan(13, large);
         height: 1px;
-        background-color: $color__rules--primary;
+        background-color: var(--colors-themes-light-mode-rules-primary);
       }
     }
 
@@ -552,7 +552,7 @@
         top: 0;
         width: colspan(13, large);
         height: 1px;
-        background-color: $color__rules--primary;
+        background-color: var(--colors-themes-light-mode-rules-primary);
       }
     }
 
@@ -616,16 +616,16 @@
 .o-blocks>ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
 .o-blocks>ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
 .o-blocks>.f-body a:not(.btn) {
-  color: $color__link--accent;
+  color: var(--colors-themes-light-mode-link-accent-primary);
   text-decoration: none;
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__link--accent);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-link-accent-primary));
   }
 
   &:active:hover {
-    @include text-underline(1.02em, $color__rules--secondary);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-rules-secondary));
   }
 }
 
@@ -637,11 +637,11 @@
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__link--accent);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-link-accent-primary));
   }
 
   &:active:hover {
-    @include text-underline(1.02em, $color__rules--secondary);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-rules-secondary));
   }
 }
 
@@ -649,25 +649,25 @@
 .o-article--editorial .o-blocks>ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a,
 .o-article--editorial .o-blocks>ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a,
 .o-blocks>.f-body-editorial a {
-  @include text-underline(89%, $color__rules--secondary);
+  @include text-underline(89%, var(--colors-themes-light-mode-rules-secondary));
 
   & {
-    color: $color__link--editorial;
+    color: var(--colors-themes-light-mode-link-alternative-primary);
     text-decoration: none;
   }
 
   &:hover,
   &:focus:hover {
-    @include text-underline(89%, $color__link--editorial);
+    @include text-underline(89%, var(--colors-themes-light-mode-link-alternative-primary));
   }
 
   &:active:hover {
-    @include text-underline(89%, $color__rules--secondary);
+    @include text-underline(89%, var(--colors-themes-light-mode-rules-secondary));
   }
 }
 
 .o-blocks>.f-deck a {
-  @include text-underline(89%, $color__text--tertiary);
+  @include text-underline(89%, var(--colors-themes-light-mode-text-tertiary));
 
   & {
     color: inherit;
@@ -676,22 +676,22 @@
 
   &:hover,
   &:focus:hover {
-    @include text-underline(89%, $color__text--secondary);
-    color: $color__text;
+    @include text-underline(89%, var(--colors-themes-light-mode-text-secondary));
+    color: var(--colors-themes-light-mode-text-primary);
   }
 
   &:active:hover {
-    color: $color__text;
+    color: var(--colors-themes-light-mode-text-primary);
   }
 }
 
 .o-blocks>small a,
 .o-blocks>.f-secondary a {
-  @include text-underline(1.02em, $color__text--tertiary);
+  @include text-underline(1.02em, var(--colors-themes-light-mode-text-tertiary));
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__text--secondary);
+    @include text-underline(1.02em, var(--colors-themes-light-mode-text-secondary));
   }
 
   &:active {
@@ -726,12 +726,12 @@
   background: none !important;
 
   // PUB-132: Revisit if this needs to be limited to publications
-  color: $color__blue !important;
+  color: var(--colors-themes-light-mode-link-alternative-primary) !important;
 
   &:hover,
   &:focus:hover,
   &:active:hover {
-    color: $color__blue--hover !important;
+    color: var(--colors-themes-light-mode-link-alternative-hover) !important;
   }
 }
 

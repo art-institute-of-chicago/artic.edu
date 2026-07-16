@@ -5,7 +5,7 @@
 
   .row:first-child {
     padding-bottom: 18px;
-    border-bottom: 1px solid $color__rules--primary;
+    border-bottom: 1px solid var(--colors-themes-light-mode-rules-primary);
     margin-bottom: 50px;
   }
 
@@ -19,7 +19,7 @@
     }
 
     > .col:first-child {
-      border-right: 1px solid $color__rules--primary;
+      border-right: 1px solid var(--colors-themes-light-mode-rules-primary);
       @include breakpoint('medium') {
         border-right: none;
       }
@@ -110,7 +110,7 @@
     width: 100%;
 
     tr {
-      border-bottom: 1px solid $color__rules--primary ;
+      border-bottom: 1px solid var(--colors-themes-light-mode-rules-primary) ;
       padding: 6px;
     }
 
@@ -120,7 +120,7 @@
     }
 
     td {
-      color: $color__text--secondary;
+      color: var(--colors-themes-light-mode-text-secondary);
       font-weight: 300;
       padding: 10px 0 18px;
       width: 20%;
@@ -131,7 +131,7 @@
     }
 
     .closed {
-      color: $color__text--secondary;
+      color: var(--colors-themes-light-mode-text-secondary);
     }
   }
 

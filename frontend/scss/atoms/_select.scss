@@ -24,24 +24,24 @@ Form selects, partially styled using [select-css](https://github.com/filamentgro
   @include styled-select;
 
   & {
-    border: 1px solid $color__input-border;
+    border: 1px solid var(--colors-themes-light-mode-input-border-primary);
     border-radius: $border-radius;
-    background-color: $color__white;
+    background-color: var(--colors-scales-grey-0);
     cursor: pointer;
 
     &:hover {
-      border-color: $color__input-border--hover;
+      border-color: var(--colors-themes-light-mode-input-border-hover);
     }
   }
 
   &:focus:hover,
   &.s-focus {
     //@extend %default-focus-style;
-    border-color: $color__input-border--focus;
+    border-color: var(--colors-themes-light-mode-input-border-focus);
   }
 
   .s-error & {
-    border-color: $color__input-border--error;
+    border-color: var(--colors-themes-light-mode-input-border-error);
   }
 
   label+& {
@@ -54,7 +54,7 @@ Form selects, partially styled using [select-css](https://github.com/filamentgro
   padding: 0 35px 2px 15px;
   border: 0 none;
   border-radius: $border-radius;
-  color: $color__input-text;
+  color: var(--colors-themes-light-mode-input-text-primary);
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -69,7 +69,7 @@ Form selects, partially styled using [select-css](https://github.com/filamentgro
 }
 
 .select__select:hover select {
-  color: $color__input-text--hover;
+  color: var(--colors-themes-light-mode-input-text-hover);
 }
 
 .select__select select:focus {

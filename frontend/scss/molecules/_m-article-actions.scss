@@ -16,7 +16,7 @@
 .m-article-actions--keyline-top {
   margin-top: 40px;
   padding-top: 7px;
-  border-top: 1px solid $color__rules--primary;
+  border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
 }
 
 .m-article-actions__action {

@@ -9,7 +9,7 @@
   width: 100vw;
   height: 100vh;
   border-radius: $border-radius;
-  background-color: $color__black--80;
+  background-color: var(--colors-scales-grey-80);
   overflow: hidden;
   opacity: 0;
   transition: opacity .35s;
@@ -69,8 +69,8 @@
   line-height: 48px;
   padding: 0 16px;
   border-radius: $border-radius;
-  background-color: rgba($color__black, .5);
-  color: $color__white;
+  background-color: rgba(var(--colors-scales-grey-100), .5);
+  color: var(--colors-scales-grey-0);
 
   @include breakpoint('small+') {
     left: 32px;
@@ -79,14 +79,14 @@
 
   &:hover,
   &:focus:hover {
-    background-color: $color__link--accent-hover;
-    color: $color__white;
+    background-color: var(--colors-themes-light-mode-link-accent-hover);
+    color: var(--colors-scales-grey-0);
   }
 
   &.s-active,
   &:active:hover {
-    background-color: $color__link--accent-active;
-    color: $color__white;
+    background-color: var(--colors-themes-light-mode-link-accent-active);
+    color: var(--colors-scales-grey-0);
   }
 }
 
