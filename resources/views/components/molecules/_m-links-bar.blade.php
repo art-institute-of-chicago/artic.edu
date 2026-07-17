@@ -37,7 +37,7 @@
           @endforeach
           @if (isset($overflow) and $overflow)
           <li class="m-links-bar__item m-links-bar__item--push m-links-bar__item--overflow s-hidden" data-links-bar-primary-overflow>
-              @component('components.atoms._dropdown')
+              @component('components.atoms._form-dropdown')
                 @slot('prompt', ($isTabs && $activePrimaryLink > -1 ? $linksPrimary[$activePrimaryLink]['label'] : "More"))
                 @slot('ariaTitle', 'More links')
                 @slot('variation','dropdown--filter dropdown--tabs'.(!$isTabs ? ' f-link' : ''))
