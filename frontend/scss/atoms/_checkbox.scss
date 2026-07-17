@@ -53,7 +53,7 @@ Demonstrated in **statics/toybox**
 Example usage:
 
 ```
-<pre><code>@component('components.atoms._checkbox')
+<pre><code>@component('components.atoms._form-checkbox')
   @slot('id', 'coption1')
   @slot('value', 'coption1')
   @slot('name', 'coption1')

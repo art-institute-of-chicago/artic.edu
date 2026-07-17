@@ -380,7 +380,7 @@
             @endif
 
             @if ($block['type'] === 'checkbox')
-                @component('components.atoms._checkbox')
+                @component('components.atoms._form-checkbox')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['name'] ?? 'i_'.$loop->iteration)
