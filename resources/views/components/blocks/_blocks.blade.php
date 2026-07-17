@@ -309,7 +309,7 @@
             @endif
 
             @if ($block['type'] === 'label')
-                @component('components.atoms._label')
+                @component('components.atoms._form-label')
                   @slot('optional', $block['optional'] ?? null)
                   @slot('hint', $block['hint'] ?? null)
                   @slot('error', $block['error'] ?? null)
