@@ -397,7 +397,7 @@
             @endif
 
             @if ($block['type'] === 'radio')
-                @component('components.atoms._radio')
+                @component('components.atoms._form-radio')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['name'] ?? 'i_'.$loop->iteration)
