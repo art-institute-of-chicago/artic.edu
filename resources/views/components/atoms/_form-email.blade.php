@@ -1,22 +1,18 @@
-<span class="input{{ (isset($variation)) ? ' '.$variation : '' }}{{ (isset($error)) ? ' s-error' : '' }}{{ (isset($disabled)) ? ' s-disabled' : '' }}">
-    @if ($slot != '')
-        @component('components.atoms._form-label')
-            @slot('for', $id)
-            @slot('optional', $optional ?? null)
-            @slot('hint', $hint ?? null)
-            {!! $slot !!}
-        @endcomponent
-    @endif
-    @if (isset($textCount) and $textCount)
-    <span class="input__io-container" data-behavior="textCount">
-    @endif
-    <input class="f-secondary" type="{{ $type ?? 'email'}}" value="{{ $value ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name }}" placeholder="{{ $placeholder ?? 'your@email.com' }}" {{ $disabled ?? '' }} {{ $required ?? '' }} autocomplete="email">
-    @if (isset($textCount) and $textCount)
-    <output for="{{ $id ?? '' }}" class="f-secondary"></output></span>
-    @endif
-    @if (isset($error))
-        @component('components.atoms._form-error-msg')
-            {{ $error ?? '' }}
-        @endcomponent
-    @endif
-</span>
+@component('components.atoms._form-input')
+    @slot('variation', $variation ?? null)
+    @slot('error', $error ?? null)
+    @slot('disabled', $disabled ?? null)
+    @slot('id', $id ?? null)
+    @slot('optional', $optional ?? null)
+    @slot('hint', $hint ?? null)
+    @slot('textCount', $textCount ?? null)
+    @slot('value', $value ?? null)
+    @slot('name', $name ?? null)
+    @slot('pattern', $id ?? pattern)
+    @slot('required', $required ?? null)
+    @slot('error', $error ?? null)
+    @slot('type', 'email')
+    @slot('placeholder', 'your@email.com')
+    @slot('autocomplete', 'email')
+    {!! $slot !!}
+@endcomponent
