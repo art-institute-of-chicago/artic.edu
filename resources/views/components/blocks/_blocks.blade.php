@@ -318,7 +318,7 @@
             @endif
 
             @if ($block['type'] === 'input' || $block['type'] === 'email' || $block['type'] === 'number' || $block['type'] === 'tel' || $block['type'] == 'hidden')
-                @component('components.atoms._input')
+                @component('components.atoms._form-input')
                     @slot('type', $block['type'] === 'input' ? 'text' : $block['type'])
                     @slot('variation', $block['variation'] ?? null)
                     @slot('pattern', $block['pattern'] ?? null)
