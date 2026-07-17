@@ -365,7 +365,7 @@
             @endif
 
             @if ($block['type'] === 'select')
-                @component('components.atoms._select')
+                @component('components.atoms._form-select')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)

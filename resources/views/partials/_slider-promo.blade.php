@@ -31,7 +31,7 @@
                     </div>
                 @elseif ($modal['variation'] === \App\Models\Lightbox::VARIATION_TICKETING)
                     <div class="g-slider__form-row">
-                        @component('components.atoms._select')
+                        @component('components.atoms._form-select')
                             @slot('id', 'g-slider--promo__ticketing')
                             @slot('name', 'g-slider--promo__ticketing')
                             @slot('options', [
