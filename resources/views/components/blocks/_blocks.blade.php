@@ -337,7 +337,7 @@
             @endif
 
             @if ($block['type'] === 'captcha')
-                @component('components.atoms._captcha')
+                @component('components.atoms._form-captcha')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
