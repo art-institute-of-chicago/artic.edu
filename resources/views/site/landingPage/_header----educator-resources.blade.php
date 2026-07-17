@@ -22,7 +22,7 @@
     @endif
       <div class="educator-resources-top__quick-search">
         <h3>Content</h3>
-        @component('components.atoms._dropdown')
+        @component('components.atoms._form-dropdown')
           @slot('prompt', 'Select')
           @slot('ariaTitle', 'Content dropdown selector')
           @slot('variation','dropdown educator-resources__dropdown')
@@ -33,7 +33,7 @@
         @endcomponent
 
         <h3>Audience</h3>
-        @component('components.atoms._dropdown')
+        @component('components.atoms._form-dropdown')
           @slot('prompt', 'Select')
           @slot('ariaTitle', 'Audience dropdown selector')
           @slot('variation','dropdown educator-resources__dropdown')

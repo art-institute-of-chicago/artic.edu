@@ -38,7 +38,7 @@
         @endslot
         @slot('secondaryHtml')
             <li class="m-links-bar__item m-links-bar__item--primary">
-                @component('components.atoms._dropdown')
+                @component('components.atoms._form-dropdown')
                   @slot('prompt', \App\Models\Event::$eventTypes[request('type')] ?? 'All event types')
                   @slot('ariaTitle', 'Filter by')
                   @slot('variation','dropdown--filter f-link')
@@ -47,7 +47,7 @@
                 @endcomponent
             </li>
             <li class="m-links-bar__item m-links-bar__item--primary">
-                @component('components.atoms._dropdown')
+                @component('components.atoms._form-dropdown')
                   @slot('prompt', \App\Models\Event::$eventAudiences[request('audience')] ?? 'All audiences')
                   @slot('ariaTitle', 'Filter by')
                   @slot('variation','dropdown--filter f-link')

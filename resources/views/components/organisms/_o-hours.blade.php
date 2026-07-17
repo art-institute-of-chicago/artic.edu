@@ -14,7 +14,7 @@
         @if ($hoursHeader = $hour->present()->getHoursHeader())
             <span class="o-hours__hours">{{ $hoursHeader }}</span>
         @endif
-        @component('components.atoms._dropdown')
+        @component('components.atoms._form-dropdown')
             @slot('variation', 'dropdown--filter')
             @slot('prompt', 'See all hours')
             @slot('ariaTitle', 'See all hours')
