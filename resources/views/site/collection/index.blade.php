@@ -140,9 +140,12 @@
         <ul class="o-collection-search__quick-search-links" aria-labelledby="h-quick-search-mobile">
             @foreach ($page->apiModels('artCategoryTerms', 'CategoryTerm') as $category)
                 <li>
-                    <a href="{!! $category->present()->collectionUrl !!}" class="tag tag--quinary f-tag" data-gtm-old-label="quick-search-click" data-gtm-event="{{ StringHelpers::getUtf8Slug($category->title) }}" data-gtm-event-category="collection-search">
+                    @component('components.atoms._tag')
+                        @slot('variation', 'tag--quinary')
+                        @slot('href', $category->present()->collectionUrl)
+                        @slot('gtmAttributes', 'data-gtm-old-label="quick-search-click" data-gtm-event="' . StringHelpers::getUtf8Slug($category->title) . '" data-gtm-event-category="collection-search"')
                         {!! $category->present()->title !!}
-                    </a>
+                    @endcomponent
                 </li>
             @endforeach
         </ul>

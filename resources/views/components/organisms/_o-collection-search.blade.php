@@ -18,9 +18,12 @@
         <ul class="o-collection-search__quick-search-links">
         @foreach ($links as $link)
             <li>
-                <a href="{{ $link['href'] }}" class="tag tag--quinary f-tag" data-gtm-old-label="quick-search-click" data-gtm-event="{{ StringHelpers::getUtf8Slug($link['label']) }}" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-search">
+                @component('components.atoms._tag')
+                    @slot('variation', 'tag--quinary')
+                    @slot('href', $link['href'])
+                    @slot('gtmAttributes', 'data-gtm-old-label="quick-search-click" data-gtm-event="' . StringHelpers::getUtf8Slug($link['label']) . '" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-search"')
                     {{ $link['label'] }}
-                </a>
+                @endcomponent
             </li>
         @endforeach
         </ul>

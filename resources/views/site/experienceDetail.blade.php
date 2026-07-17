@@ -29,13 +29,11 @@
             <ul class="m-inline-list" aria-labelledby="h-topics">
                 @foreach ($item->categories as $category)
                     <li class="m-inline-list__item">
-                        @if (!empty($category['id']))
-                            <a class="tag f-tag" href="{{ route('articles', ['category' => $category['id']]) }}">
-                                {{ $category['name'] }}
-                            </a>
-                        @else
-                            <span class="tag f-tag">{{ $category['name'] }}</span>
-                        @endif
+                        @component('components.atoms._tag')
+                            @slot('tag', !empty($category['id']) ? 'a' : 'span')
+                            @slot('href', !empty($category['id']) ? route('articles', ['category' => $category['id']]) : null)
+                            {{ $category['name'] }}
+                        @endcomponent
                     </li>
                 @endforeach
             </ul>
