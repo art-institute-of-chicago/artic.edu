@@ -104,7 +104,10 @@
             @if ( (isset($tags) && $tags) && $tags->count() > 0)
                 <div class="m-feature-block-editorial__tags">
                     @foreach ($tags as $tag)
-                        <a class="tag f-tag" href="{{ route('articles', ['category' => $tag->id]) }}">{{ $tag->name }}</a>
+                        @component('components.atoms._tag')
+                            @slot('href', route('articles', ['category' => $tag->id]))
+                            {{ $tag->name }}
+                        @endcomponent
                     @endforeach
                 </div>
             @endif

@@ -201,11 +201,11 @@
         <ul class="m-inline-list" aria-labelledby="h-topics">
         @foreach ($item->topics as $topic)
             <li class="m-inline-list__item">
-                @if (!empty($topic['id']))
-                    <a class="tag f-tag" href="{{ route('articles', ['category' => $topic['id']]) }}">{{ $topic['name'] }}</a>
-                @else
-                    <span class="tag f-tag">{{ $topic['name'] }}</span>
-                @endif
+                @component('components.atoms._tag')
+                    @slot('tag', !empty($topic['id']) ? 'a' : 'span')
+                    @slot('href', !empty($topic['id']) ? route('articles', ['category' => $topic['id']]) : null)
+                    {{ $topic['name'] }}
+                @endcomponent
             </li>
         @endforeach
         </ul>
