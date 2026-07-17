@@ -13,7 +13,7 @@
             <form class="g-slider__form" action="{{ $modal['action_url'] }}" method="post" enctype="multipart/form-data" accept-charset="UTF-8" target="_blank" rel="noopener noreferrer" data-gtm-event-category="lightbox" data-gtm-event="{{ $modal['lightbox_button_text'] ?? 'Join Now' }}">
                 @if ($modal['variation'] === \App\Models\Lightbox::VARIATION_NEWSLETTER)
                     <div class="g-slider__form-row">
-                        @component('components.atoms._email')
+                        @component('components.atoms._form-email')
                             @slot('id', 'edit-submitted-mail')
                             @slot('name', 'submitted[mail]')
                             @slot('required', 'required')
@@ -22,7 +22,7 @@
                     </div>
                 @elseif ($modal['variation'] === \App\Models\Lightbox::VARIATION_EMAIL)
                     <div class="g-slider__form-row">
-                        @component('components.atoms._email')
+                        @component('components.atoms._form-email')
                             @slot('id', 'edit-submitted-mail')
                             @slot('name', 'submitted[mail]')
                             @slot('required', 'required')
