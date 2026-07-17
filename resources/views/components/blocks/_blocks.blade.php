@@ -350,7 +350,7 @@
             @endif
 
             @if ($block['type'] === 'textarea')
-                @component('components.atoms._textarea')
+                @component('components.atoms._form-textarea')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
