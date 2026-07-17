@@ -412,7 +412,7 @@
             @endif
 
             @if ($block['type'] === 'date-select')
-                @component('components.atoms._date-select-input')
+                @component('components.atoms._form-date-select-input')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
