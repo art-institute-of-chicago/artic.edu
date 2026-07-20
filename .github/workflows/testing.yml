@@ -4,8 +4,9 @@ jobs:
     test:
         runs-on: ubuntu-22.04
         env:
-          NODE_OPTIONS: '--openssl-legacy-provider'
-          CI: 1
+            NODE_OPTIONS: "--openssl-legacy-provider"
+            CI: 1
+            STYLES_SERVICE_URL: ${{ secrets.STYLES_SERVICE_URL }}
         steps:
             - name: Install PHP
               uses: shivammathur/setup-php@v2
