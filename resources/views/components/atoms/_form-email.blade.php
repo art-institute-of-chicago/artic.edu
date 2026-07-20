@@ -8,7 +8,7 @@
     @slot('textCount', $textCount ?? null)
     @slot('value', $value ?? null)
     @slot('name', $name ?? null)
-    @slot('pattern', $id ?? pattern)
+    @slot('pattern', $pattern ?? null)
     @slot('required', $required ?? null)
     @slot('error', $error ?? null)
     @slot('type', 'email')
