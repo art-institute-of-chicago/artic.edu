@@ -1,7 +1,7 @@
 $disable-font-loading: true;
 
+@import url($styles-service + '/storage/variables.css');
 @import 'setup/variables';
-@import 'setup/colors';
 @import 'setup/mixins';
 @import 'setup/typography';
 @import 'atoms/loader';
