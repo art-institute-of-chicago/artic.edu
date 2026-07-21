@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const generateRevManifestPlugin = require('./scripts/webpack/GenerateRevManifestPlugin');
+const { fetchStyleVariables } = require('./scripts/webpack/fetchStyleVariables');
 
 class TimestampPlugin {
   apply(compiler) {
@@ -43,6 +44,7 @@ async function cleanDirectories(dirs) {
 
 module.exports = async () => {
   await cleanDirectories(['scripts', 'styles', 'images']);
+  await fetchStyleVariables();
 
   const isProd = process.env.NODE_ENV === 'production';
   const isCI = process.env.CI === '1';
@@ -164,7 +166,6 @@ module.exports = async () => {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
-                additionalData: `$styles-service: '${process.env.STYLES_SERVICE_URL}';`,
               },
             },
           ],
