@@ -23,17 +23,17 @@ Triggers the display of `info-button-info`. The content of the `span` is fed int
   padding: 0;
   border: 0 none;
   background: transparent;
-  color: var(--colors-themes-light-mode-text-tertiary);
+  color: $colors-themes-light-mode-text-tertiary;
   cursor: pointer;
   vertical-align: text-bottom;
 
   &:hover,
   &:focus:hover {
-    color: var(--colors-themes-light-mode-text-secondary);
+    color: $colors-themes-light-mode-text-secondary;
   }
 
   &:active:hover {
-    color: var(--colors-themes-light-mode-text-tertiary);
+    color: $colors-themes-light-mode-text-tertiary;
   }
 }
 

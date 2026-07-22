@@ -29,7 +29,7 @@ Additional state for if the auto complete has been used.
   }
 
   .g-mask {
-    background-color: rgba(var(--colors-scales-grey-80), 50%);
+    background-color: rgba($colors-scales-grey-80, 50%);
     bottom: 0;
     height: 100vh;
     opacity: 1;

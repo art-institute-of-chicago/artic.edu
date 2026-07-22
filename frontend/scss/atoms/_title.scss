@@ -17,14 +17,14 @@ Sets color and link styles of title text
 
 .title,
 .title a {
-  color: var(--colors-themes-light-mode-text-title);
+  color: $colors-themes-light-mode-text-title;
 }
 
 a.title:hover,
 .title a:hover,
 a:hover .title,
 .m-listing__link:hover + .m-listing__meta .title {
-  color: var(--colors-themes-light-mode-text-secondary);
+  color: $colors-themes-light-mode-text-secondary;
 }
 
 

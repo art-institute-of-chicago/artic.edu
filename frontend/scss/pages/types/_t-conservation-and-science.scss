@@ -1,7 +1,7 @@
 @use "sass:map";
 .conservation-and-science-subnav {
-    border-bottom: 1px solid var(--colors-scales-grey-10);
-    border-top: 1px solid var(--colors-scales-grey-10);
+    border-bottom: 1px solid $colors-scales-grey-10;
+    border-top: 1px solid $colors-scales-grey-10;
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 28px;
@@ -23,7 +23,7 @@
     }
 
     .m-links-bar__item>.f-link {
-        color: var(--colors-scales-grey-90);
+        color: $colors-scales-grey-90;
         font-family: $sans-serif-font--loaded;
         font-size: 17px;
         font-weight: 300;
@@ -35,7 +35,7 @@
 .conservation-and-science {
   .showcase--conservation-and-science.m-showcase-block {
     margin-top: 50px;
-    background-color: var(--colors-scales-grey-0);
+    background-color: $colors-scales-grey-0;
 
     .m-showcase-wrapper {
       flex-direction: row-reverse;
@@ -56,7 +56,7 @@
     }
 
     .showcase-header {
-      color: var(--colors-scales-grey-54);
+      color: $colors-scales-grey-54;
       font-family: $sans-serif-font--loaded;
       font-size: 13px;
       line-height: 16px;
@@ -64,7 +64,7 @@
     }
 
     .showcase-description {
-      color: var(--colors-scales-grey-80);
+      color: $colors-scales-grey-80;
       margin: 0;
     }
 
@@ -76,7 +76,7 @@
   }
 
   .o-row-listing.o-blocks__block {
-    background-color: var(--colors-scales-grey-5);
+    background-color: $colors-scales-grey-5;
 
     .m-listing--inline {
       border-top: none;
@@ -137,14 +137,14 @@
         margin: 0;
 
         .short-description {
-          color: var(--colors-scales-grey-80);
+          color: $colors-scales-grey-80;
         }
       }
 
       .m-listing__meta-bottom::after {
-        border: 1px var(--colors-scales-grey-80) solid;
+        border: 1px $colors-scales-grey-80 solid;
         border-radius: 2px;
-        color: var(--colors-scales-grey-80);
+        color: $colors-scales-grey-80;
         content: "Register";
         display: block;
         font-family: $sans-serif-font--loaded;
@@ -190,7 +190,7 @@
       padding-right: 0;
 
       .f-caption {
-        color: var(--colors-scales-grey-90);
+        color: $colors-scales-grey-90;
         font-family: $serif-font--loaded;
         font-size: 22px;
         line-height: 28px;
@@ -201,7 +201,7 @@
       }
 
       .f-link {
-        color: var(--colors-scales-grey-52) !important;
+        color: $colors-scales-grey-52 !important;
       }
     }
   }
@@ -216,7 +216,7 @@
 
     .editorial-block__heading {
       h2 {
-        color: var(--colors-scales-grey-100);
+        color: $colors-scales-grey-100;
         font-family: $sans-serif-font--loaded;
         font-size: 21px;
         font-weight: normal;
@@ -231,11 +231,11 @@
     }
 
     .editorial-block__content-wrapper {
-      border-top: 1px solid var(--colors-scales-grey-20);
+      border-top: 1px solid $colors-scales-grey-20;
     }
 
     .author {
-      color: var(--colors-scales-grey-54);
+      color: $colors-scales-grey-54;
       font-family: $sans-serif-font--loaded;
       font-size: 15px;
       font-weight: 325;
@@ -262,7 +262,7 @@
       }
 
       .intro {
-        color: var(--colors-scales-grey-81);
+        color: $colors-scales-grey-81;
         font-size: 16px;
         line-height: 24px;
       }
@@ -295,7 +295,7 @@
         }
 
         .intro {
-          color: var(--colors-scales-grey-81);
+          color: $colors-scales-grey-81;
           font-family: $serif-font--loaded;
           font-size: 19px;
           line-height: 28px;
@@ -334,7 +334,7 @@
         }
 
         .intro {
-          color: var(--colors-scales-grey-80);
+          color: $colors-scales-grey-80;
           font-size: 17px;
           line-height: 28px;
           font-weight: 300;
@@ -381,13 +381,13 @@
       padding-top: 14px;
 
       .title {
-        color: var(--colors-scales-grey-90);
+        color: $colors-scales-grey-90;
         font-size: 24px;
         line-height: 32px;
       }
 
       .intro {
-        color: var(--colors-scales-grey-80);
+        color: $colors-scales-grey-80;
         font-size: 17px;
         line-height: 28px;
       }

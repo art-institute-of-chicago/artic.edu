@@ -548,7 +548,7 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
   top: 0;
   bottom: -4px; // Why? because design thats why..
   width: 1px;
-  background-color: var(--colors-themes-light-mode-rules-tertiary);
+  background-color: $colors-themes-light-mode-rules-tertiary;
   pointer-events: none;
 
   @each $name,
@@ -726,7 +726,7 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
   right: 0;
   top: 0;
   height: 1px;
-  background-color: var(--colors-themes-light-mode-rules-primary);
+  background-color: $colors-themes-light-mode-rules-primary;
   pointer-events: none;
 }
 

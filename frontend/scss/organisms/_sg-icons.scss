@@ -2,8 +2,8 @@
   display: flex;
   flex-flow: row wrap;
   padding: 4px 0 24px 20px;
-  background: var(--colors-themes-light-mode-background-primary);
-  color: var(--colors-scales-grey-100);
+  background: $colors-themes-light-mode-background-primary;
+  color: $colors-scales-grey-100;
 
   #demo & {
     background-color: transparent;
@@ -17,5 +17,5 @@
 }
 
 .sg-icons svg:hover {
-  color: var(--colors-themes-light-mode-link-accent-primary);
+  color: $colors-themes-light-mode-link-accent-primary;
 }

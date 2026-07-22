@@ -29,7 +29,7 @@ async function fetchStyleVariables() {
   }
 
   try {
-    const response = await fetch(`${stylesServiceUrl}/storage/variables.css`);
+    const response = await fetch(`${stylesServiceUrl}/storage/variables.scss`);
 
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`);

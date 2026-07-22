@@ -3,7 +3,7 @@
   flex: 0 0 auto;
   flex-flow: row nowrap;
   margin-top: 36px;
-  color: var(--colors-themes-light-mode-text-secondary);
+  color: $colors-themes-light-mode-text-secondary;
 }
 
 .m-search-actions>li {
@@ -35,16 +35,16 @@
 
 .m-search-actions a,
 .m-search-actions button {
-  color: var(--colors-themes-light-mode-link-primary);
+  color: $colors-themes-light-mode-link-primary;
   cursor: pointer;
 
   &:hover,
   &:focus:hover {
-    color: var(--colors-themes-light-mode-link-hover);
+    color: $colors-themes-light-mode-link-hover;
   }
 
   &:active:hover {
-    color: var(--colors-themes-light-mode-link-active);
+    color: $colors-themes-light-mode-link-active;
   }
 }
 

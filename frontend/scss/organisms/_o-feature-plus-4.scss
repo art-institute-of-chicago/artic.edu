@@ -50,7 +50,7 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: var(--colors-themes-light-mode-rules-primary);
+  background-color: $colors-themes-light-mode-rules-primary;
   pointer-events: none;
 }
 
@@ -80,7 +80,7 @@
     top: 0;
     width: colspan(58, small, 0);
     height: 1px;
-    background-color: var(--colors-themes-light-mode-rules-primary);
+    background-color: $colors-themes-light-mode-rules-primary;
     pointer-events: none;
   }
 
@@ -97,7 +97,7 @@
     top: 0;
     bottom: 0;
     width: 1px;
-    background-color: var(--colors-themes-light-mode-rules-primary);
+    background-color: $colors-themes-light-mode-rules-primary;
     pointer-events: none;
   }
 
@@ -125,7 +125,7 @@
     top: 0;
     bottom: 0;
     width: 1px;
-    background-color: var(--colors-themes-light-mode-rules-primary);
+    background-color: $colors-themes-light-mode-rules-primary;
   }
 
   .o-feature-plus-4__items-1 > *:first-child {
@@ -150,7 +150,7 @@
     top: #{map.get($grid-margin-tops, xsmall)}px;
     bottom: 0;
     width: 1px;
-    background-color: var(--colors-themes-light-mode-rules-primary);
+    background-color: $colors-themes-light-mode-rules-primary;
   }
 
   .o-feature-plus-4__items-2::after {
@@ -205,7 +205,7 @@
     top: 0;
     bottom: 0;
     width: 1px;
-    background-color: var(--colors-themes-light-mode-rules-primary);
+    background-color: $colors-themes-light-mode-rules-primary;
     pointer-events: none;
   }
 }
@@ -241,7 +241,7 @@
     top: 0;
     bottom: 0;
     width: 1px;
-    background-color: var(--colors-themes-light-mode-rules-primary);
+    background-color: $colors-themes-light-mode-rules-primary;
     pointer-events: none;
   }
 }

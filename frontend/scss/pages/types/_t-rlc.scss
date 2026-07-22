@@ -41,7 +41,7 @@
   .o-info-grid .title,
   .showcase-header,
   .m-prefooter-section .title {
-    color: var(--colors-scales-grey-90);
+    color: $colors-scales-grey-90;
     font-family: var(--sans-serif);
     font-size: 21px;
     font-weight: 400;
@@ -59,7 +59,7 @@
       margin-top: 0;
     }
     .semicircle {
-      background-color: var(--colors-names-rlc-myrtle-green);
+      background-color: $colors-names-rlc-myrtle-green;
     }
   }
   .o-info-grid .row:last-child > .col:first-child {
@@ -114,7 +114,7 @@
       }
       &:last-child {
         @include breakpoint('xsmall') {
-          border-top: 1px solid var(--colors-scales-grey-20);
+          border-top: 1px solid $colors-scales-grey-20;
           margin-top: 0;
           padding-top: 32px
         }
@@ -209,7 +209,7 @@
     width: 100%;
   }
   .directions-link .f-link {
-    color: var(--colors-themes-light-mode-rules-brand);
+    color: $colors-themes-light-mode-rules-brand;
   }
   .visit-button {
     display: flex;
@@ -217,7 +217,7 @@
     padding-top: 20px;
     .f-buttons {
       align-self: end;
-      color: var(--colors-themes-light-mode-text-secondary);
+      color: $colors-themes-light-mode-text-secondary;
       font-family: var(--sans-serif);
       font-weight: 325;
       width: 100%;
@@ -303,16 +303,16 @@
         line-height: 28px;
         a {
           &:link {
-            color: var(--colors-names-rlc-myrtle-green);
+            color: $colors-names-rlc-myrtle-green;
           }
           &:visited {
-            color: var(--colors-themes-light-mode-link-primary);
+            color: $colors-themes-light-mode-link-primary;
           }
           &:active:hover {
-            color: var(--colors-themes-light-mode-link-active);
+            color: $colors-themes-light-mode-link-active;
           }
           &:focus:hover, &:hover {
-            color: var(--colors-themes-light-mode-link-hover);
+            color: $colors-themes-light-mode-link-hover;
           }
         }
         p {
@@ -382,7 +382,7 @@
   }
   .f-contact {
     &>.m-prefooter-section-background {
-      background-color: var(--colors-names-rlc-sunglow);
+      background-color: $colors-names-rlc-sunglow;
     }
     .contact-intro {
       font-family: var(--sans-serif);
@@ -392,14 +392,14 @@
       margin-top: 8px;
     }
     .f-contact-blocks {
-      border-top: 1px solid var(--colors-scales-grey-42);
+      border-top: 1px solid $colors-scales-grey-42;
       display: flex;
       margin-top: 28px;
       width: auto;
       @include breakpoint('small+') {
         column-gap: 24px;
         &>* {
-          border-right: 1px solid var(--colors-scales-grey-42);
+          border-right: 1px solid $colors-scales-grey-42;
           flex-basis: 33%;
         }
         &>*:last-child {
@@ -423,7 +423,7 @@
         font-weight: 300;
         line-height: 28px;
         @include breakpoint('xsmall') {
-          border-bottom: 1px solid var(--colors-scales-grey-42);
+          border-bottom: 1px solid $colors-scales-grey-42;
           padding-bottom: 24px;
         }
         p {
@@ -431,7 +431,7 @@
           padding-right: 24px;
         }
         a {
-          color: var(--colors-names-rlc-myrtle-green);
+          color: $colors-names-rlc-myrtle-green;
         }
       }
       .o-blocks__block {
@@ -442,16 +442,16 @@
           padding-top: 0;
         }
         input[type="email"] {
-          border: 1px solid var(--colors-scales-grey-80);
+          border: 1px solid $colors-scales-grey-80;
           &::placeholder {
-            color: var(--colors-scales-grey-80);
+            color: $colors-scales-grey-80;
           }
           @include breakpoint('xsmall') {
             width: 67%;
           }
         }
         button {
-          border: 1px solid var(--colors-scales-grey-80);
+          border: 1px solid $colors-scales-grey-80;
           @include breakpoint('xsmall') {
             margin: 0;
             padding: 0;
@@ -462,7 +462,7 @@
         .m-aside-newsletter__also {
           text-align: left;
           .subtitle {
-            color: var(--colors-scales-grey-80);
+            color: $colors-scales-grey-80;
           }
         }
       }
@@ -512,16 +512,16 @@
       }
     }
     .semicircle {
-      background-color: var(--colors-names-rlc-fire-opal);
+      background-color: $colors-names-rlc-fire-opal;
     }
   }
   .f-donors {
-    color: var(--colors-scales-grey-0);
+    color: $colors-scales-grey-0;
     font-family: var(--sans-serif);
     font-size: 17px;
     font-weight: 300;
     &>.m-prefooter-section-background {
-      background-color: var(--colors-names-rlc-myrtle-green);
+      background-color: $colors-names-rlc-myrtle-green;
     }
   }
   .m-aside-newsletter {

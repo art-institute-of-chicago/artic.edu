@@ -51,7 +51,7 @@
   display: block;
   width: 100%;
   height: 4px;
-  background-color: var(--colors-themes-light-mode-background-primary);
+  background-color: $colors-themes-light-mode-background-primary;
 }
 
 .sg-type-spec p {

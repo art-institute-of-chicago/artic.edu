@@ -173,20 +173,20 @@
 
   .m-cta-banner__title,
   .m-cta-banner__msg {
-    color: var(--colors-themes-light-mode-text-title-contrast);
+    color: $colors-themes-light-mode-text-title-contrast;
   }
 
   .m-cta-banner__link .btn:hover,
   .m-cta-banner__link .btn:focus:hover {
-    border-color: var(--colors-themes-light-mode-link-accent-hover);
-    background-color: var(--colors-themes-light-mode-link-accent-hover);
-    color: var(--colors-scales-grey-0);
+    border-color: $colors-themes-light-mode-link-accent-hover;
+    background-color: $colors-themes-light-mode-link-accent-hover;
+    color: $colors-scales-grey-0;
   }
 
   .m-cta-banner__link .btn--my-museum-tour:hover,
   .m-cta-banner__link .btn--my-museum-tour:focus:hover {
     border-color: transparent;
-    background-color: var(--colors-names-my-museum-tour-teal-medium);
-    color: var(--colors-scales-grey-100);
+    background-color: $colors-names-my-museum-tour-teal-medium;
+    color: $colors-scales-grey-100;
   }
 }

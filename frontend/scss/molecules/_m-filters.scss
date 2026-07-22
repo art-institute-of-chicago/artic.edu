@@ -9,7 +9,7 @@
     pointer-events: none;
     left: auto;
     right: 12px;
-    background-color: var(--colors-scales-grey-0);
+    background-color: $colors-scales-grey-0;
   }
 }
 
@@ -37,7 +37,7 @@
   width: 48px;
   border: 0 none;
   background: transparent;
-  color: var(--colors-themes-light-mode-text-secondary);
+  color: $colors-themes-light-mode-text-secondary;
 }
 
 
@@ -87,17 +87,17 @@
     border: 0 none;
     background: transparent;
     text-align: left;
-    color: var(--colors-themes-light-mode-link-primary);
+    color: $colors-themes-light-mode-link-primary;
     cursor: pointer;
   }
 
   &:hover,
   &:focus:hover {
-    color: var(--colors-themes-light-mode-link-hover);
+    color: $colors-themes-light-mode-link-hover;
   }
 
   &:active:hover {
-    color: var(--colors-themes-light-mode-link-active);
+    color: $colors-themes-light-mode-link-active;
   }
 }
 

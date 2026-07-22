@@ -20,7 +20,7 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
   left: 0;
   right: 0;
   z-index: map.get($zindexs, 'searchForm');
-  background-color: rgba(var(--colors-scales-grey-90), 0.96);
+  background-color: rgba($colors-scales-grey-90, 0.96);
   display: none;
   transform: translateY(-100%);
   transition: transform .4s $bezier--marius-ease, visibility 0s .4s $bezier--marius-ease;
@@ -49,7 +49,7 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
   padding: 0;
   border: 0 none;
   background-color: transparent;
-  color: var(--colors-scales-grey-0);
+  color: $colors-scales-grey-0;
   cursor: pointer;
 
   &:hover {
@@ -69,22 +69,22 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
     padding-right: 40px;
     padding-bottom: 15px;
     border: 0;
-    border-bottom: 1px solid rgba(var(--colors-themes-light-mode-rules-tertiary), 0.5);
+    border-bottom: 1px solid rgba($colors-themes-light-mode-rules-tertiary, 0.5);
     background-color: transparent;
-    color: var(--colors-themes-light-mode-text-tertiary);
+    color: $colors-themes-light-mode-text-tertiary;
     -webkit-appearance: none;
     outline: 0;
 
   }
 
   @include placeholder() {
-    color: var(--colors-themes-light-mode-text-tertiary);
+    color: $colors-themes-light-mode-text-tertiary;
   }
 }
 
 .g-search__input:focus {
-  border-bottom-color: var(--colors-themes-light-mode-rules-tertiary);
-  color: var(--colors-scales-grey-0);
+  border-bottom-color: $colors-themes-light-mode-rules-tertiary;
+  color: $colors-scales-grey-0;
 }
 
 .g-search__submit {
@@ -99,7 +99,7 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
   padding: 0;
   border: 0;
   background-color: transparent;
-  color: var(--colors-themes-light-mode-text-tertiary);
+  color: $colors-themes-light-mode-text-tertiary;
   line-height: 56px;
   text-align: center;
   cursor: pointer;
@@ -113,7 +113,7 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
 }
 
 .g-search__submit:hover {
-  color: var(--colors-scales-grey-0);
+  color: $colors-scales-grey-0;
 }
 
 .g-search__loader {
@@ -137,7 +137,7 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
 
 .g-search__suggested-title {
   @extend %f-tag;
-  color: var(--colors-themes-light-mode-text-title-contrast);
+  color: $colors-themes-light-mode-text-title-contrast;
 }
 
 .g-search__suggested ul {
@@ -156,11 +156,11 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
   display: block;
   padding: 10px 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--colors-themes-light-mode-text-title-contrast);
+  color: $colors-themes-light-mode-text-title-contrast;
 }
 
 .g-search__suggested li a:hover {
-  border-color: var(--colors-themes-light-mode-text-title-contrast);
+  border-color: $colors-themes-light-mode-text-title-contrast;
 }
 
 .g-search__autocomplete {
@@ -179,12 +179,12 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
   display: block;
   min-height: 52px;
   padding: 6px 0 6px 55px;
-  color: var(--colors-themes-light-mode-text-tertiary);
+  color: $colors-themes-light-mode-text-tertiary;
 }
 
 .g-search__autocomplete li a:hover {
   background-color: rgba(0, 0, 0, 0.2);
-  color: var(--colors-scales-grey-0);
+  color: $colors-scales-grey-0;
 }
 
 .g-search__autocomplete-img {
@@ -198,7 +198,7 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
 
 .g-search__autocomplete strong {
   font-weight: normal;
-  color: var(--colors-scales-grey-0);
+  color: $colors-scales-grey-0;
 }
 
 .g-search__autocomplete-img img {
@@ -219,14 +219,14 @@ $f-autocomplete: generate-font-obj((font-family: $sans-serif-font,
 }
 
 .g-search__autocomplete-all a {
-  color: var(--colors-themes-light-mode-link-hover);
+  color: $colors-themes-light-mode-link-hover;
 
   &:hover,
   &:focus:hover {
-    color: var(--colors-themes-light-mode-link-primary);
+    color: $colors-themes-light-mode-link-primary;
   }
 
   &:active:hover {
-    color: var(--colors-themes-light-mode-link-active);
+    color: $colors-themes-light-mode-link-active;
   }
 }

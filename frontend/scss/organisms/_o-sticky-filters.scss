@@ -20,8 +20,8 @@
     display: none;
     bottom: 0;
     height: 100%;
-    border-bottom: 1px solid rgba(var(--colors-scales-grey-100), .1);
-    background-color: rgba(var(--colors-scales-grey-0), .97);
+    border-bottom: 1px solid rgba($colors-scales-grey-100, .1);
+    background-color: rgba($colors-scales-grey-0, .97);
     background-clip: padding-box;
   }
 }

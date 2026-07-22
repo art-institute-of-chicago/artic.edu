@@ -63,7 +63,7 @@
     right: 0;
     top: 0;
     height: 1px;
-    background-color: var(--colors-themes-light-mode-rules-primary);
+    background-color: $colors-themes-light-mode-rules-primary;
   }
 
   & + * {
@@ -84,7 +84,7 @@
 }
 
 .m-intro-block__intro {
-  color: var(--colors-themes-light-mode-text-contrast);
+  color: $colors-themes-light-mode-text-contrast;
 
   @include breakpoint('medium+') {
     flex: 1 1 auto;

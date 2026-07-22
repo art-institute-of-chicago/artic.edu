@@ -13,13 +13,13 @@
     width: 100vw;
     margin-left: -50vw;
     pointer-events: none;
-    background-color: var(--colors-themes-light-mode-background-primary);
-    border-bottom: 1px solid var(--colors-themes-light-mode-rules-primary);
+    background-color: $colors-themes-light-mode-background-primary;
+    border-bottom: 1px solid $colors-themes-light-mode-rules-primary;
   }
 
   button {
     cursor: pointer;
-    color: var(--colors-themes-light-mode-link-primary);
+    color: $colors-themes-light-mode-link-primary;
 
     background: none;
     border: none;
@@ -31,11 +31,11 @@
 
     &:hover,
     &:focus:hover {
-      color: var(--colors-themes-light-mode-link-hover);
+      color: $colors-themes-light-mode-link-hover;
     }
 
     &:active:hover {
-      color: var(--colors-themes-light-mode-link-active);
+      color: $colors-themes-light-mode-link-active;
     }
 
     .icon--menu--24 {

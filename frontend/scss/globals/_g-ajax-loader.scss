@@ -33,7 +33,7 @@
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
   //stroke-linecap: round;
-  stroke: var(--colors-themes-light-mode-rules-brand);
+  stroke: $colors-themes-light-mode-rules-brand;
   animation: g-ajax-loader__dash 1.5s ease-in-out infinite;
 }
 

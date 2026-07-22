@@ -1,7 +1,7 @@
 .publications-subnav {
     text-align: left !important;
     padding-bottom: 28px;
-    border-bottom: 1px solid var(--colors-scales-grey-10);
+    border-bottom: 1px solid $colors-scales-grey-10;
     overflow-x: auto;
     overflow-y: hidden;
 
@@ -21,7 +21,7 @@
     }
 
     .m-links-bar__item>.f-link {
-        color: var(--colors-scales-grey-90);
+        color: $colors-scales-grey-90;
         font-family: $sans-serif-font--loaded;
         font-size: 17px;
         font-weight: 300;
@@ -38,7 +38,7 @@
         align-items: center;
         justify-content: space-between;
         padding-bottom: 20px;
-        border-bottom: 1px solid var(--colors-scales-grey-10);
+        border-bottom: 1px solid $colors-scales-grey-10;
         margin-bottom: 30px;
 
         &.publication-resources {
@@ -65,7 +65,7 @@
         }
 
         .m-listing {
-            background-color: var(--colors-scales-grey-0);
+            background-color: $colors-scales-grey-0;
             border: none;
 
             .m-listing__img {
@@ -116,7 +116,7 @@
                 padding-bottom: 20px;
 
                 &:not(:first-child) {
-                    border-top: 1px solid var(--colors-scales-grey-10);
+                    border-top: 1px solid $colors-scales-grey-10;
                     padding-top: 20px;
                 }
             }
@@ -148,7 +148,7 @@
                 right: -6%;
                 height: 100%;
                 width: 1px;
-                background-color: var(--colors-scales-grey-10);
+                background-color: $colors-scales-grey-10;
                 pointer-events: none;
 
                 @include breakpoint('medium-') {

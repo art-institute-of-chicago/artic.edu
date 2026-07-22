@@ -22,7 +22,7 @@
   position: relative;
   align-items: flex-start;
   margin-top: 40px;
-  border: 1px solid var(--colors-themes-light-mode-rules-primary);
+  border: 1px solid $colors-themes-light-mode-rules-primary;
 
   & + & {
     margin-top: -1px;

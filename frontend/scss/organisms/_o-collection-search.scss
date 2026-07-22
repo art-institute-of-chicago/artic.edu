@@ -9,8 +9,8 @@
   bottom: 0;
   flex-flow: column nowrap;
   width: 300px;
-  border-right: 1px solid var(--colors-themes-light-mode-rules-primary);
-  background: var(--colors-themes-light-mode-background-default);
+  border-right: 1px solid $colors-themes-light-mode-rules-primary;
+  background: $colors-themes-light-mode-background-default;
 }
 
 .o-collection-search .m-search-bar {
@@ -18,13 +18,13 @@
 }
 
 .o-collection-search .m-search-bar button {
-  background-color: var(--colors-themes-light-mode-background-primary);
-  color: var(--colors-themes-light-mode-text-title);
+  background-color: $colors-themes-light-mode-background-primary;
+  color: $colors-themes-light-mode-text-title;
 
   &:hover,
   &:focus:hover {
-    background-color: var(--colors-themes-light-mode-background-primary);
-    color: var(--colors-themes-light-mode-text-title);
+    background-color: $colors-themes-light-mode-background-primary;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -57,6 +57,6 @@
   flex: 0 0 auto;
   width: 100%;
   padding: 19px 20px 20px;
-  border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
-  background: var(--colors-themes-light-mode-background-default);
+  border-top: 1px solid $colors-themes-light-mode-rules-primary;
+  background: $colors-themes-light-mode-background-default;
 }

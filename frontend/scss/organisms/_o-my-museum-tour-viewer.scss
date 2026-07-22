@@ -85,15 +85,15 @@
 
   .f-deck {
     margin-bottom: 4px;
-    color: var(--colors-scales-grey-90);
+    color: $colors-scales-grey-90;
   }
 
   .f-tertiary {
-    color: var(--colors-scales-grey-80);
+    color: $colors-scales-grey-80;
   }
 
   .f-link {
-    color: var(--colors-aliases-japanese-indigo);
+    color: $colors-aliases-japanese-indigo;
   }
 }
 
@@ -122,7 +122,7 @@
   position: relative;
   padding-top: 32px;
   padding-bottom: 32px;
-  background-color: var(--colors-scales-grey-5);
+  background-color: $colors-scales-grey-5;
 
   &::before {
     content: "";
@@ -170,7 +170,7 @@
 
 .aic-ct-grid-card {
   height: auto;
-  background-color: var(--colors-scales-grey-0);
+  background-color: $colors-scales-grey-0;
 
   .aic-ct-grid-card__top {
     position: relative;
@@ -192,7 +192,7 @@
     bottom: 20px;
     margin-top: 20px;
     margin-right: 20px;
-    color: var(--colors-scales-grey-0);
+    color: $colors-scales-grey-0;
   }
 
   .f-headline-editorial {
@@ -232,7 +232,7 @@
   }
 
   .f-deck {
-    color: var(--colors-scales-grey-80);
+    color: $colors-scales-grey-80;
     font-size: 17px;
     line-height: 1.41;
   }
@@ -334,13 +334,13 @@
   }
 
   .btn--secondary {
-    border: 1px solid var(--colors-scales-grey-100);
+    border: 1px solid $colors-scales-grey-100;
   }
 
   .btn--secondary:hover,
   .btn-secondary:focus:hover {
-    background-color: var(--colors-scales-grey-10);
-    border: 1px solid var(--colors-scales-grey-100);
+    background-color: $colors-scales-grey-10;
+    border: 1px solid $colors-scales-grey-100;
   }
 
   .m-cta-banner__msg {
@@ -429,22 +429,22 @@
 }
 
 .m-cta-banner--aic-ct-no-image {
-  background-color: var(--colors-scales-grey-100);
+  background-color: $colors-scales-grey-100;
   overflow: visible;
 
   .m-cta-banner__title,
   .m-cta-banner__msg {
-    color: var(--colors-scales-grey-0);
+    color: $colors-scales-grey-0;
   }
 
   .btn--quaternary {
-    border-color: var(--colors-scales-grey-0);
+    border-color: $colors-scales-grey-0;
     background-color: transparent;
   }
 
   .btn--quaternary:focus:hover,
   .btn--quaternary:hover {
-    background-color: var(--colors-scales-grey-80);
+    background-color: $colors-scales-grey-80;
   }
 }
 
@@ -493,8 +493,8 @@
     margin-left: calc(50% - 50vw);
     display: flex;
     flex-direction: row;
-    background-color: var(--colors-aliases-japanese-indigo);
-    color: var(--colors-scales-grey-0);
+    background-color: $colors-aliases-japanese-indigo;
+    color: $colors-scales-grey-0;
     padding: 24px 56px 56px;
     margin-bottom: 20px;
 
@@ -513,7 +513,7 @@
       margin-bottom: 24px;
       font-size: 56px;
       line-height: 65px;
-      color: var(--colors-scales-grey-0);
+      color: $colors-scales-grey-0;
       font-family: $serif-font--loaded;
 
       @include breakpoint('medium-') {
@@ -549,7 +549,7 @@
 .aic-ct-viewer__link-container {
   margin-bottom: 24px;
   padding: 16px;
-  background-color: var(--colors-scales-grey-5);
+  background-color: $colors-scales-grey-5;
 }
 
 .aic-ct-quote--large {
@@ -565,7 +565,7 @@
   }
 
   .quote__icon {
-    color: var(--colors-aliases-japanese-indigo);
+    color: $colors-aliases-japanese-indigo;
   }
 }
 
@@ -605,7 +605,7 @@
   position: relative;
   overflow: hidden;
   margin-bottom: 12px;
-  background-color: var(--colors-scales-grey-5);
+  background-color: $colors-scales-grey-5;
 
   img {
     width: auto;
@@ -621,13 +621,13 @@
   gap: 4px;
 
   .icon--location {
-    color: var(--colors-scales-grey-52);
+    color: $colors-scales-grey-52;
   }
 }
 
 .aic-ct-viewer__description.f-tertiary {
   margin-bottom: 20px;
-  color: var(--colors-scales-grey-100);
+  color: $colors-scales-grey-100;
 }
 
 .aic-ct-viewer__creator-container {

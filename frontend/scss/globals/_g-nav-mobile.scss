@@ -6,7 +6,7 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: var(--colors-themes-light-mode-background-default);
+  background-color: $colors-themes-light-mode-background-default;
   overflow: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -28,7 +28,7 @@
   }
 
   .title {
-    color: var(--colors-scales-grey-0);
+    color: $colors-scales-grey-0;
   }
 }
 
@@ -49,13 +49,13 @@
   padding: 0;
   border: 0 none;
   background: none;
-  color: var(--colors-scales-grey-90);
+  color: $colors-scales-grey-90;
   cursor: pointer;
   -webkit-appearance: none;
 }
 
 .js-subnav-open .g-nav-mobile__close {
-  color: var(--colors-themes-light-mode-text-title-contrast);
+  color: $colors-themes-light-mode-text-title-contrast;
 }
 
 .g-nav-mobile__search {
@@ -63,7 +63,7 @@
 
   & {
     position: relative;
-    background-color: var(--colors-themes-light-mode-background-primary);
+    background-color: $colors-themes-light-mode-background-primary;
   }
 }
 
@@ -81,7 +81,7 @@
   }
 
   @include placeholder() {
-    color: var(--colors-themes-light-mode-text-secondary);
+    color: $colors-themes-light-mode-text-secondary;
   }
 }
 
@@ -92,7 +92,7 @@
   padding: 0;
   border: 0;
   background-color: transparent;
-  color: var(--colors-themes-light-mode-text-secondary);
+  color: $colors-themes-light-mode-text-secondary;
   transform: translateY(-50%);
 }
 
@@ -101,7 +101,7 @@
   margin-left: - map.get($outer-gutters, 'xsmall');
   padding-right: map.get($outer-gutters, 'xsmall');
   padding-left: map.get($outer-gutters, 'xsmall');
-  border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
+  border-top: 1px solid $colors-themes-light-mode-rules-primary;
 }
 
 .g-nav-mobile__nav-wrapper li>a {
@@ -114,12 +114,12 @@
   margin-right: - map.get($outer-gutters, 'xsmall');
   margin-left: - map.get($outer-gutters, 'xsmall');
   padding-left: map.get($outer-gutters, 'xsmall');
-  border-bottom: 1px solid var(--colors-themes-light-mode-rules-tertiary);
-  color: var(--colors-themes-light-mode-text-title);
+  border-bottom: 1px solid $colors-themes-light-mode-rules-tertiary;
+  color: $colors-themes-light-mode-text-title;
 }
 
 .g-nav-mobile__nav>li:last-child {
-  border-bottom-color: var(--colors-themes-light-mode-rules-primary);
+  border-bottom-color: $colors-themes-light-mode-rules-primary;
 }
 
 .g-nav-mobile__nav li>a {
@@ -131,7 +131,7 @@
 }
 
 .g-nav-mobile .g-nav-expand-icon {
-  border-left: 1px solid var(--colors-scales-grey-5);
+  border-left: 1px solid $colors-scales-grey-5;
   display: inline-block;
   height: 48px;
   position: absolute;
@@ -140,14 +140,14 @@
 }
 
 .g-nav-mobile__nav li>a .icon--arrow {
-  color: var(--colors-scales-grey-52);
+  color: $colors-scales-grey-52;
   position: absolute;
   right: 16px;
   top: 16px;
 }
 
 .g-nav-mobile__nav .g-nav-mobile__nav--muted {
-  color: var(--colors-themes-light-mode-text-secondary);
+  color: $colors-themes-light-mode-text-secondary;
 }
 
 .g-nav-mobile__nav a {
@@ -174,8 +174,8 @@
   & {
     margin-right: - map.get($outer-gutters, 'xsmall');
     margin-left: - map.get($outer-gutters, 'xsmall');
-    background-color: var(--colors-themes-light-mode-background-footer);
-    color: var(--colors-themes-light-mode-text-title-contrast);
+    background-color: $colors-themes-light-mode-background-footer;
+    color: $colors-themes-light-mode-text-title-contrast;
     line-height: 56px;
     text-align: center;
   }
@@ -200,7 +200,7 @@
   padding-left: map.get($outer-gutters, 'xsmall');
   overflow-x: hidden;
   overflow-y: scroll;
-  background: var(--colors-themes-light-mode-background-default);
+  background: $colors-themes-light-mode-background-default;
   transform: translateX(100%);
   transition: transform .2s $bezier--ease-in-out;
 }
@@ -236,7 +236,7 @@
 .g-nav-mobile__legals li,
 .g-nav-mobile__social li {
   margin-top: 16px;
-  color: var(--colors-themes-light-mode-text-secondary);
+  color: $colors-themes-light-mode-text-secondary;
 }
 
 .g-nav-mobile__social li>a {
@@ -271,7 +271,7 @@
   position: relative;
   padding-right: map.get($outer-gutters, 'xsmall');
   padding-left: map.get($outer-gutters, 'xsmall');
-  border-bottom: 1px solid var(--colors-themes-light-mode-rules-primary);
+  border-bottom: 1px solid $colors-themes-light-mode-rules-primary;
   transform: translateY(0);
 
   @supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0)) {
@@ -290,7 +290,7 @@
 
   &,
   .s-contrast-header & {
-    color: var(--colors-scales-grey-52) !important;
+    color: $colors-scales-grey-52 !important;
   }
 }
 
@@ -298,7 +298,7 @@
 
   &,
   .s-contrast-header & {
-    color: var(--colors-scales-red-100);
+    color: $colors-scales-red-100;
   }
 }
 
@@ -307,7 +307,7 @@
 
   &,
   .s-contrast-header & {
-    color: var(--colors-themes-light-mode-text-secondary);
+    color: $colors-themes-light-mode-text-secondary;
   }
 }
 
@@ -316,10 +316,10 @@
 
   &,
   .s-contrast-header & {
-    color: var(--colors-themes-light-mode-text-title) !important;
+    color: $colors-themes-light-mode-text-title !important;
   }
 }
 
 .g-nav-mobile .g-header .g-header__nav-primary a:hover {
-  @include text-underline(1.12em, var(--colors-themes-light-mode-text-title));
+  @include text-underline(1.12em, $colors-themes-light-mode-text-title);
 }

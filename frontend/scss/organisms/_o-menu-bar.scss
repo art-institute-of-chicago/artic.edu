@@ -6,8 +6,8 @@
   margin-top: 32px;
   padding-top: 18px;
   padding-bottom: 18px;
-  border-top: 1px solid var(--colors-themes-light-mode-input-border-primary);
-  border-bottom: 1px solid var(--colors-themes-light-mode-input-border-primary);
+  border-top: 1px solid $colors-themes-light-mode-input-border-primary;
+  border-bottom: 1px solid $colors-themes-light-mode-input-border-primary;
   @include breakpoint('medium') {
     .f-buttons {
       width: auto;
@@ -23,8 +23,8 @@
       overflow: scroll;
       width: 100%;
       padding: 18px 0;
-      border-top: 1px solid var(--colors-themes-light-mode-input-border-primary) ;
-      border-bottom: 1px solid var(--colors-themes-light-mode-input-border-primary) ;
+      border-top: 1px solid $colors-themes-light-mode-input-border-primary ;
+      border-bottom: 1px solid $colors-themes-light-mode-input-border-primary ;
     }
   }
   @include breakpoint('xsmall') {
@@ -37,8 +37,8 @@
       overflow: scroll;
       width: 100%;
       padding: 18px 0;
-      border-top: 1px solid var(--colors-themes-light-mode-input-border-primary) ;
-      border-bottom: 1px solid var(--colors-themes-light-mode-input-border-primary) ;
+      border-top: 1px solid $colors-themes-light-mode-input-border-primary ;
+      border-bottom: 1px solid $colors-themes-light-mode-input-border-primary ;
     }
   }
 
@@ -48,7 +48,7 @@
 
   li {
     padding-top: 0;
-    color: var(--colors-themes-light-mode-text-primary);
+    color: $colors-themes-light-mode-text-primary;
   }
 
   a::before {
@@ -56,6 +56,6 @@
   }
 
   ul li a {
-    color: var(--colors-themes-light-mode-text-primary) !important;
+    color: $colors-themes-light-mode-text-primary !important;
   }
 }

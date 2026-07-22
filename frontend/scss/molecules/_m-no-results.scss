@@ -12,17 +12,17 @@
   @include tucked-margin-top($f-list-3, ('xsmall': 60));
 
   a {
-    @include text-underline(.8em, var(--colors-themes-light-mode-rules-secondary));
-    color: var(--colors-themes-light-mode-link-accent-primary);
+    @include text-underline(.8em, $colors-themes-light-mode-rules-secondary);
+    color: $colors-themes-light-mode-link-accent-primary;
     text-decoration: none;
 
     &:hover,
     &:focus:hover {
-      @include text-underline(.8em, var(--colors-themes-light-mode-link-accent-primary));
+      @include text-underline(.8em, $colors-themes-light-mode-link-accent-primary);
     }
 
     &:active:hover {
-      @include text-underline(.8em, var(--colors-themes-light-mode-rules-secondary));
+      @include text-underline(.8em, $colors-themes-light-mode-rules-secondary);
     }
   }
 }

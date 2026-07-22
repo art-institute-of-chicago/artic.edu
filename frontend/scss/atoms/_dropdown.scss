@@ -75,9 +75,9 @@ Demonstrated in **statics/toybox**
   height: 48px;
   padding-right: 68px;
   padding-left: 15px;
-  border: 1px solid var(--colors-themes-light-mode-input-border-primary);
+  border: 1px solid $colors-themes-light-mode-input-border-primary;
   background: none;
-  color: var(--colors-themes-light-mode-input-text-primary);
+  color: $colors-themes-light-mode-input-text-primary;
   text-align: left;
   text-decoration: none;
   text-overflow: ellipsis;
@@ -126,14 +126,14 @@ Demonstrated in **statics/toybox**
 }
 
 .dropdown__trigger:hover {
-  border-color: var(--colors-themes-light-mode-input-border-hover);
-  color: var(--colors-themes-light-mode-input-text-hover);
+  border-color: $colors-themes-light-mode-input-border-hover;
+  color: $colors-themes-light-mode-input-text-hover;
 }
 
 .dropdown__trigger:focus,
 .dropdown__trigger:active {
-  border-color: var(--colors-themes-light-mode-input-border-focus);
-  color: var(--colors-themes-light-mode-input-text-focus);
+  border-color: $colors-themes-light-mode-input-border-focus;
+  color: $colors-themes-light-mode-input-text-focus;
 }
 
 .dropdown__trigger>.icon--arrow {
@@ -171,7 +171,7 @@ Demonstrated in **statics/toybox**
     min-width: 100%;
     max-height: 80vh;
     margin-top: 0;
-    background-color: var(--colors-scales-grey-0);
+    background-color: $colors-scales-grey-0;
     box-shadow: $shadow;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -246,7 +246,7 @@ Demonstrated in **statics/toybox**
 
 
 .dropdown__list>li:not(:first-child) {
-  border-top: 1px solid var(--colors-themes-light-mode-rules-tertiary);
+  border-top: 1px solid $colors-themes-light-mode-rules-tertiary;
 }
 
 .dropdown__list>li.s-hidden {
@@ -256,8 +256,8 @@ Demonstrated in **statics/toybox**
 .dropdown__list a:not([class]) {
   display: block;
   padding: 10px 16px;
-  background-color: var(--colors-scales-grey-0);
-  color: var(--colors-themes-light-mode-text-secondary);
+  background-color: $colors-scales-grey-0;
+  color: $colors-themes-light-mode-text-secondary;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-decoration: none;
@@ -275,18 +275,18 @@ Demonstrated in **statics/toybox**
 }
 
 .dropdown__list a:not([class]):hover {
-  background-color: var(--colors-themes-light-mode-background-secondary);
-  color: var(--colors-themes-light-mode-text-title);
+  background-color: $colors-themes-light-mode-background-secondary;
+  color: $colors-themes-light-mode-text-title;
 }
 
 .dropdown__list a:not([class]):active {
-  background-color: var(--colors-themes-light-mode-background-primary);
-  color: var(--colors-themes-light-mode-text-title);
+  background-color: $colors-themes-light-mode-background-primary;
+  color: $colors-themes-light-mode-text-title;
 }
 
 .dropdown__list .s-active a:not([class]) {
-  background-color: var(--colors-scales-grey-90);
-  color: var(--colors-themes-light-mode-text-title-contrast);
+  background-color: $colors-scales-grey-90;
+  color: $colors-themes-light-mode-text-title-contrast;
 }
 
 
@@ -301,7 +301,7 @@ Demonstrated in **statics/toybox**
   padding-left: 0;
   border: 0 none;
   border-radius: 0;
-  color: var(--colors-themes-light-mode-link-primary);
+  color: $colors-themes-light-mode-link-primary;
 
   margin-right: 24px;
 }
@@ -330,11 +330,11 @@ Demonstrated in **statics/toybox**
 }
 
 .dropdown--filter .dropdown__trigger:hover {
-  color: var(--colors-themes-light-mode-link-hover);
+  color: $colors-themes-light-mode-link-hover;
 }
 
 .dropdown--filter .dropdown__trigger:active {
-  color: var(--colors-themes-light-mode-link-active);
+  color: $colors-themes-light-mode-link-active;
 }
 
 .dropdown--filter .dropdown__trigger>.icon--arrow {
