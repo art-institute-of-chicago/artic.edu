@@ -6,7 +6,7 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: var(--colors-themes-editorial-background-default);
+  background-color: var(--colors-themes-light-mode-background-default);
   overflow: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -200,7 +200,7 @@
   padding-left: map.get($outer-gutters, 'xsmall');
   overflow-x: hidden;
   overflow-y: scroll;
-  background: var(--colors-themes-editorial-background-default);
+  background: var(--colors-themes-light-mode-background-default);
   transform: translateX(100%);
   transition: transform .2s $bezier--ease-in-out;
 }

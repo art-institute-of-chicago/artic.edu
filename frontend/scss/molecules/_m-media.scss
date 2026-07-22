@@ -583,7 +583,7 @@ a.m-media__img:hover object {
 .m-media a.m-media__img:hover+figcaption strong a,
 .m-listing--sound figcaption strong a:hover,
 .m-listing--sound a.m-media__img:hover+figcaption strong a {
-  @include text-underline(1.05em, var(--colors-themes-light-mode-text-primary), var(--colors-themes-editorial-background-default));
+  @include text-underline(1.05em, var(--colors-themes-light-mode-text-primary), var(--colors-themes-light-mode-background-default));
 }
 
 .m-media figcaption strong a:active,

@@ -10,7 +10,7 @@
   flex-flow: column nowrap;
   width: 300px;
   border-right: 1px solid var(--colors-themes-light-mode-rules-primary);
-  background: var(--colors-themes-editorial-background-default);
+  background: var(--colors-themes-light-mode-background-default);
 }
 
 .o-collection-search .m-search-bar {
@@ -58,5 +58,5 @@
   width: 100%;
   padding: 19px 20px 20px;
   border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
-  background: var(--colors-themes-editorial-background-default);
+  background: var(--colors-themes-light-mode-background-default);
 }
