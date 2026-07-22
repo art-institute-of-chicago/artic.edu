@@ -35,7 +35,7 @@ html.s-print body {
 
     $disable-font-loading: true;
 
-    @import url($styles-service + '/storage/variables.css');
+    @import 'setup/styleVariables';
     @import 'setup/variables';
     @import 'setup/mixins';
     @import 'setup/typography';

@@ -1,4 +1,4 @@
-@import url($styles-service + '/storage/variables.css');
+@import 'setup/styleVariables';
 @import 'atoms/loader';
 
 html.s-interactive-feature--kiosk {
