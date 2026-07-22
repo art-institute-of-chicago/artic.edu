@@ -61,8 +61,7 @@
 
 .m-notification--header {
   padding-right: 0px;
-  // SCSS does not want to compile this color when it is set to a CSS variable!
-  // background-color: color.adjust($colors-themes-light-mode-error-primary, $alpha: -0.03);
+  background-color: color.adjust($colors-themes-light-mode-error-primary, $alpha: -0.03);
 
   // Wait until cookie has been confirmed
   display: none;
