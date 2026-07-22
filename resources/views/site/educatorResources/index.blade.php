@@ -14,7 +14,7 @@
         <div class="m-links-bar__item m-links-bar__item--primary" data-filter-buttons>
             <div class="dropdown__container">
                 <p class="f-secondary">Content</p>
-                @component('components.atoms._dropdown')
+                @component('components.atoms._form-dropdown')
                     @slot('prompt', 'All')
                     @slot('ariaTitle', 'Filter by content')
                     @slot('variation','m-filters m-filters__dropdown-down-arrow')
@@ -26,7 +26,7 @@
 
             <div class="dropdown__container">
                 <p class="f-secondary">Audience</p>
-                @component('components.atoms._dropdown')
+                @component('components.atoms._form-dropdown')
                     @slot('prompt', 'All')
                     @slot('ariaTitle', 'Filter by audience')
                     @slot('variation','dropdown--filter__sort m-filters m-filters__dropdown-down-arrow')
@@ -38,7 +38,7 @@
 
             <div class="dropdown__container">
                 <p class="f-secondary">Topic</p>
-                @component('components.atoms._dropdown')
+                @component('components.atoms._form-dropdown')
                     @slot('prompt', 'All')
                     @slot('ariaTitle', 'Filter by topic')
                     @slot('variation','dropdown--filter__sort f-link m-filters m-filters__dropdown-down-arrow')

@@ -309,7 +309,7 @@
             @endif
 
             @if ($block['type'] === 'label')
-                @component('components.atoms._label')
+                @component('components.atoms._form-label')
                   @slot('optional', $block['optional'] ?? null)
                   @slot('hint', $block['hint'] ?? null)
                   @slot('error', $block['error'] ?? null)
@@ -318,7 +318,7 @@
             @endif
 
             @if ($block['type'] === 'input' || $block['type'] === 'email' || $block['type'] === 'number' || $block['type'] === 'tel' || $block['type'] == 'hidden')
-                @component('components.atoms._input')
+                @component('components.atoms._form-input')
                     @slot('type', $block['type'] === 'input' ? 'text' : $block['type'])
                     @slot('variation', $block['variation'] ?? null)
                     @slot('pattern', $block['pattern'] ?? null)
@@ -337,7 +337,7 @@
             @endif
 
             @if ($block['type'] === 'captcha')
-                @component('components.atoms._captcha')
+                @component('components.atoms._form-captcha')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
@@ -350,7 +350,7 @@
             @endif
 
             @if ($block['type'] === 'textarea')
-                @component('components.atoms._textarea')
+                @component('components.atoms._form-textarea')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
@@ -365,7 +365,7 @@
             @endif
 
             @if ($block['type'] === 'select')
-                @component('components.atoms._select')
+                @component('components.atoms._form-select')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
@@ -380,7 +380,7 @@
             @endif
 
             @if ($block['type'] === 'checkbox')
-                @component('components.atoms._checkbox')
+                @component('components.atoms._form-checkbox')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['name'] ?? 'i_'.$loop->iteration)
@@ -397,7 +397,7 @@
             @endif
 
             @if ($block['type'] === 'radio')
-                @component('components.atoms._radio')
+                @component('components.atoms._form-radio')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['name'] ?? 'i_'.$loop->iteration)
@@ -412,7 +412,7 @@
             @endif
 
             @if ($block['type'] === 'date-select')
-                @component('components.atoms._date-select-input')
+                @component('components.atoms._form-date-select-input')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)

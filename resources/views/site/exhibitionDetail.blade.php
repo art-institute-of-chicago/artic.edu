@@ -197,11 +197,11 @@
         <ul class="m-inline-list">
         @foreach ($item->topics as $topic)
             <li class="m-inline-list__item">
-                @if (!empty($topic['href']))
-                    <a class="tag f-tag" href="{{ $topic['href'] }}">{{ $topic['label'] }}</a>
-                @else
-                    <span class="tag f-tag">{{ $topic['label'] }}</span>
-                @endif
+                @component('components.atoms._tag')
+                    @slot('tag', !empty($topic['href']) ? 'a' : 'span')
+                    @slot('href', !empty($topic['href']) ? $topic['href'] : null)
+                    {{ $topic['label'] }}
+                @endcomponent
             </li>
         @endforeach
         </ul>

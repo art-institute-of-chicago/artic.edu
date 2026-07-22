@@ -111,7 +111,10 @@
             @default
                 <div class="editorial-block__tags">
                     @foreach ($tags as $tag)
-                        <a class="tag f-tag" href="{{ route('articles', ['category' => $tag->id]) }}">{{ $tag->name }}</a>
+                        @component('components.atoms._tag')
+                            @slot('href', route('articles', ['category' => $tag->id]))
+                            {{ $tag->name }}
+                        @endcomponent
                     @endforeach
                 </div>
         @endswitch

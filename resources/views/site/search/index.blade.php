@@ -345,7 +345,7 @@
         @component('components.molecules._m-links-bar')
             @slot('secondaryHtml')
                 <li class="m-links-bar__item m-links-bar__item--primary">
-                    @component('components.atoms._dropdown')
+                    @component('components.atoms._form-dropdown')
                       @slot('prompt', 'Date: ' . (request('time') ? (request('time') == 'upcoming' ? 'Upcoming' : 'Past') : 'All'))
                       @slot('ariaTitle', 'Filter by')
                       @slot('variation','dropdown--filter f-link')
