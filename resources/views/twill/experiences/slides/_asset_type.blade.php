@@ -157,6 +157,14 @@
                 name='seamless_alt_text'
                 label='Alt Text'
             />
+
+            <x-twill::input
+                name='seamless_background_color'
+                label='Background Color'
+                placeholder='#RRGGBB or #RRGGBBAA'
+                note='Hex color for the seamless backdrop. Leave empty to inherit.'
+                :maxlength='9'
+            />
         </x-twill::formFieldset>
     </x-twill::formConnectedFields>
 
