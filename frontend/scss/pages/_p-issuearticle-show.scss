@@ -9,7 +9,7 @@
   @each $name in ('xsmall', 'small', 'medium') {
     @include breakpoint('#{$name}') {
       .g-header {
-        border-bottom: 1px solid var(--colors-themes-light-mode-rules-primary);
+        border-bottom: 1px solid $colors-themes-light-mode-rules-primary;
       }
 
       .g-header__inner {
@@ -26,7 +26,7 @@
 
   .o-article__body::before {
     position: absolute;
-    background-color: var(--colors-themes-light-mode-rules-primary);
+    background-color: $colors-themes-light-mode-rules-primary;
     width: 1px;
     z-index: 1;
 
@@ -122,7 +122,7 @@
 
   .m-article-actions--publication__logo {
     margin-top: 15px;
-    color: var(--colors-scales-grey-0);
+    color: $colors-scales-grey-0;
 
     @include breakpoint('medium-') {
       width: 100%;
@@ -627,7 +627,7 @@
       margin-bottom: 16px;
 
       .m-media .m-media__img {
-        background-color: var(--colors-scales-grey-0);
+        background-color: $colors-scales-grey-0;
 
         img {
           max-height: 180px !important;
@@ -776,16 +776,16 @@ Styling related specifically to digital publications
       margin: 60px 0 28px;
 
       a {
-        color: var(--colors-themes-light-mode-link-accent-primary);
+        color: $colors-themes-light-mode-link-accent-primary;
       }
 
       a:hover {
-        color: var(--colors-themes-light-mode-link-accent-hover);
+        color: $colors-themes-light-mode-link-accent-hover;
         text-decoration: underline;
       }
 
       a:active {
-        color: var(--colors-themes-light-mode-link-accent-active);
+        color: $colors-themes-light-mode-link-accent-active;
       }
     }
 
@@ -917,7 +917,7 @@ Styling related specifically to digital publications
 
     .m-article-actions--publication__logo {
       a {
-        color: var(--colors-themes-light-mode-text-title);
+        color: $colors-themes-light-mode-text-title;
       }
     }
   }

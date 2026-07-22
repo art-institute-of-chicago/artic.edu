@@ -30,7 +30,7 @@ The ajax page loads progress bar is controlled by the `ajaxPageLoad` function an
   top: 0;
   bottom: 0;
   width: 0%;
-  background-color: var(--colors-scales-red-100);
+  background-color: $colors-scales-red-100;
   transition: all .25s $bezier--ease-out-circ;
 }
 
@@ -38,7 +38,7 @@ The ajax page loads progress bar is controlled by the `ajaxPageLoad` function an
   position: relative;
   max-width: 300px;
   margin: 24px auto 0;
-  background-color: var(--colors-themes-light-mode-rules-primary);
+  background-color: $colors-themes-light-mode-rules-primary;
 }
 
 

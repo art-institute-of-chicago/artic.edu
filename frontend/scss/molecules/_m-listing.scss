@@ -40,7 +40,7 @@
   }
 
   .o-article .m-listing--publication {
-    border: thin solid var(--colors-themes-light-mode-rules-primary);
+    border: thin solid $colors-themes-light-mode-rules-primary;
   }
 
   .o-article__related .m-inline-aside &,
@@ -70,7 +70,7 @@
   .o-article__secondary-actions .m-inline-aside &+& {
     &:before {
       content: '';
-      border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
+      border-top: 1px solid $colors-themes-light-mode-rules-primary;
     }
   }
 }
@@ -103,7 +103,7 @@
   flex: 0 0 auto;
   position: relative;
   margin-top: 28px;
-  background-color: var(--colors-themes-light-mode-background-primary);
+  background-color: $colors-themes-light-mode-background-primary;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   overflow: hidden;
@@ -158,20 +158,20 @@
   right: 0;
   bottom: 0;
   height: 0;
-  background-color: var(--colors-themes-light-mode-link-primary);
+  background-color: $colors-themes-light-mode-link-primary;
   transition: all .25s $bezier--ease-out-circ;
 }
 
 .m-listing--hover-bar.m-listing--limited .m-listing__img::after {
-  background-color: var(--colors-themes-light-mode-link-limited-primary);
+  background-color: $colors-themes-light-mode-link-limited-primary;
 }
 
 .m-listing--hover-bar.m-listing--new .m-listing__img::after {
-  background-color: var(--colors-themes-light-mode-link-new-primary);
+  background-color: $colors-themes-light-mode-link-new-primary;
 }
 
 .m-listing--hover-bar.m-listing--membership .m-listing__img::after {
-  background-color: var(--colors-themes-membership-text-primary);
+  background-color: $colors-themes-membership-text-primary;
 }
 
 .m-listing--hover-bar .m-listing__link:hover .m-listing__img::after,
@@ -310,8 +310,8 @@
     right: 0;
     bottom: 0;
     padding: 10px 12px 12px;
-    background-color: var(--colors-themes-light-mode-text-type);
-    color: var(--colors-themes-light-mode-text-title-contrast);
+    background-color: $colors-themes-light-mode-text-type;
+    color: $colors-themes-light-mode-text-title-contrast;
     text-align: center;
   }
 
@@ -391,7 +391,7 @@
 }
 
 .m-listing.s-no-link .title {
-  color: var(--colors-themes-light-mode-text-secondary);
+  color: $colors-themes-light-mode-text-secondary;
 }
 
 .m-listing__link:hover .title {
@@ -572,7 +572,7 @@
   @include tucked-margin-top($f-body-editorial, ('xsmall': 40));
 
   & {
-    color: var(--colors-themes-light-mode-text-primary);
+    color: $colors-themes-light-mode-text-primary;
   }
 }
 
@@ -580,7 +580,7 @@
   @include tucked-align-top($f-secondary);
 
   & {
-    color: var(--colors-themes-light-mode-text-tertiary);
+    color: $colors-themes-light-mode-text-tertiary;
   }
 }
 
@@ -588,7 +588,7 @@
   @include tucked-align-top($f-tertiary);
 
   & {
-    color: var(--colors-themes-light-mode-text-tertiary);
+    color: $colors-themes-light-mode-text-tertiary;
   }
 }
 
@@ -694,7 +694,7 @@ $point in $breakpoints {
   .m-listing--feature .subtitle,
   .m-listing--feature .f-secondary+br+.f-secondary,
   .m-listing--feature .f-tertiary+br+.f-tertiary {
-    color: var(--colors-themes-light-mode-text-title-contrast);
+    color: $colors-themes-light-mode-text-title-contrast;
   }
 
   .m-listing--feature .intro.f-caption,
@@ -708,7 +708,7 @@ $point in $breakpoints {
   }
 
   .m-listing--feature .m-listing__link:hover .title {
-    color: var(--colors-themes-light-mode-text-title-contrast);
+    color: $colors-themes-light-mode-text-title-contrast;
     opacity: 1;
   }
 }
@@ -907,7 +907,7 @@ $point in $breakpoints {
 .m-listing--hero .intro,
 .m-listing--hero .f-secondary+br+.f-secondary,
 .m-listing--hero .f-tertiary+br+.f-tertiary {
-  color: var(--colors-themes-light-mode-text-title-contrast);
+  color: $colors-themes-light-mode-text-title-contrast;
 }
 
 .m-listing--hero .intro.f-caption {
@@ -944,7 +944,7 @@ $point in $breakpoints {
 }
 
 .m-listing--hero .m-listing__link:hover .title {
-  color: var(--colors-themes-light-mode-text-title-contrast);
+  color: $colors-themes-light-mode-text-title-contrast;
   opacity: 1;
 }
 
@@ -990,7 +990,7 @@ $point in $breakpoints {
 
 
 .m-listing--hero-editorial .m-listing__meta {
-  @include opaqueBg(rgba(var(--colors-themes-editorial-background-primary), .85), rgba(var(--colors-themes-editorial-background-primary), .85));
+  @include opaqueBg(rgba($colors-themes-editorial-background-primary, .85), rgba($colors-themes-editorial-background-primary, .85));
 
   & {
     padding: 0 colspan(3, xsmall) 24px;
@@ -1026,25 +1026,25 @@ $point in $breakpoints {
 }
 
 .m-listing--hero-editorial .m-listing__link:hover .m-listing__meta {
-  background-color: var(--colors-themes-editorial-background-primary);
+  background-color: $colors-themes-editorial-background-primary;
 }
 
 .m-listing--hero-editorial .type {
-  color: var(--colors-themes-light-mode-text-type);
+  color: $colors-themes-light-mode-text-type;
 }
 
 .m-listing--hero-editorial .title {
-  color: var(--colors-themes-light-mode-text-title);
+  color: $colors-themes-light-mode-text-title;
 }
 
 .m-listing--hero-editorial .m-listing__link:hover .title {
-  color: var(--colors-themes-light-mode-text-title);
+  color: $colors-themes-light-mode-text-title;
   opacity: 1;
 }
 
 .m-listing--hero-editorial .date,
 .m-listing--hero-editorial .intro {
-  color: var(--colors-themes-light-mode-text-secondary);
+  color: $colors-themes-light-mode-text-secondary;
 }
 
 .m-listing--hero-editorial .m-listing__meta>.f-secondary {
@@ -1122,7 +1122,7 @@ $point in $breakpoints {
   right: 0;
   top: 0;
   height: 1px;
-  background-color: var(--colors-themes-light-mode-rules-primary);
+  background-color: $colors-themes-light-mode-rules-primary;
 }
 
 
@@ -1137,7 +1137,7 @@ $point in $breakpoints {
   &+& {
     margin-top: 20px;
     padding-top: 16px;
-    border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
+    border-top: 1px solid $colors-themes-light-mode-rules-primary;
 
     @include breakpoint('small+') {
       margin-top: 20px;
@@ -1480,7 +1480,7 @@ $point in $breakpoints {
   }
 
   .o-row-listing>& {
-    border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
+    border-top: 1px solid $colors-themes-light-mode-rules-primary;
   }
 
   .m-inline-aside .m-listing {
@@ -1548,16 +1548,16 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
     }
 
     a {
-      color: var(--colors-themes-light-mode-link-accent-primary);
+      color: $colors-themes-light-mode-link-accent-primary;
 
       &:hover {
-        color: var(--colors-themes-light-mode-link-accent-hover);
+        color: $colors-themes-light-mode-link-accent-hover;
       }
     }
   }
 
   .m-listing--sound__transcript {
-    background-color: var(--colors-themes-light-mode-background-secondary);
+    background-color: $colors-themes-light-mode-background-secondary;
 
     padding: 0 16px;
 
@@ -1746,7 +1746,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   width: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
-  border: 1px solid var(--colors-themes-light-mode-rules-primary);
+  border: 1px solid $colors-themes-light-mode-rules-primary;
 
   @include breakpoint('small+') {
     width: colspan(28, small);
@@ -2027,7 +2027,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   text-align: right;
 
   background: linear-gradient(to bottom,
-      var(--colors-scales-grey-85),
+      $colors-scales-grey-85,
       transparent);
 }
 
@@ -2075,7 +2075,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   left: 0;
   height: 1px;
   width: 100%;
-  background: var(--colors-themes-light-mode-rules-primary);
+  background: $colors-themes-light-mode-rules-primary;
 }
 
 .m-listing--label.o-blocks__block .m-listing__meta {
@@ -2093,7 +2093,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 // Shared styles for .m-listing--journal and .m-listing--magazine
 .m-listing--publication {
-  border: thin solid var(--colors-themes-light-mode-rules-primary);
+  border: thin solid $colors-themes-light-mode-rules-primary;
 
   .m-listing__img img {
     transition: transform .35s ease-in-out;
@@ -2106,9 +2106,9 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
     font-family: $sans-serif-font--loaded;
     font-weight: 400;
     letter-spacing: 1px;
-    color: var(--colors-scales-grey-0);
+    color: $colors-scales-grey-0;
     width: max-content;
-    background: rgb(var(--colors-scales-grey-100), 80);
+    background: rgb($colors-scales-grey-100, 80);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -2135,13 +2135,13 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
     .title {
       margin-top: 0;
       margin-bottom: 8px;
-      color: var(--colors-scales-grey-90);
+      color: $colors-scales-grey-90;
     }
 
     .short-description {
       margin-top: 0;
       margin-bottom: 20px;
-      color: var(--colors-scales-grey-54);
+      color: $colors-scales-grey-54;
       font-size: 19px;
       line-height: 24px;
     }
@@ -2154,7 +2154,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
       }
 
       .f-secondary {
-        color: var(--colors-scales-grey-54);
+        color: $colors-scales-grey-54;
       }
     }
   }
@@ -2175,7 +2175,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 }
 
 .m-listing--publication-call-to-action {
-  background-color: var(--colors-aliases-plum);
+  background-color: $colors-aliases-plum;
   border: 0;
 
   .m-listing__meta {
@@ -2214,32 +2214,32 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 }
 
 .f-tag {
-  color: var(--colors-scales-grey-0);
+  color: $colors-scales-grey-0;
   margin-bottom: 12px;
 }
 
 .f-headline {
-  color: var(--colors-scales-grey-0);
+  color: $colors-scales-grey-0;
   margin-bottom: 48px;
 }
 }
 
 .m-listing__meta-bottom {
   .f-module-title-2 {
-    color: var(--colors-scales-grey-0);
+    color: $colors-scales-grey-0;
   }
 }
 
 .btn--magazine {
-  border-color: rgba(var(--colors-scales-grey-0), .8);
-  background-color: var(--colors-aliases-plum);
-  color: var(--colors-scales-grey-0);
+  border-color: rgba($colors-scales-grey-0, .8);
+  background-color: $colors-aliases-plum;
+  color: $colors-scales-grey-0;
 }
 
 a:hover .btn--magazine,
 a:focus:hover .btn--magazine {
-  background-color: var(--colors-scales-grey-0);
-  color: var(--colors-aliases-plum);
+  background-color: $colors-scales-grey-0;
+  color: $colors-aliases-plum;
 }
 }
 
@@ -2276,7 +2276,7 @@ a:focus:hover .btn--magazine {
     }
 
     a:hover .title {
-      color: rgba(var(--colors-scales-grey-0), .8) !important;
+      color: rgba($colors-scales-grey-0, .8) !important;
     }
 
     .m-listing__img {
@@ -2292,7 +2292,7 @@ a:focus:hover .btn--magazine {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(var(--colors-scales-grey-100), .4);
+        background: rgba($colors-scales-grey-100, .4);
         z-index: 1;
       }
     }
@@ -2303,7 +2303,7 @@ a:focus:hover .btn--magazine {
       justify-content: center;
       align-items: center;
       text-align: center;
-      color: var(--colors-scales-grey-0);
+      color: $colors-scales-grey-0;
       height: 100%;
       width: 100%;
       z-index: 2;
@@ -2377,11 +2377,11 @@ a:focus:hover .btn--magazine {
         align-items: baseline;
         font-size: 16px;
         font-weight: 400;
-        color: var(--colors-themes-light-mode-rules-brand);
+        color: $colors-themes-light-mode-rules-brand;
       }
 
       .f-link + .f-link {
-          border-left: 1px solid var(--colors-scales-grey-20);
+          border-left: 1px solid $colors-scales-grey-20;
           padding-left: 12px;
       }
     }
@@ -2412,7 +2412,7 @@ a:focus:hover .btn--magazine {
     }
 
     .short-description {
-      color: var(--colors-scales-grey-100);
+      color: $colors-scales-grey-100;
     }
 
     .link {
@@ -2550,27 +2550,27 @@ a:focus:hover .btn--magazine {
 }
 
 .m-listing--publication-call-to-action-light {
-  background-color: var(--colors-scales-grey-0);
-  border: 1px solid var(--colors-themes-light-mode-text-type);
+  background-color: $colors-scales-grey-0;
+  border: 1px solid $colors-themes-light-mode-text-type;
 
   .m-listing__meta {
     >.f-tag {
-      color: var(--colors-aliases-plum);
+      color: $colors-aliases-plum;
     }
 
     .f-headline {
-      color: var(--colors-aliases-plum);
+      color: $colors-aliases-plum;
     }
   }
 
   .m-listing__meta-bottom {
     .f-module-title-2 {
-      color: var(--colors-aliases-plum);
+      color: $colors-aliases-plum;
     }
   }
 
   .btn--magazine {
-    border-color: rgba(var(--colors-aliases-plum), .8);
+    border-color: rgba($colors-aliases-plum, .8);
   }
 }
 
@@ -2598,14 +2598,14 @@ a:focus:hover .btn--magazine {
     }
 
     .btn--publication-happening {
-      color: var(--colors-themes-light-mode-text-title);
-      border-color: var(--colors-themes-light-mode-text-title);
-      background-color: var(--colors-scales-grey-0);
+      color: $colors-themes-light-mode-text-title;
+      border-color: $colors-themes-light-mode-text-title;
+      background-color: $colors-scales-grey-0;
 
       &:hover,
       &:focus {
-        color: var(--colors-scales-grey-42);
-        border-color: var(--colors-scales-grey-42);
+        color: $colors-scales-grey-42;
+        border-color: $colors-scales-grey-42;
       }
     }
 
@@ -2670,7 +2670,7 @@ a:focus:hover .btn--magazine {
 // Variant for Art Institute Review
 .m-listing--journal {
   .m-listing__meta>.f-tag {
-    color: var(--colors-themes-light-mode-link-alternative-primary);
+    color: $colors-themes-light-mode-link-alternative-primary;
   }
 }
 
@@ -2713,13 +2713,13 @@ a:focus:hover .btn--magazine {
 // Variant for Member Magazine
 .m-listing--magazine {
   .m-listing__meta>.f-tag {
-    color: var(--colors-aliases-plum);
+    color: $colors-aliases-plum;
   }
 }
 
 // Variant for author pages
 .m-listing--author {
-  border-color: var(--colors-themes-light-mode-rules-primary);
+  border-color: $colors-themes-light-mode-rules-primary;
 
   .m-listing__link:hover,
   .m-listing__link:focus {

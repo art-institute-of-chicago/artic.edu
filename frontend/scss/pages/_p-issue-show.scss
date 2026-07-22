@@ -60,7 +60,7 @@
 
   .o-article__body::before {
     position: absolute;
-    background-color: var(--colors-themes-light-mode-rules-primary);
+    background-color: $colors-themes-light-mode-rules-primary;
     width: 1px;
 
     @include breakpoint('large+') {

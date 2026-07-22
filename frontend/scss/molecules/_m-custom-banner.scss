@@ -35,7 +35,7 @@
             right: 0;
             bottom: 0;
             left: 0;
-            background: rgba(var(--colors-scales-grey-100), .4);
+            background: rgba($colors-scales-grey-100, .4);
         }
 
         img {
@@ -155,9 +155,9 @@
         }
 
         .btn {
-            border-color: var(--colors-scales-grey-0) !important;
+            border-color: $colors-scales-grey-0 !important;
             background-color: #ffffff00 !important;
-            color: var(--colors-scales-grey-0) !important;
+            color: $colors-scales-grey-0 !important;
             margin-top: 20px;
 
             &:hover,
@@ -231,7 +231,7 @@
         padding-top: 25px;
 
         &.custom-banner-block--variation-cloud {
-            border-top: 1px solid var(--colors-scales-grey-20);
+            border-top: 1px solid $colors-scales-grey-20;
             .content-wrapper {
                 height: 276px;
                 display: flex;
@@ -262,7 +262,7 @@
                 letter-spacing: 0.08em;
                 text-align: left;
                 text-transform: uppercase;
-                color: var(--colors-scales-grey-90) !important;
+                color: $colors-scales-grey-90 !important;
             }
 
             .custom-banner-body {
@@ -272,7 +272,7 @@
                 line-height: 28px;
                 letter-spacing: -0.005em;
                 text-align: left;
-                color: var(--colors-scales-grey-90) !important;
+                color: $colors-scales-grey-90 !important;
             }
 
             .tag-cloud {
@@ -286,7 +286,7 @@
                 }
 
                 .f-tag {
-                    background-color: var(--colors-scales-grey-0);
+                    background-color: $colors-scales-grey-0;
                     padding: 6px 12px;
                     margin: 6px;
                     font-family: $sans-serif-font--loaded;
@@ -294,8 +294,8 @@
                     font-weight: 400;
                     line-height: 16px;
                     letter-spacing: 0.14em;
-                    color: var(--colors-scales-grey-100);
-                    border: 1px solid var(--colors-scales-grey-20);
+                    color: $colors-scales-grey-100;
+                    border: 1px solid $colors-scales-grey-20;
                     border-radius: 2px;
                 }
             }
@@ -303,7 +303,7 @@
             .tag-cloud__link {
                 display: block;
                 margin: auto;
-                color: var(--colors-themes-light-mode-rules-brand);
+                color: $colors-themes-light-mode-rules-brand;
                 text-align: center;
                 font-size: 20px;
                 font-weight: 300;
@@ -335,4 +335,3 @@
     }
   }
 }
-

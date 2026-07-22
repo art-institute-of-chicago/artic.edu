@@ -4,7 +4,7 @@
   & {
     margin-top: 32px;
     padding-top: 19px;
-    border-top: 1px solid var(--colors-themes-light-mode-rules-primary);
+    border-top: 1px solid $colors-themes-light-mode-rules-primary;
   }
 
   @include breakpoint('small+') {
@@ -101,14 +101,14 @@
 
 .m-directions-block__links.o-blocks>span[class*=f-] a {
   background: none;
-  color: var(--colors-themes-light-mode-link-accent-primary);
+  color: $colors-themes-light-mode-link-accent-primary;
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, var(--colors-themes-light-mode-link-accent-hover));
+    @include text-underline(1.02em, $colors-themes-light-mode-link-accent-hover);
 
     & {
-      color: var(--colors-themes-light-mode-link-accent-hover);
+      color: $colors-themes-light-mode-link-accent-hover;
     }
   }
 
@@ -116,7 +116,7 @@
     @include text-underline(1.02em, transparent);
 
     & {
-      color: var(--colors-themes-light-mode-link-accent-active);
+      color: $colors-themes-light-mode-link-accent-active;
     }
   }
 }

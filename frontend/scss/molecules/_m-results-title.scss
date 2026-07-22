@@ -17,17 +17,17 @@
   @include tucked-margin-top($f-list-3, ('xsmall': 60));
 
   a {
-    @include text-underline(.8em, var(--colors-themes-light-mode-rules-secondary));
-    color: var(--colors-themes-light-mode-link-accent-primary);
+    @include text-underline(.8em, $colors-themes-light-mode-rules-secondary);
+    color: $colors-themes-light-mode-link-accent-primary;
     text-decoration: none;
 
     &:hover,
     &:focus:hover {
-      @include text-underline(.8em, var(--colors-themes-light-mode-link-accent-primary));
+      @include text-underline(.8em, $colors-themes-light-mode-link-accent-primary);
     }
 
     &:active:hover {
-      @include text-underline(.8em, var(--colors-themes-light-mode-rules-secondary));
+      @include text-underline(.8em, $colors-themes-light-mode-rules-secondary);
     }
   }
 }
@@ -56,18 +56,18 @@
 }
 
 .m-results-title__links a {
-  color: var(--colors-themes-light-mode-link-accent-primary);
+  color: $colors-themes-light-mode-link-accent-primary;
 
   &:hover,
   &:focus:hover {
-    color: var(--colors-themes-light-mode-link-accent-hover);
+    color: $colors-themes-light-mode-link-accent-hover;
   }
 
   &:active:hover {
-    color: var(--colors-themes-light-mode-link-accent-active);
+    color: $colors-themes-light-mode-link-accent-active;
   }
 }
 
 .m-results-title__links span {
-  color: var(--colors-themes-light-mode-text-secondary);
+  color: $colors-themes-light-mode-text-secondary;
 }

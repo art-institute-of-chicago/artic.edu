@@ -1,11 +1,11 @@
 .contrast-text {
   .s-light-background ~ * &,
   .s-light-background & {
-    color: var(--colors-scales-grey-100) !important;
+    color: $colors-scales-grey-100 !important;
   }
 
   .s-dark-background ~ * &,
   .s-dark-background & {
-    color: var(--colors-scales-grey-0) !important;
+    color: $colors-scales-grey-0 !important;
   }
 }

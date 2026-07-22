@@ -443,7 +443,7 @@ $f-ui: (
   $background - color
   $pos - vertical position
 */
-@mixin text-underline($pos: .85em, $underline: var(--colors-themes-light-mode-text-primary), $background: var(--colors-scales-grey-0)) {
+@mixin text-underline($pos: .85em, $underline: $colors-themes-light-mode-text-primary, $background: $colors-scales-grey-0) {
   text-decoration: underline !important;
 }
 

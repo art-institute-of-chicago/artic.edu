@@ -29,25 +29,25 @@
   border-radius: 0;
   border-top-left-radius: $border-radius;
   border-bottom-left-radius: $border-radius;
-  background: var(--colors-themes-light-mode-background-primary);
-  color: var(--colors-themes-light-mode-text-title);
+  background: $colors-themes-light-mode-background-primary;
+  color: $colors-themes-light-mode-text-title;
   outline: none;
 
   @include placeholder() {
-    color: var(--colors-themes-light-mode-text-secondary);
+    color: $colors-themes-light-mode-text-secondary;
   }
 }
 
 .m-search-bar.s-autocomplete-active input[type=text],
 .m-search-bar input[type=text]:focus {
-  border-color: var(--colors-themes-light-mode-rules-focus);
-  background-color: var(--colors-scales-grey-0);
+  border-color: $colors-themes-light-mode-rules-focus;
+  background-color: $colors-scales-grey-0;
 }
 
 .m-search-bar.s-autocomplete-active input[type=text]+.m-search-bar__submit,
 .m-search-bar input[type=text]:focus+.m-search-bar__submit {
-  background-color: var(--colors-themes-light-mode-rules-focus);
-  color: var(--colors-scales-grey-0);
+  background-color: $colors-themes-light-mode-rules-focus;
+  color: $colors-scales-grey-0;
 }
 
 .m-search-bar__submit,
@@ -65,15 +65,15 @@
   border-radius: 0;
   border-top-right-radius: $border-radius;
   border-bottom-right-radius: $border-radius;
-  background: var(--colors-themes-light-mode-background-tertiary);
-  color: var(--colors-scales-grey-0);
+  background: $colors-themes-light-mode-background-tertiary;
+  color: $colors-scales-grey-0;
   line-height: 56px;
   text-align: center;
   cursor: pointer;
 
   &:hover,
   &:focus:hover {
-    background-color: var(--colors-scales-grey-100);
+    background-color: $colors-scales-grey-100;
   }
 }
 
@@ -131,12 +131,12 @@
 
 .m-search-bar--subtle .m-search-bar__submit,
 .m-search-bar--subtle .m-search-bar__clear {
-  color: var(--colors-themes-light-mode-text-secondary);
+  color: $colors-themes-light-mode-text-secondary;
 
   &:hover,
   &:focus:hover {
     background-color: transparent;
-    color: var(--colors-scales-grey-100);
+    color: $colors-scales-grey-100;
   }
 }
 
@@ -146,37 +146,37 @@
 .o-collection-search {
 
   .m-search-bar input[type=text] {
-    color: var(--colors-themes-light-mode-text-secondary);
+    color: $colors-themes-light-mode-text-secondary;
 
     @include placeholder() {
-      color: var(--colors-themes-light-mode-text-tertiary);
+      color: $colors-themes-light-mode-text-tertiary;
     }
   }
 
   .m-search-bar.s-autocomplete-active input[type=text]:focus,
   .m-search-bar input[type=text]:focus {
     border-color: transparent;
-    background-color: var(--colors-themes-light-mode-background-primary);
-    color: var(--colors-themes-light-mode-text-title);
+    background-color: $colors-themes-light-mode-background-primary;
+    color: $colors-themes-light-mode-text-title;
   }
 
   .m-search-bar .m-search-bar__submit {
-    color: var(--colors-themes-light-mode-text-tertiary);
+    color: $colors-themes-light-mode-text-tertiary;
   }
 
   .m-search-bar .m-search-bar__submit:hover,
   .m-search-bar .m-search-bar__submit:focus {
-    color: var(--colors-themes-light-mode-text-secondary);
+    color: $colors-themes-light-mode-text-secondary;
   }
 
   .m-search-bar .m-search-bar__submit:active {
-    color: var(--colors-themes-light-mode-text-title);
+    color: $colors-themes-light-mode-text-title;
   }
 
   .m-search-bar.s-autocomplete-active input[type=text]:focus+.m-search-bar__submit,
   .m-search-bar input[type=text]:focus+.m-search-bar__submit {
-    background-color: var(--colors-themes-light-mode-background-primary);
-    color: var(--colors-themes-light-mode-text-title);
+    background-color: $colors-themes-light-mode-background-primary;
+    color: $colors-themes-light-mode-text-title;
   }
 
 }
@@ -193,13 +193,13 @@
     left: 0;
     right: 0;
     top: 100%;
-    background-color: var(--colors-themes-light-mode-background-default);
+    background-color: $colors-themes-light-mode-background-default;
     box-shadow: $shadow;
   }
 }
 
 .m-search-bar__autocomplete li:not(:first-child) {
-  border-top: 1px solid var(--colors-themes-light-mode-rules-tertiary);
+  border-top: 1px solid $colors-themes-light-mode-rules-tertiary;
 }
 
 .m-search-bar__autocomplete a {
@@ -228,23 +228,23 @@
 }
 
 .m-search-bar__autocomplete a:not([class]) {
-  background-color: var(--colors-scales-grey-0);
-  color: var(--colors-themes-light-mode-text-secondary);
+  background-color: $colors-scales-grey-0;
+  color: $colors-themes-light-mode-text-secondary;
 
   &:hover {
-    background-color: var(--colors-themes-light-mode-background-secondary);
-    color: var(--colors-themes-light-mode-text-title);
+    background-color: $colors-themes-light-mode-background-secondary;
+    color: $colors-themes-light-mode-text-title;
   }
 
   &:hover {
-    background-color: var(--colors-themes-light-mode-background-primary);
-    color: var(--colors-themes-light-mode-text-title);
+    background-color: $colors-themes-light-mode-background-primary;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
 .m-search-bar__autocomplete a.suggestion--fulltext {
   @extend .btn--tertiary;
-  color: var(--colors-scales-grey-0);
+  color: $colors-scales-grey-0;
 
   svg {
     margin-right: 16px;
@@ -258,12 +258,12 @@
   right: 56px;
   border: 0 none;
   background-color: transparent;
-  color: var(--colors-themes-light-mode-text-title);
+  color: $colors-themes-light-mode-text-title;
 
   &:focus:hover,
   &:hover {
     background-color: transparent;
-    color: var(--colors-themes-light-mode-text-title);
+    color: $colors-themes-light-mode-text-title;
   }
 }
 

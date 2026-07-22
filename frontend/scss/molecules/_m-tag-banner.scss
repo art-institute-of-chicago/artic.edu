@@ -1,5 +1,5 @@
 .m-tag-banner-block {
-  border-top: 1px solid var(--colors-scales-grey-20);
+  border-top: 1px solid $colors-scales-grey-20;
   margin-top: 50px;
   padding-top: 50px;
 
@@ -21,7 +21,7 @@
     z-index: 0;
 
     &::before {
-      background: var(--colors-aliases-cold-white);
+      background: $colors-aliases-cold-white;
       bottom: 0;
       content: "";
       display: block;
@@ -75,7 +75,7 @@
     align-self: baseline;
 
     .tag-banner-title {
-      color: var(--colors-scales-grey-90) !important;
+      color: $colors-scales-grey-90 !important;
       font-family: $sans-serif-font--loaded;
       font-size: 21px;
       font-weight: 400;
@@ -86,7 +86,7 @@
     }
 
     .tag-banner-body {
-      color: var(--colors-scales-grey-90) !important;
+      color: $colors-scales-grey-90 !important;
       display: block;
       font-family: $serif-font--loaded;
       font-size: 22px;
@@ -111,10 +111,10 @@
       justify-content: center;
 
       .tag {
-        background-color: var(--colors-scales-grey-0);
+        background-color: $colors-scales-grey-0;
         border-radius: 2px;
-        border: 1px solid var(--colors-scales-grey-20);
-        color: var(--colors-scales-grey-100);
+        border: 1px solid $colors-scales-grey-20;
+        color: $colors-scales-grey-100;
         font-family: $sans-serif-font--loaded;
         font-size: 12px;
         font-weight: 400;
@@ -146,7 +146,7 @@
     }
 
     .tag-banner-link {
-      color: var(--colors-themes-light-mode-rules-brand);
+      color: $colors-themes-light-mode-rules-brand;
       display: block;
       font-size: 20px;
       font-weight: 300;

@@ -39,7 +39,7 @@
 }
 
 .o-visit hr {
-  border-top: 1px solid var(--colors-themes-light-mode-rules-quaternary);
+  border-top: 1px solid $colors-themes-light-mode-rules-quaternary;
 }
 
 .o-visit .m-title-bar {
@@ -175,7 +175,7 @@
     }
 
     a {
-      @include text-underline(1.02em, var(--colors-themes-light-mode-rules-secondary));
+      @include text-underline(1.02em, $colors-themes-light-mode-rules-secondary);
     }
   }
 

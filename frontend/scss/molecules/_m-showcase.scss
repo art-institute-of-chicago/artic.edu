@@ -3,7 +3,7 @@
     margin-top: 50px;
     display: flex;
     flex-direction: row;
-    background-color: var(--colors-themes-light-mode-background-secondary);
+    background-color: $colors-themes-light-mode-background-secondary;
 
     .m-showcase-wrapper {
         display: flex;
@@ -74,7 +74,7 @@
         width: 100%;
 
         .showcase-tag {
-            color: var(--colors-themes-light-mode-text-type);
+            color: $colors-themes-light-mode-text-type;
 
             &::before {
                 padding: 0 !important;
@@ -86,7 +86,7 @@
         }
 
         .showcase-description {
-            color: var(--colors-themes-light-mode-text-secondary);
+            color: $colors-themes-light-mode-text-secondary;
             margin: 18px 0 0 0;
         }
 
@@ -96,7 +96,7 @@
         }
 
         .showcase-link {
-            color: var(--colors-themes-light-mode-text-secondary);
+            color: $colors-themes-light-mode-text-secondary;
             margin: 18px 0 0 0;
             font-size: 17px;
         }
@@ -145,7 +145,7 @@
 
         .showcase-description {
             * {
-            color: var(--colors-scales-grey-100) !important;
+            color: $colors-scales-grey-100 !important;
             }
             & {
                 margin: 0 !important;
@@ -201,7 +201,7 @@
             .showcase-header {
                 flex-basis: auto;
                 order: -1;
-                color: var(--colors-scales-grey-60);
+                color: $colors-scales-grey-60;
                 font-size: 13px;
                 font-family: $sans-serif-font--loaded;
                 font-weight: 400;
@@ -255,12 +255,12 @@
 
             .showcase-date {
                 margin-top: 28px;
-                color: var(--colors-names-rlc-fire-opal);
+                color: $colors-names-rlc-fire-opal;
             }
         }
 
         &.showcase--variation-about-the-rlc {
-            background-color: var(--colors-names-rlc-fire-opal) !important;
+            background-color: $colors-names-rlc-fire-opal !important;
 
             .m-showcase-wrapper {
                 flex-direction: row-reverse;
@@ -299,39 +299,39 @@
             .showcase-title,
             .showcase-description,
             .showcase-link {
-                color: var(--colors-scales-grey-90);
+                color: $colors-scales-grey-90;
             }
         }
         &.showcase--variation-rlc-secondary {
-            background-color: var(--colors-names-rlc-myrtle-green) !important;
+            background-color: $colors-names-rlc-myrtle-green !important;
 
             .showcase-header,
             .showcase-tag,
             .showcase-title,
             .showcase-description {
-                color: var(--colors-scales-grey-0);
+                color: $colors-scales-grey-0;
             }
             .showcase-date {
                 margin-top: 28px;
-                color: var(--colors-names-rlc-sunglow);
+                color: $colors-names-rlc-sunglow;
             }
             .showcase-link {
-                color: var(--colors-names-rlc-sunglow);
+                color: $colors-names-rlc-sunglow;
                 &:hover {
-                    color: var(--colors-scales-grey-0);
+                    color: $colors-scales-grey-0;
                 }
             }
         }
     }
     &.showcase--default.showcase--variation-1e3f49 {
-        background-color: var(--colors-scales-blue-190);
+        background-color: $colors-scales-blue-190;
 
         .showcase-description,
         .showcase-header,
         .showcase-link,
         .showcase-tag,
         .showcase-title {
-            color: var(--colors-scales-grey-0);
+            color: $colors-scales-grey-0;
         }
     }
     &.showcase--educator-resources {
@@ -356,7 +356,7 @@
 
         .showcase-callout {
             a {
-                color: var(--colors-themes-light-mode-link-accent-primary);
+                color: $colors-themes-light-mode-link-accent-primary;
             }
         }
     }
@@ -369,11 +369,11 @@
         }
 
         &.showcase--variation-make-with-us {
-            background-color: var(--colors-names-rlc-apricot);
+            background-color: $colors-names-rlc-apricot;
 
             .m-showcase-background {
                 --spacing: calc(100vw);
-                background-color: var(--colors-names-rlc-fawn);
+                background-color: $colors-names-rlc-fawn;
                 border-bottom-left-radius: var(--spacing);
                 border-bottom-right-radius: var(--spacing);
             }
@@ -408,12 +408,12 @@
             .showcase-description,
             .showcase-tag,
             .showcase-link {
-                color: var(--colors-scales-grey-80);
+                color: $colors-scales-grey-80;
             }
         }
 
         &.showcase--variation-experience-with-us {
-            color: var(--colors-scales-grey-0);
+            color: $colors-scales-grey-0;
             overflow: hidden;
             position: relative;
 
@@ -426,7 +426,7 @@
             }
 
             &::after {
-                border-color: transparent var(--colors-names-rlc-myrtle-green) transparent transparent;
+                border-color: transparent $colors-names-rlc-myrtle-green transparent transparent;
                 border-style: solid;
                 border-width: 0 var(--fullwidth) var(--fullwidth) 0;
                 content: '';
@@ -438,7 +438,7 @@
             }
 
             .m-showcase-background {
-                background-color: var(--colors-names-rlc-japanese-indigo);
+                background-color: $colors-names-rlc-japanese-indigo;
             }
 
             .m-showcase-wrapper {
@@ -451,12 +451,12 @@
             .showcase-description,
             .showcase-tag,
             .showcase-link {
-                color: var(--colors-scales-grey-0);
+                color: $colors-scales-grey-0;
             }
 
             .f-caption {
-                background-color: var(--colors-scales-grey-100);
-                color: var(--colors-scales-grey-0);
+                background-color: $colors-scales-grey-100;
+                color: $colors-scales-grey-0;
             }
 
             .m-showcase-block__header-wrapper {
@@ -501,7 +501,7 @@
         }
 
         &.showcase--variation-learn-with-us {
-            background-color: var(--colors-names-rlc-apricot);
+            background-color: $colors-names-rlc-apricot;
 
             .m-showcase-background {
                 background-color: inherit;
@@ -556,7 +556,7 @@
                 }
 
                 .showcase-description {
-                    color: var(--colors-scales-grey-80);
+                    color: $colors-scales-grey-80;
 
                     @include breakpoint('xsmall') {
                         display: none;
@@ -564,7 +564,7 @@
                 }
 
                 .showcase-link {
-                    color: var(--colors-names-rlc-fire-opal);
+                    color: $colors-names-rlc-fire-opal;
 
                     @include breakpoint('xsmall') {
                         text-align: center;

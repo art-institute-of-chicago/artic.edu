@@ -26,8 +26,8 @@ A simple CSS only load spinner
     width: 24px;
     height: 24px;
     margin: -12px 0 0 -12px;
-    border: 2px solid var(--colors-themes-light-mode-rules-primary);
-    border-top-color: var(--colors-scales-grey-54);
+    border: 2px solid $colors-themes-light-mode-rules-primary;
+    border-top-color: $colors-scales-grey-54;
     border-radius: 50%;
     animation: loader 1.25s linear infinite;
   }

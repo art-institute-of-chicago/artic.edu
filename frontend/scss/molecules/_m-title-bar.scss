@@ -123,12 +123,12 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: var(--colors-themes-light-mode-rules-quaternary);
+  background-color: $colors-themes-light-mode-rules-quaternary;
 }
 
 // Simulates a thinner <hr/>, which is lighter, but taller
 .m-title-bar--light::before {
-  background-color: var(--colors-themes-light-mode-rules-primary);
+  background-color: $colors-themes-light-mode-rules-primary;
 }
 
 .m-title-bar .title {
@@ -177,18 +177,18 @@
 }
 
 .m-title-bar__links a {
-  color: var(--colors-themes-light-mode-link-primary);
+  color: $colors-themes-light-mode-link-primary;
 
   &:hover,
   &:focus:hover {
-    color: var(--colors-themes-light-mode-link-hover);
+    color: $colors-themes-light-mode-link-hover;
   }
 
   &:active:hover {
-    color: var(--colors-themes-light-mode-link-active);
+    color: $colors-themes-light-mode-link-active;
   }
 }
 
 .m-title-bar__links span {
-  color: var(--colors-themes-light-mode-text-secondary);
+  color: $colors-themes-light-mode-text-secondary;
 }

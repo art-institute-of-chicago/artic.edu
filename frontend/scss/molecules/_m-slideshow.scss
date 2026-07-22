@@ -19,7 +19,7 @@
     width: 100%;
   }
   .slideshow-position-pip {
-    background-color: var(--colors-scales-grey-15);
+    background-color: $colors-scales-grey-15;
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -28,6 +28,6 @@
     width: 10px;
   }
   .slideshow-position-current {
-    background-color: var(--colors-scales-grey-100);
+    background-color: $colors-scales-grey-100;
   }
 }

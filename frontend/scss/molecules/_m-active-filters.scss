@@ -16,7 +16,7 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: var(--colors-themes-light-mode-rules-primary);
+  background-color: $colors-themes-light-mode-rules-primary;
 }
 
 
@@ -44,15 +44,15 @@
 }
 
 .m-active-filters__clear a {
-  color: var(--colors-themes-light-mode-link-primary);
+  color: $colors-themes-light-mode-link-primary;
 
   &:hover,
   &:focus:hover {
-    color: var(--colors-themes-light-mode-link-hover);
+    color: $colors-themes-light-mode-link-hover;
   }
 
   &:active:hover {
-    color: var(--colors-themes-light-mode-link-active);
+    color: $colors-themes-light-mode-link-active;
   }
 }
 
@@ -63,7 +63,7 @@
   display: block;
   margin: 0;
   padding: 16px 20px 24px;
-  background: var(--colors-themes-light-mode-background-primary);
+  background: $colors-themes-light-mode-background-primary;
 }
 
 .o-collection-filters .m-active-filters::before {

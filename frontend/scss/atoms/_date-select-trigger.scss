@@ -70,7 +70,7 @@ Example usage:
   padding: 0;
   border: 0 none;
   background: none;
-  color: var(--colors-themes-light-mode-link-primary);
+  color: $colors-themes-light-mode-link-primary;
   cursor: pointer;
 
   font: inherit;
@@ -78,11 +78,11 @@ Example usage:
 
   &:hover,
   &:focus:hover {
-    color: var(--colors-themes-light-mode-link-hover);
+    color: $colors-themes-light-mode-link-hover;
   }
 
   &:active:hover {
-    color: var(--colors-themes-light-mode-link-active);
+    color: $colors-themes-light-mode-link-active;
   }
 }
 
