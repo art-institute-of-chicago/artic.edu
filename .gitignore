@@ -52,3 +52,5 @@ studio.json
 yalc.lock
 
 CLAUDE.local.md
+
+/frontend/scss/setup/_styleVariables.scss
