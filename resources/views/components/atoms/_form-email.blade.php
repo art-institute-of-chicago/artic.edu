@@ -1,0 +1,18 @@
+@component('components.atoms._form-input')
+    @slot('variation', $variation ?? null)
+    @slot('error', $error ?? null)
+    @slot('disabled', $disabled ?? null)
+    @slot('id', $id ?? null)
+    @slot('optional', $optional ?? null)
+    @slot('hint', $hint ?? null)
+    @slot('textCount', $textCount ?? null)
+    @slot('value', $value ?? null)
+    @slot('name', $name ?? null)
+    @slot('pattern', $pattern ?? null)
+    @slot('required', $required ?? null)
+    @slot('error', $error ?? null)
+    @slot('type', 'email')
+    @slot('placeholder', 'your@email.com')
+    @slot('autocomplete', 'email')
+    {!! $slot !!}
+@endcomponent

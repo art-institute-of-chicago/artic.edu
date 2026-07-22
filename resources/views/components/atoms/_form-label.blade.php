@@ -7,7 +7,7 @@
         <em class="label__hint">{!! $hint !!}</em>
     @endif
     @if (isset($error))
-        @component('components.atoms._error-msg')
+        @component('components.atoms._form-error-msg')
             {{ $error ?? '' }}
         @endcomponent
     @endif

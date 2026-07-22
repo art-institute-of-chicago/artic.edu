@@ -1,6 +1,6 @@
 <span class="input{{ (isset($variation)) ? ' '.$variation : '' }}{{ (isset($error)) ? ' s-error' : '' }}{{ (isset($disabled)) ? ' s-disabled' : '' }}">
     @if ($slot != '')
-        @component('components.atoms._label')
+        @component('components.atoms._form-label')
             @slot('for', $id)
             @slot('optional', $optional ?? null)
             @slot('hint', $hint ?? null)
@@ -18,7 +18,7 @@
         @endcomponent
     </span>
     @if (isset($error))
-        @component('components.atoms._error-msg')
+        @component('components.atoms._form-error-msg')
             {{ $error ?? '' }}
         @endcomponent
     @endif
