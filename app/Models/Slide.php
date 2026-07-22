@@ -57,6 +57,8 @@ class Slide extends AbstractModel implements Sortable
         'end_credit_subhead',
         'end_credit_copy',
         'seamless_alt_text',
+        'background_color',
+        'seamless_background_color',
     ];
 
     protected $casts = [
