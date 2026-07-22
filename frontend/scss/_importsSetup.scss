@@ -1,7 +1,7 @@
 $include-icons: false; // @see icons.scss!
 
 // Pull variables from the style service
-@import url($styles-service + '/storage/variables.css');
+@import 'setup/styleVariables';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ load fonts
 
