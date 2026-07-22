@@ -66,3 +66,11 @@
         ]"
     />
 </x-twill::formConnectedFields>
+
+<x-twill::input
+            name='background_color'
+            label='Background Color'
+            placeholder='#RRGGBB or #RRGGBBAA'
+            note='Hex color with optional alpha. Leave empty to inherit from group.'
+            :maxlength='9'
+        />
