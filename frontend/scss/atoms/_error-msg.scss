@@ -13,7 +13,7 @@ Sets color of error message text
 
 .error-msg {
   display: block;
-  color: $color__text--error;
+  color: $colors-themes-light-mode-error-primary;
   font-style: normal;
 }
 

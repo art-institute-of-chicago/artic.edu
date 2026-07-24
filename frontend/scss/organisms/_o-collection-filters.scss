@@ -10,7 +10,7 @@
   bottom: 0;
   width: 300px;
   flex-flow: column nowrap;
-  background: $color__bg;
+  background: $colors-themes-light-mode-background-default;
 
   @include breakpoint('medium+') {
     position: static;
@@ -27,7 +27,7 @@
   right: 100%;
   top: 0;
   bottom: 100%;
-  background-color: rgba($color__bg--tertiary, .25);
+  background-color: rgba($colors-themes-light-mode-background-tertiary, .25);
   opacity: 0;
   transition: .15s opacity;
 
@@ -45,7 +45,7 @@
   right: 100%;
   top: 0;
   bottom: 100%;
-  background-color: $color__white;
+  background-color: $colors-scales-grey-0;
   opacity: 0;
   transition: .15s opacity;
 
@@ -132,8 +132,8 @@
   flex: 0 0 auto;
   width: 100%;
   padding: 11px 12px 12px;
-  border-top: 1px solid $color__rules--primary;
-  background: $color__bg;
+  border-top: 1px solid $colors-themes-light-mode-rules-primary;
+  background: $colors-themes-light-mode-background-default;
 
   @include breakpoint('medium+') {
     display: none;

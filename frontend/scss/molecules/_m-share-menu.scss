@@ -9,7 +9,7 @@
   top: 50%;
   margin-top: -144px;
   max-height: 80vh;
-  background-color: $color__white;
+  background-color: $colors-scales-grey-0;
   box-shadow: $shadow;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -38,7 +38,7 @@
 .m-share-menu--inline {
   display: block;
   position: relative;
-  border: 1px solid $color__rules--primary;
+  border: 1px solid $colors-themes-light-mode-rules-primary;
   box-shadow: none;
 }
 
@@ -47,7 +47,7 @@
 
   & {
     padding: 18px 60px 18px 16px;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 
   @include breakpoint('medium+') {
@@ -61,7 +61,7 @@
 }
 
 .m-share-menu li {
-  border-top: 1px solid $color__rules--tertiary;
+  border-top: 1px solid $colors-themes-light-mode-rules-tertiary;
 }
 
 .m-share-menu li:first-child {
@@ -80,8 +80,8 @@
     margin: 0;
     padding: 10px 16px;
     border: 0 none;
-    background-color: $color__white;
-    color: $color__text--secondary;
+    background-color: $colors-scales-grey-0;
+    color: $colors-themes-light-mode-text-secondary;
     text-align: left;
     text-decoration: none;
     cursor: pointer;
@@ -101,14 +101,14 @@
 
 .m-share-menu ul a:hover,
 .m-share-menu ul button:hover {
-  background-color: $color__bg--secondary;
-  color: $color__text--title;
+  background-color: $colors-themes-light-mode-background-secondary;
+  color: $colors-themes-light-mode-text-title;
 }
 
 .m-share-menu ul :active,
 .m-share-menu ul button:active {
-  background-color: $color__bg--primary;
-  color: $color__text--title;
+  background-color: $colors-themes-light-mode-background-primary;
+  color: $colors-themes-light-mode-text-title;
 }
 
 .m-share-menu__close {
@@ -121,7 +121,7 @@
   padding: 0;
   border: 0 none;
   background: transparent;
-  color: $color__text--title;
+  color: $colors-themes-light-mode-text-title;
 
   @include breakpoint('medium+') {
     position: absolute;

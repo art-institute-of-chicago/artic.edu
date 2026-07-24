@@ -29,8 +29,8 @@
     padding: 0 16px;
     border: 0 none;
     border-radius: $border-radius;
-    background: $color__bg;
-    color: $color__link;
+    background: $colors-themes-light-mode-background-default;
+    color: $colors-themes-light-mode-link-primary;
     line-height: 44px;
     cursor: pointer;
     box-shadow: $shadow;
@@ -42,13 +42,13 @@
 
   &:hover,
   &:focus:hover {
-    background-color: $color__bg--secondary;
-    color: $color__link--hover;
+    background-color: $colors-themes-light-mode-background-secondary;
+    color: $colors-themes-light-mode-link-hover;
   }
 }
 
 .m-search-triggers button em {
-  color: $color__text--secondary;
+  color: $colors-themes-light-mode-text-secondary;
   font-style: normal;
 }
 
@@ -65,10 +65,10 @@
 }
 
 .m-search-triggers button .icon--search--24 {
-  color: $color__text--title;
+  color: $colors-themes-light-mode-text-title;
 }
 
 .m-search-triggers button:hover .icon--search--24,
 .m-search-triggers button:focus .icon--search--24 {
-  color: $color__text--title;
+  color: $colors-themes-light-mode-text-title;
 }

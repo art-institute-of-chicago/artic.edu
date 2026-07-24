@@ -6,8 +6,8 @@
 
   & {
     padding-top: .02px;
-    background-color: $color__bg--gallery;
-    color: $color__text--contrast;
+    background-color: $colors-themes-light-mode-background-gallery;
+    color: $colors-themes-light-mode-text-contrast;
     transform: translateZ(0);
     margin-top: 48px;
   }
@@ -55,21 +55,21 @@
 .o-gallery__title,
 .o-gallery figcaption,
 .o-gallery .m-media figcaption .f-caption-title {
-  color: $color__text--title-contrast;
+  color: $colors-themes-light-mode-text-title-contrast;
 }
 
 .o-gallery .m-media figcaption a {
-  color: $color__text--title-contrast;
+  color: $colors-themes-light-mode-text-title-contrast;
 }
 
 .o-gallery .m-media figcaption a:hover,
 .o-gallery .m-media a.m-media__img:hover+figcaption a {
-  @include text-underline(1.05em, $color__text--title-contrast, $color__bg--gallery);
+  @include text-underline(1.05em, $colors-themes-light-mode-text-title-contrast, $colors-themes-light-mode-background-gallery);
 }
 
 .o-gallery .m-media figcaption a:active {
   background-image: none;
-  color: $color__text--title-contrast;
+  color: $colors-themes-light-mode-text-title-contrast;
   text-shadow: 0;
 }
 
@@ -80,7 +80,7 @@
 .o-gallery hr,
 .o-gallery .hr {
   margin-top: 0;
-  border-top-color: $color__rules--contrast;
+  border-top-color: $colors-themes-light-mode-rules-contrast;
 }
 
 .o-gallery__all-link {
@@ -364,7 +364,7 @@
     }
 
     .btn {
-      color: $color__text--title-contrast;
+      color: $colors-themes-light-mode-text-title-contrast;
     }
   }
 
@@ -372,7 +372,7 @@
   &.o-gallery----theme-3 {
     .o-gallery--slider__controls {
       .btn {
-        color: $color__text--title;
+        color: $colors-themes-light-mode-text-title;
       }
     }
   }
@@ -627,44 +627,44 @@
  */
 .o-gallery.o-gallery----theme-2,
 .o-gallery.o-gallery----theme-3 {
-  background-color: $color__bg--primary;
-  color: $color__text;
+  background-color: $colors-themes-light-mode-background-primary;
+  color: $colors-themes-light-mode-text-primary;
 
   .o-gallery__title,
   figcaption strong,
   .m-media figcaption .f-caption-title {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 
   .m-media figcaption a {
-    color: $color__text--accent;
+    color: $colors-themes-light-mode-text-accent;
   }
 
   .m-media figcaption a:hover,
   .m-media a.m-media__img:hover+figcaption a {
-    @include text-underline(1.05em, $color__text--title, $color__bg--primary);
+    @include text-underline(1.05em, $colors-themes-light-mode-text-title, $colors-themes-light-mode-background-primary);
   }
 
   .m-media figcaption a:active {
     background-image: none;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
     text-shadow: 0;
   }
 
   hr,
   .hr {
-    border-top-color: $color__rules--secondary;
+    border-top-color: $colors-themes-light-mode-rules-secondary;
   }
 
   .o-gallery--slider__controls {
     .btn {
-      color: $color__text--title;
+      color: $colors-themes-light-mode-text-title;
     }
   }
 }
 
 .o-gallery.o-gallery----theme-3 {
-  background: $color__bg;
+  background: $colors-themes-light-mode-background-default;
 }
 
 /**
@@ -683,7 +683,7 @@
     position: relative;
 
     .m-media__img {
-      background-color: $color__black;
+      background-color: $colors-scales-grey-100;
 
       img {
         opacity: 0.8;
@@ -709,7 +709,7 @@
       .f-caption,
       .f-caption-title div {
         color: white;
-        text-shadow: 0 0 6px rgba($color__black, .5);
+        text-shadow: 0 0 6px rgba($colors-scales-grey-100, .5);
         display: block;
         margin-bottom: 20px;
 

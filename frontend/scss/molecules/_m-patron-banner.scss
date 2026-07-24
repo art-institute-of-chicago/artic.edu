@@ -1,8 +1,8 @@
 .m-patron-banner-container {
   width: 100%;
-  background-color: $color__black;
+  background-color: $colors-scales-grey-100;
   height: 105px;
-  color: $color__white;
+  color: $colors-scales-grey-0;
   padding: 15px 0px;
   text-align: left;
   margin-bottom: -120px;
@@ -10,12 +10,12 @@
   @include background-fill;
 
   .m-patron-banner .m-patron_logo svg {
-    fill: $color__white;
+    fill: $colors-scales-grey-0;
   }
 }
 
 .m-patron-banner-container----mmt {
-  background-color: $color__teal--my-museum-tour;
+  background-color: $colors-aliases-japanese-indigo;
 }
 
 /*
