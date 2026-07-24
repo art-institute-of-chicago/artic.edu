@@ -16,7 +16,7 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: $colors-themes-light-mode-rules-primary;
 }
 
 
@@ -44,15 +44,15 @@
 }
 
 .m-active-filters__clear a {
-  color: $color__link;
+  color: $colors-themes-light-mode-link-primary;
 
   &:hover,
   &:focus:hover {
-    color: $color__link--hover;
+    color: $colors-themes-light-mode-link-hover;
   }
 
   &:active:hover {
-    color: $color__link--active;
+    color: $colors-themes-light-mode-link-active;
   }
 }
 
@@ -63,7 +63,7 @@
   display: block;
   margin: 0;
   padding: 16px 20px 24px;
-  background: $color__bg--primary;
+  background: $colors-themes-light-mode-background-primary;
 }
 
 .o-collection-filters .m-active-filters::before {

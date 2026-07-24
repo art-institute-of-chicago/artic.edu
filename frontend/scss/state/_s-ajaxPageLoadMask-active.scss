@@ -12,7 +12,7 @@ Masking the page when an Ajax page load is happening
   .g-mask {
     right: 0;
     bottom: 0;
-    background-color: rgba($color__white, 1);
+    background-color: rgba($colors-scales-grey-0, 1);
     opacity: 0;
   }
 }
@@ -22,13 +22,13 @@ Masking the page when an Ajax page load is happening
   .g-mask {
 
     @include breakpoint('medium+') {
-      background-color: rgba($color__white, 1);
+      background-color: rgba($colors-scales-grey-0, 1);
       opacity: .5;
     }
 
     @include breakpoint('small-') {
       opacity: 1;
-      background-color: rgba($color__bg--tertiary, .25);
+      background-color: rgba($colors-themes-light-mode-background-tertiary, .25);
     }
   }
 

@@ -56,13 +56,13 @@ Example usage:
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: $color__rules--tertiary;
+  background-color: $colors-themes-light-mode-rules-tertiary;
 }
 
 .day__date {
   display: block;
   width: 50px;
-  color: $color__text--title;
+  color: $colors-themes-light-mode-text-title;
   text-align: right;
 }
 
@@ -72,12 +72,12 @@ Example usage:
 
 .day__month {
   bottom: 4px;
-  color: $color__text--title;
+  color: $colors-themes-light-mode-text-title;
 }
 
 .day__day {
   bottom: 21px;
-  color: $color__text--secondary;
+  color: $colors-themes-light-mode-text-secondary;
 }
 
 .day__month,

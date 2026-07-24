@@ -10,8 +10,8 @@
 .m-featured-results .m-listing--row {
   margin-top: 0;
   padding: 20px;
-  border-top: 1px solid $color__rules--primary;
-  background: $color__bg--secondary;
+  border-top: 1px solid $colors-themes-light-mode-rules-primary;
+  background: $colors-themes-light-mode-background-secondary;
 
   & + & {
     margin-top: 0;

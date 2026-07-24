@@ -39,10 +39,10 @@
 
     a {
       font-family: $sans-serif-font;
-      color: $color__black--30;
+      color: $colors-scales-grey-30;
 
       &:hover {
-        color: $color__black--50;
+        color: $colors-scales-grey-50;
       }
 
       .s-sans-serif-loaded & {

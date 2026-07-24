@@ -12,7 +12,7 @@ Typically used at the bottom of the artwork detail.
 ***/
 
 .interests-list {
-  color: $color__text--title;
+  color: $colors-themes-light-mode-text-title;
 }
 
 .interests-list.f-list-2 {
@@ -20,18 +20,18 @@ Typically used at the bottom of the artwork detail.
 }
 
 .interests-list a {
-  @include text-underline(.8em, $color__text--title);
+  @include text-underline(.8em, $colors-themes-light-mode-text-title);
 
   & {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
     text-decoration: none;
   }
 }
 
 .interests-list a:hover {
-  @include text-underline(.8em, $color__text--secondary);
+  @include text-underline(.8em, $colors-themes-light-mode-text-secondary);
 
   & {
-    color: $color__text--secondary;
+    color: $colors-themes-light-mode-text-secondary;
   }
 }

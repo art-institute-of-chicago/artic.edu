@@ -108,7 +108,7 @@
       margin: 10px auto 0;
       text-align: left;
       padding: 0;
-      color: $color__text--secondary;
+      color: $colors-themes-light-mode-text-secondary;
       background: none;
 
       @include font-styles(generate-font-obj((font-family: $sans-serif-font,
@@ -197,7 +197,7 @@
 .m-media__img {
   display: block;
   position: relative;
-  background-color: $color__bg--primary;
+  background-color: $colors-themes-light-mode-background-primary;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='56' viewBox='0 0 80 56'%3E%3Cpath fill='%23ccc' d='M4 52l28-28 28 28H4z'/%3E%3Cpath fill='%23ccc' d='M44 52l16-16 16 16H44z'/%3E%3Ccircle cx='58' cy='18' r='6' fill='%23ccc'/%3E%3Cpath fill='%23ccc' d='M79 1v54H1V1h78m1-1H0v56h80V0z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -208,7 +208,7 @@
   }
 
   &.m-media__img--alt-background {
-    background-color: $color__white;
+    background-color: $colors-scales-grey-0;
   }
 
   .header-cta {
@@ -235,7 +235,7 @@
     }
 
     .header-cta-title {
-      color: $color__text--title-contrast;
+      color: $colors-themes-light-mode-text-title-contrast;
     }
 
     .header-cta-button {
@@ -504,7 +504,7 @@ a.m-media__img:hover object {
 
 .m-media__img--embed.s-inline-media-activated,
 .m-media__img--video.s-inline-media-activated {
-  background-color: $color__bg--gallery;
+  background-color: $colors-themes-light-mode-background-gallery;
 }
 
 .m-media__img--embed {
@@ -543,7 +543,7 @@ a.m-media__img:hover object {
 
 .m-media figcaption .f-caption,
 .m-listing--sound figcaption .f-caption {
-  color: $color__text--secondary;
+  color: $colors-themes-light-mode-text-secondary;
 }
 
 .m-media figcaption .f-caption-title em,
@@ -561,35 +561,35 @@ a.m-media__img:hover object {
 
 .m-media figcaption a,
 .m-listing--sound figcaption a {
-  color: $color__link--accent;
+  color: $colors-themes-light-mode-link-accent-primary;
 }
 
 .m-media figcaption a:hover,
 .m-listing--sound figcaption a:hover {
-  color: $color__link--accent-hover;
+  color: $colors-themes-light-mode-link-accent-hover;
 }
 
 .m-media figcaption a:active,
 .m-listing--sound figcaption a:active {
-  color: $color__link--accent-active;
+  color: $colors-themes-light-mode-link-accent-active;
 }
 
 .m-media figcaption strong a,
 .m-listing--sound figcaption strong a {
-  color: $color__text;
+  color: $colors-themes-light-mode-text-primary;
 }
 
 .m-media figcaption strong a:hover,
 .m-media a.m-media__img:hover+figcaption strong a,
 .m-listing--sound figcaption strong a:hover,
 .m-listing--sound a.m-media__img:hover+figcaption strong a {
-  @include text-underline(1.05em, $color__text, $color__bg);
+  @include text-underline(1.05em, $colors-themes-light-mode-text-primary, $colors-themes-light-mode-background-default);
 }
 
 .m-media figcaption strong a:active,
 .m-listing--sound figcaption strong a:active {
   background-image: none;
-  color: $color__text;
+  color: $colors-themes-light-mode-text-primary;
   text-shadow: 0;
 }
 

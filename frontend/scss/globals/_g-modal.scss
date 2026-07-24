@@ -11,7 +11,7 @@
   bottom: 0;
   max-width: 100vw;
   max-height: 100vh;
-  background-color: $color__white;
+  background-color: $colors-scales-grey-0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   opacity: 0;
@@ -33,11 +33,11 @@
   padding: 0;
   border: 0 none;
   background: transparent;
-  color: $color__text--forms;
+  color: $colors-themes-light-mode-text-forms;
   cursor: pointer;
 
   &:hover {
-    color: $color__text;
+    color: $colors-themes-light-mode-text-primary;
   }
 }
 
@@ -52,16 +52,16 @@
 
   @include breakpoint('small+') {
     padding-top: 40px;
-    background-color: $color__black;
+    background-color: $colors-scales-grey-100;
 
     .g-modal__close {
       right: 12px;
       top: 12px;
-      color: $color__white;
+      color: $colors-scales-grey-0;
     }
 
     .g-modal__close:hover {
-      color: $color__black--5;
+      color: $colors-scales-grey-5;
     }
   }
 
@@ -92,14 +92,14 @@
 
     padding: 36px;
 
-    background-color: $color__black--5;
+    background-color: $colors-scales-grey-5;
 
     .g-modal__close {
-      color: $color__text--forms;
+      color: $colors-themes-light-mode-text-forms;
     }
 
     .g-modal__close:hover {
-      color: $color__text;
+      color: $colors-themes-light-mode-text-primary;
     }
   }
 
@@ -172,7 +172,7 @@
 
 .g-modal--module360 {
   border-radius: $border-radius;
-  background-color: $color__black--80;
+  background-color: $colors-scales-grey-80;
   overflow: hidden;
   padding-top:0;
   left:0;
@@ -289,7 +289,7 @@
 
 .g-modal--moduleMirador {
   border-radius: $border-radius;
-  background-color: $color__black--80;
+  background-color: $colors-scales-grey-80;
   overflow: hidden;
   padding-top:0;
   left:0;
