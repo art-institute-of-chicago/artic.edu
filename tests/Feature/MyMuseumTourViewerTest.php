@@ -11,6 +11,8 @@ class MyMuseumTourViewerTest extends BaseTestCase
     {
         parent::setUp();
         $this->seed();
+
+        \App\Models\LandingPage::firstOrCreate(['type_id' => 1, 'title' => 'My Museum Tour', 'published' => true]);
     }
 
     /**
