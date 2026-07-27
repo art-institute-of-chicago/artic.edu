@@ -34,7 +34,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->group(base_path('routes/web.php'));
         }
     )
-    ->withMiddleware(function (Middleware $middleware) {
+    ->withMiddleware(function (Middleware $middleware): void {
         // Override middleware so we can add our own TrustProxies middleware
         $middleware->use([
             \Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks::class,

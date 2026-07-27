@@ -27,8 +27,8 @@ class YouTubeQuota extends Command
     {
         $remaining = $this->youtube->getRemainingQuota();
         $resetsAt = $this->youtube->getResetsAt(config('app.timezone'));
-        $resetsInHours = floor(now()->diffInHours($resetsAt));
-        $resetsInMinutes = floor(now()->diffInRealMinutes($resetsAt)) % 60;
+        $resetsInHours = floor(now()->diffInHours($resetsAt, true));
+        $resetsInMinutes = floor(now()->diffInRealMinutes($resetsAt, true)) % 60;
         $hours = $resetsInHours ? "$resetsInHours hours" : '';
         $minutes = $resetsInMinutes ? "$resetsInMinutes minutes" : '';
         $resets = $resetsAt->format('M j, g:iA');

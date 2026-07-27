@@ -14,6 +14,7 @@ class LandingPageFactory extends Factory
         return [
             'type_id' => $this->faker->randomElement(array_keys(LandingPage::TYPES)),
             'title' => $this->faker->words(3, true),
+            'position' => $this->faker->randomNumber()
         ];
     }
 
