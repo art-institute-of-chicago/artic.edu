@@ -10,7 +10,8 @@
 .php-cs-fixer.cache
 .yalc
 /.ddev
-/.fleet
+/.codex
+/.cursor/
 /.idea
 /.nova
 /.phpunit.cache
@@ -21,12 +22,14 @@
 /node_modules
 /public/assets/twill
 /public/build
+/public/fonts-manifest.dev.json
 /public/dist
 /public/hot
 /public/storage
 /storage/*.key
 /storage/pail
 /vendor
+_ide_helper.php
 bundle-stats.json
 CLAUDE.local.md
 Homestead.json
