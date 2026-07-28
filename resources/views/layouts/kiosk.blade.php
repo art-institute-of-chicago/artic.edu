@@ -23,15 +23,7 @@
 
     @include('partials._head-js')
 
-    @if (isset($seo))
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="og:type" content="article" />
-      @section('meta_title') @include('partials.metas._title') @show
-      @section('meta_description') @include('partials.metas._description') @show
-      @section('meta_url') @include('partials.metas._url') @show
-      @section('meta_image') @include('partials.metas._image') @show
-      @section('meta_citation') @include('partials.metas._citation') @show
-    @endif
+    @include('partials.metas._seo')
 
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
 
