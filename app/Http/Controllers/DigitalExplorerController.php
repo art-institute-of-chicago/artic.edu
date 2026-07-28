@@ -95,7 +95,6 @@ class DigitalExplorerController extends FrontController
             ],
 
             'settings' => [
-                'debug' => $digitalExplorer->settings->get('debug', false),
                 'brailleButton' => $digitalExplorer->settings->get('brailleButton', false),
                 'builderEnabled' => $digitalExplorer->settings->get('builderEnabled', false),
                 'enableCustomBounds' => (bool) $digitalExplorer->settings->get('enableCustomBounds', false),
