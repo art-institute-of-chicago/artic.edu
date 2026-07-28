@@ -54,8 +54,8 @@
         }
     ],
     "require": {
-        "php": "^8.2",
-        "aic/data-hub-foundation": "^5.0",
+        "php": "^8.3",
+        "aic/data-hub-foundation": "^6.0",
         "area17/twill": "^3.0",
         "chillerlan/php-qrcode": "^5.0",
         "eluceo/ical": "2.0",
@@ -63,9 +63,9 @@
         "google/apiclient": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/httpauth": "^4.0",
-        "kalnoy/nestedset": "^6.0",
-        "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.0",
+        "kalnoy/nestedset": "^7.0",
+        "laravel/framework": "^13.0",
+        "laravel/tinker": "^3.0",
         "league/csv": "^9.0",
         "michelf/php-smartypants": "^1.8",
         "pgvector/pgvector": "^0.2.2",
@@ -85,9 +85,9 @@
         "laravel/sail": "^1.44",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^8.6",
-        "orchestra/testbench": "^7.8 || ^8.0 || ^9.0 || ^10.0",
+        "orchestra/testbench": "^11.0",
         "phpstan/phpstan": "^2.0",
-        "phpunit/phpunit": "^11.0",
+        "phpunit/phpunit": "^12.0",
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
