@@ -322,7 +322,7 @@ class Slide extends JsonResource
             'experienceType' => 'LABEL',
             'colorCode' => $this->experience->interactiveFeature->color,
             'bgColorCode' => $this->background_color ?: $this->experience->interactiveFeature->grouping_background_color,
-            'seamlessBackgroundColor' => $this->seamless_background_color ?: $this->experience->interactiveFeature->grouping_background_color,
+            'seamlessBackgroundColor' => $this->seamless_background_color ?: $this->background_color ?: $this->experience->interactiveFeature->grouping_background_color,
             'hasCustomBgColor' => !empty($this->background_color),
             'vScalePercent' => 0,
         ];
