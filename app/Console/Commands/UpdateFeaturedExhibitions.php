@@ -8,7 +8,6 @@ use App\Models\ApiRelation;
 use App\Models\Api\Exhibition;
 use App\Models\Page;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Artisan;
 
 class UpdateFeaturedExhibitions extends Command
 {
@@ -29,8 +28,12 @@ class UpdateFeaturedExhibitions extends Command
         $upcomingExhibitions->each(function ($exhibition) use (&$currentExhibitions, &$updatedExhibitions) {
             $id = ApiRelation::find($exhibition->pivot->api_relation_id)->datahub_id;
             $exhibitionInstance = Exhibition::query()->find($id);
+            $isExhibitionOpenOrOngoing = (
+                $exhibitionInstance->getIsNowOpenAttribute(ignoreDateDisplayOverride: true)
+                || $exhibitionInstance->is_ongoing
+            );
 
-            if ($exhibitionInstance->getIsNowOpenAttribute(ignoreDateDisplayOverride: true) || $exhibitionInstance->is_ongoing) {
+            if ($exhibitionInstance instanceof Exhibition && $isExhibitionOpenOrOngoing) {
                 $this->info("Moving {$exhibitionInstance->id}: {$exhibitionInstance->title} to current exhibitions list");
                 $currentExhibitions->splice(2, 0, [$exhibition]);
                 $exhibition->pivot->relation = 'exhibitionsCurrent';
@@ -45,7 +48,7 @@ class UpdateFeaturedExhibitions extends Command
             $id = ApiRelation::find($exhibition->pivot->api_relation_id)->datahub_id;
             $exhibitionInstance = Exhibition::query()->find($id);
 
-            if ($exhibitionInstance->is_closed) {
+            if ($exhibitionInstance instanceof Exhibition && $exhibitionInstance->is_closed) {
                 $this->info("Removing {$exhibitionInstance->id}: {$exhibitionInstance->title} from current exhibitions list");
                 ApiRelation::find($exhibition->pivot->api_relation_id)->delete();
 
