@@ -23,7 +23,7 @@
 
     @include('partials._head-js')
 
-
+    @include('partials.metas._seo')
 
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
 

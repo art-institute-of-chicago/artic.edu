@@ -50,15 +50,7 @@ elseif (isset($item) && isset($item->type)) {
   <meta name="format-detection" content="telephone=no">
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-    @if (isset($seo))
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="og:type" content="article" />
-      @section('meta_title') @include('partials.metas._title') @show
-      @section('meta_description') @include('partials.metas._description') @show
-      @section('meta_url') @include('partials.metas._url') @show
-      @section('meta_image') @include('partials.metas._image') @show
-      @section('meta_citation') @include('partials.metas._citation') @show
-    @endif
+    @include('partials.metas._seo')
 
   <link rel="search" type="application/opensearchdescription+xml" title="Art Institute of Chicago" href="/opensearch.xml">
 
