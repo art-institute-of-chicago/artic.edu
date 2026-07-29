@@ -71,7 +71,7 @@ class PressReleasesController extends BaseScopedController
         return view('site.genericPage.index', $viewData);
     }
 
-    protected function getFilters(array $yearRange = null, array $monthRange = null, $baseRoute = 'about.press')
+    protected function getFilters(?array $yearRange = null, ?array $monthRange = null, $baseRoute = 'about.press')
     {
         $filters = [];
 
