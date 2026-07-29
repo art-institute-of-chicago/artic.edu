@@ -348,7 +348,7 @@ class HoursPresenter extends BasePresenter
 
     private function getHourDisplayForVisitTable(
         string $serializedDateIntervalStart,
-        string $serializedDateIntervalEnd = null
+        ?string $serializedDateIntervalEnd = null
     ) {
         if (empty($serializedDateIntervalEnd)) {
             return sprintf(
