@@ -172,7 +172,7 @@ class GenericPage extends AbstractModel implements Sortable
         }
     }
 
-    public static function flattenTree(array $nodeTree, int $parentId = null)
+    public static function flattenTree(array $nodeTree, ?int $parentId = null)
     {
         $nodeArrays = [];
         $position = 0;

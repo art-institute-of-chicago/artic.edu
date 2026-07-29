@@ -515,7 +515,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByMostSimilar($query, Artist|Artwork $item = null, $boost = false): ApiModelBuilderSearch
+    public function scopeByMostSimilar($query, Artist|Artwork|null $item = null, $boost = false): ApiModelBuilderSearch
     {
         if (empty($item)) {
             return $query;
