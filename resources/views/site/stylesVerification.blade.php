@@ -14,7 +14,7 @@
                 <dd>
                     <{{ $element }}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed venenatis dui.
-                    </{{ $element }}
+                    </{{ $element }}>
                 </dd>
             @endforeach
             </dl>
