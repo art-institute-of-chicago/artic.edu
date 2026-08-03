@@ -97,19 +97,29 @@
                         @isset($artwork['image_id'])
                             <div class="aic-ct-list-item__artwork-img-container">
                                 @php
+                                    $thumbnail_width = isset($artwork['thumbnail']['width']) ? $artwork['thumbnail']['width'] : 0;
+                                    $thumbnail_height = isset($artwork['thumbnail']['height']) ? $artwork['thumbnail']['height'] : 0;
+                                    if ($thumbnail_height > 0) {
+                                        $artwork_image_height = 1400;
+                                        $artwork_image_width = (int) round($artwork_image_height * $thumbnail_width / $thumbnail_height);
+                                    } else {
+                                        $artwork_image_height = 0;
+                                        $artwork_image_width = 0;
+                                    }
                                     $artwork_image = [
-                                        "sourceType" => "imgix",
-                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/!1087,700/0/default.jpg",
+                                        "type" => "dams",
+                                        "src" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'],
+                                        "srcset" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/!3000,3000/0/default.jpg 300w",
+                                        "width" => $artwork_image_width,
+                                        "height" => $artwork_image_height,
                                         "shareUrl" => "#",
                                         "shareTitle" => "",
                                         "downloadUrl" => "https://www.artic.edu/iiif/2/" . $artwork['image_id'] . "/full/!1087,700/0/default.jpg",
                                         "credit" => "",
                                         "creditUrl" => "",
-                                        "lqip" => null,
+                                        "lqip" => isset($artwork['thumbnail']['lqip']) ? $artwork['thumbnail']['lqip'] : null,
                                         "alt" => isset($artwork['thumbnail']['alt_text']) ? $artwork['thumbnail']['alt_text'] : $artwork['title'],
-                                        "caption" => null,
-                                        "iiifId" => null,
-                                        "restrict" => false,
+                                        "iiifId" => $artwork['image_id'],
                                     ];
                                 @endphp
                                 <a href="{{ url('artworks/' . $artwork['id']) }}/"
@@ -117,7 +127,6 @@
                                     @component('components.atoms._img')
                                         @slot('image', $artwork_image)
                                         @slot('settings', array(
-                                            'fit' => 'crop',
                                             'srcset' => array(300,600,1000,1500,2000),
                                             'sizes' => ImageHelpers::aic_imageSizes(array(
                                                   'xsmall' => '272',
