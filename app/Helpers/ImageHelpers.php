@@ -185,10 +185,8 @@ class ImageHelpers
                 $imgixSettings['fit'] = 'crop';
                 $imgixSettings['crop'] = 'faces,edges,entropy';
                 $imgixSettings['auto'] = 'format,compress';
-                $imgixSettings['q'] = '20';
                 $imgixSettings['w'] = '150';
                 $imgixSettings['h'] = '84';
-                $imgixSettings['q'] = '10';
                 $imgixSettings['blur'] = '75';
                 $imgixSettingsString = http_build_query($imgixSettings);
                 $posterSrc = $base . $imgixSettingsString;
@@ -405,12 +403,6 @@ class ImageHelpers
                 $imgixSettings['fm'] = $settings['fm'];
             }
 
-            if (empty($settings['q'])) {
-                $imgixSettings['q'] = '80';
-            } else {
-                $imgixSettings['q'] = $settings['q'];
-            }
-
             if (empty($settings['fit'])) {
                 $imgixSettings['fit'] = 'crop';
             } else {
@@ -441,7 +433,6 @@ class ImageHelpers
                 $imgixSettings['auto'] = 'format,compress';
                 $imgixSettings['fm'] = 'gif';
                 $imgixSettings['gif-q'] = 45;
-                unset($imgixSettings['q']);
             }
 
             $imgixSettings['w'] = $width;
@@ -477,7 +468,6 @@ class ImageHelpers
                 $imgixSettings['h'] = round(($height / $width) * $LQIPDimension);
             }
             $imgixSettings['auto'] = 'format';
-            $imgixSettings['q'] = '1';
             $imgixSettings['blur'] = '1200';
             $imgixSettings['sat'] = '20';
             $imgixSettingsString = http_build_query($imgixSettings);
