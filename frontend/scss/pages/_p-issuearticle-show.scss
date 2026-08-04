@@ -148,7 +148,7 @@
       }
     }
 
-    @include font-styles-untuck(generate-font-obj((font-family: $serif-font,
+    @include font-styles(generate-font-obj((font-family: $serif-font,
       font-family-loaded: $serif-font--loaded,
       font-loaded-class: $serif-font-loaded-class,
       settings: ('xlarge': (font-size: 20, line-height: 26, push: 0),

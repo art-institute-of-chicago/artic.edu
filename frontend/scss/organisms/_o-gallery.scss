@@ -713,7 +713,7 @@
           margin-bottom: 15px;
         }
 
-        @include font-styles-untuck(generate-font-obj((font-family: $serif-font,
+        @include font-styles(generate-font-obj((font-family: $serif-font,
               font-family-loaded: $serif-font--loaded,
               font-loaded-class: $serif-font-loaded-class,
               settings: ('xsmall': (font-size: 17, line-height: 21, text-transform: uppercase, letter-spacing: 0.1em, push: 0),
