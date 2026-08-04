@@ -138,7 +138,7 @@ $f-ui: (
   @return $_obj;
 }
 
-@mixin font-style($font-size: false, $line-height: false, $font-weight: false, $font-style: false, $letter-spacing: false, $text-transform: false, $tuck: false, $pre-tucked: false, $tuck-method: 'pseudo', $push: 0, $tuck-amount: 0, $native-trim: false) {
+@mixin font-style($font-size: false, $line-height: false, $font-weight: false, $font-style: false, $letter-spacing: false, $text-transform: false, $tuck: false, $pre-tucked: false, $tuck-method: 'pseudo', $push: 0, $tuck-amount: 0) {
 
   // Set font settings
   @if $font-size {
@@ -188,7 +188,6 @@ $f-ui: (
   $font-family: map.get($obj, font-family);
   $font-family-loaded: map.get($obj, font-family-loaded);
   $font-loaded-class: map.get($obj, font-loaded-class);
-  $native-trim: map.get($obj, native-trim);
   $settings: map.get($obj, settings);
 
   // Set base font family
@@ -238,21 +237,7 @@ $f-ui: (
         $push: map.get($font-info, push);
         $tuck-amount: map.get($font-info, pull);
 
-        @if $native-trim {
-          @if map.has-key($font-info, tuck-method) {
-            // Check if the new tuck method differs from the last
-            $untuck: if(($tuck-method and $tuck-method !=map.get($font-info, tuck-method)), $tuck-method, false);
-            // Set the new tuck method
-            $tuck-method: map.get($font-info, tuck-method);
-          }
-
-          @else {
-            // Set old tuck method or default if no old tuck method
-            $tuck-method: if($tuck-method, $tuck-method, 'pseudo');
-          }
-        }
-
-        @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push, $tuck-amount, $native-trim);
+        @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push, $tuck-amount);
       }
 
       @else {
