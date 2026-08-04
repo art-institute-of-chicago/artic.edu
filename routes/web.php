@@ -67,7 +67,9 @@ Route::group([
 });
 
 // Landing Page
-Route::get('/', [LandingPagesController::class, 'slugHome'])->name('home');
+Route::get('/', [LandingPagesController::class, 'slugHome'])
+    ->middleware('cache.headers:public;max_age=120')
+    ->name('home');
 Route::group([
     'middleware' => [SanitizeQueryParameters::class],
     'allowed_query_params' => [
