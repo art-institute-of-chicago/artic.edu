@@ -61,26 +61,6 @@ $f-ui: (
   @return $font;
 }
 
-@function calc-pull($font, $font-size, $line-height, $push) {
-  @if map.has-key($cap-heights, $font) {
-    // Adjust cap height for this font size
-    $cap-height: $font-size * map.get($cap-heights, $font);
-
-    // Check push isn't null
-    @if ($push==null) {
-      $push: 0;
-    }
-
-    // Calc the push/pull
-    @return math.round((($line-height - $cap-height) * 0.5) + $push);
-  }
-
-  @else {
-    @warn "Unknown font `#{$font}` in $cap-heights.";
-    @return 0;
-  }
-}
-
 @function generate-font-obj($obj) {
   $_obj: ();
   $_settings: ();
