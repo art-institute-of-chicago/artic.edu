@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\LandingPage;
 use App\Models\MyMuseumTour;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class MyMuseumTourSeeder extends Seeder
@@ -74,6 +75,13 @@ class MyMuseumTourSeeder extends Seeder
         $myMuseumTour->tour_json = $tourJson;
         $myMuseumTour->save();
 
-        LandingPage::factory(['title' => 'My Museum Tour'])->published()->create();
+        // DatabaseSeeder disables model events (WithoutModelEvents), but Twill's HasSlug behavior
+        // generates the slug via a model event listener, so re-enable events just for this create.
+        $dispatcher = Model::getEventDispatcher();
+        Model::setEventDispatcher(app('events'));
+
+        LandingPage::factory(['title' => 'My Museum Tour', 'type_id' => 1])->published()->create();
+
+        Model::setEventDispatcher($dispatcher);
     }
 }
