@@ -55,10 +55,6 @@
     @include f-body;
   }
 
-  .o-blocks>p {
-    @include untuck();
-  }
-
   &.s-sans-serif-loaded .o-blocks>p:not([class*=f-]),
   &.s-sans-serif-loaded .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
   &.s-sans-serif-loaded .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
@@ -395,8 +391,6 @@
       background-color: rgba(255, 255, 255, 0.75);
 
       h1 {
-        @include untuck;
-
         & {
           margin-top: 0;
         }
@@ -594,8 +588,6 @@
   }
 
   .m-title-bar > .f-list-3 {
-    @include untuck();
-
     & {
       font-family: $sans-serif-font--loaded;
       font-size: 24px;
@@ -606,8 +598,6 @@
   }
 
   .o-blocks--bibliographic .f-secondary {
-    @include untuck();
-
     &:not(:first-child) {
       margin-top: 8px;
     }

@@ -480,8 +480,6 @@
 }
 
 .g-header__menu-link {
-  @include untuck;
-
   & {
     position: absolute;
     right: 0;
