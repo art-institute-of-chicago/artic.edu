@@ -138,41 +138,6 @@ $f-ui: (
   @return $_obj;
 }
 
-@mixin tuck($tuck-method: 'pseudo', $pre-tucked: false, $tuck-amount: 0) {
-  @if ($tuck-amount==null) {
-    $tuck-amount: 0;
-  }
-
-  // If the tuck method is using pseudo blocks
-  @if ($tuck-method==null or $tuck-method=='pseudo') {
-
-    // Add the psuedo-block if required
-    @if ($pre-tucked==false) {
-
-      &::before,
-      &::after {
-        content: '';
-        display: block;
-      }
-    }
-
-    // Set the push/pull tucks
-    &::before {
-      padding-top: $tuck-amount * 1px;
-    }
-
-    &::after {
-      margin-bottom: - $tuck-amount * 1px;
-    }
-  }
-
-  // If the tuck method is padding-top/margin-bottom
-  @if ($tuck-method=='padding') {
-    padding-top: $tuck-amount * 1px;
-    margin-bottom: - $tuck-amount * 1px;
-  }
-}
-
 @mixin font-style($font-size: false, $line-height: false, $font-weight: false, $font-style: false, $letter-spacing: false, $text-transform: false, $tuck: false, $pre-tucked: false, $tuck-method: 'pseudo', $push: 0, $tuck-amount: 0, $native-trim: false) {
 
   // Set font settings
@@ -212,24 +177,10 @@ $f-ui: (
     }
   }
 
-  @if $native-trim {
-    & {
-      text-box-edge: cap alphabetic;
-      text-box-trim: trim-both;
-    }
-  }
-
-  // Is tuck required?
-  @if $font-size and $line-height and $tuck {
-    @if ($font-size < 1) {
-      @warn "Did you intend to set a font size of 0? Perhaps no font size has been defined in the font info object?";
-    }
-
-    @if ($line-height < 1) {
-      @warn "Did you intend to set a line-height of 0? Perhaps no line-height has been defined in the font info object?";
-    }
-
-    @include tuck($tuck-method, $pre-tucked, $tuck-amount);
+  & {
+    padding-top: 0.75em;
+    text-box-edge: cap alphabetic;
+    text-box-trim: trim-both;
   }
 }
 
