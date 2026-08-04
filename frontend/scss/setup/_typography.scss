@@ -501,13 +501,6 @@ $f-body-emphasis: generate-font-obj((font-family: $sans-serif-font,
   @include f-body-emphasis;
 }
 
-%f-body em,
-.f-body em,
-%f-body i,
-.f-body i {
-  @include untuck;
-}
-
 %f-body-emphasis strong,
 .f-body-emphasis strong,
 %f-body-emphasis b,
@@ -583,13 +576,6 @@ $f-body-editorial-emphasis: generate-font-obj((font-family: $serif-font,
   @include f-body-editorial-emphasis;
 }
 
-%f-body-editorial em,
-.f-body-editorial em,
-%f-body-editorial i,
-.f-body-editorial i {
-  @include untuck;
-}
-
 %f-body-editorial-emphasis strong,
 .f-body-editorial-emphasis strong,
 %f-body-editorial-emphasis b,
@@ -644,13 +630,6 @@ $f-body-editorial-reference: generate-font-obj((font-family: $sans-serif-font,
 %f-body-editorial sup,
 .f-body-editorial sup {
   @include f-body-editorial-reference;
-}
-
-%f-body-editorial sup,
-.f-body-editorial sub,
-%f-body-editorial sup,
-.f-body-editorial sup {
-  @include untuck;
 }
 */
 

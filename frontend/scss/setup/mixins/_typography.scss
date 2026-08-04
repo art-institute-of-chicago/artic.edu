@@ -318,23 +318,7 @@ $f-ui: (
           }
         }
 
-        // Check if this is the smallest breakpoint (the default font setting)
-        @if (list.index(map.keys($settings), $breakpoint)==1) {
-          @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push, $tuck-amount, $native-trim);
-        }
-
-        @else {
-          @include breakpoint(#{$breakpoint}) {
-            $pre-tucked: true;
-
-            @if $untuck {
-              @include untuck($untuck);
-              $pre-tucked: false;
-            }
-
-            @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, $pre-tucked, $tuck-method, $push, $tuck-amount, $native-trim);
-          }
-        }
+        @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push, $tuck-amount, $native-trim);
       }
 
       @else {
