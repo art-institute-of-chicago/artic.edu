@@ -11,8 +11,6 @@
 ***/
 
 .m-link-list {
-  @include untuck;
-
   & {
     margin-top: 40px;
   }

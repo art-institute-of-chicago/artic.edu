@@ -22,8 +22,6 @@
 }
 
 .o-gallery__title {
-  @include untuck();
-
   @include breakpoint('xlarge') {
     flex: 0 0 auto;
     width: 100%;
@@ -137,8 +135,6 @@
 }
 
 .o-gallery__caption .f-caption {
-  @include untuck();
-
   & {
     margin-top: 24px;
   }
@@ -717,7 +713,6 @@
           margin-bottom: 15px;
         }
 
-        @include untuck;
         @include font-styles-untuck(generate-font-obj((font-family: $serif-font,
               font-family-loaded: $serif-font--loaded,
               font-loaded-class: $serif-font-loaded-class,

@@ -51,8 +51,6 @@ $btn-close-size: 20px;
   }
 
   .g-slider__msg {
-    @include untuck;
-
     & {
       display: none;
       background-color: $colors-themes-light-mode-link-primary;
@@ -148,16 +146,12 @@ $btn-close-size: 20px;
     .g-slider__main {
 
       .g-slider__title {
-        @include untuck;
-
         & {
           margin-bottom: $slider-edge-spacing * 0.5;
         }
       }
 
       .g-slider__intro {
-        @include untuck;
-
         & {
           margin-bottom: $slider-edge-spacing * 0.5;
           color: $colors-themes-light-mode-text-secondary;

@@ -249,8 +249,6 @@
 }
 
 .m-article-actions--publication__text {
-  @include untuck();
-
   @each $name in ('large', 'xlarge') {
     @include breakpoint('#{$name}') {
       margin-top: #{map.get((
