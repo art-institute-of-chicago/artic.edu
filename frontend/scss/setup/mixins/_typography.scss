@@ -237,7 +237,9 @@ $f-ui: (
         $push: map.get($font-info, push);
         $tuck-amount: map.get($font-info, pull);
 
-        @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push, $tuck-amount);
+        @include breakpoint(#{$breakpoint}) {
+          @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push, $tuck-amount);
+        }
       }
 
       @else {
