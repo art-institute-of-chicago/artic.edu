@@ -138,23 +138,6 @@ $f-ui: (
   @return $_obj;
 }
 
-// This assumes that the font is vertically centered within the box so may require some tweaking
-// @see https://codepen.io/13twelve/pen/PJgqBN?editors=0100
-@mixin untuck($tuck-method: 'pseudo') {
-  @if ($tuck-method==null or $tuck-method=='pseudo') {
-
-    &::before,
-    &::after {
-      content: none;
-    }
-  }
-
-  @if ($tuck-method=='padding') {
-    margin-bottom: 0;
-    padding-top: 0;
-  }
-}
-
 @mixin tuck($tuck-method: 'pseudo', $pre-tucked: false, $tuck-amount: 0) {
   @if ($tuck-amount==null) {
     $tuck-amount: 0;
