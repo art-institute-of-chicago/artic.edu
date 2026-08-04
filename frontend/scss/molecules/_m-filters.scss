@@ -77,8 +77,6 @@
 
 
 .m-filters__show-more-toggle {
-  @include untuck;
-
   & {
     display: block;
     position: relative;
