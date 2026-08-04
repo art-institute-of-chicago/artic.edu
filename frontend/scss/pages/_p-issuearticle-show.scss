@@ -151,11 +151,11 @@
     @include font-styles(generate-font-obj((font-family: $serif-font,
       font-family-loaded: $serif-font--loaded,
       font-loaded-class: $serif-font-loaded-class,
-      settings: ('xlarge': (font-size: 20, line-height: 26, push: 0),
-        'large': (font-size: 20, line-height: 26, push: 0),
-        'medium': (font-size: 28, line-height: 34, push: 0),
-        'small': (font-size: 22, line-height: 28, push: 0),
-        'xsmall': (font-size: 22, line-height: 28, push: 0),
+      settings: ('xlarge': (font-size: 20, line-height: 26),
+        'large': (font-size: 20, line-height: 26),
+        'medium': (font-size: 28, line-height: 34),
+        'small': (font-size: 22, line-height: 28),
+        'xsmall': (font-size: 22, line-height: 28),
       ))));
   }
 

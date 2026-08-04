@@ -365,7 +365,7 @@ margin-right: colspan(2, #{$name});
             @include font-styles(generate-font-obj((font-family: $serif-font,
                   font-family-loaded: $serif-font--loaded,
                   font-loaded-class: $serif-font-loaded-class,
-                  settings: ('xsmall': (font-size: 22, line-height: 23, push: 0),
+                  settings: ('xsmall': (font-size: 22, line-height: 23),
                   ))));
 
     a:hover {
