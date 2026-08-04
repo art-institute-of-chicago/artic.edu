@@ -4,6 +4,11 @@ const newsletter = function(container) {
 
   let msg = null;
 
+  function _getXsrfToken() {
+    const match = document.cookie.match(/(?:^|; )XSRF-TOKEN=([^;]*)/);
+    return match ? decodeURIComponent(match[1]) : '';
+  }
+
   function _disable() {
     container.classList.add('s-loading');
     container.setAttribute('disabled', 'disabled');
@@ -54,8 +59,8 @@ const newsletter = function(container) {
           value: 'application/x-www-form-urlencoded; charset=UTF-8'
         },
         {
-          header: 'X-CSRF-Token',
-          value: document.querySelector('meta[name=csrf-token]').getAttribute('content') || ''
+          header: 'X-XSRF-TOKEN',
+          value: _getXsrfToken()
         }
       ],
       data: formData,
