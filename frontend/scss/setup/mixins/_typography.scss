@@ -36,7 +36,6 @@ $f-ui: (
   settings: (
     'small+': ( default: true, font-size: 15, line-height: 20, font-weight: 300, push: 1),
    ),
-  tuck-method: 'padding', // <-- swaps to using padding-top/margin-bottom to allow you to align multiple items on one line
 );
 
 @mixin f-ui() {
@@ -106,7 +105,6 @@ $f-ui: (
     // Set some defaults, we we can keep track of changes so tuck calc doesn't get null values
     $font-size: 0;
     $line-height: 0;
-    $push: 0;
 
     @each $breakpoint,
     $font-info in $settings {
@@ -121,14 +119,6 @@ $f-ui: (
         $line-height: map.get($font-info, line-height);
       }
 
-      @if map.has-key($font-info, push) {
-        $push: map.get($font-info, push);
-      }
-
-      // Calc pull
-      $pull: calc-pull($font-name, $font-size, $line-height, $push);
-      // Update
-      $font-info: map.merge($font-info, (pull: $pull));
       $_settings: map.merge($_settings, (#{$breakpoint}: $font-info));
     }
   }
@@ -138,7 +128,7 @@ $f-ui: (
   @return $_obj;
 }
 
-@mixin font-style($font-size: false, $line-height: false, $font-weight: false, $font-style: false, $letter-spacing: false, $text-transform: false, $tuck: false, $pre-tucked: false, $tuck-method: 'pseudo', $push: 0, $tuck-amount: 0) {
+@mixin font-style($font-size: false, $line-height: false, $font-weight: false, $font-style: false, $letter-spacing: false, $text-transform: false) {
 
   // Set font settings
   @if $font-size {
@@ -210,8 +200,6 @@ $f-ui: (
   @if $settings and $font-family {
     $font-size: 0;
     $line-height: 0;
-    $untuck: false;
-    $tuck-method: null;
 
     // Loop the breakpoints in the setttings
     @each $breakpoint,
@@ -222,7 +210,6 @@ $f-ui: (
 
         // Get font info for this breakpoint
         @if map.has-key($font-info, font-size) {
-          // Conditional here because this can inherit from earlier items in the map so that the tuck calculation can take place
           $font-size: map.get($font-info, font-size);
         }
 
@@ -234,11 +221,9 @@ $f-ui: (
         $font-style: map.get($font-info, font-style);
         $letter-spacing: map.get($font-info, letter-spacing);
         $text-transform: map.get($font-info, text-transform);
-        $push: map.get($font-info, push);
-        $tuck-amount: map.get($font-info, pull);
 
         @include breakpoint(#{$breakpoint}) {
-          @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push, $tuck-amount);
+          @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform);
         }
       }
 
