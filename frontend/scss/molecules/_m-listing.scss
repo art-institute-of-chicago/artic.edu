@@ -55,14 +55,14 @@
       @include font-styles(generate-font-obj((font-family: $serif-font,
             font-family-loaded: $serif-font--loaded,
             font-loaded-class: $serif-font-loaded-class,
-            settings: ('xsmall': (font-size: 24, line-height: 34, push: 0)))));
+            settings: ('xsmall': (font-size: 24, line-height: 34)))));
     }
 
     .f-list-1 {
       @include font-styles(generate-font-obj((font-family: $serif-font,
             font-family-loaded: $serif-font--loaded,
             font-loaded-class: $serif-font-loaded-class,
-            settings: ('xsmall': (font-size: 19, line-height: 28, push: 0)))));
+            settings: ('xsmall': (font-size: 19, line-height: 28)))));
     }
   }
 
@@ -1515,8 +1515,8 @@ $point in $breakpoints {
 $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
     font-family-loaded: $sans-serif-font--loaded,
     font-loaded-class: $sans-serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
-      'medium+': (font-size: 14, line-height: 28, push: 0))));
+    settings: ('xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em),
+      'medium+': (font-size: 14, line-height: 28))));
 
 // Quick aside for artwork detail's sound variant
 .m-listing--inline.m-listing--sound {
