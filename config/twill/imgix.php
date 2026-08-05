@@ -17,7 +17,7 @@ return [
     'add_params_to_svgs' => false,
     'default_params' => [
         //'fm' => 'jpg', // Remove this to allow ImgIX to handle formatting
-        'q' => '80',
+        //'q' => '80', // Remove this to allow ImgIX to handle quality
         'auto' => 'compress,format',
         'fit' => 'min',
     ],
@@ -35,7 +35,6 @@ return [
         'crop' => 'entropy',
     ],
     'cms_default_params' => [
-        'q' => 60,
         'dpr' => 1,
     ],
 ];
