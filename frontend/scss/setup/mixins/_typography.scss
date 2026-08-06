@@ -202,8 +202,13 @@ $f-ui: (
         $letter-spacing: map.get($font-info, letter-spacing);
         $text-transform: map.get($font-info, text-transform);
 
-        @include breakpoint(#{$breakpoint}) {
+        @if (list.index(map.keys($settings), $breakpoint)==1) {
           @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform);
+        }
+        @else {
+          @include breakpoint(#{$breakpoint}) {
+            @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform);
+          }
         }
       }
 
