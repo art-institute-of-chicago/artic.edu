@@ -96,7 +96,7 @@ class SearchController extends BaseScopedController
         }
 
         // General search to get featured elements and general metadata.
-        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0, [], 'page', null, ['search_field' => request('search_field'), 'semantic_only' => request('semantic_only')]);
         $links = $this->buildSearchLinks($general, 'all');
 
         // Specific elements search. We run separate queries because we want to ensure elements
@@ -143,7 +143,7 @@ class SearchController extends BaseScopedController
 
     public function autocomplete()
     {
-        $collection = GeneralSearch::search(request('q'))
+        $collection = GeneralSearch::search(request('q'), request('search_field'))
             ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-publications', 'printed-publications', 'highlights'])
             ->getSearch(self::AUTOCOMPLETE_PER_PAGE);
 
@@ -468,48 +468,49 @@ class SearchController extends BaseScopedController
     {
         $links = [];
         $aggregations = $all->getMetadata('aggregations')->types->buckets;
+        $currentParams = request()->input();
 
-        array_push($links, $this->buildLabel('All', $all->getMetadata('pagination')->total, route('search', ['q' => request('q')]), $active == 'all'));
+        array_push($links, $this->buildLabel('All', $all->getMetadata('pagination')->total, route('search', $currentParams), $active == 'all'));
 
         if (QueryHelpers::extractAggregation($aggregations, 'agents')) {
-            array_push($links, $this->buildLabel('Artists/Cultures', QueryHelpers::extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
+            array_push($links, $this->buildLabel('Artists/Cultures', QueryHelpers::extractAggregation($aggregations, 'agents'), route('search.artists', $currentParams), $active == 'artists'));
         }
 
         if (QueryHelpers::extractAggregation($aggregations, ['landing-pages', 'generic-pages'])) {
-            array_push($links, $this->buildLabel('Pages', QueryHelpers::extractAggregation($aggregations, ['landing-pages', 'generic-pages']), route('search.pages', ['q' => request('q')]), $active == 'generic-pages'));
+            array_push($links, $this->buildLabel('Pages', QueryHelpers::extractAggregation($aggregations, ['landing-pages', 'generic-pages']), route('search.pages', $currentParams), $active == 'generic-pages'));
         }
 
         if (QueryHelpers::extractAggregation($aggregations, 'artworks')) {
-            array_push($links, $this->buildLabel('Artwork', QueryHelpers::extractAggregation($aggregations, 'artworks'), route('search.artworks', ['q' => request('q')]), $active == 'artworks'));
+            array_push($links, $this->buildLabel('Artwork', QueryHelpers::extractAggregation($aggregations, 'artworks'), route('search.artworks', $currentParams), $active == 'artworks'));
         }
 
         if (QueryHelpers::extractAggregation($aggregations, 'highlights')) {
-            array_push($links, $this->buildLabel('Highlights', QueryHelpers::extractAggregation($aggregations, 'highlights'), route('search.highlights', ['q' => request('q')]), $active == 'highlights'));
+            array_push($links, $this->buildLabel('Highlights', QueryHelpers::extractAggregation($aggregations, 'highlights'), route('search.highlights', $currentParams), $active == 'highlights'));
         }
 
         if (QueryHelpers::extractAggregation($aggregations, 'exhibitions')) {
-            array_push($links, $this->buildLabel('Exhibitions', QueryHelpers::extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', ['q' => request('q')]), $active == 'exhibitions'));
+            array_push($links, $this->buildLabel('Exhibitions', QueryHelpers::extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', $currentParams), $active == 'exhibitions'));
         }
 
         if (QueryHelpers::extractAggregation($aggregations, 'events')) {
-            array_push($links, $this->buildLabel('Events', QueryHelpers::extractAggregation($aggregations, 'events'), route('search.events', ['q' => request('q')]), $active == 'events'));
+            array_push($links, $this->buildLabel('Events', QueryHelpers::extractAggregation($aggregations, 'events'), route('search.events', $currentParams), $active == 'events'));
         }
 
         if (QueryHelpers::extractAggregation($aggregations, 'articles')) {
-            array_push($links, $this->buildLabel('Articles', QueryHelpers::extractAggregation($aggregations, 'articles'), route('search.articles', ['q' => request('q')]), $active == 'articles'));
+            array_push($links, $this->buildLabel('Articles', QueryHelpers::extractAggregation($aggregations, 'articles'), route('search.articles', $currentParams), $active == 'articles'));
         }
-        array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
+        array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', $currentParams), $active == 'interactive-features'));
 
         if (QueryHelpers::extractAggregation($aggregations, ['digital-publications', 'printed-publications'])) {
-            array_push($links, $this->buildLabel('Publications', QueryHelpers::extractAggregation($aggregations, ['digital-publications', 'printed-publications']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
+            array_push($links, $this->buildLabel('Publications', QueryHelpers::extractAggregation($aggregations, ['digital-publications', 'printed-publications']), route('search.publications', $currentParams), $active == 'publications'));
         }
 
         if (QueryHelpers::extractAggregation($aggregations, 'educator-resources')) {
-            array_push($links, $this->buildLabel('Resources', QueryHelpers::extractAggregation($aggregations, 'educator-resources'), route('search.educator-resources', ['q' => request('q')]), $active == 'educator-resources'));
+            array_push($links, $this->buildLabel('Resources', QueryHelpers::extractAggregation($aggregations, 'educator-resources'), route('search.educator-resources', $currentParams), $active == 'educator-resources'));
         }
 
         if (QueryHelpers::extractAggregation($aggregations, 'press-releases')) {
-            array_push($links, $this->buildLabel('Press Releases', QueryHelpers::extractAggregation($aggregations, 'press-releases'), route('search.press-releases', ['q' => request('q')]), $active == 'press-releases'));
+            array_push($links, $this->buildLabel('Press Releases', QueryHelpers::extractAggregation($aggregations, 'press-releases'), route('search.press-releases', $currentParams), $active == 'press-releases'));
         }
 
         return $links;
