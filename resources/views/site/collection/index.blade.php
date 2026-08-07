@@ -37,12 +37,20 @@
     elseif ($currentField === 'title') $promptText = 'Title';
     elseif ($currentField === 'artist_title') $promptText = 'Artist Name';
     elseif ($currentField === 'credit_line') $promptText = 'Credit Line';
+    elseif ($currentField === 'medium_display') $promptText = 'Medium';
+    elseif ($currentField === 'provenance_text') $promptText = 'Provenance';
+    elseif ($currentField === 'exhibition_history') $promptText = 'Exhibition History';
+    elseif ($currentField === 'publication_history') $promptText = 'Publication History';
 
     $searchOptions = [
         ['label' => 'All Fields', 'value' => '', 'active' => !$currentField && !$isSemantic],
         ['label' => 'Title', 'value' => 'title', 'active' => $currentField === 'title'],
         ['label' => 'Artist Name', 'value' => 'artist_title', 'active' => $currentField === 'artist_title'],
         ['label' => 'Credit Line', 'value' => 'credit_line', 'active' => $currentField === 'credit_line'],
+        ['label' => 'Medium', 'value' => 'medium_display', 'active' => $currentField === 'medium_display'],
+        ['label' => 'Provenance', 'value' => 'provenance_text', 'active' => $currentField === 'provenance_text'],
+        ['label' => 'Exhibition History', 'value' => 'exhibition_history', 'active' => $currentField === 'exhibition_history'],
+        ['label' => 'Publication History', 'value' => 'publication_history', 'active' => $currentField === 'publication_history'],
         ['label' => 'Semantic', 'value' => 'semantic', 'active' => $isSemantic],
     ];
 @endphp
