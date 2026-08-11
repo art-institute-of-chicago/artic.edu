@@ -15,9 +15,22 @@ class UrlHelpers
 
     public static function parseVideoUrl($url)
     {
-        preg_match('/\d+/', $url, $matches);
+        // Preserve the privacy hash for unlisted Vimeo videos:
+        // vimeo.com/{id}/{hash}, player.vimeo.com/video/{id}/{hash}, vimeo.com/{id}/{hash}?...
+        preg_match('#vimeo\.com/(?:(?!\d+/)[\w-]+/)*(?:video/)?(\d+)(?:/([0-9a-f]+))?#', $url, $matches);
 
-        return $matches[0] ?? 0;
+        if (!isset($matches[1])) {
+            return 0;
+        }
+
+        // Hash may be a path segment or an ?h= query param
+        $hash = $matches[2] ?? null;
+
+        if (!$hash && preg_match('/[?&]h=([0-9a-f]+)/', $url, $hashMatches)) {
+            $hash = $hashMatches[1];
+        }
+
+        return $hash ? $matches[1] . '?h=' . $hash : $matches[1];
     }
 
     public static function secureRoute($routeName)
