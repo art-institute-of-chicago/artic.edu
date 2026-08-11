@@ -29,14 +29,17 @@ async function fetchStyleVariables() {
   }
 
   try {
-    const response = await fetch(`${stylesServiceUrl}/storage/variables.scss`);
-
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
+    if (stylesServiceUrl.startsWith('file://')) {
+      const filepath = stylesServiceUrl.slice(7);
+      await fs.copyFile(filepath, OUTPUT_PATH);
+    } else {
+      const response = await fetch(`${stylesServiceUrl}/storage/variables.scss`);
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+      const variables = await response.text();
+      await fs.writeFile(OUTPUT_PATH, variables);
     }
-
-    const variables = await response.text();
-    await fs.writeFile(OUTPUT_PATH, variables);
   } catch (err) {
     console.warn(`Failed to fetch Style Dictionary variables from ${stylesServiceUrl}: ${err.message}`);
     await fs.writeFile(OUTPUT_PATH, `// Failed to fetch Style Dictionary variables: ${err.message}\n`);
