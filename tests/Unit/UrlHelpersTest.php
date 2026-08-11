@@ -3,10 +3,10 @@
 namespace Tests\Unit;
 
 use App\Helpers\UrlHelpers;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
-class UrlHelpersTest extends BaseTestCase
+class UrlHelpersTest extends TestCase
 {
     #[DataProvider('videoUrls')]
     public function test_parseVideoUrl_extracts_id_and_hash(string $url, string|int $expected): void
