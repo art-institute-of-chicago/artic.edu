@@ -38,7 +38,7 @@ class ExperienceImageRepository extends ModuleRepository
         $object_id = $fields['object_id'] ?? null;
 
         if (!$object_id) {
-            foreach ($credits_map as $contentBundleKey => $artworkKey) {
+            foreach (array_keys($credits_map) as $contentBundleKey) {
                 $fields[$contentBundleKey] = '';
             }
 
@@ -54,7 +54,7 @@ class ExperienceImageRepository extends ModuleRepository
                 $fields[$contentBundleKey] = $artwork[$artworkKey];
             }
         } else {
-            foreach ($credits_map as $contentBundleKey => $artworkKey) {
+            foreach (array_keys($credits_map) as $contentBundleKey) {
                 $fields[$contentBundleKey] = '';
             }
         }
