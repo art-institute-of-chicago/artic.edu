@@ -36,16 +36,25 @@ class ExperienceImageRepository extends ModuleRepository
         ];
 
         $object_id = $fields['object_id'] ?? null;
+
+        if (!$object_id) {
+            foreach (array_keys($credits_map) as $contentBundleKey) {
+                $fields[$contentBundleKey] = '';
+            }
+
+            return $fields;
+        }
+
         $apiResult = Artwork::query()->find($object_id);
 
-        if ($object_id && $apiResult instanceof Artwork) {
+        if ($apiResult instanceof Artwork) {
             $artwork = $apiResult->toArray();
 
             foreach ($credits_map as $contentBundleKey => $artworkKey) {
                 $fields[$contentBundleKey] = $artwork[$artworkKey];
             }
         } else {
-            foreach ($credits_map as $contentBundleKey => $artworkKey) {
+            foreach (array_keys($credits_map) as $contentBundleKey) {
                 $fields[$contentBundleKey] = '';
             }
         }
