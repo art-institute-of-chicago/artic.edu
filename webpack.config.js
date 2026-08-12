@@ -52,6 +52,7 @@ module.exports = async () => {
 
   return {
     mode: isProd ? 'production' : 'development',
+    stats: (isProd || isCI) ? 'normal' : 'errors-only',
     entry: {
       app: ['./frontend/scss/app.scss', './frontend/js/app.js'],
       blocks3D: ['./frontend/js/blocks3D.js'],
