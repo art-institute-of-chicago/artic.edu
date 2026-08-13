@@ -52,15 +52,4 @@ class DigitalPublicationRepository extends ModuleRepository
             'showAll' => false,
         ];
     }
-
-    public function getWelcomeNote($item): DigitalPublicationArticle
-    {
-        $welcomeNotes = $item->getRelated('welcome_note_section');
-
-        if (!config('aic.is_preview_mode')) {
-            $welcomeNotes = $welcomeNotes->where('published', true);
-        }
-
-        return $welcomeNotes->first();
-    }
 }
