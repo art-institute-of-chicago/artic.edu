@@ -82,7 +82,6 @@ class DigitalPublicationsController extends BaseScopedController
             'borderlessHeader' => false,
             'unstickyHeader' => true,
             'canonicalUrl' => $canonicalPath,
-            'welcomeNote' => $this->repository->getWelcomeNote($item),
             'showAll' => $showAll,
         ]);
     }
