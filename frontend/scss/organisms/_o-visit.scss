@@ -163,11 +163,9 @@
   .o-visit-capacity__text {
     margin-bottom: 24px;
     @include f-secondary;
-    @include untuck;
 
     h2 {
       @include f-list-3;
-      @include untuck;
 
       & {
         margin-bottom: 12px;

@@ -184,8 +184,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ autocomplete
 
 .m-search-bar__autocomplete {
-  @include untuck;
-
   & {
     display: block;
     position: absolute;
