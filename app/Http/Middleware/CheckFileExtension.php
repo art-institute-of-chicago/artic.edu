@@ -19,7 +19,7 @@ class CheckFileExtension
         $allExtensions = array_unique(array_merge($mediaExtensions, $fileExtensions));
 
         $filename = array_last($request->segments());
-        $extension = File::extension($filename);
+        $extension = strtolower(File::extension($filename));
         if ($extension && !in_array($extension, $allExtensions)) {
             abort(404);
         }
