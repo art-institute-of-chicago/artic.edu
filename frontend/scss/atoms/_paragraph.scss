@@ -2,9 +2,6 @@
   display: flex;
   position: relative;
 
-  // WEB-1034: the pseudo-element trick doesn't work with flex
-  @include untuck();
-
   & {
     margin-top: 16px;
 

@@ -125,8 +125,6 @@
 
 
 .m-aside-newsletter button.m-aside-newsletter__btn--submit {
-  @include untuck;
-
   & {
     display: block;
     flex: 0 0 auto;
@@ -174,7 +172,6 @@
 }
 
 .m-aside-newsletter__msg {
-  @include untuck;
   @include background-fill;
 
   & {
@@ -376,8 +373,6 @@
 }
 
 .m-aside-newsletter--wide button.m-aside-newsletter__btn--list {
-  @include untuck;
-
   & {
     height: 48px;
     margin: 16px 0 0 0;
@@ -456,8 +451,8 @@
 $f-aside-subtitle: generate-font-obj((font-family: $sans-serif-font,
     font-family-loaded: $sans-serif-font--loaded,
     font-loaded-class: $sans-serif-font-loaded-class,
-    settings: ('xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
-      'medium+': (font-size: 14, line-height: 28, push: 0))));
+    settings: ('xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em),
+      'medium+': (font-size: 14, line-height: 28))));
 
 
 .m-aside-newsletter .subtitle {

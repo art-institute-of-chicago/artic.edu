@@ -128,7 +128,6 @@
 
         .showcase-title {
             @include breakpoint('small-') {
-                @include untuck;
                 & {
                     font-size: 19px !important;
                     line-height: 4px !important;
@@ -344,8 +343,6 @@
             &:not(:has(.showcase-tag + .title)) {
                 .title {
                     margin-top: 0;
-
-                    @include untuck();
                 }
             }
 

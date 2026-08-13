@@ -66,12 +66,10 @@ range-slider
 .range-slider__custom-input input {
   @extend %input;
   @extend %f-secondary;
-  @include untuck;
 }
 
 .range-slider__custom-btn {
   @extend %f-tag;
-  @include untuck;
 
   & {
     display: inline-block;

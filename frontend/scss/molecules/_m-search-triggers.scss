@@ -19,8 +19,6 @@
 }
 
 .m-search-triggers button {
-  @include untuck;
-
   & {
     display: block;
     min-width: 48px;

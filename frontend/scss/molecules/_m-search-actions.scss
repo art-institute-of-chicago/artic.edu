@@ -24,8 +24,6 @@
 
 .m-search-actions span,
 .m-search-actions button {
-  @include untuck;
-
   & {
     padding: 0;
     border: 0 none;

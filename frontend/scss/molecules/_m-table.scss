@@ -184,8 +184,6 @@ Intended for very simple m-tables..
   }
 
   .f-caption {
-    @include untuck;
-
     & {
       margin-top: 16px;
     }
