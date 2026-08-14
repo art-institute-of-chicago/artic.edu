@@ -53,7 +53,7 @@
         "php": "^8.5",
         "aic/data-hub-foundation": "^6.0",
         "area17/twill": "^3.0",
-        "chillerlan/php-qrcode": "^5.0",
+        "chillerlan/php-qrcode": "^6.0",
         "eluceo/ical": "2.0",
         "erusev/parsedown": "^1.7",
         "google/apiclient": "^2.0",
