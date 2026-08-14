@@ -10,7 +10,7 @@ use App\Libraries\MyMuseumTour\ArtworkSortingService;
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 use chillerlan\QRCode\Common\EccLevel;
-use chillerlan\QRCode\Output\QROutputInterface;
+use chillerlan\QRCode\Output\QRGdImagePNG;
 
 class MyMuseumTourController extends FrontController
 {
@@ -110,10 +110,10 @@ class MyMuseumTourController extends FrontController
 
         $options = new QROptions(
             [
-              'eccLevel' => EccLevel::L,
-              'outputType' => QROutputInterface::GDIMAGE_PNG,
-              'version' => 5,
-              'quietzoneSize' => 0,
+                'eccLevel' => EccLevel::L,
+                'outputInterface' => QRGdImagePNG::class,
+                'version' => 5,
+                'quietzoneSize' => 0,
             ]
         );
 
