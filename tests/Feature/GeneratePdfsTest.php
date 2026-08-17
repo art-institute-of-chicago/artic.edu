@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 class GeneratePdfsTest extends BaseTestCase
 {
     protected Collection $articles;
+    protected string $class;
 
     protected function setUp(): void
     {
@@ -23,6 +24,7 @@ class GeneratePdfsTest extends BaseTestCase
             ->published()
             ->for(DigitalPublication::factory()->published())
             ->create();
+        $this->class = class_basename(DigitalPublicationArticle::class);
         Http::fake();
     }
 
@@ -30,8 +32,8 @@ class GeneratePdfsTest extends BaseTestCase
     {
         $this->artisan('pdfs:generate')
             ->assertSuccessful()
-            ->expectsOutput("Generated PDF for DigitalPublicationArticle with ID {$this->articles->first()->id}")
-            ->expectsOutput("Generated PDF for DigitalPublicationArticle with ID {$this->articles->last()->id}");
+            ->expectsOutput("Generated PDF: {$this->class} {$this->articles->first()->id}")
+            ->expectsOutput("Generated PDF: {$this->class} {$this->articles->last()->id}");
     }
 
     public function test_generate_one_command_successful(): void
@@ -41,7 +43,7 @@ class GeneratePdfsTest extends BaseTestCase
             'id' => $this->articles->first()->id,
         ])
             ->assertSuccessful()
-            ->expectsOutput("Generated PDF for DigitalPublicationArticle with ID {$this->articles->first()->id}");
+            ->expectsOutput("Generated PDF: {$this->class} {$this->articles->first()->id}");
     }
 
     public function test_pdf_download_path_updated(): void
