@@ -91,7 +91,7 @@ class GeneratePdfs extends Command
             return isset($this->prince);
         } catch (\Exception $exception) {
             $command = class_basename($this);
-            $message = "Initalizing Prince: {$exception->getMessage()}";
+            $message = "Initializing Prince: {$exception->getMessage()}";
             Log::channel('sentry_logs')->error("$command: $message");
             $this->error($message);
             return false;
