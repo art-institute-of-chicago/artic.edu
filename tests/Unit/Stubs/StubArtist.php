@@ -8,8 +8,6 @@ class StubArtist
 
     public $title = 'Vincent van Gogh';
 
-    public $agent_type = 'Individual';
-
     public $birth_date = '1853-03-30';
 
     public $death_date = '1890-07-29';
@@ -20,7 +18,7 @@ class StubArtist
 
     public $description = '<p>A Dutch post-impressionist painter.</p>';
 
-    public $ulan_uri = 'http://vocab.getty.edu/page/ulan/500115588';
+    public $ulan_id = '500115588';
 
     public $titleSlug = 'vincent-van-gogh';
 

@@ -141,7 +141,7 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertStringContainsString('"alternateName":"1234"', $script);
         $this->assertStringContainsString('"description":"A starry night scene."', $script);
         $this->assertStringContainsString('"identifier":{"@type":"PropertyValue","propertyID":"main_reference_number","value":"1234"}', $script);
-        $this->assertStringContainsString('"artist":{"@type":"Person","name":"Vincent van Gogh"}', $script);
+        $this->assertStringContainsString('"artist":[{"@type":"Person","name":"Vincent van Gogh"}]', $script);
         $this->assertStringContainsString('"creator":[{"@type":"Person","name":"Vincent van Gogh"}]', $script);
         $this->assertStringContainsString('"width":{"@type":"QuantitativeValue","value":73.7,"unitCode":"CMT"}', $script);
         $this->assertStringContainsString('"height":{"@type":"QuantitativeValue","value":92.1,"unitCode":"CMT"}', $script);
@@ -158,6 +158,39 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertStringContainsString('https://lakeimagesweb.artic.edu/iiif/2/abc/full/!300,300/0/default.jpg', $script);
         $this->assertStringEndsWith('/artworks/1/starry-night', $artwork['url']);
         $this->assertStringEndsWith('/artworks/1/starry-night', $artwork['mainEntityOfPage']);
+    }
+
+    public function test_artwork_creator_emits_organization_for_culture(): void
+    {
+        $manager = new JsonLdManager();
+
+        $stub = new StubArtwork();
+        $stub->artists = collect([
+            (object) ['title' => 'Aztec (Mexica)', 'birth_date' => null, 'death_date' => null, 'ulan_id' => '500115588'],
+        ]);
+
+        $manager->addModelEntity($stub, self::definitions()[StubArtwork::class]);
+        $artwork = $this->findEntity($this->extractGraph($manager->renderGraphScript()), 'VisualArtwork');
+
+        $this->assertSame('Organization', $artwork['creator'][0]['@type']);
+        $this->assertSame('Aztec (Mexica)', $artwork['creator'][0]['name']);
+        $this->assertSame('https://vocab.getty.edu/ulan/500115588', $artwork['creator'][0]['additionalType']);
+    }
+
+    public function test_artwork_creator_falls_back_to_aat_for_culture_without_ulan(): void
+    {
+        $manager = new JsonLdManager();
+
+        $stub = new StubArtwork();
+        $stub->artists = collect([
+            (object) ['title' => 'Unknown Yoruba artist', 'birth_date' => null, 'death_date' => null],
+        ]);
+
+        $manager->addModelEntity($stub, self::definitions()[StubArtwork::class]);
+        $artwork = $this->findEntity($this->extractGraph($manager->renderGraphScript()), 'VisualArtwork');
+
+        $this->assertSame('Organization', $artwork['creator'][0]['@type']);
+        $this->assertSame('http://vocab.getty.edu/aat/300387177', $artwork['creator'][0]['additionalType']);
     }
 
     public function test_exhibition_mapper(): void
@@ -344,8 +377,9 @@ class JsonLdManagerTest extends BaseTestCase
         $manager = new JsonLdManager();
 
         $stub = new StubArtist();
-        $stub->agent_type = 'Corporate body';
-        $stub->wikidata_url = 'https://www.wikidata.org/wiki/Q123';
+        $stub->birth_date = null;
+        $stub->death_date = null;
+        $stub->ulan_id = '500115588';
 
         $manager->addModelEntity($stub, self::definitions()[StubArtist::class]);
         $graph = $this->extractGraph($manager->renderGraphScript());
@@ -356,8 +390,7 @@ class JsonLdManagerTest extends BaseTestCase
 
         $this->assertNotNull($organization);
         $this->assertSame('Organization', $organization['@type']);
-        $this->assertSame('http://vocab.getty.edu/page/ulan/500115588', $organization['additionalType']);
-        $this->assertSame('https://www.wikidata.org/wiki/Q123', $organization['sameAs']);
+        $this->assertSame('https://vocab.getty.edu/ulan/500115588', $organization['additionalType']);
         $this->assertArrayNotHasKey('birthDate', $organization);
     }
 
@@ -1470,7 +1503,7 @@ class JsonLdManagerTest extends BaseTestCase
             }
         };
 
-        $artistIsCorporate = static fn ($m): bool => is_string($m->agent_type ?? null) && $m->agent_type !== '' && strtolower($m->agent_type) !== 'individual';
+        $artistIsCorporate = static fn ($m): bool => empty($m->birth_date) && empty($m->death_date);
 
         $artworkDimensions = static function ($m) {
             try {
@@ -1525,6 +1558,57 @@ class JsonLdManagerTest extends BaseTestCase
             return static fn ($m) => ($artworkDimensions($m) ?? [])[$key] ?? null;
         };
 
+        // Agents with recorded life dates are people; dateless agents are
+        // cultures, workshops, or other groups. Schema.org has no Culture
+        // type, so groups are typed as Organization with an additionalType
+        // URI from ULAN (agent-specific) or Getty AAT (generic cultures).
+        $creators = static function ($m) {
+            try {
+                $artists = $m->artists ?? null;
+            } catch (\Throwable $e) {
+                $artists = null;
+            }
+
+            $nodes = [];
+
+            if ($artists) {
+                foreach ($artists as $artist) {
+                    $name = $artist->title ?? null;
+
+                    if (empty($name)) {
+                        continue;
+                    }
+
+                    if (!empty($artist->birth_date) || !empty($artist->death_date)) {
+                        $nodes[] = ['@type' => 'Person', 'name' => $name];
+                        continue;
+                    }
+
+                    $node = ['@type' => 'Organization', 'name' => $name];
+                    $node['additionalType'] = !empty($artist->ulan_id)
+                        ? 'https://vocab.getty.edu/ulan/' . $artist->ulan_id
+                        : 'http://vocab.getty.edu/aat/300387177';
+                    $nodes[] = $node;
+                }
+            }
+
+            if (empty($nodes)) {
+                try {
+                    $artistTitle = $m->artist_title ?? null;
+                } catch (\Throwable $e) {
+                    $artistTitle = null;
+                }
+
+                if (empty($artistTitle)) {
+                    return null;
+                }
+
+                $nodes[] = ['@type' => 'Person', 'name' => $artistTitle];
+            }
+
+            return $nodes;
+        };
+
         // Shared WebPage defaults, mirroring FrontController::jsonLdDefinition().
         // Controllers merge these under their page-specific definitions; a model
         // mapped with only this definition still resolves to a plain WebPage.
@@ -1573,22 +1657,7 @@ class JsonLdManagerTest extends BaseTestCase
                         'value' => $number,
                     ];
                 },
-                'artist' => static function ($m) {
-                    try {
-                        $artistTitle = $m->artist_title ?? null;
-                    } catch (\Throwable $e) {
-                        $artistTitle = null;
-                    }
-
-                    if (!is_string($artistTitle) || $artistTitle === '') {
-                        return null;
-                    }
-
-                    return [
-                        '@type' => 'Person',
-                        'name' => $artistTitle,
-                    ];
-                },
+                'artist' => $creators,
                 'width' => $quantitativeValue('width'),
                 'height' => $quantitativeValue('height'),
                 'depth' => $quantitativeValue('depth'),
@@ -1666,24 +1735,7 @@ class JsonLdManagerTest extends BaseTestCase
                         'encodingFormat' => 'application/ld+json',
                     ];
                 },
-                'creator' => static function ($m) {
-                    try {
-                        $artistTitle = $m->artist_title ?? null;
-                    } catch (\Throwable $e) {
-                        $artistTitle = null;
-                    }
-
-                    if (empty($artistTitle)) {
-                        return null;
-                    }
-
-                    return [
-                        [
-                            '@type' => 'Person',
-                            'name' => $artistTitle,
-                        ],
-                    ];
-                },
+                'creator' => $creators,
                 'sameAs' => static function ($m) {
                     try {
                         $id = $m->id ?? null;
@@ -1775,8 +1827,9 @@ class JsonLdManagerTest extends BaseTestCase
                 'url' => $canonical('artists.show', 'titleSlug'),
                 'mainEntityOfPage' => $canonical('artists.show', 'titleSlug'),
                 'inLanguage' => $literal('en'),
-                'additionalType' => static fn ($m, $mapper) => $artistIsCorporate($m) ? $mapper->firstOf('ulan_url', 'ulan_uri') : null,
-                'sameAs' => static fn ($m, $mapper) => $artistIsCorporate($m) ? $mapper->firstOf('wikidata_url', 'wikidata_uri') : null,
+                'additionalType' => static fn ($m) => $artistIsCorporate($m) && !empty($m->ulan_id)
+                    ? 'https://vocab.getty.edu/ulan/' . $m->ulan_id
+                    : null,
                 'birthDate' => static fn ($m) => $artistIsCorporate($m) ? null : ($m->birth_date ?? null),
                 'deathDate' => static fn ($m) => $artistIsCorporate($m) ? null : ($m->death_date ?? null),
                 'birthPlace' => static fn ($m) => $artistIsCorporate($m) ? null : ($m->birth_place ?? null),
