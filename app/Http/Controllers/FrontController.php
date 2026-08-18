@@ -57,6 +57,11 @@ class FrontController extends BaseController
         app(JsonLdManager::class)->addModelEntity($model, $this->jsonLdDefinition($model));
     }
 
+    protected function addBreadcrumbs(array $items): void
+    {
+        app(JsonLdManager::class)->addBreadcrumbs($items);
+    }
+
     /**
      * Shared WebPage defaults merged under every page-specific definition.
      * Controllers override this to provide their own entity definition; the
