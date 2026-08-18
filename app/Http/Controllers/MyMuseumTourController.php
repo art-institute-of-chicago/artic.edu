@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use App\Helpers\StringHelpers;
 use App\Models\MyMuseumTour;
 use App\Repositories\LandingPageRepository;
 use App\Libraries\MyMuseumTour\ArtworkSortingService;
@@ -58,6 +59,8 @@ class MyMuseumTourController extends FrontController
         $hero_media = $landingPage->imageFront('header_my_museum_tour_header_image');
         $mobile_hero_media = $landingPage->imageFront('header_my_museum_tour_header_image_mobile');
 
+        $this->addJsonLd($myMuseumTour);
+
         return view('site.myMuseumTour', [
             'item' => $myMuseumTour,
             'my_museum_tour' => $myMuseumTourJson,
@@ -100,7 +103,6 @@ class MyMuseumTourController extends FrontController
         ]);
     }
 
-
     public function qrcode(Request $request, $id)
     {
         $myMuseumTour = MyMuseumTour::findOrFail($id);
@@ -135,5 +137,147 @@ class MyMuseumTourController extends FrontController
         return view('site.myMuseumTourBuilder', [
             'unstickyHeader' => true
         ]);
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $tourDescription = static function ($m, $mapper) {
+            $tour = is_array($m->tour_json ?? null) ? $m->tour_json : [];
+
+            foreach (['description', 'short_description', 'intro'] as $key) {
+                $value = $tour[$key] ?? null;
+
+                if (is_string($value) && trim(strip_tags($value)) !== '') {
+                    return trim(strip_tags($value));
+                }
+            }
+
+            return null;
+        };
+
+        $tourUrl = static function ($m) {
+            $id = $m->id ?? null;
+
+            if (empty($id)) {
+                return null;
+            }
+
+            try {
+                return route('my-museum-tour.show', ['id' => $id]);
+            } catch (\Throwable $e) {
+                return null;
+            }
+        };
+
+        $tourArtworkEntity = static function (array $artwork) {
+            $title = $artwork['title'] ?? null;
+
+            if (!is_string($title) || $title === '') {
+                return null;
+            }
+
+            $entity = [
+                '@type' => 'VisualArtwork',
+                'name' => $title,
+            ];
+
+            if (is_string($artwork['artist_title'] ?? null) && $artwork['artist_title'] !== '') {
+                $entity['creator'] = [
+                    [
+                        '@type' => 'Person',
+                        'name' => $artwork['artist_title'],
+                    ],
+                ];
+            }
+
+            if (is_string($artwork['display_date'] ?? null) && $artwork['display_date'] !== '') {
+                $entity['dateCreated'] = $artwork['display_date'];
+            }
+
+            if (is_string($artwork['description'] ?? null) && trim($artwork['description']) !== '') {
+                $entity['description'] = trim($artwork['description']);
+            }
+
+            $id = $artwork['id'] ?? null;
+
+            if (!empty($id)) {
+                $slug = StringHelpers::getUtf8Slug((string) ($artwork['title'] ?? ''));
+
+                try {
+                    $entity['url'] = route('artworks.show', ['id' => $id, 'slug' => $slug]);
+                } catch (\Throwable $e) {
+                    // Omit the artwork URL when the route cannot be resolved
+                }
+            }
+
+            $imageId = $artwork['image_id'] ?? null;
+
+            if (is_string($imageId) && $imageId !== '') {
+                $entity['image'] = 'https://www.artic.edu/iiif/2/' . $imageId . '/full/843,/0/default.jpg';
+            }
+
+            return $entity;
+        };
+
+        $tourItinerary = static function ($m) use ($tourArtworkEntity) {
+            $tour = is_array($m->tour_json ?? null) ? $m->tour_json : [];
+            $artworks = $tour['artworks'] ?? [];
+
+            if (!is_array($artworks) || empty($artworks)) {
+                return null;
+            }
+
+            $elements = [];
+            $position = 1;
+
+            foreach ($artworks as $artwork) {
+                if (!is_array($artwork)) {
+                    continue;
+                }
+
+                $entity = $tourArtworkEntity($artwork);
+
+                if ($entity === null) {
+                    continue;
+                }
+
+                $elements[] = [
+                    '@type' => 'ListItem',
+                    'position' => $position++,
+                    'item' => $entity,
+                ];
+            }
+
+            if (empty($elements)) {
+                return null;
+            }
+
+            return [
+                '@type' => 'ItemList',
+                'itemListElement' => $elements,
+            ];
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'TouristTrip',
+                'name' => static fn ($m) => is_array($m->tour_json ?? null) ? ($m->tour_json['title'] ?? null) : null,
+                'description' => $tourDescription,
+                'url' => $tourUrl,
+                'itinerary' => $tourItinerary,
+                'touristType' => static fn ($m) => is_array($m->tour_json ?? null) ? ($m->tour_json['touristType'] ?? $m->tour_json['tourist_type'] ?? null) : null,
+            ]
+        );
     }
 }

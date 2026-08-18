@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Experience;
 use App\Repositories\ExperienceRepository;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -102,6 +103,8 @@ class InteractiveFeatureExperiencesController extends FrontController
             $this->seo->noindex = true;
         }
 
+        $this->addJsonLd($experience);
+
         $view = 'site.experienceDetail';
 
         $isKiosk = View::shared('isKiosk', false);
@@ -126,5 +129,57 @@ class InteractiveFeatureExperiencesController extends FrontController
               'unstickyHeader' => true,
             ]);
         }
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $literal = static fn (mixed $value) => static fn () => $value;
+
+        $experienceUrl = static function ($m) {
+            if (method_exists($m, 'getSlug') && $m->getSlug() !== '') {
+                try {
+                    return route('interactiveFeatures.show', ['slug' => $m->getSlug()]);
+                } catch (\Throwable $e) {
+                    return null;
+                }
+            }
+
+            try {
+                $slug = $m->slug ?? null;
+            } catch (\Throwable $e) {
+                $slug = null;
+            }
+
+            if (!is_string($slug) || $slug === '') {
+                return null;
+            }
+
+            try {
+                return route('interactiveFeatures.show', ['slug' => $slug]);
+            } catch (\Throwable $e) {
+                return null;
+            }
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'WebApplication',
+                'description' => SchemaMapper::text('listing_description', 'subtitle', 'description'),
+                'url' => $experienceUrl,
+                'mainEntityOfPage' => $experienceUrl,
+                'applicationCategory' => $literal('MultimediaApplication'),
+            ]
+        );
     }
 }

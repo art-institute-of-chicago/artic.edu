@@ -8,6 +8,7 @@ use App\Models\Playlist;
 use App\Models\Video;
 use App\Models\VideoCategory;
 use App\Repositories\VideoRepository;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -55,6 +56,8 @@ class VideoController extends FrontController
         if ($video->is_captioned && $video->standardCaption?->hasActiveTranslation()) {
             $transcript = $video->standardCaption->transcript;
         }
+
+        $this->addJsonLd($video);
 
         return view('site.videoDetail', [
             'item' => $video,
@@ -213,5 +216,105 @@ class VideoController extends FrontController
             'contrastHeader' => true,
             'darkMode' => true,
         ]);
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $videoUrl = static function ($m) {
+            if (empty($m->id)) {
+                return null;
+            }
+
+            $slug = method_exists($m, 'getSlug') ? $m->getSlug() : null;
+
+            try {
+                if (!empty($m->is_short)) {
+                    return route('shorts.show', ['video' => $m->id]);
+                }
+
+                return route('videos.show', ['video' => $m->id, 'slug' => $slug]);
+            } catch (\Throwable $e) {
+                return null;
+            }
+        };
+
+        $videoThumbnail = static function ($m, $mapper) {
+            try {
+                $thumbnail = $m->thumbnail_url ?? null;
+            } catch (\Throwable $e) {
+                $thumbnail = null;
+            }
+
+            if (is_string($thumbnail) && str_starts_with($thumbnail, 'http')) {
+                return $thumbnail;
+            }
+
+            return $mapper->imageUrl();
+        };
+
+        $videoDuration = static function ($m) {
+            $duration = $m->duration ?? null;
+
+            if (!is_numeric($duration) || (int) $duration <= 0) {
+                return null;
+            }
+
+            return 'PT' . (int) $duration . 'S';
+        };
+
+        $videoTranscript = static function ($m) {
+            if (empty($m->is_captioned)) {
+                return null;
+            }
+
+            try {
+                $caption = $m->standardCaption;
+            } catch (\Throwable $e) {
+                return null;
+            }
+
+            if (!$caption) {
+                return null;
+            }
+
+            try {
+                $transcript = $caption->transcript;
+            } catch (\Throwable $e) {
+                return null;
+            }
+
+            if (is_string($transcript) && trim($transcript) !== '') {
+                return trim($transcript);
+            }
+
+            return null;
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'VideoObject',
+                'description' => SchemaMapper::text('list_description', 'heading', 'description'),
+                'thumbnailUrl' => $videoThumbnail,
+                'uploadDate' => SchemaMapper::iso('uploaded_at'),
+                'duration' => $videoDuration,
+                'contentUrl' => 'video_url',
+                'embedUrl' => 'embed_url',
+                'url' => $videoUrl,
+                'mainEntityOfPage' => $videoUrl,
+                'publisher' => SchemaMapper::orgRef(),
+                'transcript' => $videoTranscript,
+            ]
+        );
     }
 }

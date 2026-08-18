@@ -7,6 +7,7 @@ use App\Models\EducatorResource;
 use App\Models\ResourceCategory;
 use App\Models\LandingPage;
 use App\Repositories\EducatorResourceRepository;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
 
@@ -76,7 +77,6 @@ class EducatorResourcesController extends BaseScopedController
                 'data-button-value' => Str::kebab(Str::lower($category->name))
               ];
           });
-
 
         $crumbs = [
             [
@@ -161,6 +161,8 @@ class EducatorResourcesController extends BaseScopedController
         $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->listing_description);
         $this->seo->setImage($item->imageFront('listing'));
 
+        $this->addJsonLd($item);
+
         $crumbs = [
             [
                 'label' => 'Educator Resources',
@@ -171,7 +173,6 @@ class EducatorResourcesController extends BaseScopedController
                 'href' => ''
             ]
         ];
-
 
         $landingPage = LandingPage::where('type_id', collect(LandingPage::TYPES)->search('Educator Resources'))->first() ?? null;
 
@@ -222,5 +223,65 @@ class EducatorResourcesController extends BaseScopedController
                 'links' => collect($categoryLinks)
             ]
         ];
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $resourceCategories = static function (string $type) {
+            return static function ($m) use ($type) {
+                try {
+                    $categories = $m->categories ?? collect();
+                } catch (\Throwable $e) {
+                    $categories = collect();
+                }
+
+                if (!$categories instanceof \Traversable) {
+                    return null;
+                }
+
+                $labels = [];
+
+                foreach ($categories as $category) {
+                    $name = is_object($category) ? ($category->name ?? null) : ($category['name'] ?? null);
+                    $categoryType = is_object($category) ? ($category->type ?? null) : ($category['type'] ?? null);
+
+                    if (!is_string($name) || $name === '' || $categoryType !== $type) {
+                        continue;
+                    }
+
+                    $labels[] = $name;
+                }
+
+                $labels = array_values(array_unique($labels));
+
+                if (empty($labels)) {
+                    return null;
+                }
+
+                return count($labels) === 1 ? $labels[0] : $labels;
+            };
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'LearningResource',
+                'description' => SchemaMapper::text('short_description', 'listing_description', 'description'),
+                'url' => SchemaMapper::canonical('collection.resources.educator-resources.show'),
+                'mainEntityOfPage' => SchemaMapper::canonical('collection.resources.educator-resources.show'),
+                'educationalLevel' => $resourceCategories('audience'),
+                'learningResourceType' => $resourceCategories('content'),
+            ]
+        );
     }
 }

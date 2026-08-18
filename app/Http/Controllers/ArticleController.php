@@ -9,6 +9,7 @@ use App\Models\Experience;
 use App\Models\Highlight;
 use App\Helpers\StringHelpers;
 use App\Models\Video;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Illuminate\Support\Str;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -198,6 +199,13 @@ class ArticleController extends FrontController
             $item->topics = $item->categories;
         }
 
+        $this->addJsonLd($item);
+        $this->addBreadcrumbs([
+            ['label' => 'Home', 'url' => route('home')],
+            ['label' => 'Articles', 'url' => route('articles')],
+            ['label' => $item->title],
+        ]);
+
         return view('site.articleDetail', [
             'item' => $item,
             'autoRelated' => $this->getAutoRelated($item),
@@ -218,5 +226,106 @@ class ArticleController extends FrontController
             'authors' => implode(',', $this->seo->citationAuthor),
             'publish-date' => $item->date->toDateString(),
         ];
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $articleAbstract = static function ($m, $mapper) {
+            try {
+                $abstract = $m->list_description ?? null;
+            } catch (\Throwable $e) {
+                $abstract = null;
+            }
+
+            return $mapper->cleanText($abstract);
+        };
+
+        $articleAuthors = static function ($m) {
+            $authors = [];
+
+            if (!empty($m->authors)) {
+                foreach ($m->authors as $author) {
+                    if (empty($author->title)) {
+                        continue;
+                    }
+
+                    $entry = [
+                        '@type' => 'Person',
+                        'name' => $author->title,
+                    ];
+
+                    $id = $author->id ?? null;
+
+                    if (!empty($id)) {
+                        try {
+                            $slug = method_exists($author, 'getSlug') ? $author->getSlug() : null;
+
+                            $entry['url'] = route('authors.show', ['id' => $id, 'slug' => $slug]);
+                        } catch (\Throwable $e) {
+                            // Omit the author URL when the route cannot be resolved
+                        }
+                    }
+
+                    $authors[] = $entry;
+                }
+            }
+
+            if (empty($authors) && !empty($m->author_display)) {
+                $authors[] = [
+                    '@type' => 'Person',
+                    'name' => $m->author_display,
+                ];
+            }
+
+            return empty($authors) ? null : $authors;
+        };
+
+        $articleKeywords = static function ($m) {
+            try {
+                $categories = $m->categories ?? collect();
+            } catch (\Throwable $e) {
+                $categories = collect();
+            }
+
+            if (!($categories instanceof \Traversable)) {
+                return null;
+            }
+
+            $names = collect($categories)
+                ->map(static fn ($category) => is_object($category) ? ($category->name ?? null) : ($category['name'] ?? null))
+                ->filter()
+                ->unique()
+                ->values();
+
+            return $names->isEmpty() ? null : $names->implode(', ');
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => static fn ($m) => ($m->article_type ?? $m->articleType ?? 'article') === 'editorial' ? 'BlogPosting' : 'Article',
+                'headline' => 'title',
+                'description' => SchemaMapper::text('description', 'heading', 'list_description'),
+                'abstract' => $articleAbstract,
+                'thumbnailUrl' => static fn ($m, $mapper) => $mapper->thumbnailUrl(),
+                'datePublished' => SchemaMapper::iso('date'),
+                'dateModified' => static fn ($m, $mapper) => $mapper->toIso8601($m->updated_at ?? $m->date ?? null),
+                'author' => $articleAuthors,
+                'publisher' => SchemaMapper::orgRef(),
+                'mainEntityOfPage' => SchemaMapper::canonical('articles.show'),
+                'articleSection' => static fn ($m) => $m->article_type ?? $m->articleType ?? 'article',
+                'keywords' => $articleKeywords,
+            ]
+        );
     }
 }
