@@ -262,6 +262,57 @@ class ArtworkController extends BaseScopedController
             return static fn ($m) => ($artworkDimensions($m) ?? [])[$key] ?? null;
         };
 
+        // Agents with recorded life dates are people; dateless agents are
+        // cultures, workshops, or other groups. Schema.org has no Culture
+        // type, so groups are typed as Organization with an additionalType
+        // URI from ULAN (agent-specific) or Getty AAT (generic cultures).
+        $creators = static function ($m) {
+            try {
+                $artists = $m->artists ?? null;
+            } catch (\Throwable $e) {
+                $artists = null;
+            }
+
+            $nodes = [];
+
+            if ($artists) {
+                foreach ($artists as $artist) {
+                    $name = $artist->title ?? null;
+
+                    if (empty($name)) {
+                        continue;
+                    }
+
+                    if (!empty($artist->birth_date) || !empty($artist->death_date)) {
+                        $nodes[] = ['@type' => 'Person', 'name' => $name];
+                        continue;
+                    }
+
+                    $node = ['@type' => 'Organization', 'name' => $name];
+                    $node['additionalType'] = !empty($artist->ulan_id)
+                        ? 'https://vocab.getty.edu/ulan/' . $artist->ulan_id
+                        : 'http://vocab.getty.edu/aat/300387177';
+                    $nodes[] = $node;
+                }
+            }
+
+            if (empty($nodes)) {
+                try {
+                    $artistTitle = $m->artist_title ?? null;
+                } catch (\Throwable $e) {
+                    $artistTitle = null;
+                }
+
+                if (empty($artistTitle)) {
+                    return null;
+                }
+
+                $nodes[] = ['@type' => 'Person', 'name' => $artistTitle];
+            }
+
+            return $nodes;
+        };
+
         return array_merge(
             parent::jsonLdDefinition($model),
             [
@@ -294,22 +345,7 @@ class ArtworkController extends BaseScopedController
                         'value' => $number,
                     ];
                 },
-                'artist' => static function ($m) {
-                    try {
-                        $artistTitle = $m->artist_title ?? null;
-                    } catch (\Throwable $e) {
-                        $artistTitle = null;
-                    }
-
-                    if (!is_string($artistTitle) || $artistTitle === '') {
-                        return null;
-                    }
-
-                    return [
-                        '@type' => 'Person',
-                        'name' => $artistTitle,
-                    ];
-                },
+                'artist' => $creators,
                 'width' => $quantitativeValue('width'),
                 'height' => $quantitativeValue('height'),
                 'depth' => $quantitativeValue('depth'),
@@ -387,24 +423,7 @@ class ArtworkController extends BaseScopedController
                         'encodingFormat' => 'application/ld+json',
                     ];
                 },
-                'creator' => static function ($m) {
-                    try {
-                        $artistTitle = $m->artist_title ?? null;
-                    } catch (\Throwable $e) {
-                        $artistTitle = null;
-                    }
-
-                    if (empty($artistTitle)) {
-                        return null;
-                    }
-
-                    return [
-                        [
-                            '@type' => 'Person',
-                            'name' => $artistTitle,
-                        ],
-                    ];
-                },
+                'creator' => $creators,
                 'sameAs' => static function ($m) {
                     try {
                         $id = $m->id ?? null;

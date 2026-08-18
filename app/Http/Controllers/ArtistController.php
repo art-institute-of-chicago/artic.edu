@@ -70,7 +70,11 @@ class ArtistController extends FrontController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
-        $artistIsCorporate = static fn ($m): bool => is_string($m->agent_type ?? null) && $m->agent_type !== '' && strtolower($m->agent_type) !== 'individual';
+        // The API exposes no agent type field, so treat agents with recorded
+        // life dates as Person and the rest (cultures, workshops, studios) as
+        // Organization. Individuals without documented dates fall into the
+        // Organization bucket; acceptable trade-off given available data.
+        $artistIsCorporate = static fn ($m): bool => empty($m->birth_date) && empty($m->death_date);
 
         return array_merge(
             parent::jsonLdDefinition($model),
@@ -78,8 +82,9 @@ class ArtistController extends FrontController
                 '@type' => static fn ($m) => $artistIsCorporate($m) ? 'Organization' : 'Person',
                 'url' => SchemaMapper::canonical('artists.show', 'titleSlug'),
                 'mainEntityOfPage' => SchemaMapper::canonical('artists.show', 'titleSlug'),
-                'additionalType' => static fn ($m, $mapper) => $artistIsCorporate($m) ? $mapper->firstOf('ulan_url', 'ulan_uri') : null,
-                'sameAs' => static fn ($m, $mapper) => $artistIsCorporate($m) ? $mapper->firstOf('wikidata_url', 'wikidata_uri') : null,
+                'additionalType' => static fn ($m) => $artistIsCorporate($m) && !empty($m->ulan_id)
+                    ? 'https://vocab.getty.edu/ulan/' . $m->ulan_id
+                    : null,
                 'birthDate' => static fn ($m) => $artistIsCorporate($m) ? null : ($m->birth_date ?? null),
                 'deathDate' => static fn ($m) => $artistIsCorporate($m) ? null : ($m->death_date ?? null),
                 'birthPlace' => static fn ($m) => $artistIsCorporate($m) ? null : ($m->birth_place ?? null),
