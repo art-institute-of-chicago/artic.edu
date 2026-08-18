@@ -3,7 +3,7 @@
     $showNewHours = Carbon\Carbon::now()->gt($newHoursStartAt);
 @endphp
 
-<section class="visit" itemscope itemtype="http://schema.org/TouristAttraction">
+<section class="visit">
     <link itemprop="additionalType" href="http://schema.org/Museum" aria-hidden="true"/>
     <link itemprop="additionalType" href="http://schema.org/LandmarksOrHistoricalBuildings" aria-hidden="true"/>
     <link itemprop="additionalType" href="http://schema.org/LocalBusiness" aria-hidden="true"/>

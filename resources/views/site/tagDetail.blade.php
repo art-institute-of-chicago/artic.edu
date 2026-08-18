@@ -2,7 +2,7 @@
 
 @section('content')
 
-<article itemscope itemtype="http://schema.org/Person">
+<article>
     @component('site.shared._schemaItemProps')
       @slot('itemprops',$item->present()->itemprops ?? null)
     @endcomponent
