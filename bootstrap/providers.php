@@ -7,6 +7,7 @@ return [
     // Application Service Providers...
     App\Providers\AppServiceProvider::class,
     App\Providers\InvalidationServiceProvider::class,
+    App\Providers\SchemaOrgServiceProvider::class,
 
     Aic\Hub\Foundation\Providers\ResourceServiceProvider::class
 ];
