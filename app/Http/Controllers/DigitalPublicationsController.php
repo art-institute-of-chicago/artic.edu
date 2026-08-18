@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DigitalPublication;
 use App\Repositories\DigitalPublicationRepository;
 use App\Helpers\NavHelpers;
+use App\Libraries\SchemaOrg\SchemaMapper;
 
 class DigitalPublicationsController extends BaseScopedController
 {
@@ -72,6 +73,8 @@ class DigitalPublicationsController extends BaseScopedController
             $this->seo->noindex = true;
         }
 
+        $this->addJsonLd($item);
+
         if ($item->is_dsc_stub) {
             return $this->showDscStub($item);
         }
@@ -102,5 +105,90 @@ class DigitalPublicationsController extends BaseScopedController
             'breadcrumb' => $crumbs,
             'page' => $item,
         ]);
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $literal = static fn (mixed $value) => static fn () => $value;
+
+        $optionalField = static function (string $field) {
+            return static function ($m) use ($field) {
+                try {
+                    $value = $m->{$field} ?? null;
+                } catch (\Throwable $e) {
+                    return null;
+                }
+
+                if (is_numeric($value) || (is_string($value) && $value !== '')) {
+                    return (string) $value;
+                }
+
+                return null;
+            };
+        };
+
+        $bookAuthor = static function ($m) {
+            try {
+                $author = $m->author ?? null;
+            } catch (\Throwable $e) {
+                $author = null;
+            }
+
+            return is_string($author) && $author !== '' ? $author : null;
+        };
+
+        $bookDatePublished = static function ($m, $mapper) {
+            $date = $m->publication_date ?? $m->publish_start_date ?? null;
+
+            return $mapper->toIso8601($date);
+        };
+
+        $publicationUrl = static function (string $routeName) {
+            return static function ($m) use ($routeName) {
+                if (empty($m->id)) {
+                    return null;
+                }
+
+                $slug = method_exists($m, 'getSlug') ? $m->getSlug() : null;
+
+                try {
+                    return route($routeName, ['id' => $m->id, 'slug' => $slug]);
+                } catch (\Throwable $e) {
+                    return null;
+                }
+            };
+        };
+
+        $digitalPublicationUrl = $publicationUrl('collection.publications.digital-publications.show');
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => ['Book', 'DigitalDocument'],
+                'publisher' => SchemaMapper::orgRef(),
+                'author' => $bookAuthor,
+                'datePublished' => $bookDatePublished,
+                'isbn' => $optionalField('isbn'),
+                'numberOfPages' => $optionalField('number_of_pages'),
+                'url' => $digitalPublicationUrl,
+                'mainEntityOfPage' => $digitalPublicationUrl,
+                'encodingFormat' => $literal('text/html'),
+                '@id' => static function ($m) use ($digitalPublicationUrl) {
+                    $url = $digitalPublicationUrl($m);
+
+                    return is_string($url) && $url !== '' ? $url : null;
+                },
+            ]
+        );
     }
 }

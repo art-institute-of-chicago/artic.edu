@@ -6,6 +6,7 @@ use App\Repositories\GenericPageRepository;
 use App\Http\Controllers\LandingPagesController;
 use App\Models\Hour;
 use App\Models\Slugs\LandingPageSlug;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Illuminate\Http\Request;
 
 class GenericPagesController extends FrontController
@@ -60,6 +61,8 @@ class GenericPagesController extends FrontController
             $addFareHarborJS = true;
         }
 
+        $this->addJsonLd($item);
+
         return view('site.genericPage.show', [
             'autoRelated' => $this->getAutoRelated($item),
             'featuredRelated' => $this->getFeatureRelated($item),
@@ -91,5 +94,47 @@ class GenericPagesController extends FrontController
         }
 
         return $page;
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $genericPageUrl = static function ($m) {
+            try {
+                $url = $m->url ?? null;
+            } catch (\Throwable $e) {
+                $url = null;
+            }
+
+            if (!is_string($url) || $url === '' || str_starts_with($url, 'http')) {
+                return is_string($url) && $url !== '' ? $url : null;
+            }
+
+            try {
+                return route('pages.slug', ['slug' => ltrim($url, '/')]);
+            } catch (\Throwable $e) {
+                return url($url);
+            }
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'WebPage',
+                'description' => SchemaMapper::text('meta_description', 'short_description', 'listing_description', 'description'),
+                'dateModified' => SchemaMapper::iso('updated_at'),
+                'url' => $genericPageUrl,
+                'mainEntityOfPage' => $genericPageUrl,
+            ]
+        );
     }
 }

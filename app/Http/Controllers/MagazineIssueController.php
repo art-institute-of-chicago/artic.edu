@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\MagazineIssueRepository;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Illuminate\Support\Carbon;
 
 class MagazineIssueController extends FrontController
@@ -38,6 +39,8 @@ class MagazineIssueController extends FrontController
         $this->seo->setDescription($item->meta_description ?: $item->list_description); // Issues have no blocks
         $this->seo->setImage($item->imageFront('hero'));
 
+        $this->addJsonLd($item);
+
         $issuesByYear = $this->repository
             ->published()
             ->ordered()
@@ -63,5 +66,49 @@ class MagazineIssueController extends FrontController
             'welcomeNote' => $this->repository->getWelcomeNote($item),
             'canonicalUrl' => $canonicalPath,
         ]);
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $optionalField = static function (string $field) {
+            return static function ($m) use ($field) {
+                try {
+                    $value = $m->{$field} ?? null;
+                } catch (\Throwable $e) {
+                    return null;
+                }
+
+                if (is_numeric($value) || (is_string($value) && $value !== '')) {
+                    return (string) $value;
+                }
+
+                return null;
+            };
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'PublicationIssue',
+                'datePublished' => SchemaMapper::iso('publish_start_date'),
+                'url' => SchemaMapper::canonical('magazine-issues.show'),
+                'mainEntityOfPage' => SchemaMapper::canonical('magazine-issues.show'),
+                'isPartOf' => [
+                    '@type' => 'Periodical',
+                    'name' => 'Art Institute of Chicago magazine',
+                ],
+                'issueNumber' => $optionalField('issue_number'),
+            ]
+        );
     }
 }
