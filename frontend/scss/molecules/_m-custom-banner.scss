@@ -94,6 +94,10 @@
             display: block;
             color: white !important;
 
+            @include breakpoint('small-') {
+                line-height: 38px;
+            }
+
             &::before {
                 padding: 0 !important;
             }
