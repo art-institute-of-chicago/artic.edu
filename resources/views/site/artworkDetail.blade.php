@@ -69,13 +69,13 @@
 @endif
   </div>
 
-  @if (!$item->is_deaccessioned)
   <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium+">
-    @component('site.shared._loadRelatedSidebar')
-        @slot('item', $item)
-    @endcomponent
+    @if (!$item->is_deaccessioned)
+        @component('site.shared._loadRelatedSidebar')
+            @slot('item', $item)
+        @endcomponent
+    @endif
   </div>
-  @endif
 
   <div class="o-article__inline-header">
     @if ($item->title)
@@ -126,13 +126,13 @@
 
 </article>
 
-@if (!$item->is_deaccessioned)
 <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@small-">
+  @if (!$item->is_deaccessioned)
     @component('site.shared._loadRelatedSidebar')
         @slot('item', $item)
     @endcomponent
+  @endif
 </div>
-@endif
 
 @if (isset($exploreFurtherTags) && count($exploreFurtherTags) > 0)
 <div id="exploreFurther">
