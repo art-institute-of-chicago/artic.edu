@@ -8,6 +8,7 @@ use App\Models\EventProgram;
 use App\Repositories\EventRepository;
 use App\Libraries\SchemaOrg\SchemaMapper;
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -271,33 +272,18 @@ class EventsController extends FrontController
     {
         $literal = static fn (mixed $value) => static fn () => $value;
 
-        $toSeconds = static fn (\DateInterval $interval): int => (($interval->d * 24 + $interval->h) * 60 + $interval->i) * 60 + $interval->s;
-
-        $fromSeconds = static function (int $seconds): string {
-            $hours = intdiv($seconds, 3600);
-            $minutes = intdiv($seconds % 3600, 60);
-            $remainingSeconds = $seconds % 60;
-
-            $time = ($hours > 0 ? $hours . 'H' : '') . ($minutes > 0 ? $minutes . 'M' : '') . ($remainingSeconds > 0 ? $remainingSeconds . 'S' : '');
-
-            return 'PT' . ($time !== '' ? $time : '0S');
-        };
-
-        $formatDuration = static function (\DateInterval $interval): string {
-            $date = ($interval->y > 0 ? $interval->y . 'Y' : '') . ($interval->m > 0 ? $interval->m . 'M' : '') . ($interval->d > 0 ? $interval->d . 'D' : '');
-            $time = ($interval->h > 0 ? $interval->h . 'H' : '') . ($interval->i > 0 ? $interval->i . 'M' : '') . ($interval->s > 0 ? $interval->s . 'S' : '');
-
-            return 'P' . $date . ($date !== '' || $time !== '' ? 'T' : '') . $time;
-        };
-
-        $eventDuration = static function ($m) use ($toSeconds, $fromSeconds, $formatDuration): ?string {
+        $eventDuration = static function ($m): ?string {
             $start = $m->date_start ?? null;
             $end = $m->date_end ?? null;
 
             if ($start instanceof \DateTimeInterface && $end instanceof \DateTimeInterface) {
-                $interval = $start->diff($end);
+                $interval = CarbonInterval::instance($start->diff($end));
 
-                return $interval->invert === 0 ? $formatDuration($interval) : null;
+                if ($interval->invert === 1) {
+                    return null;
+                }
+
+                return CarbonInterval::seconds((int) round($interval->totalSeconds))->cascade()->spec();
             }
 
             try {
@@ -312,13 +298,14 @@ class EventsController extends FrontController
             }
 
             try {
-                $seconds = $toSeconds(new \DateInterval($endTime)) - $toSeconds(new \DateInterval($startTime));
+                $seconds = CarbonInterval::instance(new \DateInterval($endTime))->totalSeconds
+                    - CarbonInterval::instance(new \DateInterval($startTime))->totalSeconds;
 
                 if ($seconds <= 0) {
                     return null;
                 }
 
-                return $fromSeconds($seconds);
+                return CarbonInterval::seconds((int) round($seconds))->cascade()->spec();
             } catch (\Throwable $e) {
                 return null;
             }

@@ -10,6 +10,7 @@ use App\Models\Video;
 use App\Repositories\PlaylistVideoRepository;
 use App\Repositories\VideoRepository;
 use App\Libraries\SchemaOrg\SchemaMapper;
+use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
 
 class PlaylistVideoController extends FrontController
@@ -131,7 +132,7 @@ class PlaylistVideoController extends FrontController
                 return null;
             }
 
-            return 'PT' . (int) $duration . 'S';
+            return CarbonInterval::seconds((int) $duration)->cascade()->spec();
         };
 
         $videoTranscript = static function ($m) {

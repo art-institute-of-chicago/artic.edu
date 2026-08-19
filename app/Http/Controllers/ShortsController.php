@@ -6,6 +6,7 @@ use App\Facades\EmbedConverterFacade;
 use App\Models\Video;
 use App\Repositories\VideoRepository;
 use App\Libraries\SchemaOrg\SchemaMapper;
+use Carbon\CarbonInterval;
 
 class ShortsController extends FrontController
 {
@@ -225,7 +226,7 @@ class ShortsController extends FrontController
                 return null;
             }
 
-            return 'PT' . (int) $duration . 'S';
+            return CarbonInterval::seconds((int) $duration)->cascade()->spec();
         };
 
         $videoTranscript = static function ($m) {
