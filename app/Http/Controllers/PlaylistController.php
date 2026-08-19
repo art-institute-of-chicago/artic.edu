@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Playlist;
 use App\Repositories\PlaylistRepository;
 use App\Libraries\SchemaOrg\SchemaMapper;
+use Carbon\CarbonInterval;
 
 class PlaylistController extends FrontController
 {
@@ -84,7 +85,7 @@ class PlaylistController extends FrontController
                 return null;
             }
 
-            return 'PT' . (int) $duration . 'S';
+            return CarbonInterval::seconds((int) $duration)->cascade()->spec();
         };
 
         $videoTranscript = static function ($m) {

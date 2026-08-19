@@ -9,6 +9,7 @@ use App\Models\Video;
 use App\Models\VideoCategory;
 use App\Repositories\VideoRepository;
 use App\Libraries\SchemaOrg\SchemaMapper;
+use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -269,7 +270,7 @@ class VideoController extends FrontController
                 return null;
             }
 
-            return 'PT' . (int) $duration . 'S';
+            return CarbonInterval::seconds((int) $duration)->cascade()->spec();
         };
 
         $videoTranscript = static function ($m) {
