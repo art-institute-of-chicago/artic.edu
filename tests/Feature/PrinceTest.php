@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Http;
 class PrinceTest extends BaseTestCase
 {
     protected Collection $articles;
+    protected string $class;
 
     protected function setUp(): void
     {
@@ -21,6 +22,7 @@ class PrinceTest extends BaseTestCase
             ->published()
             ->for(DigitalPublication::factory()->published())
             ->create();
+        $this->class = class_basename(DigitalPublicationArticle::class);
     }
 
     public function test_errors_when_prince_binary_not_present(): void
@@ -28,7 +30,9 @@ class PrinceTest extends BaseTestCase
         Http::fake();
         $noPrinceCommand = '/dev/null';
         Config::set('aic.prince_command', $noPrinceCommand);
-        $this->artisan('pdfs:generate')->assertFailed()->expectsOutput("Prince could not be found at $noPrinceCommand");
+        $this->artisan('pdfs:generate')
+            ->assertFailed()
+            ->expectsOutput("Initializing Prince: Prince could not be found at $noPrinceCommand");
     }
 
     public function test_errors_when_prince_cannot_generate_pdf(): void
@@ -40,6 +44,8 @@ class PrinceTest extends BaseTestCase
             'id' => $id,
         ])
             ->assertFailed()
-            ->expectsOutput("Prince was unable to generate a PDF for DigitalPublicationArticle with ID {$id}");
+            ->expectsOutput(
+                "{$this->class} {$id}: Prince was unable to generate a PDF: not generating PDF due to fail-safe option"
+            );
     }
 }

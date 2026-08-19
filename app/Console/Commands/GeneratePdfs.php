@@ -11,6 +11,7 @@ use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Prince\Prince;
 
@@ -57,7 +58,11 @@ class GeneratePdfs extends Command
                 try {
                     $this->generatePdf($model, $route);
                 } catch (\Exception $exception) {
-                    $this->error("$modelClass $model->id: {$exception->getMessage()}");
+                    $command = class_basename($this);
+                    $class = class_basename($modelClass);
+                    $message = "$class $model->id: {$exception->getMessage()}";
+                    Log::channel('sentry_logs')->error("$command: $message");
+                    $this->error($message);
                 }
             }
 
@@ -85,7 +90,10 @@ class GeneratePdfs extends Command
             }
             return isset($this->prince);
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $command = class_basename($this);
+            $message = "Initializing Prince: {$exception->getMessage()}";
+            Log::channel('sentry_logs')->error("$command: $message");
+            $this->error($message);
             return false;
         }
     }
@@ -116,11 +124,18 @@ class GeneratePdfs extends Command
         }
         $html = $client->get($fullUrl, ['print' => true])->body();
         $fileName = self::fileName($model);
-        $class = class_basename($model);
-        if ($this->prince->convertStringToFile($html, self::localPath($fileName))) {
+        $messages = array();
+        if ($this->prince->convertStringToFile($html, self::localPath($fileName), $messages)) {
             $this->storePdf($fileName);
         } else {
-            throw new \Exception("Prince was unable to generate a PDF for {$class} with ID {$model->id}");
+            // Prince error messages are formatted like so:
+            // [
+            //   0 => "err"
+            //   1 => ""
+            //   2 => "not generating PDF due to fail-safe option"
+            // ]
+            $errors = collect($messages)->where(0, 'err')->pluck(2)->join('|');
+            throw new \Exception("Prince was unable to generate a PDF: $errors");
         }
 
         $model->pdf_download_path = self::downloadPath($fileName);
@@ -128,7 +143,11 @@ class GeneratePdfs extends Command
             $model->save();
         }
 
-        $this->info("Generated PDF for {$class} with ID {$model->id}");
+        $class = class_basename($model);
+        $command = class_basename($this);
+        $message = "Generated PDF: $class $model->id";
+        Log::channel('sentry_logs')->info("$command: $message");
+        $this->info($message);
     }
 
     protected function path($model, $route): string
