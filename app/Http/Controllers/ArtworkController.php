@@ -210,11 +210,7 @@ class ArtworkController extends BaseScopedController
     protected function jsonLdDefinition(mixed $model): array
     {
         $artworkDimensions = static function ($m) {
-            try {
-                $details = $m->dimensions_detail ?? null;
-            } catch (\Throwable $e) {
-                $details = null;
-            }
+            $details = $m?->dimensions_detail ?? null;
 
             if (!is_array($details) || empty($details)) {
                 return null;
