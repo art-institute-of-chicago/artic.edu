@@ -22,6 +22,18 @@ use Illuminate\Support\Collection;
 class SchemaMapper
 {
     /**
+     * The @id of the global Museum/Organization entity rendered by
+     * JsonLdManager::organization(), referenced by orgRef() and page entities.
+     */
+    public const ORGANIZATION_ID = 'https://www.artic.edu/#organization';
+
+    /**
+     * The @id of the global WebSite entity rendered by
+     * JsonLdManager::website(), referenced by siteRef() and page entities.
+     */
+    public const WEBSITE_ID = 'https://www.artic.edu/#website';
+
+    /**
      * @var array<string, mixed>
      */
     protected array $definition;
@@ -49,7 +61,7 @@ class SchemaMapper
         foreach ($this->definition as $key => $value) {
             $resolved = $this->resolveProperty($key, $value);
 
-            if ($this->isEmpty($resolved)) {
+            if (self::isEmpty($resolved)) {
                 continue;
             }
 
@@ -268,20 +280,45 @@ class SchemaMapper
     }
 
     /**
-     * The museum's postal address, shared by event and exhibition locations.
+     * The museum's postal address, shared by event/exhibition locations and
+     * the global Organization entity (JsonLdManager). Single source of truth
+     * is config('aic.museum_address').
      *
      * @return array<string, string>
      */
     public function museumAddress(): array
     {
-        return [
-            '@type' => 'PostalAddress',
-            'streetAddress' => '111 S Michigan Ave',
-            'addressLocality' => 'Chicago',
-            'addressRegion' => 'IL',
-            'postalCode' => '60603',
-            'addressCountry' => 'US',
-        ];
+        return config('aic.museum_address');
+    }
+
+    /**
+     * Whether an agent denotes a group rather than a person, from the API's
+     * agent_type classification. Individual is the only person type; Couple,
+     * Culture, Corporate Body, Fund, etc. are all groups. Agents without a
+     * classification default to Person (most unclassified agents are people).
+     *
+     * @param object|array|null $agent Agent record with agent_type_title or
+     *                                 agent_type_id (7 = Individual).
+     */
+    public static function isGroupAgent(object|array|null $agent): bool
+    {
+        if (empty($agent)) {
+            return false;
+        }
+
+        $typeTitle = data_get($agent, 'agent_type_title');
+
+        if (!empty($typeTitle)) {
+            return strtolower((string) $typeTitle) !== 'individual';
+        }
+
+        $typeId = data_get($agent, 'agent_type_id');
+
+        if (!empty($typeId)) {
+            return (int) $typeId !== 7;
+        }
+
+        return false;
     }
 
     /**
@@ -304,7 +341,16 @@ class SchemaMapper
         return null;
     }
 
-    protected function isEmpty(mixed $value): bool
+    /**
+     * Whether a definition value resolves to nothing and should be omitted
+     * from the rendered entity: null, '', empty arrays, and empty
+     * Illuminate\Support\Collection instances. Falsy-but-valid values such as
+     * false, 0 and '0' are preserved.
+     *
+     * Shared with JsonLdManager::filterEmptyValues() so both layers treat
+     * empty values identically.
+     */
+    public static function isEmpty(mixed $value): bool
     {
         if ($value === null || $value === '' || $value === []) {
             return true;
@@ -375,13 +421,41 @@ class SchemaMapper
     }
 
     /**
+     * Canonical video page URL for the model, using the shorts route for
+     * short-form videos and the videos route otherwise. Shared by the Video,
+     * Shorts, Playlist and PlaylistVideo definitions.
+     *
+     * @return \Closure Definition value resolving the video URL.
+     */
+    public static function videoUrl(): \Closure
+    {
+        return static function ($m) {
+            if (empty($m->id)) {
+                return null;
+            }
+
+            $slug = method_exists($m, 'getSlug') ? $m->getSlug() : null;
+
+            try {
+                if (!empty($m->is_short)) {
+                    return route('shorts.show', ['video' => $m->id]);
+                }
+
+                return route('videos.show', ['video' => $m->id, 'slug' => $slug]);
+            } catch (\Throwable $e) {
+                return null;
+            }
+        };
+    }
+
+    /**
      * Reference to the global Museum/Organization entity emitted in the @graph.
      *
      * @return array{@id: string}
      */
     public static function orgRef(): array
     {
-        return ['@id' => 'https://www.artic.edu/#organization'];
+        return ['@id' => self::ORGANIZATION_ID];
     }
 
     /**
@@ -391,6 +465,17 @@ class SchemaMapper
      */
     public static function siteRef(): array
     {
-        return ['@id' => 'https://www.artic.edu/#website'];
+        return ['@id' => self::WEBSITE_ID];
+    }
+
+    /**
+     * A literal scalar value that is not a model attribute. SchemaMapper
+     * resolves bare strings as model attributes, so literals must be wrapped
+     * in a closure; this factory replaces hand-rolled `static fn ($value) =>
+     * static fn () => $value` helpers at the controller call sites.
+     */
+    public static function literal(mixed $value): \Closure
+    {
+        return static fn () => $value;
     }
 }
