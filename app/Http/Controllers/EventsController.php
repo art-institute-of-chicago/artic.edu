@@ -415,11 +415,7 @@ class EventsController extends FrontController
             if (!empty($m->rsvp_link)) {
                 $url = $m->rsvp_link;
             } elseif (!empty($m->is_ticketed)) {
-                try {
-                    $url = $m->buy_tickets_link ?? null;
-                } catch (\Throwable $e) {
-                    $url = null;
-                }
+                $url = $m->buy_tickets_link ?? null;
             }
 
             if (is_string($url) && $url !== '') {

@@ -109,21 +109,15 @@ class GenericPagesController extends FrontController
     protected function jsonLdDefinition(mixed $model): array
     {
         $genericPageUrl = static function ($m) {
-            try {
-                $url = $m->url ?? null;
-            } catch (\Throwable $e) {
-                $url = null;
+            $url = $m->url ?? null;
+
+            if (is_string($url) && $url !== '' && !str_starts_with($url, 'http')) {
+                $slug = ltrim($url, '/');
+
+                return $slug !== '' ? route('pages.slug', ['slug' => $slug]) : url($url);
             }
 
-            if (!is_string($url) || $url === '' || str_starts_with($url, 'http')) {
-                return is_string($url) && $url !== '' ? $url : null;
-            }
-
-            try {
-                return route('pages.slug', ['slug' => ltrim($url, '/')]);
-            } catch (\Throwable $e) {
-                return url($url);
-            }
+            return $url;
         };
 
         return array_merge(

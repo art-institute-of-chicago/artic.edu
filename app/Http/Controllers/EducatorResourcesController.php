@@ -239,11 +239,7 @@ class EducatorResourcesController extends BaseScopedController
     {
         $resourceCategories = static function (string $type) {
             return static function ($m) use ($type) {
-                try {
-                    $categories = $m->categories ?? collect();
-                } catch (\Throwable $e) {
-                    $categories = collect();
-                }
+                $categories = $m->categories ?? collect();
 
                 if (!$categories instanceof \Traversable) {
                     return null;

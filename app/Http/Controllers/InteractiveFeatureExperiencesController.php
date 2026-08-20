@@ -147,28 +147,16 @@ class InteractiveFeatureExperiencesController extends FrontController
 
         $experienceUrl = static function ($m) {
             if (method_exists($m, 'getSlug') && $m->getSlug() !== '') {
-                try {
-                    return route('interactiveFeatures.show', ['slug' => $m->getSlug()]);
-                } catch (\Throwable $e) {
-                    return null;
-                }
+                return route('interactiveFeatures.show', ['slug' => $m->getSlug()]);
             }
 
-            try {
-                $slug = $m->slug ?? null;
-            } catch (\Throwable $e) {
-                $slug = null;
-            }
+            $slug = $m->slug ?? null;
 
             if (!is_string($slug) || $slug === '') {
                 return null;
             }
 
-            try {
-                return route('interactiveFeatures.show', ['slug' => $slug]);
-            } catch (\Throwable $e) {
-                return null;
-            }
+            return route('interactiveFeatures.show', ['slug' => $slug]);
         };
 
         return array_merge(

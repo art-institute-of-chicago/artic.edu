@@ -260,11 +260,7 @@ class ArtworkController extends BaseScopedController
 
         // URI from ULAN (agent-specific) or Getty AAT (generic cultures).
         $creators = static function ($m) {
-            try {
-                $artists = $m->artists ?? null;
-            } catch (\Throwable $e) {
-                $artists = null;
-            }
+            $artists = $m->artists ?? null;
 
             $nodes = [];
 
@@ -290,11 +286,7 @@ class ArtworkController extends BaseScopedController
             }
 
             if (empty($nodes)) {
-                try {
-                    $artistTitle = $m->artist_title ?? null;
-                } catch (\Throwable $e) {
-                    $artistTitle = null;
-                }
+                $artistTitle = $m->artist_title ?? null;
 
                 if (empty($artistTitle)) {
                     return null;
@@ -322,11 +314,7 @@ class ArtworkController extends BaseScopedController
                 'mainEntityOfPage' => SchemaMapper::canonical('artworks.show', 'titleSlug'),
                 'thumbnailUrl' => static fn ($m, $mapper) => $mapper->thumbnailUrl(),
                 'identifier' => static function ($m) {
-                    try {
-                        $number = $m->main_reference_number ?? null;
-                    } catch (\Throwable $e) {
-                        $number = null;
-                    }
+                    $number = $m->main_reference_number ?? null;
 
                     if (!is_string($number) || $number === '') {
                         return null;
@@ -350,45 +338,24 @@ class ArtworkController extends BaseScopedController
                     foreach (['subject_titles', 'style_titles', 'category_titles'] as $field) {
                         try {
                             $values = $m->{$field} ?? null;
-                        } catch (\Throwable $e) {
-                            $values = null;
-                        }
-
-                        if (!is_array($values)) {
-                            continue;
-                        }
-
-                        foreach ($values as $value) {
-                            if (is_string($value) && $value !== '') {
-                                $keywords[] = $value;
-                            }
-                        }
-                    }
 
                     $keywords = array_values(array_unique($keywords));
 
                     return empty($keywords) ? null : implode(', ', $keywords);
                 },
                 'genre' => static function ($m) {
-                    try {
-                        $genre = $m->classification_title ?? null;
+                    $genre = $m->classification_title ?? null;
 
-                        if (empty($genre)) {
-                            $titles = $m->classification_titles ?? null;
-                            $genre = is_array($titles) ? ($titles[0] ?? null) : null;
-                        }
-                    } catch (\Throwable $e) {
-                        $genre = null;
+                    if (empty($genre)) {
+                        $titles = $m->classification_titles ?? null;
+
+                        $genre = is_array($titles) ? ($titles[0] ?? null) : null;
                     }
 
                     return is_string($genre) && $genre !== '' ? $genre : null;
                 },
                 'isPartOf' => static function ($m) {
-                    try {
-                        $department = $m->department_title ?? null;
-                    } catch (\Throwable $e) {
-                        $department = null;
-                    }
+                    $department = $m->department_title ?? null;
 
                     if (!is_string($department) || $department === '') {
                         return null;
@@ -400,11 +367,7 @@ class ArtworkController extends BaseScopedController
                     ];
                 },
                 'encoding' => static function ($m) {
-                    try {
-                        $id = $m->id ?? null;
-                    } catch (\Throwable $e) {
-                        $id = null;
-                    }
+                    $id = $m->id ?? null;
 
                     if (empty($id)) {
                         return null;
@@ -418,11 +381,7 @@ class ArtworkController extends BaseScopedController
                 },
                 'creator' => $creators,
                 'sameAs' => static function ($m) {
-                    try {
-                        $id = $m->id ?? null;
-                    } catch (\Throwable $e) {
-                        $id = null;
-                    }
+                    $id = $m->id ?? null;
 
                     if (empty($id)) {
                         return null;
