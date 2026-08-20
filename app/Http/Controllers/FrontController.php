@@ -81,7 +81,7 @@ class FrontController extends BaseController
             'image' => SchemaMapper::heroImage(),
             'url' => static fn () => url()->current(),
             'isPartOf' => SchemaMapper::siteRef(),
-            'inLanguage' => static fn () => 'en',
+            'inLanguage' => static fn () => app()->getLocale(),
         ];
     }
 

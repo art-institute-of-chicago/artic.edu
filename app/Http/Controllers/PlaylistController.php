@@ -85,8 +85,11 @@ class PlaylistController extends FrontController
                 return null;
             }
 
+            // The raw caption file is plain text (SRT/SubViewer); the
+            // transcript accessor returns an HTML transcript built for the
+            // video page, which does not belong in JSON-LD.
             try {
-                $transcript = $caption->transcript;
+                $transcript = $caption->file;
             } catch (\Throwable $e) {
                 return null;
             }
@@ -107,8 +110,8 @@ class PlaylistController extends FrontController
             'duration' => $videoDuration,
             'contentUrl' => 'video_url',
             'embedUrl' => 'embed_url',
-            'url' => $videoUrl,
-            'mainEntityOfPage' => $videoUrl,
+            'url' => SchemaMapper::videoUrl(),
+            'mainEntityOfPage' => SchemaMapper::videoUrl(),
             'publisher' => SchemaMapper::orgRef(),
             'transcript' => $videoTranscript,
         ];
@@ -140,7 +143,7 @@ class PlaylistController extends FrontController
             $position = 1;
 
             foreach ($videos as $video) {
-                $entity = $mapper->mapModel($video, $videoDefinition);
+                $entity = $mapper->mapWith($video, $videoDefinition);
 
                 if (empty($entity['name'])) {
                     continue;

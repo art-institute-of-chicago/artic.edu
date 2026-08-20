@@ -125,7 +125,6 @@ class GenericPagesController extends FrontController
             [
                 '@type' => 'WebPage',
                 'description' => SchemaMapper::text('meta_description', 'short_description', 'listing_description', 'description'),
-                'dateModified' => SchemaMapper::iso('updated_at'),
                 'url' => $genericPageUrl,
                 'mainEntityOfPage' => $genericPageUrl,
             ]

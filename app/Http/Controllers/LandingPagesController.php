@@ -89,15 +89,12 @@ class LandingPagesController extends FrontController
 
         View::share('landingPageType', Str::slug($item->type)); // This helps render conditional fields for LP types in all components :)
 
-        // Home and Visit landing pages describe the museum itself; every other
-        // landing page is a regular WebPage.
-        $types = collect(LandingPage::TYPES);
-
-        if (in_array($item->type_id, [$types->search('Home'), $types->search('Visit')], true)) {
-            app(\App\Libraries\SchemaOrg\JsonLdManager::class)->addMuseumEntity();
-        } else {
-            $this->addJsonLd($item);
-        }
+        // Every landing page emits its own WebPage entity. Home and Visit pages
+        // describe the museum itself, so their WebPage references the global
+        // Museum/Organization entity as mainEntity (see jsonLdDefinition). The
+        // Museum entity itself is already part of the global @graph on every
+        // page, so it must not be pushed a second time here.
+        $this->addJsonLd($item);
 
         return view('site.landingPageDetail', $this->viewData($item));
     }
@@ -585,14 +582,29 @@ class LandingPagesController extends FrontController
             }
         };
 
+        // Home and Visit landing pages describe the museum itself; their
+        // WebPage entity points at the global Museum/Organization entity as
+        // mainEntity. Every other landing page is a plain WebPage.
+        $museumMainEntity = static function ($m) {
+            $types = collect(\App\Models\LandingPage::TYPES);
+
+            $typeId = (int) ($m->type_id ?? null);
+
+            if (!in_array($typeId, [$types->search('Home'), $types->search('Visit')], true)) {
+                return null;
+            }
+
+            return SchemaMapper::orgRef();
+        };
+
         return array_merge(
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'WebPage',
                 'description' => SchemaMapper::text('meta_description', 'short_description', 'listing_description', 'description'),
-                'dateModified' => SchemaMapper::iso('updated_at'),
                 'url' => $landingPageUrl,
                 'mainEntityOfPage' => $landingPageUrl,
+                'mainEntity' => $museumMainEntity,
             ]
         );
     }

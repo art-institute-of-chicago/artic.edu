@@ -270,8 +270,11 @@ class VideoController extends FrontController
                 return null;
             }
 
+            // The raw caption file is plain text (SRT/SubViewer); the
+            // transcript accessor returns an HTML transcript built for the
+            // video page, which does not belong in JSON-LD.
             try {
-                $transcript = $caption->transcript;
+                $transcript = $caption->file;
             } catch (\Throwable $e) {
                 return null;
             }
@@ -293,8 +296,8 @@ class VideoController extends FrontController
                 'duration' => $videoDuration,
                 'contentUrl' => 'video_url',
                 'embedUrl' => 'embed_url',
-                'url' => $videoUrl,
-                'mainEntityOfPage' => $videoUrl,
+                'url' => SchemaMapper::videoUrl(),
+                'mainEntityOfPage' => SchemaMapper::videoUrl(),
                 'publisher' => SchemaMapper::orgRef(),
                 'transcript' => $videoTranscript,
             ]

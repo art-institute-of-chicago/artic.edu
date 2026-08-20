@@ -245,20 +245,13 @@ class EducatorResourcesController extends BaseScopedController
                     return null;
                 }
 
-                $labels = [];
-
-                foreach ($categories as $category) {
-                    $name = is_object($category) ? ($category->name ?? null) : ($category['name'] ?? null);
-                    $categoryType = is_object($category) ? ($category->type ?? null) : ($category['type'] ?? null);
-
-                    if (!is_string($name) || $name === '' || $categoryType !== $type) {
-                        continue;
-                    }
-
-                    $labels[] = $name;
-                }
-
-                $labels = array_values(array_unique($labels));
+                $labels = collect($categories)
+                    ->filter(static fn ($category) => data_get($category, 'type') === $type)
+                    ->map(static fn ($category) => data_get($category, 'name'))
+                    ->filter(static fn ($name) => is_string($name) && $name !== '')
+                    ->unique()
+                    ->values()
+                    ->all();
 
                 if (empty($labels)) {
                     return null;

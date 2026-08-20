@@ -143,8 +143,6 @@ class InteractiveFeatureExperiencesController extends FrontController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
-        $literal = static fn (mixed $value) => static fn () => $value;
-
         $experienceUrl = static function ($m) {
             if (method_exists($m, 'getSlug') && $m->getSlug() !== '') {
                 return route('interactiveFeatures.show', ['slug' => $m->getSlug()]);
@@ -163,10 +161,10 @@ class InteractiveFeatureExperiencesController extends FrontController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'WebApplication',
-                'description' => SchemaMapper::text('listing_description', 'subtitle', 'description'),
+                'description' => SchemaMapper::text('listing_description', 'description'),
                 'url' => $experienceUrl,
                 'mainEntityOfPage' => $experienceUrl,
-                'applicationCategory' => $literal('MultimediaApplication'),
+                'applicationCategory' => SchemaMapper::literal('MultimediaApplication'),
             ]
         );
     }

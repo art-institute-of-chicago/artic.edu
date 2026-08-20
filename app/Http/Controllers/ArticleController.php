@@ -306,7 +306,7 @@ class ArticleController extends FrontController
                 '@type' => static fn ($m) => ($m->article_type ?? $m->articleType ?? 'article') === 'editorial' ? 'BlogPosting' : 'Article',
                 'headline' => 'title',
                 'description' => SchemaMapper::text('description', 'heading', 'list_description'),
-                'abstract' => $articleAbstract,
+                'abstract' => SchemaMapper::text('list_description'),
                 'thumbnailUrl' => static fn ($m, $mapper) => $mapper->thumbnailUrl(),
                 'datePublished' => SchemaMapper::iso('date'),
                 'dateModified' => static fn ($m, $mapper) => $mapper->toIso8601($m->updated_at ?? $m->date ?? null),

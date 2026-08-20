@@ -155,7 +155,10 @@ class PrintedPublicationsController extends BaseScopedController
         };
 
         $bookDatePublished = static function ($m, $mapper) {
-            $date = $m->publication_date ?? $m->publish_start_date ?? null;
+            // publication_date is the book's actual publication date;
+            // publish_start_date is when the web page went live and must not
+            // be used as datePublished for the book.
+            $date = $m->publication_date ?? null;
 
             return $mapper->toIso8601($date);
         };

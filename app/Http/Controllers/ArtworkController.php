@@ -308,7 +308,7 @@ class ArtworkController extends BaseScopedController
                 'size' => 'dimensions',
                 'artform' => 'artwork_type_title',
                 'locationCreated' => 'place_of_origin',
-                'displayLocation' => static fn ($m) => $m->gallery_title ?? null,
+                'displayLocation' => 'gallery_title',
                 'creditText' => 'credit_line',
                 'url' => SchemaMapper::canonical('artworks.show', 'titleSlug'),
                 'mainEntityOfPage' => SchemaMapper::canonical('artworks.show', 'titleSlug'),
@@ -333,15 +333,17 @@ class ArtworkController extends BaseScopedController
                 'copyrightNotice' => 'copyright_notice',
                 'license' => 'license',
                 'keywords' => static function ($m) {
-                    $keywords = [];
-
-                    foreach (['subject_titles', 'style_titles', 'category_titles'] as $field) {
-                        try {
+                    $keywords = collect(['subject_titles', 'style_titles', 'category_titles'])
+                        ->flatMap(function ($field) use ($m) {
                             $values = $m->{$field} ?? null;
 
-                    $keywords = array_values(array_unique($keywords));
+                            return is_array($values) ? $values : [];
+                        })
+                        ->filter(static fn ($value) => is_string($value) && $value !== '')
+                        ->unique()
+                        ->values();
 
-                    return empty($keywords) ? null : implode(', ', $keywords);
+                    return $keywords->isEmpty() ? null : $keywords->implode(', ');
                 },
                 'genre' => static function ($m) {
                     $genre = $m->classification_title ?? null;
