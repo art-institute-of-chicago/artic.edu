@@ -7,7 +7,6 @@ use App\Repositories\Api\ExhibitionRepository;
 use App\Libraries\Search\ExhibitionHistoryService;
 use App\Models\Api\Exhibition;
 use App\Models\Page;
-use App\Libraries\SchemaOrg\SchemaMapper;
 
 class ExhibitionHistoryController extends FrontController
 {
