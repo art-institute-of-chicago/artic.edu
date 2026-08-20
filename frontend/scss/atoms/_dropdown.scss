@@ -86,6 +86,10 @@ Demonstrated in **statics/toybox**
   overflow: hidden;
 }
 
+.dropdown__trigger[class*=f-] {
+  @include untuck;
+}
+
 .dropdown__trigger .button {
   border: 0;
   background-color: initial;
@@ -156,6 +160,7 @@ Demonstrated in **statics/toybox**
 
 .dropdown__list {
   @extend %styled-scrollbars;
+  @include untuck;
 
   & {
     display: none;

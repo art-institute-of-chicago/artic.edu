@@ -114,7 +114,7 @@
       @include font-styles(generate-font-obj((font-family: $sans-serif-font,
             font-family-loaded: $sans-serif-font--loaded,
             font-loaded-class: $sans-serif-font-loaded-class,
-            settings: ('xsmall': (font-size: 15, line-height: 20, font-weight: 300, letter-spacing: 0.01em)))));
+            settings: ('xsmall': (font-size: 15, line-height: 20, font-weight: 300, letter-spacing: 0.01em, push: 0)))));
 
       &:before,
       &:after {
