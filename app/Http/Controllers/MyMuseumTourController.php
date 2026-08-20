@@ -151,8 +151,10 @@ class MyMuseumTourController extends FrontController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
-        $tourDescription = static function ($m, $mapper) {
-            $tour = is_array($m->tour_json ?? null) ? $m->tour_json : [];
+        $tourJson = static fn ($m): array => is_array($m->tour_json ?? null) ? $m->tour_json : [];
+
+        $tourDescription = static function ($m, $mapper) use ($tourJson) {
+            $tour = $tourJson($m);
 
             foreach (['description', 'short_description', 'intro'] as $key) {
                 $value = $tour[$key] ?? null;
@@ -229,8 +231,8 @@ class MyMuseumTourController extends FrontController
             return $entity;
         };
 
-        $tourItinerary = static function ($m) use ($tourArtworkEntity) {
-            $tour = is_array($m->tour_json ?? null) ? $m->tour_json : [];
+        $tourItinerary = static function ($m) use ($tourArtworkEntity, $tourJson) {
+            $tour = $tourJson($m);
             $artworks = $tour['artworks'] ?? [];
 
             if (!is_array($artworks) || empty($artworks)) {
@@ -272,11 +274,11 @@ class MyMuseumTourController extends FrontController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'TouristTrip',
-                'name' => static fn ($m) => is_array($m->tour_json ?? null) ? ($m->tour_json['title'] ?? null) : null,
+                'name' => static fn ($m) => $tourJson($m)['title'] ?? null,
                 'description' => $tourDescription,
                 'url' => $tourUrl,
                 'itinerary' => $tourItinerary,
-                'touristType' => static fn ($m) => is_array($m->tour_json ?? null) ? ($m->tour_json['touristType'] ?? $m->tour_json['tourist_type'] ?? null) : null,
+                'touristType' => static fn ($m) => $tourJson($m)['touristType'] ?? $tourJson($m)['tourist_type'] ?? null,
             ]
         );
     }

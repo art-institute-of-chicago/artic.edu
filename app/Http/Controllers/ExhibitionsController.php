@@ -163,16 +163,14 @@ class ExhibitionsController extends FrontController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
-        $literal = static fn (mixed $value) => static fn () => $value;
-
         return array_merge(
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'ExhibitionEvent',
                 'startDate' => SchemaMapper::iso('date_start'),
                 'endDate' => SchemaMapper::iso('date_end'),
-                'eventStatus' => $literal('https://schema.org/EventScheduled'),
-                'eventAttendanceMode' => $literal('https://schema.org/OfflineEventAttendanceMode'),
+                'eventStatus' => SchemaMapper::literal('https://schema.org/EventScheduled'),
+                'eventAttendanceMode' => SchemaMapper::literal('https://schema.org/OfflineEventAttendanceMode'),
                 'url' => SchemaMapper::canonical('exhibitions.show', 'titleSlug'),
                 'organizer' => SchemaMapper::orgRef(),
                 'location' => static function ($m, $mapper) {
@@ -189,8 +187,12 @@ class ExhibitionsController extends FrontController
                     return [
                         '@type' => 'Place',
                         'name' => $gallery,
-                        'address' => $mapper->museumAddress(),
-                        'containedInPlace' => ['@id' => 'https://www.artic.edu/#organization'],
+                        'containedInPlace' => [
+                            '@type' => 'Place',
+                            '@id' => SchemaMapper::ORGANIZATION_ID,
+                            'name' => 'Art Institute of Chicago',
+                            'address' => $mapper->museumAddress(),
+                        ],
                     ];
                 },
             ]

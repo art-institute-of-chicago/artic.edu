@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Libraries\Search\ExhibitionHistoryService;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use App\Models\Api\Exhibition;
 use App\Models\Page;
 
@@ -80,16 +81,14 @@ class ExhibitionHistoryController extends FrontController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
-        $literal = static fn (mixed $value) => static fn () => $value;
-
         return array_merge(
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'ExhibitionEvent',
                 'startDate' => SchemaMapper::iso('date_start'),
                 'endDate' => SchemaMapper::iso('date_end'),
-                'eventStatus' => $literal('https://schema.org/EventScheduled'),
-                'eventAttendanceMode' => $literal('https://schema.org/OfflineEventAttendanceMode'),
+                'eventStatus' => SchemaMapper::literal('https://schema.org/EventScheduled'),
+                'eventAttendanceMode' => SchemaMapper::literal('https://schema.org/OfflineEventAttendanceMode'),
                 'url' => SchemaMapper::canonical('exhibitions.show', 'titleSlug'),
                 'organizer' => SchemaMapper::orgRef(),
                 'location' => static function ($m, $mapper) {
@@ -107,7 +106,7 @@ class ExhibitionHistoryController extends FrontController
                         '@type' => 'Place',
                         'name' => $gallery,
                         'address' => $mapper->museumAddress(),
-                        'containedInPlace' => ['@id' => 'https://www.artic.edu/#organization'],
+                        'containedInPlace' => ['@id' => SchemaMapper::ORGANIZATION_ID],
                     ];
                 },
             ]

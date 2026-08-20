@@ -92,7 +92,7 @@ class HighlightsController extends FrontController
         return array_merge(
             parent::jsonLdDefinition($model),
             [
-                '@type' => 'CollectionPage',
+                '@type' => 'Article',
                 'description' => SchemaMapper::text('description', 'short_copy', 'list_description'),
                 'url' => SchemaMapper::canonical('highlights.show'),
                 'mainEntityOfPage' => SchemaMapper::canonical('highlights.show'),

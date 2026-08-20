@@ -270,8 +270,6 @@ class EventsController extends FrontController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
-        $literal = static fn (mixed $value) => static fn () => $value;
-
         $eventDuration = static function ($m): ?string {
             $start = $m->date_start ?? null;
             $end = $m->date_end ?? null;
@@ -340,7 +338,7 @@ class EventsController extends FrontController
                 // Ignore accessor failures
             }
 
-            $labels = array_values(array_unique(array_filter($labels)));
+            $labels = collect($labels)->filter()->unique()->values()->all();
 
             if (empty($labels)) {
                 return null;
@@ -383,7 +381,7 @@ class EventsController extends FrontController
                 // Ignore accessor failures
             }
 
-            $labels = array_values(array_unique(array_filter($labels)));
+            $labels = collect($labels)->filter()->unique()->values()->all();
 
             return empty($labels) ? null : implode(', ', $labels);
         };
@@ -443,7 +441,7 @@ class EventsController extends FrontController
                 'endDate' => SchemaMapper::iso('date_end'),
                 'doorTime' => 'door_time',
                 'duration' => $eventDuration,
-                'eventStatus' => $literal('https://schema.org/EventScheduled'),
+                'eventStatus' => SchemaMapper::literal('https://schema.org/EventScheduled'),
                 'isAccessibleForFree' => static fn ($m) => !empty($m->is_free) ? true : null,
                 'eventAttendanceMode' => static fn ($m) => !empty($m->is_virtual_event)
                     ? 'https://schema.org/OnlineEventAttendanceMode'
