@@ -262,9 +262,6 @@ class ArtworkController extends BaseScopedController
             return static fn ($m) => ($artworkDimensions($m) ?? [])[$key] ?? null;
         };
 
-        // Agents with recorded life dates are people; dateless agents are
-        // cultures, workshops, or other groups. Schema.org has no Culture
-        // type, so groups are typed as Organization with an additionalType
         // URI from ULAN (agent-specific) or Getty AAT (generic cultures).
         $creators = static function ($m) {
             try {
@@ -283,7 +280,7 @@ class ArtworkController extends BaseScopedController
                         continue;
                     }
 
-                    if (!empty($artist->birth_date) || !empty($artist->death_date)) {
+                    if (!SchemaMapper::isGroupAgent($artist)) {
                         $nodes[] = ['@type' => 'Person', 'name' => $name];
                         continue;
                     }

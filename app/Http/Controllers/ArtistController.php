@@ -70,11 +70,7 @@ class ArtistController extends FrontController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
-        // The API exposes no agent type field, so treat agents with recorded
-        // life dates as Person and the rest (cultures, workshops, studios) as
-        // Organization. Individuals without documented dates fall into the
-        // Organization bucket; acceptable trade-off given available data.
-        $artistIsCorporate = static fn ($m): bool => empty($m->birth_date) && empty($m->death_date);
+        $artistIsCorporate = static fn ($m): bool => SchemaMapper::isGroupAgent($m);
 
         return array_merge(
             parent::jsonLdDefinition($model),
