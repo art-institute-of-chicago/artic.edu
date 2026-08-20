@@ -55,16 +55,6 @@ class JsonLdManager
     }
 
     /**
-     * Collect the museum/Organization entity (the global shape) into the
-     * page @graph. Used by home and visit landing pages where the Museum
-     * itself is the subject of the page.
-     */
-    public function addMuseumEntity(): void
-    {
-        $this->addEntity($this->organization());
-    }
-
-    /**
      * Collect a schema.org entity for inclusion in the page @graph.
      *
      * @param array<string, mixed> $entity
@@ -151,25 +141,16 @@ class JsonLdManager
      * Drop empty values (null, '', [], empty collections) so the rendered
      * JSON-LD stays free of null clutter.
      *
+     * Unlike plain array_filter($entity), this preserves valid falsy values
+     * such as false (isAccessibleForFree=false), 0, and '0' (an Offer priced
+     * at $0), which array_filter would drop.
+     *
      * @param array<string, mixed> $entity
      * @return array<string, mixed>
      */
     protected function filterEmptyValues(array $entity): array
     {
-        return array_filter($entity, fn ($value) => !$this->isEmpty($value));
-    }
-
-    protected function isEmpty(mixed $value): bool
-    {
-        if ($value === null || $value === '' || $value === []) {
-            return true;
-        }
-
-        if ($value instanceof \Illuminate\Support\Collection) {
-            return $value->isEmpty();
-        }
-
-        return false;
+        return array_filter($entity, fn ($value) => !SchemaMapper::isEmpty($value));
     }
 
     /**
@@ -194,7 +175,7 @@ class JsonLdManager
     {
         return [
             '@type' => ['Museum', 'Organization'],
-            '@id' => 'https://www.artic.edu/#organization',
+            '@id' => SchemaMapper::ORGANIZATION_ID,
             'name' => 'Art Institute of Chicago',
             'url' => 'https://www.artic.edu',
             'logo' => $this->organizationLogoUrl(),
@@ -204,20 +185,8 @@ class JsonLdManager
                 'contactType' => 'customer service',
                 'url' => 'https://www.artic.edu/visit',
             ],
-            'address' => [
-                '@type' => 'PostalAddress',
-                'streetAddress' => '111 S Michigan Ave',
-                'addressLocality' => 'Chicago',
-                'addressRegion' => 'IL',
-                'postalCode' => '60603',
-                'addressCountry' => 'US',
-            ],
-            'sameAs' => [
-                'https://www.facebook.com/artic',
-                'https://twitter.com/artinstitutechi',
-                'https://www.instagram.com/artinstitutechi/',
-                'https://www.youtube.com/user/ArtInstituteChicago',
-            ],
+            'address' => config('aic.museum_address'),
+            'sameAs' => array_values(config('aic.socials')),
         ];
     }
 
@@ -230,7 +199,7 @@ class JsonLdManager
     {
         return [
             '@type' => 'WebSite',
-            '@id' => 'https://www.artic.edu/#website',
+            '@id' => SchemaMapper::WEBSITE_ID,
             'url' => 'https://www.artic.edu',
             'name' => 'Art Institute of Chicago',
             'potentialAction' => [
