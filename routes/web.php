@@ -66,8 +66,12 @@ Route::group([
 });
 
 // Landing Page
+// Excludes the 'sessionless' middleware group (see bootstrap/app.php) so no
+// Set-Cookie header is sent. The CSRF token embedded in the shared layout is
+// refreshed client-side (see refreshCsrfToken.js).
 Route::get('/', [LandingPagesController::class, 'slugHome'])
     ->middleware('cache.headers:public;max_age=120')
+    ->withoutMiddleware('sessionless')
     ->name('home');
 Route::group([
     'middleware' => [SanitizeQueryParameters::class],
