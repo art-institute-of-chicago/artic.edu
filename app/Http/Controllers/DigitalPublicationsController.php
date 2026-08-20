@@ -119,8 +119,6 @@ class DigitalPublicationsController extends BaseScopedController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
-        $literal = static fn (mixed $value) => static fn () => $value;
-
         $optionalField = static function (string $field) {
             return static function ($m) use ($field) {
                 try {
@@ -182,7 +180,7 @@ class DigitalPublicationsController extends BaseScopedController
                 'numberOfPages' => $optionalField('number_of_pages'),
                 'url' => $digitalPublicationUrl,
                 'mainEntityOfPage' => $digitalPublicationUrl,
-                'encodingFormat' => $literal('text/html'),
+                'encodingFormat' => SchemaMapper::literal('text/html'),
                 '@id' => static function ($m) use ($digitalPublicationUrl) {
                     $url = $digitalPublicationUrl($m);
 
