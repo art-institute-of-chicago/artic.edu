@@ -81,7 +81,13 @@
     }
   }
 
+  .m-cta-banner__title.f-module-title-2 {
+    @include untuck();
+  }
+
   .m-cta-banner__msg.f-list-2 {
+    @include untuck();
+
     & {
       margin-top: 16px;
     }

@@ -43,6 +43,8 @@
 }
 
 .m-share-menu__title {
+  @include untuck;
+
   & {
     padding: 18px 60px 18px 16px;
     color: $colors-themes-light-mode-text-title;
@@ -70,6 +72,8 @@
 
 .m-share-menu ul a,
 .m-share-menu ul button {
+  @include untuck;
+
   & {
     display: block;
     width: 100%;

@@ -249,6 +249,8 @@
 }
 
 .m-article-actions--publication__text {
+  @include untuck();
+
   @each $name in ('large', 'xlarge') {
     @include breakpoint('#{$name}') {
       margin-top: #{map.get((
@@ -362,10 +364,10 @@ margin-right: colspan(2, #{$name});
               }
             }
 
-            @include font-styles(generate-font-obj((font-family: $serif-font,
+            @include font-styles-untuck(generate-font-obj((font-family: $serif-font,
                   font-family-loaded: $serif-font--loaded,
                   font-loaded-class: $serif-font-loaded-class,
-                  settings: ('xsmall': (font-size: 22, line-height: 23),
+                  settings: ('xsmall': (font-size: 22, line-height: 23, push: 0),
                   ))));
 
     a:hover {
