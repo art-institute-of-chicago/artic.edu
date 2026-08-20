@@ -12,10 +12,10 @@ const refreshCsrfToken = function() {
   ajaxRequest({
     url: '/ajaxData?q=csrfToken',
     type: 'GET',
-    onSuccess: function(data) {
+    onSuccess(data) {
       try {
         data = JSON.parse(data);
-        var meta = document.querySelector('meta[name="csrf-token"]');
+        const meta = document.querySelector('meta[name="csrf-token"]');
         if (meta && data.token) {
           meta.setAttribute('content', data.token);
         }
