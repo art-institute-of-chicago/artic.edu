@@ -10,6 +10,7 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
 
 class PrintedPublication extends AbstractModel
@@ -22,6 +23,7 @@ class PrintedPublication extends AbstractModel
     use HasMediasEloquent;
     use Transformable;
     use HasRelated;
+    use HasFactory;
 
     protected $fillable = [
         'listing_description',

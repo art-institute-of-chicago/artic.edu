@@ -5,19 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasPresenter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class MyMuseumTour extends Model
 {
     use HasPresenter;
+    use HasFactory;
 
     protected $presenter = 'App\Presenters\Admin\DigitalPublicationArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationArticlePresenter';
 
     protected $connection;
 
-    public function __construct()
+    public function __construct(array $attributes = [])
     {
         $this->connection = 'tours';
+
+        parent::__construct($attributes);
     }
 
     protected $fillable = ['id', 'creator_email', 'marketing_opt_in', 'confirmation_sent', 'tour_json', 'timestamp'];
