@@ -11,6 +11,7 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class EducatorResource extends AbstractModel
 {
@@ -23,6 +24,7 @@ class EducatorResource extends AbstractModel
     use Transformable;
     use HasRelated;
     use HasTranslation;
+    use HasFactory;
 
     protected $fillable = [
         'published',

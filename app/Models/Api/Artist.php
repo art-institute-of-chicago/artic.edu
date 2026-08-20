@@ -4,11 +4,13 @@ namespace App\Models\Api;
 
 use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasMediasApi;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasApiFactory;
 use App\Helpers\StringHelpers;
 
 class Artist extends BaseApiModel
 {
     use HasMediasApi;
+    use HasApiFactory;
 
     protected array $endpoints = [
         'collection' => '/api/v1/artists',
