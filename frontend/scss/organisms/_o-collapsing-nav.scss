@@ -29,6 +29,10 @@
   }
 }
 
+.o-collapsing-nav__trigger[class*=f-] {
+  @include untuck;
+}
+
 .o-collapsing-nav__trigger.f-secondary,
 .o-collapsing-nav__trigger.f-link {
   padding-top: 11px;

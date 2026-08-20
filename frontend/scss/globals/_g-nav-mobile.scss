@@ -69,6 +69,7 @@
 
 .g-nav-mobile__search input {
   @extend %f-secondary;
+  @include untuck;
 
   & {
     width: 100%;
@@ -122,6 +123,8 @@
 }
 
 .g-nav-mobile__nav li>a {
+  @include untuck();
+
   & {
     line-height: 48px;
   }
@@ -166,6 +169,7 @@
 .g-nav-mobile__nav .g-nav-collapse-icon,
 .g-nav-mobile__nav .details__container>a {
   @extend %f-tag-2;
+  @include untuck;
 
   & {
     margin-right: - map.get($outer-gutters, 'xsmall');
