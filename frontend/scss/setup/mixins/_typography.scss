@@ -190,7 +190,7 @@ $f-ui: (
   }
 }
 
-@mixin font-style($font-size: false, $line-height: false, $font-weight: false, $font-style: false, $letter-spacing: false, $text-transform: false, $tuck: false, $pre-tucked: false, $tuck-method: 'pseudo', $push: 0, $tuck-amount: 0, $native-trim: false) {
+@mixin font-style($font-size: false, $line-height: false, $font-weight: false, $font-style: false, $letter-spacing: false, $text-transform: false, $tuck: false, $pre-tucked: false, $tuck-method: 'pseudo', $push: 0, $tuck-amount: 0) {
 
   // Set font settings
   @if $font-size {
@@ -229,13 +229,6 @@ $f-ui: (
     }
   }
 
-  @if $native-trim {
-    & {
-      text-box-edge: cap alphabetic;
-      text-box-trim: trim-both;
-    }
-  }
-
   // Is tuck required?
   @if $font-size and $line-height and $tuck {
     @if ($font-size < 1) {
@@ -254,7 +247,6 @@ $f-ui: (
   $font-family: map.get($obj, font-family);
   $font-family-loaded: map.get($obj, font-family-loaded);
   $font-loaded-class: map.get($obj, font-loaded-class);
-  $native-trim: map.get($obj, native-trim);
   $settings: map.get($obj, settings);
 
   // Set base font family
@@ -304,23 +296,21 @@ $f-ui: (
         $push: map.get($font-info, push);
         $tuck-amount: map.get($font-info, pull);
 
-        @if $native-trim {
-          @if map.has-key($font-info, tuck-method) {
-            // Check if the new tuck method differs from the last
-            $untuck: if(($tuck-method and $tuck-method !=map.get($font-info, tuck-method)), $tuck-method, false);
-            // Set the new tuck method
-            $tuck-method: map.get($font-info, tuck-method);
-          }
+        @if map.has-key($font-info, tuck-method) {
+          // Check if the new tuck method differs from the last
+          $untuck: if(($tuck-method and $tuck-method !=map.get($font-info, tuck-method)), $tuck-method, false);
+          // Set the new tuck method
+          $tuck-method: map.get($font-info, tuck-method);
+        }
 
-          @else {
-            // Set old tuck method or default if no old tuck method
-            $tuck-method: if($tuck-method, $tuck-method, 'pseudo');
-          }
+        @else {
+          // Set old tuck method or default if no old tuck method
+          $tuck-method: if($tuck-method, $tuck-method, 'pseudo');
         }
 
         // Check if this is the smallest breakpoint (the default font setting)
         @if (list.index(map.keys($settings), $breakpoint)==1) {
-          @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push, $tuck-amount, $native-trim);
+          @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push, $tuck-amount);
         }
 
         @else {
@@ -332,7 +322,7 @@ $f-ui: (
               $pre-tucked: false;
             }
 
-            @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, $pre-tucked, $tuck-method, $push, $tuck-amount, $native-trim);
+            @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, $pre-tucked, $tuck-method, $push, $tuck-amount);
           }
         }
       }
