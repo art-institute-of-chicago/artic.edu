@@ -231,24 +231,6 @@ class VideoController extends FrontController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
-        $videoUrl = static function ($m) {
-            if (empty($m->id)) {
-                return null;
-            }
-
-            $slug = method_exists($m, 'getSlug') ? $m->getSlug() : null;
-
-            try {
-                if (!empty($m->is_short)) {
-                    return route('shorts.show', ['video' => $m->id]);
-                }
-
-                return route('videos.show', ['video' => $m->id, 'slug' => $slug]);
-            } catch (\Throwable $e) {
-                return null;
-            }
-        };
-
         $videoThumbnail = static function ($m, $mapper) {
             try {
                 $thumbnail = $m->thumbnail_url ?? null;

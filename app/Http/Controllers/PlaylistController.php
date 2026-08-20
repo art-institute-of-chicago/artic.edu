@@ -46,24 +46,6 @@ class PlaylistController extends FrontController
     {
         // The playlist's item list maps each video through the Video
         // definition, so both are defined here.
-        $videoUrl = static function ($m) {
-            if (empty($m->id)) {
-                return null;
-            }
-
-            $slug = method_exists($m, 'getSlug') ? $m->getSlug() : null;
-
-            try {
-                if (!empty($m->is_short)) {
-                    return route('shorts.show', ['video' => $m->id]);
-                }
-
-                return route('videos.show', ['video' => $m->id, 'slug' => $slug]);
-            } catch (\Throwable $e) {
-                return null;
-            }
-        };
-
         $videoThumbnail = static function ($m, $mapper) {
             try {
                 $thumbnail = $m->thumbnail_url ?? null;

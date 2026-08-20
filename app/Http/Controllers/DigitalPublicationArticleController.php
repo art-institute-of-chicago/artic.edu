@@ -80,16 +80,6 @@ class DigitalPublicationArticleController extends FrontController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
-        $articleAbstract = static function ($m, $mapper) {
-            try {
-                $abstract = $m->list_description ?? null;
-            } catch (\Throwable $e) {
-                $abstract = null;
-            }
-
-            return $mapper->cleanText($abstract);
-        };
-
         $articleAuthors = static function ($m) {
             $authors = [];
 
@@ -107,12 +97,12 @@ class DigitalPublicationArticleController extends FrontController
                     $id = $author->id ?? null;
 
                     if (!empty($id)) {
-                        try {
-                            $slug = method_exists($author, 'getSlug') ? $author->getSlug() : null;
+                        $slug = method_exists($author, 'getSlug') ? $author->getSlug() : null;
 
-                            $entry['url'] = route('authors.show', ['id' => $id, 'slug' => $slug]);
-                        } catch (\Throwable $e) {
-                            // Omit the author URL when the route cannot be resolved
+                        $url = route('authors.show', ['id' => $id, 'slug' => $slug]);
+
+                        if ($url !== null) {
+                            $entry['url'] = $url;
                         }
                     }
 

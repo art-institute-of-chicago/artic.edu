@@ -82,11 +82,7 @@ class MagazineIssueController extends FrontController
     {
         $optionalField = static function (string $field) {
             return static function ($m) use ($field) {
-                try {
-                    $value = $m->{$field} ?? null;
-                } catch (\Throwable $e) {
-                    return null;
-                }
+                $value = $m->{$field} ?? null;
 
                 if (is_numeric($value) || (is_string($value) && $value !== '')) {
                     return (string) $value;

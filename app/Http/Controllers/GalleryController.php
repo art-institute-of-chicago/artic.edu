@@ -61,12 +61,8 @@ class GalleryController extends FrontController
                 'url' => SchemaMapper::canonical('galleries.show', 'titleSlug'),
                 'containedInPlace' => SchemaMapper::orgRef(),
                 'geo' => static function ($m) {
-                    try {
-                        $latitude = $m->latitude ?? null;
-                        $longitude = $m->longitude ?? null;
-                    } catch (\Throwable $e) {
-                        return null;
-                    }
+                    $latitude = $m->latitude ?? null;
+                    $longitude = $m->longitude ?? null;
 
                     if (!is_numeric($latitude) || !is_numeric($longitude)) {
                         return null;

@@ -121,11 +121,7 @@ class DigitalPublicationsController extends BaseScopedController
     {
         $optionalField = static function (string $field) {
             return static function ($m) use ($field) {
-                try {
-                    $value = $m->{$field} ?? null;
-                } catch (\Throwable $e) {
-                    return null;
-                }
+                $value = $m->{$field} ?? null;
 
                 if (is_numeric($value) || (is_string($value) && $value !== '')) {
                     return (string) $value;
@@ -136,11 +132,7 @@ class DigitalPublicationsController extends BaseScopedController
         };
 
         $bookAuthor = static function ($m) {
-            try {
-                $author = $m->author ?? null;
-            } catch (\Throwable $e) {
-                $author = null;
-            }
+            $author = $m->author ?? null;
 
             return is_string($author) && $author !== '' ? $author : null;
         };
@@ -159,11 +151,7 @@ class DigitalPublicationsController extends BaseScopedController
 
                 $slug = method_exists($m, 'getSlug') ? $m->getSlug() : null;
 
-                try {
-                    return route($routeName, ['id' => $m->id, 'slug' => $slug]);
-                } catch (\Throwable $e) {
-                    return null;
-                }
+                return route($routeName, ['id' => $m->id, 'slug' => $slug]);
             };
         };
 
