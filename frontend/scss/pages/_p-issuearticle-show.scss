@@ -55,6 +55,10 @@
     @include f-body;
   }
 
+  .o-blocks>p {
+    @include untuck();
+  }
+
   &.s-sans-serif-loaded .o-blocks>p:not([class*=f-]),
   &.s-sans-serif-loaded .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
   &.s-sans-serif-loaded .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
@@ -148,14 +152,14 @@
       }
     }
 
-    @include font-styles(generate-font-obj((font-family: $serif-font,
+    @include font-styles-untuck(generate-font-obj((font-family: $serif-font,
       font-family-loaded: $serif-font--loaded,
       font-loaded-class: $serif-font-loaded-class,
-      settings: ('xlarge': (font-size: 20, line-height: 26),
-        'large': (font-size: 20, line-height: 26),
-        'medium': (font-size: 28, line-height: 34),
-        'small': (font-size: 22, line-height: 28),
-        'xsmall': (font-size: 22, line-height: 28),
+      settings: ('xlarge': (font-size: 20, line-height: 26, push: 0),
+        'large': (font-size: 20, line-height: 26, push: 0),
+        'medium': (font-size: 28, line-height: 34, push: 0),
+        'small': (font-size: 22, line-height: 28, push: 0),
+        'xsmall': (font-size: 22, line-height: 28, push: 0),
       ))));
   }
 
@@ -391,6 +395,8 @@
       background-color: rgba(255, 255, 255, 0.75);
 
       h1 {
+        @include untuck;
+
         & {
           margin-top: 0;
         }
@@ -588,6 +594,8 @@
   }
 
   .m-title-bar > .f-list-3 {
+    @include untuck();
+
     & {
       font-family: $sans-serif-font--loaded;
       font-size: 24px;
@@ -598,6 +606,8 @@
   }
 
   .o-blocks--bibliographic .f-secondary {
+    @include untuck();
+
     &:not(:first-child) {
       margin-top: 8px;
     }

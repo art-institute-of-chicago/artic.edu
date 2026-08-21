@@ -16,6 +16,8 @@
 }
 
 .g-footer__top-link {
+  @include untuck;
+
   & {
     position: absolute;
     top: 0;
@@ -82,6 +84,8 @@
 }
 
 .g-footer__link-list--flush {
+  @include untuck;
+
   & {
     margin-top: 0;
   }
@@ -332,6 +336,8 @@
 
 .g-footer__grid--hours {
   .g-footer__link-list--hours {
+    @include untuck;
+
     & {
       margin-top: -8px;
     }
