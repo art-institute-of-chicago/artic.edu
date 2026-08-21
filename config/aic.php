@@ -84,9 +84,9 @@ return [
     'socials' => [
         'facebook' => 'https://www.facebook.com/artic',
         'twitter' => 'https://twitter.com/artinstitutechi',
-        'instagram' => 'https://www.instagram.com/artinstitutechi/',
+        'instagram' => 'https://www.instagram.com/artinstitutechi',
         'youtube' => 'https://www.youtube.com/user/ArtInstituteChicago',
-        'pinterest' => 'https://www.pinterest.com/artinstitutechi/',
+        'pinterest' => 'https://www.pinterest.com/artinstitutechi',
     ],
 
     // The museum's postal address, shared by SchemaMapper::museumAddress()
