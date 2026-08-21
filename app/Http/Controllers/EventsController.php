@@ -6,7 +6,9 @@ use App\Models\Event;
 use App\Models\Page;
 use App\Models\EventProgram;
 use App\Repositories\EventRepository;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -186,6 +188,13 @@ class EventsController extends FrontController
             $this->seo->noindex = true;
         }
 
+        $this->addJsonLd($item);
+        $this->addBreadcrumbs([
+            ['label' => 'Home', 'url' => route('home')],
+            ['label' => 'Events', 'url' => route('events')],
+            ['label' => $item->title],
+        ]);
+
         return view('site.events.detail', [
             'autoRelated' => $this->getAutoRelated($item),
             'featuredRelated' => $this->getFeatureRelated($item),
@@ -247,5 +256,203 @@ class EventsController extends FrontController
             'location' => $item->location,
             'registration-required' => $item->is_registration_required,
         ];
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $eventDuration = static function ($m): ?string {
+            $start = $m->date_start ?? null;
+            $end = $m->date_end ?? null;
+
+            if ($start instanceof \DateTimeInterface && $end instanceof \DateTimeInterface) {
+                $interval = CarbonInterval::instance($start->diff($end));
+
+                if ($interval->invert === 1) {
+                    return null;
+                }
+
+                return CarbonInterval::seconds((int) round($interval->totalSeconds))->cascade()->spec();
+            }
+
+            try {
+                $startTime = $m->start_time ?? null;
+                $endTime = $m->end_time ?? null;
+            } catch (\Throwable $e) {
+                return null;
+            }
+
+            if (!is_string($startTime) || !is_string($endTime) || $startTime === '' || $endTime === '') {
+                return null;
+            }
+
+            try {
+                $seconds = CarbonInterval::instance(new \DateInterval($endTime))->totalSeconds
+                    - CarbonInterval::instance(new \DateInterval($startTime))->totalSeconds;
+
+                if ($seconds <= 0) {
+                    return null;
+                }
+
+                return CarbonInterval::seconds((int) round($seconds))->cascade()->spec();
+            } catch (\Throwable $e) {
+                return null;
+            }
+        };
+
+        $eventAudience = static function ($m) {
+            $labels = [];
+
+            try {
+                $primary = $m->audience ?? null;
+
+                if (is_numeric($primary) && isset(Event::$eventAudiences[(int) $primary])) {
+                    $labels[] = Event::$eventAudiences[(int) $primary];
+                }
+            } catch (\Throwable $e) {
+                // Ignore accessor failures; fall through to alt audiences
+            }
+
+            try {
+                $altAudiences = $m->alt_audiences ?? null;
+
+                if (is_array($altAudiences)) {
+                    foreach ($altAudiences as $audience) {
+                        $id = is_array($audience) ? ($audience['id'] ?? null) : ($audience->id ?? null);
+
+                        if (is_numeric($id) && isset(Event::$eventAudiences[(int) $id])) {
+                            $labels[] = Event::$eventAudiences[(int) $id];
+                        }
+                    }
+                }
+            } catch (\Throwable $e) {
+                // Ignore accessor failures
+            }
+
+            $labels = collect($labels)->filter()->unique()->values()->all();
+
+            if (empty($labels)) {
+                return null;
+            }
+
+            $audience = array_map(
+                static fn (string $label) => ['@type' => 'Audience', 'audienceType' => $label],
+                $labels
+            );
+
+            return count($audience) === 1 ? $audience[0] : $audience;
+        };
+
+        $eventKeywords = static function ($m) {
+            $labels = [];
+
+            try {
+                $eventType = $m->event_type ?? null;
+
+                if (is_numeric($eventType) && isset(Event::$eventTypes[(int) $eventType])) {
+                    $labels[] = Event::$eventTypes[(int) $eventType];
+                }
+            } catch (\Throwable $e) {
+                // Ignore accessor failures
+            }
+
+            try {
+                $altTypes = $m->alt_types ?? null;
+
+                if (is_array($altTypes)) {
+                    foreach ($altTypes as $type) {
+                        $id = is_array($type) ? ($type['id'] ?? null) : ($type->id ?? null);
+
+                        if (is_numeric($id) && isset(Event::$eventTypes[(int) $id])) {
+                            $labels[] = Event::$eventTypes[(int) $id];
+                        }
+                    }
+                }
+            } catch (\Throwable $e) {
+                // Ignore accessor failures
+            }
+
+            $labels = collect($labels)->filter()->unique()->values()->all();
+
+            return empty($labels) ? null : implode(', ', $labels);
+        };
+
+        $eventLocation = static function ($m, $mapper) {
+            if (!empty($m->is_virtual_event)) {
+                return [
+                    '@type' => 'VirtualLocation',
+                    'url' => $m->virtual_event_url ?? null,
+                ];
+            }
+
+            if (empty($m->location)) {
+                return null;
+            }
+
+            return [
+                '@type' => 'Place',
+                'name' => $m->location,
+                'address' => $mapper->museumAddress(),
+            ];
+        };
+
+        $eventOffers = static function ($m) {
+            $offer = ['@type' => 'Offer'];
+
+            $url = null;
+
+            if (!empty($m->rsvp_link)) {
+                $url = $m->rsvp_link;
+            } elseif (!empty($m->is_ticketed)) {
+                $url = $m->buy_tickets_link ?? null;
+            }
+
+            if (is_string($url) && $url !== '') {
+                $offer['url'] = $url;
+            }
+
+            $offer['availability'] = !empty($m->is_sold_out)
+                ? 'https://schema.org/SoldOut'
+                : 'https://schema.org/InStock';
+
+            if (!empty($m->is_free)) {
+                $offer['price'] = '0';
+                $offer['priceCurrency'] = 'USD';
+            }
+
+            return count($offer) > 1 ? $offer : null;
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'Event',
+                'description' => SchemaMapper::text('short_description', 'list_description'),
+                'startDate' => SchemaMapper::iso('date_start'),
+                'endDate' => SchemaMapper::iso('date_end'),
+                'doorTime' => 'door_time',
+                'duration' => $eventDuration,
+                'eventStatus' => SchemaMapper::literal('https://schema.org/EventScheduled'),
+                'isAccessibleForFree' => static fn ($m) => !empty($m->is_free) ? true : null,
+                'eventAttendanceMode' => static fn ($m) => !empty($m->is_virtual_event)
+                    ? 'https://schema.org/OnlineEventAttendanceMode'
+                    : 'https://schema.org/OfflineEventAttendanceMode',
+                'url' => SchemaMapper::canonical('events.show'),
+                'organizer' => SchemaMapper::orgRef(),
+                'audience' => $eventAudience,
+                'keywords' => $eventKeywords,
+                'location' => $eventLocation,
+                'offers' => $eventOffers,
+            ]
+        );
     }
 }

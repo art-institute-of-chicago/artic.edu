@@ -1,4 +1,4 @@
-<section class="videos" itemscope itemtype="http://schema.org/TouristAttraction">
+<section class="videos">
     <link itemprop="additionalType" href="http://schema.org/Museum" />
     <link itemprop="additionalType" href="http://schema.org/LandmarksOrHistoricalBuildings" />
     <link itemprop="additionalType" href="http://schema.org/LocalBusiness" />

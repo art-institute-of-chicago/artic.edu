@@ -17,6 +17,7 @@ use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasAutoRelated;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasUnlisted;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Highlight extends AbstractModel
 {
@@ -33,6 +34,7 @@ class Highlight extends AbstractModel
     use HasFeaturedRelated;
     use HasUnlisted;
     use HasAuthors;
+    use HasFactory;
 
     protected $presenterAdmin = 'App\Presenters\Admin\HighlightPresenter';
     protected $presenter = 'App\Presenters\Admin\HighlightPresenter';

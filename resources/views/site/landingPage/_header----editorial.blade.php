@@ -7,7 +7,7 @@
     $mostPopularStories = $item->loadRelated('most_popular_stories');
 @endphp
 
-<section class="stories" itemscope itemtype="http://schema.org/TouristAttraction">
+<section class="stories">
     <link itemprop="additionalType" href="http://schema.org/Museum" aria-hidden="true"/>
     <link itemprop="additionalType" href="http://schema.org/LandmarksOrHistoricalBuildings" aria-hidden="true"/>
     <link itemprop="additionalType" href="http://schema.org/LocalBusiness" aria-hidden="true"/>

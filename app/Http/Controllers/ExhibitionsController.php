@@ -7,6 +7,7 @@ use App\Models\Api\Exhibition;
 use App\Models\Hour;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\EventRepository;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Carbon\Carbon;
 
 class ExhibitionsController extends FrontController
@@ -88,6 +89,13 @@ class ExhibitionsController extends FrontController
         $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE);
         $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
 
+        $this->addJsonLd($item);
+        $this->addBreadcrumbs([
+            ['label' => 'Home', 'url' => route('home')],
+            ['label' => 'Exhibitions', 'url' => route('exhibitions')],
+            ['label' => $item->title],
+        ]);
+
         return view('site.exhibitionDetail', [
             'autoRelated' => $this->getAutoRelated($item),
             'featuredRelated' => $this->getFeatureRelated($item),
@@ -141,5 +149,53 @@ class ExhibitionsController extends FrontController
             'location' => $item->exhibition_location
                 ?: $item->gallery_title,
         ];
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'ExhibitionEvent',
+                'startDate' => SchemaMapper::iso('date_start'),
+                'endDate' => SchemaMapper::iso('date_end'),
+                'eventStatus' => SchemaMapper::literal('https://schema.org/EventScheduled'),
+                'eventAttendanceMode' => SchemaMapper::literal('https://schema.org/OfflineEventAttendanceMode'),
+                'url' => SchemaMapper::canonical('exhibitions.show', 'titleSlug'),
+                'organizer' => SchemaMapper::orgRef(),
+                'location' => static function ($m, $mapper) {
+                    try {
+                        $gallery = $m->gallery_title ?? null;
+                    } catch (\Throwable $e) {
+                        $gallery = null;
+                    }
+
+                    if (empty($gallery)) {
+                        return null;
+                    }
+
+                    return [
+                        '@type' => 'Place',
+                        'name' => $gallery,
+                        'containedInPlace' => [
+                            '@type' => 'Place',
+                            '@id' => SchemaMapper::ORGANIZATION_ID,
+                            'name' => 'Art Institute of Chicago',
+                            'address' => $mapper->museumAddress(),
+                        ],
+                    ];
+                },
+            ]
+        );
     }
 }
