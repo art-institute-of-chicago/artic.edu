@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Api\DepartmentRepository;
+use App\Libraries\SchemaOrg\SchemaMapper;
 
 class DepartmentController extends FrontController
 {
@@ -33,11 +34,37 @@ class DepartmentController extends FrontController
         $artworks = $this->repository->getRelatedArtworks($item);
         $relatedItems = $this->repository->getRelatedItems($item);
 
+        $this->addJsonLd($item);
+
         return view('site.tagDetail', [
             'item' => $item,
             'artworks' => $artworks,
             'relatedItems' => $relatedItems->count() > 0 ? $relatedItems : null,
             'canonicalUrl' => $canonicalPath,
         ]);
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'CollectionPage',
+                'description' => SchemaMapper::text('description', 'short_copy', 'list_description'),
+                'url' => SchemaMapper::canonical('departments.show', 'titleSlug'),
+                'mainEntityOfPage' => SchemaMapper::canonical('departments.show', 'titleSlug'),
+                'isPartOf' => SchemaMapper::orgRef(),
+            ]
+        );
     }
 }

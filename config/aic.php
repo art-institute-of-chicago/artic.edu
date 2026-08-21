@@ -77,4 +77,26 @@ return [
             ],
         ]
     ],
+
+    // Social media profile URLs, shared by the footer navigation
+    // (AppServiceProvider) and the JSON-LD Organization sameAs list
+    // (JsonLdManager).
+    'socials' => [
+        'facebook' => 'https://www.facebook.com/artic',
+        'twitter' => 'https://twitter.com/artinstitutechi',
+        'instagram' => 'https://www.instagram.com/artinstitutechi',
+        'youtube' => 'https://www.youtube.com/user/ArtInstituteChicago',
+        'pinterest' => 'https://www.pinterest.com/artinstitutechi',
+    ],
+
+    // The museum's postal address, shared by SchemaMapper::museumAddress()
+    // and the JSON-LD Organization entity (JsonLdManager).
+    'museum_address' => [
+        '@type' => 'PostalAddress',
+        'streetAddress' => '111 S Michigan Ave',
+        'addressLocality' => 'Chicago',
+        'addressRegion' => 'IL',
+        'postalCode' => '60603',
+        'addressCountry' => 'US',
+    ],
 ];

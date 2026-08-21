@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DigitalExplorer;
 use App\Repositories\DigitalExplorerRepository;
 use App\Helpers\DigitalExplorerHelpers;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Illuminate\Support\Facades\View;
 
 class DigitalExplorerController extends FrontController
@@ -22,7 +23,6 @@ class DigitalExplorerController extends FrontController
     public const CAMERA_FOV_DEFAULT = 15;
     public const CAMERA_NEAR_DEFAULT = 0.1;
     public const CAMERA_FAR_DEFAULT = 10;
-
 
     public function __construct(DigitalExplorerRepository $repository)
     {
@@ -57,6 +57,8 @@ class DigitalExplorerController extends FrontController
 
         // Renders paragraph wrapper for style targetting
         View::share(['hasWrapper' => true, 'isDigitalExplorer' => true]);
+
+        $this->addJsonLd($digitalExplorer);
 
         $explorerData = $this->transformExplorer($digitalExplorer);
 
@@ -236,7 +238,6 @@ class DigitalExplorerController extends FrontController
     }
 
 
-
     protected function renderBlockChildren($parentBlock): string
     {
         if (!$parentBlock->children || $parentBlock->children->isEmpty()) {
@@ -306,5 +307,43 @@ class DigitalExplorerController extends FrontController
                 return $html;
             }
         };
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $digitalExplorerUrl = static function ($m) {
+            if (empty($m->id)) {
+                return null;
+            }
+
+            $slug = method_exists($m, 'getSlug') ? $m->getSlug() : null;
+
+            try {
+                return route('digitalExplorer.show', ['id' => $m->id, 'slug' => $slug]);
+            } catch (\Throwable $e) {
+                return null;
+            }
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'WebPage',
+                'description' => SchemaMapper::text('meta_description', 'short_description', 'listing_description', 'description'),
+                'dateModified' => SchemaMapper::iso('updated_at'),
+                'url' => $digitalExplorerUrl,
+                'mainEntityOfPage' => $digitalExplorerUrl,
+            ]
+        );
     }
 }

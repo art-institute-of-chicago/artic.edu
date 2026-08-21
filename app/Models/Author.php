@@ -7,6 +7,7 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use App\Models\Behaviors\HasMediasEloquent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Author extends AbstractModel
 {
@@ -14,6 +15,7 @@ class Author extends AbstractModel
     use HasMedias;
     use HasRevisions;
     use HasMediasEloquent;
+    use HasFactory;
 
     protected $fillable = [
         'published',

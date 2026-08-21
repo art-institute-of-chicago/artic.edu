@@ -101,6 +101,8 @@ elseif (isset($item) && isset($item->type)) {
       @endif
   @endif
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" media="print" onload="this.media='all'" async />
+
+  {!! app(\App\Libraries\SchemaOrg\JsonLdManager::class)->renderGraphScript() !!}
 </head>
 
 <body{!! $print ? ' onload="window.print();"' : '' !!}>

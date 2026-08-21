@@ -6,6 +6,8 @@ use App\Helpers\GtmHelpers;
 use App\Helpers\ImageHelpers;
 use App\Http\Controllers\Helpers\Seo;
 use A17\Twill\Http\Controllers\Front\Controller as BaseController;
+use App\Libraries\SchemaOrg\JsonLdManager;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use App\Models\Api\Exhibition;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
@@ -36,6 +38,51 @@ class FrontController extends BaseController
     {
         $terms = \App\Models\SearchTerm::ordered()->limit(10)->get();
         View::share('searchTerms', $terms);
+    }
+
+    /**
+     * Collect the schema.org entity for the given model into the page @graph.
+     *
+     * The definition is resolved from the page-specific jsonLdDefinition()
+     * override merged over the shared defaults. The entity is emitted in the
+     * layout's single JSON-LD script tag via JsonLdManager::renderGraphScript(),
+     * so this method returns nothing.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return void
+     */
+    protected function addJsonLd(mixed $model): void
+    {
+        app(JsonLdManager::class)->addModelEntity($model, $this->jsonLdDefinition($model));
+    }
+
+    protected function addBreadcrumbs(array $items): void
+    {
+        app(JsonLdManager::class)->addBreadcrumbs($items);
+    }
+
+    /**
+     * Shared WebPage defaults merged under every page-specific definition.
+     * Controllers override this to provide their own entity definition; the
+     * defaults are merged first so page-specific properties win and only
+     * need to declare what differs from a plain page.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        return [
+            '@type' => 'WebPage',
+            'name' => static fn ($m) => $m->title ?? $m->name ?? null,
+            'description' => SchemaMapper::text('description', 'list_description'),
+            'image' => SchemaMapper::heroImage(),
+            'url' => static fn () => url()->current(),
+            'isPartOf' => SchemaMapper::siteRef(),
+            'inLanguage' => static fn () => app()->getLocale(),
+        ];
     }
 
     protected function loadBaseSeo()

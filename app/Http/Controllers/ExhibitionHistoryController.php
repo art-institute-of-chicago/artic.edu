@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Libraries\Search\ExhibitionHistoryService;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use App\Models\Api\Exhibition;
 use App\Models\Page;
 
@@ -64,5 +65,51 @@ class ExhibitionHistoryController extends FrontController
     public function show($idSlug)
     {
         $resource = Exhibition::with('artworks')->find((int) $idSlug);
+
+        $this->addJsonLd($resource);
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'ExhibitionEvent',
+                'startDate' => SchemaMapper::iso('date_start'),
+                'endDate' => SchemaMapper::iso('date_end'),
+                'eventStatus' => SchemaMapper::literal('https://schema.org/EventScheduled'),
+                'eventAttendanceMode' => SchemaMapper::literal('https://schema.org/OfflineEventAttendanceMode'),
+                'url' => SchemaMapper::canonical('exhibitions.show', 'titleSlug'),
+                'organizer' => SchemaMapper::orgRef(),
+                'location' => static function ($m, $mapper) {
+                    try {
+                        $gallery = $m->gallery_title ?? null;
+                    } catch (\Throwable $e) {
+                        $gallery = null;
+                    }
+
+                    if (empty($gallery)) {
+                        return null;
+                    }
+
+                    return [
+                        '@type' => 'Place',
+                        'name' => $gallery,
+                        'address' => $mapper->museumAddress(),
+                        'containedInPlace' => ['@id' => SchemaMapper::ORGANIZATION_ID],
+                    ];
+                },
+            ]
+        );
     }
 }

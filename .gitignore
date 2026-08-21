@@ -9,6 +9,8 @@
 .phpunit.cache/
 .php_cs.cache
 .php-cs-fixer.cache
+/.pi
+/.pi-subagents
 .yalc
 /.ddev
 /.codex

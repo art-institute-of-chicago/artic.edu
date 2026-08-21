@@ -3,10 +3,13 @@
 namespace App\Models\Api;
 
 use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasApiFactory;
 use App\Helpers\StringHelpers;
 
 class Department extends BaseApiModel
 {
+    use HasApiFactory;
+
     protected array $endpoints = [
         'collection' => '/api/v1/departments',
         'resource' => '/api/v1/departments/{id}',

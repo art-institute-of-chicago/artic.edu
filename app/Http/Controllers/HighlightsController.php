@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\HighlightRepository;
 use App\Libraries\ExploreFurther\HighlightService as ExploreFurther;
+use App\Libraries\SchemaOrg\SchemaMapper;
 
 class HighlightsController extends FrontController
 {
@@ -26,7 +27,6 @@ class HighlightsController extends FrontController
             ->notUnlisted()
             ->orderBy('publish_start_date', 'desc')
             ->paginate(self::HIGHLIGHTS_PER_PAGE);
-
 
         return view('site.articles', [
             'articles' => $items,
@@ -60,6 +60,8 @@ class HighlightsController extends FrontController
         $artworks = $item->artworks(0);
         $exploreFurther = new ExploreFurther($item, $artworks->getMetadata('aggregations'));
 
+        $this->addJsonLd($item);
+
         return view('site.highlightDetail', [
             'autoRelated' => $this->getAutoRelated($item),
             'featuredRelated' => $this->getFeatureRelated($item),
@@ -73,5 +75,28 @@ class HighlightsController extends FrontController
             'furtherReadingItems' => $this->repository->getFurtherReadingItems($item) ?? null,
             'canonicalUrl' => $canonicalPath,
         ]);
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'Article',
+                'description' => SchemaMapper::text('description', 'short_copy', 'list_description'),
+                'url' => SchemaMapper::canonical('highlights.show'),
+                'mainEntityOfPage' => SchemaMapper::canonical('highlights.show'),
+            ]
+        );
     }
 }
