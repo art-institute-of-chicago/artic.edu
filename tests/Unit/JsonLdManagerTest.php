@@ -570,6 +570,7 @@ class JsonLdManagerTest extends BaseTestCase
         $artist = $this->apiModel(Artist::factory()->make([
             'title' => 'Aztec (Mexica)',
             'agent_type_title' => 'Culture',
+            'agent_type_id' => 2,
             'ulan_id' => '500115588',
         ]));
 
@@ -614,6 +615,7 @@ class JsonLdManagerTest extends BaseTestCase
             'birth_date' => null,
             'death_date' => null,
             'agent_type_title' => 'Culture',
+            'agent_type_id' => 2,
         ]));
 
         $manager->addModelEntity($artist, $this->definitionFor($artist));
