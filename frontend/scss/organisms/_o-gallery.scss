@@ -22,6 +22,8 @@
 }
 
 .o-gallery__title {
+  @include untuck();
+
   @include breakpoint('xlarge') {
     flex: 0 0 auto;
     width: 100%;
@@ -135,6 +137,8 @@
 }
 
 .o-gallery__caption .f-caption {
+  @include untuck();
+
   & {
     margin-top: 24px;
   }
@@ -713,12 +717,13 @@
           margin-bottom: 15px;
         }
 
-        @include font-styles(generate-font-obj((font-family: $serif-font,
+        @include untuck;
+        @include font-styles-untuck(generate-font-obj((font-family: $serif-font,
               font-family-loaded: $serif-font--loaded,
               font-loaded-class: $serif-font-loaded-class,
-              settings: ('xsmall': (font-size: 17, line-height: 21, text-transform: uppercase, letter-spacing: 0.1em),
-                'small+': (font-size: 17, line-height: 21),
-                'medium+': (font-size: 20, line-height: 26),
+              settings: ('xsmall': (font-size: 17, line-height: 21, text-transform: uppercase, letter-spacing: 0.1em, push: 0),
+                'small+': (font-size: 17, line-height: 21, push: -2),
+                'medium+': (font-size: 20, line-height: 26, push: -1),
               ))));
 
         & {

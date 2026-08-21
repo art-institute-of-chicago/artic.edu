@@ -1144,6 +1144,10 @@
       color: $colors-scales-grey-0;
       text-decoration: underline !important;
     }
+
+    .f-headline-editorial {
+      @include untuck();
+    }
   }
 
   .m-article-header__img {
@@ -1625,6 +1629,10 @@
       flex: 0 0 auto;
       max-width: 100%;
       padding-right: 6px;
+    }
+
+    .m-article-header__breadcrumb .f-secondary {
+      @include untuck();
     }
 
     .m-article-header--generic-w-img .title {

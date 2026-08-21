@@ -42,6 +42,8 @@
   }
 
   .checkbox {
+    @include untuck;
+
     label {
       display: inline-block;
       color: $colors-scales-grey-80;
@@ -50,6 +52,10 @@
     input[type=checkbox]:checked+span label::before {
       background-color: $colors-scales-grey-52;
       border-color: $colors-scales-grey-52;
+    }
+
+    input+span {
+      @include untuck;
     }
   }
 
@@ -143,6 +149,12 @@
   background-color: $colors-scales-grey-0;
   padding-top: 8px;
   padding-bottom: 8px;
+
+
+
+  h2 {
+    @include untuck;
+  }
 }
 
 .aic-ct-preview__close {
@@ -177,6 +189,10 @@
   margin-bottom: 12px;
 }
 
+.aic-ct-preview__date {
+  @include untuck;
+}
+
 .aic-ct-preview__details {
   margin-bottom: 24px;
 }
@@ -186,6 +202,10 @@
   border-top: 1px solid $colors-scales-grey-20;
   border-bottom: 1px solid $colors-scales-grey-20;
   margin-bottom: 24px;
+
+  p {
+    @include untuck;
+  }
 }
 
 .aic-ct-preview__description {
@@ -217,6 +237,8 @@
 // ---- My Museum Tour: Header
 
 .aic-ct-header {
+  @include untuck;
+
   & {
     position: sticky;
     top: 0;
@@ -253,6 +275,8 @@
 }
 
 .aic-ct-item-info__count-num {
+  @include untuck;
+
   & {
     display: flex;
     justify-content: center;
@@ -423,6 +447,8 @@
 
 .aic-ct-pre-result-text,
 .aic-ct-post-result-text {
+  @include untuck;
+
   & {
     margin-bottom: 24px;
   }
@@ -667,6 +693,12 @@
   object-fit: cover;
 }
 
+.aic-ct-tour-item__title,
+.aic-ct-tour-item__artist,
+.aic-ct-tour-item__gallery {
+  @include untuck;
+}
+
 .aic-ct-tour-item__title {
   margin-bottom: 4px;
   color: $colors-scales-grey-90;
@@ -708,6 +740,10 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+  }
+
+  .f-body {
+    @include untuck;
   }
 
   .aic-ct-tour__cta-actions {

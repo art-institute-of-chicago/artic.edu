@@ -96,6 +96,7 @@
 
 .m-directions-block__links ul[class*=f-] {
   margin-top: 0;
+  @include untuck;
 }
 
 .m-directions-block__links.o-blocks>span[class*=f-] a {

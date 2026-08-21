@@ -104,6 +104,10 @@ Example usage:
   }
 }
 
+.btn[class*=f-] {
+  @include untuck;
+}
+
 .btn.f-buttons {
   padding-top: 10px;
   padding-bottom: 12px;

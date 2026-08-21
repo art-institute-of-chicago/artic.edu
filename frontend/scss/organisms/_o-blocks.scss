@@ -250,6 +250,13 @@
   margin-top: 0;
 }
 
+.o-blocks>p:not([class*='f-']),
+.o-blocks>h2:not([class*='f-']),
+.o-blocks>h3:not([class*='f-']),
+.o-blocks>*[class*='f-'] .f-link {
+  //@include untuck;
+}
+
 .o-blocks>h4:not([class*='f-']) {
   margin-top: 28px;
 }

@@ -35,7 +35,6 @@ use App\Http\Controllers\PrintedPublicationsController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShortsController;
-use App\Http\Controllers\StylesVerifactionController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\VideoController;
 use App\Http\Middleware\SanitizeQueryParameters;
@@ -365,9 +364,6 @@ Route::get('/my-museum-tour/{id}/qrcode.png', [MyMuseumTourController::class, 'q
 
 // Feed routes
 Route::feeds();
-
-// Representation of styles in context
-Route::get('/styles-verification', [StylesVerifactionController::class, 'show']);
 
 // Generic Page
 Route::group([
