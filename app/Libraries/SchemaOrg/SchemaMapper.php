@@ -306,16 +306,16 @@ class SchemaMapper
             return false;
         }
 
-        $typeTitle = data_get($agent, 'agent_type_title');
-
-        if (!empty($typeTitle)) {
-            return strtolower((string) $typeTitle) !== 'individual';
-        }
-
         $typeId = data_get($agent, 'agent_type_id');
 
         if (!empty($typeId)) {
             return (int) $typeId !== 7;
+        }
+
+        $typeTitle = data_get($agent, 'agent_type_title');
+
+        if (!empty($typeTitle)) {
+            return strtolower((string) $typeTitle) !== 'individual';
         }
 
         return false;
