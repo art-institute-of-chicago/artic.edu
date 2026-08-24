@@ -94,7 +94,7 @@
             display: block;
             color: white !important;
 
-            @include breakpoint('small-') {
+            @include breakpoint('medium-') {
                 line-height: 38px;
             }
 
