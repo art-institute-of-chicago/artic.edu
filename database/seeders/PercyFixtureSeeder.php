@@ -36,12 +36,18 @@ class PercyFixtureSeeder extends Seeder
         // empty, zero-height div, which Playwright treats as never visible.
         // custom_banner is self-contained (static text only, no browser IDs
         // referencing live API content), so it can't render empty/broken.
+        //
+        // editor_name must be 'default': Twill's BlockRenderer::fromEditor()
+        // (vendor/area17/twill/src/Helpers/BlockRenderer.php) filters blocks
+        // by `where('editor_name', $editorName)`, and renderBlocks() always
+        // passes 'default'. Without this, the block is silently excluded.
         $block = Block::firstOrNew([
             'blockable_id' => $homePage->id,
             'blockable_type' => 'landingPages',
             'type' => 'custom_banner',
             'position' => 1,
         ]);
+        $block->editor_name = 'default';
         $block->content = [
             'background_type' => 'background_image',
             'heading' => 'Join our Community',
