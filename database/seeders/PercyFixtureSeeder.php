@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\GenericPage;
 use App\Models\LandingPage;
-use App\Models\Vendor\Block;
 use Illuminate\Database\Seeder;
 
 /**
@@ -12,9 +11,8 @@ use Illuminate\Database\Seeder;
  * page) exist with fixed, published content. Run before starting the app
  * server for a Percy build — see .github/workflows/percy.yml.
  *
- * This is a minimal Home fixture (labels + one self-contained block, with
- * no dependency on live API IDs). For a fuller Home page with the full set
- * of blocks, see the setup in tests/Feature/HomePageTest.php.
+ * This is a minimal Home fixture (title + intro only). For a fuller Home
+ * page with all its blocks, see the setup in tests/Feature/HomePageTest.php.
  */
 class PercyFixtureSeeder extends Seeder
 {
@@ -31,33 +29,6 @@ class PercyFixtureSeeder extends Seeder
             'home_buy_tix_link' => 'https://sales.artic.edu/admissions',
         ];
         $homePage->save();
-
-        // Without at least one block, the landing page body renders as an
-        // empty, zero-height div, which Playwright treats as never visible.
-        // custom_banner is self-contained (static text only, no browser IDs
-        // referencing live API content), so it can't render empty/broken.
-        //
-        // editor_name must be 'default': Twill's BlockRenderer::fromEditor()
-        // (vendor/area17/twill/src/Helpers/BlockRenderer.php) filters blocks
-        // by `where('editor_name', $editorName)`, and renderBlocks() always
-        // passes 'default'. Without this, the block is silently excluded.
-        $block = Block::firstOrNew([
-            'blockable_id' => $homePage->id,
-            'blockable_type' => 'landingPages',
-            'type' => 'custom_banner',
-            'position' => 1,
-        ]);
-        $block->editor_name = 'default';
-        $block->content = [
-            'background_type' => 'background_image',
-            'heading' => 'Join our Community',
-            'body' => '<p>The best way to lend your support is to become a member.</p>',
-            'button_type' => 'custom',
-            'button_text' => 'Become a Member',
-            'button_url' => 'https://sales.artic.edu/memberships',
-            'title' => 'Join our Community',
-        ];
-        $block->save();
 
         $genericPage = GenericPage::firstOrNew(['title' => 'Percy Fixture Page']);
         $genericPage->published = true;
