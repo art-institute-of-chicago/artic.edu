@@ -1,5 +1,7 @@
 name: Percy tests
 on: [pull_request]
+permissions:
+    contents: read
 jobs:
     percy:
         runs-on: ubuntu-22.04
