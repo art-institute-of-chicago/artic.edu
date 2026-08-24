@@ -46,6 +46,8 @@ jobs:
               run: php artisan migrate --env=testing
             - name: Generate key
               run: php artisan key:generate --env=testing
+            - name: Seed database
+              run: php artisan db:seed --env=testing
             - name: Seed Percy fixture content
               run: php artisan db:seed --env=testing --class=PercyFixtureSeeder
             - name: Build Twill assets
