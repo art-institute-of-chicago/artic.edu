@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery, forEach, lazyLoad } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors/core';
-import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, headerAwareScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, headerHeight, roadblock } from './functions/core';
+import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, headerAwareScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, headerHeight, roadblock, refreshCsrfToken } from './functions/core';
 /**
  * A17
  * @see Doc: https://code.area17.com/a17/fe-boilerplate/wikis/js-app
@@ -28,6 +28,10 @@ A17.ajaxLinksFailSafe = (A17.env === 'production') ? true : false;
 
 // Expose A17 so it's visible to kiosk
 window.A17 = A17;
+
+// Re-establish a session/CSRF token if this page was served from CDN cache
+// without one (see routes/web.php's home route)
+refreshCsrfToken();
 
 document.addEventListener('DOMContentLoaded', function(){
   if (A17.print) {
