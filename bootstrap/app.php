@@ -60,6 +60,17 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\SanitizeQueryParameters::class,
             \App\Http\Middleware\CheckFileExtension::class,
         ]);
+
+        // Not applied to any group automatically — routes opt in via
+        // ->withoutMiddleware('sessionless') to skip session/server-side CSRF handling
+        // (and the Set-Cookie headers that come with it) so their responses
+        // can be edge-cached. Only safe for routes/views that never read or
+        // write session state.
+        $middleware->group('sessionless', [
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Sentrty error reporting

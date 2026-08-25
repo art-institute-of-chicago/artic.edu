@@ -182,6 +182,8 @@ class FrontController extends BaseController
                 return $this->getRelatedSidebarItemsData();
             case 'loadExhibitionImages':
                 return $this->loadExhibitionImages();
+            case 'csrfToken':
+                return response()->json(['token' => csrf_token()]);
             default:
                 return response()->json(['error' => 'Invalid request'], 400);
         }
