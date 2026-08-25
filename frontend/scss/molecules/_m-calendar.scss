@@ -187,7 +187,7 @@
 }
 
 .m-calendar__footer .btn {
-  margin-left: 12px;
+  margin-left: $blocks-spacings-small;
 }
 
 .m-calendar__close {
@@ -329,7 +329,7 @@
 
 .m-calendar tr:first-child td {
   height: 52px;
-  padding-top: 12px;
+  padding-top: $blocks-spacings-small;
 }
 
 .m-calendar__today {

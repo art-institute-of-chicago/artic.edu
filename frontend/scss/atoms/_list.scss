@@ -43,7 +43,7 @@ Basic styles to both `ul` and `ol`. `_o-blocks.scss` extends this onto lists wit
 }
 
 .list > li {
-  padding-left: 12px;
+  padding-left: $blocks-spacings-small;
 }
 
 ul.list > li {

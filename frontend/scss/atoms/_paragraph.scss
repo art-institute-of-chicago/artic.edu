@@ -3,7 +3,7 @@
   position: relative;
 
   & {
-    margin-top: 16px;
+    margin-top: $blocks-spacings-default;
 
     // Adapted from .o-blocks > p:not([class*='f-'])
   }

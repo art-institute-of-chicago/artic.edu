@@ -9,14 +9,14 @@ Basic flexed set up
   display: flex;
   position: relative;
   flex-flow: row wrap;
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 
   &:first-child {
     margin-top: 0;
   }
 
   @include breakpoint('small+') {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
 
     &:first-child {
       margin-top: 0;
@@ -24,7 +24,7 @@ Basic flexed set up
   }
 
   @include breakpoint('medium+') {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
 
     &:first-child {
       margin-top: 0;
@@ -33,11 +33,11 @@ Basic flexed set up
 
   .m-table+& {
     @include breakpoint('small+') {
-      margin-top: 32px;
+      margin-top: $blocks-spacings-double;
     }
 
     @include breakpoint('medium+') {
-      margin-top: 40px;
+      margin-top: $blocks-spacings-extra-large;
     }
   }
 }
@@ -249,12 +249,12 @@ Variant `o-grid-listing--info-block`
 $point in $breakpoints {
   @include breakpoint('#{$name}') {
     .o-grid-listing:not([class*="col@#{$name}"]):not(.o-grid-listing--info-block)+.o-grid-listing--info-block[class*="col@#{$name}"] {
-      margin-top: 60px;
+      margin-top: $blocks-spacings-largest;
     }
 
     .o-grid-listing--info-block[class*="col@#{$name}"]+.o-grid-listing--info-block[class*="col@#{$name}"] {
       @if ($name=='xsmall') {
-        margin-top: 36px;
+        margin-top: $blocks-spacings-large;
       }
 
       @else {
@@ -282,7 +282,7 @@ $point in $breakpoints {
     }
 
     .o-grid-listing--info-block:not([class*="col@#{$name}"]) .m-ticket-actions:first-child {
-      margin-top: 20px;
+      margin-top: $blocks-spacings-medium-small;
     }
   }
 }

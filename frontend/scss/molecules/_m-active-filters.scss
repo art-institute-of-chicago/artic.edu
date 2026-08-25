@@ -6,7 +6,7 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 }
 
 .m-active-filters::before {
@@ -28,8 +28,8 @@
 
 .m-active-filters__item {
   flex: 0 0 auto;
-  margin-right: 12px;
-  margin-top: 16px;
+  margin-right: $blocks-spacings-small;
+  margin-top: $blocks-spacings-default;
 }
 
 .m-active-filters__item:first-child {
@@ -39,8 +39,8 @@
 .m-active-filters__clear {
   position: relative;
   flex: 0 0 auto;
-  margin-left: 20px;
-  margin-top: 12px;
+  margin-left: $blocks-spacings-medium-small;
+  margin-top: $blocks-spacings-small;
 }
 
 .m-active-filters__clear a {
@@ -83,7 +83,7 @@
 }
 
 .o-collection-filters .m-active-filters__clear {
-  margin-top: 8px;
+  margin-top: $blocks-spacings-half;
   margin-left: 0;
-  margin-top: 12px;
+  margin-top: $blocks-spacings-small;
 }

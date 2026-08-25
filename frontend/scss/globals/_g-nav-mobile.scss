@@ -38,7 +38,7 @@
 
 .g-nav-mobile__container {
   @extend %container;
-  padding-bottom: 60px; // Stop the nav from hitting the bottom of the window on scroll
+  padding-bottom: $blocks-spacings-largest; // Stop the nav from hitting the bottom of the window on scroll
 }
 
 .g-nav-mobile__close {
@@ -231,7 +231,7 @@
 
 .g-nav-mobile__legals li,
 .g-nav-mobile__social li {
-  margin-top: 16px;
+  margin-top: $blocks-spacings-default;
   color: $colors-themes-light-mode-text-secondary;
 }
 

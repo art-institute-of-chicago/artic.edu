@@ -30,7 +30,7 @@
 
   @include breakpoint('medium+') {
     width: colspan(grid-cols-to-colspan(2), medium);
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
     margin-left: colspan(2, medium);
   }
 

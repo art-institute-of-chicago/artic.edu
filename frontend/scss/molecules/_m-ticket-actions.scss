@@ -35,10 +35,10 @@
 }
 
 .m-ticket-actions__action:not(:first-child) {
-  margin-top: 12px;
+  margin-top: $blocks-spacings-small;
 
   @include breakpoint('xlarge') {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
   }
 }
 
@@ -47,7 +47,7 @@
   margin-top: 4px;
 
   @include breakpoint('xlarge') {
-    margin-top: 12px;
+    margin-top: $blocks-spacings-small;
   }
 }
 
@@ -93,7 +93,7 @@
   .o-article__secondary-actions .m-ticket-actions__action {
     flex: 0 0 auto;
     width: colspan(28, small);
-    margin-top: 12px;
+    margin-top: $blocks-spacings-small;
     margin-left: colspan(2, small);
   }
 

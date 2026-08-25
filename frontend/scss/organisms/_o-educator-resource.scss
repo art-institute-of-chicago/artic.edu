@@ -31,7 +31,7 @@
 
         .dropdown__container {
             width: 28%;
-            padding-right: 24px;
+            padding-right: $blocks-spacings-medium;
 
             @include breakpoint('small-') {
               width: 100%;
@@ -44,7 +44,7 @@
                 &::before {
                     display: block;
                     content: '';
-                    padding-top: 8px;
+                    padding-top: $blocks-spacings-half;
                 }
             }
 
@@ -60,20 +60,20 @@
             }
 
             @include breakpoint('small-') {
-              margin-top: 12px;
+              margin-top: $blocks-spacings-small;
             }
         }
     }
 
     .filter-controls {
       min-height: 48px;
-      padding-top: 20px;
+      padding-top: $blocks-spacings-medium-small;
       margin-bottom: 56px;
 
       @include breakpoint('small-') {
         min-height: 26px;
         padding-top: 0px;
-        margin-bottom: 32px;
+        margin-bottom: $blocks-spacings-double;
       }
     }
 
@@ -142,7 +142,7 @@
       }
 
       .o-educator-resource__body {
-        padding-top: 32px;
+        padding-top: $blocks-spacings-double;
       }
     }
 
@@ -166,12 +166,12 @@
 
       .intro {
         * {
-          margin-top: 24px;
+          margin-top: $blocks-spacings-medium;
           font-size: 28px;
           font-family: $serif-font;
           font-weight: 300;
           line-height: 36px;
-          padding-bottom: 40px;
+          padding-bottom: $blocks-spacings-extra-large;
         }
       }
 
@@ -183,7 +183,7 @@
         > * {
           padding-left: 27px;
           padding-right: 27px;
-          margin-right: 12px;
+          margin-right: $blocks-spacings-small;
           min-width: 110px;
 
           &:not(.btn) {

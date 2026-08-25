@@ -79,7 +79,7 @@ Example usage:
 a.checkbox {
   display: block;
   position: relative;
-  padding-left: 28px;
+  padding-left: $blocks-spacings-medium-large;
   color: $colors-themes-light-mode-input-text-primary;
   cursor: pointer;
 }

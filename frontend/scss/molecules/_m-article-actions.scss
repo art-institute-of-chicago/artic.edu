@@ -1,8 +1,8 @@
 .m-article-actions {
   display: flex;
   flex-flow: row wrap;
-  margin-bottom: 40px;
-  margin-top: 8px;
+  margin-bottom: $blocks-spacings-extra-large;
+  margin-top: $blocks-spacings-half;
 
   .o-form.o-blocks__block + & {
     display: none;
@@ -14,7 +14,7 @@
 }
 
 .m-article-actions--keyline-top {
-  margin-top: 40px;
+  margin-top: $blocks-spacings-extra-large;
   padding-top: 7px;
   border-top: 1px solid $colors-themes-light-mode-rules-primary;
 }

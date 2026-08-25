@@ -4,13 +4,13 @@
     padding: 25px 0;
   }
   .o-article + & {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 
   &.o-ranged-accordion {
     // Only apply margin-top if the previous sibling is not another o-ranged-accordion
     &:not(.o-ranged-accordion + .o-ranged-accordion) {
-      margin-top: 40px;
+      margin-top: $blocks-spacings-extra-large;
     }
 
     &:has(.o-accordion__trigger[aria-expanded="true"]) {
@@ -27,7 +27,7 @@
         margin-bottom: 12px !important;
       }
       &:not(:has(h4)) {
-        margin-top: 28px;
+        margin-top: $blocks-spacings-medium-large;
       }
     }
 
@@ -70,7 +70,7 @@
 
 .o-accordion__trigger {
   position: relative;
-  padding-right: 60px;
+  padding-right: $blocks-spacings-largest;
   padding-left: 0px;
   color: $colors-themes-light-mode-text-title;
   cursor: pointer;
@@ -134,7 +134,7 @@
   }
 
   @include breakpoint('medium+') {
-    margin-top: 48px;
+    margin-top: $blocks-spacings-triple;
   }
 }
 
@@ -164,14 +164,14 @@
 }
 
 .o-accordion__trigger.f-list-4:not(:first-child) {
-  margin-top: 32px;
+  margin-top: $blocks-spacings-double;
 
   @include breakpoint('small+') {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 
   @include breakpoint('medium+') {
-    margin-top: 48px;
+    margin-top: $blocks-spacings-triple;
   }
 }
 
@@ -311,17 +311,17 @@
   padding-bottom: 4px;
 
   .o-accordion--section & {
-    padding-top: 28px;
+    padding-top: $blocks-spacings-medium-large;
   }
 
   @include breakpoint('small+') {
-    padding-bottom: 8px;
+    padding-bottom: $blocks-spacings-half;
   }
 
   @include breakpoint('xlarge') {
 
     .o-accordion--section & {
-      padding-top: 36px;
+      padding-top: $blocks-spacings-large;
     }
   }
 }
@@ -330,7 +330,7 @@
   padding-bottom: 4px;
 
   @include breakpoint('small+') {
-    padding-bottom: 8px;
+    padding-bottom: $blocks-spacings-half;
   }
 }
 
@@ -408,12 +408,12 @@
   }
 
   &:last-child {
-    margin-bottom: 48px;
+    margin-bottom: $blocks-spacings-triple;
   }
 }
 
 .o-accordion__panel-content.o-blocks > *:last-child {
-  margin-bottom: 48px;
+  margin-bottom: $blocks-spacings-triple;
 }
 
 .o-accordion.o-accordion--publication-sidebar,
@@ -425,7 +425,7 @@
 
   .o-accordion__trigger {
     padding-bottom: 18px;
-    padding-top: 12px;
+    padding-top: $blocks-spacings-small;
     border-bottom: none !important;
 
     &.f-tag-2 {
@@ -442,20 +442,20 @@
   }
 
   .o-accordion__panel > .o-accordion--publication-sidebar {
-    padding-left: 20px;
+    padding-left: $blocks-spacings-medium-small;
   }
 
   .o-accordion__panel > .o-accordion.o-accordion--magazine-issue-archive {
     padding-left: 0;
     &:not(:has(>.o-accordion__panel-content)) {
-      padding-left: 20px;
+      padding-left: $blocks-spacings-medium-small;
     }
   }
 
   .o-accordion__panel > .o-accordion--publication-sidebar,
   .o-accordion__panel > .o-accordion.o-accordion--magazine-issue-archive {
     &:last-of-type {
-      padding-bottom: 20px;
+      padding-bottom: $blocks-spacings-medium-small;
     }
   }
 
@@ -469,7 +469,7 @@
 
   .o-accordion__panel-content {
     padding-top: 5px;
-    padding-bottom: 20px;
+    padding-bottom: $blocks-spacings-medium-small;
     border-bottom: 1px solid $colors-themes-light-mode-rules-primary;
 
     &.m-link-list__item:first-of-type::after {

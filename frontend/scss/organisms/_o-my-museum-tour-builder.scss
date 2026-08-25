@@ -115,7 +115,7 @@
     }
 
     p {
-      margin-top: 28px;
+      margin-top: $blocks-spacings-medium-large;
     }
 
     p.f-list-6 {
@@ -141,8 +141,8 @@
   justify-content: space-between;
   align-items: center;
   background-color: $colors-scales-grey-0;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: $blocks-spacings-half;
+  padding-bottom: $blocks-spacings-half;
 }
 
 .aic-ct-preview__close {
@@ -153,8 +153,8 @@
 }
 
 .aic-ct-preview__core {
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: $blocks-spacings-default;
+  padding-right: $blocks-spacings-default;
 
   svg.icon--max-artworks {
     width: 143px;
@@ -169,36 +169,36 @@
 
   img {
     max-height: 500px;
-    margin-bottom: 32px;
+    margin-bottom: $blocks-spacings-double;
   }
 }
 
 .aic-ct-preview__title {
-  margin-bottom: 12px;
+  margin-bottom: $blocks-spacings-small;
 }
 
 .aic-ct-preview__details {
-  margin-bottom: 24px;
+  margin-bottom: $blocks-spacings-medium;
 }
 
 .aic-ct-preview__links {
   padding: 24px 0;
   border-top: 1px solid $colors-scales-grey-20;
   border-bottom: 1px solid $colors-scales-grey-20;
-  margin-bottom: 24px;
+  margin-bottom: $blocks-spacings-medium;
 }
 
 .aic-ct-preview__description {
-  margin-bottom: 24px;
+  margin-bottom: $blocks-spacings-medium;
 }
 
 .aic-ct-preview__description-title {
-  margin-bottom: 12px;
+  margin-bottom: $blocks-spacings-small;
 }
 
 .aic-ct-preview__learn-more {
   display: inline-block;
-  margin-top: 24px;
+  margin-top: $blocks-spacings-medium;
 }
 
 .aic-ct-preview__close-trans {
@@ -363,19 +363,19 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding-top: 32px;
-  margin-bottom: 32px;
+  padding-top: $blocks-spacings-double;
+  margin-bottom: $blocks-spacings-double;
 }
 
 .aic-ct-intro--keyline {
-  padding-bottom: 32px;
+  padding-bottom: $blocks-spacings-double;
   border-bottom: 1px solid $colors-scales-grey-35;
 }
 
 // -- My Museum Tour: Searchbar
 
 .aic-ct-search {
-  margin-bottom: 32px;
+  margin-bottom: $blocks-spacings-double;
 }
 
 // ---- My Museum Tour: Themes
@@ -384,7 +384,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 32px;
+  margin-bottom: $blocks-spacings-double;
 }
 
 // N.b. because of how tag--senary and tag--quaternary are currently defined and
@@ -424,18 +424,18 @@
 .aic-ct-pre-result-text,
 .aic-ct-post-result-text {
   & {
-    margin-bottom: 24px;
+    margin-bottom: $blocks-spacings-medium;
   }
 }
 
 .aic-ct-post-result-text {
-  margin-top: 24px;
+  margin-top: $blocks-spacings-medium;
 }
 
 .aic-ct-search-results {
   display: flex;
   flex-direction: column;
-  margin-bottom: 32px;
+  margin-bottom: $blocks-spacings-double;
 }
 
 .aic-ct-search-results__message {
@@ -614,7 +614,7 @@
 // ------ My Museum Tour: Tour metadata
 
 .aic-ct-fieldset {
-  margin-bottom: 32px;
+  margin-bottom: $blocks-spacings-double;
 
   &::before {
     display: none;
@@ -637,7 +637,7 @@
 // ------ My Museum Tour: Tour items
 
 .aic-ct-tour__intro {
-  margin-bottom: 32px;
+  margin-bottom: $blocks-spacings-double;
 }
 
 // ------ My Museum Tour: Tour item
@@ -647,8 +647,8 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding-top: $blocks-spacings-medium;
+  padding-bottom: $blocks-spacings-medium;
   border-top: 1px solid $colors-scales-grey-20;
 }
 
@@ -673,7 +673,7 @@
 }
 
 .aic-ct-tour-item__artist {
-  margin-bottom: 8px;
+  margin-bottom: $blocks-spacings-half;
 }
 
 .aic-ct-tour-item__gallery {
@@ -738,8 +738,8 @@
 .aic-ct-validation__content {
   align-items: center;
   margin: 0 auto;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  padding-top: $blocks-spacings-double;
+  padding-bottom: $blocks-spacings-double;
   text-align: center;
 
   ul {

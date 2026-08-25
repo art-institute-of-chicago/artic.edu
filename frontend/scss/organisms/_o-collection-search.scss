@@ -42,7 +42,7 @@
 .o-collection-search__quick-search-links {
   display: flex;
   flex-flow: row wrap;
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 }
 
 .o-collection-search__quick-search-links > li {

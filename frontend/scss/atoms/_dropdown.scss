@@ -147,11 +147,11 @@ Demonstrated in **statics/toybox**
 }
 
 .dropdown__trigger .f-module-title-2::before {
-  padding-top: 16px;
+  padding-top: $blocks-spacings-default;
 }
 
 .dropdown__trigger .f-module-title-2::after {
-  margin-bottom: 16px;
+  margin-bottom: $blocks-spacings-default;
 }
 
 .dropdown__list {
@@ -261,10 +261,10 @@ Demonstrated in **statics/toybox**
 
 .dropdown__list.f-secondary a:not([class]) {
   padding-top: 11px;
-  padding-bottom: 12px;
+  padding-bottom: $blocks-spacings-small;
 
   @include breakpoint('large+') {
-    padding-top: 8px;
+    padding-top: $blocks-spacings-half;
     padding-bottom: 11px;
   }
 }
@@ -298,7 +298,7 @@ Demonstrated in **statics/toybox**
   border-radius: 0;
   color: $colors-themes-light-mode-link-primary;
 
-  margin-right: 24px;
+  margin-right: $blocks-spacings-medium;
 }
 
 .m-links-bar__item:last-child .dropdown--filter .dropdown__trigger {

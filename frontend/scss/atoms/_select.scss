@@ -45,7 +45,7 @@ Form selects, partially styled using [select-css](https://github.com/filamentgro
   }
 
   label+& {
-    margin-top: 16px;
+    margin-top: $blocks-spacings-default;
   }
 }
 

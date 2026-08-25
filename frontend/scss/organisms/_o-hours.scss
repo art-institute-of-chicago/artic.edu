@@ -3,7 +3,7 @@
   position: relative;
   align-items: flex-start;
 
-  margin-top: 12px;
+  margin-top: $blocks-spacings-small;
 
   .o-features + & {
     @include breakpoint('small+') {
@@ -25,14 +25,14 @@
 
   .o-hours__clock {
     color: $colors-themes-light-mode-text-title;
-    margin-right: 8px;
+    margin-right: $blocks-spacings-half;
     margin-top: -2px;
   }
 
   .o-hours__text {
     > * {
       vertical-align: top;
-      margin-right: 8px;
+      margin-right: $blocks-spacings-half;
 
       &:last-child {
         margin-right: 0px;
@@ -71,7 +71,7 @@
   }
 
   .dropdown__list {
-    margin-top: 12px;
+    margin-top: $blocks-spacings-small;
 
     @include breakpoint('small+') {
       min-width: 290px;
@@ -92,6 +92,6 @@
   + .m-header-block,
   // WEB-2416, WEB-2417: artwork detail, generic pages
   + .o-article {
-    margin-top: 12px;
+    margin-top: $blocks-spacings-small;
   }
 }

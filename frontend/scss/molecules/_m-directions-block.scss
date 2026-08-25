@@ -2,7 +2,7 @@
   @include float-clear;
 
   & {
-    margin-top: 32px;
+    margin-top: $blocks-spacings-double;
     padding-top: 19px;
     border-top: 1px solid $colors-themes-light-mode-rules-primary;
   }
@@ -29,7 +29,7 @@
 }
 
 .m-directions-block__text {
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
   padding-top: .02px;
 
   @include breakpoint('small+') {
@@ -58,7 +58,7 @@
     }
 
     @include breakpoint('medium+') {
-      margin-top: 16px;
+      margin-top: $blocks-spacings-default;
     }
 
     @include breakpoint('large+') {
@@ -68,7 +68,7 @@
 }
 
 .m-directions-block__links {
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
   padding-top: .02px;
 
   @include breakpoint('small+') {
@@ -84,7 +84,7 @@
 
   @include breakpoint('large+') {
     width: colspan(18, large);
-    margin-top: 32px;
+    margin-top: $blocks-spacings-double;
     margin-left: colspan(2, large);
   }
 

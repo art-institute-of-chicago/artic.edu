@@ -9,11 +9,11 @@
     background-color: $colors-themes-light-mode-background-gallery;
     color: $colors-themes-light-mode-text-contrast;
     transform: translateZ(0);
-    margin-top: 48px;
+    margin-top: $blocks-spacings-triple;
   }
 
   @include breakpoint('small+') {
-    margin-top: 60px;
+    margin-top: $blocks-spacings-largest;
   }
 
   @include breakpoint('large+') {
@@ -29,25 +29,25 @@
 }
 
 .o-gallery__title+ul.o-pinboard {
-  margin-top: 24px;
+  margin-top: $blocks-spacings-medium;
 }
 
 .o-gallery__caption {
   position: relative;
-  margin-top: 32px;
+  margin-top: $blocks-spacings-double;
 
   @include breakpoint('small+') {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
   }
 
   @include breakpoint('medium+') {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 }
 
 .o-gallery__media {
   position: relative;
-  margin-top: 40px;
+  margin-top: $blocks-spacings-extra-large;
 }
 
 .o-gallery__title,
@@ -72,7 +72,7 @@
 }
 
 .o-gallery .m-media figcaption .f-caption p {
-  margin-bottom: 12px;
+  margin-bottom: $blocks-spacings-small;
 }
 
 .o-gallery hr,
@@ -95,7 +95,7 @@
 
 .o-gallery__all-link-btn {
   margin-top: 0;
-  padding-bottom: 32px;
+  padding-bottom: $blocks-spacings-double;
 
   @include breakpoint('medium+') {
     display: none;
@@ -109,7 +109,7 @@
 
 .o-gallery__share {
   display: block;
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 
   @include breakpoint('small+') {
     position: absolute;
@@ -120,7 +120,7 @@
 
   @include breakpoint('xlarge') {
     position: static;
-    margin-top: 24px;
+    margin-top: $blocks-spacings-medium;
   }
 }
 
@@ -136,7 +136,7 @@
 
 .o-gallery__caption .f-caption {
   & {
-    margin-top: 24px;
+    margin-top: $blocks-spacings-medium;
   }
 }
 
@@ -202,7 +202,7 @@
   }
 
   .o-gallery__media>* {
-    margin-top: 48px;
+    margin-top: $blocks-spacings-triple;
 
     @include breakpoint('small+') {
       left: 0;
@@ -343,7 +343,7 @@
 
     @include breakpoint('xsmall') {
       position: relative;
-      margin-top: 32px;
+      margin-top: $blocks-spacings-double;
       margin-left: -36px;
     }
 
@@ -375,7 +375,7 @@
 
   &.o-gallery----headerless {
     .o-gallery--slider__controls {
-      margin-bottom: 32px;
+      margin-bottom: $blocks-spacings-double;
 
       @include breakpoint('small+') {
         position: relative;
@@ -393,13 +393,13 @@
 
   .o-gallery__media-wrapper {
     margin-right: colspan(3, xsmall, 0, true);
-    margin-bottom: 24px;
-    padding-bottom: 32px;
+    margin-bottom: $blocks-spacings-medium;
+    padding-bottom: $blocks-spacings-double;
 
     overflow: hidden;
 
     // Allow more space for the navigation arrows
-    padding-top: 32px;
+    padding-top: $blocks-spacings-double;
 
     @include breakpoint('small+') {
       padding-top: 55px;
@@ -407,7 +407,7 @@
 
     @include breakpoint('small+') {
       margin-right: colspan(3, small, 0, true);
-      margin-bottom: 32px;
+      margin-bottom: $blocks-spacings-double;
     }
 
     @include breakpoint('medium+') {
@@ -707,7 +707,7 @@
         color: white;
         text-shadow: 0 0 6px rgba($colors-scales-grey-100, .5);
         display: block;
-        margin-bottom: 20px;
+        margin-bottom: $blocks-spacings-medium-small;
 
         @include breakpoint('medium+') {
           margin-bottom: 15px;
@@ -730,13 +730,13 @@
 }
 
 .o-gallery--small-mosaic .o-gallery__caption .f-caption {
-  margin-bottom: 32px;
+  margin-bottom: $blocks-spacings-double;
 
   @include breakpoint('small+') {
-    margin-bottom: 36px;
+    margin-bottom: $blocks-spacings-large;
   }
 
   @include breakpoint('medium+') {
-    margin-bottom: 40px;
+    margin-bottom: $blocks-spacings-extra-large;
   }
 }

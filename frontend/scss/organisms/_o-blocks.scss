@@ -251,7 +251,7 @@
 }
 
 .o-blocks>h4:not([class*='f-']) {
-  margin-top: 28px;
+  margin-top: $blocks-spacings-medium-large;
 }
 
 .o-blocks>p:not([class*='f-']),
@@ -281,18 +281,18 @@
   .hr {
     //clear: left;
     min-width: 100%;
-    margin-top: 32px;
+    margin-top: $blocks-spacings-double;
 
     @include breakpoint('small+') {
       margin-top: 44px;
     }
 
     @include breakpoint('medium+') {
-      margin-top: 48px;
+      margin-top: $blocks-spacings-triple;
     }
 
     @include breakpoint('large+') {
-      margin-top: 60px;
+      margin-top: $blocks-spacings-largest;
     }
   }
 
@@ -337,7 +337,7 @@
     @include breakpoint('large+') {
       display: block;
       position: static;
-      margin-top: 24px;
+      margin-top: $blocks-spacings-medium;
     }
   }
 }
@@ -560,30 +560,30 @@
   }
 
   .deflist.o-blocks__block {
-    margin-top: 32px;
+    margin-top: $blocks-spacings-double;
 
     @include breakpoint('small+') {
       margin-top: 44px;
     }
 
     @include breakpoint('medium+') {
-      margin-top: 48px;
+      margin-top: $blocks-spacings-triple;
     }
   }
 
   .deflist.o-blocks__block+.deflist.o-blocks__block {
-    margin-top: 16px;
+    margin-top: $blocks-spacings-default;
 
     @include breakpoint('small+') {
       margin-top: 44px;
     }
 
     @include breakpoint('medium+') {
-      margin-top: 48px;
+      margin-top: $blocks-spacings-triple;
     }
 
     @include breakpoint('large+') {
-      margin-top: 60px;
+      margin-top: $blocks-spacings-largest;
     }
   }
 
@@ -594,7 +594,7 @@
   }
 
   .m-listing-header+.hr:not(.hr--flush-top) {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
   }
 }
 

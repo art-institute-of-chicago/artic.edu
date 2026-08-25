@@ -24,7 +24,7 @@
     font-size: 28px;
     font-weight: 300;
     line-height: 36px;
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
   }
   .m-links-bar__item {
     line-height: 17px;
@@ -35,8 +35,8 @@
     vertical-align: text-bottom;
   }
   .o-menu-bar {
-    padding-bottom: 28px;
-    padding-top: 28px;
+    padding-bottom: $blocks-spacings-medium-large;
+    padding-top: $blocks-spacings-medium-large;
   }
   .o-info-grid .title,
   .showcase-header,
@@ -49,7 +49,7 @@
   }
   .o-info-grid {
     @include breakpoint('small+') {
-      margin-top: 32px;
+      margin-top: $blocks-spacings-double;
       .spacer {
         position: relative;
         top: 57px;
@@ -74,7 +74,7 @@
     &:first-child {
       @include breakpoint('small+') {
         margin-bottom: 0;
-        padding-bottom: 60px;
+        padding-bottom: $blocks-spacings-largest;
       }
       @include breakpoint('xsmall') {
         border-bottom: none;
@@ -198,7 +198,7 @@
   }
   .location-information>div{
     @include breakpoint('xsmall') {
-      margin-top: 20px;
+      margin-top: $blocks-spacings-medium-small;
     }
   }
   .intro {
@@ -214,7 +214,7 @@
   .visit-button {
     display: flex;
     flex-grow: 1;
-    padding-top: 20px;
+    padding-top: $blocks-spacings-medium-small;
     .f-buttons {
       align-self: end;
       color: $colors-themes-light-mode-text-secondary;
@@ -252,7 +252,7 @@
       font-size: 17px;
       font-weight: 300;
       line-height: 28px;
-      padding-top: 20px;
+      padding-top: $blocks-spacings-medium-small;
     }
     .m-showcase-media, .m-showcase-block__text-wrapper {
       margin: 0;
@@ -290,7 +290,7 @@
       .showcase-tag {
         font-size: 13px;
         font-weight: 325;
-        margin-bottom: 12px;
+        margin-bottom: $blocks-spacings-small;
       }
       .showcase-title {
         font-size: 28px;
@@ -389,12 +389,12 @@
       font-size: 17px;
       font-weight: 300;
       line-height: 28px;
-      margin-top: 8px;
+      margin-top: $blocks-spacings-half;
     }
     .f-contact-blocks {
       border-top: 1px solid $colors-scales-grey-42;
       display: flex;
-      margin-top: 28px;
+      margin-top: $blocks-spacings-medium-large;
       width: auto;
       @include breakpoint('small+') {
         column-gap: 24px;
@@ -424,11 +424,11 @@
         line-height: 28px;
         @include breakpoint('xsmall') {
           border-bottom: 1px solid $colors-scales-grey-42;
-          padding-bottom: 24px;
+          padding-bottom: $blocks-spacings-medium;
         }
         p {
-          padding-bottom: 8px;
-          padding-right: 24px;
+          padding-bottom: $blocks-spacings-half;
+          padding-right: $blocks-spacings-medium;
         }
         a {
           color: $colors-names-rlc-myrtle-green;

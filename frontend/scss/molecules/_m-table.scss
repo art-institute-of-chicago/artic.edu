@@ -64,10 +64,10 @@ Intended for very simple m-tables..
 
   // mirror default .m-title-bar margins
   &.m-table--no-title {
-    margin-top: 48px;
+    margin-top: $blocks-spacings-triple;
 
     @include breakpoint('small+') {
-      margin-top: 60px;
+      margin-top: $blocks-spacings-largest;
     }
 
     @include breakpoint('large+') {
@@ -88,7 +88,7 @@ Intended for very simple m-tables..
   }
 
   caption {
-    margin-bottom: 40px;
+    margin-bottom: $blocks-spacings-extra-large;
     text-align: left;
 
     h2 {
@@ -185,7 +185,7 @@ Intended for very simple m-tables..
 
   .f-caption {
     & {
-      margin-top: 16px;
+      margin-top: $blocks-spacings-default;
     }
 
     h3 {

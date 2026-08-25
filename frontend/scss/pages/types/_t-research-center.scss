@@ -3,11 +3,11 @@
   border-top: 1px solid $colors-scales-grey-10;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: 28px;
+  padding-bottom: $blocks-spacings-medium-large;
   text-align: left !important;
 
   @include breakpoint('small-') {
-    padding-bottom: 20px;
+    padding-bottom: $blocks-spacings-medium-small;
   }
 
   ul {
@@ -71,7 +71,7 @@
   // Grid immediately following Showcase
   .showcase--research-center + .o-grid-block {
     margin-left: unset !important;
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
 
     .m-title-bar, .hr, .m-listing__img {
       display: none;
@@ -150,7 +150,7 @@
     }
 
     .o-grid-listing {
-      padding-top: 20px;
+      padding-top: $blocks-spacings-medium-small;
 
       .m-listing {
         padding-top: 30px;
@@ -164,7 +164,7 @@
         padding-top: 0;
 
         .m-listing {
-          padding-top: 20px;
+          padding-top: $blocks-spacings-medium-small;
         }
       }
     }
@@ -258,7 +258,7 @@
 
     .editorial-block__header {
       border: none;
-      margin-bottom: 20px;
+      margin-bottom: $blocks-spacings-medium-small;
     }
 
     .editorial-block__heading {
@@ -294,14 +294,14 @@
     }
 
     @include breakpoint('xsmall') {
-      margin-top: 20px;
+      margin-top: $blocks-spacings-medium-small;
 
       .editorial-block__header {
         margin-bottom: 10px;
       }
 
       .m-listing--article {
-        padding-top: 40px;
+        padding-top: $blocks-spacings-extra-large;
       }
 
       .m-listing__meta {
@@ -324,12 +324,12 @@
       }
 
       .editorial-block__content-wrapper {
-        margin-top: 20px;
+        margin-top: $blocks-spacings-medium-small;
       }
 
       .editorial-block__featured {
-        padding-right: 20px;
-        padding-top: 40px;
+        padding-right: $blocks-spacings-medium-small;
+        padding-top: $blocks-spacings-extra-large;
 
         .title {
           font-size: 22px;
@@ -352,20 +352,20 @@
       }
 
       .editorial-block__list {
-        padding-top: 40px;
+        padding-top: $blocks-spacings-extra-large;
 
         .m-listing--article:first-child {
-          margin-bottom: 20px;
-          padding-bottom: 20px;
+          margin-bottom: $blocks-spacings-medium-small;
+          padding-bottom: $blocks-spacings-medium-small;
         }
 
         .m-listing__link {
-          margin-left: 20px;
-          margin-right: 40px;
+          margin-left: $blocks-spacings-medium-small;
+          margin-right: $blocks-spacings-extra-large;
         }
 
         .m-listing__img {
-          margin-right: 40px;
+          margin-right: $blocks-spacings-extra-large;
         }
 
         .title {

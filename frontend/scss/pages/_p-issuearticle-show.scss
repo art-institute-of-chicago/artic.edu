@@ -102,8 +102,8 @@
 
     &:not(.is-sidebar-overlay) .o-article>.o-article__primary-actions {
       .o-sticky-sidebar__sticker {
-        padding-top: 24px;
-        padding-bottom: 24px;
+        padding-top: $blocks-spacings-medium;
+        padding-bottom: $blocks-spacings-medium;
 
         .m-article-actions--publication__logo {
           margin-bottom: 0;
@@ -124,7 +124,7 @@
       width: 100%;
       display: flex;
       align-items: center;
-      padding-right: 20px;
+      padding-right: $blocks-spacings-medium-small;
     }
 
     &::before {
@@ -198,7 +198,7 @@
 
   .o-article__body {
     padding-top: 0;
-    margin-top: 60px;
+    margin-top: $blocks-spacings-largest;
 
     @include breakpoint('medium') {
       width: colspan(58, 'medium');
@@ -599,11 +599,11 @@
 
   .o-blocks--bibliographic .f-secondary {
     &:not(:first-child) {
-      margin-top: 8px;
+      margin-top: $blocks-spacings-half;
     }
 
     li+li {
-      margin-top: 8px;
+      margin-top: $blocks-spacings-half;
     }
   }
 
@@ -614,7 +614,7 @@
   .m-split-block div {
     &:first-child {
       margin-top: 21px;
-      margin-bottom: 16px;
+      margin-bottom: $blocks-spacings-default;
 
       .m-media .m-media__img {
         background-color: $colors-scales-grey-0;
@@ -780,7 +780,7 @@ Styling related specifically to digital publications
     }
 
     .quote {
-      padding-top: 40px;
+      padding-top: $blocks-spacings-extra-large;
       padding-bottom: 50px;
       border-bottom: 1px solid #e6e6e6;
 
@@ -863,7 +863,7 @@ Styling related specifically to digital publications
 
   // Gallery block
   .o-blocks > h2:not([class*=f-]) {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
   }
 
   &:not(.is-sidebar-overlay) .o-article > .o-article__primary-actions--digital-publication {

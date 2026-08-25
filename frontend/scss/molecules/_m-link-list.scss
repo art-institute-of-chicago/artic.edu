@@ -12,11 +12,11 @@
 
 .m-link-list {
   & {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 
   .o-blocks &.o-blocks__block+& {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
   }
 }
 
@@ -29,18 +29,18 @@
 }
 
 .m-link-list__sub-list {
-  margin-top: 16px;
-  padding-left: 20px;
+  margin-top: $blocks-spacings-default;
+  padding-left: $blocks-spacings-medium-small;
 
   .o-blocks__block & {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
   }
 }
 
 .m-link-list__item {
   position: relative;
-  margin-top: 16px;
-  padding-top: 8px;
+  margin-top: $blocks-spacings-default;
+  padding-top: $blocks-spacings-half;
   padding-bottom: 0.02px;
 
   .o-blocks__block & {
@@ -87,7 +87,7 @@
 .m-link-list__trigger {
   display: block;
   position: relative;
-  padding-right: 32px;
+  padding-right: $blocks-spacings-double;
 }
 
 // TODO: Is this needed anymore?
@@ -172,7 +172,7 @@ a.m-link-list__trigger.f-secondary {
 .m-link-list__icon-after,
 .m-link-list--download .m-link-list__trigger .icon--download--24 {
   margin-bottom: 4px;
-  margin-left: 8px;
+  margin-left: $blocks-spacings-half;
 }
 
 .m-link-list--download .m-link-list__trigger:hover .icon--download--24,
@@ -193,7 +193,7 @@ a.m-link-list__trigger.f-secondary {
 .m-link-list__trigger-file-meta {
   flex: 0 0 auto;
   width: 100%;
-  padding-right: 32px;
+  padding-right: $blocks-spacings-double;
 
   @include breakpoint('medium+') {
     width: 66%;
@@ -220,8 +220,8 @@ a.m-link-list__trigger.f-secondary {
 
   svg {
     flex-shrink: 0;
-    margin-top: 8px;
-    margin-right: 8px;
+    margin-top: $blocks-spacings-half;
+    margin-right: $blocks-spacings-half;
   }
 }
 
@@ -231,7 +231,7 @@ a.m-link-list__trigger.f-secondary {
 
 // API-311: Match spacing above catalogue PDF
 .m-link-list--exhibition-microsite {
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 
   .m-link-list__item:first-child::after {
     content: none;

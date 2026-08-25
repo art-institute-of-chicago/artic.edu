@@ -46,7 +46,7 @@
   .o-article__related .m-inline-aside &,
   .o-article__secondary-actions .m-inline-aside &,
   .f-module-title-1+& {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
   }
 
   .o-article__related .m-inline-aside &,
@@ -102,7 +102,7 @@
   display: block;
   flex: 0 0 auto;
   position: relative;
-  margin-top: 28px;
+  margin-top: $blocks-spacings-medium-large;
   background-color: $colors-themes-light-mode-background-primary;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -120,7 +120,7 @@
   }
 
   @include breakpoint('medium+') {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
 
     &:first-child {
       margin-top: 0;
@@ -385,7 +385,7 @@
 
 .m-listing__types .type {
   display: inline-block;
-  padding-right: 8px;
+  padding-right: $blocks-spacings-half;
 }
 
 .m-listing.s-no-link .title {
@@ -532,10 +532,10 @@
 
 .m-listing__meta span.f-secondary.last-child,
 .m-listing__meta ul.f-secondary:last-child {
-  padding-bottom: 20px;
+  padding-bottom: $blocks-spacings-medium-small;
 
   @include breakpoint('small+') {
-    padding-bottom: 8px;
+    padding-bottom: $blocks-spacings-half;
   }
 }
 
@@ -1006,16 +1006,16 @@ $point in $breakpoints {
   }
 
   @include breakpoint('medium+') {
-    padding-top: 20px;
-    padding-right: 40px;
-    padding-bottom: 40px;
-    padding-left: 40px;
+    padding-top: $blocks-spacings-medium-small;
+    padding-right: $blocks-spacings-extra-large;
+    padding-bottom: $blocks-spacings-extra-large;
+    padding-left: $blocks-spacings-extra-large;
   }
 
   @include breakpoint('large+') {
     width: colspan(25, large);
-    padding-top: 12px;
-    padding-bottom: 40px;
+    padding-top: $blocks-spacings-small;
+    padding-bottom: $blocks-spacings-extra-large;
   }
 
   @include breakpoint('xlarge') {
@@ -1073,20 +1073,20 @@ $point in $breakpoints {
 .m-listing--hero-editorial .m-listing__meta-bottom {
   display: flex;
   flex-flow: row nowrap;
-  margin-top: 60px;
+  margin-top: $blocks-spacings-largest;
 
   @include breakpoint('small+') {
-    margin-top: 32px;
+    margin-top: $blocks-spacings-double;
   }
 
   @include breakpoint('medium+') {
-    margin-top: 60px;
+    margin-top: $blocks-spacings-largest;
   }
 }
 
 .m-listing--hero-editorial .m-listing__meta-bottom>* {
   flex: 0 0 auto;
-  margin-right: 20px;
+  margin-right: $blocks-spacings-medium-small;
 }
 
 .m-listing--hero-editorial .m-listing__meta-bottom>br {
@@ -1133,18 +1133,18 @@ $point in $breakpoints {
   }
 
   &+& {
-    margin-top: 20px;
-    padding-top: 16px;
+    margin-top: $blocks-spacings-medium-small;
+    padding-top: $blocks-spacings-default;
     border-top: 1px solid $colors-themes-light-mode-rules-primary;
 
     @include breakpoint('small+') {
-      margin-top: 20px;
-      padding-top: 20px;
+      margin-top: $blocks-spacings-medium-small;
+      padding-top: $blocks-spacings-medium-small;
     }
 
     @include breakpoint('medium+') {
-      margin-top: 24px;
-      padding-top: 24px;
+      margin-top: $blocks-spacings-medium;
+      padding-top: $blocks-spacings-medium;
     }
   }
 }
@@ -1466,14 +1466,14 @@ $point in $breakpoints {
   }
 
   &+& {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
 
     @include breakpoint('large+') {
-      margin-top: 36px;
+      margin-top: $blocks-spacings-large;
     }
 
     @include breakpoint('medium+') {
-      margin-top: 40px;
+      margin-top: $blocks-spacings-extra-large;
     }
   }
 
@@ -1482,27 +1482,27 @@ $point in $breakpoints {
   }
 
   .m-inline-aside .m-listing {
-    margin-top: 28px;
+    margin-top: $blocks-spacings-medium-large;
 
     @include breakpoint('medium+') {
-      margin-top: 40px;
+      margin-top: $blocks-spacings-extra-large;
     }
   }
 
   .m-inline-aside .o-row-listing &,
   .m-inline-aside .o-row-listing &+& {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
 
     @include breakpoint('large+') {
-      margin-top: 24px;
+      margin-top: $blocks-spacings-medium;
     }
   }
 
   .o-article__secondary & {
-    margin-top: 16px;
+    margin-top: $blocks-spacings-default;
 
     @include breakpoint('medium+') {
-      margin-top: 24px;
+      margin-top: $blocks-spacings-medium;
     }
   }
 }
@@ -1531,10 +1531,10 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
   audio {
     width: 100%;
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
 
     @include breakpoint('large+') {
-      margin-top: 24px;
+      margin-top: $blocks-spacings-medium;
     }
   }
 
@@ -1574,7 +1574,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
       font-weight: 300;
       font-size: 16px;
       line-height: 20px;
-      margin-top: 16px;
+      margin-top: $blocks-spacings-default;
 
       &:first-child {
         margin-top: 0;
@@ -1715,7 +1715,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 .m-listing--inline-feature .m-listing__meta {
   width: 100%;
-  margin-top: 28px;
+  margin-top: $blocks-spacings-medium-large;
   margin-right: 0;
 
   @include breakpoint('small+') {
@@ -1742,8 +1742,8 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 .m-listing--inline-feature .m-listing__img {
   width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: $blocks-spacings-medium-small;
+  padding-bottom: $blocks-spacings-medium-small;
   border: 1px solid $colors-themes-light-mode-rules-primary;
 
   @include breakpoint('small+') {
@@ -1956,7 +1956,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 .m-listing--rtl .m-listing__title {
   flex-basis: 100%;
-  margin-bottom: 16px;
+  margin-bottom: $blocks-spacings-default;
 }
 
 .m-listing--rtl .m-listing__meta {
@@ -2082,7 +2082,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 }
 
 .m-listing--label.o-blocks__block .f-tag {
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 }
 
 .m-listing--label.o-blocks__block .f-list-4 {
@@ -2121,24 +2121,24 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
       @include breakpoint('#{$name}') {
         padding-left: colspan(1, #{$name});
         padding-right: colspan(1, #{$name});
-        padding-top: 16px;
+        padding-top: $blocks-spacings-default;
       }
     }
 
     >.f-tag {
       margin-top: 0;
-      margin-bottom: 12px;
+      margin-bottom: $blocks-spacings-small;
     }
 
     .title {
       margin-top: 0;
-      margin-bottom: 8px;
+      margin-bottom: $blocks-spacings-half;
       color: $colors-scales-grey-90;
     }
 
     .short-description {
       margin-top: 0;
-      margin-bottom: 20px;
+      margin-bottom: $blocks-spacings-medium-small;
       color: $colors-scales-grey-54;
       font-size: 19px;
       line-height: 24px;
@@ -2146,7 +2146,7 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
     .m-listing__meta-bottom {
       & {
-        margin-bottom: 20px;
+        margin-bottom: $blocks-spacings-medium-small;
       }
 
       .f-secondary {
@@ -2211,12 +2211,12 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 .f-tag {
   color: $colors-scales-grey-0;
-  margin-bottom: 12px;
+  margin-bottom: $blocks-spacings-small;
 }
 
 .f-headline {
   color: $colors-scales-grey-0;
-  margin-bottom: 48px;
+  margin-bottom: $blocks-spacings-triple;
 }
 }
 
@@ -2243,13 +2243,13 @@ a:focus:hover .btn--magazine {
   &.m-listing {
 
     @include breakpoint('xsmall') {
-      margin-bottom: 20px;
+      margin-bottom: $blocks-spacings-medium-small;
       height: 80px;
       width: colspan(design-cols-to-colspan(12), xsmall) !important;
     }
 
     @include breakpoint('small+') {
-      margin-bottom: 20px;
+      margin-bottom: $blocks-spacings-medium-small;
       height: 80px;
       width: colspan(design-cols-to-colspan(12), small) !important;
     }
@@ -2324,7 +2324,7 @@ a:focus:hover .btn--magazine {
 
   .m-listing__meta {
     width: 75%;
-    padding-right: 12px;
+    padding-right: $blocks-spacings-small;
     padding-bottom: 18px;
 
     .title {
@@ -2345,13 +2345,13 @@ a:focus:hover .btn--magazine {
     flex-direction: column;
 
     .m-listing__secondary-action__links {
-      margin-top: 8px;
+      margin-top: $blocks-spacings-half;
       display: flex;
       flex-direction: row;
       align-items: baseline;
 
       * {
-        padding-right: 12px;
+        padding-right: $blocks-spacings-small;
       }
 
       .f-secondary {
@@ -2374,7 +2374,7 @@ a:focus:hover .btn--magazine {
 
       .f-link + .f-link {
           border-left: 1px solid $colors-scales-grey-20;
-          padding-left: 12px;
+          padding-left: $blocks-spacings-small;
       }
     }
   }
@@ -2408,7 +2408,7 @@ a:focus:hover .btn--magazine {
     }
 
     .link {
-      margin-top: 12px;
+      margin-top: $blocks-spacings-small;
     }
   }
 
@@ -2579,10 +2579,10 @@ a:focus:hover .btn--magazine {
   }
 
   .m-listing__meta {
-    padding-top: 28px;
+    padding-top: $blocks-spacings-medium-large;
 
     .title {
-      margin-bottom: 12px;
+      margin-bottom: $blocks-spacings-small;
     }
 
     .btn--publication-happening {
@@ -2601,7 +2601,7 @@ a:focus:hover .btn--magazine {
       display: flex;
       flex-flow: row wrap;
       justify-content: space-between;
-      margin-bottom: 24px;
+      margin-bottom: $blocks-spacings-medium;
 
       @each $name,
       $point in ('small', 'medium', 'large', 'xlarge') {
@@ -2688,7 +2688,7 @@ a:focus:hover .btn--magazine {
       }
 
       .m-listing__meta .title {
-        margin-bottom: 24px;
+        margin-bottom: $blocks-spacings-medium;
       }
     }
 
@@ -2734,12 +2734,12 @@ a:focus:hover .btn--magazine {
   svg {
     width: 100px;
     height: 100px;
-    margin-right: 20px;
+    margin-right: $blocks-spacings-medium-small;
 
     @include breakpoint('large') {
       width: 120px;
       height: 120px;
-      margin-right: 40px;
+      margin-right: $blocks-spacings-extra-large;
     }
   }
 

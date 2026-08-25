@@ -38,7 +38,7 @@
   }
 
   + .m-aside-newsletter {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
   }
 }
 
@@ -51,7 +51,7 @@
     }
 
     @include breakpoint('xsmall') {
-      margin-bottom: 24px;
+      margin-bottom: $blocks-spacings-medium;
     }
 
     .icon--journal-logo {

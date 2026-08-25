@@ -27,12 +27,12 @@
             flex-direction: row;
             flex-wrap: wrap;
             width: 50%;
-            margin-left: 40px;
+            margin-left: $blocks-spacings-extra-large;
             margin-right: -40px;
 
             @include breakpoint('small-') {
-                margin-left: 20px;
-                margin-top: 32px;
+                margin-left: $blocks-spacings-medium-small;
+                margin-top: $blocks-spacings-double;
                 width: 100%;
             }
 
@@ -58,10 +58,10 @@
             }
 
             .type {
-                margin-top: 36px;
+                margin-top: $blocks-spacings-large;
 
                 @include breakpoint('xsmall') {
-                    margin-top: 12px;
+                    margin-top: $blocks-spacings-small;
                     font-size: 12px;
                 }
             }
@@ -69,7 +69,7 @@
             .title {
                 font-size: 38px;
                 line-height: 36px;
-                margin-top: 20px;
+                margin-top: $blocks-spacings-medium-small;
 
                 @include breakpoint('xsmall') {
                     margin-top: 0;
@@ -79,7 +79,7 @@
             }
 
             .f-body-editorial {
-                margin-top: 20px;
+                margin-top: $blocks-spacings-medium-small;
                 color: $colors-scales-grey-80;
 
                 @include breakpoint('xsmall') {
@@ -95,14 +95,14 @@
                 height: auto;
 
                 @include breakpoint('xsmall') {
-                    padding-top: 8px;
-                    padding-bottom: 8px;
+                    padding-top: $blocks-spacings-half;
+                    padding-bottom: $blocks-spacings-half;
                     text-align: left;
                 }
             }
 
             .m-story-listing__img {
-                margin-top: 20px;
+                margin-top: $blocks-spacings-medium-small;
                 height: 100%;
                 width: 100%;
                 aspect-ratio: 16/9;
@@ -113,7 +113,7 @@
             display: flex;
             flex-direction: row;
             width: 50%;
-            padding-right: 40px;
+            padding-right: $blocks-spacings-extra-large;
 
             @include breakpoint('xsmall') {
                 padding-bottom: 10px !important;
@@ -126,16 +126,16 @@
             .m-story__link {
                 width: 100%;
                 height: auto;
-                padding-bottom: 16px;
+                padding-bottom: $blocks-spacings-default;
 
                 @include breakpoint('xsmall') {
-                    padding-top: 8px;
-                    padding-bottom: 8px;
+                    padding-top: $blocks-spacings-half;
+                    padding-bottom: $blocks-spacings-half;
                 }
             }
 
             .m-story-listing__img {
-                margin-top: 20px;
+                margin-top: $blocks-spacings-medium-small;
                 height: auto;
                 width: 100%;
                 aspect-ratio: 16/9;
@@ -146,7 +146,7 @@
             }
 
             .type {
-                margin-top: 8px;
+                margin-top: $blocks-spacings-half;
                 line-height: 28px;
 
                 @include breakpoint('xsmall') {

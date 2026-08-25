@@ -21,7 +21,6 @@ Spaces and wraps
 
 .m-inline-list__item {
   flex: 0 0 auto;
-  margin-top: 12px;
-  margin-left: 12px;
+  margin-top: $blocks-spacings-small;
+  margin-left: $blocks-spacings-small;
 }
-

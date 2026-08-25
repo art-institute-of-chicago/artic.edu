@@ -55,7 +55,7 @@
   @include breakpoint('medium+') {
     display: flex;
     flex-flow: row nowrap;
-    margin-top: 24px;
+    margin-top: $blocks-spacings-medium;
   }
 }
 
@@ -92,7 +92,7 @@
 
 .o-collection-listing__col-right .o-pinboard {
   @include breakpoint('small-') {
-    padding-top: 20px;
+    padding-top: $blocks-spacings-medium-small;
     border-top: 0 none;
   }
 }
@@ -100,7 +100,7 @@
 // "Load more artwork" button
 .o-collection-listing .m-links-bar--buttons {
 
-  margin-top: 36px;
+  margin-top: $blocks-spacings-large;
   padding-top: 0;
 
   &:before {

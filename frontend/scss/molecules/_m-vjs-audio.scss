@@ -2,7 +2,7 @@
 
   $color-audio-dark: $colors-scales-grey-72;
 
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 
   &.m-vjs-audio--collapse {
     margin-top: 0;

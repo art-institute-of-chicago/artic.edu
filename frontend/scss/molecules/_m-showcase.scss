@@ -253,7 +253,7 @@
         &.showcase--variation-default {
 
             .showcase-date {
-                margin-top: 28px;
+                margin-top: $blocks-spacings-medium-large;
                 color: $colors-names-rlc-fire-opal;
             }
         }
@@ -311,7 +311,7 @@
                 color: $colors-scales-grey-0;
             }
             .showcase-date {
-                margin-top: 28px;
+                margin-top: $blocks-spacings-medium-large;
                 color: $colors-names-rlc-sunglow;
             }
             .showcase-link {

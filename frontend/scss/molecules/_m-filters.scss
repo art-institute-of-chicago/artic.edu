@@ -26,7 +26,7 @@
 }
 
 .m-filters__whittle-down input[type=text] {
-  padding-right: 48px;
+  padding-right: $blocks-spacings-triple;
 }
 
 .m-filters__whittle-down button {
@@ -47,7 +47,7 @@
   padding-bottom: 1px;
 
   @include breakpoint('medium+') {
-    padding-top: 12px;
+    padding-top: $blocks-spacings-small;
     padding-bottom: 0;
   }
 
@@ -63,7 +63,7 @@
 }
 
 .m-filters__list>li {
-  margin-top: 8px;
+  margin-top: $blocks-spacings-half;
 
   @include breakpoint('medium+') {
     margin-top: 4px;
@@ -121,7 +121,7 @@
 .m-filters__dropdown-down-arrow {
 
   .dropdown__trigger {
-    padding-right: 8px;
+    padding-right: $blocks-spacings-half;
 
     .button {
       display: flex;

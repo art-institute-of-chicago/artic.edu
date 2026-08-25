@@ -230,7 +230,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      margin-top: 32px;
+      margin-top: $blocks-spacings-double;
       padding: 0 16px;
     }
 
@@ -239,7 +239,7 @@
     }
 
     .header-cta-button {
-      margin-top: 32px;
+      margin-top: $blocks-spacings-double;
     }
   }
 
@@ -533,7 +533,7 @@ a.m-media__img:hover object {
   display: block;
   position: relative;
   min-height: min-content;
-  padding-right: 60px;
+  padding-right: $blocks-spacings-largest;
 }
 
 .m-media figcaption .f-caption-title,
@@ -676,11 +676,11 @@ a.m-media__img:hover object {
 }
 
 .o-article--video .m-media {
-  margin-top: 28px;
+  margin-top: $blocks-spacings-medium-large;
 
   @include breakpoint('large+') {
     margin-top: 0;
-    margin-bottom: 28px;
+    margin-bottom: $blocks-spacings-medium-large;
   }
 }
 

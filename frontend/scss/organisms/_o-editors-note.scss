@@ -37,15 +37,15 @@
     margin-bottom: 9px;
 
     @include breakpoint('small+') {
-      margin-bottom: 12px;
+      margin-bottom: $blocks-spacings-small;
     }
 
     @include breakpoint('medium+') {
-      margin-bottom: 16px;
+      margin-bottom: $blocks-spacings-default;
     }
 
     @include breakpoint('large+') {
-      margin-bottom: 20px;
+      margin-bottom: $blocks-spacings-medium-small;
     }
 
     @include breakpoint('xlarge') {
@@ -88,6 +88,6 @@
   }
 
   .o-editors-note__author {
-    margin-top: 12px;
+    margin-top: $blocks-spacings-small;
   }
 }

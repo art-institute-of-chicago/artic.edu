@@ -1,7 +1,7 @@
 
 
 .m-results-title {
-  margin-bottom: 40px;
+  margin-bottom: $blocks-spacings-extra-large;
 
   display: flex;
   position: relative;
@@ -52,7 +52,7 @@
 
 .m-results-title__links li {
   flex: 0 0 auto;
-  margin-left: 20px;
+  margin-left: $blocks-spacings-medium-small;
 }
 
 .m-results-title__links a {

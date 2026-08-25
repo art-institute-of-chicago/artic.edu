@@ -21,11 +21,11 @@ hr,
   border-top: 1px solid $colors-themes-light-mode-rules-primary;
 
   @include breakpoint('small+') {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
   }
 
   @include breakpoint('medium+') {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 
   &:first-child {
@@ -33,14 +33,14 @@ hr,
   }
 
   .m-listing-header + & {
-    margin-top: 16px;
+    margin-top: $blocks-spacings-default;
   }
 
   .o-grid-listing + & {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
 
     @include breakpoint('medium+') {
-      margin-top: 60px;
+      margin-top: $blocks-spacings-largest;
     }
   }
 

@@ -1,8 +1,8 @@
 @use "sass:map";
 .o-article__primary-actions {
   position: relative;
-  margin-top: 28px;
-  padding-top: 8px;
+  margin-top: $blocks-spacings-medium-large;
+  padding-top: $blocks-spacings-half;
 
   // WEB-461: Fix medium figure covering up primary actions
   z-index: 2;
@@ -13,7 +13,7 @@
   }
 
   @include breakpoint('medium+') {
-    margin-top: 28px;
+    margin-top: $blocks-spacings-medium-large;
   }
 
   @include breakpoint('large+') {
@@ -24,7 +24,7 @@
 
     //&.o-article__primary-actions--inline-header {
     .m-article-header--gallery~& {
-      margin-top: 40px;
+      margin-top: $blocks-spacings-extra-large;
     }
   }
 
@@ -52,7 +52,7 @@
 }
 
 .o-article__primary-actions>*:not(:nth-child(1)):not([class*='f-']):not(.o-collapsing-nav) {
-  margin-top: 8px;
+  margin-top: $blocks-spacings-half;
 
   @include breakpoint('large+') {
     margin-top: 52px;
@@ -69,12 +69,12 @@
 
 .o-article__primary-actions>.m-article-actions:nth-child(1) {
   @include breakpoint('large+') {
-    margin-top: 8px;
+    margin-top: $blocks-spacings-half;
   }
 }
 
 .o-article__primary-actions .o-injected-container:not(:nth-child(1)):not([class*=f-]):not(.o-collapsing-nav) {
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 
   .m-link-list {
     margin-top: 0px;
@@ -122,11 +122,11 @@
       }
 
       &~.o-article__secondary-actions {
-        margin-top: 8px;
+        margin-top: $blocks-spacings-half;
       }
 
       &~.o-article__body {
-        margin-top: 20px;
+        margin-top: $blocks-spacings-medium-small;
       }
 
       &::before {
@@ -139,11 +139,11 @@
       width: colspan(58, medium);
 
       &~.o-article__secondary-actions {
-        margin-top: 28px;
+        margin-top: $blocks-spacings-medium-large;
       }
 
       &~.o-article__body {
-        margin-top: 28px;
+        margin-top: $blocks-spacings-medium-large;
       }
     }
 
@@ -232,11 +232,11 @@
 }
 
 .m-article-actions--journal__issues a {
-  margin-bottom: 12px;
+  margin-bottom: $blocks-spacings-small;
 
   @include breakpoint('medium-') {
     margin-bottom: 0;
-    margin-right: 12px;
+    margin-right: $blocks-spacings-small;
   }
 }
 
@@ -280,16 +280,16 @@
 
   .p-digitalpublications-show &,
   .p-digitalpublications-showlisting & {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 
   .is-sidebar-overlay & .o-sticky-sidebar__sticker {
     overflow-y: scroll;
-    padding-bottom: 60px;
+    padding-bottom: $blocks-spacings-largest;
   }
 
   .m-article-actions--publication__logo {
-    margin-bottom: 40px;
+    margin-bottom: $blocks-spacings-extra-large;
     color: $colors-scales-grey-0;
     display: flex;
     align-items: center;
@@ -306,7 +306,7 @@
 
     .p-digitalpublicationarticle-show.p-t-contributions:not(.is-sidebar-overlay) &,
     .p-digitalpublicationarticle-show.p-t-entry:not(.is-sidebar-overlay) & {
-      margin-bottom: 40px;
+      margin-bottom: $blocks-spacings-extra-large;
     }
 
     &::before {
@@ -349,8 +349,8 @@ margin-right: colspan(2, #{$name});
     }
 
     @include breakpoint('medium-') {
-      margin-top: 40px;
-      padding-right: 20px;
+      margin-top: $blocks-spacings-extra-large;
+      padding-right: $blocks-spacings-medium-small;
       width: 100%;
     }
 
@@ -398,7 +398,7 @@ margin-right: colspan(2, #{$name});
   .m-article-actions {
     margin-top: 50px;
     margin-bottom: 50px;
-    padding-top: 8px;
+    padding-top: $blocks-spacings-half;
   }
 }
 
@@ -438,7 +438,7 @@ margin-right: colspan(2, #{$name});
     }
 
     hr {
-      margin-bottom: 24px;
+      margin-bottom: $blocks-spacings-medium;
 
       @include breakpoint('large+') {
         margin-bottom: 0;

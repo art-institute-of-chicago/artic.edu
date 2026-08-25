@@ -15,7 +15,7 @@
 }
 
 .m-search-triggers li:not(:first-child) {
-  margin-left: 12px;
+  margin-left: $blocks-spacings-small;
 }
 
 .m-search-triggers button {

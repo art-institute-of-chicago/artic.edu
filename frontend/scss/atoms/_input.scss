@@ -49,7 +49,7 @@ Basic text input:
   }
 
   label + & {
-    margin-top: 16px;
+    margin-top: $blocks-spacings-default;
   }
 }
 
@@ -90,7 +90,7 @@ Basic text input, with counter:
   position: relative;
 
   label + & {
-    margin-top: 16px;
+    margin-top: $blocks-spacings-default;
   }
 }
 
@@ -141,7 +141,7 @@ Date select input - clicking the calender launches a date select modal. Better d
   flex-flow: row nowrap;
 
   label + & {
-    margin-top: 16px;
+    margin-top: $blocks-spacings-default;
   }
 }
 

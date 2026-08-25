@@ -75,7 +75,7 @@
                         border: 2px solid $colors-scales-grey-0;
 
                         @include breakpoint('small-') {
-                            margin-top: 20px;
+                            margin-top: $blocks-spacings-medium-small;
                         }
                     }
                 }
@@ -87,7 +87,7 @@
             width: 100%;
             height: auto;
             object-fit: cover;
-            margin-top: 40px;
+            margin-top: $blocks-spacings-extra-large;
             margin-bottom: 56px;
 
             @include breakpoint('small-') {
@@ -100,8 +100,8 @@
             width: 100%;
             height: auto;
             object-fit: cover;
-            margin-top: 40px;
-            margin-bottom: 40px;
+            margin-top: $blocks-spacings-extra-large;
+            margin-bottom: $blocks-spacings-extra-large;
 
             @include breakpoint('small-') {
                 display: block;
@@ -151,7 +151,7 @@
                     >h3 {
                         font-size: 21px;
                         line-height: 28px;
-                        margin-top: 20px;
+                        margin-top: $blocks-spacings-medium-small;
                         text-transform: uppercase;
                         font-family: $sans-serif-font--loaded;
 
@@ -163,7 +163,7 @@
                     >p {
                         font-size: 14px;
                         line-height: 20px;
-                        margin-top: 20px;
+                        margin-top: $blocks-spacings-medium-small;
                         font-family: $serif-font--loaded;
 
                         @include breakpoint('small-') {

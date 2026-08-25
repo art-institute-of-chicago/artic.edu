@@ -14,22 +14,22 @@
 
             .featured-pages-grid_card:nth-child(1) {
                 padding-left: 0;
-                padding-right: 20px;
+                padding-right: $blocks-spacings-medium-small;
             }
 
             .featured-pages-grid_card:nth-child(2) {
-                padding-left: 20px;
+                padding-left: $blocks-spacings-medium-small;
                 padding-right: 0px;
                 border-right: 0;
             }
 
             .featured-pages-grid_card:nth-child(3) {
                 padding-left: 0;
-                padding-right: 20px;
+                padding-right: $blocks-spacings-medium-small;
             }
 
             .featured-pages-grid_card:nth-child(4) {
-                padding-left: 20px;
+                padding-left: $blocks-spacings-medium-small;
                 padding-right: 0px;
             }
         }
@@ -40,22 +40,22 @@
 
             .featured-pages-grid_card:nth-child(1) {
                 padding-left: 0;
-                padding-right: 20px;
+                padding-right: $blocks-spacings-medium-small;
             }
 
             .featured-pages-grid_card:nth-child(2) {
-                padding-left: 20px;
+                padding-left: $blocks-spacings-medium-small;
                 padding-right: 0px;
                 border-right: 0;
             }
 
             .featured-pages-grid_card:nth-child(3) {
                 padding-left: 0;
-                padding-right: 20px;
+                padding-right: $blocks-spacings-medium-small;
             }
 
             .featured-pages-grid_card:nth-child(4) {
-                padding-left: 20px;
+                padding-left: $blocks-spacings-medium-small;
                 padding-right: 0px;
             }
         }
@@ -118,7 +118,7 @@
     }
 
     .featured-pages-grid_row:last-child {
-        padding-bottom: 20px;
+        padding-bottom: $blocks-spacings-medium-small;
         border-bottom: 1px solid #e6e6e6;
 
         @include breakpoint('xsmall') {
@@ -130,15 +130,15 @@
             padding-top: 0;
 
             @include breakpoint('xsmall') {
-                padding-top: 20px;
+                padding-top: $blocks-spacings-medium-small;
                 padding-left: 0;
                 padding-right: 0;
-                padding-bottom: 20px;
+                padding-bottom: $blocks-spacings-medium-small;
             }
 
             .featured-pages-grid_details {
                 border-top: 1px solid #e6e6e6;
-                padding-top: 20px;
+                padding-top: $blocks-spacings-medium-small;
 
                 @include breakpoint('xsmall') {
                     padding-top: 0;
@@ -161,10 +161,10 @@
 
     .featured-pages-grid_card {
         width: 25%;
-        padding-top: 20px;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-bottom: 40px;
+        padding-top: $blocks-spacings-medium-small;
+        padding-left: $blocks-spacings-medium-small;
+        padding-right: $blocks-spacings-medium-small;
+        padding-bottom: $blocks-spacings-extra-large;
         border-right: 1px solid #e6e6e6;
 
         @include breakpoint('medium') {
@@ -177,10 +177,10 @@
 
         @include breakpoint('xsmall') {
             width: 100%;
-            padding-top: 20px;
+            padding-top: $blocks-spacings-medium-small;
             padding-left: 0;
             padding-right: 0;
-            padding-bottom: 20px;
+            padding-bottom: $blocks-spacings-medium-small;
             border-right: 0;
         }
 
@@ -190,11 +190,11 @@
             display: inline-block;
 
             @include breakpoint('medium') {
-                padding-top: 20px;
+                padding-top: $blocks-spacings-medium-small;
             }
 
             @include breakpoint('small') {
-                padding-top: 20px;
+                padding-top: $blocks-spacings-medium-small;
             }
 
             @include breakpoint('xsmall') {
@@ -206,7 +206,7 @@
                 aspect-ratio: 16/9;
                 height: auto;
                 width: 100%;
-                margin-bottom: 12px;
+                margin-bottom: $blocks-spacings-small;
 
                 @include breakpoint('xsmall') {
                     display: none;

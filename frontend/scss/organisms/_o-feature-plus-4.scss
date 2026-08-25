@@ -57,7 +57,7 @@
 @include breakpoint('small') {
 
   .o-feature-plus-4__feature {
-    padding-bottom: 32px;
+    padding-bottom: $blocks-spacings-double;
   }
 
   .o-feature-plus-4__items-1 > *,

@@ -214,10 +214,10 @@
 
     &>li {
       flex: 0 0 auto;
-      margin-left: 16px;
+      margin-left: $blocks-spacings-default;
 
       @include breakpoint('medium+') {
-        margin-left: 32px;
+        margin-left: $blocks-spacings-double;
       }
     }
   }
@@ -301,13 +301,13 @@
     box-shadow: 0 4px 20px -20px rgba($colors-scales-grey-100, 15%);
     height: 240px;
     left: -6px;
-    margin-top: 16px;
+    margin-top: $blocks-spacings-default;
     position: fixed;
     width: 100vw;
 
     @include breakpoint('large+') {
       background: linear-gradient(to right, $colors-scales-grey-5 50%, transparent 50%);
-      margin-top: 20px;
+      margin-top: $blocks-spacings-medium-small;
     }
 
     &>.details__container {
@@ -336,8 +336,8 @@
     }
 
     img {
-      margin-bottom: 32px;
-      margin-top: 32px;
+      margin-bottom: $blocks-spacings-double;
+      margin-top: $blocks-spacings-double;
       max-height: 170px;
       max-width: 239px;
       object-fit: cover;
@@ -376,7 +376,7 @@
       }
 
       p {
-        padding-bottom: 12px;
+        padding-bottom: $blocks-spacings-small;
       }
     }
 
@@ -384,9 +384,9 @@
       flex-basis: 25%;
       font-size: 16px;
       line-height: 32px;
-      margin-bottom: 24px;
-      margin-top: 24px;
-      padding-left: 32px;
+      margin-bottom: $blocks-spacings-medium;
+      margin-top: $blocks-spacings-medium;
+      padding-left: $blocks-spacings-double;
 
       @include breakpoint('medium-') {
         flex-basis: 33%;
@@ -406,7 +406,7 @@
       font-size: 12px;
       font-weight: 325;
       line-height: 16px;
-      margin-bottom: 8px;
+      margin-bottom: $blocks-spacings-half;
       text-transform: uppercase;
     }
 
@@ -420,7 +420,7 @@
   &>.details {
     left: 67%;
     margin-left: calc(-4.6875vw / 2);
-    padding-left: 32px;
+    padding-left: $blocks-spacings-double;
     position: absolute;
     top: 24px;
 

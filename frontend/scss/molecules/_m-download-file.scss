@@ -21,7 +21,7 @@
   display: flex;
   position: relative;
   align-items: flex-start;
-  margin-top: 40px;
+  margin-top: $blocks-spacings-extra-large;
   border: 1px solid $colors-themes-light-mode-rules-primary;
 
   & + & {
@@ -39,13 +39,13 @@
 .m-download-file__meta {
   flex: 1;
   margin-bottom: 80px;
-  padding-right: 20px;
+  padding-right: $blocks-spacings-medium-small;
   overflow-wrap: break-word;
   hyphens: auto;
   word-break: break-all;
 
   &:first-child {
-    margin-left: 20px;
+    margin-left: $blocks-spacings-medium-small;
   }
 }
 

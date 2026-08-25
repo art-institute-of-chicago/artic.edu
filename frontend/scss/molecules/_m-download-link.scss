@@ -3,9 +3,9 @@
   align-items: baseline;
   position: relative;
 
-  margin-top: 16px;
+  margin-top: $blocks-spacings-default;
 
   .f-link {
-    padding-left: 12px;
+    padding-left: $blocks-spacings-small;
   }
 }

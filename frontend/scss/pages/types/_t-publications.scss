@@ -1,12 +1,12 @@
 .publications-subnav {
     text-align: left !important;
-    padding-bottom: 28px;
+    padding-bottom: $blocks-spacings-medium-large;
     border-bottom: 1px solid $colors-scales-grey-10;
     overflow-x: auto;
     overflow-y: hidden;
 
     @include breakpoint('small-') {
-        padding-bottom: 20px;
+        padding-bottom: $blocks-spacings-medium-small;
     }
 
     ul {
@@ -37,7 +37,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding-bottom: 20px;
+        padding-bottom: $blocks-spacings-medium-small;
         border-bottom: 1px solid $colors-scales-grey-10;
         margin-bottom: 30px;
 
@@ -45,7 +45,7 @@
             font-size: 21px;
             margin-bottom: 0;
             > * {
-                padding-bottom: 20px;
+                padding-bottom: $blocks-spacings-medium-small;
             }
         }
     }
@@ -113,11 +113,11 @@
 
             @include breakpoint('medium-') {
                 max-width: 100%;
-                padding-bottom: 20px;
+                padding-bottom: $blocks-spacings-medium-small;
 
                 &:not(:first-child) {
                     border-top: 1px solid $colors-scales-grey-10;
-                    padding-top: 20px;
+                    padding-top: $blocks-spacings-medium-small;
                 }
             }
 
@@ -130,7 +130,7 @@
             >p {
                 font-family: $sans-serif-font--loaded;
                 font-size: 17px;
-                margin-bottom: 60px;
+                margin-bottom: $blocks-spacings-largest;
                 font-weight: 300;
                 line-height: 28px;
             }

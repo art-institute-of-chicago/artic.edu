@@ -4,26 +4,26 @@
   height: 240px;
   overflow: hidden;
 
-  margin-top: 36px;
+  margin-top: $blocks-spacings-large;
 
   &+* {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
   }
 
   @include breakpoint('small+') {
-    margin-top: 48px;
+    margin-top: $blocks-spacings-triple;
 
     &+* {
-      margin-top: 48px;
+      margin-top: $blocks-spacings-triple;
     }
   }
 
   @include breakpoint('medium+') {
     height: 200px;
-    margin-top: 60px;
+    margin-top: $blocks-spacings-largest;
 
     &+* {
-      margin-top: 60px;
+      margin-top: $blocks-spacings-largest;
     }
   }
 
@@ -83,7 +83,7 @@
 
   .m-cta-banner__msg.f-list-2 {
     & {
-      margin-top: 16px;
+      margin-top: $blocks-spacings-default;
     }
 
     @include breakpoint('large+') {

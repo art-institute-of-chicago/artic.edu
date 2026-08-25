@@ -13,12 +13,12 @@
     & > div {
       &:first-child {
         margin: 24px;
-        margin-right: 12px;
+        margin-right: $blocks-spacings-small;
       }
 
       &:last-child {
         margin: 24px;
-        margin-left: 12px;
+        margin-left: $blocks-spacings-small;
       }
     }
 
@@ -33,7 +33,7 @@
   // From _o-blocks c. L275
   .o-blocks & .hr.m-mobile-block__hr--top {
     min-width: 100%;
-    margin-top: 32px;
+    margin-top: $blocks-spacings-double;
 
     @include breakpoint('small+') {
       margin-top: 44px;
