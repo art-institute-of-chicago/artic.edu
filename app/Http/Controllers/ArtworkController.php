@@ -25,7 +25,7 @@ class ArtworkController extends BaseScopedController
         parent::__construct();
     }
 
-    public function show($id, $slug = null)
+    public function show(int $id, $slug = null)
     {
         try {
             $item = Artwork::query()
