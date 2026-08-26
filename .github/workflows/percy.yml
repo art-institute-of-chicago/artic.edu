@@ -1,0 +1,68 @@
+name: Percy tests
+on: [pull_request]
+permissions:
+    contents: read
+jobs:
+    percy:
+        runs-on: ubuntu-22.04
+        env:
+            NODE_OPTIONS: "--openssl-legacy-provider"
+            CI: 1
+            STYLES_SERVICE_URL: ${{ secrets.STYLES_SERVICE_URL }}
+            PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        steps:
+            - name: Install PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.5
+            - name: Install Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: lts/iron
+            - name: Install Postgres
+              id: postgres-testing
+              uses: ikalnytskyi/action-setup-postgres@v7
+              with:
+                  username: homestead
+                  password: secret
+                  database: testing
+                  port: 5432
+                  postgres-version: 16
+
+            - name: Install pgvector
+              run: sudo apt-get install -y postgresql-16-pgvector
+
+            - name: Checkout code
+              uses: actions/checkout@v6
+            - name: Install PHP dependencies
+              run: composer install --no-interaction --no-progress --no-scripts
+            # Remove the closer-look dependency, as in testing.yml: it's a
+            # private package that would otherwise require an SSH key in CI.
+            - name: Remove private NPM package
+              run: npm uninstall closer-look --save
+            - name: Install JS dependencies
+              run: npm ci
+            - name: Migrate database
+              run: php artisan migrate --env=testing
+            - name: Generate key
+              run: php artisan key:generate --env=testing
+            - name: Seed database
+              run: php artisan db:seed --env=testing
+            - name: Seed Percy fixture content
+              run: php artisan db:seed --env=testing --class=PercyFixtureSeeder
+            - name: Build Twill assets
+              run: php artisan twill:build --env=testing
+            - name: Build Javascript assets
+              run: npm run build:dev
+            - name: Install Playwright browser
+              run: npx playwright install --with-deps chromium
+            - name: Start app server and run Percy snapshots
+              env:
+                  BASE_URL: http://localhost:8000
+              run: |
+                  nohup php artisan serve --env=testing --port=8000 > server.log 2>&1 &
+                  for i in $(seq 1 30); do
+                    curl -sf "$BASE_URL" > /dev/null && break
+                    sleep 1
+                  done
+                  npm run test:percy
