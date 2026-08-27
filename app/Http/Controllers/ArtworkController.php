@@ -216,14 +216,19 @@ class ArtworkController extends BaseScopedController
                 return null;
             }
 
+            // dimensions_detail carries no unit; derive it from the free-text
+            // dimensions string (e.g. "78 × 65.3 cm (30 3/4 × 25 3/4 in.)").
+            $dimensionsText = $m?->dimensions ?? '';
+            $unitCode = 'CMT';
+            $unitText = 'cm';
+
+            if (stripos($dimensionsText, 'in.') !== false || stripos($dimensionsText, 'inches') !== false) {
+                $unitCode = 'INH';
+                $unitText = 'in';
+            }
+
             foreach ($details as $detail) {
                 $detail = is_array($detail) ? $detail : (array) $detail;
-
-                $unitCode = match (strtolower((string) ($detail['unit'] ?? ''))) {
-                    'cm' => 'CMT',
-                    'in' => 'INH',
-                    default => null,
-                };
 
                 $dimensions = [];
 
@@ -234,16 +239,12 @@ class ArtworkController extends BaseScopedController
                         continue;
                     }
 
-                    $quantitativeValue = [
+                    $dimensions[$key] = [
                         '@type' => 'QuantitativeValue',
                         'value' => (float) $value,
+                        'unitCode' => $unitCode,
+                        'unitText' => $unitText,
                     ];
-
-                    if ($unitCode !== null) {
-                        $quantitativeValue['unitCode'] = $unitCode;
-                    }
-
-                    $dimensions[$key] = $quantitativeValue;
                 }
 
                 if (!empty($dimensions)) {
@@ -302,9 +303,8 @@ class ArtworkController extends BaseScopedController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'VisualArtwork',
-                'alternateName' => 'main_reference_number',
-                'dateCreated' => 'date_display',
                 'inLanguage' => SchemaMapper::inLanguage(),
+                'dateCreated' => static fn ($m) => ($m->date_start ?? $m->date_end) !== null ? (string) ($m->date_start ?? $m->date_end) : null,
                 'artMedium' => 'medium_display',
                 'size' => 'dimensions',
                 'artform' => 'artwork_type_title',
@@ -382,7 +382,6 @@ class ArtworkController extends BaseScopedController
                         'encodingFormat' => 'application/ld+json',
                     ];
                 },
-                'creator' => $creators,
                 'sameAs' => static function ($m) {
                     $id = $m->id ?? null;
 

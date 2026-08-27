@@ -97,7 +97,7 @@ class MagazineIssueController extends FrontController
             [
                 '@type' => 'PublicationIssue',
                 'inLanguage' => SchemaMapper::inLanguage(),
-                'datePublished' => SchemaMapper::iso('publish_start_date'),
+                'datePublished' => SchemaMapper::date('publish_start_date'),
                 'url' => SchemaMapper::canonical('magazine-issues.show'),
                 'mainEntityOfPage' => SchemaMapper::canonical('magazine-issues.show'),
                 'isPartOf' => [

@@ -291,6 +291,10 @@ class VideoController extends FrontController
             [
                 '@type' => 'VideoObject',
                 'inLanguage' => SchemaMapper::inLanguage(),
+                // The Video model stores its display title on the plain `title`
+                // column; declaring it explicitly keeps the entity's name from
+                // depending on the parent WebPage fallback chain.
+                'name' => 'title',
                 'description' => SchemaMapper::text('list_description', 'heading', 'description'),
                 'thumbnailUrl' => $videoThumbnail,
                 'uploadDate' => SchemaMapper::iso('uploaded_at'),

@@ -171,7 +171,7 @@ class EventsController extends FrontController
 
     protected function show($id, $slug = null)
     {
-        $item = $this->repository->published()->findOrFail((int) $id);
+        $item = $this->repository->published()->with('dateRules')->findOrFail((int) $id);
 
         $canonicalPath = route('events.show', $item);
 
@@ -309,6 +309,81 @@ class EventsController extends FrontController
             }
         };
 
+        // Recurring events carry DateRule records (RRULE-backed). Emit a
+        // schema.org Schedule so the repetition is machine-readable, rather
+        // than relying on the flattened startDate/endDate window.
+        $eventSchedule = static function ($m, $mapper) {
+            // dateRules is an Eloquent relation; only read it when eager
+            // loaded (show() loads it) so factory-made models never trigger
+            // a lazy DB query.
+            if (!$m->relationLoaded('dateRules')) {
+                return null;
+            }
+
+            $rules = $m->dateRules;
+
+            if (empty($rules)) {
+                return null;
+            }
+
+            // Date rules carry whole dates; emit them as Y-m-d rather than a
+            // full timestamp so the rule stays human-readable in the markup.
+            $dateOnly = static fn ($value) => $value
+                ? \Carbon\Carbon::parse($value)->toDateString()
+                : null;
+
+            $schedules = [];
+
+            foreach ($rules as $rule) {
+                if (method_exists($rule, 'getRuleType') && $rule->getRuleType() !== 'recurrent') {
+                    continue;
+                }
+
+                $every = (int) ($rule->every ?? 1);
+                $type = method_exists($rule, 'getRecurringType') ? $rule->getRecurringType() : 'DAILY';
+                $repeatFrequency = match ($type) {
+                    'WEEKLY' => "P{$every}W",
+                    'MONTHLY' => "P{$every}M",
+                    default => "P{$every}D",
+                };
+
+                $schedule = [
+                    '@type' => 'Schedule',
+                    'startDate' => $dateOnly($rule->start_date ?? null),
+                    'repeatFrequency' => $repeatFrequency,
+                ];
+
+                if (!empty($rule->end_date)) {
+                    $schedule['endDate'] = $dateOnly($rule->end_date);
+                }
+
+                if ($type === 'WEEKLY' && method_exists($rule, 'getDays')) {
+                    $days = array_values(array_filter($rule->getDays()));
+
+                    if (!empty($days)) {
+                        $schedule['byDay'] = $days;
+                    }
+                }
+
+                if ($type === 'MONTHLY' && method_exists($rule, 'getMonthlyRepeatType') && $rule->getMonthlyRepeatType() === 'first_day') {
+                    $schedule['byDay'] = '1' . strtoupper(substr(($rule->start_date ?? \Carbon\Carbon::now())->format('D'), 0, 2));
+                }
+
+                $schedules[] = $schedule;
+            }
+
+            if (empty($schedules)) {
+                return null;
+            }
+
+            return count($schedules) === 1 ? $schedules[0] : $schedules;
+        };
+
+        $isRecurring = static fn ($m) => $m->relationLoaded('dateRules')
+            && collect($m->dateRules)->contains(
+                fn ($rule) => method_exists($rule, 'getRuleType') && $rule->getRuleType() === 'recurrent'
+            );
+
         $eventAudience = static function ($m) {
             $labels = [];
 
@@ -438,9 +513,10 @@ class EventsController extends FrontController
                 '@type' => 'Event',
                 'inLanguage' => SchemaMapper::inLanguage(),
                 'description' => SchemaMapper::text('short_description', 'list_description'),
-                'startDate' => SchemaMapper::iso('date_start'),
-                'endDate' => SchemaMapper::iso('date_end'),
+                'startDate' => static fn ($m, $mapper) => $isRecurring($m) ? null : $mapper->toIso8601($m->date_start ?? null),
+                'endDate' => static fn ($m, $mapper) => $isRecurring($m) ? null : $mapper->toIso8601($m->date_end ?? null),
                 'doorTime' => 'door_time',
+                'eventSchedule' => $eventSchedule,
                 'duration' => $eventDuration,
                 'eventStatus' => SchemaMapper::literal('https://schema.org/EventScheduled'),
                 'isAccessibleForFree' => static fn ($m) => !empty($m->is_free) ? true : null,
