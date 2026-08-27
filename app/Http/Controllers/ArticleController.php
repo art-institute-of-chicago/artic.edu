@@ -304,6 +304,7 @@ class ArticleController extends FrontController
             parent::jsonLdDefinition($model),
             [
                 '@type' => static fn ($m) => ($m->article_type ?? $m->articleType ?? 'article') === 'editorial' ? 'BlogPosting' : 'Article',
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'headline' => 'title',
                 'description' => SchemaMapper::text('description', 'heading', 'list_description'),
                 'abstract' => SchemaMapper::text('list_description'),

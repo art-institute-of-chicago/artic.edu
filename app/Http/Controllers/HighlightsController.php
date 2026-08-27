@@ -93,6 +93,7 @@ class HighlightsController extends FrontController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'Article',
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'description' => SchemaMapper::text('description', 'short_copy', 'list_description'),
                 'url' => SchemaMapper::canonical('highlights.show'),
                 'mainEntityOfPage' => SchemaMapper::canonical('highlights.show'),

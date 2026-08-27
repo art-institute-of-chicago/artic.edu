@@ -124,6 +124,7 @@ class GenericPagesController extends FrontController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'WebPage',
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'description' => SchemaMapper::text('meta_description', 'short_description', 'listing_description', 'description'),
                 'url' => $genericPageUrl,
                 'mainEntityOfPage' => $genericPageUrl,

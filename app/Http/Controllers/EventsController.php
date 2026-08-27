@@ -436,6 +436,7 @@ class EventsController extends FrontController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'Event',
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'description' => SchemaMapper::text('short_description', 'list_description'),
                 'startDate' => SchemaMapper::iso('date_start'),
                 'endDate' => SchemaMapper::iso('date_end'),
