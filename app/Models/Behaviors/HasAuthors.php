@@ -53,7 +53,7 @@ trait HasAuthors
         }
 
         if ($this->author_display) {
-            return '<span itemprop="author">' . $this->author_display . '</span>';
+            return '<span>' . $this->author_display . '</span>';
         }
     }
 }
