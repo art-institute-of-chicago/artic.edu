@@ -246,7 +246,7 @@
             @endif
 
             @if ($block['type'] === 'itemprop')
-                <div class='o-blocks' itemprop="{{ $block['itemprop'] }}">
+                <div class='o-blocks'>
                     @component('components.blocks._blocks')
                         @slot('blocks', $block['content'])
                     @endcomponent
@@ -260,7 +260,7 @@
                         <h2 class="f-module-title-1">{!! $item['key'] !!}</h2>
                     </dt>
                     @if (isset($item['links']) && $item['links'])
-                        <dd{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>
+                        <dd>
                             <span class="f-secondary">
                                 @foreach ($item['links'] as $link)
                                     @if (isset($link['href']))
@@ -273,7 +273,7 @@
                             </span>
                         </dd>
                     @else
-                        <dd{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>
+                        <dd>
                             <span class="f-secondary">{!! $item['value'] ?? '' !!}</span>
                         </dd>
                     @endif

@@ -14,11 +14,7 @@
     </script>
 @endif
 
-<article class="o-article{{ (empty($item->description) or $item->description === '') ? ' o-article--no-description' : '' }}" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}" itemscope itemtype="http://schema.org/CreativeWork">
-
-  @component('site.shared._schemaItemProps')
-    @slot('itemprops',$item->present()->buildSchemaItemProps() ?? null)
-  @endcomponent
+<article class="o-article{{ (empty($item->description) or $item->description === '') ? ' o-article--no-description' : '' }}" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}">
 
   {{-- Gallery-type _m-article-header never renders title --}}
   <h1 class="sr-only">{{ $item->title }}</h1>

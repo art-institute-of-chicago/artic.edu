@@ -7,7 +7,6 @@ use App\Helpers\StringHelpers;
 use App\Helpers\DateHelpers;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use App\Libraries\DamsImageService;
 use DOMDocument;
 
 /**
@@ -521,24 +520,5 @@ class ArtworkPresenter extends BasePresenter
         }
 
         return $blocks;
-    }
-
-    public function buildSchemaItemProps()
-    {
-        $itemprops = [
-            'accessMode' => 'visual',
-            'alternativeHeadline' => (!empty($this->entity->alt_titles)) ? implode(', ', $this->entity->alt_titles) : null,
-            'contributor' => (!empty($this->entity->alt_artists)) ? implode(', ', $this->entity->alt_artists) : null,
-            'about' => (!empty($this->entity->subject_titles)) ? implode(', ', $this->entity->subject_titles) : null,
-            'provider' => $this->entity->department_title,
-        ];
-
-        if ($this->entity->image_id) {
-            $dams = new DamsImageService();
-            $itemprops['thumbnailUrl'] = $dams->getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
-            $itemprops['image'] = $dams->getBaseUrl() . '2/' . $this->entity->image_id;
-        }
-
-        return $itemprops;
     }
 }

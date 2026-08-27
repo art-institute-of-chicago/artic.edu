@@ -2,13 +2,8 @@
 
 @section('content')
 
-<article itemscope itemtype="http://schema.org/Person">
-    @component('site.shared._schemaItemProps')
-      @slot('itemprops',$item->present()->itemprops ?? null)
-    @endcomponent
-
+<article>
     @component('components.molecules._m-header-block')
-        @slot('itemprop','name')
         @slot('breadcrumbs', $breadcrumbs)
         {!! $item->present()->title_display ?? $item->present()->title !!}
     @endcomponent

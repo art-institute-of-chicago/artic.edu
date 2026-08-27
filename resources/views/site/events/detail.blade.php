@@ -2,11 +2,7 @@
 
 @section('content')
 
-<article class="o-article" itemscope itemtype="http://schema.org/VisualArtsEvent">
-  @component('site.shared._schemaItemProps')
-    @slot('itemprops',$item->present()->itemprops ?? null)
-  @endcomponent
-
+<article class="o-article">
   @component('components.molecules._m-article-header')
     @slot('editorial', false)
     @slot('headerType', $item->present()->headerType)
@@ -65,7 +61,7 @@
   </div>
 
   @if ($item->description and $item->headerType !== 'super-hero')
-  <div class="o-article__intro" itemprop="description">
+  <div class="o-article__intro">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
         @slot('tag', 'div')
@@ -75,7 +71,7 @@
   @endif
 
   <div class="o-article__body o-blocks">
-    <div class='o-blocks' itemprop="description">
+    <div class='o-blocks'>
       {!! $item->renderBlocks() !!}
     </div>
 

@@ -3,12 +3,7 @@
 @section('content')
 
 <article>
-    @component('site.shared._schemaItemProps')
-      @slot('itemprops',$item->present()->itemprops ?? null)
-    @endcomponent
-
 @component('components.molecules._m-header-block')
-    @slot('itemprop','name')
     {!! $item->present()->title_display ?? $item->present()->title !!}
 @endcomponent
 

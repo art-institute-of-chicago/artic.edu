@@ -8,4 +8,3 @@
 @endif
 <meta property="og:title"      content="{{ $title }}" />
 <meta name="twitter:title"     content="{{ $title }}" />
-<meta itemprop="name"          content="{{ $title }}" />

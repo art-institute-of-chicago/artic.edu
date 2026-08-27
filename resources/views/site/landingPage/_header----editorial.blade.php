@@ -8,13 +8,6 @@
 @endphp
 
 <section class="stories">
-    <link itemprop="additionalType" href="http://schema.org/Museum" aria-hidden="true"/>
-    <link itemprop="additionalType" href="http://schema.org/LandmarksOrHistoricalBuildings" aria-hidden="true"/>
-    <link itemprop="additionalType" href="http://schema.org/LocalBusiness" aria-hidden="true"/>
-    @component('site.shared._schemaItemProps')
-      @slot('itemprops',$itemprops ?? null)
-    @endcomponent
-
     <div class="stories-header" data-behavior="editorialHeader">
         <div id="stories-header__date" class="stories-header__date">
         </div>

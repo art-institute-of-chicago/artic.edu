@@ -162,12 +162,6 @@ class LandingPagesController extends FrontController
             'hours' => Hour::today(type: $hourType)->first(),
         ];
 
-        $itemprops = [
-            'name' => 'Art Institute of Chicago',
-            'telephone' => '+13124433600',
-            'publicAccess' => 'true',
-        ];
-
         $title = '';
         if ($item->type_id === $types->search('Visit')) {
             $title = __('Visit');
@@ -211,7 +205,6 @@ class LandingPagesController extends FrontController
                         ->concat([['label' => 'FAQs', 'target' => '#FAQs']])
                         ->all(),
                     'hours' => $hours,
-                    'itemprops' => $itemprops,
                     'visit_map' => $item->imageFront('visit_map'),
                     'menuItems' => $item->menuItems,
                     'locations' => $item->locations,

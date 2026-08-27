@@ -19,5 +19,4 @@
     <meta property="og:image:width"  content="{{ $w }}" />
     <meta property="og:image:height" content="{{ $h }}" />
     <meta name="twitter:image"       content="{!! $twitterUrl !!}" />
-    <meta itemprop="image"           content="{!! $url !!}" />
 @endif
