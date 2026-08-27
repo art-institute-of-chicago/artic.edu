@@ -161,6 +161,7 @@ class InteractiveFeatureExperiencesController extends FrontController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'WebApplication',
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'description' => SchemaMapper::text('listing_description', 'description'),
                 'url' => $experienceUrl,
                 'mainEntityOfPage' => $experienceUrl,

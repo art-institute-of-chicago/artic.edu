@@ -304,6 +304,7 @@ class ArtworkController extends BaseScopedController
                 '@type' => 'VisualArtwork',
                 'alternateName' => 'main_reference_number',
                 'dateCreated' => 'date_display',
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'artMedium' => 'medium_display',
                 'size' => 'dimensions',
                 'artform' => 'artwork_type_title',

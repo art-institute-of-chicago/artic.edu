@@ -265,6 +265,7 @@ class EducatorResourcesController extends BaseScopedController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'LearningResource',
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'description' => SchemaMapper::text('short_description', 'listing_description', 'description'),
                 'url' => SchemaMapper::canonical('collection.resources.educator-resources.show'),
                 'mainEntityOfPage' => SchemaMapper::canonical('collection.resources.educator-resources.show'),

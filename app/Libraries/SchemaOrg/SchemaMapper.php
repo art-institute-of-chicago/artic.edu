@@ -469,6 +469,14 @@ class SchemaMapper
     }
 
     /**
+     * The page's language, for types that support CreativeWork.inLanguage.
+     */
+    public static function inLanguage(): \Closure
+    {
+        return static fn () => app()->getLocale();
+    }
+
+    /**
      * A literal scalar value that is not a model attribute. SchemaMapper
      * resolves bare strings as model attributes, so literals must be wrapped
      * in a closure; this factory replaces hand-rolled `static fn ($value) =>

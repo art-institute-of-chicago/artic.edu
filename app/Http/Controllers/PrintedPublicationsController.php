@@ -179,6 +179,7 @@ class PrintedPublicationsController extends BaseScopedController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'Book',
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'publisher' => SchemaMapper::orgRef(),
                 'author' => $bookAuthor,
                 'datePublished' => $bookDatePublished,

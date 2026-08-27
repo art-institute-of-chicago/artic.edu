@@ -96,6 +96,7 @@ class MagazineIssueController extends FrontController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'PublicationIssue',
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'datePublished' => SchemaMapper::iso('publish_start_date'),
                 'url' => SchemaMapper::canonical('magazine-issues.show'),
                 'mainEntityOfPage' => SchemaMapper::canonical('magazine-issues.show'),

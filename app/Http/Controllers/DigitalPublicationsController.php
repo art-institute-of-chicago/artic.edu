@@ -160,6 +160,7 @@ class DigitalPublicationsController extends BaseScopedController
             parent::jsonLdDefinition($model),
             [
                 '@type' => ['Book', 'DigitalDocument'],
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'publisher' => SchemaMapper::orgRef(),
                 'author' => $bookAuthor,
                 'datePublished' => $bookDatePublished,
