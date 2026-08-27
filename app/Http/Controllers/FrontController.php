@@ -74,14 +74,16 @@ class FrontController extends BaseController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
+        // Thing-level defaults only. CreativeWork-only properties such as
+        // inLanguage and isPartOf are added by the controllers whose types
+        // actually support them (Person, Place, Event, ItemList, and
+        // Organization do not).
         return [
             '@type' => 'WebPage',
             'name' => static fn ($m) => $m->title ?? $m->name ?? null,
             'description' => SchemaMapper::text('description', 'list_description'),
             'image' => SchemaMapper::heroImage(),
             'url' => static fn () => url()->current(),
-            'isPartOf' => SchemaMapper::siteRef(),
-            'inLanguage' => static fn () => app()->getLocale(),
         ];
     }
 

@@ -85,6 +85,7 @@ class ExhibitionHistoryController extends FrontController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'ExhibitionEvent',
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'startDate' => SchemaMapper::iso('date_start'),
                 'endDate' => SchemaMapper::iso('date_end'),
                 'eventStatus' => SchemaMapper::literal('https://schema.org/EventScheduled'),

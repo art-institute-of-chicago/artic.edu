@@ -246,6 +246,7 @@ class ShortsController extends FrontController
             parent::jsonLdDefinition($model),
             [
                 '@type' => 'VideoObject',
+                'inLanguage' => SchemaMapper::inLanguage(),
                 'description' => SchemaMapper::text('list_description', 'heading', 'description'),
                 'thumbnailUrl' => $videoThumbnail,
                 'uploadDate' => SchemaMapper::iso('uploaded_at'),
