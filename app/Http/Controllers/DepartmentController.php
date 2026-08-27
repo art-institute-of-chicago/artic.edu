@@ -64,7 +64,7 @@ class DepartmentController extends FrontController
                 'description' => SchemaMapper::text('description', 'short_copy', 'list_description'),
                 'url' => SchemaMapper::canonical('departments.show', 'titleSlug'),
                 'mainEntityOfPage' => SchemaMapper::canonical('departments.show', 'titleSlug'),
-                'isPartOf' => SchemaMapper::orgRef(),
+                'isPartOf' => SchemaMapper::siteRef(),
             ]
         );
     }

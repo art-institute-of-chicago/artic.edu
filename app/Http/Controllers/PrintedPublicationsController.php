@@ -160,7 +160,7 @@ class PrintedPublicationsController extends BaseScopedController
             // be used as datePublished for the book.
             $date = $m->publication_date ?? null;
 
-            return $mapper->toIso8601($date);
+            return $mapper->toDateString($date);
         };
 
         $publicationUrl = static function (string $routeName) {

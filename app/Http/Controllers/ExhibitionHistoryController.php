@@ -86,8 +86,8 @@ class ExhibitionHistoryController extends FrontController
             [
                 '@type' => 'ExhibitionEvent',
                 'inLanguage' => SchemaMapper::inLanguage(),
-                'startDate' => SchemaMapper::iso('date_start'),
-                'endDate' => SchemaMapper::iso('date_end'),
+                'startDate' => SchemaMapper::date('date_start'),
+                'endDate' => SchemaMapper::date('date_end'),
                 'eventStatus' => SchemaMapper::literal('https://schema.org/EventScheduled'),
                 'eventAttendanceMode' => SchemaMapper::literal('https://schema.org/OfflineEventAttendanceMode'),
                 'url' => SchemaMapper::canonical('exhibitions.show', 'titleSlug'),
