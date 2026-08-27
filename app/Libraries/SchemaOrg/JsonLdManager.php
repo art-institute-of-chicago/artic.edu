@@ -132,7 +132,7 @@ class JsonLdManager
             '@graph' => array_merge($this->globalEntities(), $this->graphEntities),
         ];
 
-        $json = json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        $json = json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
 
         return '<script type="application/ld+json">' . $json . '</script>';
     }
