@@ -27,7 +27,7 @@
         <br>
         @endif
         @if (isset($date))
-            <time datetime="{{ $date->format("Y-m-d") }}" itemprop="datePublished">{{ $date->format('F j, Y') ?? '' }}</time>
+            <time datetime="{{ $date->format("Y-m-d") }}">{{ $date->format('F j, Y') ?? '' }}</time>
         @endif
     @endcomponent
 </div>

@@ -26,7 +26,6 @@
                 @slot('font', 'f-list-4')
                 @slot('title', $title)
                 @slot('title_display', $title_display)
-                @slot('itemprop', 'name')
             @endcomponent
             <br>
             @if ($author_display)

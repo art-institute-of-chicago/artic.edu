@@ -149,13 +149,6 @@ class ExhibitionPresenter extends BasePresenter
         return '';
     }
 
-    public function itemprops()
-    {
-        return [
-            'description' => $this->entity->short_description,
-        ];
-    }
-
     public function getHistoryImages()
     {
         if ($this->cachedHistoryImages) {
