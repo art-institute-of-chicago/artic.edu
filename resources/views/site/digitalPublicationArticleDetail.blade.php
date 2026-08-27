@@ -59,7 +59,6 @@
             @component('components.atoms._title')
                 @slot('tag', 'h1')
                 @slot('font', 'f-headline-editorial')
-                @slot('itemprop', 'name')
                 @slot('title', $item->present()->title)
                 @slot('title_display', $item->present()->title_display ?? null)
                 @slot('variation', 'contrast-text')
@@ -83,7 +82,6 @@
                 @component('components.atoms._title')
                     @slot('tag', 'h1')
                     @slot('font', 'f-headline-editorial')
-                    @slot('itemprop', 'name')
                     @slot('title', $item->present()->title)
                     @slot('title_display', $item->present()->title_display ?? null)
                 @endcomponent

@@ -2,11 +2,7 @@
 
 @section('content')
 
-<article class="o-article{{ ($item->articleType === 'editorial') ? ' o-article--editorial' : '' }}" itemscope itemtype="http://schema.org/BlogPosting">
-  @component('site.shared._schemaItemProps')
-    @slot('itemprops',$item->present()->itemprops ?? null)
-  @endcomponent
-
+<article class="o-article{{ ($item->articleType === 'editorial') ? ' o-article--editorial' : '' }}">
   @component('components.molecules._m-article-header')
     @slot('editorial', ($item->articleType === 'editorial'))
     @slot('headerType', $item->present()->headerType)
@@ -118,7 +114,7 @@
       <p class="print-authors type f-tag">By {{ $item->showAuthorsWithLinks() ?? null }}</p>
   @endif
 
-  <div class="o-article__body o-blocks" itemprop="articleBody">
+  <div class="o-article__body o-blocks">
 
     @php
         global $_collectedReferences;

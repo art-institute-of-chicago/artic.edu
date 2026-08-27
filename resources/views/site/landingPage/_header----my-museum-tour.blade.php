@@ -1,11 +1,4 @@
 <section class="my-museum-tour-header">
-    <link itemprop="additionalType" href="http://schema.org/Museum" aria-hidden="true"/>
-    <link itemprop="additionalType" href="http://schema.org/LandmarksOrHistoricalBuildings" aria-hidden="true"/>
-    <link itemprop="additionalType" href="http://schema.org/LocalBusiness" aria-hidden="true"/>
-    @component('site.shared._schemaItemProps')
-        @slot('itemprops',$itemprops ?? null)
-    @endcomponent
-
     @if ($headerMedia['style'] !== 'my_museum_tour')
         @component('components.organisms._o-header-landing')
             @slot('mainFeatures', $mainFeatures ?? null)

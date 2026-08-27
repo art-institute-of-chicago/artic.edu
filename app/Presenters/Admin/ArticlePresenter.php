@@ -41,11 +41,4 @@ class ArticlePresenter extends BasePresenter
     {
         return route('articles.show', $this->entity);
     }
-
-    public function itemprops()
-    {
-        return [
-            'publisher' => 'Art Institute of Chicago',
-        ];
-    }
 }

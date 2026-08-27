@@ -124,13 +124,6 @@ class EventPresenter extends BasePresenter
         return array_filter([$this->locationLink(), $this->registrationRequired()]);
     }
 
-    public function itemprops()
-    {
-        return [
-            'isAccessibleForFree' => ($this->entity->ticketStatus === 'free') ? 'true' : 'false',
-        ];
-    }
-
     protected function locationLink()
     {
         if ($this->entity->location) {

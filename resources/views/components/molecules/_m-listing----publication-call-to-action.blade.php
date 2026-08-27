@@ -12,7 +12,6 @@
                     @component('components.atoms._title')
                         @slot('font', 'f-headline')
                         @slot('title_display', $title_display)
-                        @slot('itemprop', 'name')
                     @endcomponent
                 @endif
             </div>
