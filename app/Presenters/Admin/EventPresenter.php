@@ -73,7 +73,7 @@ class EventPresenter extends BasePresenter
 
     protected function formatDate($date)
     {
-        return '<time datetime="' . $date->format('c') . '" itemprop="startDate">' . $date->format('l, F j') . '</time>';
+        return '<time datetime="' . $date->format('c') . '">' . $date->format('l, F j') . '</time>';
     }
 
     public function formattedBlockDate()
@@ -96,9 +96,9 @@ class EventPresenter extends BasePresenter
 
         $formatted = '';
         if ($next = $this->entity->nextOccurrenceExclusive) {
-            $formatted = '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
+            $formatted = '<time datetime="' . $next->date->format('c') . '">' . $next->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '">' . $next->date_end->format('g:i') . '</time>';
         } elseif ($last = $this->entity->lastOccurrence) {
-            $formatted = '<time datetime="' . $last->date->format('c') . '" itemprop="startDate">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format('c') . '" itemprop="endDate">' . $last->date_end->format('g:i') . '</time>';
+            $formatted = '<time datetime="' . $last->date->format('c') . '">' . $last->date->format('F j, Y | g:i') . '</time>&ndash;<time datetime="' . $last->date_end->format('c') . '">' . $last->date_end->format('g:i') . '</time>';
         }
         return $formatted;
     }
@@ -114,7 +114,7 @@ class EventPresenter extends BasePresenter
     public function nextOccurrenceTime()
     {
         if ($next = $this->entity->nextOccurrence) {
-            return '<time datetime="' . $next->date->format('c') . '" itemprop="startDate">' . $next->date->format('g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '" itemprop="endDate">' . $next->date_end->format('g:i') . '</time>';
+            return '<time datetime="' . $next->date->format('c') . '">' . $next->date->format('g:i') . '</time>&ndash;<time datetime="' . $next->date_end->format('c') . '">' . $next->date_end->format('g:i') . '</time>';
         }
         return '';
     }
@@ -137,7 +137,6 @@ class EventPresenter extends BasePresenter
             return [
                 'label' => $this->entity->location,
                 'iconBefore' => 'location',
-                'itemprop' => 'location'
             ];
         }
     }
