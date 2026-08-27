@@ -139,7 +139,7 @@ class DigitalPublicationsController extends BaseScopedController
         $bookDatePublished = static function ($m, $mapper) {
             $date = $m->publication_date ?? $m->publish_start_date ?? null;
 
-            return $mapper->toIso8601($date);
+            return $mapper->toDateString($date);
         };
 
         $publicationUrl = static function (string $routeName) {

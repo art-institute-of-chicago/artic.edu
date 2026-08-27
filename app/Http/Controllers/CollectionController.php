@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Libraries\Search\CollectionService;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use App\Models\Hour;
 
 class CollectionController extends BaseScopedController
@@ -35,6 +36,25 @@ class CollectionController extends BaseScopedController
         }
 
         return $collectionService;
+    }
+
+    /**
+     * The collection search index is a CollectionPage describing the museum's
+     * browsable collection; the global WebSite SearchAction still applies.
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'CollectionPage',
+                'inLanguage' => SchemaMapper::inLanguage(),
+                'name' => 'Discover Art & Artists',
+                'url' => route('collection'),
+                'description' => "Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.",
+                'isPartOf' => SchemaMapper::siteRef(),
+            ]
+        );
     }
 
     public function index()
@@ -115,6 +135,8 @@ class CollectionController extends BaseScopedController
         if ($featuredItems->count()) {
             $featuredItemsHero = $featuredItems->shift();
         }
+
+        $this->addJsonLd((object) ['title' => 'Discover Art & Artists']);
 
         return view('site.collection.index', [
             'primaryNavCurrent' => 'collection',

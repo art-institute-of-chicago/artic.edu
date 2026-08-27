@@ -210,7 +210,7 @@ class DigitalPublicationArticleController extends FrontController
                 'description' => SchemaMapper::text('description', 'heading', 'list_description'),
                 'abstract' => SchemaMapper::text('list_description'),
                 'thumbnailUrl' => static fn ($m, $mapper) => $mapper->thumbnailUrl(),
-                'datePublished' => SchemaMapper::iso('date'),
+                'datePublished' => SchemaMapper::date('date'),
                 'dateModified' => static fn ($m, $mapper) => $mapper->toIso8601($m->updated_at ?? $m->date ?? null),
                 'author' => $articleAuthors,
                 'publisher' => SchemaMapper::orgRef(),
