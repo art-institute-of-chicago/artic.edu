@@ -224,6 +224,22 @@ class SchemaMapper
     }
 
     /**
+     * Calendar-date formatting: Y-m-d, null when the value is empty/invalid.
+     */
+    public function toDateString(mixed $value): ?string
+    {
+        if ($value === null || $value === '') {
+            return null;
+        }
+
+        try {
+            return \Carbon\Carbon::parse($value)->toDateString();
+        } catch (\Throwable $e) {
+            return null;
+        }
+    }
+
+    /**
      * Strip HTML tags and trim; null when the result is empty.
      */
     public function cleanText(mixed $value): ?string
@@ -378,6 +394,24 @@ class SchemaMapper
 
                 if ($value !== null) {
                     return $mapper->toIso8601($value);
+                }
+            }
+
+            return null;
+        };
+    }
+
+    /**
+     * Date-only resolver: the first non-null field formatted as Y-m-d.
+     */
+    public static function date(string ...$fields): \Closure
+    {
+        return static function ($m, $mapper) use ($fields) {
+            foreach ($fields as $field) {
+                $value = $m->{$field} ?? null;
+
+                if ($value !== null) {
+                    return $mapper->toDateString($value);
                 }
             }
 
