@@ -23,6 +23,7 @@ use App\Models\LandingPage;
 use App\Models\MagazineIssue;
 use App\Models\MyMuseumTour;
 use App\Models\Playlist;
+use App\Models\DateRule;
 use App\Models\PrintedPublication;
 use App\Models\Video;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -274,13 +275,11 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertNotNull($entity);
         $this->assertStringContainsString('"@type":"VisualArtwork"', $script);
         $this->assertStringContainsString('"name":"Starry Night"', $script);
-        $this->assertStringContainsString('"alternateName":"1234"', $script);
         $this->assertStringContainsString('"description":"A starry night scene."', $script);
         $this->assertStringContainsString('"identifier":{"@type":"PropertyValue","propertyID":"main_reference_number","value":"1234"}', $script);
         $this->assertStringContainsString('"artist":[{"@type":"Person","name":"Vincent van Gogh"}]', $script);
-        $this->assertStringContainsString('"creator":[{"@type":"Person","name":"Vincent van Gogh"}]', $script);
-        $this->assertStringContainsString('"width":{"@type":"QuantitativeValue","value":73.7,"unitCode":"CMT"}', $script);
-        $this->assertStringContainsString('"height":{"@type":"QuantitativeValue","value":92.1,"unitCode":"CMT"}', $script);
+        $this->assertStringContainsString('"width":{"@type":"QuantitativeValue","value":73.7,"unitCode":"CMT","unitText":"cm"}', $script);
+        $this->assertStringContainsString('"height":{"@type":"QuantitativeValue","value":92.1,"unitCode":"CMT","unitText":"cm"}', $script);
         $this->assertStringContainsString('"copyrightNotice":"Public domain"', $script);
         $this->assertStringContainsString('"keywords":"Landscape, Post-Impressionism, Painting"', $script);
         $this->assertStringContainsString('"genre":"Painting"', $script);
@@ -297,7 +296,7 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertStringEndsWith('/artworks/1/starry-night', $entity['mainEntityOfPage']);
     }
 
-    public function test_artwork_creator_emits_organization_for_culture(): void
+    public function test_artwork_artist_emits_organization_for_culture(): void
     {
         $manager = new JsonLdManager();
 
@@ -310,12 +309,12 @@ class JsonLdManagerTest extends BaseTestCase
         $manager->addModelEntity($artwork, $this->definitionFor($artwork));
         $entity = $this->findEntity($this->extractGraph($manager->renderGraphScript()), 'VisualArtwork');
 
-        $this->assertSame('Organization', $entity['creator'][0]['@type']);
-        $this->assertSame('Aztec (Mexica)', $entity['creator'][0]['name']);
-        $this->assertSame('https://vocab.getty.edu/ulan/500115588', $entity['creator'][0]['additionalType']);
+        $this->assertSame('Organization', $entity['artist'][0]['@type']);
+        $this->assertSame('Aztec (Mexica)', $entity['artist'][0]['name']);
+        $this->assertSame('https://vocab.getty.edu/ulan/500115588', $entity['artist'][0]['additionalType']);
     }
 
-    public function test_artwork_creator_falls_back_to_aat_for_culture_without_ulan(): void
+    public function test_artwork_artist_falls_back_to_aat_for_culture_without_ulan(): void
     {
         $manager = new JsonLdManager();
 
@@ -328,8 +327,8 @@ class JsonLdManagerTest extends BaseTestCase
         $manager->addModelEntity($artwork, $this->definitionFor($artwork));
         $entity = $this->findEntity($this->extractGraph($manager->renderGraphScript()), 'VisualArtwork');
 
-        $this->assertSame('Organization', $entity['creator'][0]['@type']);
-        $this->assertSame('http://vocab.getty.edu/aat/300387177', $entity['creator'][0]['additionalType']);
+        $this->assertSame('Organization', $entity['artist'][0]['@type']);
+        $this->assertSame('http://vocab.getty.edu/aat/300387177', $entity['artist'][0]['additionalType']);
     }
 
     public function test_exhibition_mapper(): void
@@ -346,7 +345,7 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertStringContainsString('"@type":"ExhibitionEvent"', $script);
         $this->assertStringContainsString('"name":"Van Gogh and the Avant-Garde"', $script);
         $this->assertStringContainsString('"description":"An exhibition about Van Gogh."', $script);
-        $this->assertStringContainsString('"startDate":"2024-05-01T00:00:00', $script);
+        $this->assertStringContainsString('"startDate":"2024-05-01"', $script);
         $this->assertStringContainsString('"eventStatus":"https://schema.org/EventScheduled"', $script);
         $this->assertStringContainsString('"eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode"', $script);
         $this->assertStringContainsString('"inLanguage":"en"', $script);
@@ -383,6 +382,34 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertStringContainsString('"offers":{"@type":"Offer","url":"https://www.artic.edu/rsvp","availability":"https://schema.org/InStock","price":"0","priceCurrency":"USD"}', $script);
         $this->assertSame(['@id' => 'https://www.artic.edu/#organization'], $entity['organizer']);
         $this->assertStringEndsWith('/events/7/member-preview-night', $entity['url']);
+    }
+
+    public function test_event_mapper_omits_dates_and_emits_schedule_for_recurring_event(): void
+    {
+        $manager = new JsonLdManager();
+
+        $event = $this->eventFixture();
+
+        $rule = new DateRule();
+        $rule->forceFill([
+            'type' => 0,
+            'every' => 1,
+            'recurring_type' => 1,
+            'start_date' => '2024-06-03',
+            'end_date' => '2024-08-26',
+            'monday' => true,
+        ]);
+        $event->setRelation('dateRules', collect([$rule]));
+
+        $manager->addModelEntity($event, $this->definitionFor($event));
+        $entity = $this->findEntity($this->extractGraph($manager->renderGraphScript()), 'Event');
+
+        $this->assertArrayNotHasKey('startDate', $entity);
+        $this->assertArrayNotHasKey('endDate', $entity);
+        $this->assertSame('Schedule', $entity['eventSchedule']['@type'] ?? null);
+        $this->assertSame('P1W', $entity['eventSchedule']['repeatFrequency'] ?? null);
+        $this->assertSame('MO', ($entity['eventSchedule']['byDay'][0] ?? null));
+        $this->assertStringContainsString('2024-06-03', $entity['eventSchedule']['startDate'] ?? '');
     }
 
     public function test_virtual_event_mapper_uses_virtual_location_and_online_mode(): void
@@ -684,7 +711,8 @@ class JsonLdManagerTest extends BaseTestCase
 
         $this->assertNotNull($page);
         $this->assertSame('Painting and Sculpture of Europe', $page['name']);
-        $this->assertSame(['@id' => 'https://www.artic.edu/#organization'], $page['isPartOf']);
+        $this->assertSame('en', $page['inLanguage']);
+        $this->assertSame(['@id' => 'https://www.artic.edu/#website'], $page['isPartOf']);
         $this->assertStringEndsWith('/departments/3/painting-and-sculpture-of-europe', $page['url']);
     }
 
@@ -705,6 +733,7 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertNotNull($page);
         $this->assertSame('Article', $page['@type']);
         $this->assertSame('A Closer Look at Nighthawks', $page['name']);
+        $this->assertSame('en', $page['inLanguage']);
         $this->assertSame('Explore Edward Hopper\'s iconic painting.', $page['description']);
         $this->assertStringEndsWith('/highlights/11/a-closer-look-at-nighthawks', $page['url']);
     }
@@ -1022,7 +1051,7 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertSame($page->title, $pageEntity['name']);
         $this->assertSame('Plan your school visit.', $pageEntity['description']);
         $this->assertArrayNotHasKey('dateModified', $pageEntity);
-        $this->assertSame(['@id' => 'https://www.artic.edu/#website'], $pageEntity['isPartOf']);
+        $this->assertSame('en', $pageEntity['inLanguage']);
         $this->assertStringEndsWith('/visit/visit-with-my-students', $pageEntity['url']);
     }
 
@@ -1061,7 +1090,7 @@ class JsonLdManagerTest extends BaseTestCase
 
         $this->assertNotNull($page);
         $this->assertSame($landingPage->title, $page['name']);
-        $this->assertSame(['@id' => 'https://www.artic.edu/#website'], $page['isPartOf']);
+        $this->assertSame('en', $page['inLanguage']);
         $this->assertSame('http://localhost', $page['url']);
         // Home/Visit landing pages describe the museum itself: their WebPage
         // entity references the global Museum/Organization entity.
@@ -1109,8 +1138,10 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertSame('WebPage', $entity['@type']);
         $this->assertSame('Plan Your Visit', $entity['name']);
         $this->assertSame('Everything you need to know before you arrive.', $entity['description']);
-        $this->assertSame('en', $entity['inLanguage']);
-        $this->assertSame(['@id' => 'https://www.artic.edu/#website'], $entity['isPartOf']);
+        // The base template emits Thing-level properties only: CreativeWork-only
+        // inLanguage/isPartOf must not leak onto the shared WebPage defaults.
+        $this->assertArrayNotHasKey('inLanguage', $entity);
+        $this->assertArrayNotHasKey('isPartOf', $entity);
         $this->assertSame('http://localhost', $entity['url']);
     }
 

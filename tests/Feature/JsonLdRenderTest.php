@@ -237,7 +237,7 @@ class JsonLdRenderTest extends BaseTestCase
      * The artwork detail page must carry a VisualArtwork entity with a
      * creator, following the ArtworkTest MockApi pattern exactly.
      */
-    public function test_artwork_detail_graph_contains_visual_artwork_with_creator(): void
+    public function test_artwork_detail_graph_contains_visual_artwork_with_artist(): void
     {
         $artwork = Artwork::factory()->make(['artist_title' => 'Test Artist']);
         $this->addMockApiResponses([
@@ -253,11 +253,11 @@ class JsonLdRenderTest extends BaseTestCase
         $graph = $this->jsonLdGraph($response->getContent());
         $entity = $this->graphEntity($graph, 'VisualArtwork');
 
-        $creator = $entity['creator'] ?? null;
-        $this->assertNotEmpty($creator);
-        $firstCreator = is_array($creator) ? ($creator[0] ?? $creator) : $creator;
-        $this->assertSame('Person', $firstCreator['@type'] ?? null);
-        $this->assertSame('Test Artist', $firstCreator['name'] ?? null);
+        $artist = $entity['artist'] ?? null;
+        $this->assertNotEmpty($artist);
+        $firstArtist = is_array($artist) ? ($artist[0] ?? $artist) : $artist;
+        $this->assertSame('Person', $firstArtist['@type'] ?? null);
+        $this->assertSame('Test Artist', $firstArtist['name'] ?? null);
     }
 
     /**
