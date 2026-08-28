@@ -2,7 +2,7 @@
 
   display: flex;
   flex-flow: row wrap;
-  margin-top: 28px;
+  margin-top: $blocks-spacings-medium-large;
 
   @include breakpoint('small+') {
     flex-flow: row nowrap;
@@ -32,12 +32,12 @@
   @include breakpoint('small+') {
     &:last-child {
       margin-right: 0;
-      margin-left: 8px;
+      margin-left: $blocks-spacings-half;
     }
 
     &:first-child {
       margin-left: 0;
-      margin-right: 8px;
+      margin-right: $blocks-spacings-half;
     }
   }
 

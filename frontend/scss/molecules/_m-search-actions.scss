@@ -2,13 +2,13 @@
   display: flex;
   flex: 0 0 auto;
   flex-flow: row nowrap;
-  margin-top: 36px;
+  margin-top: $blocks-spacings-large;
   color: $colors-themes-light-mode-text-secondary;
 }
 
 .m-search-actions>li {
   flex: 0 0 auto;
-  margin-left: 20px;
+  margin-left: $blocks-spacings-medium-small;
 }
 
 .m-search-actions>li:first-child {

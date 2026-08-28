@@ -31,7 +31,7 @@
   @include breakpoint('medium+') {
     display: inline-block;
     margin-left: 14px;
-    padding-left: 16px;
+    padding-left: $blocks-spacings-default;
     border-left: 1px solid $colors-themes-light-mode-rules-contrast;
   }
 }
@@ -74,7 +74,7 @@
 
 .g-footer__link-list {
   @extend %f-secondary;
-  margin-top: 16px;
+  margin-top: $blocks-spacings-default;
 }
 
 .g-footer__link-list li {
@@ -88,7 +88,7 @@
 }
 
 .g-footer__link-list--spaced li {
-  margin-top: 16px;
+  margin-top: $blocks-spacings-default;
 }
 
 .g-footer__link-list li:first-child {
@@ -111,7 +111,7 @@
 
 .g-footer__grid>li {
   position: relative;
-  padding-top: 40px;
+  padding-top: $blocks-spacings-extra-large;
 
   @include breakpoint('medium+') {
     padding-top: 26px;
@@ -196,7 +196,7 @@
 
 .g-footer__grid__group {
   padding-top: 26px;
-  padding-bottom: 40px;
+  padding-bottom: $blocks-spacings-extra-large;
   border-top: 1px solid $colors-themes-light-mode-rules-contrast;
 
   @include breakpoint('medium+') {
@@ -268,7 +268,7 @@
 }
 
 .g-footer figure {
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 }
 
 .g-footer figure a {
@@ -301,7 +301,7 @@
 
   @include breakpoint('medium+') {
     flex: 0 0 auto;
-    margin-left: 16px;
+    margin-left: $blocks-spacings-default;
 
     &:first-child {
       margin-left: 0;
@@ -424,7 +424,7 @@ $point in ('xsmall', 'small') {
   }
 
   .g-footer__grid__group {
-    padding-bottom: 60px;
+    padding-bottom: $blocks-spacings-largest;
   }
 }
 

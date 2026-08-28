@@ -31,7 +31,7 @@ a:hover .title,
 .title--w-right-arrow {
   display: block;
   position: relative;
-  padding-right: 20px;
+  padding-right: $blocks-spacings-medium-small;
 }
 
 .title--w-right-arrow .title__arrow {

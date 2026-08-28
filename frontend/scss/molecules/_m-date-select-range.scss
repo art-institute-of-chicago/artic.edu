@@ -7,6 +7,6 @@
   }
 
   .date-select-trigger:not(:first-child) {
-    margin-left: 16px;
+    margin-left: $blocks-spacings-default;
   }
 }

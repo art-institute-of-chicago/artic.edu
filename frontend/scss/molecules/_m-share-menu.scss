@@ -87,10 +87,10 @@
 .m-share-menu ul.f-secondary a,
 .m-share-menu ul.f-secondary button {
   padding-top: 11px;
-  padding-bottom: 12px;
+  padding-bottom: $blocks-spacings-small;
 
   @include breakpoint('large+') {
-    padding-top: 8px;
+    padding-top: $blocks-spacings-half;
     padding-bottom: 11px;
   }
 }

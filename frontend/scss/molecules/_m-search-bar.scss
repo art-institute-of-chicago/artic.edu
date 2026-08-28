@@ -109,7 +109,7 @@
 
 .m-search-bar--block {
 
-  padding-top: 8px;
+  padding-top: $blocks-spacings-half;
 
   @include tucked-margin-top($f-body-editorial, ('xsmall': 40, 'small+': 56));
 
@@ -217,7 +217,7 @@
 // TODO: Confirm if this is always in effect?
 .m-search-bar__autocomplete.f-secondary a {
   padding-top: 9px;
-  padding-bottom: 12px;
+  padding-bottom: $blocks-spacings-small;
 
   @include breakpoint('large+') {
     padding-top: 6px;
@@ -245,7 +245,7 @@
   color: $colors-scales-grey-0;
 
   svg {
-    margin-right: 16px;
+    margin-right: $blocks-spacings-default;
   }
 }
 

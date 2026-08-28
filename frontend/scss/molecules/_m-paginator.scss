@@ -26,14 +26,14 @@ m-paginator
 
 .m-paginator {
   position: relative;
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 
   @include breakpoint('medium+') {
-    margin-top: 28px;
+    margin-top: $blocks-spacings-medium-large;
   }
 
   @include breakpoint('large+') {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 }
 
@@ -87,8 +87,8 @@ m-paginator
 
   @include breakpoint('medium+') {
     width: auto;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: $blocks-spacings-medium-small;
+    padding-left: $blocks-spacings-medium-small;
   }
 }
 

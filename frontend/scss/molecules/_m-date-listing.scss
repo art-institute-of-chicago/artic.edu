@@ -38,8 +38,8 @@
 }
 
 .m-date-listing__listings {
-  margin-top: 20px;
-  padding-top: 16px;
+  margin-top: $blocks-spacings-medium-small;
+  padding-top: $blocks-spacings-default;
   border-top: 1px solid $colors-themes-light-mode-rules-primary;
 
   @include breakpoint('small+') {
@@ -55,16 +55,16 @@
 }
 
 .m-date-listing__listings-title {
-  margin-top: 24px;
-  padding-top: 8px;
+  margin-top: $blocks-spacings-medium;
+  padding-top: $blocks-spacings-half;
   border-top: 1px solid $colors-themes-light-mode-rules-primary;
 
   @include breakpoint('small+') {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
   }
 
   @include breakpoint('medium+') {
-    margin-top: 24px;
+    margin-top: $blocks-spacings-medium;
   }
 }
 
@@ -72,14 +72,14 @@
   margin-top: 0;
 
   .m-date-listing__listings-title + & {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
 
     @include breakpoint('small+') {
-      margin-top: 32px;
+      margin-top: $blocks-spacings-double;
     }
 
     @include breakpoint('medium+') {
-      margin-top: 36px;
+      margin-top: $blocks-spacings-large;
     }
   }
 }

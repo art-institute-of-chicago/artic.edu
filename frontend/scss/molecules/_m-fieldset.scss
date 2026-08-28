@@ -4,7 +4,7 @@
   position: relative;
 
   & + & {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 }
 
@@ -30,17 +30,17 @@
 
 .m-fieldset__legend + * {
   clear: both;
-  padding-top: 28px;
+  padding-top: $blocks-spacings-medium-large;
 }
 
 .m-fieldset__fields {
-  margin-top: 28px;
+  margin-top: $blocks-spacings-medium-large;
 }
 
 .m-fieldset__field {
   display: flex;
   flex-flow: row wrap;
-  margin-top: 28px;
+  margin-top: $blocks-spacings-medium-large;
   padding-top: .02px;
   padding-bottom: .02px;
 }
@@ -51,7 +51,7 @@
 
 .m-fieldset__field--group,
 .m-fieldset__field--group + .m-fieldset__field {
-  margin-top: 36px;
+  margin-top: $blocks-spacings-large;
 }
 
 .m-fieldset__field--checkbox + .m-fieldset__field--checkbox,
@@ -76,7 +76,7 @@
 .m-fieldset__field .select.m-fieldset__input-narrow-x3
 {
   flex: 0 0 auto;
-  margin-right: 20px;
+  margin-right: $blocks-spacings-medium-small;
 }
 
 .m-fieldset__field .input.m-fieldset__input-narrow-x4:last-child,

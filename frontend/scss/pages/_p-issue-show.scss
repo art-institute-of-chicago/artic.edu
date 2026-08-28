@@ -131,7 +131,7 @@
 .p-digitalpublications-show,
 .p-digitalpublications-showlisting {
   .o-article__body:has(.o-issue__intro) {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 
   .o-article__body::before {

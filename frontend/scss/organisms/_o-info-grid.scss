@@ -10,12 +10,12 @@
   }
 
   .row:last-child {
-    margin-top: 32px;
+    margin-top: $blocks-spacings-double;
     @include breakpoint('medium') {
-      margin-top: 32px;
+      margin-top: $blocks-spacings-double;
     }
     @include breakpoint('small') {
-      margin-top: 32px;
+      margin-top: $blocks-spacings-double;
     }
 
     > .col:first-child {
@@ -48,7 +48,7 @@
     }
 
     .col:first-child {
-      padding-right: 20px;
+      padding-right: $blocks-spacings-medium-small;
       @include breakpoint('medium') {
         padding-right: 0;
       }
@@ -61,22 +61,22 @@
     }
 
     .col:not(:first-child) {
-      padding-left: 20px;
+      padding-left: $blocks-spacings-medium-small;
       @include breakpoint('medium') {
         padding-left: 0;
-        margin-top: 32px;
+        margin-top: $blocks-spacings-double;
       }
       @include breakpoint('small') {
         padding-left: 0;
-        margin-top: 32px;
+        margin-top: $blocks-spacings-double;
       }
       @include breakpoint('xsmall') {
         padding-left: 0;
-        margin-top: 32px;
+        margin-top: $blocks-spacings-double;
       }
 
       .btn-section {
-        margin-top: 32px;
+        margin-top: $blocks-spacings-double;
       }
     }
   }
@@ -140,7 +140,7 @@
       display: flex;
 
       .location-image {
-        margin-right: 16px;
+        margin-right: $blocks-spacings-default;
       }
 
       .location-information {

@@ -77,7 +77,7 @@ Example usage:
 .arrow-link.title {
   display: block;
   position: relative;
-  padding-right: 32px;
+  padding-right: $blocks-spacings-double;
 }
 
 .arrow-link.title svg {

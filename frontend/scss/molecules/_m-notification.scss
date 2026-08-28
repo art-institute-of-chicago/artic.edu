@@ -51,9 +51,9 @@
 
   & {
     display: block;
-    padding-top: 16px;
-    padding-right: 48px;
-    padding-bottom: 20px;
+    padding-top: $blocks-spacings-default;
+    padding-right: $blocks-spacings-triple;
+    padding-bottom: $blocks-spacings-medium-small;
     background-color: $colors-themes-light-mode-error-primary;
     transition: all .1s linear;
   }
@@ -78,7 +78,7 @@
 
 // WEB-2354: Prevent text from colliding with close button
 .m-notification--header .m-notification__text {
-  margin-right: 28px;
+  margin-right: $blocks-spacings-medium-large;
 
   @include breakpoint('small+') {
     br {
@@ -124,11 +124,11 @@
 }
 
 .m-notification__text svg:not(:first-child) {
-  margin-left: 8px;
+  margin-left: $blocks-spacings-half;
 }
 
 .m-notification__text svg:first-child {
-  margin-right: 8px;
+  margin-right: $blocks-spacings-half;
 }
 
 .m-notification__close {
@@ -172,8 +172,8 @@
 }
 
 .m-notification--quinary {
-  margin-top: 40px;
-  padding-left: 20px;
+  margin-top: $blocks-spacings-extra-large;
+  padding-left: $blocks-spacings-medium-small;
   border: 1px solid $colors-scales-grey-10;
   background-color: transparent;
 

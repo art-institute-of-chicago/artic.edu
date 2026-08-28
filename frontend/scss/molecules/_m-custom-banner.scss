@@ -105,8 +105,8 @@
 
         .custom-banner-body {
             display: block;
-            margin-top: 20px;
-            margin-right: 20px;
+            margin-top: $blocks-spacings-medium-small;
+            margin-right: $blocks-spacings-medium-small;
             color: white !important;
 
             &::before {
@@ -138,7 +138,7 @@
 
         >.app-store {
             height: 40px !important;
-            margin-right: 12px;
+            margin-right: $blocks-spacings-small;
 
             @include breakpoint('xsmall') {
                 margin-right: 0;
@@ -162,7 +162,7 @@
             border-color: $colors-scales-grey-0 !important;
             background-color: #ffffff00 !important;
             color: $colors-scales-grey-0 !important;
-            margin-top: 20px;
+            margin-top: $blocks-spacings-medium-small;
 
             &:hover,
             &:focus:hover {

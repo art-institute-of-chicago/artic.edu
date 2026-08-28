@@ -56,8 +56,8 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
         overflow-y: auto;
 
         // Gutters are always about the same as on xsmall
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: $blocks-spacings-medium-small;
+        padding-right: $blocks-spacings-medium-small;
 
         .g-sidebar__close {
           display: block;
@@ -204,7 +204,7 @@ For _p-issuearticle-show.scss and _p-issue-show.scss
 
   @include breakpoint('xsmall') {
     .m-sidebar-toggle--publication__logo {
-      margin-bottom: 40px;
+      margin-bottom: $blocks-spacings-extra-large;
       white-space: nowrap;
 
       a:hover {

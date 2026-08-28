@@ -4,7 +4,7 @@
   margin-top: 0;
 
   & + & {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 }
 

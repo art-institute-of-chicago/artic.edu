@@ -93,8 +93,8 @@
       font-weight: 300;
       letter-spacing: -0.005em;
       line-height: 28px;
-      margin-right: 20px;
-      margin-top: 20px;
+      margin-right: $blocks-spacings-medium-small;
+      margin-top: $blocks-spacings-medium-small;
       text-align: left;
 
       &::before {

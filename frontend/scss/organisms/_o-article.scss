@@ -12,7 +12,7 @@
   }
 
   @include breakpoint('large+') {
-    padding-bottom: 24px;
+    padding-bottom: $blocks-spacings-medium;
   }
 }
 
@@ -30,13 +30,13 @@
   }
 
   @include breakpoint('large+') {
-    margin-bottom: 28px;
+    margin-bottom: $blocks-spacings-medium-large;
   }
 }
 
 .o-article__meta {
   position: relative;
-  margin-top: 8px;
+  margin-top: $blocks-spacings-half;
 
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
@@ -46,7 +46,7 @@
   @include breakpoint('medium+') {
     float: left;
     width: colspan(38, medium);
-    margin-top: 28px;
+    margin-top: $blocks-spacings-medium-large;
   }
 
   @include breakpoint('large+') {
@@ -60,7 +60,7 @@
 
 .o-article__secondary-actions {
   position: relative;
-  margin-top: 16px;
+  margin-top: $blocks-spacings-default;
   padding-top: 23px;
 
   .o-article__inline-header+& {
@@ -83,13 +83,13 @@
   @include breakpoint('medium+') {
     float: right;
     width: colspan(18, medium);
-    margin-top: 28px;
+    margin-top: $blocks-spacings-medium-large;
     margin-left: colspan(2, medium);
     padding-top: 0;
     border-top: 0 none;
 
     &.o-article__secondary-actions--inline-header {
-      margin-top: 40px;
+      margin-top: $blocks-spacings-extra-large;
 
       .o-article__inline-header+& {
         margin-top: 0;
@@ -103,7 +103,7 @@
     margin-left: colspan(2, large);
 
     &.o-article__secondary-actions--inline-header {
-      margin-top: 40px;
+      margin-top: $blocks-spacings-extra-large;
 
       .o-article__inline-header+& {
         margin-top: 0;
@@ -112,7 +112,7 @@
 
     &.o-article__secondary-actions--with-description {
       .o-article__inline-header+& {
-        margin-top: 12px;
+        margin-top: $blocks-spacings-small;
       }
     }
   }
@@ -125,7 +125,7 @@
 
 .o-article__secondary-actions>.m-article-actions:nth-child(1) {
   @include breakpoint('medium+') {
-    margin-top: 8px;
+    margin-top: $blocks-spacings-half;
   }
 }
 
@@ -144,7 +144,7 @@
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
     width: 100%;
-    margin-top: 28px;
+    margin-top: $blocks-spacings-medium-large;
     order: 1;
   }
 
@@ -157,12 +157,12 @@
       float: right;
       clear: right;
       width: colspan(23, small);
-      margin-top: 36px;
+      margin-top: $blocks-spacings-large;
       margin-bottom: colspan(3, small);
       margin-left: colspan(3, small);
 
       .o-article__inline-header~& {
-        margin-top: 8px;
+        margin-top: $blocks-spacings-half;
       }
     }
   }
@@ -173,7 +173,7 @@
     @include breakpoint('small') {
       flex: 0 0 auto;
       width: 100%;
-      margin-top: 28px;
+      margin-top: $blocks-spacings-medium-large;
       order: 1;
     }
   }
@@ -197,7 +197,7 @@
     @each $name,
     $point in ('xsmall', 'small', 'medium') {
       @include breakpoint('#{$name}') {
-        margin-top: 20px;
+        margin-top: $blocks-spacings-medium-small;
       }
     }
   }
@@ -206,7 +206,7 @@
 .o-article__inline-header,
 .o-article__intro {
   position: relative;
-  margin-top: 28px;
+  margin-top: $blocks-spacings-medium-large;
   padding-top: 0.02px;
   padding-bottom: 0.02px;
 
@@ -250,15 +250,15 @@
 .o-article__inline-header {
   position: relative;
   padding-top: 0.02px;
-  padding-bottom: 28px;
+  padding-bottom: $blocks-spacings-medium-large;
 
   @include breakpoint('small') {
     padding-right: colspan(10, small);
   }
 
   @include breakpoint('medium+') {
-    margin-top: 40px;
-    //margin-bottom: 12px;
+    margin-top: $blocks-spacings-extra-large;
+    //margin-bottom: $blocks-spacings-small;
   }
 }
 
@@ -307,8 +307,8 @@
 
   & {
     position: relative;
-    margin-top: 28px;
-    padding-top: 12px;
+    margin-top: $blocks-spacings-medium-large;
+    padding-top: $blocks-spacings-small;
   }
 
   &.o-article--disable-float-clear::after {
@@ -316,7 +316,7 @@
   }
 
   .o-article__inline-header~& {
-    margin-top: 8px;
+    margin-top: $blocks-spacings-half;
   }
 
   .o-article__inline-header~&.o-article__body--no-description {
@@ -333,7 +333,7 @@
     padding-top: 0;
 
     .o-article__inline-header~& {
-      margin-top: 12px;
+      margin-top: $blocks-spacings-small;
     }
 
     .o-article__inline-header~&.o-article__body--no-description {
@@ -397,12 +397,12 @@
 
 .o-article__body-actions {
   margin-top: 64px;
-  padding-top: 8px;
+  padding-top: $blocks-spacings-half;
   border-top: 1px solid $colors-themes-light-mode-rules-primary;
 }
 
 .o-article__secondary-actions aside:not(:first-child) {
-  margin-top: 36px;
+  margin-top: $blocks-spacings-large;
 }
 
 .o-article--generic-page {
@@ -425,7 +425,7 @@
 
   .o-article__related {
     @include breakpoint('small') {
-      margin-top: 28px;
+      margin-top: $blocks-spacings-medium-large;
     }
   }
 

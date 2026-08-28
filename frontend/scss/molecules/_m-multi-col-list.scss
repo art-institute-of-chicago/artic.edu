@@ -19,7 +19,7 @@
 
 .m-multi-col-list {
   position: relative;
-  margin-top: 40px;
+  margin-top: $blocks-spacings-extra-large;
 
   .m-links-bar + & {
     margin-top: 0;

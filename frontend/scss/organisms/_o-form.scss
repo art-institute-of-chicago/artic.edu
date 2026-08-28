@@ -7,7 +7,7 @@
   display: flex;
   flex-flow: row wrap;
   position: relative;
-  margin-top: 40px;
+  margin-top: $blocks-spacings-extra-large;
 }
 
 .o-form__actions::before {
@@ -22,6 +22,6 @@
 
 .o-form__action {
   flex: 0 0 auto;
-  margin-top: 20px;
-  margin-right: 20px;
+  margin-top: $blocks-spacings-medium-small;
+  margin-right: $blocks-spacings-medium-small;
 }

@@ -95,7 +95,7 @@
 
         .stories-header__heading {
             min-width: 100%;
-            margin-bottom: 16px;
+            margin-bottom: $blocks-spacings-default;
         }
 
         .stories-header__hours {
@@ -110,14 +110,14 @@
 
 .editorial-subnav {
     text-align: center !important;
-    padding-bottom: 28px;
+    padding-bottom: $blocks-spacings-medium-large;
     border-bottom: 1px solid $colors-scales-grey-100;
-    margin-bottom: 40px;
+    margin-bottom: $blocks-spacings-extra-large;
     overflow-x: auto;
     overflow-y: hidden;
 
     @include breakpoint('small-') {
-        padding-bottom: 20px;
+        padding-bottom: $blocks-spacings-medium-small;
     }
 
     ul {
@@ -175,8 +175,8 @@
             order: 2;
             margin-left: auto;
             margin-right: auto;
-            padding-left: 40px;
-            padding-right: 40px;
+            padding-left: $blocks-spacings-extra-large;
+            padding-right: $blocks-spacings-extra-large;
             width: 70%;
 
             @include breakpoint('medium-') {
@@ -196,7 +196,7 @@
 
             .m-listing__meta {
                 min-height: unset !important;
-                padding-bottom: 36px;
+                padding-bottom: $blocks-spacings-large;
 
                 .title {
                     margin-top: 6px !important;
@@ -295,10 +295,10 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            padding-bottom: 28px;
+            padding-bottom: $blocks-spacings-medium-large;
 
             @include breakpoint('medium-') {
-                padding-bottom: 28px;
+                padding-bottom: $blocks-spacings-medium-large;
             }
 
             li {
@@ -310,7 +310,7 @@
             }
 
             .stories-most_popular_stories__listing {
-                margin-top: 16px;
+                margin-top: $blocks-spacings-default;
                 display: flex;
                 flex-direction: row;
 
@@ -323,8 +323,8 @@
                 }
 
                 .stories-most_popular_stories__meta {
-                    margin-left: 8px;
-                    padding-right: 16px;
+                    margin-left: $blocks-spacings-half;
+                    padding-right: $blocks-spacings-default;
 
                     .stories-most_popular_stories__type {
                         font-size: 12px;

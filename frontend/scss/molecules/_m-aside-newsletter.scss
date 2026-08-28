@@ -199,7 +199,7 @@
 // Variation `.m-aside-newsletter--inline
 
 .m-aside-newsletter--inline .m-aside-newsletter__field {
-  padding-top: 32px;
+  padding-top: $blocks-spacings-double;
 }
 
 .m-aside-newsletter--inline .m-aside-newsletter__field label {
@@ -287,22 +287,22 @@
 
 .m-aside-newsletter--wide .m-aside-newsletter__field__wrapper {
   padding-top: 0.02px;
-  padding-bottom: 16px; // 28
+  padding-bottom: $blocks-spacings-default; // 28
 
   @include breakpoint('small+') {
-    padding-top: 20px;
-    padding-bottom: 16px; // 40
+    padding-top: $blocks-spacings-medium-small;
+    padding-bottom: $blocks-spacings-default; // 40
   }
 
   @include breakpoint('large+') {
     padding-top: 52px;
-    padding-bottom: 16px; // 60
+    padding-bottom: $blocks-spacings-default; // 60
   }
 }
 
 .m-aside-newsletter--wide .m-aside-newsletter__field {
   @include breakpoint('small+') {
-    padding-top: 20px;
+    padding-top: $blocks-spacings-medium-small;
     flex-flow: row nowrap;
   }
 
@@ -328,7 +328,7 @@
   border-bottom-width: 1px;
 
   @include breakpoint('small+') {
-    margin-left: 20px;
+    margin-left: $blocks-spacings-medium-small;
   }
 }
 
@@ -419,8 +419,8 @@
     height: auto;
     overflow: initial;
 
-    padding-top: 20px;
-    padding-bottom: 40px;
+    padding-top: $blocks-spacings-medium-small;
+    padding-bottom: $blocks-spacings-extra-large;
   }
 }
 
@@ -431,7 +431,7 @@
 }
 
 .m-aside-newsletter__list .m-fieldset__field--group {
-  margin-top: 8px;
+  margin-top: $blocks-spacings-half;
 }
 
 .m-aside-newsletter__list__right .m-fieldset__field--group {
@@ -445,7 +445,7 @@
 }
 
 .m-aside-newsletter--wide .checkbox label {
-  padding-right: 16px;
+  padding-right: $blocks-spacings-default;
 }
 
 $f-aside-subtitle: generate-font-obj((font-family: $sans-serif-font,

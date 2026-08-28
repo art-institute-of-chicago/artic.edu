@@ -15,7 +15,7 @@
         flex-direction: column;
         margin-bottom: 56px;
         border-top: 2px solid $colors-scales-grey-89;
-        padding-top: 20px;
+        padding-top: $blocks-spacings-medium-small;
 
         .editorial-block__heading {
             display: flex;
@@ -32,7 +32,7 @@
         }
 
         .editorial-block__body {
-            margin-top: 8px;
+            margin-top: $blocks-spacings-half;
             font-family: $sans-serif-font--loaded;
             font-size: 17px;
             font-weight: 300;
@@ -41,7 +41,7 @@
         }
 
         .editorial-block__tags {
-            margin-top: 24px;
+            margin-top: $blocks-spacings-medium;
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
@@ -97,7 +97,7 @@
 
         .editorial-block__heading {
             border-bottom: 1px solid $colors-scales-grey-10;
-            padding-bottom: 20px;
+            padding-bottom: $blocks-spacings-medium-small;
             >h2 {
                 font-weight: 400;
                 font-size: 21px;
@@ -123,14 +123,14 @@
             }
 
             .type {
-                margin-top: 20px;
-                margin-bottom: 16px;
+                margin-top: $blocks-spacings-medium-small;
+                margin-bottom: $blocks-spacings-default;
             }
         }
 
         .editorial-block__content {
             .editorial-block__featured {
-                padding-top: 32px;
+                padding-top: $blocks-spacings-double;
                 .title {
                     text-align: center;
                     font-size: 28px !important;
@@ -154,7 +154,7 @@
                 }
             }
             .editorial-block__list {
-                padding-top: 32px;
+                padding-top: $blocks-spacings-double;
                 position: relative;
                 max-height: 1000px;
                 display: flex;
@@ -238,7 +238,7 @@
 
                             .type {
                                 margin-top: 0;
-                                margin-bottom: 12px;
+                                margin-bottom: $blocks-spacings-small;
                             }
                         }
                     }
@@ -292,7 +292,7 @@
 
     &.editorial-block--educator-resources {
         border-bottom: 2px solid #1c1c1c;
-        padding-bottom: 20px;
+        padding-bottom: $blocks-spacings-medium-small;
 
         &.editorial-block--variation-feature-5-side {
             .editorial-block__list {
@@ -323,7 +323,7 @@
 
             .editorial-block__featured {
                 width: 50%;
-                padding-right: 40px;
+                padding-right: $blocks-spacings-extra-large;
 
                 @include breakpoint('small-') {
                     width: 100%;
@@ -358,10 +358,10 @@
 
             .editorial-block__list {
                 width: 50%;
-                padding-right: 40px;
+                padding-right: $blocks-spacings-extra-large;
 
                 @include breakpoint('small-') {
-                    margin-top: 36px;
+                    margin-top: $blocks-spacings-large;
                     width: 100%;
                     padding-right: 0;
                 }
@@ -372,11 +372,11 @@
                 }
 
                 .stories-listing, .stories-custom-listing {
-                    margin-bottom: 12px;
+                    margin-bottom: $blocks-spacings-small;
 
                     @include breakpoint('small-') {
-                        margin-top: 16px;
-                        padding-bottom: 16px;
+                        margin-top: $blocks-spacings-default;
+                        padding-bottom: $blocks-spacings-default;
                         border-bottom: 1px solid $colors-scales-grey-20;
                     }
 
@@ -545,13 +545,13 @@
 
                 .stories-listing, .stories-custom-listing {
                     width: 25%;
-                    padding-right: 40px;
+                    padding-right: $blocks-spacings-extra-large;
                     height: fit-content !important;
 
                     @include breakpoint('small-') {
                         height: 100px;
-                        margin-top: 16px;
-                        padding-bottom: 16px;
+                        margin-top: $blocks-spacings-default;
+                        padding-bottom: $blocks-spacings-default;
                         border-bottom: 1px solid $colors-scales-grey-20;
                     }
 
@@ -587,7 +587,7 @@
                                 width: 30%;
                                 aspect-ratio: 1/1;
                                 object-fit: cover;
-                                margin-right: 20px;
+                                margin-right: $blocks-spacings-medium-small;
                             }
                         }
 
@@ -670,7 +670,7 @@
             .stories-listing, .stories-custom-listing {
                 width: 33.33%;
                 width: calc(100% / 3);
-                padding-right: 40px;
+                padding-right: $blocks-spacings-extra-large;
 
                 @include breakpoint('small-') {
                     width: 100%;
@@ -682,8 +682,8 @@
 
                     .m-listing__meta {
                         min-height: unset !important;
-                        margin-top: 16px;
-                        padding-bottom: 16px;
+                        margin-top: $blocks-spacings-default;
+                        padding-bottom: $blocks-spacings-default;
                         border-bottom: 1px solid $colors-scales-grey-20;
 
                         .title {
@@ -762,13 +762,13 @@
 
         .stories-listing, .stories-custom-listing {
             width: 25%;
-            padding-right: 40px;
+            padding-right: $blocks-spacings-extra-large;
 
             @include breakpoint('small-') {
                 width: 100%;
                 padding-right: 0;
                 margin-top: 6px;
-                padding-bottom: 16px;
+                padding-bottom: $blocks-spacings-default;
                 border-bottom: 1px solid $colors-scales-grey-20;
 
                 .m-listing__img {
@@ -916,7 +916,7 @@
                 width: 33.33%;
                 width: calc(100% / 3);
                 margin-bottom: 23px;
-                padding-right: 40px;
+                padding-right: $blocks-spacings-extra-large;
 
                 @include breakpoint('small-') {
                     width: 100%;
@@ -943,8 +943,8 @@
 
                         .m-listing__meta {
                             width: 70%;
-                            padding-left: 20px;
-                            padding-right: 12px;
+                            padding-left: $blocks-spacings-medium-small;
+                            padding-right: $blocks-spacings-small;
 
                             .title {
                                 margin-top: 0;

@@ -3,11 +3,11 @@
   position: relative;
   flex-flow: row wrap;
   justify-content: space-between;
-  margin-top: 48px;
+  margin-top: $blocks-spacings-triple;
   padding-top: .02px;
 
   @include breakpoint('small+') {
-    margin-top: 60px;
+    margin-top: $blocks-spacings-largest;
   }
 
   @include breakpoint('large+') {
@@ -15,14 +15,14 @@
   }
 
   &.m-title-bar--compact {
-    margin-top: 24px;
+    margin-top: $blocks-spacings-medium;
 
     @include breakpoint('small+') {
       margin-top: 30px;
     }
 
     @include breakpoint('large+') {
-      margin-top: 36px;
+      margin-top: $blocks-spacings-large;
     }
   }
 
@@ -42,22 +42,22 @@
   &+.o-row-listing,
   &+.m-no-results,
   &+.m-results-title {
-    margin-top: 28px;
+    margin-top: $blocks-spacings-medium-large;
 
     @include breakpoint('small+') {
-      margin-top: 36px;
+      margin-top: $blocks-spacings-large;
     }
 
     @include breakpoint('medium+') {
-      margin-top: 40px;
+      margin-top: $blocks-spacings-extra-large;
     }
   }
 
   &+.o-artist-bio {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
 
     @include breakpoint('small+') {
-      margin-top: 60px;
+      margin-top: $blocks-spacings-largest;
     }
 
     @include breakpoint('medium+') {
@@ -108,7 +108,7 @@
   }
 
   &.m-digipub-subgrouping-title-bar {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
 
     .title {
       font-size: 24px;
@@ -173,7 +173,7 @@
 
 .m-title-bar__links li {
   flex: 0 0 auto;
-  margin-left: 20px;
+  margin-left: $blocks-spacings-medium-small;
 }
 
 .m-title-bar__links a {

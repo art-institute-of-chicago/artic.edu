@@ -38,7 +38,7 @@
 
   @include breakpoint('xsmall') {
     &:first-child {
-      margin-top: 12px;
+      margin-top: $blocks-spacings-small;
       padding-top: 30px;
     }
   }

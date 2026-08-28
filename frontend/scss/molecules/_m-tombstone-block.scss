@@ -1,5 +1,5 @@
 .m-tombstone-block {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
 
     .title {
         font-size: 24px;
@@ -9,6 +9,6 @@
 
     .short-description {
         color: $colors-scales-grey-100;
-        margin-top: 20px;
+        margin-top: $blocks-spacings-medium-small;
     }
 }

@@ -4,11 +4,11 @@ $bioBreakpoints: ('large',
 
 .o-artist-bio {
   position: relative;
-  margin-top: 24px;
-  padding-top: 24px;
+  margin-top: $blocks-spacings-medium;
+  padding-top: $blocks-spacings-medium;
 
   @include breakpoint('small+') {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 
 }
@@ -94,7 +94,7 @@ $bioBreakpoints: ('large',
 }
 
 .o-author-bio .o-artist-bio__main .o-artist-bio__body {
-  margin-top: 24px;
+  margin-top: $blocks-spacings-medium;
 
   @include breakpoint('medium+') {
     margin-top: 0;
@@ -111,7 +111,7 @@ $bioBreakpoints: ('large',
 
 .o-artist-bio__image figcaption {
   @extend %f-caption;
-  margin-top: 8px;
+  margin-top: $blocks-spacings-half;
   color: $colors-themes-light-mode-text-secondary;
 
   p a {
@@ -133,7 +133,7 @@ $bioBreakpoints: ('large',
   display: flex;
   position: relative;
   flex-flow: row wrap;
-  margin-top: 16px;
+  margin-top: $blocks-spacings-default;
 
   @include breakpoint('large+') {
     margin-top: -16px;
@@ -166,7 +166,7 @@ $bioBreakpoints: ('large',
   width: colspan(58, xsmall);
 
   @include breakpoint(xsmall) {
-    margin-top: 12px;
+    margin-top: $blocks-spacings-small;
   }
 
   @include breakpoint(small) {
@@ -233,24 +233,24 @@ $bioBreakpoints: ('large',
 }
 
 .o-artist-bio__main dl+.o-artist-bio__body {
-  margin-top: 24px;
+  margin-top: $blocks-spacings-medium;
 }
 
 .o-artist-bio__tags {
   display: flex;
   flex-flow: row wrap;
-  margin-top: 24px;
+  margin-top: $blocks-spacings-medium;
   padding-top: .02px;
 
   @include breakpoint('small+') {
-    margin-top: 32px;
+    margin-top: $blocks-spacings-double;
   }
 }
 
 .o-artist-bio__tags>li {
   flex: 0 0 auto;
-  margin-top: 8px;
-  margin-right: 20px;
+  margin-top: $blocks-spacings-half;
+  margin-right: $blocks-spacings-medium-small;
 }
 
 .o-artist-bio__tags .tag {

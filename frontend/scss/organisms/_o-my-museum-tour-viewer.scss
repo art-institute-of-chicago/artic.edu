@@ -31,7 +31,7 @@
   }
 
   .f-headline-editorial {
-    margin-bottom: 16px;
+    margin-bottom: $blocks-spacings-default;
     font-size: 38px;
     line-height: 44px;
   }
@@ -76,8 +76,8 @@
 
 .o-landingpage__body--aic-ct {
   position: relative;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  padding-top: $blocks-spacings-double;
+  padding-bottom: $blocks-spacings-double;
   background-color: $colors-scales-grey-5;
 
   &::before {
@@ -94,12 +94,12 @@
   }
 
   .title {
-    margin-bottom: 20px;
+    margin-bottom: $blocks-spacings-medium-small;
   }
 }
 
 .aic-ct-grid-intro {
-  margin-bottom: 32px;
+  margin-bottom: $blocks-spacings-double;
 
   &.f-body {
     margin-top: 0;
@@ -146,8 +146,8 @@
     position: absolute;
     left: 20px;
     bottom: 20px;
-    margin-top: 20px;
-    margin-right: 20px;
+    margin-top: $blocks-spacings-medium-small;
+    margin-right: $blocks-spacings-medium-small;
     color: $colors-scales-grey-0;
   }
 
@@ -183,7 +183,7 @@
   }
 
   .aic-ct-grid-card__text {
-    margin-bottom: 24px;
+    margin-bottom: $blocks-spacings-medium;
     flex: 1;
   }
 
@@ -204,13 +204,13 @@
 .my-museum-tour-header {
 
   .m-title-bar {
-    margin-top: 12px;
-    margin-bottom: 16px;
-    padding-top: 24px;
+    margin-top: $blocks-spacings-small;
+    margin-bottom: $blocks-spacings-default;
+    padding-top: $blocks-spacings-medium;
   }
 
   .f-deck {
-    margin-bottom: 24px;
+    margin-bottom: $blocks-spacings-medium;
   }
 }
 
@@ -240,7 +240,7 @@
   }
 
   .f-headline {
-    margin-bottom: 20px;
+    margin-bottom: $blocks-spacings-medium-small;
   }
 
   .m-cta-banner__txt,
@@ -253,8 +253,8 @@
 
   .m-cta-banner__txt {
     min-height: 200px;
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding-top: $blocks-spacings-double;
+    padding-bottom: $blocks-spacings-double;
     padding-left: 4.6875vw;
     padding-right: 4.6875vw;
 
@@ -300,7 +300,7 @@
   }
 
   .m-cta-banner__msg {
-    margin-bottom: 20px;
+    margin-bottom: $blocks-spacings-medium-small;
 
     @include breakpoint('medium+') {
       margin-bottom: 0;
@@ -334,7 +334,7 @@
   .m-cta-banner--aic-ct {
     @include breakpoint('medium+') {
       margin-top: 0;
-      margin-bottom: 60px;
+      margin-bottom: $blocks-spacings-largest;
     }
   }
 }
@@ -423,7 +423,7 @@
 
   .m-article-actions {
     margin-top: 0;
-    margin-bottom: 32px;
+    margin-bottom: $blocks-spacings-double;
   }
 }
 
@@ -431,13 +431,13 @@
   padding: 40px 32px 8px;
 
   .f-headline {
-    margin-bottom: 32px;
+    margin-bottom: $blocks-spacings-double;
     font-size: 38px;
     line-height: 1.16;
   }
 
   .f-body {
-    margin-bottom: 16px;
+    margin-bottom: $blocks-spacings-default;
     font-size: 18px;
     line-height: 1.56;
   }
@@ -452,21 +452,21 @@
     background-color: $colors-aliases-japanese-indigo;
     color: $colors-scales-grey-0;
     padding: 24px 56px 56px;
-    margin-bottom: 20px;
+    margin-bottom: $blocks-spacings-medium-small;
 
     @include breakpoint('medium-') {
       padding: 24px;
     }
 
     @include breakpoint('small+') {
-      margin-bottom: 40px;
+      margin-bottom: $blocks-spacings-extra-large;
     }
 
     .aic-ct-viewer__header-wrapper {
     width: 100%;
 
     .aic-ct-title {
-      margin-bottom: 24px;
+      margin-bottom: $blocks-spacings-medium;
       font-size: 56px;
       line-height: 65px;
       color: $colors-scales-grey-0;
@@ -503,13 +503,13 @@
 }
 
 .aic-ct-viewer__link-container {
-  margin-bottom: 24px;
+  margin-bottom: $blocks-spacings-medium;
   padding: 16px;
   background-color: $colors-scales-grey-5;
 }
 
 .aic-ct-quote--large {
-  margin-bottom: 24px;
+  margin-bottom: $blocks-spacings-medium;
   margin-top: -25px;
 
   &.quote.o-blocks__block {
@@ -517,7 +517,7 @@
   }
 
   .f-quote {
-    margin-bottom: 16px;
+    margin-bottom: $blocks-spacings-default;
   }
 
   .quote__icon {
@@ -526,14 +526,14 @@
 }
 
 .aic-ct-quote--small {
-  margin-bottom: 20px;
+  margin-bottom: $blocks-spacings-medium-small;
 
   &.quote.o-blocks__block {
     padding: 16px;
   }
 
   cite {
-    margin-top: 12px;
+    margin-top: $blocks-spacings-small;
   }
 
   .f-body-editorial-emphasis {
@@ -560,7 +560,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  margin-bottom: 12px;
+  margin-bottom: $blocks-spacings-small;
   background-color: $colors-scales-grey-5;
 
   img {
@@ -573,7 +573,7 @@
 
 .aic-ct-viewer__gallery-container {
   display: flex;
-  margin-bottom: 16px;
+  margin-bottom: $blocks-spacings-default;
   align-items: center;
   gap: 4px;
 
@@ -583,7 +583,7 @@
 }
 
 .aic-ct-viewer__description.f-tertiary {
-  margin-bottom: 20px;
+  margin-bottom: $blocks-spacings-medium-small;
   color: $colors-scales-grey-100;
 }
 
@@ -604,17 +604,17 @@
   }
 
   .f-subheading-1 {
-    margin-bottom: 16px;
+    margin-bottom: $blocks-spacings-default;
   }
 }
 
 .aic-ct-list-item {
   list-style-type: none;
-  margin-top: 24px;
+  margin-top: $blocks-spacings-medium;
   padding-left: 0;
 
   .f-body {
-    margin-bottom: 8px;
+    margin-bottom: $blocks-spacings-half;
   }
 }
 
@@ -622,7 +622,7 @@
   margin: 32px 0;
 
   .f-headline {
-    margin-bottom: 24px;
+    margin-bottom: $blocks-spacings-medium;
   }
 
   .m-article-actions {

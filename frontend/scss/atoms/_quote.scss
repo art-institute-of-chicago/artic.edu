@@ -47,7 +47,7 @@ Has a variant for editorial articles:
   }
 
   &.o-blocks__block {
-    padding-bottom: 20px;
+    padding-bottom: $blocks-spacings-medium-small;
   }
 }
 
@@ -138,7 +138,7 @@ Has a variant for editorial articles:
   }
 
   @include breakpoint('medium+') {
-    padding-top: 20px;
+    padding-top: $blocks-spacings-medium-small;
     padding-bottom: 116px;
   }
 }
@@ -183,7 +183,7 @@ Has a variant for editorial articles:
   }
 
   @include breakpoint('medium+') {
-    padding-top: 20px;
+    padding-top: $blocks-spacings-medium-small;
     padding-bottom: 116px;
   }
 }

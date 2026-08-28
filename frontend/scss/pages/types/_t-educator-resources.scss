@@ -84,7 +84,7 @@
             font-family: $serif-font--loaded;
             font-size: 17px;
             font-weight: 200;
-            margin-bottom: 16px;
+            margin-bottom: $blocks-spacings-default;
             line-height: 28px;
         }
 
@@ -115,17 +115,17 @@
             font-weight: 200;
             font-size: 17px;
             font-family: $sans-serif-font--loaded;
-            margin-bottom: 8px;
+            margin-bottom: $blocks-spacings-half;
         }
 
         .educator-resources__dropdown {
-            margin-bottom: 16px;
+            margin-bottom: $blocks-spacings-default;
 
             .dropdown__trigger {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding-right: 8px;
+                padding-right: $blocks-spacings-half;
 
                 svg {
                     margin: auto 0;

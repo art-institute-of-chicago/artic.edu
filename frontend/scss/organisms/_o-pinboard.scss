@@ -38,7 +38,7 @@
   }
 
   @include breakpoint('small+') {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
 
     &:first-child {
       margin-top: 0;
@@ -46,7 +46,7 @@
   }
 
   @include breakpoint('medium+') {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
 
     &:first-child {
       margin-top: 0;
@@ -59,7 +59,7 @@
 }
 
 .m-search-actions+.o-pinboard {
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 }
 
 .o-pinboard::before,
@@ -96,7 +96,7 @@
 }
 
 .o-pinboard__footer {
-  margin-top: 40px;
+  margin-top: $blocks-spacings-extra-large;
   padding-top: 25px;
   border-top: 1px solid $colors-themes-light-mode-rules-primary;
 
@@ -113,7 +113,7 @@ $point in $breakpoints {
         margin-top: 56px;
 
         &:first-child:not(.s-positioned) {
-          margin-top: 16px;
+          margin-top: $blocks-spacings-default;
         }
       }
 
@@ -163,11 +163,11 @@ $point in $breakpoints {
 
     .o-pinboard[class*="col@#{$name}"]>.m-listing--variable-height {
       @if ($name=='xsmall') {
-        margin-top: 32px;
+        margin-top: $blocks-spacings-double;
       }
 
       @if ($name=='small') {
-        margin-top: 60px;
+        margin-top: $blocks-spacings-largest;
       }
     }
 
@@ -410,7 +410,7 @@ $point in $breakpoints {
 
   @include breakpoint('small') {
     .o-pinboard--2-col\@small>* {
-      margin-left: 20px;
+      margin-left: $blocks-spacings-medium-small;
     }
   }
 

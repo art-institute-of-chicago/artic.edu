@@ -17,7 +17,7 @@
 }
 
 .m-author---keyline-top {
-  padding-top: 16px;
+  padding-top: $blocks-spacings-default;
 }
 
 .m-author---keyline-top::before {
@@ -36,13 +36,13 @@
   flex: 0 0 auto;
   width: 40px;
   height: 40px;
-  margin-right: 12px;
+  margin-right: $blocks-spacings-small;
 
   @include breakpoint('xlarge') {
     width: 88px;
     height: 88px;
     margin-right: 0;
-    margin-bottom: 16px;
+    margin-bottom: $blocks-spacings-default;
   }
 }
 

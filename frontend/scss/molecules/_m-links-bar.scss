@@ -31,7 +31,7 @@
   position: relative;
   flex-flow: row wrap;
   width: 100%;
-  margin-top: 40px;
+  margin-top: $blocks-spacings-extra-large;
 
   &:first-child,
   .m-no-results &,
@@ -40,11 +40,11 @@
   }
 
   & + * {
-    margin-top: 40px;
+    margin-top: $blocks-spacings-extra-large;
   }
 
   & + .m-search-bar {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
   }
 
   & + .m-header-block {
@@ -54,7 +54,7 @@
   &:has(.exhibition-history-images) {
     margin-top: 0;
     padding-top: 0;
-    padding-bottom: 20px;
+    padding-bottom: $blocks-spacings-medium-small;
     border-bottom: 1px solid $colors-themes-light-mode-rules-primary;
 
     @include breakpoint('medium+') {
@@ -83,30 +83,30 @@
   }
 
   .m-intro-block + & {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
   }
 
   .o-row-listing + & {
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
 
     @include breakpoint('small+') {
-      margin-top: 20px;
+      margin-top: $blocks-spacings-medium-small;
     }
 
     @include breakpoint('medium+') {
-      margin-top: 20px;
+      margin-top: $blocks-spacings-medium-small;
     }
   }
 
   & + .hr:not(.hr--flush-top) {
-    margin-top: 36px;
+    margin-top: $blocks-spacings-large;
 
     @include breakpoint('small+') {
-      margin-top: 48px;
+      margin-top: $blocks-spacings-triple;
     }
 
     @include breakpoint('medium+') {
-      margin-top: 60px;
+      margin-top: $blocks-spacings-largest;
     }
   }
 
@@ -187,7 +187,7 @@
   @include breakpoint('small+') {
     flex-wrap: nowrap;
     margin-left: auto;
-    padding-left: 20px;
+    padding-left: $blocks-spacings-medium-small;
 
     .s-overflowing & {
       padding-left: 0;
@@ -198,15 +198,15 @@
 .m-links-bar__item {
   position: relative;
   flex: 0 0 auto;
-  margin-right: 20px;
+  margin-right: $blocks-spacings-medium-small;
   padding-top: 4px;
 
   @include breakpoint('small+') {
-    padding-top: 8px;
+    padding-top: $blocks-spacings-half;
   }
 
   @include breakpoint('medium+') {
-    padding-top: 12px;
+    padding-top: $blocks-spacings-small;
   }
 
   &.s-hidden {
@@ -337,7 +337,7 @@
   }
 
   .m-links-bar__item--primary + .m-links-bar__item {
-    //margin-top: 20px;
+    //margin-top: $blocks-spacings-medium-small;
   }
 
   .m-links-bar__item--primary {
@@ -459,7 +459,7 @@
 
   header + &,
   .m-intro-block + & {
-    margin-top: 60px;
+    margin-top: $blocks-spacings-largest;
   }
 
   & + .m-links-bar:not(.m-links-bar--tabs) {
@@ -484,7 +484,7 @@
 .m-links-bar--tabs .m-links-bar__items-secondary {
 
   @include breakpoint('xsmall') {
-    margin-top: 16px;
+    margin-top: $blocks-spacings-default;
   }
 
   @include breakpoint('small+') {
@@ -495,7 +495,7 @@
 .m-links-bar--tabs .m-links-bar__item {
   position: relative;
   height: auto;
-  margin-right: 24px;
+  margin-right: $blocks-spacings-medium;
   padding-top: 0;
 }
 
@@ -505,7 +505,7 @@
 
   @include breakpoint('medium+') {
     width: auto;
-    margin-right: 24px;
+    margin-right: $blocks-spacings-medium;
   }
 }
 
@@ -526,7 +526,7 @@
 }
 
 .m-links-bar--tabs .m-links-bar__items-primary .m-links-bar__item-trigger:not([class*=btn]) {
-  padding-bottom: 32px;
+  padding-bottom: $blocks-spacings-double;
   color: $colors-themes-light-mode-link-tab-primary;
 }
 
@@ -585,8 +585,8 @@
   .dropdown > button {
     display: block;
     width: 100%;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: $blocks-spacings-small;
+    padding-bottom: $blocks-spacings-small;
     color: $colors-themes-light-mode-link-tab-active;
 
     @include breakpoint('small+') {
@@ -623,10 +623,10 @@
 // Variant `.m-links-bar--btns`
 
 .m-links-bar--buttons {
-  padding-top: 12px;
+  padding-top: $blocks-spacings-small;
 
   @include breakpoint('small+') {
-    padding-top: 20px;
+    padding-top: $blocks-spacings-medium-small;
   }
 }
 
@@ -643,8 +643,8 @@
 
 .m-links-bar--title-bar-companion {
   display: block;
-  margin-top: 32px;
-  padding-top: 16px;
+  margin-top: $blocks-spacings-double;
+  padding-top: $blocks-spacings-default;
   border-top: 0 none;
 
   @include breakpoint('small+') {
@@ -664,7 +664,7 @@
 }
 
 .m-links-bar--title-bar-companion .m-links-bar__item:not(:first-child) {
-  margin-top: 20px;
+  margin-top: $blocks-spacings-medium-small;
 }
 
 .m-links-bar--title-bar-companion .m-links-bar__item-trigger {
@@ -810,16 +810,16 @@
 
 .m-links-bar--filters .m-links-bar__item--search {
   margin-left: 0;
-  padding-top: 12px;
+  padding-top: $blocks-spacings-small;
 
   @include breakpoint(medium) {
-    padding-top: 16px;
+    padding-top: $blocks-spacings-default;
   }
 
   @include breakpoint('small-') {
     position: relative;
     z-index: 1;
-    margin-top: 20px;
+    margin-top: $blocks-spacings-medium-small;
     padding-top: 0;
     border-top: 0 none;
 

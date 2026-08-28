@@ -1,6 +1,6 @@
 
 .m-featured-results {
-  margin-top: 40px;
+  margin-top: $blocks-spacings-extra-large;
 }
 
 .m-featured-results__title.f-tag {
@@ -18,17 +18,17 @@
 
     @include breakpoint('small+') {
       margin-top: 0;
-      padding-top: 20px;
+      padding-top: $blocks-spacings-medium-small;
     }
 
     @include breakpoint('medium+') {
       margin-top: 0;
-      padding-top: 20px;
+      padding-top: $blocks-spacings-medium-small;
     }
   }
 }
 
 .m-featured-results p.m-listing--row,
 .m-featured-results .o-row-listing {
-  margin-top: 16px;
+  margin-top: $blocks-spacings-default;
 }

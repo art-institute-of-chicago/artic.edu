@@ -43,7 +43,7 @@
 
 
 .g-modal--media {
-  padding-top: 60px;
+  padding-top: $blocks-spacings-largest;
 
   .g-modal__close {
     right: 22px;
@@ -51,7 +51,7 @@
   }
 
   @include breakpoint('small+') {
-    padding-top: 40px;
+    padding-top: $blocks-spacings-extra-large;
     background-color: $colors-scales-grey-100;
 
     .g-modal__close {

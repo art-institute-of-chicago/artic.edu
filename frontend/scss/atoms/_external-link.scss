@@ -16,7 +16,7 @@ With external link icon
 }
 
 .external-link svg {
-  margin-left: 8px;
+  margin-left: $blocks-spacings-half;
   outline: 8px solid $colors-themes-light-mode-background-default;
   background: $colors-themes-light-mode-background-default;
 }

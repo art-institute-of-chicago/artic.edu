@@ -351,7 +351,7 @@ html.s-print body {
 
     .m-media figcaption {
         float: left;
-        padding-left: 28px;
+        padding-left: $blocks-spacings-medium-large;
         padding-right: 50px;
     }
 
@@ -380,7 +380,7 @@ html.s-print body {
     }
     .m-article-header__text:not(:first-child),
     .o-article__inline-header:not(:first-child) {
-        margin-top: 40px;
+        margin-top: $blocks-spacings-extra-large;
     }
 
     .m-article-header__text *,
@@ -396,7 +396,7 @@ html.s-print body {
     }
 
     .m-article-header__text .f-deck {
-        margin-top: 20px;
+        margin-top: $blocks-spacings-medium-small;
     }
 
     .m-article-header__text .hr {
@@ -419,12 +419,12 @@ html.s-print body {
 
     .deflist dt {
         width: 25%;
-        margin-top: 20px;
+        margin-top: $blocks-spacings-medium-small;
     }
 
     .deflist dd {
         width: 75%;
-        margin-top: 20px;
+        margin-top: $blocks-spacings-medium-small;
     }
 
     .m-info-bar {
@@ -443,7 +443,7 @@ html.s-print body {
     .m-listing,
     .m-row-block {
         overflow: hidden;
-        margin-top: 20px;
+        margin-top: $blocks-spacings-medium-small;
     }
 
     .m-listing .m-listing__img,
