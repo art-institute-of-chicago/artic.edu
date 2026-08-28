@@ -11,6 +11,10 @@ class CollectionController extends BaseScopedController
 {
     public const PER_PAGE = 50;
 
+    public const TITLE = 'Discover Art & Artists';
+
+    public const DESCRIPTION = "Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.";
+
     protected $apiRepository;
     protected $searchRepository;
 
@@ -49,9 +53,9 @@ class CollectionController extends BaseScopedController
             [
                 '@type' => 'CollectionPage',
                 'inLanguage' => SchemaMapper::inLanguage(),
-                'name' => 'Discover Art & Artists',
+                'name' => self::TITLE,
                 'url' => route('collection'),
-                'description' => "Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.",
+                'description' => self::DESCRIPTION,
                 'isPartOf' => SchemaMapper::siteRef(),
             ]
         );
@@ -92,7 +96,7 @@ class CollectionController extends BaseScopedController
             $this->seo->setTitle(implode(', ', $titles));
         } else {
             $titles = array_filter([
-                'Discover Art & Artists',
+                self::TITLE,
                 request('page') ? 'Page ' . request('page') : null,
             ]);
             $this->seo->setTitle(implode(', ', $titles));
@@ -109,7 +113,7 @@ class CollectionController extends BaseScopedController
             $this->seo->height = 799;
         }
 
-        $description = "Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.";
+        $description = self::DESCRIPTION;
 
         if (request('q')) {
             $description = 'You searched for: ' . request('q') . '. ' . $description;
@@ -136,7 +140,7 @@ class CollectionController extends BaseScopedController
             $featuredItemsHero = $featuredItems->shift();
         }
 
-        $this->addJsonLd((object) ['title' => 'Discover Art & Artists']);
+        $this->addJsonLd((object) ['title' => self::TITLE]);
 
         return view('site.collection.index', [
             'primaryNavCurrent' => 'collection',
