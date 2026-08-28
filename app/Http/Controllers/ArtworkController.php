@@ -216,16 +216,8 @@ class ArtworkController extends BaseScopedController
                 return null;
             }
 
-            // dimensions_detail carries no unit; derive it from the free-text
-            // dimensions string (e.g. "78 × 65.3 cm (30 3/4 × 25 3/4 in.)").
-            $dimensionsText = $m?->dimensions ?? '';
             $unitCode = 'CMT';
             $unitText = 'cm';
-
-            if (stripos($dimensionsText, 'in.') !== false || stripos($dimensionsText, 'inches') !== false) {
-                $unitCode = 'INH';
-                $unitText = 'in';
-            }
 
             foreach ($details as $detail) {
                 $detail = is_array($detail) ? $detail : (array) $detail;
