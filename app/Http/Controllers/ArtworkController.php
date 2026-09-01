@@ -369,7 +369,7 @@ class ArtworkController extends BaseScopedController
                     }
 
                     return [
-                        '@type' => 'DigitalDocument',
+                        '@type' => 'MediaObject',
                         '@id' => 'https://api.artic.edu/api/v1/artworks/' . $id . '/manifest.json',
                         'encodingFormat' => 'application/ld+json',
                     ];
