@@ -339,12 +339,11 @@ class ArtworkController extends BaseScopedController
                     return $keywords->isEmpty() ? null : $keywords->implode(', ');
                 },
                 'genre' => static function ($m) {
-                    $genre = $m->classification_title ?? null;
+                    $style = $m->style_titles ?? null;
+                    $genre = is_array($style) ? ($style[0] ?? null) : null;
 
                     if (empty($genre)) {
-                        $titles = $m->classification_titles ?? null;
-
-                        $genre = is_array($titles) ? ($titles[0] ?? null) : null;
+                        $genre = $m->classification_title ?? null;
                     }
 
                     return is_string($genre) && $genre !== '' ? $genre : null;
