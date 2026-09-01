@@ -590,10 +590,20 @@ class LandingPagesController extends FrontController
             return SchemaMapper::orgRef();
         };
 
+        $pageType = static function ($m) {
+            $types = collect(\App\Models\LandingPage::TYPES);
+
+            if ((int) ($m->type_id ?? null) === $types->search('Videos')) {
+                return 'CollectionPage';
+            }
+
+            return 'WebPage';
+        };
+
         return array_merge(
             parent::jsonLdDefinition($model),
             [
-                '@type' => 'WebPage',
+                '@type' => $pageType,
                 'inLanguage' => SchemaMapper::inLanguage(),
                 'description' => SchemaMapper::text('meta_description', 'short_description', 'listing_description', 'description'),
                 'url' => $landingPageUrl,
