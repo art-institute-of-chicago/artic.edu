@@ -80,8 +80,9 @@ class PrintedPublicationsController extends BaseScopedController
         $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->listing_description);
         $this->seo->setImage($item->imageFront('listing'));
 
-        $this->addJsonLd($item);
+        $item->isbn = $this->extractIsbn($item);
 
+        $this->addJsonLd($item);
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
             ['label' => 'Print Publications', 'href' => route('collection.publications.printed-publications')],
@@ -134,6 +135,35 @@ class PrintedPublicationsController extends BaseScopedController
      *
      * @return array<string, mixed>
      */
+
+    protected function extractIsbn($item): ?string
+    {
+        // I would love for this to be a field but I guess we'll do this 🤷‍♂️
+        $text = '';
+
+        foreach ($item->blocks as $block) {
+            $flatten = function (mixed $value) use (&$flatten): string {
+                if (is_string($value)) {
+                    return $value;
+                }
+
+                if (is_array($value)) {
+                    return implode(' ', array_map($flatten, $value));
+                }
+
+                return '';
+            };
+
+            $text .= ' ' . $flatten($block->content ?? []);
+        }
+
+        if (preg_match('/ISBN[\s:\-]*([0-9Xx][0-9Xx\- ]{8,16})/', $text, $matches)) {
+            return preg_replace('/[^0-9Xx]/', '', $matches[1]);
+        }
+
+        return null;
+    }
+
     protected function jsonLdDefinition(mixed $model): array
     {
         $optionalField = static function (string $field) {
