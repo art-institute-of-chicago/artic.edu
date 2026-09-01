@@ -250,7 +250,7 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertSame('1879', $organization['foundingDate']);
         $this->assertSame('ContactPoint', $organization['contactPoint']['@type']);
         $this->assertSame('customer service', $organization['contactPoint']['contactType']);
-        $this->assertSame('https://www.artic.edu/visit', $organization['contactPoint']['url']);
+        $this->assertSame('https://www.artic.edu/contact', $organization['contactPoint']['url']);
 
         $website = $this->findEntity($graph, 'WebSite');
         $this->assertNotNull($website);
@@ -282,12 +282,12 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertStringContainsString('"height":{"@type":"QuantitativeValue","value":92.1,"unitCode":"CMT","unitText":"cm"}', $script);
         $this->assertStringContainsString('"copyrightNotice":"Public domain"', $script);
         $this->assertStringContainsString('"keywords":"Landscape, Post-Impressionism, Painting"', $script);
-        $this->assertStringContainsString('"genre":"Painting"', $script);
+        $this->assertStringContainsString('"genre":"Post-Impressionism"', $script);
         $this->assertStringContainsString('"isPartOf":{"@type":"Collection","name":"Arts of the Americas"}', $script);
         $this->assertStringContainsString('"displayLocation":"Gallery 100"', $script);
         $this->assertStringContainsString('"locationCreated":"France"', $script);
         $this->assertStringNotContainsString('contentLocation', $script);
-        $this->assertStringContainsString('"encoding":{"@type":"DigitalDocument","@id":"https://api.artic.edu/api/v1/artworks/1/manifest.json","encodingFormat":"application/ld+json"}', $script);
+        $this->assertStringContainsString('"encoding":{"@type":"MediaObject","@id":"https://api.artic.edu/api/v1/artworks/1/manifest.json","encodingFormat":"application/ld+json"}', $script);
         $this->assertStringContainsString('"sameAs":"https://api.artic.edu/api/v1/artworks/1"', $script);
         $this->assertStringContainsString('"inLanguage":"en"', $script);
         // Thumbnail URL derives from the IIIF image id provided by the factory
@@ -409,7 +409,8 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertSame('Schedule', $entity['eventSchedule']['@type'] ?? null);
         $this->assertSame('P1W', $entity['eventSchedule']['repeatFrequency'] ?? null);
         $this->assertSame('MO', ($entity['eventSchedule']['byDay'][0] ?? null));
-        $this->assertStringContainsString('2024-06-03', $entity['eventSchedule']['startDate'] ?? '');
+        $this->assertArrayNotHasKey('startDate', $entity['eventSchedule']);
+        $this->assertArrayNotHasKey('endDate', $entity['eventSchedule']);
     }
 
     public function test_virtual_event_mapper_uses_virtual_location_and_online_mode(): void
@@ -877,6 +878,19 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertSame('320', $entity['numberOfPages']);
         $this->assertSame('2023-11-15', substr($entity['datePublished'], 0, 10));
         $this->assertStringEndsWith('/print-publications/51/van-gogh-the-complete-works', $entity['url']);
+    }
+
+    public function test_extract_isbn_scrapes_from_block_content(): void
+    {
+        $book = PrintedPublication::factory()->make(['id' => 52, 'title' => 'Test Book']);
+        $book->setRelation('blocks', collect([
+            (object) ['content' => ['paragraph' => ['en' => '<p>Published by AIC. ISBN 978-0-86559-000-0. 320 pages.</p>']]],
+        ]));
+
+        $controller = (new \ReflectionClass(\App\Http\Controllers\PrintedPublicationsController::class))->newInstanceWithoutConstructor();
+        $isbn = (new \ReflectionMethod($controller, 'extractIsbn'))->invoke($controller, $book);
+
+        $this->assertSame('9780865590000', $isbn);
     }
 
     public function test_book_mapper_for_digital_publication(): void
