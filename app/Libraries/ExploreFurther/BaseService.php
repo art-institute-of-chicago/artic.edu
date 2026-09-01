@@ -26,6 +26,7 @@ class BaseService
         'ef-artist_ids',
         'ef-style_ids',
         'ef-place_ids',
+        'ef-gallery_ids',
         'ef-date_ids',
         'ef-color_ids',
         'ef-most-similar_ids',
@@ -131,7 +132,7 @@ class BaseService
             ->forceEndpoint('search');
 
         $active = $parameters->filter(function ($value, $key) {
-            return Str::contains($key, 'ef-');
+            return Str::contains($key, 'ef-') && !empty($value);
         })->isNotEmpty();
 
         if ($active) {
@@ -147,6 +148,7 @@ class BaseService
                     ->byArtists($parameters->get('ef-artist_ids'))
                     ->byStyles($parameters->get('ef-style_ids'))
                     ->byPlaces($parameters->get('ef-place_ids'))
+                    ->byGalleryIds($parameters->get('ef-gallery_ids'))
                     ->yearRange($beforeYear, $afterYear)
                     ->byColor($parameters->get('ef-color_ids'));
             }
@@ -255,6 +257,9 @@ class BaseService
                         break;
                     case 'place':
                         return route('collection', ['place_ids' => $id]);
+
+                    case 'gallery':
+                        return route('collection', ['gallery_ids' => $id]);
 
                         break;
                     case 'date':
