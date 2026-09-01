@@ -475,7 +475,7 @@ class Event extends AbstractModel
         $query->rightJoin('event_metas', function ($join) {
             $join->on('events.id', '=', 'event_metas.event_id');
         });
-        $query->where('event_metas.date', '>=', $startDate);
+        $query->where('event_metas.date', '>=', Carbon::parse($startDate));
 
         if ($endDate) {
             $query->where('event_metas.date_end', '<=', Carbon::parse($endDate)->endOfDay());
