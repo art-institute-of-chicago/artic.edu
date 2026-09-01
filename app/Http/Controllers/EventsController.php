@@ -270,18 +270,28 @@ class EventsController extends FrontController
      */
     protected function jsonLdDefinition(mixed $model): array
     {
-        $eventDuration = static function ($m): ?string {
-            $start = $m->date_start ?? null;
-            $end = $m->date_end ?? null;
+        $isRecurring = static fn ($m) => $m->relationLoaded('dateRules')
+            && collect($m->dateRules)->contains(
+                fn ($rule) => method_exists($rule, 'getRuleType') && $rule->getRuleType() === 'recurrent'
+            );
 
-            if ($start instanceof \DateTimeInterface && $end instanceof \DateTimeInterface) {
-                $interval = CarbonInterval::instance($start->diff($end));
+        $eventDuration = static function ($m) use ($isRecurring): ?string {
+            // For recurring events the date_start/date_end window spans the
+            // whole series, so the per-occurrence duration must come from the
+            // time-of-day fields instead.
+            if (!$isRecurring($m)) {
+                $start = $m->date_start ?? null;
+                $end = $m->date_end ?? null;
 
-                if ($interval->invert === 1) {
-                    return null;
+                if ($start instanceof \DateTimeInterface && $end instanceof \DateTimeInterface) {
+                    $interval = CarbonInterval::instance($start->diff($end));
+
+                    if ($interval->invert === 1) {
+                        return null;
+                    }
+
+                    return CarbonInterval::seconds((int) round($interval->totalSeconds))->cascade()->spec();
                 }
-
-                return CarbonInterval::seconds((int) round($interval->totalSeconds))->cascade()->spec();
             }
 
             try {
@@ -326,12 +336,8 @@ class EventsController extends FrontController
                 return null;
             }
 
-            // Date rules carry whole dates; emit them as Y-m-d rather than a
-            // full timestamp so the rule stays human-readable in the markup.
-            $dateOnly = static fn ($value) => $value
-                ? \Carbon\Carbon::parse($value)->toDateString()
-                : null;
-
+            // The recurrence rule itself is the machine-readable signal;
+            // start/end dates are omitted for recurring events.
             $schedules = [];
 
             foreach ($rules as $rule) {
@@ -349,24 +355,45 @@ class EventsController extends FrontController
 
                 $schedule = [
                     '@type' => 'Schedule',
-                    'startDate' => $dateOnly($rule->start_date ?? null),
                     'repeatFrequency' => $repeatFrequency,
                 ];
 
-                if (!empty($rule->end_date)) {
-                    $schedule['endDate'] = $dateOnly($rule->end_date);
+                // The per-occurrence time of day comes from the event's
+                // start/end time fields (DateInterval strings).
+                foreach (['start_time' => 'startTime', 'end_time' => 'endTime'] as $field => $prop) {
+                    $time = $m->{$field} ?? null;
+
+                    if (is_string($time) && $time !== '') {
+                        try {
+                            $schedule[$prop] = \Carbon\CarbonInterval::create($time)->format('%H:%I');
+                        } catch (\Throwable $e) {
+                            // Ignore malformed time fields.
+                        }
+                    }
                 }
 
-                if ($type === 'WEEKLY' && method_exists($rule, 'getDays')) {
-                    $days = array_values(array_filter($rule->getDays()));
+                if ($type === 'WEEKLY') {
+                    $days = method_exists($rule, 'getDays')
+                        ? array_values(array_filter($rule->getDays()))
+                        : [];
+
+                    // The weekday checkboxes are often unset; the RRULE then
+                    // inherits the weekday of start_date.
+                    if (empty($days) && !empty($rule->start_date)) {
+                        $days = [strtoupper(substr(\Carbon\Carbon::parse($rule->start_date)->format('D'), 0, 2))];
+                    }
 
                     if (!empty($days)) {
                         $schedule['byDay'] = $days;
                     }
                 }
 
-                if ($type === 'MONTHLY' && method_exists($rule, 'getMonthlyRepeatType') && $rule->getMonthlyRepeatType() === 'first_day') {
-                    $schedule['byDay'] = '1' . strtoupper(substr(($rule->start_date ?? \Carbon\Carbon::now())->format('D'), 0, 2));
+                if ($type === 'MONTHLY' && method_exists($rule, 'getMonthlyRepeatType')) {
+                    if ($rule->getMonthlyRepeatType() === 'first_day') {
+                        $schedule['byDay'] = '1' . strtoupper(substr(\Carbon\Carbon::parse($rule->start_date)->format('D'), 0, 2));
+                    } elseif ($rule->getMonthlyRepeatType() === 'numeral' && !empty($rule->start_date)) {
+                        $schedule['byMonthDay'] = (int) \Carbon\Carbon::parse($rule->start_date)->day;
+                    }
                 }
 
                 $schedules[] = $schedule;
@@ -378,11 +405,6 @@ class EventsController extends FrontController
 
             return count($schedules) === 1 ? $schedules[0] : $schedules;
         };
-
-        $isRecurring = static fn ($m) => $m->relationLoaded('dateRules')
-            && collect($m->dateRules)->contains(
-                fn ($rule) => method_exists($rule, 'getRuleType') && $rule->getRuleType() === 'recurrent'
-            );
 
         $eventAudience = static function ($m) {
             $labels = [];
