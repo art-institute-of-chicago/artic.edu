@@ -120,3 +120,5 @@ Route::group(['prefix' => 'general'], function () {
 });
 
 TwillRoutes::module('videoCategories');
+
+TwillRoutes::module('adCampaigns');
