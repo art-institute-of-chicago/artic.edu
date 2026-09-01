@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,7 +19,7 @@ class CheckFileExtension
         $fileExtensions = config('twill.file_library.allowed_extensions');
         $allExtensions = array_unique(array_merge($mediaExtensions, $fileExtensions));
 
-        $filename = array_last($request->segments());
+        $filename = Arr::last($request->segments());
         $extension = strtolower(File::extension($filename));
         if ($extension && !in_array($extension, $allExtensions)) {
             abort(404);
