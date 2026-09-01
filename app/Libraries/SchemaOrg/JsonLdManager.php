@@ -183,7 +183,7 @@ class JsonLdManager
             'contactPoint' => [
                 '@type' => 'ContactPoint',
                 'contactType' => 'customer service',
-                'url' => 'https://www.artic.edu/visit',
+                'url' => 'https://www.artic.edu/contact',
             ],
             'address' => config('aic.museum_address'),
             'sameAs' => array_values(config('aic.socials')),
