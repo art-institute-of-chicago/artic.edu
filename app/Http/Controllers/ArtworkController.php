@@ -81,6 +81,12 @@ class ArtworkController extends BaseScopedController
                 'exploreFurther' => $exploreFurther->collection(request()->all()),
                 'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
                 'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
+
+                // Updating language based on FE - can update later
+                'exploreMoreByArtist' => $this->exploreMore($exploreFurther, $item->artist_title, 'ef-artist_ids'),
+                'exploreMoreByStyle' => $this->exploreMore($exploreFurther, $item->style_titles[0] ?? null, 'ef-style_ids'),
+                'exploreMoreByGallery' => $this->exploreMore($exploreFurther, ($item->is_on_view && !empty($item->gallery_id)) ? $item->gallery_id : null, 'ef-gallery_ids'),
+                'exploreMoreByVisuallySimilar' => $item->present()->nearestNeighbors,
             ]);
         }
 
@@ -190,6 +196,17 @@ class ArtworkController extends BaseScopedController
         }
 
         return $view;
+    }
+
+    private function exploreMore(ExploreFurther $exploreFurther, $value, string $filter)
+    {
+        if (empty($value)) {
+            return collect([]);
+        }
+
+        $results = $exploreFurther->collection([$filter => $value]);
+
+        return $results->count() > 1 ? $results : collect([]);
     }
 
     protected function setPageMetaData($item)
