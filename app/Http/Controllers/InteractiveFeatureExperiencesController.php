@@ -144,17 +144,17 @@ class InteractiveFeatureExperiencesController extends FrontController
     protected function jsonLdDefinition(mixed $model): array
     {
         $experienceUrl = static function ($m) {
-            if (method_exists($m, 'getSlug') && $m->getSlug() !== '') {
-                return route('interactiveFeatures.show', ['slug' => $m->getSlug()]);
-            }
-
-            $slug = $m->slug ?? null;
+            $slug = method_exists($m, 'getSlug') && $m->getSlug() !== ''
+                ? $m->getSlug()
+                : ($m->slug ?? null);
 
             if (!is_string($slug) || $slug === '') {
                 return null;
             }
 
-            return route('interactiveFeatures.show', ['slug' => $slug]);
+            // route() resolves to the kiosk.artic.edu domain (the same route
+            // name is registered there), so build the public URL explicitly.
+            return url('/interactive-features/' . $slug);
         };
 
         return array_merge(
