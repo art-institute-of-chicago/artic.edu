@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Twill;
 
 use A17\Twill\Http\Requests\Admin\Request;
+use App\Rules\InnerTextLength;
 
 class DigitalPublicationRequest extends Request
 {
