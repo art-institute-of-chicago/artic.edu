@@ -322,6 +322,7 @@ class AppServiceProvider extends ServiceProvider
                 NavigationLink::make()->forRoute('twill.general.integrations.show')->title('Integrations'),
                 NavigationLink::make()->forModule('illuminatedLinks')->title('Illuminated Links'),
                 NavigationLink::make()->forModule('shopItems')->title('Shop'),
+                NavigationLink::make()->forModule('adCampaigns')->title('Ad Management'),
             ]),
         );
     }
