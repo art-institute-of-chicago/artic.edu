@@ -328,9 +328,10 @@ class DigitalExplorerController extends FrontController
 
             $slug = method_exists($m, 'getSlug') ? $m->getSlug() : null;
 
-            // route() resolves to the kiosk.artic.edu domain (same route name
-            // registered there), so build the public URL explicitly.
-            return url('/digital-explorers/' . $m->id . ($slug ? '/' . $slug : ''));
+            return route('digitalExplorer.show', array_filter([
+                'id' => $m->id,
+                'slug' => $slug,
+            ]));
         };
 
         return array_merge(
