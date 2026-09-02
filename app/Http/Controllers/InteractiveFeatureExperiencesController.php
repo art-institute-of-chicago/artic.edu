@@ -152,9 +152,7 @@ class InteractiveFeatureExperiencesController extends FrontController
                 return null;
             }
 
-            // route() resolves to the kiosk.artic.edu domain (the same route
-            // name is registered there), so build the public URL explicitly.
-            return url('/interactive-features/' . $slug);
+            return route('interactiveFeatures.show', ['slug' => $slug]);
         };
 
         return array_merge(
