@@ -27,6 +27,7 @@ class Artwork extends BaseApiModel
     public const RELATED_MULTIMEDIA = 100;
     public const EXTRA_IMAGES_LIMIT = 9;
     public const NEAREST_NEIGHBORS_LIMIT = 20;
+    public const NEAREST_NEIGHBORS_MAX_LIMIT = 100;
 
     protected $showDefaultRelatedItems = true;
 
@@ -128,7 +129,7 @@ class Artwork extends BaseApiModel
             return $this->newCollection();
         }
 
-        $limit = max(1, $limit);
+        $limit = min(self::NEAREST_NEIGHBORS_MAX_LIMIT, max(1, (int) $limit));
 
         $response = $this->getConnection()->get(
             '/ai/v1/artworks/' . $this->id . '/nearest?limit=' . $limit,
