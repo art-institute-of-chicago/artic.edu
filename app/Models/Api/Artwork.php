@@ -125,14 +125,16 @@ class Artwork extends BaseApiModel
      */
     public function nearestNeighbors(int $limit = self::NEAREST_NEIGHBORS_LIMIT)
     {
-        if (empty($this->id)) {
+        $id = (int) $this->id;
+
+        if (empty($id)) {
             return $this->newCollection();
         }
 
         $limit = min(self::NEAREST_NEIGHBORS_MAX_LIMIT, max(1, (int) $limit));
 
         $response = $this->getConnection()->get(
-            '/ai/v1/artworks/' . $this->id . '/nearest?limit=' . $limit,
+            '/ai/v1/artworks/' . $id . '/nearest?limit=' . $limit,
             []
         );
 
