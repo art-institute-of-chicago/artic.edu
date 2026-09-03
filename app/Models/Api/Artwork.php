@@ -144,9 +144,11 @@ class Artwork extends BaseApiModel
             return $this->newCollection();
         }
 
-        $distances = collect($items)->mapWithKeys(function ($item) {
-            return [$item->model_id => $item->distance ?? null];
-        });
+        $distances = collect($items)
+            ->filter(fn ($item) => !empty($item->model_id))
+            ->mapWithKeys(function ($item) {
+                return [$item->model_id => $item->distance ?? null];
+            });
 
         return static::query()
             ->ids($distances->keys()->all())
