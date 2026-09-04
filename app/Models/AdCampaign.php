@@ -46,7 +46,8 @@ class AdCampaign extends AbstractModel implements Sortable
         ],
     ];
 
-    public static function findPriorityForArtwork(Artwork|int $artwork): ?static {
+    public static function findPriorityForArtwork(Artwork|int $artwork): ?static
+    {
         $artworkId = $artwork;
         if (is_a($artwork, Artwork::class)) {
             $artworkId = $artwork->datahub_id;
