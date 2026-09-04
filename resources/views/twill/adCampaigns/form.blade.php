@@ -3,7 +3,7 @@
     'additionalFieldsets' => [
         ['fieldset' => 'content', 'label' => 'Management'],
         ['fieldset' => 'ad', 'label' => 'Advertisement'],
-        ['fieldset' => 'related', 'label' => 'Related'],
+        ['fieldset' => 'targets', 'label' => 'Targets'],
     ]
 ])
 
@@ -65,13 +65,13 @@
             </x-slot>
         </x-twill::formColumns>
     </x-twill::formFieldset>
-    <x-twill::formFieldset id="related" title="Related">
+    <x-twill::formFieldset id="targets" title="Artist & Artwork Targets">
         <x-twill::browser
             name="artists"
             label="Artist"
             route-prefix="collection"
             module-name="artists"
-            :max='1'
+            :max='10'
         />
         <x-twill::browser
             name="artworks"
@@ -79,7 +79,7 @@
             route-prefix="collection"
             module-name="artworks"
             :sortable='false'
-            :max='5'
+            :max='10'
         />
     </x-twill::formFieldset>
 @endsection
