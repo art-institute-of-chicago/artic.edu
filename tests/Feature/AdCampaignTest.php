@@ -112,11 +112,13 @@ class AdCampaignTest extends BaseTestCase
         $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork->id);
         $this->assertApiRequestCount(2);
         $this->assertApiRequestReceived(
-            'POST', "/api/v1/artists/{$this->artist->id}",
+            'POST',
+            "/api/v1/artists/{$this->artist->id}",
             'The API received a request for the specified artists',
         );
         $this->assertApiRequestReceived(
-            'POST', '/api/v1/search',
+            'POST',
+            '/api/v1/search',
             "The API received a request for the artists' artworks",
         );
         $this->assertTrue(
@@ -141,11 +143,13 @@ class AdCampaignTest extends BaseTestCase
         $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork->id);
         $this->assertApiRequestCount(2);
         $this->assertApiRequestReceived(
-            'POST', "/api/v1/artists/{$nonmatchingArtist->id}",
+            'POST',
+            "/api/v1/artists/{$nonmatchingArtist->id}",
             'The API received a request for the specified artists',
         );
         $this->assertApiRequestReceived(
-            'POST', '/api/v1/search',
+            'POST',
+            '/api/v1/search',
             "The API received a request for the artists' artworks",
         );
         $this->assertTrue(
@@ -170,7 +174,8 @@ class AdCampaignTest extends BaseTestCase
 
         $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork->id);
         $this->assertApiRequestReceived(
-            'POST', "/api/v1/artists/{$this->artist->id}",
+            'POST',
+            "/api/v1/artists/{$this->artist->id}",
             'The API received a request for the specified artists',
         );
         $this->assertTrue(
