@@ -39,6 +39,7 @@ class ArtworkTest extends BaseTestCase
             $this->mockApiSearchResponse(), // Multisearch for related artworks
             $this->mockApiSearchResponse(), // Search for multimedia resources
             $this->mockApiSearchResponse(), // Search for educational resources
+            $this->mockApiAiResponse(), // Nearest neighbors for artwork
         ]);
 
         $response = $this->get(route('artworks.show', ['id' => $artwork->id, 'slug' => $artwork->titleSlug]));
