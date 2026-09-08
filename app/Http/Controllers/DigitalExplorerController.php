@@ -97,13 +97,13 @@ class DigitalExplorerController extends FrontController
             ],
 
             'settings' => [
-                'brailleButton' => $digitalExplorer->settings->get('brailleButton', false),
-                'builderEnabled' => $digitalExplorer->settings->get('builderEnabled', false),
-                'enableCustomBounds' => (bool) $digitalExplorer->settings->get('enableCustomBounds', false),
-                'customBounds' => $this->parseCoordinates($digitalExplorer->settings->get('customBounds'), self::CUSTOM_BOUNDS_DEFAULT),
-                'customBoundsOffset' => $this->parseCoordinates($digitalExplorer->settings->get('customBoundsOffset'), self::CUSTOM_BOUNDS_OFFSET_DEFAULT),
-                'zoomLimits' => DigitalExplorerHelpers::decodeSettings($digitalExplorer->settings->get('zoomLimits'), [self::MIN_ZOOM, self::MAX_ZOOM]),
-                'deactivateForcefield' => (bool) $digitalExplorer->settings->get('deactivateForcefield', false),
+                'brailleButton' => $digitalExplorer->settings?->get('brailleButton', false),
+                'builderEnabled' => $digitalExplorer->settings?->get('builderEnabled', false),
+                'enableCustomBounds' => (bool) $digitalExplorer->settings?->get('enableCustomBounds', false),
+                'customBounds' => $this->parseCoordinates($digitalExplorer->settings?->get('customBounds'), self::CUSTOM_BOUNDS_DEFAULT),
+                'customBoundsOffset' => $this->parseCoordinates($digitalExplorer->settings?->get('customBoundsOffset'), self::CUSTOM_BOUNDS_OFFSET_DEFAULT),
+                'zoomLimits' => DigitalExplorerHelpers::decodeSettings($digitalExplorer->settings?->get('zoomLimits'), [self::MIN_ZOOM, self::MAX_ZOOM]),
+                'deactivateForcefield' => (bool) $digitalExplorer->settings?->get('deactivateForcefield', false),
                 'sceneSettings' => [
                     'antialiasing' => (bool) $digitalExplorer->settings?->get('antialiasing', false),
                     'shadows' => (bool) $digitalExplorer->settings?->get('shadows', false),
