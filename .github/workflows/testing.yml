@@ -45,12 +45,12 @@ jobs:
             - name: Remove private NPM package
               run: npm uninstall closer-look --save
             - name: Migrate database
-              run: php artisan migrate --env=testing
+              run: php artisan migrate --env=ci
             - name: Generate key
-              run: php artisan key:generate --env=testing
+              run: php artisan key:generate --env=ci
             - name: Build Twill assets
-              run: php artisan twill:build --env=testing
+              run: php artisan twill:build --env=ci
             - name: Build Javascript assets
               run: npm run build:dev
             - name: Run PHPUnit
-              run: php artisan test --env=testing
+              run: php artisan test --env=ci
