@@ -54,7 +54,7 @@ class AdCampaign extends AbstractModel implements Sortable
         }
 
         // Determine if a campaign has no related artists or artworks
-        $hasNoRelations = fn ($campaign) => !((bool) $campaign?->artists()->count() || (bool) $campaign?->artworks()->count());
+        $hasNoRelations = fn ($campaign) => !((bool) $campaign->artists()?->count() || (bool) $campaign->artworks()?->count());
         $activeCampaigns = AdCampaign::published()->get()
             ->filter(fn ($campaign) => now()->between($campaign->start_date ?? '', $campaign->end_date ?? ''))
             ->sortBy([
