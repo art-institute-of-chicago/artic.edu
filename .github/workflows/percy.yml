@@ -46,15 +46,15 @@ jobs:
             - name: Install JS dependencies
               run: npm ci
             - name: Migrate database
-              run: php artisan migrate --env=testing
+              run: php artisan migrate --env=ci
             - name: Generate key
-              run: php artisan key:generate --env=testing
+              run: php artisan key:generate --env=ci
             - name: Seed database
-              run: php artisan db:seed --env=testing
+              run: php artisan db:seed --env=ci
             - name: Seed Percy fixture content
-              run: php artisan db:seed --env=testing --class=PercyFixtureSeeder
+              run: php artisan db:seed --env=ci --class=PercyFixtureSeeder
             - name: Build Twill assets
-              run: php artisan twill:build --env=testing
+              run: php artisan twill:build --env=ci
             - name: Build Javascript assets
               run: npm run build:dev
             - name: Install Playwright browser
@@ -63,7 +63,7 @@ jobs:
               env:
                   BASE_URL: http://localhost:8000
               run: |
-                  nohup php artisan serve --env=testing --port=8000 > server.log 2>&1 &
+                  nohup php artisan serve --env=ci --port=8000 > server.log 2>&1 &
                   for i in $(seq 1 30); do
                     curl -sf "$BASE_URL" > /dev/null && break
                     sleep 1
