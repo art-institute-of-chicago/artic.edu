@@ -53,7 +53,8 @@ class AdCampaign extends AbstractModel implements Sortable
             $artworkId = $artwork->datahub_id;
         }
 
-        $hasNoRelations = fn ($campaign) => !((bool) $campaign->artists()->count() || (bool) $campaign->artworks()->count());
+        // Determine if a campaign has no related artists or artworks
+        $hasNoRelations = fn ($campaign) => !((bool) $campaign->artists()?->count() || (bool) $campaign->artworks()?->count());
         $activeCampaigns = AdCampaign::published()->get()
             ->filter(fn ($campaign) => now()->between($campaign->start_date ?? '', $campaign->end_date ?? ''))
             ->sortBy([
@@ -66,6 +67,8 @@ class AdCampaign extends AbstractModel implements Sortable
         foreach ($activeCampaigns as $campaign) {
             $artworkIds = $campaign->artworks()->pluck('datahub_id');
             if ($artworkIds->contains($artworkId)) {
+                // If the artwork is related to the campaign, this is the
+                // priority campaign.
                 return $campaign;
             }
 
@@ -75,6 +78,8 @@ class AdCampaign extends AbstractModel implements Sortable
                     $artist = app(ArtistRepository::class)->getById($artistId);
                     $artistArtworkIds = $artist->artworks()->pluck('id');
                     if ($artistArtworkIds->contains($artworkId)) {
+                        // If the artwork was created by the related artist,
+                        // this is the priority campaign.
                         return $campaign;
                     }
                 } catch (\Exception $exception) {
@@ -87,7 +92,11 @@ class AdCampaign extends AbstractModel implements Sortable
                 // If there are related artists but none of their artworks have
                 // matched, continue to the next campaign.
                 continue;
-            } elseif ($artworkIds->isEmpty()) {
+            }
+
+            if ($artistIds->isEmpty() && $artworkIds->isEmpty()) {
+                // If there are no related artists or artworks, this is the
+                // priority "default" campaign.
                 return $campaign;
             }
         }
