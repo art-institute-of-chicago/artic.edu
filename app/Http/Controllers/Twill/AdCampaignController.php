@@ -23,6 +23,17 @@ class AdCampaignController extends BaseController
         $columns = parent::additionalIndexTableColumns();
         $columns->add(
             Text::make()
+                ->field('bgcolor')
+                ->title('Background Color')
+                ->optional()
+                ->hide()
+                ->renderHtml()
+                ->customRender(function (AdCampaign $adCampaign) {
+                    return "<div style='background-color: $adCampaign->bgcolor; height: 40px; width: 40px'></div>";
+                })
+        );
+        $columns->add(
+            Text::make()
                 ->field('header')
                 ->title('Header')
                 ->optional()
@@ -83,5 +94,14 @@ class AdCampaignController extends BaseController
         );
 
         return $columns;
+    }
+
+    protected function formData($request)
+    {
+        $backgroundColors = collect(config('aic.branding.colors.ad_campaigns'))->sort();
+
+        return [
+            'backgroundColors' => $backgroundColors,
+        ];
     }
 }
