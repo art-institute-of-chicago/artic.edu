@@ -25,6 +25,7 @@ class AdCampaign extends AbstractModel implements Sortable
         'title',
         'start_date',
         'end_date',
+        'bgcolor',
         'header',
         'description',
         'destination_url',

@@ -34,6 +34,12 @@
 
 @section('fieldsets')
     <x-twill::formFieldset id="ad" title="Advertisement">
+        @formField('color_select', [
+            'name' => 'bgcolor',
+            'label' => 'Background color',
+            'options' => $backgroundColors,
+            'columns' => 3,
+        ])
         <x-twill::medias
             name="hero"
             label="Hero image"
