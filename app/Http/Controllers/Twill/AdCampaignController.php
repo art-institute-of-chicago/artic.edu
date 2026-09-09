@@ -59,6 +59,9 @@ class AdCampaignController extends BaseController
                 ->title('Destination URL')
                 ->optional()
                 ->hide()
+                ->linkCell(function (AdCampaign $adCampaign) {
+                    return $adCampaign->destination_url;
+                })
         );
         $columns->add(
             Relation::make()
