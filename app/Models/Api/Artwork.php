@@ -138,10 +138,8 @@ class Artwork extends BaseApiModel
                 '/ai/v1/artworks/' . $id . '/nearest?limit=' . $limit,
                 []
             );
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->newCollection();
-
         }
 
         $items = data_get($response, 'body.items', []);
