@@ -49,7 +49,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '1:1',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '90vw',
                           'small' => '11vw',
@@ -70,7 +70,7 @@
                         @slot('imageSettings', array(
                             'fit' => 'crop',
                             'ratio' => '1:1',
-                            'srcset' => array(200,400,600),
+                            'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                             'sizes' => ImageHelpers::aic_imageSizes(array(
                                   'xsmall' => '90vw',
                                   'small' => '11vw',
@@ -108,7 +108,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '1:1',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '10',
                           'small' => '8',
@@ -153,7 +153,7 @@
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                         'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                             'xsmall' => '1',
                             'small' => '2',
@@ -184,7 +184,7 @@
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                         'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => '216px',
                               'small' => '216px',
@@ -281,7 +281,7 @@
                   @slot('imageSettings', array(
                       'fit' => 'crop',
                       'ratio' => '16:9',
-                      'srcset' => array(200,400,600),
+                      'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                       'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                             'xsmall' => '1',
                             'small' => '2',
@@ -313,7 +313,7 @@
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                         'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => '216px',
                               'small' => '216px',
@@ -393,7 +393,7 @@
                         @slot('imageSettings', array(
                             'fit' => 'crop',
                             'ratio' => '16:9',
-                            'srcset' => array(200,400,600),
+                            'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                             'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                                   'xsmall' => '1',
                                   'small' => '2',
@@ -406,7 +406,7 @@
                         @slot('imageSettings', array(
                             'fit' => 'crop',
                             'ratio' => '16:9',
-                            'srcset' => array(200,400,600),
+                            'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                             'sizes' => ImageHelpers::aic_imageSizes(array(
                                   'xsmall' => '216px',
                                   'small' => '216px',
@@ -506,7 +506,7 @@
                   @slot('imageSettings', array(
                       'fit' => 'crop',
                       'ratio' => '16:9',
-                      'srcset' => array(200,400,600),
+                      'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                       'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                             'xsmall' => '1',
                             'small' => '2',
@@ -537,7 +537,7 @@
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                         'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => '216px',
                               'small' => '216px',
@@ -582,7 +582,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                             'xsmall' => '216px',
                             'small' => '216px',
@@ -610,7 +610,7 @@
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                         'sizes' => ImageHelpers::aic_imageSizes(array(
                                 'xsmall' => '216px',
                                 'small' => '216px',
@@ -650,7 +650,7 @@
                   @slot('imageSettings', array(
                       'fit' => 'crop',
                       'ratio' => '16:9',
-                      'srcset' => array(200,400,600),
+                      'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                       'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                             'xsmall' => '1',
                             'small' => '2',
@@ -682,7 +682,7 @@
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                         'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => '216px',
                               'small' => '216px',
