@@ -29,7 +29,7 @@
       <div class="o-gallery__media" data-behavior="dragScroll"{!! (isset($itemType) && $itemType == 'digital-publication-article') ? ' data-scroll-extended' : '' !!}>            @component('site.shared._mediaitems')
                 @slot('items', $items)
                 @slot('imageSettings', $imageSettings ?? array(
-                    'srcset' => array(200,400,600,843,1200,1686),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                         'xsmall' => '50',
                         'small' => '35',

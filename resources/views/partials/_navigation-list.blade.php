@@ -68,7 +68,7 @@
                             @slot('class', 'details-image')
                             @slot('dataAttributes', "aria-describedby='$id-description'")
                             @slot('settings', [
-                                'srcset' => [200,400,600,843],
+                                'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                                 'sizes' => '240px',
                             ])
                         @endcomponent

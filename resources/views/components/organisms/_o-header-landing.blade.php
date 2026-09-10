@@ -3,7 +3,7 @@
         @slot('item', $headerMedia)
         @slot('tag', 'span')
         @slot('imageSettings', array(
-            'srcset' => array(200,400,600,843,1200,1686,3000),
+            'srcset' => ImageHelpers::SRCSET_WIDTHS_LARGE,
             'sizes' => '100vw',
         ))
         @slot('variation', isset($variation) ? 'm-'.$variation.'-header' : 'm-landing-header')
