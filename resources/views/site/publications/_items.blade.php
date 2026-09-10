@@ -15,7 +15,7 @@
         @slot('imageSettings', array(
             'fit' => null,
             'ratio' => null,
-            'srcset' => array(200,400,600,1000,1500),
+            'srcset' => array(200,400,600,843,1200,1686),
             'sizes' => ImageHelpers::aic_imageSizes(array(
                 'xsmall' => '58',
                 'small' => '58',

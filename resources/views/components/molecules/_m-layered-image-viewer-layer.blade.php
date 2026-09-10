@@ -14,7 +14,7 @@
         // Set empty $imageSettings, this will be populated based on $size
         $imageSettings = [];
 
-        $defaultSrcset = array(200,400,600,1000,1500,3000);
+        $defaultSrcset = array(200,400,600,843,1200,1686,3000);
 
         if (empty($imageSettings) && $size === 's') {
             $imageSettings = array(

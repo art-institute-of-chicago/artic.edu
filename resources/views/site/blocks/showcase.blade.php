@@ -38,7 +38,7 @@
                 @slot('imagesSettings', [
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(300,600,1000,1500,3000),
+                    'srcset' => array(200,400,600,843,1200,1686,3000),
                     'sizes' => '100vw',
                 ])
             @endcomponent
