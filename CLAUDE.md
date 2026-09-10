@@ -8,7 +8,7 @@ This is **artic.edu** — the main website for the Art Institute of Chicago. It'
 
 ## Requirements
 
-- PHP 8.2
+- PHP 8.5
 - Node 24.13.0 (lts/krypton) — use `nvm` to match `.nvmrc`
 - NPM 11.6.2
 - PostgreSQL 17
