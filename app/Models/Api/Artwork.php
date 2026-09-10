@@ -133,10 +133,16 @@ class Artwork extends BaseApiModel
 
         $limit = min(self::NEAREST_NEIGHBORS_MAX_LIMIT, max(1, (int) $limit));
 
-        $response = $this->getConnection()->get(
-            '/ai/v1/artworks/' . $id . '/nearest?limit=' . $limit,
-            []
-        );
+        try {
+            $response = $this->getConnection()->get(
+                '/ai/v1/artworks/' . $id . '/nearest?limit=' . $limit,
+                []
+            );
+        }
+        catch (\Exception $e) {
+            return $this->newCollection();
+
+        }
 
         $items = data_get($response, 'body.items', []);
 
