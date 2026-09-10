@@ -13,7 +13,7 @@
         @slot('variation', 'author')
         @slot('imageSettings', array(
             'monochrome' => true,
-            'srcset' => array(200,400,600,1000,1500,2000),
+            'srcset' => array(200,400,600,843,1200,1686),
             'sizes' => ImageHelpers::aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',

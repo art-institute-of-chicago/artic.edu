@@ -254,7 +254,7 @@ class FrontController extends BaseController
                 $items = $exhibition->present()->getHistoryImagesForMediaComponent($chunk);
 
                 $imageSettings = [
-                    'srcset' => [200, 400, 600, 1000, 1500, 3000],
+                    'srcset' => [200, 400, 600, 843, 1200, 1686, 3000],
                     'sizes' => ImageHelpers::aic_imageSizes([
                         'xsmall' => '58',
                         'small'  => '28',
