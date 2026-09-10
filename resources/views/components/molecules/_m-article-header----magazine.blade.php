@@ -6,7 +6,7 @@
                     @slot('image', $image)
                     @slot('class', 'img-hero-desktop ' . ($key === 0 ? 'is-slideshow-active' : null))
                     @slot('settings', array(
-                        'srcset' => array(200,400,600,843,1200,1686,3000),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_LARGE,
                         'sizes' => '100vw',
                     ))
                 @endcomponent
@@ -14,7 +14,7 @@
                     @slot('image', $imagesMobile[$key] ?? $image)
                     @slot('class', 'img-hero-mobile ' . ($key === 0 ? 'is-slideshow-active' : null))
                     @slot('settings', array(
-                        'srcset' => array(200,400,600,843,1200,1686,3000),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_LARGE,
                         'sizes' => '100vw',
                     ))
                 @endcomponent

@@ -10,6 +10,10 @@ use Ramsey\Uuid\Uuid;
 
 class ImageHelpers
 {
+    public const SRCSET_WIDTHS_SMALL = [200,400,600,843];
+    public const SRCSET_WIDTHS = [200,400,600,843,1200,1686];
+    public const SRCSET_WIDTHS_LARGE = [200,400,600,843,1200,1686,3000];
+
     /**
      * Convert a YouTube Video or Playlist into an image array.
      */

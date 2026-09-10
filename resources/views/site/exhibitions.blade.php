@@ -48,7 +48,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600,843,1200,1686),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS,
                     'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                           'xsmall' => '1',
                           'small' => '2',
@@ -82,7 +82,7 @@
                    @slot('imageSettings', array(
                        'fit' => 'crop',
                        'ratio' => '16:9',
-                       'srcset' => array(200,400,600,843,1200),
+                       'srcset' => ImageHelpers::SRCSET_WIDTHS,
                        'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                              'xsmall' => '1',
                              'small' => '2',
@@ -118,7 +118,7 @@
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
-                        'srcset' => array(200,400,600,843,1200),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS,
                         'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                               'xsmall' => '1',
                               'small' => '2',

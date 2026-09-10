@@ -14,7 +14,7 @@
         // Set empty $imageSettings, this will be populated based on $size
         $imageSettings = [];
 
-        $defaultSrcset = array(200,400,600,843,1200,1686,3000);
+        $defaultSrcset = ImageHelpers::SRCSET_WIDTHS_LARGE;
 
         if (empty($imageSettings) && $size === 's') {
             $imageSettings = array(
