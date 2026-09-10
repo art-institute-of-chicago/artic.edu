@@ -3,11 +3,11 @@
 namespace Tests\Feature;
 
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
-use App\Models\Api\Artist;
-use App\Models\Api\Artwork;
 use Aic\Hub\Foundation\Testing\MockApi;
 use App\Models\AdCampaign;
 use App\Models\ApiRelation;
+use App\Models\Api\Artist;
+use App\Models\Api\Artwork;
 
 class AdCampaignTest extends BaseTestCase
 {
@@ -28,7 +28,7 @@ class AdCampaignTest extends BaseTestCase
     {
         $campaigns = AdCampaign::factory()->count(3)->ordered()->published()->create();
 
-        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork->id);
+        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork);
         $this->assertTrue(
             $priorityCampaign->is($campaigns->first()),
             'The campaign with the lowest position is prioritized',
@@ -57,7 +57,7 @@ class AdCampaignTest extends BaseTestCase
             ],
         );
 
-        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork->id);
+        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork);
         $this->assertNull($priorityCampaign, 'No priority campaign is found when all campaigns are inactive');
     }
 
@@ -70,7 +70,7 @@ class AdCampaignTest extends BaseTestCase
             ['relation' => 'artworks', 'position' => 1],
         );
 
-        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork->id);
+        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork);
         $this->assertTrue(
             $priorityCampaign->is($campaignWithArtwork),
             'The campaign with the associated artwork is prioritized',
@@ -87,7 +87,7 @@ class AdCampaignTest extends BaseTestCase
             ['relation' => 'artworks', 'position' => 1],
         );
 
-        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork->id);
+        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork);
         $this->assertTrue(
             $priorityCampaign->isNot($campaignWithArtwork),
             'Campaigns with nonmatching associated artworks are skipped',
@@ -109,7 +109,7 @@ class AdCampaignTest extends BaseTestCase
         $this->addMockApiResponses($this->mockApiModelReponse($this->artist));
         $this->addMockApiResponses($this->mockApiSearchResponse([$this->artwork]));
 
-        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork->id);
+        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork);
         $this->assertApiRequestCount(2);
         $this->assertApiRequestReceived(
             'POST',
@@ -140,7 +140,7 @@ class AdCampaignTest extends BaseTestCase
         $this->addMockApiResponses($this->mockApiModelReponse($nonmatchingArtist));
         $this->addMockApiResponses($this->mockApiSearchResponse([$nonmatchingArtwork]));
 
-        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork->id);
+        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork);
         $this->assertApiRequestCount(2);
         $this->assertApiRequestReceived(
             'POST',
@@ -172,7 +172,7 @@ class AdCampaignTest extends BaseTestCase
         );
         $this->addMockApiResponses($this->mockApiModelReponse(statusCode: 404));
 
-        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork->id);
+        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork);
         $this->assertApiRequestReceived(
             'POST',
             "/api/v1/artists/{$this->artist->id}",
@@ -182,5 +182,33 @@ class AdCampaignTest extends BaseTestCase
             $priorityCampaign->is($campaigns->first()),
             'The next campaign with the lowest position is prioritized',
         );
+    }
+
+    public function test_findPriorityForArtwork_returns_null_when_no_campaigns_are_found(): void
+    {
+        $priorityCampaign = AdCampaign::findPriorityForArtwork($this->artwork);
+        $this->assertNull($priorityCampaign);
+    }
+
+    public function test_findPriorityForArtwork_accepts_ApiModel_or_id(): void
+    {
+        $apiArtwork = \App\Models\Api\Artwork::factory()->make();
+        AdCampaign::factory()->published()->create()->artworks()->attach(
+            ApiRelation::create(['datahub_id' => $apiArtwork->id]),
+            ['relation' => 'artworks', 'position' => 1],
+        );
+
+        $campaignFoundByObject = AdCampaign::findPriorityForArtwork($apiArtwork);
+        $campaignFoundById = AdCampaign::findPriorityForArtwork($apiArtwork->id);
+        $this->assertNotNull($campaignFoundByObject);
+        $this->assertNotNull($campaignFoundById);
+        $this->assertTrue(
+            $campaignFoundByObject->is($campaignFoundById),
+            'The campaign is found by either ApiModel or its id',
+        );
+
+        // Using an \App\Models\Artwork model with throw and exception
+        $this->expectException(\TypeError::class);
+        $campaignFoundByObject = AdCampaign::findPriorityForArtwork(new \App\Models\Artwork());
     }
 }
