@@ -75,6 +75,10 @@ return [
             'research_center' => [
                 '#CED8EE',
             ],
+            'ad_campaigns' => [
+                '#1E3D47' => 'Darkest Teal',
+                '#91C8CD' => 'Light Teal',
+            ],
         ]
     ],
 
