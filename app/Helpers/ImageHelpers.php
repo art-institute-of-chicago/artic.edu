@@ -10,8 +10,19 @@ use Ramsey\Uuid\Uuid;
 
 class ImageHelpers
 {
+    /**
+     * Srcset widths for small image displays.
+     */
     public const SRCSET_WIDTHS_SMALL = [200,400,600,843];
+
+    /**
+     * Srcset widths for standard image displays.
+     */
     public const SRCSET_WIDTHS = [200,400,600,843,1200,1686];
+
+    /**
+     * Srcset widths for large image displays.
+     */
     public const SRCSET_WIDTHS_LARGE = [200,400,600,843,1200,1686,3000];
 
     /**
