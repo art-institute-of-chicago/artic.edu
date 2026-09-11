@@ -130,35 +130,53 @@
   @endif
 </div>
 
-@if (isset($exploreFurtherTags) && count($exploreFurtherTags) > 0)
-<div id="exploreFurther">
-    @component('components.molecules._m-title-bar')
-        Explore Further
+@if (isset($exploreMoreTags) && $exploreMoreTags->isNotEmpty())
+    @component('components.molecules._m-tag-dropdown')
+        @slot('tags', $exploreMoreTags)
     @endcomponent
+@endif
 
-    @component('site.shared._explore-further-menu')
-        @slot('tags', $exploreFurtherTags)
-        @slot('ariaLabel', 'h-explore-further')
-        @slot('ariaControls', 'explore-further-pinboard')
-    @endcomponent
+<div class="explore-more-carousels">
+    @php
+        $mainArtist = ($item->mainArtist && $item->mainArtist->isNotEmpty()) ? $item->mainArtist->first() : null;
+        $styleTitle = $item->style_titles[0] ?? null;
+    @endphp
 
-    <div class="explore-further-injected"></div>
+    @if (isset($exploreMoreByArtist) && !empty($mainArtist) && $exploreMoreByArtist->count() > 1)
+        @component('components.organisms._o-collection-carousel')
+            @slot('headingPrefix', 'MORE WORKS BY ')
+            @slot('headingLinkText', $mainArtist->title)
+            @slot('headingUrl', route('artists.show', ['id' => $mainArtist->id, 'slug' => $mainArtist->titleSlug]))
+            @slot('items', $exploreMoreByArtist)
+        @endcomponent
+    @endif
 
-    @if ($exploreFurtherCollectionUrl)
-        @component('components.molecules._m-links-bar')
-            @slot('variation', 'm-links-bar--buttons')
-            @slot('linksPrimary', [
-                [
-                    'label' => 'See more results',
-                    'href' => $exploreFurtherCollectionUrl,
-                    'variation' => 'btn--tertiary'
-                ]
-            ])
+    @if (isset($exploreMoreByStyle) && !empty($styleTitle) && $exploreMoreByStyle->count() > 1)
+        @component('components.organisms._o-collection-carousel')
+            @slot('headingPrefix', 'IN THE STYLE OF ')
+            @slot('headingLinkText', $styleTitle)
+            @slot('headingUrl', route('collection', ['style_ids' => $styleTitle]))
+            @slot('items', $exploreMoreByStyle)
+        @endcomponent
+    @endif
+
+    @if (isset($exploreMoreByGallery) && $item->is_on_view && !empty($item->gallery_id) && !empty($item->gallery_title) && $exploreMoreByGallery->count() > 1)
+        @component('components.organisms._o-collection-carousel')
+            @slot('headingPrefix', 'ALSO IN ')
+            @slot('headingLinkText', $item->gallery_title)
+            @slot('headingUrl', route('collection', ['gallery_ids' => $item->gallery_id]))
+            @slot('items', $exploreMoreByGallery)
+        @endcomponent
+    @endif
+
+    @if (isset($exploreMoreByVisuallySimilar) && $exploreMoreByVisuallySimilar->count() > 1)
+        @component('components.organisms._o-collection-carousel')
+            @slot('headingPrefix', 'VISUALLY SIMILAR')
+            @slot('maxItems', 12)
+            @slot('items', $exploreMoreByVisuallySimilar)
         @endcomponent
     @endif
 </div>
-
-@endif
 
 <div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div>
 
