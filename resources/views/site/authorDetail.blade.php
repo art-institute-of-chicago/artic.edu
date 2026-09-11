@@ -13,7 +13,7 @@
         @slot('variation', 'author')
         @slot('imageSettings', array(
             'monochrome' => true,
-            'srcset' => array(200,400,600,1000,1500,2000),
+            'srcset' => ImageHelpers::SRCSET_WIDTHS,
             'sizes' => ImageHelpers::aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
@@ -46,7 +46,7 @@
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                         'sizes' => ImageHelpers::aic_imageSizes(array(
                             'xsmall' => '216px',
                             'small' => '216px',

@@ -3,7 +3,7 @@
         @php
             // Default to `mosaic` sizes, defensively
             $currentImageSettings = $imageSettings ?? array(
-                'srcset' => array(200,400,600,1000,1500,3000),
+                'srcset' => ImageHelpers::SRCSET_WIDTHS_LARGE,
                 'sizes' => ImageHelpers::aic_imageSizes(array(
                     'xsmall' => '58',
                     'small' => '28',
