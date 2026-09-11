@@ -78,11 +78,6 @@ class ArtworkController extends BaseScopedController
             $exploreFurther = new ExploreFurther($item);
 
             $viewData = array_merge($viewData, [
-                'exploreFurtherTags' => $exploreFurther->tags(),
-                'exploreFurther' => $exploreFurther->collection(request()->all()),
-                'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
-                'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
-
                 // Updating language based on FE - can update later
                 'exploreMoreByArtist' => $this->exploreMore($exploreFurther, $item->artist_title, 'ef-artist_ids'),
                 'exploreMoreByStyle' => $this->exploreMore($exploreFurther, $item->style_titles[0] ?? null, 'ef-style_ids'),
