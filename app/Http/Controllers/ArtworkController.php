@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
+use App\Models\Api\CategoryTerm;
 use App\Helpers\GtmHelpers;
 use App\Libraries\ArtworkSizeComparisonService;
 use App\Libraries\RecentlyViewedService;
@@ -77,16 +78,12 @@ class ArtworkController extends BaseScopedController
             $exploreFurther = new ExploreFurther($item);
 
             $viewData = array_merge($viewData, [
-                'exploreFurtherTags' => $exploreFurther->tags(),
-                'exploreFurther' => $exploreFurther->collection(request()->all()),
-                'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
-                'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
-
                 // Updating language based on FE - can update later
                 'exploreMoreByArtist' => $this->exploreMore($exploreFurther, $item->artist_title, 'ef-artist_ids'),
                 'exploreMoreByStyle' => $this->exploreMore($exploreFurther, $item->style_titles[0] ?? null, 'ef-style_ids'),
                 'exploreMoreByGallery' => $this->exploreMore($exploreFurther, ($item->is_on_view && !empty($item->gallery_id)) ? $item->gallery_id : null, 'ef-gallery_ids'),
                 'exploreMoreByVisuallySimilar' => $item->present()->nearestNeighbors,
+                'exploreMoreTags' => $this->buildExploreMoreTags($item),
             ]);
         }
 
@@ -207,6 +204,63 @@ class ArtworkController extends BaseScopedController
         $results = $exploreFurther->collection([$filter => $value]);
 
         return $results->count() > 1 ? $results : collect([]);
+    }
+
+    private function buildExploreMoreTags($item)
+    {
+        $ids = collect([
+            $item->category_ids,
+            $item->style_ids,
+            $item->classification_ids,
+            $item->subject_ids,
+            $item->material_ids,
+            $item->technique_ids,
+        ])
+            ->flatten()
+            ->filter()
+            ->unique()
+            ->values()
+            ->all();
+
+        $terms = collect([]);
+
+        if (!empty($ids)) {
+            $terms = CategoryTerm::query()
+                ->ids($ids)
+                ->get(['id', 'title', 'subtype', 'usage_count']);
+        }
+
+        // Record's own terms first, ordered by usage; then backfill to 30.
+        $terms = $terms->sortByDesc('usage_count');
+
+        if ($terms->count() < 30) {
+            try {
+                $backfill = CategoryTerm::query()
+                    ->forceEndpoint('search')
+                    ->orderBy('usage_count', 'desc')
+                    ->limit(30)
+                    ->get(['id', 'title', 'subtype', 'usage_count'])
+                    ->reject(function ($term) use ($terms) {
+                        return $terms->pluck('id')->contains($term->id);
+                    })
+                    ->take(30 - $terms->count());
+
+                $terms = $terms->merge($backfill);
+            } catch (\Throwable $e) {
+                // Silently skip backfill if the search endpoint fails.
+            }
+        }
+
+        $terms = $terms->take(30);
+
+        return $terms
+            ->map(function ($term) {
+                return (object) [
+                    'url' => route('collection', [$term->getParameterName() => $term->title]),
+                    'label' => $term->title,
+                ];
+            })
+            ->values();
     }
 
     protected function setPageMetaData($item)

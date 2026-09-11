@@ -1,0 +1,112 @@
+.o-collection-carousel {
+    // Artwork-detail variant: the base `.m-collection-block` paints a grey
+    // panel (background-secondary); here the carousels sit on the plain white
+    // page background like the artwork rows in the screenshot. All base
+    // spacing is otherwise left untouched.
+    margin-top: 60px;
+
+    &:first-child {
+        margin-top: 30px;
+    }
+
+    // The base `.m-collection-block` is a full-viewport-width strip
+    // (width:100vw + negative margins) sized for its grey panel. With the grey
+    // panel gone, that full-bleed stretch escapes the page gutters and lets the
+    // rows touch the screen edge (e.g. when zoomed). Just flow normally so the
+    // rows line up with the surrounding content (like the tag dropdown).
+    margin-left: 0;
+    width: auto;
+
+    background-color: transparent;
+    padding: unset;
+
+    .m-collection-wrapper {
+        max-width: none;
+    }
+
+    // The base `.m-collection-block` paints a full-viewport-width strip
+    // (width:100vw + negative margins) sized for its grey panel. Here the rows
+    // sit on the white page, so the strip must match the content width or its
+    // scroll viewport overruns the right edge of the screen and the last
+    // column can never be brought fully into view.
+    .m-collection-content .m-collection-artworks {
+        margin-left: 0;
+        padding-left: 0;
+        width: 100%;
+        height: auto;
+        justify-content: flex-start;
+        row-gap: 25px;
+
+        // A horizontal scrollbar (shown when a wide artwork overflows) used to
+        // eat into the fixed container height and collapse the 25px gap between
+        // the two rows, making the first carousel look tighter than the rest.
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            height: 0;
+            width: 0;
+        }
+
+        // Two rows, 25px between them, total strip height 390px (210px on
+        // small screens): row = (390 - 25) / 2.
+        .m-collection-row,
+        .m-collection-artwork__item,
+        .m-collection__img img {
+            height: 182.5px;
+
+            @include breakpoint('small-') {
+                height: 92.5px;
+            }
+        }
+    }
+
+    .m-collection-row {
+      height: 200px;
+    }
+
+    .m-collection-heading {
+      @include untuck();
+      > .title {
+        font-size: 18px;
+      }
+      margin-bottom: 10px;
+
+      // The slider controls inherit large button/icon sizing from the grey
+      // collection panel. They only render when the strip overflows, which made
+      // the heading 51px tall in some carousels and 28px in others. Anchor the
+      // controls out of flow and reserve a fixed height so the heading spacing
+      // is identical whether or not the arrows show.
+      min-height: 51px;
+      padding-right: 130px;
+      position: relative;
+
+      .m-collection-slider-controls {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      @include breakpoint('small-') {
+        min-height: auto;
+        padding-right: 0;
+
+        .m-collection-slider-controls {
+          position: static;
+        }
+      }
+    }
+
+    &__heading-link {
+        // Hairline underline that hugs the caps tightly (matches the
+        // reference design) without painting extra space below the line box.
+        font-weight: 500;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        }
+    }
+}
