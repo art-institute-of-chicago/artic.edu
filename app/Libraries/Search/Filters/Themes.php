@@ -33,8 +33,13 @@ class Themes
 
     public function findLabel($id)
     {
-        $label = $this->entity::query()->find($id);
+        try {
+            $label = $this->entity::query()->find($id);
 
-        return $label->title;
+            return $label->title;
+        } catch (\Throwable $e) {
+            // The active value may be a plain title (not an id); return it as-is.
+            return $id;
+        }
     }
 }
