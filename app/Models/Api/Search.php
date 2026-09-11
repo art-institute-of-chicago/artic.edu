@@ -258,12 +258,12 @@ class Search extends BaseApiModel
 
     public function scopeByTechniques($query, $ids): ApiModelBuilderSearch
     {
-        return $this->scopeByListType($query, $ids, 'technique_ids');
+        return $this->scopeByListType($query, $ids, 'technique_titles.keyword');
     }
 
     public function scopeByThemes($query, $ids): ApiModelBuilderSearch
     {
-        return $this->scopeByListType($query, $ids, 'category_ids');
+        return $this->scopeByListType($query, $ids, 'category_titles.keyword');
     }
 
     public function scopeByArtworkType($query, $ids): ApiModelBuilderSearch
