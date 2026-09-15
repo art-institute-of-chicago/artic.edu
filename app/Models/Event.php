@@ -210,6 +210,8 @@ class Event extends AbstractModel
     // Number of days to look ahead for upcoming events
     public const UPCOMING_IN_DAYS = 28;
 
+    public const OCCURRENCE_DATE_FORMAT = 'Y-m-d';
+
     public $slugAttributes = [
         'title',
     ];
@@ -622,6 +624,91 @@ class Event extends AbstractModel
     public function getLastOccurrenceAttribute()
     {
         return $this->eventMetas()->orderBy('date', 'DESC')->first();
+    }
+    public function getIsRecurringAttribute(): bool
+    {
+        return collect($this->dateRules)->contains(function ($rule) {
+            return method_exists($rule, 'getRuleType') && $rule->getRuleType() === 'recurrent';
+        });
+    }
+    public function occurrenceForDate($date): ?EventMeta
+    {
+        $day = $this->parseOccurrenceDate($date);
+
+        if (!$day) {
+            return null;
+        }
+
+        return $this->eventMetas()
+            ->whereDate('date', $day->toDateString())
+            ->orderBy('date')
+            ->first();
+    }
+
+    /**
+     * The occurrence a bare event URL resolves to: today's occurrence while the
+     * event is still running, otherwise the next one, falling back to the last.
+     */
+    public function getCanonicalOccurrenceAttribute(): ?EventMeta
+    {
+        $today = $this->eventMetas()
+            ->whereDate('date', Carbon::today())
+            ->orderBy('date')
+            ->first();
+
+        if ($today && $today->date_end && $today->date_end >= Carbon::now()) {
+            return $today;
+        }
+
+        return $this->nextOccurrence ?? $this->lastOccurrence;
+    }
+
+    /**
+     * Public URL for a given occurrence.
+     *
+     * Recurring events append a `date` param; one-off events keep the plain
+     * id/slug URL, since their single occurrence never changes.
+     */
+    public function urlForOccurrence($date = null): string
+    {
+        $parameters = [
+            'id' => $this->id,
+            'slug' => $this->getSlug(),
+        ];
+
+        if ($this->is_recurring) {
+            $occurrenceDate = $this->parseOccurrenceDate($date)
+                ?? optional($this->canonical_occurrence)->date;
+
+            if ($occurrenceDate) {
+                $parameters['date'] = $occurrenceDate->format(self::OCCURRENCE_DATE_FORMAT);
+            }
+        }
+
+        return route('events.show', $parameters);
+    }
+
+    /**
+     * URL bound to the occurrence this model was loaded for. Listing queries
+     * select `event_metas.date`, so each row links to the day it represents
+     * instead of the series' next occurrence.
+     */
+    public function getOccurrenceUrlAttribute(): string
+    {
+        return $this->urlForOccurrence($this->date);
+    }
+
+    private function parseOccurrenceDate($date): ?Carbon
+    {
+        if (empty($date)) {
+            return null;
+        }
+
+        try {
+            return Carbon::parse($date);
+        } catch (\Throwable $e) {
+            return null;
+        }
     }
 
     public function getAudienceDisplay()
