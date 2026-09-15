@@ -18,6 +18,8 @@ class ArtworkController extends BaseScopedController
 {
     public const PER_PAGE = 20;
 
+    private const EXPLORE_MORE_TAG_LIMIT = 30;
+
     protected $artworkRepository;
 
     public function __construct(ArtworkRepository $repository)
@@ -233,17 +235,17 @@ class ArtworkController extends BaseScopedController
         // Record's own terms first, ordered by usage; then backfill to 30.
         $terms = $terms->sortByDesc('usage_count');
 
-        if ($terms->count() < 30) {
+        if ($terms->count() < self::EXPLORE_MORE_TAG_LIMIT) {
             try {
                 $backfill = CategoryTerm::query()
                     ->forceEndpoint('search')
                     ->orderBy('usage_count', 'desc')
-                    ->limit(30)
+                    ->limit(self::EXPLORE_MORE_TAG_LIMIT)
                     ->get(['id', 'title', 'subtype', 'usage_count'])
                     ->reject(function ($term) use ($terms) {
                         return $terms->pluck('id')->contains($term->id);
                     })
-                    ->take(30 - $terms->count());
+                    ->take(self::EXPLORE_MORE_TAG_LIMIT - $terms->count());
 
                 $terms = $terms->merge($backfill);
             } catch (\Throwable $e) {
@@ -251,7 +253,7 @@ class ArtworkController extends BaseScopedController
             }
         }
 
-        $terms = $terms->take(30);
+        $terms = $terms->take(self::EXPLORE_MORE_TAG_LIMIT);
 
         return $terms
             ->map(function ($term) {
