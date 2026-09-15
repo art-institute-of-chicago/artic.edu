@@ -259,9 +259,13 @@ class EventsController extends FrontController
 
     protected function setPageMetaData($item)
     {
+        $next = $item->is_recurring
+            ? ($item->occurrenceForDate(request('date')) ?? $item->canonical_occurrence)
+            : $item->nextOccurrence;
+
         return [
             'type' => 'event',
-            'date' => ($next = $item->nextOccurrence)
+            'date' => $next
                 ? $next->date->toDateString()
                 : null,
             'time' => ($next)
