@@ -28,7 +28,7 @@
     );
 
     $items = $events->map(function($event) use ($block) {
-        $href = route('events.show', $event);
+        $href = $event->occurrence_url;
         $gtmEvent = UrlHelpers::lastUrlSegment($href);
 
         return [
