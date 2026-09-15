@@ -144,7 +144,7 @@
 
     @if (isset($exploreMoreByArtist) && !empty($mainArtist) && $exploreMoreByArtist->count() > 1)
         @component('components.organisms._o-collection-carousel')
-            @slot('headingPrefix', 'MORE WORKS BY ')
+            @slot('headingPrefix', 'More works by ')
             @slot('headingLinkText', $mainArtist->title)
             @slot('headingUrl', route('artists.show', ['id' => $mainArtist->id, 'slug' => $mainArtist->titleSlug]))
             @slot('items', $exploreMoreByArtist)
@@ -153,7 +153,7 @@
 
     @if (isset($exploreMoreByStyle) && !empty($styleTitle) && $exploreMoreByStyle->count() > 1)
         @component('components.organisms._o-collection-carousel')
-            @slot('headingPrefix', 'IN THE STYLE OF ')
+            @slot('headingPrefix', 'In the style of ')
             @slot('headingLinkText', $styleTitle)
             @slot('headingUrl', route('collection', ['style_ids' => $styleTitle]))
             @slot('items', $exploreMoreByStyle)
@@ -162,7 +162,7 @@
 
     @if (isset($exploreMoreByGallery) && $item->is_on_view && !empty($item->gallery_id) && !empty($item->gallery_title) && $exploreMoreByGallery->count() > 1)
         @component('components.organisms._o-collection-carousel')
-            @slot('headingPrefix', 'ALSO IN ')
+            @slot('headingPrefix', 'Also in ')
             @slot('headingLinkText', $item->gallery_title)
             @slot('headingUrl', route('collection', ['gallery_ids' => $item->gallery_id]))
             @slot('items', $exploreMoreByGallery)
@@ -171,7 +171,7 @@
 
     @if (isset($exploreMoreByVisuallySimilar) && $exploreMoreByVisuallySimilar->count() > 1)
         @component('components.organisms._o-collection-carousel')
-            @slot('headingPrefix', 'VISUALLY SIMILAR')
+            @slot('headingPrefix', 'Visually similar')
             @slot('maxItems', 12)
             @slot('items', $exploreMoreByVisuallySimilar)
         @endcomponent

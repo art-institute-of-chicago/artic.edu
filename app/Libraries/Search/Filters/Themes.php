@@ -33,12 +33,18 @@ class Themes
 
     public function findLabel($id)
     {
+        // The active value may be a plain title (not an id); return it as-is
+        // instead of performing a database call for a value that isn't findable.
+        if (!is_numeric($id)) {
+            return $id;
+        }
+
         try {
             $label = $this->entity::query()->find($id);
 
-            return $label->title;
+            return $label ? $label->title : $id;
         } catch (\Throwable $e) {
-            // The active value may be a plain title (not an id); return it as-is.
+            // The lookup failed; fall back to the original value.
             return $id;
         }
     }
