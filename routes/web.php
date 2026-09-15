@@ -205,7 +205,14 @@ Route::group([
     Route::get('/events-more', [EventsController::class, 'indexMore'])->name('events.more');
 });
 Route::get('/events/{id}/ics', [EventsController::class, 'ics'])->name('events.ics');
-Route::get('/events/{id}/{slug?}', [EventsController::class, 'show'])->name('events.show');
+Route::group([
+    'middleware' => [SanitizeQueryParameters::class],
+    'allowed_query_params' => [
+        'date',
+    ]
+], function () {
+    Route::get('/events/{id}/{slug?}', [EventsController::class, 'show'])->name('events.show');
+});
 
 // Articles routes
 Route::group([
