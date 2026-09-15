@@ -244,6 +244,8 @@ class EventRepository extends ModuleRepository
             $callback($query);
         }
 
+        $query->with('dateRules');
+
         return $query->paginate($perPage, ['events.*', 'event_metas.date', 'event_metas.date_end'], 'page', $page);
     }
 
@@ -266,6 +268,7 @@ class EventRepository extends ModuleRepository
         $query->where('event_metas.date', '>=', Carbon::today());
         $query->whereIn('events.id', $ids);
         $query->orderBy('event_metas.date', 'ASC');
+        $query->with('dateRules');
 
         return $query->paginate($perPage, ['events.*', 'event_metas.date', 'event_metas.date_end'], 'page', $page);
     }
