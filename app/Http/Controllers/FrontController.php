@@ -101,8 +101,19 @@ class FrontController extends BaseController
             return;
         }
 
-        if (!Str::endsWith($canonicalPath, request()->path())) {
+        if (!Str::endsWith(Str::before($canonicalPath, '?'), request()->path())) {
             return redirect($canonicalPath, 301);
+        }
+        if ($canonicalQuery = parse_url($canonicalPath, PHP_URL_QUERY)) {
+            parse_str($canonicalQuery, $canonicalParams);
+
+            $matches = collect($canonicalParams)->every(function ($value, $key) {
+                return (string) request()->query($key) === (string) $value;
+            });
+
+            if (!$matches) {
+                return redirect($canonicalPath, 301);
+            }
         }
     }
 
