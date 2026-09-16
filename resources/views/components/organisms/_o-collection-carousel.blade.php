@@ -41,25 +41,29 @@
         ];
     })->values();
 
-    // Greedy load-balance into two rows. Source order is respected while sums
-    // are near equal; a wide artwork tips the balance and later items simply
-    // flow into the shorter row, so wide pieces don't drag one row far past the
-    // other.
-    $carouselRows = [collect(), collect()];
-    $carouselRowSums = [0, 0];
+    if ($carouselEntries->count() <= 6) {
+        $carouselRows = [$carouselEntries];
+    } else {
+        // Greedy load-balance into two rows. Source order is respected while
+        // sums are near equal; a wide artwork tips the balance and later items
+        // simply flow into the shorter row, so wide pieces don't drag one row
+        // far past the other.
+        $carouselRows = [collect(), collect()];
+        $carouselRowSums = [0, 0];
 
-    foreach ($carouselEntries as $entry) {
-        $target = ($carouselRowSums[0] <= $carouselRowSums[1]) ? 0 : 1;
+        foreach ($carouselEntries as $entry) {
+            $target = ($carouselRowSums[0] <= $carouselRowSums[1]) ? 0 : 1;
 
-        if (
-            $carouselRowSums[0] === $carouselRowSums[1] &&
-            $carouselRows[0]->count() > $carouselRows[1]->count()
-        ) {
-            $target = 1;
+            if (
+                $carouselRowSums[0] === $carouselRowSums[1] &&
+                $carouselRows[0]->count() > $carouselRows[1]->count()
+            ) {
+                $target = 1;
+            }
+
+            $carouselRows[$target]->push($entry);
+            $carouselRowSums[$target] += $entry->width;
         }
-
-        $carouselRows[$target]->push($entry);
-        $carouselRowSums[$target] += $entry->width;
     }
 @endphp
 
