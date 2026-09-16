@@ -11,6 +11,7 @@ use App\Libraries\Search\CollectionService;
 use App\Libraries\ExploreFurther\ArtworkService as ExploreFurther;
 use App\Models\Hour;
 use App\Libraries\SchemaOrg\SchemaMapper;
+use App\Models\AdCampaign;
 use Illuminate\Support\Facades\Response;
 
 class ArtworkController extends BaseScopedController
@@ -70,6 +71,7 @@ class ArtworkController extends BaseScopedController
             'canonicalUrl' => $canonicalPath,
             'pageMetaData' => $this->getPageMetaData($item),
             'hour' => Hour::today()->first(),
+            'advertisement' => AdCampaign::findPriorityForArtwork($item),
         ];
 
         // Build Explore further module
