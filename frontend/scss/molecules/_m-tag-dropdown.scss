@@ -9,6 +9,13 @@
   padding-top: 30px;
 
   &__heading {
+    @include untuck();
+
+    &::before,
+    &::after {
+      padding: 0;
+    }
+
     font-size: 22px;
     margin: 0;
   }

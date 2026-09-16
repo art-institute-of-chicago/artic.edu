@@ -70,7 +70,16 @@
     }
 
     .m-collection-heading {
-      @include untuck();
+      .f-module-title-2,
+      .f-link {
+        @include untuck();
+
+        &::before,
+        &::after {
+          padding: 0;
+        }
+      }
+
       > .title {
         font-size: 18px;
         flex: 1 1 auto;
