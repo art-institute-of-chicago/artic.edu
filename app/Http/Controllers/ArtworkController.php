@@ -23,14 +23,6 @@ class ArtworkController extends BaseScopedController
 
     protected $artworkRepository;
 
-    /**
-     * Category terms referenced by the artwork, memoized per request and keyed
-     * by artwork so a second item can never reuse the first one's terms.
-     */
-    private $categoryTerms;
-
-    private $categoryTermsItemId;
-
     public function __construct(ArtworkRepository $repository)
     {
         $this->artworkRepository = $repository;
@@ -89,7 +81,7 @@ class ArtworkController extends BaseScopedController
         if (!$item->is_deaccessioned) {
             $exploreFurther = new ExploreFurther($item);
 
-            $styleTitle = $this->mostProminentStyleTitle($item);
+            $styleTitle = $item->style_title ?: ($item->style_titles[0] ?? null);
 
             $viewData = array_merge($viewData, [
                 // Updating language based on FE - can update later
@@ -110,58 +102,6 @@ class ArtworkController extends BaseScopedController
         ]);
 
         return view('site.artworkDetail', $viewData);
-    }
-
-    /**
-     * Category terms referenced by the artwork, fetched once per request.
-     */
-    private function artworkCategoryTerms($item)
-    {
-        if ($this->categoryTerms !== null && $this->categoryTermsItemId === $item->id) {
-            return $this->categoryTerms;
-        }
-
-        $this->categoryTermsItemId = $item->id;
-
-        $ids = collect([
-            $item->category_ids,
-            $item->style_ids,
-            $item->classification_ids,
-            $item->subject_ids,
-            $item->material_ids,
-            $item->technique_ids,
-        ])
-            ->flatten()
-            ->filter()
-            ->unique()
-            ->values()
-            ->all();
-
-        $this->categoryTerms = empty($ids)
-            ? collect([])
-            : CategoryTerm::query()->ids($ids)->get(['id', 'title', 'subtype', 'usage_count']);
-
-        return $this->categoryTerms;
-    }
-
-    /**
-     * The artwork's style used by the most artworks, per `usage_count` on its
-     * category terms. Falls back to the first style title (API order) when no
-     * counts are available.
-     */
-    private function mostProminentStyleTitle($item): ?string
-    {
-        $styles = $this->artworkCategoryTerms($item)->filter(function ($term) {
-            return $term->subtype === 'style' && !empty($term->title);
-        });
-
-        if ($styles->isEmpty()) {
-            return collect($item->style_titles ?? [])->filter()->first();
-        }
-
-        return $styles->sortByDesc(function ($term) {
-            return (int) ($term->usage_count ?? 0);
-        })->first()->title;
     }
 
     public function size($id)
@@ -275,7 +215,27 @@ class ArtworkController extends BaseScopedController
 
     private function buildExploreMoreTags($item)
     {
-        $terms = $this->artworkCategoryTerms($item);
+        $ids = collect([
+            $item->category_ids,
+            $item->style_ids,
+            $item->classification_ids,
+            $item->subject_ids,
+            $item->material_ids,
+            $item->technique_ids,
+        ])
+            ->flatten()
+            ->filter()
+            ->unique()
+            ->values()
+            ->all();
+
+        $terms = collect([]);
+
+        if (!empty($ids)) {
+            $terms = CategoryTerm::query()
+                ->ids($ids)
+                ->get(['id', 'title', 'subtype', 'usage_count']);
+        }
 
         $terms = $terms->sortByDesc('usage_count');
 
