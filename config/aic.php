@@ -75,11 +75,23 @@ return [
             'research_center' => [
                 '#CED8EE',
             ],
+        ],
+        'themes' => [
+            // The colors for these are found in `frontend/scss/setup/_themse.scss`
             'ad_campaigns' => [
-                '#1E3D47' => 'Darkest Teal',
-                '#91C8CD' => 'Light Teal',
+                'activity',
+                'cafe',
+                'garden-bar',
+                'member-bar',
+                'membership',
+                'modern-bar',
+                'promotion',
+                'special-event',
+                'rlc',
+                'shop',
+                'shop-alternate',
             ],
-        ]
+        ],
     ],
 
     // Social media profile URLs, shared by the footer navigation
