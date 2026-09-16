@@ -207,7 +207,7 @@ class AdCampaignTest extends BaseTestCase
             'The campaign is found by either ApiModel or its id',
         );
 
-        // Using an \App\Models\Artwork model with throw and exception
+        // Using an \App\Models\Artwork model will throw an exception
         $this->expectException(\TypeError::class);
         $campaignFoundByObject = AdCampaign::findPriorityForArtwork(new \App\Models\Artwork());
     }
