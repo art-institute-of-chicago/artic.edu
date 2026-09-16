@@ -178,6 +178,10 @@
     @endif
 </div>
 
+@component('components.organisms._o-advertisement')
+    @slot('advertisement', $advertisement)
+@endcomponent
+
 <div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div>
 
 @endsection
