@@ -32,6 +32,12 @@
     .m-collection-content .m-collection-artworks {
         margin-left: 0;
         padding-left: 0;
+        width: calc(100% + 4.6875vw); // xlarge gutters are 0, content is 1500px centred
+
+        @include breakpoint('xlarge') {
+            width: calc(100% + (100vw - 1500px) / 2);
+        }
+
         height: auto;
         justify-content: flex-start;
         row-gap: 25px;
@@ -67,6 +73,8 @@
       @include untuck();
       > .title {
         font-size: 18px;
+        flex: 1 1 auto;
+        min-width: 0;
       }
       margin-bottom: 10px;
 
@@ -75,6 +83,7 @@
       // the heading 51px tall in some carousels and 28px in others. Anchor the
       // controls out of flow and reserve a fixed height so the heading spacing
       // is identical whether or not the arrows show.
+      flex-direction: row;
       min-height: 51px;
       padding-right: 130px;
       position: relative;
@@ -86,11 +95,14 @@
       }
 
       @include breakpoint('small-') {
+        flex-direction: row;
         min-height: auto;
         padding-right: 0;
 
         .m-collection-slider-controls {
           position: static;
+          flex-shrink: 0;
+          margin-top: 0;
         }
       }
     }
