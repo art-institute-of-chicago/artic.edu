@@ -139,7 +139,7 @@
 <div class="explore-more-carousels">
     @php
         $mainArtist = ($item->mainArtist && $item->mainArtist->isNotEmpty()) ? $item->mainArtist->first() : null;
-        $styleTitle = $item->style_titles[0] ?? null;
+        $styleTitle = $exploreMoreStyleTitle ?? null;
     @endphp
 
     @if (isset($exploreMoreByArtist) && !empty($mainArtist) && $exploreMoreByArtist->count() > 1)
