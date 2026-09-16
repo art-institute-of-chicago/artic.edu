@@ -24,9 +24,10 @@
             <div class="description">
                 {!! $advertisement->description !!}
             </div>
-            <div class="button compliment">
+            <div class="button">
                 @component('components.atoms._btn')
                     @slot('tag', 'a')
+                    @slot('variation', 'compliment')
                     @slot('href', $advertisement->destination_url)
                     {{ $advertisement->destination_label }}
                 @endcomponent
