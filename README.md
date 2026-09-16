@@ -19,7 +19,7 @@ Portions of the website rely heavily on our [API](https://api.artic.edu). Check 
 
 ## Requirements
 
-* PHP 8.2
+* PHP 8.5
 * Node 24.13.0 (lts/krypton)
 * NPM 11.6.2
 * PostgreSQL 17

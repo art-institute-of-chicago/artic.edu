@@ -26,7 +26,7 @@
                     @slot('image', $hero_media)
                     @slot('settings', array(
                         'fit' => 'crop',
-                        'srcset' => array(300,600,1000,1500,2000),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS,
                         'sizes' => ImageHelpers::aic_imageSizes(array(
                             'xsmall' => '272',
                             'small' => '544',
@@ -41,7 +41,7 @@
                     @slot('image', $mobile_hero_media)
                     @slot('settings', array(
                         'fit' => 'crop',
-                        'srcset' => array(300,600,1000,1500,2000),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS,
                         'sizes' => ImageHelpers::aic_imageSizes(array(
                             'xsmall' => '272',
                             'small' => '544',
@@ -127,7 +127,7 @@
                                     @component('components.atoms._img')
                                         @slot('image', $artwork_image)
                                         @slot('settings', array(
-                                            'srcset' => array(300,600,1000,1500,2000),
+                                            'srcset' => ImageHelpers::SRCSET_WIDTHS,
                                             'sizes' => ImageHelpers::aic_imageSizes(array(
                                                   'xsmall' => '272',
                                                   'small' => '544',

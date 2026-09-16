@@ -84,7 +84,7 @@
                         @slot('imageSettings', array(
                             'fit' => 'crop',
                             'ratio' => '16:9',
-                            'srcset' => array(200,400,600),
+                            'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                             'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                                 'xsmall' => '1',
                                 'small' => '2',

@@ -306,19 +306,19 @@ class MigrateOSCIPublicationOne extends Command
         switch (true) {
             // Non-video embeds (HTML, mostly) become media_embed
             case $figure->figure_type === 'html_figure'
-            && !isset($figure->html_content_src):
+                && !isset($figure->html_content_src):
                 $this->configureHTMLFigure($block, $figure);
                 return;
 
                 // HTML embeds with a src are videos
             case $figure->figure_type === 'html_figure'
-            && isset($figure->html_content_src):
+                && isset($figure->html_content_src):
                 $this->configureVideoFigure($block, $figure);
                 return;
 
                 // OSCI's layered_image with only one layer should just be an image
             case $figure->figure_type === 'layered_image'
-            && count($layers) === 1:
+                && count($layers) === 1:
                 $this->configureImageFigure($block, $figure, $layers);
                 return;
 

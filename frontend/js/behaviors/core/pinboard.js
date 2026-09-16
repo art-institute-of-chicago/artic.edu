@@ -140,11 +140,15 @@ const pinboard = function(container) {
 
                 // Update the overall container height to the height of the tallest column
                 container.style.height = _maxOfArray(cols) + 'px';
-
-                // Trigger a custom event to signal that the page has been updated
-                triggerCustomEvent(document, 'page:updated');
             }
         });
+
+        // Wait for blocks to receive 's-positioned' (see setTimeout above) so
+        // position: absolute / their final top/left have taken effect before
+        // anything (e.g. lazy-load's IntersectionObserver) re-reads layout.
+        setTimeout(function() {
+            triggerCustomEvent(document, 'page:updated');
+        }, 260);
     }
 
     function _setupBlocks() {
