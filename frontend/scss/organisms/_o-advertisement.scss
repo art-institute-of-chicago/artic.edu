@@ -21,6 +21,7 @@
       order: 1;
 
       @include breakpoint('medium+') {
+        flex: 1 1 50%;
         order: 2;
       }
 
@@ -38,6 +39,7 @@
       order: 2;
 
       @include breakpoint('medium+') {
+        flex: 1 1 50%;
         order: 1;
       }
 
