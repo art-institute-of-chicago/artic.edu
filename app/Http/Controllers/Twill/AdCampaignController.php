@@ -101,10 +101,8 @@ class AdCampaignController extends BaseController
 
     protected function formData($request)
     {
-        $backgroundColors = collect(config('aic.branding.colors.ad_campaigns'))->sort();
-
         return [
-            'backgroundColors' => $backgroundColors,
+            'themes' => collect(config('aic.branding.themes.ad_campaigns'))->sort(),
         ];
     }
 }

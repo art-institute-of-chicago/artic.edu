@@ -1,0 +1,145 @@
+/**
+ * Migrate these to data-services-styles
+ */
+.theme {
+  &-activity {
+    .base {
+      background-color: #275A61;
+      .title, .description {
+        color: #FFF;
+      }
+    }
+    .compliment {
+      .btn {
+        background-color: #FFF;
+        color: #000;
+      }
+    }
+  }
+  &-cafe {
+    .base {
+      background-color: #FFF181;
+      .title, .description {
+        color: #000;
+      }
+    }
+    .compliment {
+      .btn {
+        background-color: #282829;
+        color: #FFF;
+      }
+    }
+  }
+  &-garden-bar {
+    .base {
+      background-color: #F2CDD2;
+      .title, .description {
+        color: #000;
+      }
+    }
+    .compliment {
+      .btn {
+        background-color: #620C17;
+        color: #FFF;
+      }
+    }
+  }
+  &-member-bar {
+    .base {
+      background-color: #FFDEC7;
+      .title, .description {
+        color: #000;
+      }
+    }
+    .compliment {
+      .btn {
+        background-color: #620C17;
+        color: #FFF;
+      }
+    }
+  }
+  &-membership {
+    .base {
+      background-color: #1E3D47;
+      .title, .description {
+        color: #FFF;
+      }
+    }
+    .compliment {
+      .btn {
+        background-color: #D4EBE9;
+        color: #000;
+      }
+    }
+  }
+  &-modern-bar {
+    .base {
+      background-color: #620C17;
+      .title, .description {
+        color: #FFF;
+      }
+    }
+    .compliment {
+      .btn {
+        background-color: #FFDEC7;
+        color: #000;
+      }
+    }
+  }
+  &-promotion, &-special-event {
+    .base {
+      background-color: #282829;
+      .title, .description {
+        color: #FFF;
+      }
+    }
+    .compliment {
+      .btn {
+        background-color: #FFF;
+        color: #000;
+      }
+    }
+  }
+  &-rlc {
+    .base {
+      background-color: #F7694A;
+      .title, .description {
+        color: #000;
+      }
+    }
+    .compliment {
+      .btn {
+        background-color: #FFDEC7;
+        color: #000;
+      }
+    }
+  }
+  &-shop {
+    .base {
+      background-color: #D4EBE9;
+      .title, .description {
+        color: #000;
+      }
+    }
+    .compliment {
+      .btn {
+        background-color: #1E3D47;
+        color: #FFF;
+      }
+    }
+  }
+  &-shop-alternate {
+    .base {
+      background-color: #816B5C;
+      .title, .description {
+        color: #FFF;
+      }
+    }
+    .compliment {
+      .btn {
+        background-color: #FDF8BB;
+        color: #000;
+      }
+    }
+  }
+}

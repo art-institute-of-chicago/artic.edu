@@ -9,14 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('ad_campaigns', function (Blueprint $table) {
-            $table->string('bgcolor', length: 7)->nullable();
+            $table->string('theme')->nullable();
         });
     }
 
     public function down(): void
     {
         Schema::table('ad_campaigns', function (Blueprint $table) {
-            $table->dropColumn('bgcolor');
+            $table->dropColumn('theme');
         });
     }
 };

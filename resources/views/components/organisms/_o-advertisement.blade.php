@@ -1,5 +1,6 @@
 @if($advertisement)
-    <div class="o-advertisement" >
+<div class="o-advertisement theme-{{ $advertisement->theme }}">
+    <div class="o-advertisement__container base" >
         <div class="o-advertisement__image">
             @component('components.atoms._img')
                 @slot('image', $advertisement->imageAsArray('hero'))
@@ -23,7 +24,7 @@
             <div class="description">
                 {!! $advertisement->description !!}
             </div>
-            <div class="button">
+            <div class="button compliment">
                 @component('components.atoms._btn')
                     @slot('tag', 'a')
                     @slot('href', $advertisement->destination_url)
@@ -32,4 +33,5 @@
             </div>
         </div>
     </div>
+</div>
 @endif
