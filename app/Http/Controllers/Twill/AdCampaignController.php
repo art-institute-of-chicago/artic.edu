@@ -48,6 +48,9 @@ class AdCampaignController extends BaseController
                 ->title('Destination URL')
                 ->optional()
                 ->hide()
+                ->linkCell(function (AdCampaign $adCampaign) {
+                    return $adCampaign->destination_url;
+                })
         );
         $columns->add(
             Relation::make()
@@ -83,5 +86,12 @@ class AdCampaignController extends BaseController
         );
 
         return $columns;
+    }
+
+    protected function formData($request)
+    {
+        return [
+            'themes' => collect(config('aic.branding.themes.ad_campaigns'))->sort(),
+        ];
     }
 }

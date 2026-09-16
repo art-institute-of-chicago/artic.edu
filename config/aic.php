@@ -75,7 +75,23 @@ return [
             'research_center' => [
                 '#CED8EE',
             ],
-        ]
+        ],
+        'themes' => [
+            // The colors for these are found in `frontend/scss/setup/_themse.scss`
+            'ad_campaigns' => [
+                'activity',
+                'cafe',
+                'garden-bar',
+                'member-bar',
+                'membership',
+                'modern-bar',
+                'promotion',
+                'special-event',
+                'rlc',
+                'shop',
+                'shop-alternate',
+            ],
+        ],
     ],
 
     // Social media profile URLs, shared by the footer navigation
