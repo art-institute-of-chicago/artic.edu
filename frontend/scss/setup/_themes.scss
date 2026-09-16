@@ -1,0 +1,135 @@
+/**
+ * Migrate these to data-services-styles
+ */
+.theme {
+  &-activity {
+    .base {
+      background-color: #275A61;
+      color: #FFF;
+      .title, .description {
+        color: inherit;
+      }
+    }
+    .compliment {
+      background-color: #FFF;
+      color: #000;
+    }
+  }
+  &-cafe {
+    .base {
+      background-color: #FFF181;
+      color: #000;
+      .title, .description {
+        color: inherit;
+      }
+    }
+    .compliment {
+      background-color: #282829;
+      color: #FFF;
+    }
+  }
+  &-garden-bar {
+    .base {
+      background-color: #F2CDD2;
+      color: #000;
+      .title, .description {
+        color: inherit;
+      }
+    }
+    .compliment {
+      background-color: #620C17;
+      color: #FFF;
+    }
+  }
+  &-member-bar {
+    .base {
+      background-color: #FFDEC7;
+      color: #000;
+      .title, .description {
+        color: inherit;
+      }
+    }
+    .compliment {
+      background-color: #620C17;
+      color: #FFF;
+    }
+  }
+  &-membership {
+    .base {
+      background-color: #1E3D47;
+      color: #FFF;
+      .title, .description {
+        color: inherit;
+      }
+    }
+    .compliment {
+      background-color: #D4EBE9;
+      color: #000;
+    }
+  }
+  &-modern-bar {
+    .base {
+      background-color: #620C17;
+      color: #FFF;
+      .title, .description {
+        color: inherit;
+      }
+    }
+    .compliment {
+      background-color: #FFDEC7;
+      color: #000;
+    }
+  }
+  &-promotion, &-special-event {
+    .base {
+      background-color: #282829;
+      color: #FFF;
+      .title, .description {
+        color: inherit;
+      }
+    }
+    .compliment {
+      background-color: #FFF;
+      color: #000;
+    }
+  }
+  &-rlc {
+    .base {
+      background-color: #F7694A;
+      color: #000;
+      .title, .description {
+        color: inherit;
+      }
+    }
+    .compliment {
+      background-color: #FFDEC7;
+      color: #000;
+    }
+  }
+  &-shop {
+    .base {
+      background-color: #D4EBE9;
+      color: #000;
+      .title, .description {
+        color: inherit;
+      }
+    }
+    .compliment {
+      background-color: #1E3D47;
+      color: #FFF;
+    }
+  }
+  &-shop-alternate {
+    .base {
+      background-color: #816B5C;
+      color: #FFF;
+      .title, .description {
+        color: inherit;
+      }
+    }
+    .compliment {
+      background-color: #FDF8BB;
+      color: #000;
+    }
+  }
+}
