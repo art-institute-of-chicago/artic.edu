@@ -18,6 +18,7 @@ class BaseService
     public const MAX_TAGS = 3;
     public const PER_PAGE_EXPLORE_FURTHER = 13;
 
+    public const EXPLORE_FURTHER_CANDIDATES = 25;
     /**
      * Array with valid filters for the Explore Further section.
      */
@@ -197,7 +198,7 @@ class BaseService
             }
         }
 
-        $results = $query->getPaginatedModel(self::PER_PAGE_EXPLORE_FURTHER, \App\Models\Api\Artwork::SEARCH_FIELDS);
+        $results = $query->getPaginatedModel(self::EXPLORE_FURTHER_CANDIDATES, \App\Models\Api\Artwork::SEARCH_FIELDS);
 
         // Remove our own element from the collection, but only if there's more than one result
         if ($results->count() > 1) {
@@ -207,7 +208,12 @@ class BaseService
             });
         }
 
-        return $results;
+        // Rare occasion, but sometimes an object is chosen and doesn't have an image
+        return $results
+            ->filter(function ($value) {
+                return !empty($value->imageFront());
+            })
+            ->take(self::PER_PAGE_EXPLORE_FURTHER);
     }
 
     public function collectionUrl($parameters = [])
