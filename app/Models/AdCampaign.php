@@ -6,6 +6,7 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\Sortable;
+use App\Models\Api\Artwork;
 use App\Models\Behaviors\HasApiRelations;
 use App\Repositories\Api\ArtistRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,7 +51,7 @@ class AdCampaign extends AbstractModel implements Sortable
     {
         $artworkId = $artwork;
         if (is_a($artwork, Artwork::class)) {
-            $artworkId = $artwork->datahub_id;
+            $artworkId = $artwork->id;
         }
 
         // Determine if a campaign has no related artists or artworks

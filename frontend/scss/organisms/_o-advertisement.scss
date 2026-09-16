@@ -1,0 +1,72 @@
+.o-advertisement {
+  display: flex;
+  flex-direction: column;
+  font-family: $text-fonts-serif-loaded;
+  gap: $blocks-spacings-double;
+  padding: $blocks-spacings-default;
+  width: 100%;
+
+  @include breakpoint('medium+') {
+    flex-direction: row;
+    gap: $blocks-spacings-largest;
+    padding: $blocks-spacings-extra-large;
+  }
+
+  .o-advertisement__image {
+    order: 1;
+
+    @include breakpoint('medium+') {
+      order: 2;
+    }
+
+    img {
+      aspect-ratio: 16 / 9;
+      height: auto;
+      max-width: 100%;
+      object-fit: cover;
+    }
+  }
+  .o-advertisement__text {
+    display: flex;
+    flex-direction: column;
+    gap: $blocks-spacings-large;
+    order: 2;
+
+    @include breakpoint('medium+') {
+      order: 1;
+    }
+
+    .title {
+      font-size: $text-sizes-large;
+
+      @include breakpoint('medium+') {
+        font-size: $text-sizes-double;
+      }
+    }
+    .description {
+      font-size: $text-sizes-normal;
+      line-height: 130%;
+
+      @include breakpoint('medium+') {
+        font-size: $text-sizes-large;
+      }
+    }
+    .button {
+      margin-top: $blocks-spacings-medium-large;
+
+      @include breakpoint('medium+') {
+        margin-top: auto;
+      }
+
+      a.btn {
+        letter-spacing: 1.44px;
+        text-transform: uppercase;
+        width: 100%;
+
+        @include breakpoint('medium+') {
+          width: auto;
+        }
+      }
+    }
+  }
+}
