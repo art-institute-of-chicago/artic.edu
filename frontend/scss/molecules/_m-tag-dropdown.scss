@@ -27,6 +27,7 @@
       align-items: center;
       display: inline-flex;
       gap: 8px;
+      pointer-events: none;
 
       .icon--plus,
       .icon--minus {
@@ -60,8 +61,8 @@
     display: flex;
     flex-basis: 100%;
     flex-wrap: wrap;
-    gap: 12px;
     justify-content: center;
+    row-gap: $blocks-spacings-medium;
     list-style: none;
     margin: 0;
     max-height: 0;
@@ -86,7 +87,7 @@
     border: 1px solid $colors-scales-grey-20;
     color: $colors-scales-grey-100;
     display: inline-block;
-    padding: 6px 12px;
+    padding: 11px 20px;
     text-decoration: none;
   }
 }
