@@ -4,7 +4,7 @@
             @component('components.atoms._img')
                 @slot('image', $advertisement->imageAsArray('hero'))
                 @slot('settings', [
-                        'srcset' => [200, 400, 600, 843, 1200, 1686, 3000],
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_LARGE,
                         'sizes' => ImageHelpers::aic_imageSizes([
                             'xsmall' => '58',
                             'small'  => '28',
