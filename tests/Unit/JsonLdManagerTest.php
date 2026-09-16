@@ -1282,7 +1282,7 @@ class JsonLdManagerTest extends BaseTestCase
             'door_time' => '18:00',
         ], $overrides));
 
-        $fixture = new class() extends Event {
+        $fixture = new class () extends Event {
             /** @var \Illuminate\Support\Collection<int, array{date: \Carbon\CarbonInterface, date_end: \Carbon\CarbonInterface}>|null */
             public $fixtureDates;
 

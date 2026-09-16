@@ -33,8 +33,19 @@ class Techniques
 
     public function findLabel($id)
     {
-        $label = $this->entity::query()->find($id);
+        // The active value may be a plain title (not an id); return it as-is
+        // instead of performing a database call for a value that isn't findable.
+        if (!is_numeric($id)) {
+            return $id;
+        }
 
-        return $label->title;
+        try {
+            $label = $this->entity::query()->find($id);
+
+            return $label ? $label->title : $id;
+        } catch (\Throwable $e) {
+            // The lookup failed; fall back to the original value.
+            return $id;
+        }
     }
 }
