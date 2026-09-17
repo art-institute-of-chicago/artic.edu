@@ -44,7 +44,7 @@
       }
 
       .title {
-        font-size: $text-sizes-large;
+        font-size: $text-sizes-medium;
 
         @include breakpoint('medium+') {
           font-size: $text-sizes-double;
@@ -52,7 +52,7 @@
       }
       .description {
         font-size: $text-sizes-normal;
-        line-height: 130%;
+        line-height: $text-line-heights-normal;
 
         @include breakpoint('medium+') {
           font-size: $text-sizes-large;
@@ -66,9 +66,10 @@
         }
 
         a.btn {
-          letter-spacing: 1.44px;
+          letter-spacing: $text-letter-spacings-normal;
           text-transform: uppercase;
           width: 100%;
+          white-space: wrap;
 
           @include breakpoint('medium+') {
             width: auto;
