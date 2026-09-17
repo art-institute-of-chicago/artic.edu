@@ -78,7 +78,7 @@ class AdCampaign extends AbstractModel implements Sortable
             foreach ($artistIds as $artistId) {
                 try {
                     $artist = app(ArtistRepository::class)->getById($artistId);
-                    $artistArtworkIds = $artist->artworks()->pluck('id');
+                    $artistArtworkIds = $artist->artworks($artist->artworks()->total())->pluck('id');
                     if ($artistArtworkIds->contains($artworkId)) {
                         // If the artwork was created by the related artist,
                         // this is the priority campaign.
