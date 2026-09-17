@@ -94,7 +94,12 @@
     border: 1px solid $colors-scales-grey-20;
     color: $colors-scales-grey-100;
     display: inline-block;
+    margin-right: 30px;
     padding: 11px 20px;
     text-decoration: none;
+
+    @include breakpoint('small-') {
+      margin-right: 10px;
+    }
   }
 }
