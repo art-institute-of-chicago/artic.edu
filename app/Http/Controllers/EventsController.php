@@ -182,6 +182,14 @@ class EventsController extends FrontController
 
         if ($item->is_recurring) {
             $occurrence = $occurrence ?? $item->canonical_occurrence;
+
+            $occurrenceEnd = $occurrence ? $occurrence->date_end ?? $occurrence->date : null;
+
+            if ($occurrenceEnd && $occurrenceEnd->isPast()) {
+                if ($nextOccurrence = $item->nextOccurrence) {
+                    return redirect($item->urlForOccurrence($nextOccurrence->date), 301);
+                }
+            }
         }
 
         $canonicalPath = ($item->is_recurring && $occurrence)
