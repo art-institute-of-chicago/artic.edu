@@ -173,7 +173,28 @@ class EventsController extends FrontController
     {
         $item = $this->repository->published()->with('dateRules')->findOrFail((int) $id);
 
-        $canonicalPath = route('events.show', $item);
+        $requestedDate = request('date');
+        $occurrence = $item->occurrenceForDate($requestedDate);
+
+        if (!$item->is_recurring && $requestedDate) {
+            return redirect($item->urlForOccurrence(), 301);
+        }
+
+        if ($item->is_recurring) {
+            $occurrence = $occurrence ?? $item->canonical_occurrence;
+
+            $occurrenceEnd = $occurrence ? $occurrence->date_end ?? $occurrence->date : null;
+
+            if ($occurrenceEnd && $occurrenceEnd->isPast()) {
+                if ($nextOccurrence = $item->nextOccurrence) {
+                    return redirect($item->urlForOccurrence($nextOccurrence->date), 301);
+                }
+            }
+        }
+
+        $canonicalPath = ($item->is_recurring && $occurrence)
+            ? $item->urlForOccurrence($occurrence->date)
+            : $item->urlForOccurrence();
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
@@ -199,6 +220,7 @@ class EventsController extends FrontController
             'autoRelated' => $this->getAutoRelated($item),
             'featuredRelated' => $this->getFeatureRelated($item),
             'item' => $item,
+            'occurrence' => $occurrence,
             'contrastHeader' => $item->present()->contrastHeader,
             'canonicalUrl' => $canonicalPath,
             'pageMetaData' => $this->getPageMetaData($item),
@@ -245,9 +267,13 @@ class EventsController extends FrontController
 
     protected function setPageMetaData($item)
     {
+        $next = $item->is_recurring
+            ? ($item->occurrenceForDate(request('date')) ?? $item->canonical_occurrence)
+            : $item->nextOccurrence;
+
         return [
             'type' => 'event',
-            'date' => ($next = $item->nextOccurrence)
+            'date' => $next
                 ? $next->date->toDateString()
                 : null,
             'time' => ($next)
