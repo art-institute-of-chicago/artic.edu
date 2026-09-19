@@ -81,10 +81,13 @@ class ArtworkController extends BaseScopedController
         if (!$item->is_deaccessioned) {
             $exploreFurther = new ExploreFurther($item);
 
+            $styleTitle = $item->style_title ?: ($item->style_titles[0] ?? null);
+
             $viewData = array_merge($viewData, [
                 // Updating language based on FE - can update later
                 'exploreMoreByArtist' => $this->exploreMore($exploreFurther, $item->artist_title, 'ef-artist_ids'),
-                'exploreMoreByStyle' => $this->exploreMore($exploreFurther, $item->style_titles[0] ?? null, 'ef-style_ids'),
+                'exploreMoreByStyle' => $this->exploreMore($exploreFurther, $styleTitle, 'ef-style_ids'),
+                'exploreMoreStyleTitle' => $styleTitle,
                 'exploreMoreByGallery' => $this->exploreMore($exploreFurther, ($item->is_on_view && !empty($item->gallery_id)) ? $item->gallery_id : null, 'ef-gallery_ids'),
                 'exploreMoreByVisuallySimilar' => $item->present()->nearestNeighbors,
                 'exploreMoreTags' => $this->buildExploreMoreTags($item),
@@ -234,26 +237,7 @@ class ArtworkController extends BaseScopedController
                 ->get(['id', 'title', 'subtype', 'usage_count']);
         }
 
-        // Record's own terms first, ordered by usage; then backfill to 30.
         $terms = $terms->sortByDesc('usage_count');
-
-        if ($terms->count() < self::EXPLORE_MORE_TAG_LIMIT) {
-            try {
-                $backfill = CategoryTerm::query()
-                    ->forceEndpoint('search')
-                    ->orderBy('usage_count', 'desc')
-                    ->limit(self::EXPLORE_MORE_TAG_LIMIT)
-                    ->get(['id', 'title', 'subtype', 'usage_count'])
-                    ->reject(function ($term) use ($terms) {
-                        return $terms->pluck('id')->contains($term->id);
-                    })
-                    ->take(self::EXPLORE_MORE_TAG_LIMIT - $terms->count());
-
-                $terms = $terms->merge($backfill);
-            } catch (\Throwable $e) {
-                // Silently skip backfill if the search endpoint fails.
-            }
-        }
 
         $terms = $terms->take(self::EXPLORE_MORE_TAG_LIMIT);
 
