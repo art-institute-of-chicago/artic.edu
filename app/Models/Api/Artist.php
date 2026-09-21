@@ -37,7 +37,11 @@ class Artist extends BaseApiModel
 
     public function artworks($perPage = 20)
     {
-        return $this->artworks ?? $this->artworks = Search::query()
+        if ($this->artworks && $this->artworks->count() == $perPage) {
+            return $this->artworks;
+        }
+
+        return $this->artworks = Search::query()
             ->resources(['artworks'])
             ->forceEndpoint('search')
             ->byArtists($this->title)
