@@ -19,6 +19,6 @@ Schedule::command('exhibitions:featured')->dailyAt('00:00');
 
 // Let production have the whole API quota
 if (App::environment('production')) {
-    Schedule::command('youtube:videos-and-playlists')->hourlyAt(17);
-    Schedule::command('youtube:captions')->hourlyAt(47);
+    Schedule::command('youtube:videos-and-playlists')->hourlyAt(17)->withoutOverlapping();
+    Schedule::command('youtube:captions')->hourlyAt(47)->withoutOverlapping();
 }
