@@ -159,6 +159,6 @@ elseif (isset($item) && isset($item->type)) {
 </html>
 @if (config('api.logger'))
 @php
-\Log::info(app('debug')->getOutput());
+\Log::debug(app('debug')->getOutput());
 @endphp
 @endif

@@ -249,23 +249,16 @@ Route::group([
 Route::get('/videos/shorts', [ShortsController::class, 'index'])
     ->name('shorts.index');
 Route::get('/videos/shorts/{video}', [ShortsController::class, 'show'])
-    ->whereNumber('video')
     ->name('shorts.show');
 Route::get('/videos/shorts/{video}/previous', [ShortsController::class, 'previous'])
-    ->whereNumber('video')
     ->name('shorts.previous');
 Route::get('/videos/shorts/{video}/next', [ShortsController::class, 'next'])
-    ->whereNumber('video')
     ->name('shorts.next');
 Route::get('/videos/{video}/{slug?}', [VideoController::class, 'show'])
-    ->whereNumber('video')
     ->name('videos.show');
 Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])
-    ->whereNumber('playlist')
     ->name('playlists.show');
 Route::get('/playlists/{playlist}/videos/{video}/{slug?}', [PlaylistVideoController::class, 'show'])
-    ->whereNumber('playlist')
-    ->whereNumber('video')
     ->scopeBindings()
     ->name('playlists.videos.show');
 
@@ -308,7 +301,7 @@ Route::group([
     Route::get('/artworks/{id}/exploreFurther', [ArtworkController::class, 'exploreFurther'])->name('artworks.exploreFurther');
 });
 Route::get('/artworks/{id}/size.jpg', [ArtworkController::class, 'size'])->name('artworks.size');
-Route::get('/artworks/{id}/{slug?}', [ArtworkController::class, 'show'])->whereNumber('id')->name('artworks.show');
+Route::get('/artworks/{id}/{slug?}', [ArtworkController::class, 'show'])->name('artworks.show');
 
 // Gallery / tag page
 Route::get('/galleries/{id}/{slug?}', [GalleryController::class, 'show'])->name('galleries.show');
