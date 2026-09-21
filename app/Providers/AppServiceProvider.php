@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use A17\Twill\Facades\TwillNavigation;
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
-use A17\Twill\Facades\TwillNavigation;
 use A17\Twill\View\Components\Navigation\NavigationLink;
 use Aic\Hub\Foundation\Library\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\DamsImageService;
@@ -12,10 +12,11 @@ use App\Libraries\EmbedConverterService;
 use App\Observers\FileObserver;
 use App\Services\OAuth\GoogleOAuthService;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\AliasLoader;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->hotfixSeoForAdminPreview();
 
+        $this->registerRoutePatterns();
         $this->registerMorphMap();
         $this->registerApiClient();
         $this->registerDamsImageService();
@@ -59,6 +61,12 @@ class AppServiceProvider extends ServiceProvider
         $seo->height = config('twill.seo.height');
 
         View::share('seo', $seo);
+    }
+
+    public function registerRoutePatterns(): void{
+        Route::pattern('id', '[0-9]+');
+        Route::pattern('video', '[0-9]+');
+        Route::pattern('playlist', '[0-9]+');
     }
 
     public function registerMorphMap(): void
