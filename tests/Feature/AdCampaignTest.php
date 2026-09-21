@@ -127,6 +127,47 @@ class AdCampaignTest extends BaseTestCase
         );
     }
 
+    public function test_findPriorityForArtwork_finds_campaign_with_artist_with_more_than_twenty_artworks(): void
+    {
+        $artworks = Artwork::factory()->count(25)->make();
+        $campaigns = AdCampaign::factory()->count(3)->ordered()->published()->create();
+        $campaignWithArtist = $campaigns->pop(); // Pull the last position
+        $campaignWithArtist->artists()->attach(
+            ApiRelation::create(['datahub_id' => $this->artist->id]),
+            ['relation' => 'artists', 'position' => 1],
+        );
+        $this->addMockApiResponses($this->mockApiModelReponse($this->artist));
+        // By default, Artist::artworks() only returns 20 artworks, so this first
+        // request is just to get the total amount of artworks.
+        $this->addMockApiResponses($this->mockApiSearchResponse(
+            $artworks->slice(0, 20)->all(),
+            pagination: ['total' => 25],
+        ));
+        $this->addMockApiResponses($this->mockApiSearchResponse($artworks->all()));
+
+        $priorityCampaign = AdCampaign::findPriorityForArtwork($artworks->last());
+        $this->assertApiRequestCount(3);
+        $this->assertApiRequestReceived(
+            'POST',
+            "/api/v1/artists/{$this->artist->id}",
+            'The API received a request for the specified artists',
+        );
+        $this->assertApiRequestReceived(
+            'POST',
+            '/api/v1/search',
+            "The API received a request for the total count of artists' artworks",
+        );
+        $this->assertApiRequestReceived(
+            'POST',
+            '/api/v1/search',
+            "The API received a request for all of the artists' artworks",
+        );
+        $this->assertTrue(
+            $priorityCampaign->is($campaignWithArtist),
+            'The campaign with an artwork by the associated artist is prioritized',
+        );
+    }
+
     public function test_findPriorityForArtwork_skips_campaign_with_nonmatching_artist(): void
     {
         $nonmatchingArtist = Artist::factory(['id' => $this->artist->id + 1])->make();
