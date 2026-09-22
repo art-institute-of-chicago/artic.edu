@@ -14,6 +14,7 @@
     @include breakpoint('medium+') {
       flex-direction: row;
       gap: $blocks-spacings-largest;
+      max-height: 305px;
       padding: $blocks-spacings-extra-large;
     }
 
@@ -30,6 +31,10 @@
         height: auto;
         max-width: 100%;
         object-fit: cover;
+
+        @include breakpoint('medium+') {
+          max-height: 225px;
+        }
       }
     }
     .o-advertisement__text {
@@ -51,7 +56,7 @@
         }
       }
       .description {
-        font-size: $text-sizes-normal;
+        font-size: calc($text-sizes-normal + 1px);
         line-height: $text-line-heights-normal;
 
         @include breakpoint('medium+') {
