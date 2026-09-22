@@ -81,8 +81,8 @@ Route::group([
     ]
 ], function () {
     Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])
-    ->whereNumber('id')
-    ->name('landingPages.show');
+        ->whereNumber('id')
+        ->name('landingPages.show');
 });
 
 // Collection routes
