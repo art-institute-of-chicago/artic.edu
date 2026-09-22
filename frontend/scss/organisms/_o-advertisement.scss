@@ -56,7 +56,7 @@
         }
       }
       .description {
-        font-size: $text-sizes-normal;
+        font-size: calc($text-sizes-normal + 1px);
         line-height: $text-line-heights-normal;
 
         @include breakpoint('medium+') {
