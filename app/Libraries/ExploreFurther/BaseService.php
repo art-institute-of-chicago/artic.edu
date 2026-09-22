@@ -16,9 +16,9 @@ use App\Helpers\DateHelpers;
 class BaseService
 {
     public const MAX_TAGS = 3;
-    public const PER_PAGE_EXPLORE_FURTHER = 13;
+    public const PER_PAGE_EXPLORE_FURTHER = 18;
 
-    public const EXPLORE_FURTHER_CANDIDATES = 25;
+    public const EXPLORE_FURTHER_CANDIDATES = 30;
     /**
      * Array with valid filters for the Explore Further section.
      */
