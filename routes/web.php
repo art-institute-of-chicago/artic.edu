@@ -80,7 +80,9 @@ Route::group([
         'sort',
     ]
 ], function () {
-    Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])->name('landingPages.show');
+    Route::get('/landingpages/{id}/{slug?}', [LandingPagesController::class, 'show'])
+    ->whereNumber('id')
+    ->name('landingPages.show');
 });
 
 // Collection routes
@@ -145,12 +147,21 @@ Route::group([
 
 // Collection Publications Printed Publications
 Route::get('/print-publications', [PrintedPublicationsController::class, 'index'])->name('collection.publications.printed-publications');
-Route::get('/print-publications/{id}/{slug?}', [PrintedPublicationsController::class, 'show'])->name('collection.publications.printed-publications.show');
+Route::get('/print-publications/{id}/{slug?}', [PrintedPublicationsController::class, 'show'])
+    ->whereNumber('id')
+    ->name('collection.publications.printed-publications.show');
 // Collection Publications Digital Publications
 Route::get('/digital-publications', [DigitalPublicationsController::class, 'index'])->name('collection.publications.digital-publications');
-Route::get('/digital-publications/{id}/{slug?}', [DigitalPublicationsController::class, 'show'])->name('collection.publications.digital-publications.show');
-Route::get('/digital-publications/{id}/{slug?}/content', [DigitalPublicationsController::class, 'showListing'])->name('collection.publications.digital-publications.showListing');
-Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPublicationArticleController::class, 'show'])->name('collection.publications.digital-publications-articles.show');
+Route::get('/digital-publications/{id}/{slug?}', [DigitalPublicationsController::class, 'show'])
+    ->whereNumber('id')
+    ->name('collection.publications.digital-publications.show');
+Route::get('/digital-publications/{id}/{slug?}/content', [DigitalPublicationsController::class, 'showListing'])
+    ->whereNumber('id')
+    ->name('collection.publications.digital-publications.showListing');
+Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPublicationArticleController::class, 'show'])
+    // Should we scope the bindings here using `->scopeBindings()`?
+    ->whereNumber('id')
+    ->name('collection.publications.digital-publications-articles.show');
 
 // Collection Resources Educator Resources
 Route::group([
@@ -164,7 +175,9 @@ Route::group([
     ]
 ], function () {
     Route::get('/educator-resources', [EducatorResourcesController::class, 'index'])->name('collection.resources.educator-resources');
-    Route::get('/educator-resources/{id}/{slug?}', [EducatorResourcesController::class, 'show'])->name('collection.resources.educator-resources.show');
+    Route::get('/educator-resources/{id}/{slug?}', [EducatorResourcesController::class, 'show'])
+        ->whereNumber('id')
+        ->name('collection.resources.educator-resources.show');
 });
 
 // Newsletter subscription
@@ -225,15 +238,21 @@ Route::group([
 ], function () {
     Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
 });
-Route::get('/articles/{id}/{slug?}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/articles/{id}/{slug?}', [ArticleController::class, 'show'])
+    ->whereNumber('id')
+    ->name('articles.show');
 
 // Magazine issue routes
-Route::get('/magazine/issues/{id}/{slug?}', [MagazineIssueController::class, 'show'])->name('magazine-issues.show');
+Route::get('/magazine/issues/{id}/{slug?}', [MagazineIssueController::class, 'show'])
+    ->whereNumber('id')
+    ->name('magazine-issues.show');
 Route::get('/magazine', [MagazineIssueController::class, 'latest'])->name('magazine-issues.latest');
 
 // Author routes
 Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
-Route::get('/authors/{id}/{slug?}', [AuthorController::class, 'show'])->name('authors.show');
+Route::get('/authors/{id}/{slug?}', [AuthorController::class, 'show'])
+    ->whereNumber('id')
+    ->name('authors.show');
 
 // Videos routes
 Route::group([
@@ -249,16 +268,23 @@ Route::group([
 Route::get('/videos/shorts', [ShortsController::class, 'index'])
     ->name('shorts.index');
 Route::get('/videos/shorts/{video}', [ShortsController::class, 'show'])
+    ->whereNumber('video')
     ->name('shorts.show');
 Route::get('/videos/shorts/{video}/previous', [ShortsController::class, 'previous'])
+    ->whereNumber('video')
     ->name('shorts.previous');
 Route::get('/videos/shorts/{video}/next', [ShortsController::class, 'next'])
+    ->whereNumber('video')
     ->name('shorts.next');
 Route::get('/videos/{video}/{slug?}', [VideoController::class, 'show'])
+    ->whereNumber('video')
     ->name('videos.show');
 Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])
+    ->whereNumber('playlist')
     ->name('playlists.show');
 Route::get('/playlists/{playlist}/videos/{video}/{slug?}', [PlaylistVideoController::class, 'show'])
+    ->whereNumber('playlist')
+    ->whereNumber('video')
     ->scopeBindings()
     ->name('playlists.videos.show');
 
@@ -266,7 +292,9 @@ Route::get('/playlists/{playlist}/videos/{video}/{slug?}', [PlaylistVideoControl
 Route::get('mirador', function () {
     return abort(404);
 })->name('mirador');
-Route::get('/mirador/{id}/{slug?}', [MiradorController::class, 'show'])->name('mirador.show');
+Route::get('/mirador/{id}/{slug?}', [MiradorController::class, 'show'])
+    ->whereNumber('id')
+    ->name('mirador.show');
 
 // Exhibition history routes
 // Must remain before exhibition routes
@@ -278,19 +306,29 @@ Route::group([
 ], function () {
     Route::get('exhibitions/history', [ExhibitionHistoryController::class, 'index'])->name('exhibitions.history');
 });
-Route::get('exhibitions/history/{id}', [ExhibitionHistoryController::class, 'show'])->name('exhibitions.history.show');
+Route::get('exhibitions/history/{id}', [ExhibitionHistoryController::class, 'show'])
+    ->whereNumber('id')
+    ->name('exhibitions.history.show');
 
 // Exhibition routes
 Route::get('/exhibitions', [ExhibitionsController::class, 'index'])->name('exhibitions');
 Route::get('/exhibitions/upcoming', [ExhibitionsController::class, 'upcoming'])->name('exhibitions.upcoming');
-Route::get('/exhibitions/waitTime/{id}/{slug?}/{variation?}', [ExhibitionsController::class, 'waitTime'])->name('exhibitions.waitTime');
-Route::get('/exhibitions/{id}/relatedEvents', [ExhibitionsController::class, 'loadMoreRelatedEvents'])->where('id', '(.*)')->name('exhibitions.loadMoreRelatedEvents');
-Route::get('/exhibitions/{id}/{slug?}', [ExhibitionsController::class, 'show'])->name('exhibitions.show');
+Route::get('/exhibitions/waitTime/{id}/{slug?}/{variation?}', [ExhibitionsController::class, 'waitTime'])
+    ->whereNumber('id')
+    ->name('exhibitions.waitTime');
+Route::get('/exhibitions/{id}/relatedEvents', [ExhibitionsController::class, 'loadMoreRelatedEvents'])
+    ->whereNumber('id')
+    ->name('exhibitions.loadMoreRelatedEvents');
+Route::get('/exhibitions/{id}/{slug?}', [ExhibitionsController::class, 'show'])
+    ->whereNumber('id')
+    ->name('exhibitions.show');
 
 // Artwork routes
 Route::get('/artworks/recentlyViewed', [ArtworkController::class, 'recentlyViewed'])->name('artworks.recentlyViewed');
 Route::get('/artworks/clearRecentlyViewed', [ArtworkController::class, 'clearRecentlyViewed'])->name('artworks.clearRecentlyViewed');
-Route::get('/artworks/addRecentlyViewed/{id}/{slug?}', [ArtworkController::class, 'addRecentlyViewed'])->name('artworks.addRecentlyViewed');
+Route::get('/artworks/addRecentlyViewed/{id}/{slug?}', [ArtworkController::class, 'addRecentlyViewed'])
+    ->whereNumber('id')
+    ->name('artworks.addRecentlyViewed');
 Route::group([
     'middleware' => [SanitizeQueryParameters::class],
     'allowed_query_params' => array_merge(
@@ -298,32 +336,50 @@ Route::group([
         ['ef-all_ids']
     ),
 ], function () {
-    Route::get('/artworks/{id}/exploreFurther', [ArtworkController::class, 'exploreFurther'])->name('artworks.exploreFurther');
+    Route::get('/artworks/{id}/exploreFurther', [ArtworkController::class, 'exploreFurther'])
+        ->whereNumber('id')
+        ->name('artworks.exploreFurther');
 });
-Route::get('/artworks/{id}/size.jpg', [ArtworkController::class, 'size'])->name('artworks.size');
-Route::get('/artworks/{id}/{slug?}', [ArtworkController::class, 'show'])->name('artworks.show');
+Route::get('/artworks/{id}/size.jpg', [ArtworkController::class, 'size'])
+    ->whereNumber('id')
+    ->name('artworks.size');
+Route::get('/artworks/{id}/{slug?}', [ArtworkController::class, 'show'])
+    ->whereNumber('id')
+    ->name('artworks.show');
 
 // Gallery / tag page
-Route::get('/galleries/{id}/{slug?}', [GalleryController::class, 'show'])->name('galleries.show');
+Route::get('/galleries/{id}/{slug?}', [GalleryController::class, 'show'])
+    ->whereNumber('id')
+    ->name('galleries.show');
 
 // Artist / tag page
-Route::get('/artists/{id}/{slug?}', [ArtistController::class, 'show'])->name('artists.show');
+Route::get('/artists/{id}/{slug?}', [ArtistController::class, 'show'])
+    ->whereNumber('id')
+    ->name('artists.show');
 
 // Department / tag page
-Route::get('/departments/{id}/{slug?}', [DepartmentController::class, 'show'])->name('departments.show');
+Route::get('/departments/{id}/{slug?}', [DepartmentController::class, 'show'])
+    ->whereNumber('id')
+    ->name('departments.show');
 
 // Highlights
-Route::get('/highlights/{id}/{slug?}', [HighlightsController::class, 'show'])->name('highlights.show');
+Route::get('/highlights/{id}/{slug?}', [HighlightsController::class, 'show'])
+    ->whereNumber('id')
+    ->name('highlights.show');
 Route::get('/highlights', [HighlightsController::class, 'index'])->name('highlights.index');
 
 // About
 Route::get('/press/press-releases', [PressReleasesController::class, 'index'])->name('about.press');
 Route::get('/press/archive', [PressReleasesController::class, 'archive'])->name('about.press.archive');
 Route::redirect('/press/archives', '/press/archive');
-Route::get('/press/press-releases/{id}/{slug?}', [PressReleasesController::class, 'show'])->name('about.press.show');
+Route::get('/press/press-releases/{id}/{slug?}', [PressReleasesController::class, 'show'])
+    ->whereNumber('id')
+    ->name('about.press.show');
 
 Route::get('/press/exhibition-press-room', [ExhibitionPressRoomController::class, 'index'])->name('about.exhibitionPressRooms');
-Route::get('/press/exhibition-press-room/{id}/{slug?}', [ExhibitionPressRoomController::class, 'show'])->name('about.exhibitionPressRooms.show');
+Route::get('/press/exhibition-press-room/{id}/{slug?}', [ExhibitionPressRoomController::class, 'show'])
+    ->whereNumber('id')
+    ->name('about.exhibitionPressRooms.show');
 
 // Educator admission request
 Route::get('/educators/visit-on-my-own/educator-admission-request', [EducatorAdmissionController::class, 'index'])->name('forms.educator-admission-request');
@@ -357,7 +413,9 @@ Route::get('e-news', function () {
 
 // Digital Explorer
 // Route::get('/digital-explorers', [DigitalExplorerController::class, 'index'])->name('digitalExplorer.index'); No index yet...
-Route::get('/digital-explorers/{id}/{slug?}', [DigitalExplorerController::class, 'show'])->name('digitalExplorer.show');
+Route::get('/digital-explorers/{id}/{slug?}', [DigitalExplorerController::class, 'show'])
+    ->whereNumber('id')
+    ->name('digitalExplorer.show');
 
 // Digital labels
 Route::get('/interactive-features', [InteractiveFeatureExperiencesController::class, 'index'])->name('interactiveFeatures');
@@ -372,11 +430,17 @@ Route::group([
         'tourCreationComplete',
     ]
 ], function () {
-    Route::get('/my-museum-tour/{id}', [MyMuseumTourController::class, 'show'])->name('my-museum-tour.show');
+    Route::get('/my-museum-tour/{id}', [MyMuseumTourController::class, 'show'])
+        ->whereNumber('id')
+        ->name('my-museum-tour.show');
 });
 
-Route::get('/my-museum-tour/{id}/pdf-layout', [MyMuseumTourController::class, 'pdfLayout'])->name('my-museum-tour.pdf-layout');
-Route::get('/my-museum-tour/{id}/qrcode.png', [MyMuseumTourController::class, 'qrcode'])->name('my-museum-tour.qrcode');
+Route::get('/my-museum-tour/{id}/pdf-layout', [MyMuseumTourController::class, 'pdfLayout'])
+    ->whereNumber('id')
+    ->name('my-museum-tour.pdf-layout');
+Route::get('/my-museum-tour/{id}/qrcode.png', [MyMuseumTourController::class, 'qrcode'])
+    ->whereNumber('id')
+    ->name('my-museum-tour.qrcode');
 
 // Feed routes
 Route::feeds();
