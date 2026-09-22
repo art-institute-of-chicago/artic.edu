@@ -172,7 +172,6 @@
     @if (isset($exploreMoreByVisuallySimilar) && $exploreMoreByVisuallySimilar->count() > 1)
         @component('components.organisms._o-collection-carousel')
             @slot('headingPrefix', 'Visually similar')
-            @slot('maxItems', 12)
             @slot('items', $exploreMoreByVisuallySimilar)
         @endcomponent
     @endif

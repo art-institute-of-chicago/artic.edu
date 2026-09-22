@@ -2,7 +2,7 @@
     use App\Helpers\GtmHelpers;
 
     $headingPrefix = $headingPrefix ?? '';
-    $maxItems = $maxItems ?? 12;
+    $maxItems = $maxItems ?? 18;
     $headingLinkText = $headingLinkText ?? null;
     $headingUrl = $headingUrl ?? null;
 
