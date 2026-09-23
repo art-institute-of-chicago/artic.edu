@@ -4,6 +4,7 @@
   margin-top: $blocks-spacings-largest;
 
   .o-advertisement__container {
+    align-items: center;
     display: flex;
     flex-direction: column;
     font-family: $text-fonts-serif-loaded;
@@ -14,7 +15,6 @@
     @include breakpoint('medium+') {
       flex-direction: row;
       gap: $blocks-spacings-largest;
-      max-height: 305px;
       padding: $blocks-spacings-extra-large;
     }
 
