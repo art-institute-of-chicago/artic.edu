@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use A17\Twill\Facades\TwillNavigation;
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
-use A17\Twill\Facades\TwillNavigation;
 use A17\Twill\View\Components\Navigation\NavigationLink;
 use Aic\Hub\Foundation\Library\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\DamsImageService;
@@ -12,10 +12,10 @@ use App\Libraries\EmbedConverterService;
 use App\Observers\FileObserver;
 use App\Services\OAuth\GoogleOAuthService;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\AliasLoader;
 
 class AppServiceProvider extends ServiceProvider
 {
