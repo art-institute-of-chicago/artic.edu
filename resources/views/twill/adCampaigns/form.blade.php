@@ -53,6 +53,7 @@
             name="description"
             label="Description"
             :toolbar-options="['italic']"
+            :maxlength='200'
         />
         <x-twill::formColumns>
             <x-slot:left>

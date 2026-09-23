@@ -11,6 +11,7 @@ class AdCampaignRequest extends Request
     {
         return [
             'title' => 'required',
+            'description' => [new InnerTextLength(max: 200)],
         ];
     }
 
@@ -18,6 +19,7 @@ class AdCampaignRequest extends Request
     {
         return [
             'title' => 'required',
+            'description' => [new InnerTextLength(max: 200)],
         ];
     }
 }
