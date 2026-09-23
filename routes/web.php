@@ -159,7 +159,7 @@ Route::get('/digital-publications/{id}/{slug?}/content', [DigitalPublicationsCon
     ->whereNumber('id')
     ->name('collection.publications.digital-publications.showListing');
 Route::get('/digital-publications/{pubId}/{pubSlug}/{id}/{slug?}', [DigitalPublicationArticleController::class, 'show'])
-    // Should we scope the bindings here using `->scopeBindings()`?
+    ->whereNumber('pubId')
     ->whereNumber('id')
     ->name('collection.publications.digital-publications-articles.show');
 
@@ -358,9 +358,7 @@ Route::get('/artists/{id}/{slug?}', [ArtistController::class, 'show'])
     ->name('artists.show');
 
 // Department / tag page
-Route::get('/departments/{id}/{slug?}', [DepartmentController::class, 'show'])
-    ->whereNumber('id')
-    ->name('departments.show');
+Route::get('/departments/{id}/{slug?}', [DepartmentController::class, 'show'])->name('departments.show');
 
 // Highlights
 Route::get('/highlights/{id}/{slug?}', [HighlightsController::class, 'show'])
