@@ -2,11 +2,11 @@
   position: relative;
   display: flex;
   flex-flow: column wrap;
-  margin-top: 60px;
-  padding-top: 60px;
+  margin-top: $blocks-spacings-largest;
+  padding-top: $blocks-spacings-largest;
 
   @include breakpoint('small-') {
-    margin-top: 40px;
+    margin-top:$blocks-spacings-extra-large;
   }
 
   @include breakpoint('medium+') {
@@ -109,7 +109,7 @@
   & {
     display: inline-flex;
     align-items: center;
-    margin-left: 16px;
+    margin-left: $blocks-spacings-default;
     padding: 0;
     border: 0 none;
     background: transparent;
@@ -118,8 +118,8 @@
 
   svg {
     flex: 0 0 auto;
-    width: 16px;
-    height: 16px;
+    width: $blocks-spacings-default;
+    height: $blocks-spacings-default;
     margin-left: 6px;
   }
 
@@ -189,7 +189,7 @@
 .o-related-content--grid-year .o-related-content__list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap:$blocks-spacings-extra-large;
 
   @include breakpoint('small') {
     grid-template-columns: repeat(2, 1fr);
@@ -212,7 +212,7 @@
   display: block;
   position: relative;
   margin-top: 0; // Offsets the shared `.m-listing__img` margins we opt into below
-  margin-bottom: 12px;
+  margin-bottom: $blocks-spacings-small;
   background-color: $colors-themes-light-mode-background-primary;
   overflow: hidden;
 }
@@ -242,7 +242,7 @@
 
 .o-related-content__item-eyebrow {
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: $blocks-spacings-small;
   color: $colors-themes-light-mode-text-secondary;
 }
 
@@ -252,8 +252,8 @@
   display: flex;
   flex-flow: row wrap;
   align-items: baseline;
-  margin-top: 16px;
-  padding-top: 16px;
+  margin-top: $blocks-spacings-default;
+  padding-top: $blocks-spacings-default;
   border-top: 1px solid $colors-themes-light-mode-rules-tertiary;
 }
 
@@ -278,7 +278,7 @@
   width: 80px;
 
   @include breakpoint('small+') {
-    width: 120px;
+    width: calc($blocks-spacings-largest * 2);
   }
 }
 
@@ -290,7 +290,7 @@
 .o-related-content__item-description {
   // color: $color__black;
   font-weight: 400;
-  margin-top: 12px;
+  margin-top: $blocks-spacings-small;
 
   @include breakpoint('small-') {
     margin-top: 15px;
@@ -299,7 +299,7 @@
 
 .o-related-content__item-body .o-related-content__item-link {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: $blocks-spacings-small;
 
   @include breakpoint('small-') {
     margin-top: 15px;
@@ -307,8 +307,8 @@
 }
 
 .o-related-content--list-rows .o-related-content__panel .o-related-content__list > .o-related-content__item--row:first-child {
-  margin-top: 16px;
-  padding-top: 16px;
+  margin-top: $blocks-spacings-default;
+  padding-top: $blocks-spacings-default;
   border-top: 1px solid $colors-themes-light-mode-rules-tertiary;
 }
 
@@ -317,7 +317,7 @@
   flex-direction: row !important;
   padding: 0;
   align-items: flex-start;
-  gap: 40px;
+  gap:$blocks-spacings-extra-large;
 
   .m-listing__link {
     flex-direction: row;
@@ -325,7 +325,7 @@
 
   .m-listing__img {
     order: 1;
-    margin-right: 40px;
+    margin-right:$blocks-spacings-extra-large;
   }
 
   .m-listing__meta {
