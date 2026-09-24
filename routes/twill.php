@@ -3,6 +3,7 @@
 use A17\Twill\Facades\TwillRoutes;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Twill\ArtworkController;
+use App\Http\Controllers\Twill\BlockCopyController;
 use App\Http\Controllers\Twill\ArtistController;
 use App\Http\Controllers\Twill\CategoryTermController;
 use App\Http\Controllers\Twill\DepartmentController;
@@ -117,6 +118,10 @@ Route::group(['prefix' => 'general'], function () {
     TwillRoutes::module('illuminatedLinks');
     Route::get('/integrations', [IntegrationController::class, 'show'])->name('general.integrations.show');
     Route::get('/integrations/service/{service}/action/{action}', [IntegrationController::class, 'action'])->name('general.integrations.service.action');
+    Route::get('/blockCopy', [BlockCopyController::class, 'index'])->name('general.blockCopy.index');
+    Route::get('/blockCopy/data', [BlockCopyController::class, 'data'])->name('general.blockCopy.data');
+    Route::post('/blockCopy/paste', [BlockCopyController::class, 'paste'])->name('general.blockCopy.paste');
+    Route::post('/blockCopy/reorder', [BlockCopyController::class, 'reorder'])->name('general.blockCopy.reorder');
 });
 
 TwillRoutes::module('videoCategories');
