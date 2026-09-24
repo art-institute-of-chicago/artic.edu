@@ -77,25 +77,38 @@ return new class () extends Migration {
      */
     private function resequence(array $browsers): void
     {
-        $quoted = implode(', ', array_map(function ($browser) {
-            return DB::getPdo()->quote($browser);
-        }, $browsers));
+        $browserList = implode(', ', array_map(
+            fn (string $browser): string => DB::getPdo()->quote($browser),
+            $browsers
+        ));
 
-        DB::statement(
-            "UPDATE related AS r
-                SET position = ranked.new_position
-                FROM (
-                    SELECT ctid,
-                        ROW_NUMBER() OVER (
-                            PARTITION BY subject_type, subject_id, browser_name
-                            ORDER BY position, related_type, related_id
-                        ) AS new_position
-                    FROM related
-                    WHERE browser_name IN ({$quoted})
-                ) AS ranked
-                WHERE r.ctid = ranked.ctid
-                    AND r.position IS DISTINCT FROM ranked.new_position"
-        );
+        $sql = <<<SQL
+            WITH ranked AS (
+                SELECT
+                    subject_type,
+                    subject_id,
+                    browser_name,
+                    related_type,
+                    related_id,
+                    ROW_NUMBER() OVER (
+                        PARTITION BY subject_type, subject_id, browser_name
+                        ORDER BY position, related_type, related_id
+                    ) AS new_position
+                FROM related
+                WHERE browser_name IN ({$browserList})
+            )
+            UPDATE related AS r
+            SET position = ranked.new_position
+            FROM ranked
+            WHERE r.browser_name = ranked.browser_name
+                AND r.subject_type = ranked.subject_type
+                AND r.subject_id IS NOT DISTINCT FROM ranked.subject_id
+                AND r.related_type = ranked.related_type
+                AND r.related_id IS NOT DISTINCT FROM ranked.related_id
+                AND r.position IS DISTINCT FROM ranked.new_position
+            SQL;
+
+        DB::statement($sql);
     }
 
     private function report(array $counts): void
