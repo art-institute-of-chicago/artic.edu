@@ -9,6 +9,7 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\PrintedPublication;
+use App\Repositories\Behaviors\HandleApiRelations;
 
 class PrintedPublicationRepository extends ModuleRepository
 {
@@ -17,6 +18,18 @@ class PrintedPublicationRepository extends ModuleRepository
     use HandleMedias;
     use HandleFiles;
     use HandleRevisions;
+    use HandleApiRelations;
+
+    protected $apiBrowsers = [
+        'relatedArtists' => [
+            'routePrefix' => 'collection',
+            'moduleName' => 'artists'
+        ],
+        'relatedArtworks' => [
+            'routePrefix' => 'collection',
+            'moduleName' => 'artworks'
+        ],
+    ];
 
     public function __construct(PrintedPublication $model)
     {
