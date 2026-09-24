@@ -73,21 +73,34 @@ class ArtworkController extends BaseScopedController
             });
         }
 
-        // Start building data for output to view
-        $relatedContent = $this->buildRelatedContent($item);
-        $publications = $this->buildSectionItems($item, 'manualPublications', 'autoPublications', 'toggle_autopublications', fn ($publication) => $this->normalizePublicationItem($publication));
-        $exhibitions = $this->buildSectionItems($item, 'manualExhibitions', 'autoExhibitions', 'toggle_autoexhibitions', fn ($exhibition) => $this->normalizeExhibitionItem($exhibition));
-        $educatorResources = $this->buildSectionItems($item, 'manualEducatorResources', 'autoEducatorResources', 'toggle_autoeducator_resources', fn ($resource) => $resource);
+        // The new artwork-detail sections are gated behind a feature flag; when
+        // it is off the legacy develop page renders and none of this data is
+        // needed, so skip the (expensive) queries and hand the view empties.
+        if (config('aic.show_artwork_detail_sections')) {
+            $relatedContent = $this->buildRelatedContent($item);
+            $publications = $this->buildSectionItems($item, 'manualPublications', 'autoPublications', 'toggle_autopublications', fn ($publication) => $this->normalizePublicationItem($publication));
+            $exhibitions = $this->buildSectionItems($item, 'manualExhibitions', 'autoExhibitions', 'toggle_autoexhibitions', fn ($exhibition) => $this->normalizeExhibitionItem($exhibition));
+            $educatorResources = $this->buildSectionItems($item, 'manualEducatorResources', 'autoEducatorResources', 'toggle_autoeducator_resources', fn ($resource) => $resource);
 
-        // Curated Multimedia entries: interactive features and digital explorers
-        // render as listing cards, while layered image viewer blocks keep their
-        // inline viewer and are therefore excluded from the cards.
-        $multimediaItems = $item->getAugmentedModel()?->multimediaItems() ?? collect();
-        $multimediaCards = $multimediaItems
-            ->filter(fn ($multimediaItem) => in_array($multimediaItem['type'] ?? null, ['experiences', 'digitalExplorers'], true))
-            ->map(fn ($multimediaItem) => $this->normalizeRelatedContentItem($multimediaItem['model'] ?? null))
-            ->filter()
-            ->values();
+            // Curated Multimedia entries: interactive features and digital explorers
+            // render as listing cards, while layered image viewer blocks keep their
+            // inline viewer and are therefore excluded from the cards.
+            $multimediaItems = $item->getAugmentedModel()?->multimediaItems() ?? collect();
+            $multimediaCards = $multimediaItems
+                ->filter(fn ($multimediaItem) => in_array($multimediaItem['type'] ?? null, ['experiences', 'digitalExplorers'], true))
+                ->map(fn ($multimediaItem) => $this->normalizeRelatedContentItem($multimediaItem['model'] ?? null))
+                ->filter()
+                ->values();
+            $videoBlocks = $item->getAugmentedModel()?->blocks()->whereNull('parent_id')->where('type', 'video')->get() ?? collect();
+        } else {
+            $relatedContent = ['items' => collect(), 'total' => 0];
+            $publications = ['items' => collect(), 'total' => 0];
+            $exhibitions = ['items' => collect(), 'total' => 0];
+            $educatorResources = ['items' => collect(), 'total' => 0];
+            $multimediaItems = collect();
+            $multimediaCards = collect();
+            $videoBlocks = collect();
+        }
 
         $viewData = [
             'autoRelated' => $this->getAutoRelated($item),
@@ -108,7 +121,7 @@ class ArtworkController extends BaseScopedController
             'multimediaCards' => $multimediaCards,
             'multimediaCardsTotal' => $multimediaCards->count(),
             // AUDIO (not scaffolded yet): add 'audioItems' => … here once the audio source/browser exists.
-            'videoBlocks' => $item->getAugmentedModel()?->blocks()->whereNull('parent_id')->where('type', 'video')->get() ?? collect(),
+            'videoBlocks' => $videoBlocks,
             'item' => $item,
             'model3d' => $item->model3d,
             'contrastHeader' => $item->present()->contrastHeader,
