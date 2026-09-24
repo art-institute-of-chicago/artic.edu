@@ -23,12 +23,12 @@
   }
 
   .o-article__body {
-    @include breakpoint('medium+') {
+    @include breakpoint('medium-') {
       float: left;
       width: colspan(38, medium);
     }
 
-    @include breakpoint('large+') {
+    @include breakpoint('large') {
       float: none;
       width: colspan(28, large);
       margin-top: 0;
