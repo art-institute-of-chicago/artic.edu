@@ -10,14 +10,26 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Repositories\Behaviors\HandleApiRelations;
 use App\Models\EducatorResource;
 use App\Models\Api\Search;
 
 class EducatorResourceRepository extends ModuleRepository
 {
-    use HandleTranslations, HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleApiBlocks {
+    use HandleTranslations, HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleApiBlocks, HandleApiRelations {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
+
+    protected $apiBrowsers = [
+        'relatedArtists' => [
+            'routePrefix' => 'collection',
+            'moduleName' => 'artists'
+        ],
+        'relatedArtworks' => [
+            'routePrefix' => 'collection',
+            'moduleName' => 'artworks'
+        ],
+    ];
 
     public function __construct(EducatorResource $model)
     {

@@ -28,6 +28,7 @@ trait HasAutoRelated
             'events',
             'exhibitions',
             'artworks',
+            'experiences',
             'digitalPublicationArticles'
         ];
 
@@ -64,7 +65,7 @@ trait HasAutoRelated
             'exhibitions',
             'experiences',
             'digitalPublications',
-            'digitalPublicationsArticles',
+            'digitalPublicationArticles',
             'videos',
         ];
 
