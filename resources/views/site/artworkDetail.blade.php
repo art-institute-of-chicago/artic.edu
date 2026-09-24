@@ -143,7 +143,7 @@
 
 @if (!$item->is_deaccessioned && collect($videoBlocks ?? [])->isNotEmpty())
     @component('components.organisms._o-related-content')
-        @slot('label', 'Videos')
+        @slot('label', 'Video')
         @slot('variation', 'viewer')
         @foreach ($videoBlocks as $block)
             @include('site.blocks.video', ['block' => $block])
