@@ -6,6 +6,8 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Support\Facades\Route;
 use Sentry\Laravel\Integration;
+use Aic\Hub\Foundation\Exceptions\AbstractException;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -73,10 +75,46 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        // Sentrty error reporting
-        Integration::handles($exceptions);
-
+        // Always render JSON for API routes, regardless of the request's Accept header
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
+
+        // Render our own exceptions (and any other exception once debugging is off) using
+        // our API's standard {status, error, detail} shape instead of Laravel's default
+        // error page/stack trace dump
+        $exceptions->render(function (Throwable $e, $request) {
+            // If these aren't API requests, exit
+            if (!$request->is('api/*') && !$request->expectsJson()) {
+                return null;
+            }
+
+            $isDetailed = $e instanceof AbstractException;
+
+            // Laravel's debug page is too useful to forgo for genuinely unexpected errors
+            // If we're in debug mode and the error isn't our own, exit
+            if (config('app.debug') && !$isDetailed) {
+                return null;
+            }
+
+            $status = $e instanceof HttpExceptionInterface ? $e->getStatusCode() : 500;
+
+            $response = [
+                'status' => $status,
+                'error' => 'Sorry, something went wrong.',
+                'detail' => 'An unrecognized exception was thrown. Our developers have been alerted to the situation.',
+            ];
+
+            if ($isDetailed) {
+                $response['error'] = $e->getMessage();
+                $response['detail'] = $e->getDetail();
+            }
+
+            return response()->json($response, $status);
+        });
+
+        // Sentrty error reporting
+        $exceptions->reportable(function (Throwable $e) {
+            Integration::captureUnhandledException($e);
+        });
     })->create();
