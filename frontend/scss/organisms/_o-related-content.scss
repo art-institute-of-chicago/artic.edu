@@ -68,6 +68,16 @@
     width: 100%;
     margin: 0;
   }
+
+  .m-viewer-3d {
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+
+    iframe {
+      height: 100%;
+    }
+  }
 }
 
 .o-related-content__meta {
