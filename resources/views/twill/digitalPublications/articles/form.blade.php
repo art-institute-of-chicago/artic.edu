@@ -244,5 +244,9 @@
 
     </x-twill::formFieldset>
 
+    <x-twill::formFieldset id="related_artworks" title="Artworks">
+        <x-twill::browser name='relatedArtworks' label='Artworks' route-prefix='collection' module-name='artworks' :max='10' />
+    </x-twill::formFieldset>
+
     @include('twill.partials.meta')
 @stop
