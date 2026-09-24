@@ -440,8 +440,12 @@ class ArtworkController extends BaseScopedController
     {
         $item = Artwork::query()->findOrFail((int) $idSlug);
 
-        // Add artwork to the Recently Viewed collection
-        $service->addArtwork($item);
+        if (empty($item)) {
+            abort(404);
+        } else {
+            // Add artwork to the Recently Viewed collection
+            $service->addArtwork($item);
+        }
 
         return response()->json();
     }
@@ -449,6 +453,10 @@ class ArtworkController extends BaseScopedController
     public function exploreFurther($id)
     {
         $item = $this->findArtwork($id, ['artist_pivots']);
+
+        if (!$item) {
+            abort(404);
+        }
 
         $exploreFurther = new ExploreFurther($item);
 
@@ -566,7 +574,7 @@ class ArtworkController extends BaseScopedController
         // Canonical API URL for the artwork, shared by the encoding/sameAs nodes.
         $artworkApiUrl = static fn ($m) => empty($m->id ?? null)
             ? null
-            : 'https://api.artic.edu/api/v1/artworks/' . $m->id;
+            : config('api.public_uri'). $m->id;
 
         $quantitativeValue = static function (string $key) use ($artworkDimensions) {
             return static fn ($m) => ($artworkDimensions($m) ?? [])[$key] ?? null;
