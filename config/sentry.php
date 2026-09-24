@@ -8,7 +8,7 @@
 
 return [
 
-    // @see https://docs.sentry.io/product/sentry-basics/dsn-explainer/
+    // @see https://docs.sentry.io/concepts/key-terms/dsn-explainer/
     'dsn' => env('SENTRY_LARAVEL_DSN', env('SENTRY_DSN')),
 
     // @see https://spotlightjs.com/
@@ -19,33 +19,45 @@ return [
 
     // The release version of your application
     // Example with dynamic git hash: trim(exec('git --git-dir ' . base_path('.git') . ' log --pretty="%h" -n1 HEAD'))
-    'release' => trim(exec('git log --pretty="%h" -n1 HEAD')),
+    'release' => trim(file_get_contents(base_path('VERSION'))),
 
     // When left empty or `null` the Laravel environment will be used (usually discovered from `APP_ENV` in your `.env`)
     'environment' => env('SENTRY_ENVIRONMENT'),
 
-    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#sample-rate
+    // Override the organization ID used for trace continuation checks.
+    'org_id' => env('SENTRY_ORG_ID') === null ? null : (int) env('SENTRY_ORG_ID'),
+
+    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#sample_rate
     'sample_rate' => env('SENTRY_SAMPLE_RATE') === null ? 1.0 : (float) env('SENTRY_SAMPLE_RATE'),
 
-    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#traces-sample-rate
+    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#traces_sample_rate
     'traces_sample_rate' => env('SENTRY_TRACES_SAMPLE_RATE') === null ? null : (float) env('SENTRY_TRACES_SAMPLE_RATE'),
 
-    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#profiles-sample-rate
+    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#profiles_sample_rate
     'profiles_sample_rate' => env('SENTRY_PROFILES_SAMPLE_RATE') === null ? null : (float) env('SENTRY_PROFILES_SAMPLE_RATE'),
+
+    // Only continue incoming traces when the organization IDs are compatible with this SDK instance.
+    'strict_trace_continuation' => env('SENTRY_STRICT_TRACE_CONTINUATION', false),
 
     // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#enable_logs
     'enable_logs' => env('SENTRY_ENABLE_LOGS', false),
 
+    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#enable_metrics
+    'enable_metrics' => env('SENTRY_ENABLE_METRICS', true),
+
+    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#log_flush_threshold
+    'log_flush_threshold' => env('SENTRY_LOG_FLUSH_THRESHOLD') === null ? null : (int) env('SENTRY_LOG_FLUSH_THRESHOLD'),
+
     // The minimum log level that will be sent to Sentry as logs using the `sentry_logs` logging channel
     'logs_channel_level' => env('SENTRY_LOG_LEVEL', env('SENTRY_LOGS_LEVEL', env('LOG_LEVEL', 'debug'))),
 
-    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#send-default-pii
+    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#send_default_pii
     'send_default_pii' => env('SENTRY_SEND_DEFAULT_PII', false),
 
-    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#ignore-exceptions
+    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#ignore_exceptions
     // 'ignore_exceptions' => [],
 
-    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#ignore-transactions
+    // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#ignore_transactions
     'ignore_transactions' => [
         // Ignore Laravel's default health URL
         '/up',
@@ -129,7 +141,23 @@ return [
         // This is required to capture any spans that are created after the response has been sent like queue jobs dispatched using `dispatch(...)->afterResponse()` for example
         'continue_after_response' => env('SENTRY_TRACE_CONTINUE_AFTER_RESPONSE', true),
 
+        // Capture AI agent interactions as spans (requires laravel/ai)
+        'gen_ai' => env('SENTRY_TRACE_GEN_AI_ENABLED', false),
+
+        // Capture AI invoke_agent spans
+        'gen_ai_invoke_agent' => env('SENTRY_TRACE_GEN_AI_INVOKE_AGENT_ENABLED', false),
+
+        // Capture AI chat spans
+        'gen_ai_chat' => env('SENTRY_TRACE_GEN_AI_CHAT_ENABLED', false),
+
+        // Capture AI execute_tool spans
+        'gen_ai_execute_tool' => env('SENTRY_TRACE_GEN_AI_EXECUTE_TOOL_ENABLED', false),
+
+        // Capture AI embeddings spans
+        'gen_ai_embeddings' => env('SENTRY_TRACE_GEN_AI_EMBEDDINGS_ENABLED', false),
+
         // Enable the tracing integrations supplied by Sentry (recommended)
         'default_integrations' => env('SENTRY_TRACE_DEFAULT_INTEGRATIONS_ENABLED', true),
     ],
+
 ];
