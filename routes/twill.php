@@ -51,6 +51,7 @@ Route::group(['prefix' => 'collection'], function () {
     Route::get('landing', [PageController::class, 'art'])->name('collection.landing');
     TwillRoutes::module('artworks');
     Route::get('artworks/augment/{datahub_id}', [ArtworkController::class, 'augment'])->name('collection.artworks.augment');
+    Route::get('artworks/layered-image-viewer-blocks/browser', [ArtworkController::class, 'layeredImageViewerBlocksBrowser'])->name('collection.artworks.layeredImageViewerBlocks.browser');
     TwillRoutes::module('artists');
     Route::get('artists/augment/{datahub_id}', [ArtistController::class, 'augment'])->name('collection.artists.augment');
 
