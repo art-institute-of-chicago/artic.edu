@@ -4,7 +4,6 @@ namespace Database\Factories\Vendor;
 
 use App\Models\Vendor\Block;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Faker;
 
 class BlockFactory extends Factory
 {

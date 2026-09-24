@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\GenericPageRepository;
-use App\Http\Controllers\LandingPagesController;
 use App\Models\Hour;
 use App\Models\Slugs\LandingPageSlug;
 use App\Libraries\SchemaOrg\SchemaMapper;

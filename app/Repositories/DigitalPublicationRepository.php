@@ -9,7 +9,6 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\DigitalPublication;
-use App\Models\DigitalPublicationArticle;
 use App\Repositories\Behaviors\HandleApiRelations;
 
 class DigitalPublicationRepository extends ModuleRepository

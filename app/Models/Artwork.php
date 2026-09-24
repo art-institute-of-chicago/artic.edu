@@ -14,7 +14,6 @@ use App\Models\Api\TextEmbedding;
 use App\Models\Api\ImageEmbedding;
 use App\Helpers\StringHelpers;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Facades\DB;
 
 class Artwork extends AbstractModel
 {

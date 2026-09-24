@@ -17,7 +17,6 @@ use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
-use Illuminate\Support\Facades\DB;
 
 class ArtworkRepository extends BaseApiRepository
 {

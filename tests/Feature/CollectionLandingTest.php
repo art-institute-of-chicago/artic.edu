@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
 use App\Models\Page;
-use App\Models\Event;
-use Aic\Hub\Foundation\Testing\MockApi;
 
 class CollectionLandingTest extends BaseTestCase
 {
