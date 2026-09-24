@@ -64,8 +64,21 @@ const accordion = function(container) {
       event.stopPropagation();
       //
       let trigger = event.target.classList.contains('o-accordion__trigger') ? event.target : event.target.parentNode;
-      let target = trigger.parentElement.nextElementSibling || trigger.nextElementSibling;
-      let validTarget = (target.classList.contains('o-accordion__panel'));
+      let target = null;
+      // Prefer an explicit `aria-controls` panel reference so triggers can live
+      // outside the panel's parent element (e.g. the related content toggle).
+      if (trigger.hasAttribute('aria-controls')) {
+        let controlledTarget = document.getElementById(trigger.getAttribute('aria-controls'));
+        if (controlledTarget && controlledTarget.classList.contains('o-accordion__panel')) {
+          target = controlledTarget;
+        }
+      }
+      // Fallback: the panel immediately following the trigger's parent (or the
+      // trigger itself).
+      if (!target) {
+        target = trigger.parentElement.nextElementSibling || trigger.nextElementSibling;
+      }
+      let validTarget = !!(target && target.classList.contains('o-accordion__panel'));
       //
       if (trigger.classList.contains('s-inactive')) {
         return;
