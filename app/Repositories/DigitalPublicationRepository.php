@@ -10,6 +10,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\DigitalPublication;
 use App\Models\DigitalPublicationArticle;
+use App\Repositories\Behaviors\HandleApiRelations;
 
 class DigitalPublicationRepository extends ModuleRepository
 {
@@ -18,6 +19,14 @@ class DigitalPublicationRepository extends ModuleRepository
     use HandleMedias;
     use HandleFiles;
     use HandleRevisions;
+    use HandleApiRelations;
+
+    protected $apiBrowsers = [
+        'relatedArtists' => [
+            'routePrefix' => 'collection',
+            'moduleName' => 'artists'
+        ],
+    ];
 
     protected $relatedBrowsers = [
         'welcome_note_section' => [
