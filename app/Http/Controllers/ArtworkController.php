@@ -574,7 +574,7 @@ class ArtworkController extends BaseScopedController
         // Canonical API URL for the artwork, shared by the encoding/sameAs nodes.
         $artworkApiUrl = static fn ($m) => empty($m->id ?? null)
             ? null
-            : config('api.public_uri') . $m->id;
+            : config('api.public_uri') . '/api/v1/artworks/' . $m->id;
 
         $quantitativeValue = static function (string $key) use ($artworkDimensions) {
             return static fn ($m) => ($artworkDimensions($m) ?? [])[$key] ?? null;
