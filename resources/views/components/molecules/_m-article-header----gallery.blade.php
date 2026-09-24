@@ -130,6 +130,7 @@ if ($maxZoomWindowSize > 843) {
               @slot('gtmAttributes', 'data-gtm-event="3D-open-modal" data-gtm-event-category="in-page"')
             @endcomponent
             <textarea style="display: none;">@component('components.molecules._m-viewer-3d')
+              @slot('url', 'https://sketchfab.com/models/'. $module3d->model_id . '/embed')
               @slot('type', 'modal')
               @slot('uid', $module3d->model_id)
               @slot('annotations', $module3d->annotation_list)
