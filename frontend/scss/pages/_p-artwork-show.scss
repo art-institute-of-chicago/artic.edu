@@ -17,4 +17,27 @@
       }
     }
   }
+
+  .o-article__inline-header {
+    width: 100%;
+  }
+
+  .o-article__body {
+    @include breakpoint('medium+') {
+      float: left;
+      width: colspan(38, medium);
+    }
+
+    @include breakpoint('large+') {
+      float: none;
+      width: colspan(28, large);
+      margin-top: 0;
+      margin-left: colspan(15, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(28, xlarge);
+      margin-left: colspan(15, xlarge);
+    }
+  }
 }
