@@ -451,5 +451,6 @@ Route::group([
         'sort',
     ]
 ], function () {
-    Route::get('{slug}', [GenericPagesController::class, 'show'])->where('slug', '.*')->name('pages.slug');
+    // Excludes 'api/' and 'up' so they don't get treated as web routes
+    Route::get('{slug}', [GenericPagesController::class, 'show'])->where('slug', '^(?!api/|up$).*')->name('pages.slug');
 });

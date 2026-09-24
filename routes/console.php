@@ -9,16 +9,16 @@ Artisan::command('inspire', function () {
     $this->comment(QuoteHelpers::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::command('cache:prune-stale-tags')->hourly();
-Schedule::command('sitemap:generate')->twiceDaily();
-Schedule::command('update:links')->daily();
-Schedule::command('update:cdn-ips')->hourly();
-Schedule::command('fix:galleries')->everyMinute();
-Schedule::command('send:confirmations')->everyTwoMinutes()->withoutOverlapping();
-Schedule::command('exhibitions:featured')->dailyAt('00:00');
+Schedule::command('cache:prune-stale-tags')->hourly()->sentryMonitor();
+Schedule::command('sitemap:generate')->twiceDaily()->sentryMonitor();
+Schedule::command('update:links')->daily()->sentryMonitor();
+Schedule::command('update:cdn-ips')->hourly()->sentryMonitor();
+Schedule::command('fix:galleries')->everyMinute()->sentryMonitor();
+Schedule::command('send:confirmations')->everyTwoMinutes()->withoutOverlapping()->sentryMonitor();
+Schedule::command('exhibitions:featured')->dailyAt('00:00')->sentryMonitor();
 
 // Let production have the whole API quota
 if (App::environment('production')) {
-    Schedule::command('youtube:videos-and-playlists')->hourlyAt(17)->withoutOverlapping();
-    Schedule::command('youtube:captions')->hourlyAt(47)->withoutOverlapping();
+    Schedule::command('youtube:videos-and-playlists')->hourlyAt(17)->withoutOverlapping()->sentryMonitor();
+    Schedule::command('youtube:captions')->hourlyAt(47)->withoutOverlapping()->sentryMonitor();
 }
