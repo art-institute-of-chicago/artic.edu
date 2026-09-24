@@ -2,18 +2,10 @@
 
 @section('content')
 
-@php $artworkDetailSections = config('aic.show_artwork_detail_sections'); @endphp
-
 @if (!empty($hour))
     @component('components.organisms._o-hours')
         @slot('hour', $hour)
     @endcomponent
-@endif
-
-@if (!$artworkDetailSections && $item->assetLibrary)
-    <script type="application/json" id="assetLibrary">
-        {!! json_encode($item->assetLibrary) !!}
-    </script>
 @endif
 
 <article class="o-article{{ (empty($item->description) or $item->description === '') ? ' o-article--no-description' : '' }}" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}">
@@ -34,10 +26,6 @@
     @slot('isPublicDomain', !$item->is_deaccessioned && $item->is_public_domain)
     @slot('maxZoomWindowSize', $item->max_zoom_window_size)
     @slot('prevNextObject', $prevNextObject ?? null)
-    @if (!$artworkDetailSections)
-    @slot('module3d', $model3d ?? null)
-    @slot('module360', $item->assetLibrary)
-    @endif
     @slot('moduleMirador', $item->getMiradorManifest())
     @slot('defaultView', $item->getMiradorView())
   @endcomponent
@@ -68,16 +56,6 @@
         @endif
 @endif
   </div>
-
-  @if (!$artworkDetailSections)
-  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium+">
-    @if (!$item->is_deaccessioned)
-        @component('site.shared._loadRelatedSidebar')
-            @slot('item', $item)
-        @endcomponent
-    @endif
-  </div>
-  @endif
 
   <div class="o-article__inline-header">
     @if ($item->title)
@@ -128,17 +106,6 @@
 
 </article>
 
-@if (!$artworkDetailSections)
-<div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@small-">
-  @if (!$item->is_deaccessioned)
-    @component('site.shared._loadRelatedSidebar')
-        @slot('item', $item)
-    @endcomponent
-  @endif
-</div>
-@endif
-
-@if ($artworkDetailSections)
 {{-- AUDIO (not scaffolded yet): render here, above Videos, when audio data exists. Expected shape: @if (!$item->is_deaccessioned && collect($audioItems ?? [])->isNotEmpty()) … @endif — data will come from an artwork audio browser/blocks; see ArtworkController TODO. --}}
 
 @if (!$item->is_deaccessioned && collect($videoBlocks ?? [])->isNotEmpty())
@@ -270,7 +237,6 @@
         </ul>
     @endcomponent
 @endif
-@endif
 
 @if (isset($exploreMoreTags) && $exploreMoreTags->isNotEmpty())
     @component('components.molecules._m-tag-dropdown')
@@ -328,10 +294,10 @@
 @endsection
 
 @section('extra_scripts')
-    @if ($artworkDetailSections && collect($multimediaItems ?? [])->contains('type', 'blocks'))
+    @if (collect($multimediaItems ?? [])->contains('type', 'blocks'))
         <script src="{{FrontendHelpers::revAsset('scripts/layeredImageViewer.js')}}"></script>
     @endif
-    @if ($artworkDetailSections && !empty($model3d))
+    @if (!empty($model3d))
         <script src="{{FrontendHelpers::revAsset('scripts/blocks3D.js')}}"></script>
     @endif
     <script src="{{FrontendHelpers::revAsset('scripts/blocks360.js')}}"></script>

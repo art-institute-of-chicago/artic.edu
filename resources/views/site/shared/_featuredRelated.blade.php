@@ -33,8 +33,6 @@
     // The prepended artist page never takes the hero slot: the first
     // editorial item keeps the featured treatment.
     $featuredAssigned = false;
-
-    $showArtistPage = config('aic.show_artwork_detail_sections');
 @endphp
 
 @if (method_exists($item, 'hasFeaturedRelated') && $item->hasFeaturedRelated() || count($autoRelated) > 0 || $relatedArtistPage)
@@ -54,7 +52,7 @@
                     $isFeatured = !$isArtistPage && !$featuredAssigned;
                     $featuredAssigned = $featuredAssigned || $isFeatured;
                 @endphp
-                @if ($relatedItem instanceof \App\Models\Api\Artist && $showArtistPage)
+                @if ($relatedItem instanceof \App\Models\Api\Artist)
                     @component('components.molecules._m-listing----artist')
                         @slot('item', $relatedItem)
                         @slot('variation', $listingVariation)
