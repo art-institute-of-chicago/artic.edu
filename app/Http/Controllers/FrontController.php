@@ -184,6 +184,19 @@ class FrontController extends BaseController
         return collect($item->getFeaturedRelated())->pluck('item');
     }
 
+    protected function getRelatedArtistPage($item, bool $autoRelatedEnabled = false)
+    {
+        if (!$autoRelatedEnabled || !$item) {
+            return null;
+        }
+
+        if (!method_exists($item, 'getRelatedArtistPageAttribute')) {
+            return null;
+        }
+
+        return $item->getRelatedArtistPageAttribute();
+    }
+
     public function getAjaxData()
     {
         $request = request()->query('q');
@@ -239,10 +252,17 @@ class FrontController extends BaseController
             return response()->json(['error' => 'Item not found'], 404);
         }
 
+        $autoRelatedEnabled = isset($item->toggle_autorelated)
+            && !$item->toggle_autorelated;
+
         $view['html'] = view('site.shared._featuredRelated', [
             'item' => $item,
-            'autoRelated' => isset($item->toggle_autorelated) && !$item->toggle_autorelated ? $this->getAutoRelated($item) : [],
+            'autoRelated' => $autoRelatedEnabled ? $this->getAutoRelated($item) : [],
             'featuredRelated' => $this->getFeatureRelated($item),
+            'relatedArtistPage' => $this->getRelatedArtistPage(
+                $item,
+                $autoRelatedEnabled
+            ),
         ])->render();
 
         return $view;
