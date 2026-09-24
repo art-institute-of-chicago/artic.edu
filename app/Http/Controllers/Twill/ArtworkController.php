@@ -7,6 +7,7 @@ use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\TableColumns;
 use App\Models\Vendor\Block;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Str;
 
 class ArtworkController extends BaseApiController
 {
@@ -90,10 +91,10 @@ class ArtworkController extends BaseApiController
         });
 
         if ($search !== '') {
-            $needle = mb_strtolower($search);
+            $needle = Str::lower($search);
 
             $items = $items->filter(function ($item) use ($needle) {
-                return mb_strpos(mb_strtolower($item['name']), $needle) !== false;
+                return Str::position(Str::lower($item['name']), $needle) !== false;
             })->values();
         }
 
