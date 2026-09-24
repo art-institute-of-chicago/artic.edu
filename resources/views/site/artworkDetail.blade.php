@@ -34,8 +34,8 @@
     @slot('isPublicDomain', !$item->is_deaccessioned && $item->is_public_domain)
     @slot('maxZoomWindowSize', $item->max_zoom_window_size)
     @slot('prevNextObject', $prevNextObject ?? null)
-    @slot('module3d', $model3d ?? null)
     @if (!$artworkDetailSections)
+    @slot('module3d', $model3d ?? null)
     @slot('module360', $item->assetLibrary)
     @endif
     @slot('moduleMirador', $item->getMiradorManifest())
@@ -208,6 +208,24 @@
     @endcomponent
 @endif
 
+@if (!$item->is_deaccessioned && !empty($model3d))
+    @component('components.organisms._o-related-content')
+        @slot('label', '3D View')
+        @slot('variation', 'viewer')
+        @component('components.molecules._m-viewer-3d')
+            @slot('url', 'https://sketchfab.com/models/' . $model3d->model_id . '/embed')
+            @slot('type', 'standalone')
+            @slot('uid', $model3d->model_id)
+            @slot('cc', !$item->is_deaccessioned && $item->is_public_domain)
+            @slot('guided', $model3d->guided_tour)
+            @slot('annotations', is_array($model3d->annotation_list) ? json_encode($model3d->annotation_list) : $model3d->annotation_list)
+            @slot('hideannot', $model3d->hide_annotation)
+            @slot('hideannottitle', $model3d->hide_annotation_title)
+            @slot('title', $item->title . ' - 3D')
+        @endcomponent
+    @endcomponent
+@endif
+
 @if (!$item->is_deaccessioned && collect($relatedContentItems ?? [])->isNotEmpty())
     @component('components.organisms._o-related-content')
         @slot('label', 'Related Content')
@@ -312,6 +330,9 @@
 @section('extra_scripts')
     @if ($artworkDetailSections && collect($multimediaItems ?? [])->contains('type', 'blocks'))
         <script src="{{FrontendHelpers::revAsset('scripts/layeredImageViewer.js')}}"></script>
+    @endif
+    @if ($artworkDetailSections && !empty($model3d))
+        <script src="{{FrontendHelpers::revAsset('scripts/blocks3D.js')}}"></script>
     @endif
     <script src="{{FrontendHelpers::revAsset('scripts/blocks360.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/mirador.js')}}"></script>
