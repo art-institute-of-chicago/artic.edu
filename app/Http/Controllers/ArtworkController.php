@@ -6,13 +6,16 @@ use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
 use App\Models\Api\CategoryTerm;
 use App\Helpers\GtmHelpers;
+use App\Libraries\ArtworkSectionService;
 use App\Libraries\ArtworkSizeComparisonService;
 use App\Libraries\RecentlyViewedService;
 use App\Libraries\Search\CollectionService;
 use App\Libraries\ExploreFurther\ArtworkService as ExploreFurther;
+use App\Models\DigitalPublicationArticle;
 use App\Models\Hour;
 use App\Libraries\SchemaOrg\SchemaMapper;
 use App\Models\AdCampaign;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Response;
 
 class ArtworkController extends BaseScopedController
@@ -29,17 +32,25 @@ class ArtworkController extends BaseScopedController
         parent::__construct();
     }
 
-    public function show(int $id, $slug = null)
+    /**
+     * Find an artwork, falling back to the deaccession endpoint when the default lookup misses.
+     */
+    private function findArtwork(int $id, array $include)
     {
         try {
-            $item = Artwork::query()
-                ->include(['artist_pivots', 'place_pivots', 'dates'])
+            return Artwork::query()
+                ->include($include)
                 ->findOrFail((int) $id);
         } catch (\Throwable $e) {
-            $item = Artwork::query()->forceEndpoint('deaccession')
-                ->include(['artist_pivots', 'place_pivots', 'dates'])
+            return Artwork::query()->forceEndpoint('deaccession')
+                ->include($include)
                 ->findOrFail((int) $id);
         }
+    }
+
+    public function show(int $id, $slug = null)
+    {
+        $item = $this->findArtwork($id, ['artist_pivots', 'place_pivots', 'dates']);
 
         $canonicalPath = route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug]);
 
@@ -62,10 +73,42 @@ class ArtworkController extends BaseScopedController
             });
         }
 
-        // Start building data for output to view
+        $relatedContent = $this->buildRelatedContent($item);
+        $publications = $this->buildSectionItems($item, 'manualPublications', 'autoPublications', 'toggle_autopublications', fn ($publication) => $this->normalizePublicationItem($publication));
+        $exhibitions = $this->buildSectionItems($item, 'manualExhibitions', 'autoExhibitions', 'toggle_autoexhibitions', fn ($exhibition) => $this->normalizeExhibitionItem($exhibition));
+        $educatorResources = $this->buildSectionItems($item, 'manualEducatorResources', 'autoEducatorResources', 'toggle_autoeducator_resources', fn ($resource) => $resource);
+
+        // Curated Multimedia entries: interactive features and digital explorers
+        // render as listing cards, while layered image viewer blocks keep their
+        // inline viewer and are therefore excluded from the cards.
+        $multimediaItems = $item->getAugmentedModel()?->multimediaItems() ?? collect();
+        $multimediaCards = $multimediaItems
+            ->filter(fn ($multimediaItem) => in_array($multimediaItem['type'] ?? null, ['experiences', 'digitalExplorers'], true))
+            ->map(fn ($multimediaItem) => $this->normalizeRelatedContentItem($multimediaItem['model'] ?? null))
+            ->filter()
+            ->values();
+        $videoBlocks = $item->getAugmentedModel()?->blocks()->whereNull('parent_id')->where('type', 'video')->get() ?? collect();
+
         $viewData = [
             'autoRelated' => $this->getAutoRelated($item),
             'featuredRelated' => $this->getFeatureRelated($item),
+            'relatedArtistPage' => $this->getRelatedArtistPage(
+                $item,
+                isset($item->toggle_autorelated) && !$item->toggle_autorelated
+            ),
+            'relatedContentItems' => $relatedContent['items'],
+            'relatedContentTotal' => $relatedContent['total'],
+            'publicationItems' => $publications['items'],
+            'publicationTotal' => $publications['total'],
+            'exhibitionItems' => $exhibitions['items'],
+            'exhibitionTotal' => $exhibitions['total'],
+            'educatorResourceItems' => $educatorResources['items'],
+            'educatorResourceTotal' => $educatorResources['total'],
+            'multimediaItems' => $multimediaItems,
+            'multimediaCards' => $multimediaCards,
+            'multimediaCardsTotal' => $multimediaCards->count(),
+            // AUDIO (not scaffolded yet): add 'audioItems' => … here once the audio source/browser exists.
+            'videoBlocks' => $videoBlocks,
             'item' => $item,
             'model3d' => $item->model3d,
             'contrastHeader' => $item->present()->contrastHeader,
@@ -79,19 +122,7 @@ class ArtworkController extends BaseScopedController
 
         // Build Explore further module
         if (!$item->is_deaccessioned) {
-            $exploreFurther = new ExploreFurther($item);
-
-            $styleTitle = $item->style_title ?: ($item->style_titles[0] ?? null);
-
-            $viewData = array_merge($viewData, [
-                // Updating language based on FE - can update later
-                'exploreMoreByArtist' => $this->exploreMore($exploreFurther, $item->artist_title, 'ef-artist_ids'),
-                'exploreMoreByStyle' => $this->exploreMore($exploreFurther, $styleTitle, 'ef-style_ids'),
-                'exploreMoreStyleTitle' => $styleTitle,
-                'exploreMoreByGallery' => $this->exploreMore($exploreFurther, ($item->is_on_view && !empty($item->gallery_id)) ? $item->gallery_id : null, 'ef-gallery_ids'),
-                'exploreMoreByVisuallySimilar' => $item->present()->nearestNeighbors,
-                'exploreMoreTags' => $this->buildExploreMoreTags($item),
-            ]);
+            $viewData = array_merge($viewData, $this->buildExploreMoreData($item));
         }
 
         $this->addJsonLd($item);
@@ -102,6 +133,250 @@ class ArtworkController extends BaseScopedController
         ]);
 
         return view('site.artworkDetail', $viewData);
+    }
+
+    private function buildExploreMoreData($item): array
+    {
+        $exploreFurther = new ExploreFurther($item);
+
+        $styleTitle = $item->style_title ?: ($item->style_titles[0] ?? null);
+
+        return [
+            // Updating language based on FE - can update later
+            'exploreMoreByArtist' => $this->exploreMore($exploreFurther, $item->artist_title, 'ef-artist_ids'),
+            'exploreMoreByStyle' => $this->exploreMore($exploreFurther, $styleTitle, 'ef-style_ids'),
+            'exploreMoreStyleTitle' => $styleTitle,
+            'exploreMoreByGallery' => $this->exploreMore($exploreFurther, ($item->is_on_view && !empty($item->gallery_id)) ? $item->gallery_id : null, 'ef-gallery_ids'),
+            'exploreMoreByVisuallySimilar' => $item->present()->nearestNeighbors,
+            'exploreMoreTags' => $this->buildExploreMoreTags($item),
+        ];
+    }
+
+    private function buildRelatedContent($item): array
+    {
+        $autoRelatedEnabled = empty($item->getAugmentedModel()?->toggle_autorelated);
+
+        $relatedItems = collect();
+
+        if ($autoRelatedEnabled && ($artistPage = $this->getRelatedArtistPage($item, true))) {
+            $relatedItems->push($artistPage);
+        }
+
+        foreach ($this->getFeatureRelated($item) as $featured) {
+            $relatedItems->push(is_array($featured) ? ($featured['item'] ?? null) : $featured);
+        }
+
+        if ($autoRelatedEnabled) {
+            $relatedItems = $relatedItems->concat($this->getAutoRelated($item));
+        }
+
+        $items = $relatedItems
+            ->map(function ($model) {
+                return $this->normalizeRelatedContentItem($model);
+            })
+            ->filter()
+            ->values();
+
+        return [
+            'items' => $items,
+            'total' => $items->count(),
+        ];
+    }
+
+    private function normalizeRelatedContentItem($model): ?array
+    {
+        if (!$model) {
+            return null;
+        }
+
+        $eyebrow = [
+            'Article' => 'Article',
+            'Highlight' => 'Highlight',
+            'Video' => 'Video',
+            'Experience' => 'Interactive Feature',
+            'DigitalExplorer' => 'Digital Explorer',
+            'Exhibition' => 'Exhibition',
+            'DigitalPublication' => 'Digital Publication',
+            'DigitalPublicationArticle' => 'Digital Publication Article',
+            'Event' => 'Event',
+            'Artist' => 'About the artist',
+        ][class_basename($model)] ?? null;
+
+        if ($eyebrow === null) {
+            return null;
+        }
+
+        $href = $this->itemHref($model);
+
+        // Artists have no getUrl()/url_without_slug accessor; their tag page is
+        // the only canonical destination.
+        if (empty($href) && ($model instanceof \App\Models\Api\Artist || $model instanceof \App\Models\Artist)) {
+            $href = route('artists.show', ['id' => $model->id, 'slug' => $model->titleSlug ?? null]);
+        }
+
+        // Digital explorers have no getUrl()/url_without_slug accessor either;
+        // their detail route is the only canonical destination.
+        if (empty($href) && $model instanceof \App\Models\DigitalExplorer) {
+            $href = route('digitalExplorer.show', array_filter([
+                'id' => $model->id,
+                'slug' => method_exists($model, 'getSlug') ? $model->getSlug() : null,
+            ]));
+        }
+
+        if (empty($href)) {
+            return null;
+        }
+
+        return [
+            'href' => $href,
+            'title' => $this->itemTitle($model),
+            'eyebrow' => $eyebrow,
+            'image' => $this->itemImage($model, ['listing', 'hero']),
+            'is_video' => $model instanceof \App\Models\Video || $model instanceof \App\Models\Api\Video,
+        ];
+    }
+
+    /**
+     * Preferred URL for a related model, following its getUrl() when it has one.
+     */
+    private function itemHref($model, $fallbackKey = 'url_without_slug')
+    {
+        return method_exists($model, 'getUrl') ? $model->getUrl() : ($model->{$fallbackKey} ?? null);
+    }
+
+    private function itemTitle($model): ?string
+    {
+        $title = null;
+
+        if (method_exists($model, 'present')) {
+            try {
+                $title = $model->present()->title;
+            } catch (\Throwable $e) {
+                $title = null;
+            }
+        }
+
+        if (empty($title)) {
+            $title = $model->title ?? null;
+        }
+
+        return $title;
+    }
+
+    private function itemImage($model, array $variants)
+    {
+        if (!method_exists($model, 'imageFront')) {
+            return null;
+        }
+
+        foreach ($variants as $variant) {
+            $image = $model->imageFront($variant);
+
+            if (!empty($image)) {
+                return $image;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Shared builder for manual + auto sections, de-duplicated and normalized.
+     */
+    private function buildSectionItems($item, string $manualMethod, string $autoMethod, string $toggleProperty, callable $normalizer): array
+    {
+        if (!$item || empty($item->id)) {
+            return ['items' => collect(), 'total' => 0];
+        }
+
+        $augmented = method_exists($item, 'getAugmentedModel') ? $item->getAugmentedModel() : null;
+
+        $manual = ($augmented && method_exists($augmented, $manualMethod))
+            ? $augmented->{$manualMethod}()
+            : collect();
+
+        $auto = ($augmented && !empty($augmented->{$toggleProperty}))
+            ? collect()
+            : ArtworkSectionService::{$autoMethod}((int) $item->id);
+
+        // Manual selections override all, drop auto items already selected by hand.
+        $manualKeys = collect($manual)
+            ->map(fn ($model) => $model && !empty($model->id) ? get_class($model) . ':' . $model->id : null)
+            ->filter()
+            ->all();
+
+        $items = $manual
+            ->concat(collect($auto)->reject(fn ($model) => in_array($model && !empty($model->id) ? get_class($model) . ':' . $model->id : null, $manualKeys, true)))
+            ->map($normalizer)
+            ->filter()
+            ->values();
+
+        return [
+            'items' => $items,
+            'total' => $items->count(),
+        ];
+    }
+
+    private function normalizePublicationItem($publication): ?array
+    {
+        if (!$publication) {
+            return null;
+        }
+
+        $href = $this->itemHref($publication, 'url');
+
+        if (empty($href)) {
+            return null;
+        }
+
+        $date = $publication->publication_date ?? null;
+
+        // Digital Publication Articles have no publication_date; use their own
+        // date, then their parent publication's.
+        if (empty($date) && $publication instanceof DigitalPublicationArticle) {
+            $date = $publication->date ?: optional($publication->digitalPublication)->publication_date;
+        }
+
+        return [
+            'href' => $href,
+            'title' => $this->itemTitle($publication),
+            'year' => $this->itemYear($date),
+            'image' => $this->itemImage($publication, ['listing', 'hero', 'banner']),
+        ];
+    }
+
+    private function normalizeExhibitionItem($exhibition): ?array
+    {
+        $href = $this->itemHref($exhibition);
+
+        if (empty($href)) {
+            return null;
+        }
+
+        $title = $this->itemTitle($exhibition);
+
+        return [
+            'href' => $href,
+            'title' => $title,
+            'year' => $this->itemYear($exhibition->aic_start_at ?? null),
+            'description' => $exhibition->short_description ?? $exhibition->list_description ?? '',
+        ];
+    }
+
+    /**
+     * Year of a date-ish value, or null when missing or unparsable.
+     */
+    private function itemYear($date): ?string
+    {
+        if (empty($date)) {
+            return null;
+        }
+
+        try {
+            return Carbon::parse($date)->format('Y');
+        } catch (\Throwable $e) {
+            return null;
+        }
     }
 
     public function size($id)
@@ -177,27 +452,21 @@ class ArtworkController extends BaseScopedController
 
     public function exploreFurther($id)
     {
-        try {
-            $item = Artwork::query()
-                ->include(['artist_pivots'])
-                ->findOrFail((int) $id);
-        } catch (\Throwable $e) {
-            $item = Artwork::query()->forceEndpoint('deaccession')
-                ->include(['artist_pivots'])
-                ->findOrFail((int) $id);
+        $item = $this->findArtwork($id, ['artist_pivots']);
+
+        if (!$item) {
+            abort(404);
         }
 
         $exploreFurther = new ExploreFurther($item);
 
-        if (request()->has('ef-all_ids')) {
-            $view['html'] = view('site.shared._exploreFurtherTags', [
+        $view['html'] = request()->has('ef-all_ids')
+            ? view('site.shared._exploreFurtherTags', [
                 'tags' => $exploreFurther->allTags(request()->all()),
-            ])->render();
-        } else {
-            $view['html'] = view('site.shared._exploreFurther', [
+            ])->render()
+            : view('site.shared._exploreFurther', [
                 'artworks' => $exploreFurther->collection(request()->all()),
             ])->render();
-        }
 
         return $view;
     }
@@ -229,19 +498,15 @@ class ArtworkController extends BaseScopedController
             ->values()
             ->all();
 
-        $terms = collect([]);
-
-        if (!empty($ids)) {
-            $terms = CategoryTerm::query()
-                ->ids($ids)
-                ->get(['id', 'title', 'subtype', 'usage_count']);
+        if (empty($ids)) {
+            return collect();
         }
 
-        $terms = $terms->sortByDesc('usage_count');
-
-        $terms = $terms->take(self::EXPLORE_MORE_TAG_LIMIT);
-
-        return $terms
+        return CategoryTerm::query()
+            ->ids($ids)
+            ->get(['id', 'title', 'subtype', 'usage_count'])
+            ->sortByDesc('usage_count')
+            ->take(self::EXPLORE_MORE_TAG_LIMIT)
             ->map(function ($term) {
                 return (object) [
                     'url' => route('collection', [$term->getParameterName() => $term->title]),
@@ -305,6 +570,11 @@ class ArtworkController extends BaseScopedController
 
             return null;
         };
+
+        // Canonical API URL for the artwork, shared by the encoding/sameAs nodes.
+        $artworkApiUrl = static fn ($m) => empty($m->id ?? null)
+            ? null
+            : config('api.public_uri') . '/api/v1/artworks/' . $m->id;
 
         $quantitativeValue = static function (string $key) use ($artworkDimensions) {
             return static fn ($m) => ($artworkDimensions($m) ?? [])[$key] ?? null;
@@ -419,28 +689,20 @@ class ArtworkController extends BaseScopedController
                         'name' => $department,
                     ];
                 },
-                'encoding' => static function ($m) {
-                    $id = $m->id ?? null;
+                'encoding' => static function ($m) use ($artworkApiUrl) {
+                    $url = $artworkApiUrl($m);
 
-                    if (empty($id)) {
+                    if (empty($url)) {
                         return null;
                     }
 
                     return [
                         '@type' => 'MediaObject',
-                        '@id' => 'https://api.artic.edu/api/v1/artworks/' . $id . '/manifest.json',
+                        '@id' => $url . '/manifest.json',
                         'encodingFormat' => 'application/ld+json',
                     ];
                 },
-                'sameAs' => static function ($m) {
-                    $id = $m->id ?? null;
-
-                    if (empty($id)) {
-                        return null;
-                    }
-
-                    return 'https://api.artic.edu/api/v1/artworks/' . $id;
-                },
+                'sameAs' => static fn ($m) => $artworkApiUrl($m),
             ]
         );
     }

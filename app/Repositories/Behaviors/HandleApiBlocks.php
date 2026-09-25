@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Behaviors;
 
-use A17\Twill\Facades\TwillCapsules;
 use A17\Twill\Repositories\ModuleRepository;
 use A17\Twill\Services\MediaLibrary\ImageService;
 use App\Helpers\UrlHelpers;

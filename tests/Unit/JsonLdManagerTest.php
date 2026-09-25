@@ -287,8 +287,8 @@ class JsonLdManagerTest extends BaseTestCase
         $this->assertStringContainsString('"displayLocation":"Gallery 100"', $script);
         $this->assertStringContainsString('"locationCreated":"France"', $script);
         $this->assertStringNotContainsString('contentLocation', $script);
-        $this->assertStringContainsString('"encoding":{"@type":"MediaObject","@id":"https://api.artic.edu/api/v1/artworks/1/manifest.json","encodingFormat":"application/ld+json"}', $script);
-        $this->assertStringContainsString('"sameAs":"https://api.artic.edu/api/v1/artworks/1"', $script);
+        $this->assertStringContainsString('"encoding":{"@type":"MediaObject","@id":"' . config('api.public_uri') . '/api/v1/artworks/1/manifest.json","encodingFormat":"application/ld+json"}', $script);
+        $this->assertStringContainsString('"sameAs":"' . config('api.public_uri') . '/api/v1/artworks/1"', $script);
         $this->assertStringContainsString('"inLanguage":"en"', $script);
         // Thumbnail URL derives from the IIIF image id provided by the factory
         $this->assertStringContainsString('/iiif/2/abc/full/!300,300/0/default.jpg', $script);

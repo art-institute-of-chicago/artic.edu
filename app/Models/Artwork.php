@@ -8,11 +8,12 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Behaviors\HasAutoRelated;
+use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Api\TextEmbedding;
 use App\Models\Api\ImageEmbedding;
 use App\Helpers\StringHelpers;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class Artwork extends AbstractModel
 {
@@ -22,6 +23,7 @@ class Artwork extends AbstractModel
     use HasApiRelations;
     use HasFeaturedRelated;
     use HasAutoRelated;
+    use HasBlocks;
     use HasMedias;
     use HasFiles;
 
@@ -35,6 +37,9 @@ class Artwork extends AbstractModel
         'default_view',
         'artwork_website_url',
         'toggle_autorelated',
+        'toggle_autopublications',
+        'toggle_autoexhibitions',
+        'toggle_autoeducator_resources',
     ];
 
     public $mediasParams = [
@@ -53,11 +58,17 @@ class Artwork extends AbstractModel
     public $casts = [
         'default_manifest_url' => 'boolean',
         'toggle_autorelated' => 'boolean',
+        'toggle_autopublications' => 'boolean',
+        'toggle_autoexhibitions' => 'boolean',
+        'toggle_autoeducator_resources' => 'boolean',
     ];
 
     public $attributes = [
         'default_manifest_url' => false,
         'toggle_autorelated' => false,
+        'toggle_autopublications' => false,
+        'toggle_autoexhibitions' => false,
+        'toggle_autoeducator_resources' => false,
     ];
 
     public function getFullTitleAttribute()
@@ -65,9 +76,89 @@ class Artwork extends AbstractModel
         return $this->title;
     }
 
+    /**
+     * Publications selected by hand in the artwork's Publications browser.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function manualPublications()
+    {
+        return $this->getRelatedWithApiModels('artwork_publications', [], [
+            'digitalPublications' => false,
+            'printedPublications' => false,
+            'digitalPublicationArticles' => false,
+        ]) ?? collect([]);
+    }
+
+    /**
+     * Exhibitions selected by hand in the artwork's Exhibitions browser.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function manualExhibitions()
+    {
+        return $this->getRelatedWithApiModels('artwork_exhibitions', [
+            'exhibitions' => [
+                'apiModel' => 'App\Models\Api\Exhibition',
+                'routePrefix' => 'exhibitionsEvents',
+                'moduleName' => 'exhibitions',
+            ],
+        ], [
+            'exhibitions' => true,
+        ]) ?? collect([]);
+    }
+
+    /**
+     * Educator Resources selected by hand in the artwork's Educator Resources
+     * browser.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function manualEducatorResources()
+    {
+        return $this->getRelatedWithApiModels('artwork_educator_resources', [], [
+            'educatorResources' => false,
+        ]) ?? collect([]);
+    }
+
     public function model3d()
     {
         return $this->belongsTo('App\Models\Model3d', '3d_model_id');
+    }
+
+    /**
+     * Items curated by hand in the artwork's Multimedia browser.
+     *
+     * Each entry is `['type' => <morph alias>, 'model' => <model>]`. Layered
+     * image viewer blocks are resolved through their snapshot clones.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function multimediaItems()
+    {
+        return $this->relatedItems()
+            ->where('browser_name', 'artwork_multimedia')
+            ->orderBy('position')
+            ->get()
+            ->map(function ($related) {
+                if ($related->related_type === 'blocks') {
+                    $model = \App\Models\Vendor\Block::find($related->related_id);
+                } else {
+                    $class = Relation::getMorphedModel($related->related_type) ?? $related->related_type;
+                    $model = class_exists($class) ? $class::find($related->related_id) : null;
+                }
+
+                if (!$model) {
+                    return null;
+                }
+
+                return [
+                    'type' => $related->related_type,
+                    'model' => $model,
+                ];
+            })
+            ->filter()
+            ->values();
     }
 
     public function getTrackingTitleAttribute()
@@ -83,6 +174,32 @@ class Artwork extends AbstractModel
     public function getAdminEditUrlAttribute()
     {
         return route('twill.collection.artworks.edit', $this->id);
+    }
+
+    /**
+     * The main artist's tag page, exposed as a Related Content sidebar item.
+     *
+     * The artist relations live on the API model, so delegate to it (using the
+     * already-loaded API model when available to avoid a duplicate request).
+     *
+     * @return \App\Models\Api\Artist|null
+     */
+    public function getRelatedArtistPageAttribute()
+    {
+        $apiModel = $this->getApiModelFilledCached();
+
+        if (!$apiModel) {
+            return null;
+        }
+
+        if (!method_exists($apiModel, 'getRelatedArtistPageAttribute')) {
+            return null;
+        }
+
+        // Call the accessor directly: going through `__get` would fall back to
+        // this model again (and duplicate the API request) when the result is
+        // null.
+        return $apiModel->getRelatedArtistPageAttribute();
     }
 
     public function getAssetLibraryAttribute()

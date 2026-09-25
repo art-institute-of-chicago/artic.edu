@@ -8,20 +8,27 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleNesting;
-use A17\Twill\Repositories\ModuleRepository;
 use Illuminate\Support\Collection;
 use App\Enums\DigitalPublicationArticleType;
 use App\Jobs\GeneratePdf;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleAuthors;
 
 class DigitalPublicationArticleRepository extends ModuleRepository
 {
-    use HandleNesting, HandleSlugs, HandleMedias, HandleRevisions, HandleBlocks, HandleApiBlocks, HandleAuthors {
+    use HandleNesting, HandleSlugs, HandleMedias, HandleRevisions, HandleBlocks, HandleApiBlocks, HandleAuthors, HandleApiRelations {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
+
+    protected $apiBrowsers = [
+        'relatedArtworks' => [
+            'routePrefix' => 'collection',
+            'moduleName' => 'artworks'
+        ],
+    ];
 
     public function __construct(DigitalPublicationArticle $model)
     {

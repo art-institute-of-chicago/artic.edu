@@ -8,12 +8,6 @@
     @endcomponent
 @endif
 
-@if ($item->assetLibrary)
-    <script type="application/json" id="assetLibrary">
-        {!! json_encode($item->assetLibrary) !!}
-    </script>
-@endif
-
 <article class="o-article{{ (empty($item->description) or $item->description === '') ? ' o-article--no-description' : '' }}" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}">
 
   {{-- Gallery-type _m-article-header never renders title --}}
@@ -32,8 +26,6 @@
     @slot('isPublicDomain', !$item->is_deaccessioned && $item->is_public_domain)
     @slot('maxZoomWindowSize', $item->max_zoom_window_size)
     @slot('prevNextObject', $prevNextObject ?? null)
-    @slot('module3d', $model3d ?? null)
-    @slot('module360', $item->assetLibrary)
     @slot('moduleMirador', $item->getMiradorManifest())
     @slot('defaultView', $item->getMiradorView())
   @endcomponent
@@ -63,14 +55,6 @@
             </ul>
         @endif
 @endif
-  </div>
-
-  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium+">
-    @if (!$item->is_deaccessioned)
-        @component('site.shared._loadRelatedSidebar')
-            @slot('item', $item)
-        @endcomponent
-    @endif
   </div>
 
   <div class="o-article__inline-header">
@@ -122,13 +106,137 @@
 
 </article>
 
-<div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@small-">
-  @if (!$item->is_deaccessioned)
-    @component('site.shared._loadRelatedSidebar')
-        @slot('item', $item)
+{{-- AUDIO (not scaffolded yet): render here, above Videos, when audio data exists. Expected shape: @if (!$item->is_deaccessioned && collect($audioItems ?? [])->isNotEmpty()) … @endif — data will come from an artwork audio browser/blocks; see ArtworkController TODO. --}}
+
+@if (!$item->is_deaccessioned && collect($videoBlocks ?? [])->isNotEmpty())
+    @component('components.organisms._o-related-content')
+        @slot('label', 'Video')
+        @slot('variation', 'viewer')
+        @foreach ($videoBlocks as $block)
+            @include('site.blocks.video', ['block' => $block])
+        @endforeach
     @endcomponent
-  @endif
-</div>
+@endif
+
+@php
+    // Multimedia renders below Videos: the curated interactive features and
+    // digital explorers as listing cards, then the layered image viewer blocks
+    // as inline viewers. A single `<hr>` separates each rendered group from the
+    // previous one.
+    $multimediaBlocks = collect($multimediaItems ?? [])->filter(fn ($multimediaItem) => !empty($multimediaItem['model'] ?? null) && ($multimediaItem['type'] ?? null) === 'blocks')->values();
+    $multimediaRendered = 0;
+@endphp
+
+@if (!$item->is_deaccessioned && collect($multimediaCards ?? [])->isNotEmpty())
+    @if ($multimediaRendered > 0)
+        @component('components.atoms._hr')
+        @endcomponent
+    @endif
+    @php $multimediaRendered++; @endphp
+    @component('components.organisms._o-related-content')
+        @slot('label', 'Multimedia')
+        @slot('items', $multimediaCards)
+        @slot('total', $multimediaCardsTotal ?? null)
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && $multimediaBlocks->isNotEmpty())
+    @if ($multimediaRendered > 0)
+        @component('components.atoms._hr')
+        @endcomponent
+    @endif
+    @php $multimediaRendered++; @endphp
+    @foreach ($multimediaBlocks as $multimediaItem)
+        @php $multimediaModel = $multimediaItem['model'] ?? null; @endphp
+        @component('components.organisms._o-related-content')
+            @slot('label', 'Layered Image Viewer')
+            @slot('variation', 'viewer')
+            @include('site.blocks.layered_image_viewer', ['block' => $multimediaModel])
+        @endcomponent
+    @endforeach
+@endif
+
+@if (!$item->is_deaccessioned && $item->assetLibrary)
+    @component('components.organisms._o-related-content')
+        @slot('label', '360° View')
+        @slot('variation', 'viewer')
+        <div class="m-media m-media--l m-media--contain">
+            <script type="application/json" id="assetLibrary-{{ $item->assetLibrary['id'] }}">
+                {!! json_encode($item->assetLibrary) !!}
+            </script>
+            <div class="m-media__img m-media--360-embed" data-behavior="fitText">
+                @component('components.molecules._m-viewer-360')
+                    @slot('type', 'standalone')
+                    @slot('title', $item->title . ' - 360')
+                    @slot('id', 'assetLibrary-' . $item->assetLibrary['id'])
+                @endcomponent
+            </div>
+        </div>
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && !empty($model3d))
+    @component('components.organisms._o-related-content')
+        @slot('label', '3D View')
+        @slot('variation', 'viewer')
+        @component('components.molecules._m-viewer-3d')
+            @slot('url', 'https://sketchfab.com/models/' . $model3d->model_id . '/embed')
+            @slot('type', 'standalone')
+            @slot('uid', $model3d->model_id)
+            @slot('cc', !$item->is_deaccessioned && $item->is_public_domain)
+            @slot('guided', $model3d->guided_tour)
+            @slot('annotations', is_array($model3d->annotation_list) ? json_encode($model3d->annotation_list) : $model3d->annotation_list)
+            @slot('hideannot', $model3d->hide_annotation)
+            @slot('hideannottitle', $model3d->hide_annotation_title)
+            @slot('title', $item->title . ' - 3D')
+        @endcomponent
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && collect($relatedContentItems ?? [])->isNotEmpty())
+    @component('components.organisms._o-related-content')
+        @slot('label', 'Related Content')
+        @slot('variation', 'grid-cards')
+        @slot('items', $relatedContentItems)
+        @slot('total', $relatedContentTotal ?? null)
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && collect($publicationItems ?? [])->isNotEmpty())
+    @component('components.organisms._o-related-content')
+        @slot('label', 'Art Institute Publications')
+        @slot('variation', 'grid-year')
+        @slot('items', $publicationItems)
+        @slot('total', $publicationTotal ?? null)
+        @slot('seeAllLabel', 'Art Institute publications')
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && collect($exhibitionItems ?? [])->isNotEmpty())
+    @component('components.organisms._o-related-content')
+        @slot('label', 'Art Institute Exhibitions')
+        @slot('variation', 'list-rows')
+        @slot('items', $exhibitionItems)
+        @slot('total', $exhibitionTotal ?? null)
+        @slot('seeAllLabel', 'Art Institute exhibitions')
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && collect($educatorResourceItems ?? [])->isNotEmpty())
+    @component('components.organisms._o-related-content')
+        @slot('label', 'Educator Resources')
+        @slot('variation', 'list-rows')
+        <ul class="o-related-content__list">
+            @foreach ($educatorResourceItems as $resource)
+                @component('components.molecules._m-listing----educator-resource')
+                    @slot('item', $resource)
+                    @slot('isIndex', true)
+                    @slot('tag', 'li')
+                @endcomponent
+            @endforeach
+        </ul>
+    @endcomponent
+@endif
 
 @if (isset($exploreMoreTags) && $exploreMoreTags->isNotEmpty())
     @component('components.molecules._m-tag-dropdown')
@@ -186,6 +294,12 @@
 @endsection
 
 @section('extra_scripts')
+    @if (collect($multimediaItems ?? [])->contains('type', 'blocks'))
+        <script src="{{FrontendHelpers::revAsset('scripts/layeredImageViewer.js')}}"></script>
+    @endif
+    @if (!empty($model3d))
+        <script src="{{FrontendHelpers::revAsset('scripts/blocks3D.js')}}"></script>
+    @endif
     <script src="{{FrontendHelpers::revAsset('scripts/blocks360.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/mirador.js')}}"></script>
 @endsection

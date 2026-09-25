@@ -8,6 +8,7 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\Sortable;
 use App\Enums\DigitalPublicationArticleType;
+use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
@@ -27,6 +28,7 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
     use HasAuthors;
     use Transformable;
     use HasFactory;
+    use HasApiRelations;
 
     protected $presenter = 'App\Presenters\Admin\DigitalPublicationArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\DigitalPublicationArticlePresenter';
@@ -150,6 +152,11 @@ class DigitalPublicationArticle extends AbstractModel implements Sortable
     public function digitalPublication()
     {
         return $this->belongsTo('App\Models\DigitalPublication');
+    }
+
+    public function relatedArtworks()
+    {
+        return $this->apiElements()->where('relation', 'relatedArtworks');
     }
 
     public function getRouteKeyName()
