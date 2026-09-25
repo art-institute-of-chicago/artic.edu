@@ -108,7 +108,7 @@
                 ],
                 [
                     'label' => 'Educational Resources',
-                    'name' => 'collection.researchResources.educatorResources'
+                    'name' => 'collection.educatorResources'
                 ],
                 [
                     'label' => 'Interactive Features',
