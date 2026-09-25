@@ -42,7 +42,7 @@ class BlockHelpers
             $wrappedCaptionTitle = $title ? '<div class="f-caption-title">' . $title . '</div>' : '';
             $wrappedCaption = $subtitle ? '<div class="f-caption">' . $subtitle . '</div>' : '';
 
-            $fields['credit'] = htmlspecialchars($wrappedCaptionTitle . $wrappedCaption);
+            $fields['credit'] = $wrappedCaptionTitle . $wrappedCaption;
         }
 
         return $fields;
