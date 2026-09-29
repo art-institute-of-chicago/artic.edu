@@ -406,10 +406,10 @@ class AppServiceProvider extends ServiceProvider
                                             'name' => 'Free Daily Tours',
                                             'url' => '/events?type=6&audience=3',
                                         ],
-                                        [
-                                            'name' => 'My Museum Tour',
-                                            'url' => '/my-museum-tour',
-                                        ],
+                                        // [
+                                        //     'name' => 'My Museum Tour',
+                                        //     'url' => '/my-museum-tour',
+                                        // ],
                                         [
                                             'name' => 'What to See in an Hour',
                                             'url' => '/highlights/3/what-to-see-in-an-hour',
