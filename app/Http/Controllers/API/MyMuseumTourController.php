@@ -3,26 +3,43 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\MyMuseumTourRequest;
+use App\Models\Api\Artwork;
 use App\Models\MyMuseumTour;
 use App\Jobs\GeneratePdf;
 use App\Jobs\Subscribe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Validation\ValidationException;
 
 class MyMuseumTourController extends BaseController
 {
+    /**
+     * Artwork fields requested from the API when saving a tour
+     */
+    private const ARTWORK_FIELDS = [
+        'id',
+        'title',
+        'artist_title',
+        'date_display',
+        'short_description',
+        'description',
+        'image_id',
+        'thumbnail',
+        'gallery_title',
+        'gallery_id',
+    ];
+
     public function store(MyMuseumTourRequest $request)
     {
         $validated = $request->validated();
 
-        $tourJsonData = $validated['tourJson'];
-
-        // Perform basic data sanitization using strip_tags
-        $sanitizedTourJson = $this->sanitizeData($tourJsonData);
+        $tourJson = $validated['tourJson'];
+        $tourJson['artworks'] = $this->loadArtworks($tourJson['artworks']);
 
         $record = MyMuseumTour::create([
             'creator_email' => $validated['creatorEmail'],
             'marketing_opt_in' => $validated['marketingOptIn'] ?? false,
-            'tour_json' => $sanitizedTourJson
+            'tour_json' => $tourJson
         ]);
 
         GeneratePdf::dispatch($record);
@@ -47,24 +64,47 @@ class MyMuseumTourController extends BaseController
     }
 
     /**
-     * Sanitize data received via the API
+     * Reload artwork details from the API by ID
      *
-     * This method strips HTML and PHP tags from data and returns the sanitized data
-     *
+     * Only each artwork's ID and objectNote are kept from the request. All other
+     * details, including the description HTML that is rendered unescaped, come
+     * from the API so they can't be tampered with by the client.
      */
-    private function sanitizeData(array $data, string $parentKey = ''): array
+    private function loadArtworks(array $artworks): array
     {
-        $sanitizedData = [];
+        $ids = array_column($artworks, 'id');
 
-        foreach ($data as $key => $value) {
-            if (is_array($value)) {
-                $sanitizedData[$key] = $this->sanitizeData($value, $key);
-            } else {
-                // Use strip_tags on strings only. 'description' with a parentKey that's an integer is the short_description, so don't strip that one
-                $sanitizedData[$key] = is_string($value) && !($key == 'description' && is_numeric($parentKey)) ? strip_tags($value) : $value;
-            }
+        $apiArtworks = Artwork::query()
+            ->ids($ids)
+            ->get(self::ARTWORK_FIELDS)
+            ->keyBy('id');
+
+        $missingIds = array_diff($ids, $apiArtworks->keys()->all());
+
+        if ($missingIds) {
+            throw ValidationException::withMessages([
+                'tourJson.artworks' => 'These artworks could not be found: ' . implode(', ', $missingIds),
+            ]);
         }
 
-        return $sanitizedData;
+        return array_map(function ($artwork) use ($apiArtworks) {
+            $apiArtwork = $apiArtworks[$artwork['id']];
+
+            return [
+                'id' => $apiArtwork->id,
+                'title' => $apiArtwork->title,
+                'artist_title' => $apiArtwork->artist_title,
+                'display_date' => $apiArtwork->date_display,
+                // Matches the builder, which shows short_description and falls back to description
+                'description' => $apiArtwork->short_description ?: $apiArtwork->description,
+                'image_id' => $apiArtwork->image_id,
+                'thumbnail' => $apiArtwork->thumbnail
+                    ? Arr::only((array) $apiArtwork->thumbnail, ['lqip', 'width', 'height', 'alt_text'])
+                    : null,
+                'gallery_title' => $apiArtwork->gallery_title,
+                'gallery_id' => $apiArtwork->gallery_id,
+                'objectNote' => $artwork['objectNote'] ?? null,
+            ];
+        }, $artworks);
     }
 }

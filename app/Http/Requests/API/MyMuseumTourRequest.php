@@ -26,16 +26,6 @@ class MyMuseumTourRequest extends FormRequest
             'tourJson.recipientName' => ['nullable', 'string', new NoMarkup()],
             'tourJson.artworks' => 'required|array|min:1|max:6',
             'tourJson.artworks.*.id' => 'required|integer|distinct',
-            'tourJson.artworks.*.image_id' => 'nullable|string',
-            'tourJson.artworks.*.description' => 'nullable|string',
-            'tourJson.artworks.*.gallery_title' => 'nullable|string',
-            'tourJson.artworks.*.gallery_id' => 'nullable|integer',
-            'tourJson.artworks.*.artist_title' => 'nullable|string',
-            'tourJson.artworks.*.display_date' => 'nullable|string',
-            'tourJson.artworks.*.thumbnail.lqip' => 'nullable|string',
-            'tourJson.artworks.*.thumbnail.width' => 'nullable|integer',
-            'tourJson.artworks.*.thumbnail.height' => 'nullable|integer',
-            'tourJson.artworks.*.thumbnail.alt_text' => 'nullable|string',
             'tourJson.artworks.*.objectNote' => ['nullable', 'string', new NoMarkup()],
         ];
     }
