@@ -320,6 +320,7 @@ class AppServiceProvider extends ServiceProvider
                 NavigationLink::make()->forModule('searchTerms')->title('Search Terms'),
                 NavigationLink::make()->forModule('vanityRedirects')->title('Vanity Redirects'),
                 NavigationLink::make()->forRoute('twill.general.integrations.show')->title('Integrations'),
+                NavigationLink::make()->forRoute('twill.general.blockCopy.index')->title('Block Copy'),
                 NavigationLink::make()->forModule('illuminatedLinks')->title('Illuminated Links'),
                 NavigationLink::make()->forModule('shopItems')->title('Shop'),
                 NavigationLink::make()->forModule('adCampaigns')->title('Ad Management'),
