@@ -1,0 +1,26 @@
+.m-search-restricted-field {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  &__dropdown {
+    flex-shrink: 0;
+    z-index: 2;
+
+    .m-search-field-dropdown,
+    .dropdown__trigger,
+    .button {
+      height: 100%;
+    }
+
+    .dropdown__trigger > button {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__search-bar {
+    flex-grow: 1;
+  }
+}

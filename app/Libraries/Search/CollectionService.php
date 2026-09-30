@@ -50,6 +50,24 @@ class CollectionService
         $this->chain = Search::query();
     }
 
+    public function searchField($value)
+    {
+        if ($value) {
+            $current = $this->chain->rawQuery ?? [];
+            $this->chain->rawQuery(array_merge($current, ['search_field' => $value]));
+        }
+        return $this;
+    }
+
+    public function semanticOnly($value)
+    {
+        if ($value) {
+            $current = $this->chain->rawQuery ?? [];
+            $this->chain->rawQuery(array_merge($current, ['semantic_only' => $value]));
+        }
+        return $this;
+    }
+
     /**
      * Execute the query built in the chain. Save aggregations
      * to build filters.
