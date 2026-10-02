@@ -7,15 +7,15 @@ use Illuminate\Support\Facades\Schema;
 return new class () extends Migration {
     public function up(): void
     {
-        Schema::table('ad_campaigns', function (Blueprint $table) {
-            $table->string('theme')->nullable();
+        Schema::table('artworks', function (Blueprint $table) {
+            $table->boolean('toggle_autoeducator_resources')->default(false);
         });
     }
 
     public function down(): void
     {
-        Schema::table('ad_campaigns', function (Blueprint $table) {
-            $table->dropColumn('theme');
+        Schema::table('artworks', function (Blueprint $table) {
+            $table->dropColumn(['toggle_autoeducator_resources']);
         });
     }
 };
