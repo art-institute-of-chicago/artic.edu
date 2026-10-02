@@ -71,7 +71,6 @@ class ArtworkController extends BaseApiController
 
         $blocks = Block::query()
             ->where('type', 'layered_image_viewer')
-            ->whereNull('parent_id')
             ->where(function ($query) {
                 $query->whereNull('blockable_type')
                     ->orWhere('blockable_type', '!=', 'App\Models\Artwork');
