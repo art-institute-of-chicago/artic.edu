@@ -340,8 +340,16 @@ class ArtworkController extends BaseScopedController
         return [
             'href' => $href,
             'title' => $this->itemTitle($publication),
+            'title_display' => $publication->title_display ?? null,
             'year' => $this->itemYear($date),
-            'image' => $this->itemImage($publication, ['listing', 'hero', 'banner']),
+            'description' => $publication->list_description
+                ?? $publication->listing_description
+                ?? $publication->short_description
+                ?? null,
+            'model' => $publication,
+            'image' => $publication->hasImage('publications_listing')
+                ? $publication->imageAsArray('publications_listing', 'default')
+                : ($publication->imageAsArray('listing', 'listing') ?? $publication->imageFront('hero')),
         ];
     }
 

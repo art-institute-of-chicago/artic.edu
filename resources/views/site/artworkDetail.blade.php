@@ -206,6 +206,7 @@
     @component('components.organisms._o-related-content')
         @slot('label', 'Art Institute Publications')
         @slot('variation', 'grid-year')
+        @slot('itemVariation', 'publications')
         @slot('items', $publicationItems)
         @slot('total', $publicationTotal ?? null)
         @slot('seeAllLabel', 'Art Institute publications')
