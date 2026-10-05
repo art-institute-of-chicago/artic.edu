@@ -4,7 +4,33 @@
 
     Variables: $relatedItem, $variation (resolved variation key), $imageSettings.
 --}}
-@if ($variation === 'list-rows')
+@if (($itemVariation ?? null) === 'publications')
+    @php
+        $publicationImageSettings = array(
+            'fit' => null,
+            'ratio' => null,
+            'srcset' => ImageHelpers::SRCSET_WIDTHS,
+            'sizes' => ImageHelpers::aic_imageSizes(array(
+                'xsmall' => '58',
+                'small' => '58',
+                'medium' => '38',
+                'large' => '28',
+                'xlarge' => '28',
+            )),
+        );
+    @endphp
+    @component('components.molecules._m-listing----publication')
+        @slot('item', $relatedItem['model'] ?? null)
+        @slot('href', $relatedItem['href'] ?? null)
+        @slot('image', $relatedItem['image'] ?? null)
+        @slot('imageSettings', $publicationImageSettings)
+        @slot('title', $relatedItem['title'] ?? null)
+        @slot('title_display', $relatedItem['title_display'] ?? null)
+        @slot('type', $relatedItem['eyebrow'] ?? null)
+        @slot('landingPageType', 'publications')
+        @slot('tag', 'li')
+    @endcomponent
+@elseif ($variation === 'list-rows')
 <li class="o-related-content__item o-related-content__item--row">
     <span class="o-related-content__item-year f-module-title-2">{{ $relatedItem['year'] ?? '' }}</span>
 
