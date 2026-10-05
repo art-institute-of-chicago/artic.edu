@@ -15,9 +15,6 @@ I use **Docker** for local development.
 
 ```bash
 # Replace <container-name> with your container name (e.g. "website")
-sail <container-name> bash
-
-# Or using docker directly:
 docker exec -it <container-name> bash
 ```
 
