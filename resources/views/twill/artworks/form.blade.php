@@ -1,6 +1,6 @@
 @extends('twill::layouts.form', [
     'additionalFieldsets' => [
-        ['fieldset' => 'side_related', 'label' => 'Sidebar Related'],
+        ['fieldset' => 'side_related', 'label' => 'Related Content'],
         ['fieldset' => 'artwork_publications', 'label' => 'Publications'],
         ['fieldset' => 'artwork_exhibitions', 'label' => 'Exhibitions'],
         ['fieldset' => 'artwork_educator_resources', 'label' => 'Educator Resources'],
@@ -30,7 +30,10 @@
 @section('fieldsets')
 
     <x-aic::featuredRelated
-        :auto-related="$autoRelated" />
+        :auto-related="$autoRelated"
+        fieldset-title="Related Content"
+        browser-label="Related Content items"
+        :max-items="1000" />
 
     <x-twill::formFieldset id="artwork_publications" title="Publications">
         <p>These publications are curated by hand. They are shown first, followed by any automatically related publications below.</p>
