@@ -360,3 +360,30 @@
     }
   }
 }
+
+.o-related-content .m-listing--publication {
+  border: none;
+  background-color: $colors-scales-grey-0;
+
+  .m-listing__img {
+    aspect-ratio: 1 / 1;
+    background-color: transparent;
+
+    img {
+      object-fit: contain;
+      object-position: bottom;
+    }
+  }
+
+  .m-listing__meta {
+    padding-top: 14px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    font-size: 13px;
+    font-weight: 400;
+
+    .type {
+      font-size: 13px;
+    }
+  }
+}
