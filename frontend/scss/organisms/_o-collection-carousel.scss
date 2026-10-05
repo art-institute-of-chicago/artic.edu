@@ -57,10 +57,10 @@
         .m-collection-row,
         .m-collection-artwork__item,
         .m-collection__img img {
-            height: 182.5px;
+            height: 212px;
 
             @include breakpoint('small-') {
-                height: 92.5px;
+                height: 100px;
             }
         }
     }
