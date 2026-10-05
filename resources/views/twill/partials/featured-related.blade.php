@@ -4,7 +4,7 @@
         label="{{ $browserLabel ?? 'Sidebar items' }}"
         route-prefix='$routePrefix'
         module-name='$moduleName'
-        :max='6'
+        :max='$maxItems ?? 6'
         :endpoints="[
             [
                 'label' => 'Article',
