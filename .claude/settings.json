@@ -10,8 +10,7 @@
       "Bash(ls:*)",
       "Bash(cat:*)",
       "Bash(sed:*)",
-      "Bash(sail:*)",
-      "Bash(homestead:*)"
+      "Bash(sail:*)"
     ],
     "deny": [
       "Bash(git push --force:*)",
