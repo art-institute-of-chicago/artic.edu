@@ -382,13 +382,12 @@
 
     .m-listing__secondary-action__links {
       margin-top: 0;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: baseline;
+      display: grid;
+      grid-template-columns: repeat(2, max-content);
+      justify-items: start;
 
       >span {
-        flex: 0 0 100%;
-        width: 100%;
+        grid-column: 1 / -1;
         margin-right: 0;
       }
 
