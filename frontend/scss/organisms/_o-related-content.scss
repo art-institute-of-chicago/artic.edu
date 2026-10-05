@@ -78,6 +78,14 @@
       height: 100%;
     }
   }
+
+  .m-media--360-embed .m-viewer-360-image {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+  }
 }
 
 .o-related-content__meta {
@@ -248,6 +256,21 @@
 
 /* List rows */
 
+.o-related-content__panel {
+  display: flow-root;
+}
+
+.o-related-content--grid-cards .o-related-content__panel[aria-hidden="false"],
+.o-related-content--grid-year .o-related-content__panel[aria-hidden="false"] {
+  margin-top: $blocks-spacings-extra-large;
+}
+
+.o-related-content--list-rows .o-related-content__list > .m-listing--educator-resource__index + .m-listing--educator-resource__index {
+  margin-top: $blocks-spacings-default;
+  padding-top: $blocks-spacings-default;
+  border-top: 1px solid $colors-themes-light-mode-rules-tertiary;
+}
+
 .o-related-content--list-rows .o-related-content__item--row {
   display: flex;
   flex-flow: row wrap;
@@ -320,24 +343,38 @@
   gap:$blocks-spacings-extra-large;
 
   .m-listing__link {
-    flex-direction: row;
+    flex-flow: row nowrap;
+    align-items: flex-start;
   }
 
   .m-listing__img {
     order: 1;
+    flex: 0 0 25%;
+    margin-top: 0;
     margin-right:$blocks-spacings-extra-large;
+    height: auto;
+    aspect-ratio: 1 / 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   .m-listing__meta {
     order: 2;
-    width: 50%;
+    flex: 1 1 auto;
+    width: auto;
   }
 
   .m-listing__secondary-actions {
     order: 3;
     margin-top: 0;
-    width: 240px;
-    align-items: flex-end;
+    flex: 0 0 auto;
+    width: auto;
+    margin-left: auto;
+    align-items: stretch;
 
     @include breakpoint('medium-') {
       display: none;
@@ -347,11 +384,12 @@
       margin-top: 0;
       flex-direction: row;
       flex-wrap: wrap;
+      align-items: baseline;
 
       >span {
-        flex-basis: 100%;
-        width: unset;
-        margin-right: auto;
+        flex: 0 0 100%;
+        width: 100%;
+        margin-right: 0;
       }
 
       .f-link:last-child {
