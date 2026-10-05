@@ -14,6 +14,8 @@
     $id = $id ?? (\Illuminate\Support\Str::slug($label) ?: 'related-content');
     $seeAllLabel = $seeAllLabel ?? \Illuminate\Support\Str::lower($label);
     $capped = $items->count() > $limit;
+    $itemVariation = $itemVariation ?? null;
+
 
     // Capped lists render the first `$limit` items inline; the overflow moves
     // into an accordion panel handled by the shared accordion behavior.
@@ -74,7 +76,7 @@
 
             <ul id="{{ $id }}-list" class="o-related-content__list">
                 @foreach ($mainItems as $relatedItem)
-                    @include('components.organisms._o-related-content-item', ['relatedItem' => $relatedItem, 'variation' => $variationKey, 'imageSettings' => $imageSettings])
+                    @include('components.organisms._o-related-content-item', ['relatedItem' => $relatedItem, 'variation' => $variationKey, 'itemVariation' => $itemVariation, 'imageSettings' => $imageSettings])
                 @endforeach
             </ul>
 
@@ -82,7 +84,7 @@
                 <div class="o-related-content__panel o-accordion__panel" id="{{ $id }}-panel" aria-hidden="true" aria-labelledby="{{ $id }}-title">
                     <ul class="o-related-content__list">
                         @foreach ($overflowItems as $relatedItem)
-                            @include('components.organisms._o-related-content-item', ['relatedItem' => $relatedItem, 'variation' => $variationKey, 'imageSettings' => $imageSettings])
+                            @include('components.organisms._o-related-content-item', ['relatedItem' => $relatedItem, 'variation' => $variationKey, 'itemVariation' => $itemVariation, 'imageSettings' => $imageSettings])
                         @endforeach
                     </ul>
                 </div>
