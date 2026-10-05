@@ -7,7 +7,6 @@ use App\Repositories\ExperienceRepository;
 use App\Libraries\SchemaOrg\SchemaMapper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Str;
 
 class InteractiveFeatureExperiencesController extends FrontController
 {

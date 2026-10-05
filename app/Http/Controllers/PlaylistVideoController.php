@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\EmbedConverterFacade;
 use App\Helpers\ImageHelpers;
 use App\Helpers\StringHelpers;
 use App\Models\Playlist;
