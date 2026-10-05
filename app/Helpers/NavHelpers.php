@@ -2,8 +2,6 @@
 
 namespace App\Helpers;
 
-use App\Models\GenericPage;
-
 class NavHelpers
 {
     public static function get_nav_for_publications(string $title)

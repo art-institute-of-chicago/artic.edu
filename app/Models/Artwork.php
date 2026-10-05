@@ -12,7 +12,6 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Api\TextEmbedding;
 use App\Models\Api\ImageEmbedding;
 use App\Helpers\StringHelpers;
-use Illuminate\Support\Facades\DB;
 
 class Artwork extends AbstractModel
 {
