@@ -31,7 +31,7 @@ Portions of the website rely heavily on our [API](https://api.artic.edu). Check 
 
 ### Docker
 
-For local development, we run the website in a Docker environment which provides all the software required to run the application. This replaces the previous Vagrant/Homestead setup that is no longer maintained. Download the [docker app here](https://www.docker.com/products/docker-desktop/)
+For local development, we run the website in a Docker environment which provides all the software required to run the application. Download the [docker app here](https://www.docker.com/products/docker-desktop/)
 
 ## Developing
 
