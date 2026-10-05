@@ -5,7 +5,7 @@ Copy this file to `CLAUDE.local.md` and fill in the details for your setup.
 
 ## Local Environment
 
-I use **Docker** / **Homestead** (delete as appropriate) for local development.
+I use **Docker** for local development.
 
 ---
 
@@ -15,9 +15,6 @@ I use **Docker** / **Homestead** (delete as appropriate) for local development.
 
 ```bash
 # Replace <container-name> with your container name (e.g. "website")
-sail <container-name> bash
-
-# Or using docker directly:
 docker exec -it <container-name> bash
 ```
 
@@ -32,33 +29,3 @@ sail <container-name> bash
 php artisan test
 composer lint
 ```
-
----
-
-## Homestead Setup
-
-### Remoting into the VM
-
-```bash
-cd ~/Homestead
-vagrant ssh
-cd /home/vagrant/code/<project-directory>
-```
-
-### Running backend commands
-
-All `php artisan` and `composer` commands must be run inside the VM:
-
-```bash
-cd ~/Homestead && vagrant ssh
-cd /home/vagrant/code/<project-directory>
-php artisan test
-composer lint
-```
-
----
-
-## Notes
-
-- Frontend commands (`npm run dev`, `npm run build`) are run on the **host machine**, not inside the container/VM.
-- Unit tests must be run inside the container/VM — see the Backend section of `CLAUDE.md` for the full command list.

@@ -4,37 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is **artic.edu** — the main website for the Art Institute of Chicago. It's a Laravel 11 application built with the Twill 3.0 CMS, consuming data from the AIC's public API (`api.artic.edu`). The `develop` branch is the main branch.
+This is **artic.edu** — the main website for the Art Institute of Chicago. It's a Laravel application built with the Twill 3.0 CMS, consuming data from the AIC's public API (`api.artic.edu`). The `develop` branch is the main branch.
 
 ## Requirements
 
-- PHP 8.5
-- Node 24.13.0 (lts/krypton) — use `nvm` to match `.nvmrc`
-- NPM 11.6.2
-- PostgreSQL 17
+- Use `nvm` to match `.nvmrc`
 - Local development uses [AIC Docker](https://github.com/art-institute-of-chicago/aic-docker)
 
 ## Common Commands
 
-### Frontend (run on host machine, NOT inside Docker)
-
-```bash
-npm ci               # Install dependencies
-npm run build        # Production build (svg-sprite + webpack)
-npm run dev          # Watch mode for local development
-```
-
-### Backend (run inside Docker)
-
-```bash
-php artisan test                    # Run full test suite (parallel)
-php artisan test --filter TestName  # Run a single test
-composer lint                       # PHP CodeSniffer (summary)
-composer lint -- --report=full      # PHP CodeSniffer (full report)
-composer format                     # Auto-fix linting errors (PHP CS Fixer)
-composer analyze                    # PHPStan static analysis
-php artisan twill:build             # Compile CMS assets
-```
+- **Frontend** (`npm` scripts in `package.json`): run on the host machine, NOT inside Docker.
+- **Backend** (`php artisan`, `composer` scripts in `composer.json`): run inside Docker.
+  - `composer lint -- --report=full` for the full PHP CodeSniffer report
+  - `php artisan twill:build` to compile CMS assets
+- `curl` and `wget` are denied by project settings; use the WebFetch tool for HTTP requests (e.g. checking `api.artic.edu` responses).
 
 ### Running tests
 
@@ -54,54 +37,36 @@ The `BaseApiModel` (`app/Libraries/Api/Models/BaseApiModel.php`) implements Eloq
 Many Eloquent models mix in `HasApiModel` to **augment** API records with CMS data — so an artwork page renders data from both sources.
 
 Key behaviors:
+
 - `app/Libraries/Api/Models/Behaviors/HasApiCalls.php` — HTTP calls to the API
 - `app/Libraries/Api/Models/Behaviors/HasAugmentedModel.php` — merging API + Eloquent data
 - `app/Models/Behaviors/HasApiRelations.php` / `HasApiModel.php` — linking Eloquent to API records
 
 See `docs/apiModels.md` for detailed usage examples and `docs/images.md` for image handling.
 
-### Backend Structure
+### Frontend
 
-- `app/Http/Controllers/` — 40+ controllers; `API/` subdirectory for JSON endpoints
-- `app/Libraries/` — Domain services: `Api/` (query builder, models), `Search/` (collection search), `ExploreFurther/`, `RecentlyViewedService/`
-- `app/Repositories/` — Repository pattern for data access (both Eloquent and API)
-- `app/Presenters/` — View presenters for template logic
-- `routes/web.php` — Public pages; `routes/api.php` — JSON API (v1); `routes/twill.php` — CMS admin; `routes/kiosk.php` — Kiosk mode
-
-### Frontend Structure
-
-- `frontend/js/app.js` — Main JS entry point
-- `frontend/js/behaviors/` — Component behaviors using `@area17/a17-helpers`
-  - `core/` contains all behaviors that are common across all areas of the website
-  - Other subdirectories contain behaviors that are specific to functionality that's only found in some areas of the website
-- `frontend/icons/` — SVG source files, auto-compiled into sprites via `npm run svg-sprite`
-- Compiled assets land in `public/dist/`
-- `frontend/scss/` — Atomic design system: `atoms/`, `molecules/`, `organisms/`
-- `resources/views/components/` — Blade files associated with our atomic design system: `atoms/`, `molecules/`, `organisms/`
-
-Note that we define each level of components in our atomic design system as follows:
-
-* _Tokens_: A property definition. Does not define a DOM element, has no visual presense of its own, but is a named design decision. We use two types of tokens in our codebase:
-
-  1) primitive tokens which are raw values, e.g., `$color__black--81`, and
-  2) semantic tokens, which are the primitive values mapped to a design intent, e.g., `$color__dark-mode__bg--primary`.
-* _Atom_: Single-purpose root element. Cannot contain other atoms.Typically represented by a single DOM element, but may compose a small number of elements that comprise a small-level of functionality.
-* _Molecule_: A named UI pattern with one clear responsibility. May contain other atoms.
-* _Organism_: Self contained feature or page section. A simple block might be a complete organism.
-
-Special JS bundles: `mirador.js` (IIIF viewer), `myMuseumTourBuilder.js` (tour builder), `recaptcha.js`.
+Frontend conventions (behaviors, atomic design system) live in `.claude/rules/frontend-components.md`.
 
 ### CMS (Twill)
 
 Twill handles content authoring. CMS navigation is configured in `AppServiceProvider->registerTwillNav`. Run `php artisan twill:build` after Twill upgrades.
 
-### Key Config Files
+## Source Control
 
-- `config/aic.php` — Custom AIC application settings
-- `config/galleries.php` — Gallery configuration
-- `config/api.php` — API client configuration
-- `.env.example` — All available environment variables and feature flags
+`main` is what's in production; `develop` is the latest code ready for QA. Branch off `develop`, not `main`.
+
+- **Branch names**: `[scope]/[optional-issue-number]-[short-description]`, where scope is usually `feature/`, `refactor/`, or `fix/`. Keep only related changes in a branch; unrelated changes go in a separate branch.
+- **Commit titles**: imperative, present tense ("Change", not "Changed"), max 70 characters, ending with the Jira key(s) in square brackets, e.g. `Eager load dateRules [WEB-3492]` or `[WEB-943, CITI-4833]`. Use the body to explain *why*. If no ticket key is known, ask rather than inventing one.
+- **Gen AI policy**: commit AI-generated changes as their own single commit, separate from any human edits to them, and put `[Gen-AI, <model>]` before the ticket key, e.g. `Improve handling of errors in API endpoints [Gen-AI, Claude-Sonnet-5] [WEB-3495]`. If a file is largely AI-generated, add a doc-style comment at the top noting so, with the developer's name (or git/artic ID), the date, and the model; skip the comment when generated and human code are too mixed to tease apart.
+- **One commit, one change**: each commit should be a single, safely reversible change. Don't commit half-done work, and run the relevant tests before committing.
+- **Never reference commit hashes in commit messages** — they change when rebasing.
+- **Never commit secrets or server names.** When adding a config variable, add it to `.env.example`.
+- **Write tests** for code changes.
+- **One pull request, one concern**: no unrelated whitespace, typo, or renaming changes in a PR.
 
 ## Off-limits Directories
 
 Never read, edit, or create files inside `vendor/` or `node_modules/`. These are managed by Composer and npm respectively — any changes would be overwritten on the next install and could mask real dependency issues.
+
+Never edit `public/dist/` either. It's gitignored build output (webpack bundles and the SVG sprite compiled from `frontend/icons/`). Change the sources under `frontend/` and rebuild.
