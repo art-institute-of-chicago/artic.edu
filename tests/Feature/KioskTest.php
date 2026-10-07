@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
 use App\Models\Experience;
-use App\Repositories\ExperienceRepository;
 
 class KioskTest extends BaseTestCase
 {

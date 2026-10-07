@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers\Twill;
 
-use A17\Twill\Services\Listings\Columns\Text;
-use A17\Twill\Services\Listings\TableColumns;
-
 class MagazineIssueController extends BaseController
 {
     protected $permalinkBase = 'magazine/issues/';
