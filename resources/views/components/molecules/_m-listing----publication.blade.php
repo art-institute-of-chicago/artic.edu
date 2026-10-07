@@ -61,11 +61,11 @@
                 @endcomponent
                 <br>
             @endif
-            @if ((isset($title) && $title) || isset($title_display) && $title_display)
+            @if ((isset($title) && $title) || (isset($title_display) && $title_display))
                 @component('components.atoms._title')
                     @slot('font', (isset($variation) && $variation == 'm-listing--work') ? 'f-headline' : 'f-list-3')
-                    @slot('title', $title)
-                    @slot('title_display', $title_display)
+                    @slot('title', $title ?? null)
+                    @slot('title_display', $title_display ?? null)
                 @endcomponent
             @endif
             <br>

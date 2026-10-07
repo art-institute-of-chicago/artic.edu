@@ -59,6 +59,11 @@
 
 @section('fieldsets')
 
+    <x-twill::formFieldset id="related_artists_artworks" title="Related Artists and Artworks">
+        <x-twill::browser name='relatedArtists' label='Artists' route-prefix='collection' module-name='artists' :max='10' />
+        <x-twill::browser name='relatedArtworks' label='Artworks' route-prefix='collection' module-name='artworks' :max='10' />
+    </x-twill::formFieldset>
+
     @include('twill.partials.related')
 
     @include('twill.partials.meta')

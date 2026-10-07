@@ -1,10 +1,10 @@
-<x-twill::formFieldset id="side_related" title="Sidebar Related">
+<x-twill::formFieldset id="side_related" title="{{ $fieldsetTitle ?? 'Sidebar Related' }}">
     <x-twill::browser
         name='sidebar_items'
-        label='Sidebar items'
+        label="{{ $browserLabel ?? 'Sidebar items' }}"
         route-prefix='$routePrefix'
         module-name='$moduleName'
-        :max='6'
+        :max='$maxItems ?? 6'
         :endpoints="[
             [
                 'label' => 'Article',

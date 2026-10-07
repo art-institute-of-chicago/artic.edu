@@ -5,6 +5,7 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
+use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
@@ -17,6 +18,7 @@ use PDO;
 
 class DigitalPublication extends AbstractModel
 {
+    use HasApiRelations;
     use HasBlocks;
     use HasFactory;
     use HasFiles;
@@ -228,6 +230,11 @@ class DigitalPublication extends AbstractModel
     public function articles()
     {
         return $this->hasMany('App\Models\DigitalPublicationArticle', 'digital_publication_id');
+    }
+
+    public function relatedArtists()
+    {
+        return $this->apiElements()->where('relation', 'relatedArtists');
     }
 
     protected function transformMappingInternal()

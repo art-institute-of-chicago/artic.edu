@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
+use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 class PrintedPublication extends AbstractModel
 {
+    use HasApiRelations;
     use HasBlocks;
     use HasSlug;
     use HasMedias;
@@ -95,6 +97,16 @@ class PrintedPublication extends AbstractModel
     public function categories()
     {
         return $this->belongsToMany('App\Models\CatalogCategory', 'catalog_category_printed_publication', 'printed_publication_id');
+    }
+
+    public function relatedArtists()
+    {
+        return $this->apiElements()->where('relation', 'relatedArtists');
+    }
+
+    public function relatedArtworks()
+    {
+        return $this->apiElements()->where('relation', 'relatedArtworks');
     }
 
     public function scopeIds($query, $ids = []): Builder
