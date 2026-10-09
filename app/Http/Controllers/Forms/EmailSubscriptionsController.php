@@ -274,7 +274,7 @@ class EmailSubscriptionsController extends FormController
             'hint' => null,
             'autocomplete' => false,
             'disabled' => false,
-            'checked' => $this->getOld($fieldName) ?? false,
+            'checked' => (bool) request('unsubscribe') || (bool) $this->getOld($fieldName) ? 'checked' : false,
             'label' => $fieldLabel,
             'behavior' => 'formUnsubscribe'
         ], $checkboxModifiers);
@@ -333,12 +333,12 @@ class EmailSubscriptionsController extends FormController
         $list = [];
 
         foreach ($subs as $value => $label) {
-            $isChecked = $this->getOld($value) ?? false;
-            $isDisabled = $this->getOld('OptMuseum') === false;
+            $isChecked = (bool) request('unsubscribe') ? false : (bool) $this->getOld($value);
+            $isDisabled = (bool) request('unsubscribe') ? true : (bool) $this->getOld('OptMuseum') === false;
 
             if ($value === 'OptMuseum') {
-                $isChecked = $this->getOld($value) ?? true;
-                $isDisabled = true;
+                $isChecked = !(bool) request('unsubscribe') || (bool) $this->getOld($value) ?? true;
+                $isDisabled = !(bool) request('unsubscribe') ?: true;
             }
 
             $item = [
