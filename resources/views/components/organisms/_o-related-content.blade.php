@@ -13,6 +13,7 @@
     $total = $total ?? $items->count();
     $id = $id ?? (\Illuminate\Support\Str::slug($label) ?: 'related-content');
     $seeAllLabel = $seeAllLabel ?? \Illuminate\Support\Str::lower($label);
+    $description = $description ?? null;
     $capped = $items->count() > $limit;
     $itemVariation = $itemVariation ?? null;
 
@@ -50,7 +51,13 @@
 
 @if ($hasRawContent)
     <section class="o-related-content o-related-content--{{ $rawVariation }}" aria-labelledby="{{ $id }}-title">
-        <h2 id="{{ $id }}-title" class="o-related-content__label f-module-title-2">{{ $label }}</h2>
+        <div class="o-related-content__heading">
+            <h2 id="{{ $id }}-title" class="o-related-content__label f-module-title-2">{{ $label }}</h2>
+
+            @if (!empty($description))
+                <div class="o-related-content__description f-body">{!! $description !!}</div>
+            @endif
+        </div>
 
         <div class="o-related-content__main">
             {!! $slot !!}
@@ -58,7 +65,13 @@
     </section>
 @elseif ($items->isNotEmpty())
     <section class="o-related-content o-related-content--{{ $variationKey }}"{!! $capped ? ' data-behavior="accordion"' : '' !!} aria-labelledby="{{ $id }}-title">
-        <h2 id="{{ $id }}-title" class="o-related-content__label f-module-title-2">{{ $label }}</h2>
+        <div class="o-related-content__heading">
+            <h2 id="{{ $id }}-title" class="o-related-content__label f-module-title-2">{{ $label }}</h2>
+
+            @if (!empty($description))
+                <div class="o-related-content__description f-body">{!! $description !!}</div>
+            @endif
+        </div>
 
         <div class="o-related-content__main">
             <div class="o-related-content__meta">
