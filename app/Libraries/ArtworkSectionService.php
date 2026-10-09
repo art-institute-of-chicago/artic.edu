@@ -150,4 +150,43 @@ class ArtworkSectionService
 
         return collect($exhibitions)->values();
     }
+    public static function sectionHeadings($artwork): array
+    {
+        if (empty($artwork)) {
+            return [];
+        }
+
+        $keys = [
+            'related_content',
+            'publications',
+            'exhibitions',
+            'educator_resources',
+            'videos',
+            'view_360',
+            'view_3d',
+        ];
+
+        $headings = [];
+
+        foreach ($keys as $key) {
+            $heading = [];
+
+            $title = trim((string) ($artwork->{$key . '_title'} ?? ''));
+            $description = trim((string) ($artwork->{$key . '_description'} ?? ''));
+
+            if ($title !== '') {
+                $heading['title'] = $title;
+            }
+
+            if ($description !== '') {
+                $heading['description'] = $description;
+            }
+
+            if (!empty($heading)) {
+                $headings[$key] = $heading;
+            }
+        }
+
+        return $headings;
+    }
 }
