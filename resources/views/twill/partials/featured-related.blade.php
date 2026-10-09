@@ -1,11 +1,24 @@
 <x-twill::formFieldset id="side_related" title="{{ $fieldsetTitle ?? 'Sidebar Related' }}">
+    @if (!empty($titleOverrideField ?? null) || !empty($descriptionField ?? null))
+        <p><strong>Section heading</strong></p>
+        @if (!empty($titleOverrideField ?? null))
+            <x-twill::checkbox name="{{ $titleOverrideField }}" label='Override section title' default='false' />
+            <x-twill::formConnectedFields field-name="{{ $titleOverrideField }}" :field-values="true" :render-for-blocks="false">
+                <x-twill::input name="{{ $titleField }}" label='Section title' :maxlength='100' />
+            </x-twill::formConnectedFields>
+        @endif
+        @if (!empty($descriptionField ?? null))
+            <x-twill::wysiwyg name="{{ $descriptionField }}" label='Section description' />
+        @endif
+        <hr>
+    @endif
     <x-twill::browser
         name='sidebar_items'
         label="{{ $browserLabel ?? 'Sidebar items' }}"
         route-prefix='$routePrefix'
         module-name='$moduleName'
         :max='$maxItems ?? 6'
-        :endpoints="[
+        :endpoints="$endpoints ?? [
             [
                 'label' => 'Article',
                 'value' => '/collection/articlesPublications/articles/browser'
