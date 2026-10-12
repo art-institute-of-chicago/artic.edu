@@ -11,8 +11,11 @@ use App\Libraries\ArtworkSizeComparisonService;
 use App\Libraries\RecentlyViewedService;
 use App\Libraries\Search\CollectionService;
 use App\Libraries\ExploreFurther\ArtworkService as ExploreFurther;
+use App\Models\DigitalExplorer;
 use App\Models\DigitalPublicationArticle;
+use App\Models\Experience;
 use App\Models\Hour;
+use App\Models\Vendor\Block;
 use App\Libraries\SchemaOrg\SchemaMapper;
 use App\Models\AdCampaign;
 use Illuminate\Support\Carbon;
@@ -74,19 +77,35 @@ class ArtworkController extends BaseScopedController
         }
 
         $relatedContent = $this->buildRelatedContent($item);
-        $publications = $this->buildSectionItems($item, 'manualPublications', 'autoPublications', 'toggle_autopublications', fn ($publication) => $this->normalizePublicationItem($publication));
+        $publications = $this->buildSectionItems($item, 'manualPublications', 'autoPublications', 'toggle_autopublications', fn ($publication) => $publication instanceof DigitalPublicationArticle ? null : $this->normalizePublicationItem($publication));
         $exhibitions = $this->buildSectionItems($item, 'manualExhibitions', 'autoExhibitions', 'toggle_autoexhibitions', fn ($exhibition) => $this->normalizeExhibitionItem($exhibition));
         $educatorResources = $this->buildSectionItems($item, 'manualEducatorResources', 'autoEducatorResources', 'toggle_autoeducator_resources', fn ($resource) => $resource);
 
         // Curated Multimedia entries: interactive features and digital explorers
         // render as listing cards, while layered image viewer blocks keep their
         // inline viewer and are therefore excluded from the cards.
-        $multimediaItems = $item->getAugmentedModel()?->multimediaItems() ?? collect();
-        $multimediaCards = $multimediaItems
-            ->filter(fn ($multimediaItem) => in_array($multimediaItem['type'] ?? null, ['experiences', 'digitalExplorers'], true))
-            ->map(fn ($multimediaItem) => $this->normalizeRelatedContentItem($multimediaItem['model'] ?? null))
+        $multimediaSelections = ($item->getAugmentedModel()?->multimediaItemBlocks() ?? collect())
+            ->map(fn ($block) => $this->multimediaSelection($block))
             ->filter()
             ->values();
+
+        $interactiveFeatureCards = $multimediaSelections
+            ->where('type', 'experiences')
+            ->map(fn ($selection) => $this->multimediaCard($selection))
+            ->filter()
+            ->values();
+
+        $digitalExplorerCards = $multimediaSelections
+            ->where('type', 'digitalExplorers')
+            ->map(fn ($selection) => $this->multimediaCard($selection))
+            ->filter()
+            ->values();
+
+        // Each layered image viewer renders as its own inline section.
+        $multimediaViewers = $multimediaSelections
+            ->where('type', 'blocks')
+            ->values();
+
         $videoBlocks = $item->getAugmentedModel()?->blocks()->whereNull('parent_id')->where('type', 'video')->get() ?? collect();
 
         $viewData = [
@@ -104,12 +123,15 @@ class ArtworkController extends BaseScopedController
             'exhibitionTotal' => $exhibitions['total'],
             'educatorResourceItems' => $educatorResources['items'],
             'educatorResourceTotal' => $educatorResources['total'],
-            'multimediaItems' => $multimediaItems,
-            'multimediaCards' => $multimediaCards,
-            'multimediaCardsTotal' => $multimediaCards->count(),
+            'multimediaViewers' => $multimediaViewers,
+            'interactiveFeatureCards' => $interactiveFeatureCards,
+            'interactiveFeatureCardsTotal' => $interactiveFeatureCards->count(),
+            'digitalExplorerCards' => $digitalExplorerCards,
+            'digitalExplorerCardsTotal' => $digitalExplorerCards->count(),
             // AUDIO (not scaffolded yet): add 'audioItems' => … here once the audio source/browser exists.
             'videoBlocks' => $videoBlocks,
             'item' => $item,
+            'sectionHeadings' => ArtworkSectionService::sectionHeadings($item->getAugmentedModel()),
             'model3d' => $item->model3d,
             'contrastHeader' => $item->present()->contrastHeader,
             'borderlessHeader' => $item->present()->borderlessHeader,
@@ -239,6 +261,60 @@ class ArtworkController extends BaseScopedController
     /**
      * Preferred URL for a related model, following its getUrl() when it has one.
      */
+    private function multimediaSelection($block): ?array
+    {
+        $selected = $block->getRelated('multimedia_item')->first();
+
+        if (!$selected) {
+            return null;
+        }
+
+        $type = match (true) {
+            $selected instanceof DigitalExplorer => 'digitalExplorers',
+            $selected instanceof Experience => 'experiences',
+            $selected instanceof \A17\Twill\Models\Block => 'blocks',
+            default => null,
+        };
+
+        if ($type === null) {
+            return null;
+        }
+
+        if ($type === 'blocks') {
+            $selected = Block::find($selected->getKey());
+
+            if (!$selected) {
+                return null;
+            }
+        }
+
+        return [
+            'type' => $type,
+            'model' => $selected,
+            'title' => trim((string) $block->input('section_title')) ?: null,
+            'description' => trim((string) $block->input('description')) ?: null,
+        ];
+    }
+
+    private function multimediaCard(array $selection): ?array
+    {
+        $card = $this->normalizeRelatedContentItem($selection['model']);
+
+        if (!$card) {
+            return null;
+        }
+
+        if (!empty($selection['title'])) {
+            $card['title'] = $selection['title'];
+        }
+
+        if (!empty($selection['description'])) {
+            $card['description'] = $selection['description'];
+        }
+
+        return $card;
+    }
+
     private function itemHref($model, $fallbackKey = 'url_without_slug')
     {
         return method_exists($model, 'getUrl') ? $model->getUrl() : ($model->{$fallbackKey} ?? null);
@@ -330,12 +406,6 @@ class ArtworkController extends BaseScopedController
         }
 
         $date = $publication->publication_date ?? null;
-
-        // Digital Publication Articles have no publication_date; use their own
-        // date, then their parent publication's.
-        if (empty($date) && $publication instanceof DigitalPublicationArticle) {
-            $date = $publication->date ?: optional($publication->digitalPublication)->publication_date;
-        }
 
         return [
             'href' => $href,
