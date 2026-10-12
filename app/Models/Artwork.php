@@ -52,9 +52,6 @@ class Artwork extends AbstractModel
         'educator_resources_title',
         'educator_resources_description',
         'override_educator_resources_title',
-        'videos_title',
-        'videos_description',
-        'override_videos_title',
         'view_360_title',
         'view_360_description',
         'override_view_360_title',
@@ -86,7 +83,6 @@ class Artwork extends AbstractModel
         'override_publications_title' => 'boolean',
         'override_exhibitions_title' => 'boolean',
         'override_educator_resources_title' => 'boolean',
-        'override_videos_title' => 'boolean',
         'override_view_360_title' => 'boolean',
         'override_view_3d_title' => 'boolean',
     ];
@@ -101,7 +97,6 @@ class Artwork extends AbstractModel
         'override_publications_title' => false,
         'override_exhibitions_title' => false,
         'override_educator_resources_title' => false,
-        'override_videos_title' => false,
         'override_view_360_title' => false,
         'override_view_3d_title' => false,
     ];

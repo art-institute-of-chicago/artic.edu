@@ -161,7 +161,6 @@ class ArtworkSectionService
             'publications',
             'exhibitions',
             'educator_resources',
-            'videos',
             'view_360',
             'view_3d',
         ];

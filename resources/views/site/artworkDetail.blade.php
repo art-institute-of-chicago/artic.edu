@@ -106,26 +106,15 @@
 
 </article>
 
-{{-- AUDIO (not scaffolded yet): render here, above Videos, when audio data exists. Expected shape: @if (!$item->is_deaccessioned && collect($audioItems ?? [])->isNotEmpty()) … @endif — data will come from an artwork audio browser/blocks; see ArtworkController TODO. --}}
-
-@if (!$item->is_deaccessioned && collect($videoBlocks ?? [])->isNotEmpty())
-    @php $section = $sectionHeadings['videos'] ?? []; @endphp
-    @component('components.organisms._o-related-content')
-        @slot('label', $section['title'] ?? 'Video')
-        @slot('description', $section['description'] ?? null)
-        @slot('variation', 'viewer')
-        @foreach ($videoBlocks as $block)
-            @include('site.blocks.video', ['block' => $block])
-        @endforeach
-    @endcomponent
-@endif
+{{-- AUDIO (not scaffolded yet): render here when audio data exists. Expected shape: @if (!$item->is_deaccessioned && collect($audioItems ?? [])->isNotEmpty()) … @endif — data will come from an artwork audio browser/blocks; see ArtworkController TODO. --}}
 
 @php
-    // Multimedia renders below Videos: the curated interactive features and
-    // digital explorers as listing cards, then the layered image viewer blocks
-    // as inline viewers. A single `<hr>` separates each rendered group from the
-    // previous one.
-    $multimediaViewers = collect($multimediaViewers ?? [])->filter(fn ($viewer) => !empty($viewer['model'] ?? null))->values();
+    // Multimedia: the curated multimedia_item blocks, each an interactive
+    // feature, digital explorer, layered image viewer, or video. Interactive
+    // features and digital explorers render as listing cards; layered image
+    // viewers and videos render inline, in curated order, as their own
+    // sections. A single `<hr>` separates each rendered group.
+    $multimediaInline = collect($multimediaInline ?? [])->filter(fn ($item) => !empty($item['model'] ?? null))->values();
     $multimediaRendered = 0;
 @endphp
 
@@ -155,19 +144,35 @@
     @endcomponent
 @endif
 
-@if (!$item->is_deaccessioned && $multimediaViewers->isNotEmpty())
+@if (!$item->is_deaccessioned && $multimediaInline->isNotEmpty())
     @if ($multimediaRendered > 0)
         @component('components.atoms._hr')
         @endcomponent
     @endif
     @php $multimediaRendered++; @endphp
-    @foreach ($multimediaViewers as $viewer)
-        @php $multimediaModel = $viewer['model'] ?? null; @endphp
+    @foreach ($multimediaInline as $inline)
+        @php
+            $inlineModel = $inline['model'] ?? null;
+            $isVideo = ($inline['type'] ?? null) === 'videos';
+        @endphp
         @component('components.organisms._o-related-content')
-            @slot('label', $viewer['title'] ?? 'Layered Image Viewer')
-            @slot('description', $viewer['description'] ?? null)
+            @slot('label', $inline['title'] ?? ($isVideo ? 'Video' : 'Layered Image Viewer'))
+            @slot('description', $inline['description'] ?? null)
             @slot('variation', 'viewer')
-            @include('site.blocks.layered_image_viewer', ['block' => $multimediaModel])
+            @if ($isVideo)
+                @component('components.molecules._m-media')
+                    @slot('item', [
+                        'type' => 'embed',
+                        'size' => 'l',
+                        'media' => ['embed' => $inlineModel->embed, 'medias' => $inlineModel->medias],
+                        'poster' => $inlineModel->imageFront('hero') ?? ImageHelpers::youtubeItemAsArray($inlineModel),
+                        'hideCaption' => true,
+                        'fullscreen' => false,
+                    ])
+                @endcomponent
+            @else
+                @include('site.blocks.layered_image_viewer', ['block' => $inlineModel])
+            @endif
         @endcomponent
     @endforeach
 @endif
@@ -325,7 +330,7 @@
 @endsection
 
 @section('extra_scripts')
-    @if (collect($multimediaViewers ?? [])->isNotEmpty())
+    @if (collect($multimediaInline ?? [])->contains(fn ($inline) => ($inline['type'] ?? null) === 'blocks'))
         <script src="{{FrontendHelpers::revAsset('scripts/layeredImageViewer.js')}}"></script>
     @endif
     @if (!empty($model3d))
