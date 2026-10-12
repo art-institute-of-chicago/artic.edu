@@ -40,6 +40,27 @@ class Artwork extends AbstractModel
         'toggle_autopublications',
         'toggle_autoexhibitions',
         'toggle_autoeducator_resources',
+        'related_content_title',
+        'related_content_description',
+        'override_related_content_title',
+        'publications_title',
+        'publications_description',
+        'override_publications_title',
+        'exhibitions_title',
+        'exhibitions_description',
+        'override_exhibitions_title',
+        'educator_resources_title',
+        'educator_resources_description',
+        'override_educator_resources_title',
+        'videos_title',
+        'videos_description',
+        'override_videos_title',
+        'view_360_title',
+        'view_360_description',
+        'override_view_360_title',
+        'view_3d_title',
+        'view_3d_description',
+        'override_view_3d_title',
     ];
 
     public $mediasParams = [
@@ -61,6 +82,13 @@ class Artwork extends AbstractModel
         'toggle_autopublications' => 'boolean',
         'toggle_autoexhibitions' => 'boolean',
         'toggle_autoeducator_resources' => 'boolean',
+        'override_related_content_title' => 'boolean',
+        'override_publications_title' => 'boolean',
+        'override_exhibitions_title' => 'boolean',
+        'override_educator_resources_title' => 'boolean',
+        'override_videos_title' => 'boolean',
+        'override_view_360_title' => 'boolean',
+        'override_view_3d_title' => 'boolean',
     ];
 
     public $attributes = [
@@ -69,6 +97,13 @@ class Artwork extends AbstractModel
         'toggle_autopublications' => false,
         'toggle_autoexhibitions' => false,
         'toggle_autoeducator_resources' => false,
+        'override_related_content_title' => false,
+        'override_publications_title' => false,
+        'override_exhibitions_title' => false,
+        'override_educator_resources_title' => false,
+        'override_videos_title' => false,
+        'override_view_360_title' => false,
+        'override_view_3d_title' => false,
     ];
 
     public function getFullTitleAttribute()
