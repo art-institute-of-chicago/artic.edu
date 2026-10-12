@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Schema;
  * This re-adds whichever of those columns are absent, so it is safe to run on
  * a database that already has them.
  */
+
 return new class () extends Migration {
     /**
      * Section keys that still have heading overrides in the CMS.
