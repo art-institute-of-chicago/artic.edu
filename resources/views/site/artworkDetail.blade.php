@@ -109,8 +109,10 @@
 {{-- AUDIO (not scaffolded yet): render here, above Videos, when audio data exists. Expected shape: @if (!$item->is_deaccessioned && collect($audioItems ?? [])->isNotEmpty()) … @endif — data will come from an artwork audio browser/blocks; see ArtworkController TODO. --}}
 
 @if (!$item->is_deaccessioned && collect($videoBlocks ?? [])->isNotEmpty())
+    @php $section = $sectionHeadings['videos'] ?? []; @endphp
     @component('components.organisms._o-related-content')
-        @slot('label', 'Video')
+        @slot('label', $section['title'] ?? 'Video')
+        @slot('description', $section['description'] ?? null)
         @slot('variation', 'viewer')
         @foreach ($videoBlocks as $block)
             @include('site.blocks.video', ['block' => $block])
@@ -123,33 +125,47 @@
     // digital explorers as listing cards, then the layered image viewer blocks
     // as inline viewers. A single `<hr>` separates each rendered group from the
     // previous one.
-    $multimediaBlocks = collect($multimediaItems ?? [])->filter(fn ($multimediaItem) => !empty($multimediaItem['model'] ?? null) && ($multimediaItem['type'] ?? null) === 'blocks')->values();
+    $multimediaViewers = collect($multimediaViewers ?? [])->filter(fn ($viewer) => !empty($viewer['model'] ?? null))->values();
     $multimediaRendered = 0;
 @endphp
 
-@if (!$item->is_deaccessioned && collect($multimediaCards ?? [])->isNotEmpty())
+@if (!$item->is_deaccessioned && collect($interactiveFeatureCards ?? [])->isNotEmpty())
     @if ($multimediaRendered > 0)
         @component('components.atoms._hr')
         @endcomponent
     @endif
     @php $multimediaRendered++; @endphp
     @component('components.organisms._o-related-content')
-        @slot('label', 'Multimedia')
-        @slot('items', $multimediaCards)
-        @slot('total', $multimediaCardsTotal ?? null)
+        @slot('label', 'Interactive Feature')
+        @slot('items', $interactiveFeatureCards)
+        @slot('total', $interactiveFeatureCardsTotal ?? null)
     @endcomponent
 @endif
 
-@if (!$item->is_deaccessioned && $multimediaBlocks->isNotEmpty())
+@if (!$item->is_deaccessioned && collect($digitalExplorerCards ?? [])->isNotEmpty())
     @if ($multimediaRendered > 0)
         @component('components.atoms._hr')
         @endcomponent
     @endif
     @php $multimediaRendered++; @endphp
-    @foreach ($multimediaBlocks as $multimediaItem)
-        @php $multimediaModel = $multimediaItem['model'] ?? null; @endphp
+    @component('components.organisms._o-related-content')
+        @slot('label', 'Digital Explorer')
+        @slot('items', $digitalExplorerCards)
+        @slot('total', $digitalExplorerCardsTotal ?? null)
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && $multimediaViewers->isNotEmpty())
+    @if ($multimediaRendered > 0)
+        @component('components.atoms._hr')
+        @endcomponent
+    @endif
+    @php $multimediaRendered++; @endphp
+    @foreach ($multimediaViewers as $viewer)
+        @php $multimediaModel = $viewer['model'] ?? null; @endphp
         @component('components.organisms._o-related-content')
-            @slot('label', 'Layered Image Viewer')
+            @slot('label', $viewer['title'] ?? 'Layered Image Viewer')
+            @slot('description', $viewer['description'] ?? null)
             @slot('variation', 'viewer')
             @include('site.blocks.layered_image_viewer', ['block' => $multimediaModel])
         @endcomponent
@@ -157,8 +173,10 @@
 @endif
 
 @if (!$item->is_deaccessioned && $item->assetLibrary)
+    @php $section = $sectionHeadings['view_360'] ?? []; @endphp
     @component('components.organisms._o-related-content')
-        @slot('label', '360° View')
+        @slot('label', $section['title'] ?? '360° View')
+        @slot('description', $section['description'] ?? null)
         @slot('variation', 'viewer')
         <div class="m-media m-media--l m-media--contain">
             <script type="application/json" id="assetLibrary-{{ $item->assetLibrary['id'] }}">
@@ -176,8 +194,10 @@
 @endif
 
 @if (!$item->is_deaccessioned && !empty($model3d))
+    @php $section = $sectionHeadings['view_3d'] ?? []; @endphp
     @component('components.organisms._o-related-content')
-        @slot('label', '3D View')
+        @slot('label', $section['title'] ?? '3D View')
+        @slot('description', $section['description'] ?? null)
         @slot('variation', 'viewer')
         @component('components.molecules._m-viewer-3d')
             @slot('url', 'https://sketchfab.com/models/' . $model3d->model_id . '/embed')
@@ -194,8 +214,10 @@
 @endif
 
 @if (!$item->is_deaccessioned && collect($relatedContentItems ?? [])->isNotEmpty())
+    @php $section = $sectionHeadings['related_content'] ?? []; @endphp
     @component('components.organisms._o-related-content')
-        @slot('label', 'Related Content')
+        @slot('label', $section['title'] ?? 'Related Content')
+        @slot('description', $section['description'] ?? null)
         @slot('variation', 'grid-cards')
         @slot('items', $relatedContentItems)
         @slot('total', $relatedContentTotal ?? null)
@@ -203,8 +225,10 @@
 @endif
 
 @if (!$item->is_deaccessioned && collect($publicationItems ?? [])->isNotEmpty())
+    @php $section = $sectionHeadings['publications'] ?? []; @endphp
     @component('components.organisms._o-related-content')
-        @slot('label', 'Art Institute Publications')
+        @slot('label', $section['title'] ?? 'Art Institute Publications')
+        @slot('description', $section['description'] ?? null)
         @slot('variation', 'grid-year')
         @slot('itemVariation', 'publications')
         @slot('items', $publicationItems)
@@ -214,8 +238,10 @@
 @endif
 
 @if (!$item->is_deaccessioned && collect($exhibitionItems ?? [])->isNotEmpty())
+    @php $section = $sectionHeadings['exhibitions'] ?? []; @endphp
     @component('components.organisms._o-related-content')
-        @slot('label', 'Art Institute Exhibitions')
+        @slot('label', $section['title'] ?? 'Art Institute Exhibitions')
+        @slot('description', $section['description'] ?? null)
         @slot('variation', 'list-rows')
         @slot('items', $exhibitionItems)
         @slot('total', $exhibitionTotal ?? null)
@@ -224,8 +250,10 @@
 @endif
 
 @if (!$item->is_deaccessioned && collect($educatorResourceItems ?? [])->isNotEmpty())
+    @php $section = $sectionHeadings['educator_resources'] ?? []; @endphp
     @component('components.organisms._o-related-content')
-        @slot('label', 'Educator Resources')
+        @slot('label', $section['title'] ?? 'Educator Resources')
+        @slot('description', $section['description'] ?? null)
         @slot('variation', 'list-rows')
         <ul class="o-related-content__list">
             @foreach ($educatorResourceItems as $resource)
@@ -297,7 +325,7 @@
 @endsection
 
 @section('extra_scripts')
-    @if (collect($multimediaItems ?? [])->contains('type', 'blocks'))
+    @if (collect($multimediaViewers ?? [])->isNotEmpty())
         <script src="{{FrontendHelpers::revAsset('scripts/layeredImageViewer.js')}}"></script>
     @endif
     @if (!empty($model3d))
