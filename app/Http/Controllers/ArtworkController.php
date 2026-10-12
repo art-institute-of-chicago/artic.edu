@@ -15,6 +15,7 @@ use App\Models\DigitalExplorer;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Experience;
 use App\Models\Hour;
+use App\Models\Video;
 use App\Models\Vendor\Block;
 use App\Libraries\SchemaOrg\SchemaMapper;
 use App\Models\AdCampaign;
@@ -82,8 +83,8 @@ class ArtworkController extends BaseScopedController
         $educatorResources = $this->buildSectionItems($item, 'manualEducatorResources', 'autoEducatorResources', 'toggle_autoeducator_resources', fn ($resource) => $resource);
 
         // Curated Multimedia entries: interactive features and digital explorers
-        // render as listing cards, while layered image viewer blocks keep their
-        // inline viewer and are therefore excluded from the cards.
+        // render as listing cards, while layered image viewers and videos keep
+        // their inline viewer and are therefore excluded from the cards.
         $multimediaSelections = ($item->getAugmentedModel()?->multimediaItemBlocks() ?? collect())
             ->map(fn ($block) => $this->multimediaSelection($block))
             ->filter()
@@ -101,12 +102,11 @@ class ArtworkController extends BaseScopedController
             ->filter()
             ->values();
 
-        // Each layered image viewer renders as its own inline section.
-        $multimediaViewers = $multimediaSelections
-            ->where('type', 'blocks')
+        // Inline items (layered image viewers and videos) keep their curated
+        // order, so each renders as its own consecutive section.
+        $multimediaInline = $multimediaSelections
+            ->whereIn('type', ['blocks', 'videos'])
             ->values();
-
-        $videoBlocks = $item->getAugmentedModel()?->blocks()->whereNull('parent_id')->where('type', 'video')->get() ?? collect();
 
         $viewData = [
             'autoRelated' => $this->getAutoRelated($item),
@@ -123,13 +123,12 @@ class ArtworkController extends BaseScopedController
             'exhibitionTotal' => $exhibitions['total'],
             'educatorResourceItems' => $educatorResources['items'],
             'educatorResourceTotal' => $educatorResources['total'],
-            'multimediaViewers' => $multimediaViewers,
+            'multimediaInline' => $multimediaInline,
             'interactiveFeatureCards' => $interactiveFeatureCards,
             'interactiveFeatureCardsTotal' => $interactiveFeatureCards->count(),
             'digitalExplorerCards' => $digitalExplorerCards,
             'digitalExplorerCardsTotal' => $digitalExplorerCards->count(),
             // AUDIO (not scaffolded yet): add 'audioItems' => … here once the audio source/browser exists.
-            'videoBlocks' => $videoBlocks,
             'item' => $item,
             'sectionHeadings' => ArtworkSectionService::sectionHeadings($item->getAugmentedModel()),
             'model3d' => $item->model3d,
@@ -272,6 +271,7 @@ class ArtworkController extends BaseScopedController
         $type = match (true) {
             $selected instanceof DigitalExplorer => 'digitalExplorers',
             $selected instanceof Experience => 'experiences',
+            $selected instanceof Video => 'videos',
             $selected instanceof \A17\Twill\Models\Block => 'blocks',
             default => null,
         };

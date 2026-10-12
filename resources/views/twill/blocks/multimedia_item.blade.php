@@ -15,13 +15,17 @@
             'label' => 'Layered Image Viewer',
             'value' => '/collection/artworks/layered-image-viewer-blocks/browser'
         ],
+        [
+            'label' => 'Video',
+            'value' => '/collection/articlesPublications/videos/browser'
+        ],
     ];
 @endphp
 
 <x-twill::browser
     name='multimedia_item'
     label='Item'
-    note='The interactive feature, digital explorer, or layered image viewer to show'
+    note='The interactive feature, digital explorer, layered image viewer, or video to show'
     :max='1'
     :endpoints="$endpoints"
 />
