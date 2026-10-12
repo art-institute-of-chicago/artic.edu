@@ -162,38 +162,21 @@ class Artwork extends AbstractModel
     }
 
     /**
-     * Items curated by hand in the artwork's Multimedia browser.
+     * The artwork's Multimedia blocks, in curated order.
      *
-     * Each entry is `['type' => <morph alias>, 'model' => <model>]`. Layered
-     * image viewer blocks are resolved through their snapshot clones.
+     * Each block selects one item (interactive feature, digital explorer, or
+     * layered image viewer block) and may override that item's section title and
+     * description.
      *
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function multimediaItems()
+    public function multimediaItemBlocks()
     {
-        return $this->relatedItems()
-            ->where('browser_name', 'artwork_multimedia')
+        return $this->blocks()
+            ->whereNull('parent_id')
+            ->where('type', 'multimedia_item')
             ->orderBy('position')
-            ->get()
-            ->map(function ($related) {
-                if ($related->related_type === 'blocks') {
-                    $model = \App\Models\Vendor\Block::find($related->related_id);
-                } else {
-                    $class = Relation::getMorphedModel($related->related_type) ?? $related->related_type;
-                    $model = class_exists($class) ? $class::find($related->related_id) : null;
-                }
-
-                if (!$model) {
-                    return null;
-                }
-
-                return [
-                    'type' => $related->related_type,
-                    'model' => $model,
-                ];
-            })
-            ->filter()
-            ->values();
+            ->get();
     }
 
     public function getTrackingTitleAttribute()
