@@ -125,6 +125,7 @@
     @endif
     @php $multimediaRendered++; @endphp
     @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
         @slot('label', 'Interactive Feature')
         @slot('items', $interactiveFeatureCards)
         @slot('total', $interactiveFeatureCardsTotal ?? null)
@@ -138,6 +139,7 @@
     @endif
     @php $multimediaRendered++; @endphp
     @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
         @slot('label', 'Digital Explorer')
         @slot('items', $digitalExplorerCards)
         @slot('total', $digitalExplorerCardsTotal ?? null)
@@ -156,6 +158,7 @@
             $isVideo = ($inline['type'] ?? null) === 'videos';
         @endphp
         @component('components.organisms._o-related-content')
+            @slot('preventFocusScroll', true)
             @slot('label', $inline['title'] ?? ($isVideo ? 'Video' : 'Layered Image Viewer'))
             @slot('description', $inline['description'] ?? null)
             @slot('variation', 'viewer')
@@ -180,6 +183,7 @@
 @if (!$item->is_deaccessioned && $item->assetLibrary)
     @php $section = $sectionHeadings['view_360'] ?? []; @endphp
     @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
         @slot('label', $section['title'] ?? '360° View')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'viewer')
@@ -201,6 +205,7 @@
 @if (!$item->is_deaccessioned && !empty($model3d))
     @php $section = $sectionHeadings['view_3d'] ?? []; @endphp
     @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
         @slot('label', $section['title'] ?? '3D View')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'viewer')
@@ -221,6 +226,7 @@
 @if (!$item->is_deaccessioned && collect($relatedContentItems ?? [])->isNotEmpty())
     @php $section = $sectionHeadings['related_content'] ?? []; @endphp
     @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
         @slot('label', $section['title'] ?? 'Related Content')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'grid-cards')
@@ -232,6 +238,7 @@
 @if (!$item->is_deaccessioned && collect($publicationItems ?? [])->isNotEmpty())
     @php $section = $sectionHeadings['publications'] ?? []; @endphp
     @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
         @slot('label', $section['title'] ?? 'Art Institute Publications')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'grid-year')
@@ -245,6 +252,7 @@
 @if (!$item->is_deaccessioned && collect($exhibitionItems ?? [])->isNotEmpty())
     @php $section = $sectionHeadings['exhibitions'] ?? []; @endphp
     @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
         @slot('label', $section['title'] ?? 'Art Institute Exhibitions')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'list-rows')
@@ -257,6 +265,7 @@
 @if (!$item->is_deaccessioned && collect($educatorResourceItems ?? [])->isNotEmpty())
     @php $section = $sectionHeadings['educator_resources'] ?? []; @endphp
     @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
         @slot('label', $section['title'] ?? 'Educator Resources')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'list-rows')
