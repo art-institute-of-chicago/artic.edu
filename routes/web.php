@@ -71,6 +71,7 @@ Route::group([
     'middleware' => [SanitizeQueryParameters::class],
     'allowed_query_params' => [
         'e',
+        'unsubscribe',
     ]
 ], function () {
     Route::get('/email-subscriptions', [EmailSubscriptionsController::class, 'index'])->name('forms.email-subscriptions');
