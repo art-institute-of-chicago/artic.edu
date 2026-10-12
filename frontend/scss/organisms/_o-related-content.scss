@@ -36,18 +36,11 @@
   font-size: 22px;
   margin: 0 0 30px 0;
 
-  @include breakpoint('medium+') {
-    margin-bottom: 0;
-  }
-
-  @each $name in ('medium', 'large', 'xlarge') {
-    @include breakpoint('#{$name}') {
-      width: colspan(13, $name);
-      margin-right: colspan(2, $name);
+  @include breakpoint('small-') {
+    &:has(+.o-related-content__description) {
+      margin: 0 0 10px 0;
     }
   }
-
-
 }
 
 .o-related-content__main {
@@ -69,6 +62,12 @@
     margin: 0;
   }
 
+  // The layered image viewer JS sets an inline height from a hardcoded 4:3
+  // ratio. Let the 16/9 aspect ratio on the osd mount drive the height here.
+  .o-layered-image-viewer {
+    height: auto !important;
+  }
+
   .m-viewer-3d {
     width: 100%;
     min-height: 0;
@@ -79,12 +78,46 @@
     }
   }
 
-  .m-media--360-embed .m-viewer-360-image {
-    width: 100%;
-    height: auto;
-    max-height: none;
+  .o-layered-image-viewer figcaption {
+    display: none;
+  }
+
+  .o-layered-image-viewer__osd-mount {
+    min-height: 0;
     aspect-ratio: 16 / 9;
-    object-fit: contain;
+  }
+
+  .m-media--360-embed {
+    aspect-ratio: 16 / 9;
+    height: auto;
+    background-color: $colors-themes-light-mode-background-primary;
+
+    .m-viewer-360 {
+      position: relative;
+      height: 100%;
+    }
+
+    .m-viewer-360-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .m-viewer-360-control {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin: 0;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.o-related-content--viewer {
+  max-height: 625px;
+}
+
   }
 }
 
