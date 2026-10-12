@@ -333,12 +333,22 @@ class EmailSubscriptionsController extends FormController
         $list = [];
 
         foreach ($subs as $value => $label) {
-            $isChecked = (bool) request('unsubscribe') ? false : (bool) $this->getOld($value);
-            $isDisabled = (bool) request('unsubscribe') ? true : (bool) $this->getOld('OptMuseum') === false;
-
-            if ($value === 'OptMuseum') {
-                $isChecked = !(bool) request('unsubscribe') || (bool) $this->getOld($value) ?? true;
-                $isDisabled = !(bool) request('unsubscribe') ?: true;
+            if ($this->getOld('OptMuseum') === false) {
+                // The user is already unsubscribed
+                $isChecked = false;
+                $isDisabled = true;
+            } elseif ((bool) request('unsubscribe')) {
+                // The user clicked on an "Unsubscribe" link
+                $isChecked = false;
+                $isDisabled = true;
+            } elseif ($value === 'OptMuseum') {
+                // We're treating the main newsletter checkbox
+                $isChecked = $this->getOld($value) ?? true;
+                $isDisabled = true;
+            } else {
+                // We're treating all the other checkboxes
+                $isChecked = (bool) $this->getOld($value);
+                $isDisabled = false;
             }
 
             $item = [
