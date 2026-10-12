@@ -73,6 +73,10 @@
             @slot('font', 'f-list-3')
             @slot('title', $relatedItem['title'] ?? '')
         @endcomponent
+
+        @if (!empty($relatedItem['description']))
+            <div class="o-related-content__item-description f-secondary">{!! $relatedItem['description'] !!}</div>
+        @endif
     </a>
 </li>
 @endif
