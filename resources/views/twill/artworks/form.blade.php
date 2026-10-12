@@ -5,7 +5,6 @@
         ['fieldset' => 'artwork_exhibitions', 'label' => 'Exhibitions'],
         ['fieldset' => 'artwork_educator_resources', 'label' => 'Educator Resources'],
         ['fieldset' => 'artwork_multimedia', 'label' => 'Multimedia'],
-        ['fieldset' => 'artwork_videos', 'label' => 'Videos'],
         ['fieldset' => 'metadata', 'label' => 'Metadata'],
         ['fieldset' => 'api', 'label' => 'Datahub fields'],
         ['fieldset' => '3dModel', 'label' => '3D Model'],
@@ -33,9 +32,34 @@
         :auto-related="$autoRelated"
         fieldset-title="Related Content"
         browser-label="Related Content items"
-        :max-items="1000" />
+        :max-items="0"
+        :title-field="'related_content_title'"
+        :title-override-field="'override_related_content_title'"
+        :description-field="'related_content_description'"
+        :endpoints="[
+            [
+                'label' => 'Article',
+                'value' => '/collection/articlesPublications/articles/browser'
+            ],
+            [
+                'label' => 'Digital Publication Article',
+                'value' => '/collection/articlesPublications/digitalPublicationsBrowser/articles/browser'
+            ],
+            [
+                'label' => 'Highlight',
+                'value' => '/collection/highlights/browser'
+            ],
+        ]" />
 
     <x-twill::formFieldset id="artwork_publications" title="Publications">
+        <p><strong>Section heading</strong></p>
+        <x-twill::checkbox name='override_publications_title' label='Override section title' default='false' />
+        <x-twill::formConnectedFields field-name='override_publications_title' :field-values="true" :render-for-blocks="false">
+            <x-twill::input name='publications_title' label='Section title' :maxlength='100' />
+        </x-twill::formConnectedFields>
+        <x-twill::wysiwyg name='publications_description' label='Section description' />
+        <hr>
+
         <p>These publications are curated by hand. They are shown first, followed by any automatically related publications below.</p>
 
         <x-twill::browser
@@ -46,10 +70,6 @@
                 [
                     'label' => 'Digital Publication',
                     'value' => '/collection/articlesPublications/digitalPublications/browser'
-                ],
-                [
-                    'label' => 'Digital Publication Article',
-                    'value' => '/collection/articlesPublications/digitalPublicationsBrowser/articles/browser'
                 ],
                 [
                     'label' => 'Print Publication',
@@ -92,6 +112,14 @@
     </x-twill::formFieldset>
 
     <x-twill::formFieldset id="artwork_exhibitions" title="Exhibitions">
+        <p><strong>Section heading</strong></p>
+        <x-twill::checkbox name='override_exhibitions_title' label='Override section title' default='false' />
+        <x-twill::formConnectedFields field-name='override_exhibitions_title' :field-values="true" :render-for-blocks="false">
+            <x-twill::input name='exhibitions_title' label='Section title' :maxlength='100' />
+        </x-twill::formConnectedFields>
+        <x-twill::wysiwyg name='exhibitions_description' label='Section description' />
+        <hr>
+
         <p>These exhibitions are curated by hand. They are shown first, followed by any automatically related exhibitions below.</p>
 
         <x-twill::browser
@@ -140,6 +168,14 @@
     </x-twill::formFieldset>
 
     <x-twill::formFieldset id="artwork_educator_resources" title="Educator Resources">
+        <p><strong>Section heading</strong></p>
+        <x-twill::checkbox name='override_educator_resources_title' label='Override section title' default='false' />
+        <x-twill::formConnectedFields field-name='override_educator_resources_title' :field-values="true" :render-for-blocks="false">
+            <x-twill::input name='educator_resources_title' label='Section title' :maxlength='100' />
+        </x-twill::formConnectedFields>
+        <x-twill::wysiwyg name='educator_resources_description' label='Section description' />
+        <hr>
+
         <p>These educator resources are curated by hand. They are shown first, followed by any automatically related educator resources below.</p>
 
         <x-twill::browser name='artwork_educator_resources' label='Educator Resources' route-prefix='collection' module-name='educatorResources' :max='12' />
@@ -178,37 +214,22 @@
     </x-twill::formFieldset>
 
     <x-twill::formFieldset id="artwork_multimedia" title="Multimedia">
-        <p>These interactive features, digital explorers, and layered image viewers are curated by hand and render as individual full-width sections on the artwork page, in the order selected here.</p>
-        <p><strong>Note:</strong> layered image viewer blocks are <em>copied</em> onto this artwork when you save. Later edits to the original block will not propagate, and deleting the original will not affect this artwork.</p>
+        <p>Add a block per item: interactive features, digital explorers, layered image viewers, and videos. Each item renders as an individual full-width section on the artwork page, in the order shown here.</p>
+        <p><strong>Note:</strong> layered image viewer blocks are referenced live, so later edits to the original block propagate, and deleting the original simply hides this section.</p>
 
-        <x-twill::browser
-            name='artwork_multimedia'
-            label='Multimedia'
-            :max='12'
-            :endpoints="[
-                [
-                    'label' => 'Interactive Feature',
-                    'value' => '/collection/interactiveFeatures/experiences/browser'
-                ],
-                [
-                    'label' => 'Digital Explorer',
-                    'value' => '/collection/digitalExplorers/browser'
-                ],
-                [
-                    'label' => 'Layered Image Viewer',
-                    'value' => '/collection/artworks/layered-image-viewer-blocks/browser'
-                ],
-            ]"
-        />
+        <p><strong>Video section heading</strong></p>
+        <x-twill::checkbox name='override_videos_title' label='Override video section title' default='false' />
+        <x-twill::formConnectedFields field-name='override_videos_title' :field-values="true" :render-for-blocks="false">
+            <x-twill::input name='videos_title' label='Video section title' :maxlength='100' />
+        </x-twill::formConnectedFields>
+        <x-twill::wysiwyg name='videos_description' label='Video section description' />
+        <hr>
+
+        @php $multimediaBlocks = BlockHelpers::getBlocksForEditor(['multimedia_item', 'video']); @endphp
+        <x-twill::block-editor :blocks="$multimediaBlocks" />
     </x-twill::formFieldset>
 
     {{-- AUDIO (not scaffolded yet): <x-twill::formFieldset id="artwork_audio" title="Audio"> … block editor limited to audio blocks … </x-twill::formFieldset> --}}
-
-    <x-twill::formFieldset id="artwork_videos" title="Videos">
-        <p>Videos added here render in a "Videos" section on the artwork page, in the order shown.</p>
-        @php $videoBlocks = BlockHelpers::getBlocksForEditor(['video']); @endphp
-        <x-twill::block-editor :blocks="$videoBlocks" />
-    </x-twill::formFieldset>
 
     @include('twill.partials.meta')
 
@@ -221,6 +242,14 @@
     </x-twill::formFieldset>
 
     <x-twill::formFieldset title="3D Object" id="3dModel">
+        <p><strong>Section heading</strong></p>
+        <x-twill::checkbox name='override_view_3d_title' label='Override section title' default='false' />
+        <x-twill::formConnectedFields field-name='override_view_3d_title' :field-values="true" :render-for-blocks="false">
+            <x-twill::input name='view_3d_title' label='Section title' :maxlength='100' />
+        </x-twill::formConnectedFields>
+        <x-twill::wysiwyg name='view_3d_description' label='Section description' />
+        <hr>
+
         <a17-block-aic_3d_model name="aic_3d_model" :thumbnail="false" :caption="false" :browser="false" :cc0="false" />
     </x-twill::formFieldset>
 
@@ -243,6 +272,14 @@
     </x-twill::formFieldset>
 
     <x-twill::formFieldset id="360file" title="360 File">
+        <p><strong>Section heading</strong></p>
+        <x-twill::checkbox name='override_view_360_title' label='Override section title' default='false' />
+        <x-twill::formConnectedFields field-name='override_view_360_title' :field-values="true" :render-for-blocks="false">
+            <x-twill::input name='view_360_title' label='Section title' :maxlength='100' />
+        </x-twill::formConnectedFields>
+        <x-twill::wysiwyg name='view_360_description' label='Section description' />
+        <hr>
+
         <x-twill::files
             name='image_sequence_file'
             label='Image Sequence Zip'
