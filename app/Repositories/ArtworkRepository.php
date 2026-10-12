@@ -10,7 +10,6 @@ use A17\Twill\Models\Media;
 use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Repositories\Behaviors\HandleArtworkSections;
-use App\Repositories\Behaviors\HandleArtworkMultimedia;
 use App\Repositories\Behaviors\Handle3DModel;
 use App\Repositories\Api\BaseApiRepository;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
@@ -22,7 +21,6 @@ class ArtworkRepository extends BaseApiRepository
 {
     use HandleFeaturedRelated;
     use HandleArtworkSections;
-    use HandleArtworkMultimedia;
     use Handle3DModel;
     use HandleApiBlocks, HandleBlocks {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
