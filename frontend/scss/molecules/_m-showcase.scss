@@ -48,11 +48,11 @@
             }
         }
         .m-showcase-media {
-            margin: auto;
+            margin-top: $blocks-spacings-double;
             min-width: unset;
             position: relative;
 
-            @include breakpoint('xsmall') {
+            @include breakpoint('small-') {
                 min-width: 100%;
             }
 
