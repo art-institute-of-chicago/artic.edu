@@ -24,6 +24,17 @@
   background-color: $colors-themes-light-mode-rules-primary;
 }
 
+.o-related-content__heading {
+  width: 100%;
+
+  @each $name in ('medium', 'large', 'xlarge') {
+    @include breakpoint('#{$name}') {
+      width: colspan(13, $name);
+      margin-right: colspan(2, $name);
+    }
+  }
+}
+
 .o-related-content__label {
   @include untuck();
 
@@ -118,6 +129,20 @@
   max-height: 625px;
 }
 
+.o-related-content__description {
+  @include untuck();
+  &::before,
+  &::after {
+    padding: 0;
+  }
+  font-weight: 400;
+  max-width: 100%;
+  line-height: 1.05rem;
+  margin-bottom: 30px;
+  font-size: 14px !important;
+
+  @include breakpoint('small-') {
+    font-size: 11px;
   }
 }
 
