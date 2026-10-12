@@ -276,5 +276,6 @@ return [
         'explorer_light',
         'explorer_model',
         'explorer_annotation_overlay_block'
+        'multimedia_item'
     ]
 ];
