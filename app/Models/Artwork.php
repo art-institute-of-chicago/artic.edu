@@ -13,7 +13,6 @@ use App\Models\Behaviors\HasMedias;
 use App\Models\Api\TextEmbedding;
 use App\Models\Api\ImageEmbedding;
 use App\Helpers\StringHelpers;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 class Artwork extends AbstractModel
 {
