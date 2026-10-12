@@ -3,6 +3,8 @@ import { googleTagManagerDataFromLink } from '../../functions/core';
 
 const accordion = function(container) {
 
+  const preventFocusScroll = container.getAttribute('data-accordion-prevent-focus-scroll') === 'true';
+
   function _findAncestor(el, cls) {
     while ((el = el.parentElement) && !el.classList.contains(cls));
     return el;
@@ -50,6 +52,18 @@ const accordion = function(container) {
   function _getHeightAndSet(target) {
     let targetHeight = target.firstElementChild.offsetHeight;
     target.style.height = targetHeight + 'px';
+  }
+
+  function _focusPanel(target) {
+    if (!preventFocusScroll) {
+      setFocusOnTarget(target);
+      return;
+    }
+    target.focus({ preventScroll: true });
+    if (target !== document.activeElement) {
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
   }
 
   function _unsetAfterAnimation() {
@@ -100,7 +114,7 @@ const accordion = function(container) {
           target.style.overflow = 'hidden';
           trigger.setAttribute('aria-expanded', 'true');
           target.setAttribute('aria-hidden', 'false');
-          setTimeout(function(){ setTimeout(function(){ setFocusOnTarget(target); }, 0) }, 0)
+          setTimeout(function(){ setTimeout(function(){ _focusPanel(target); }, 0) }, 0)
           _getHeightAndSet(target);
           // If the form has some google tag manager props, tell GTM
           let googleTagManagerObject = googleTagManagerDataFromLink(trigger);

@@ -14,6 +14,7 @@
     $id = $id ?? (\Illuminate\Support\Str::slug($label) ?: 'related-content');
     $seeAllLabel = $seeAllLabel ?? \Illuminate\Support\Str::lower($label);
     $description = $description ?? null;
+    $preventFocusScroll = $preventFocusScroll ?? false;
     $capped = $items->count() > $limit;
     $itemVariation = $itemVariation ?? null;
 
@@ -64,7 +65,7 @@
         </div>
     </section>
 @elseif ($items->isNotEmpty())
-    <section class="o-related-content o-related-content--{{ $variationKey }}"{!! $capped ? ' data-behavior="accordion"' : '' !!} aria-labelledby="{{ $id }}-title">
+    <section class="o-related-content o-related-content--{{ $variationKey }}"{!! $capped ? ' data-behavior="accordion"' . ($preventFocusScroll ? ' data-accordion-prevent-focus-scroll="true"' : '') : '' !!} aria-labelledby="{{ $id }}-title">
         <div class="o-related-content__heading">
             <h2 id="{{ $id }}-title" class="o-related-content__label f-module-title-2">{{ $label }}</h2>
 
