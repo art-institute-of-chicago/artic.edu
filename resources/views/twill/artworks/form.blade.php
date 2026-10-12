@@ -217,15 +217,7 @@
         <p>Add a block per item: interactive features, digital explorers, layered image viewers, and videos. Each item renders as an individual full-width section on the artwork page, in the order shown here.</p>
         <p><strong>Note:</strong> layered image viewer blocks are referenced live, so later edits to the original block propagate, and deleting the original simply hides this section.</p>
 
-        <p><strong>Video section heading</strong></p>
-        <x-twill::checkbox name='override_videos_title' label='Override video section title' default='false' />
-        <x-twill::formConnectedFields field-name='override_videos_title' :field-values="true" :render-for-blocks="false">
-            <x-twill::input name='videos_title' label='Video section title' :maxlength='100' />
-        </x-twill::formConnectedFields>
-        <x-twill::wysiwyg name='videos_description' label='Video section description' />
-        <hr>
-
-        @php $multimediaBlocks = BlockHelpers::getBlocksForEditor(['multimedia_item', 'video']); @endphp
+        @php $multimediaBlocks = BlockHelpers::getBlocksForEditor(['multimedia_item']); @endphp
         <x-twill::block-editor :blocks="$multimediaBlocks" />
     </x-twill::formFieldset>
 
