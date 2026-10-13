@@ -101,9 +101,10 @@
   .m-media--360-embed {
     aspect-ratio: 16 / 9;
     height: auto;
-    background-color: $colors-themes-light-mode-background-primary;
 
     .m-viewer-360 {
+      display: flex;
+      flex-direction: column;
       position: relative;
       height: 100%;
     }
@@ -111,16 +112,19 @@
     .m-viewer-360-image {
       display: block;
       width: 100%;
-      height: 100%;
+      height: 90%;
       object-fit: contain;
+      background: $colors-themes-light-mode-background-primary;
     }
 
     .m-viewer-360-control {
-      position: absolute;
+      position: relative;
       bottom: 0;
       left: 50%;
       margin: 0;
       transform: translateX(-50%);
+      margin-top: auto;
+      width: 200px;
     }
   }
 }
