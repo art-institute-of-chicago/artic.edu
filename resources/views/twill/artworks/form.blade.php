@@ -49,6 +49,10 @@
                 'label' => 'Highlight',
                 'value' => '/collection/highlights/browser'
             ],
+            [
+                'label' => 'Video',
+                'value' => '/collection/articlesPublications/videos/browser'
+            ],
         ]" />
 
     <x-twill::formFieldset id="artwork_publications" title="Publications">
