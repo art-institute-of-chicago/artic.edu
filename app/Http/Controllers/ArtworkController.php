@@ -90,8 +90,21 @@ class ArtworkController extends BaseScopedController
             ->filter()
             ->values();
 
+        $multimediaInline = $multimediaSelections
+            ->whereIn('type', ['blocks', 'videos'])
+            ->values();
+
+        $interactiveFeatureEmbeds = $multimediaSelections
+            ->where('type', 'experiences')
+            ->map(fn ($selection) => $this->interactiveFeatureEmbed($selection))
+            ->filter()
+            ->values();
+
+        $embeddedExperienceIds = $interactiveFeatureEmbeds->pluck('model.id')->all();
+
         $interactiveFeatureCards = $multimediaSelections
             ->where('type', 'experiences')
+            ->reject(fn ($selection) => in_array($selection['model']->id ?? null, $embeddedExperienceIds, true))
             ->map(fn ($selection) => $this->multimediaCard($selection))
             ->filter()
             ->values();
@@ -100,12 +113,6 @@ class ArtworkController extends BaseScopedController
             ->where('type', 'digitalExplorers')
             ->map(fn ($selection) => $this->multimediaCard($selection))
             ->filter()
-            ->values();
-
-        // Inline items (layered image viewers and videos) keep their curated
-        // order, so each renders as its own consecutive section.
-        $multimediaInline = $multimediaSelections
-            ->whereIn('type', ['blocks', 'videos'])
             ->values();
 
         $viewData = [
@@ -124,6 +131,7 @@ class ArtworkController extends BaseScopedController
             'educatorResourceItems' => $educatorResources['items'],
             'educatorResourceTotal' => $educatorResources['total'],
             'multimediaInline' => $multimediaInline,
+            'interactiveFeatureEmbeds' => $interactiveFeatureEmbeds,
             'interactiveFeatureCards' => $interactiveFeatureCards,
             'interactiveFeatureCardsTotal' => $interactiveFeatureCards->count(),
             'digitalExplorerCards' => $digitalExplorerCards,
@@ -313,6 +321,25 @@ class ArtworkController extends BaseScopedController
         }
 
         return $card;
+    }
+
+    private function interactiveFeatureEmbed(array $selection): ?array
+    {
+        $experience = $selection['model'] ?? null;
+
+        if (!$experience instanceof Experience || $experience->kiosk_only) {
+            return null;
+        }
+
+        $routeArgs = ['slug' => $experience->getSlug()];
+
+        return [
+            'model' => $experience,
+            'title' => $selection['title'] ?: $experience->title,
+            'description' => $selection['description'],
+            'href' => route('interactiveFeatures.show', $routeArgs),
+            'embedHref' => route('interactiveFeatures.show-kiosk', $routeArgs),
+        ];
     }
 
     private function itemHref($model, $fallbackKey = 'url_without_slug')
