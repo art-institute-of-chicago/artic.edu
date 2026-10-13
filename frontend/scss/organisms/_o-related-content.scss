@@ -140,6 +140,14 @@
   line-height: 1.05rem;
   margin-bottom: 30px;
   font-size: 14px !important;
+  font-family: $sans-serif-font--loaded;
+
+  em,
+  i {
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
 
   @include breakpoint('small-') {
     font-size: 11px;
