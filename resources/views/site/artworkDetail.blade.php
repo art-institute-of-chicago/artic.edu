@@ -140,9 +140,11 @@
     @php
         $mainArtist = ($item->mainArtist && $item->mainArtist->isNotEmpty()) ? $item->mainArtist->first() : null;
         $styleTitle = $exploreMoreStyleTitle ?? null;
+        $hiddenArtistIds = array_map('trim', (array) config('aic.hide_artist_ids_from_explore_more', []));
+        $hideExploreMoreByArtist = !empty($mainArtist) && in_array((string) $mainArtist->id, $hiddenArtistIds, true);
     @endphp
 
-    @if (isset($exploreMoreByArtist) && !empty($mainArtist) && $exploreMoreByArtist->count() > 1)
+    @if (isset($exploreMoreByArtist) && !empty($mainArtist) && !$hideExploreMoreByArtist && $exploreMoreByArtist->count() > 1)
         @component('components.organisms._o-collection-carousel')
             @slot('headingPrefix', 'More works by ')
             @slot('headingLinkText', $mainArtist->title)
