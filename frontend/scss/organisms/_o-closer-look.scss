@@ -13,3 +13,14 @@
 #footer {
   backface-visibility: hidden;
 }
+
+.o-closer-look-embed__frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.o-closer-look-embed__fallback {
+  margin-top: 15px;
+}

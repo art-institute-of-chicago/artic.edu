@@ -109,21 +109,31 @@
 {{-- AUDIO (not scaffolded yet): render here when audio data exists. Expected shape: @if (!$item->is_deaccessioned && collect($audioItems ?? [])->isNotEmpty()) … @endif — data will come from an artwork audio browser/blocks; see ArtworkController TODO. --}}
 
 @php
-    // Multimedia: the curated multimedia_item blocks, each an interactive
-    // feature, digital explorer, layered image viewer, or video. Interactive
-    // features and digital explorers render as listing cards; layered image
-    // viewers and videos render inline, in curated order, as their own
-    // sections. A single `<hr>` separates each rendered group.
     $multimediaInline = collect($multimediaInline ?? [])->filter(fn ($item) => !empty($item['model'] ?? null))->values();
-    $multimediaRendered = 0;
 @endphp
 
-@if (!$item->is_deaccessioned && collect($interactiveFeatureCards ?? [])->isNotEmpty())
-    @if ($multimediaRendered > 0)
-        @component('components.atoms._hr')
+@if (!$item->is_deaccessioned && collect($interactiveFeatureEmbeds ?? [])->isNotEmpty())
+    @foreach ($interactiveFeatureEmbeds as $feature)
+        @component('components.organisms._o-related-content')
+            @slot('preventFocusScroll', true)
+            @slot('id', 'interactive-feature-' . ($feature['model']->id ?? $loop->index))
+            @slot('label', $feature['title'] ?: 'Interactive Feature')
+            @slot('description', $feature['description'] ?? null)
+            <div class="o-closer-look-embed">
+                <iframe
+                    class="o-closer-look-embed__frame"
+                    src="{{ $feature['embedHref'] }}"
+                    title="{{ $feature['title'] ?: 'Interactive feature' }}"
+                    loading="lazy"
+                    allow="fullscreen; autoplay"
+                    allowfullscreen
+                ></iframe>
+            </div>
         @endcomponent
-    @endif
-    @php $multimediaRendered++; @endphp
+    @endforeach
+@endif
+
+@if (!$item->is_deaccessioned && collect($interactiveFeatureCards ?? [])->isNotEmpty())
     @component('components.organisms._o-related-content')
         @slot('preventFocusScroll', true)
         @slot('label', 'Interactive Feature')
@@ -133,11 +143,6 @@
 @endif
 
 @if (!$item->is_deaccessioned && collect($digitalExplorerCards ?? [])->isNotEmpty())
-    @if ($multimediaRendered > 0)
-        @component('components.atoms._hr')
-        @endcomponent
-    @endif
-    @php $multimediaRendered++; @endphp
     @component('components.organisms._o-related-content')
         @slot('preventFocusScroll', true)
         @slot('label', 'Digital Explorer')
@@ -147,11 +152,6 @@
 @endif
 
 @if (!$item->is_deaccessioned && $multimediaInline->isNotEmpty())
-    @if ($multimediaRendered > 0)
-        @component('components.atoms._hr')
-        @endcomponent
-    @endif
-    @php $multimediaRendered++; @endphp
     @foreach ($multimediaInline as $inline)
         @php
             $inlineModel = $inline['model'] ?? null;
