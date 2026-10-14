@@ -1,9 +1,5 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
 /**
  * The section heading overrides were introduced by
  * 2026_10_06_100000_add_section_overrides_to_artworks_table, but some
@@ -14,6 +10,10 @@ use Illuminate\Support\Facades\Schema;
  * This re-adds whichever of those columns are absent, so it is safe to run on
  * a database that already has them.
  */
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class () extends Migration {
     /**
