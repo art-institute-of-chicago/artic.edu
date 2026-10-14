@@ -136,7 +136,7 @@ class ArtworkController extends BaseScopedController
             'interactiveFeatureCardsTotal' => $interactiveFeatureCards->count(),
             'digitalExplorerCards' => $digitalExplorerCards,
             'digitalExplorerCardsTotal' => $digitalExplorerCards->count(),
-            'audioItems' => $item->multimediaResources,
+            'audioItems' => $item->soundResources,
             'item' => $item,
             'sectionHeadings' => ArtworkSectionService::sectionHeadings($item->getAugmentedModel()),
             'model3d' => $item->model3d,

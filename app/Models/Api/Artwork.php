@@ -249,6 +249,16 @@ class Artwork extends BaseApiModel
             ->get(['id', 'title', 'content', 'api_model', 'is_multimedia_resource', 'is_educational_resource', 'web_url']);
     }
 
+    public function getSoundResourcesAttribute()
+    {
+        return Asset::query()
+            ->forceEndpoint('generalSearch')
+            ->multimediaForArtwork($this->id)
+            ->assetsOfTypes(['sounds'])
+            ->forPage(null, self::RELATED_MULTIMEDIA)
+            ->get(['id', 'title', 'content', 'api_model', 'is_multimedia_resource', 'is_educational_resource', 'web_url']);
+    }
+
     public function getEducationalResourcesAttribute()
     {
         return Asset::query()
