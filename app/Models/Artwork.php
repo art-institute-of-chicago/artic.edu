@@ -120,24 +120,6 @@ class Artwork extends AbstractModel
     }
 
     /**
-     * Exhibitions selected by hand in the artwork's Exhibitions browser.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function manualExhibitions()
-    {
-        return $this->getRelatedWithApiModels('artwork_exhibitions', [
-            'exhibitions' => [
-                'apiModel' => 'App\Models\Api\Exhibition',
-                'routePrefix' => 'exhibitionsEvents',
-                'moduleName' => 'exhibitions',
-            ],
-        ], [
-            'exhibitions' => true,
-        ]) ?? collect([]);
-    }
-
-    /**
      * Educator Resources selected by hand in the artwork's Educator Resources
      * browser.
      *
