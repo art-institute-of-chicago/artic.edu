@@ -1522,8 +1522,19 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
 
 // Quick aside for artwork detail's sound variant
 .m-listing--inline.m-listing--sound {
+  padding: 0;
+
+  & + .m-listing--sound {
+    @include breakpoint('medium+') {
+      margin-top: 60px;
+    }
+  }
+
   .m-listing__meta--sound {
-    @include font-styles($f-module-title-1);
+    font-family: $text-fonts-serif-loaded;
+    font-size: $text-sizes-medium;
+    font-weight: $text-weights-regular;
+    line-height: $text-line-heights-tall;
   }
 
   .m-listing__link {
@@ -1532,11 +1543,17 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   }
 
   audio {
+    background-color: unset;
+    margin-top: 10px;
     width: 100%;
-    margin-top: 20px;
 
-    @include breakpoint('large+') {
-      margin-top: 24px;
+    &::-webkit-media-controls-enclosure {
+      background-color: unset;
+      border: 2px solid $colors-scales-grey-light;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 20px;
     }
   }
 
