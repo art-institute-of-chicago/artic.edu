@@ -115,62 +115,6 @@
         </x-twill::formConnectedFields>
     </x-twill::formFieldset>
 
-    <x-twill::formFieldset id="artwork_exhibitions" title="Exhibitions">
-        <p><strong>Section heading</strong></p>
-        <x-twill::checkbox name='override_exhibitions_title' label='Override section title' default='false' />
-        <x-twill::formConnectedFields field-name='override_exhibitions_title' :field-values="true" :render-for-blocks="false">
-            <x-twill::input name='exhibitions_title' label='Section title' :maxlength='100' />
-        </x-twill::formConnectedFields>
-        <x-twill::wysiwyg name='exhibitions_description' label='Section description' />
-        <hr>
-
-        <p>These exhibitions are curated by hand. They are shown first, followed by any automatically related exhibitions below.</p>
-
-        <x-twill::browser
-            name='artwork_exhibitions'
-            label='Exhibitions'
-            :max='12'
-            :endpoints="[
-                [
-                    'label' => 'Exhibition',
-                    'value' => '/exhibitionsEvents/exhibitions/browser'
-                ],
-            ]"
-        />
-
-        <x-twill::checkbox
-            name='toggle_autoexhibitions'
-            label='Suppress auto-related exhibitions'
-            default='false'
-        />
-
-        <br>
-
-        <x-twill::formConnectedFields
-            field-name='toggle_autoexhibitions'
-            :field-values="false"
-            :render-for-blocks='false'
-        >
-
-            @if(collect($autoExhibitions ?? [])->isNotEmpty())
-                <p>These exhibitions are automatically related and will fill the section along with any of the above selected items.</p>
-
-                <ol style="margin: 1em 0; padding-left: 40px">
-                    @foreach($autoExhibitions as $exhibition)
-                        <li style="list-style-type: decimal; margin-bottom: 0.5em">
-                            @if(!empty($exhibition->admin_edit_url))
-                                <a href="{{ $exhibition->admin_edit_url }}">{{ $exhibition->title }}</a>
-                            @else
-                                {{ $exhibition->title }}
-                            @endif
-                        </li>
-                    @endforeach
-                </ol>
-            @endif
-
-        </x-twill::formConnectedFields>
-    </x-twill::formFieldset>
-
     <x-twill::formFieldset id="artwork_educator_resources" title="Educator Resources">
         <p><strong>Section heading</strong></p>
         <x-twill::checkbox name='override_educator_resources_title' label='Override section title' default='false' />
