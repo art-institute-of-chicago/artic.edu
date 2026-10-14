@@ -106,7 +106,17 @@
 
 </article>
 
-{{-- AUDIO (not scaffolded yet): render here when audio data exists. Expected shape: @if (!$item->is_deaccessioned && collect($audioItems ?? [])->isNotEmpty()) … @endif — data will come from an artwork audio browser/blocks; see ArtworkController TODO. --}}
+@if (!$item->is_deaccessioned && collect($audioItems ?? [])->isNotEmpty())
+    @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
+        @slot('label', 'Audio')
+        @foreach ($audioItems as $audio)
+            @component('components.molecules._m-listing----sound')
+                @slot('item', (object) $audio)
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
 
 @php
     $multimediaInline = collect($multimediaInline ?? [])->filter(fn ($item) => !empty($item['model'] ?? null))->values();
