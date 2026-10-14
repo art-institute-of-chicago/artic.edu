@@ -79,7 +79,7 @@ class ArtworkController extends BaseScopedController
 
         $relatedContent = $this->buildRelatedContent($item);
         $publications = $this->buildSectionItems($item, 'manualPublications', 'autoPublications', 'toggle_autopublications', fn ($publication) => $publication instanceof DigitalPublicationArticle ? null : $this->normalizePublicationItem($publication));
-        $exhibitions = $this->buildSectionItems($item, 'manualExhibitions', 'autoExhibitions', 'toggle_autoexhibitions', fn ($exhibition) => $this->normalizeExhibitionItem($exhibition));
+        $exhibitions = $this->buildSectionItems($item, '', 'autoExhibitions', 'toggle_autoexhibitions', $this->normalizeExhibitionItem(...));
         $educatorResources = $this->buildSectionItems($item, 'manualEducatorResources', 'autoEducatorResources', 'toggle_autoeducator_resources', fn ($resource) => $resource);
 
         // Curated Multimedia entries: interactive features and digital explorers
