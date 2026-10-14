@@ -18,7 +18,6 @@
     $capped = $items->count() > $limit;
     $itemVariation = $itemVariation ?? null;
 
-
     // Capped lists render the first `$limit` items inline; the overflow moves
     // into an accordion panel handled by the shared accordion behavior.
     $mainItems = $capped ? $items->take($limit) : $items;
