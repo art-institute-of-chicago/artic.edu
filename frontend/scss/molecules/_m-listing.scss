@@ -1525,6 +1525,8 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
   padding: 0;
 
   & + .m-listing--sound {
+    margin-top: 30px;
+
     @include breakpoint('medium+') {
       margin-top: 60px;
     }
@@ -1547,13 +1549,8 @@ $f-audio-subtitle: generate-font-obj((font-family: $sans-serif-font,
     margin-top: 10px;
     width: 100%;
 
-    &::-webkit-media-controls-enclosure {
-      background-color: unset;
-      border: 2px solid $colors-scales-grey-light;
-    }
-
     @include breakpoint('medium+') {
-      margin-top: 20px;
+      margin-top: 10px;
     }
   }
 

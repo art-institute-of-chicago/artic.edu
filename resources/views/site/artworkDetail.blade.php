@@ -349,6 +349,7 @@
 @endsection
 
 @section('extra_scripts')
+    <script src="{{FrontendHelpers::revAsset('scripts/videojs.js')}}"></script>
     @if (collect($multimediaInline ?? [])->contains(fn ($inline) => ($inline['type'] ?? null) === 'blocks'))
         <script src="{{FrontendHelpers::revAsset('scripts/layeredImageViewer.js')}}"></script>
     @endif
