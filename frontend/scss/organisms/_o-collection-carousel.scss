@@ -101,6 +101,13 @@
         position: absolute;
         right: 0;
         top: 0;
+
+        @include breakpoint('medium+') {
+          .btn {
+            padding-top: 4px;
+            padding-bottom: 18px;
+          }
+        }
       }
 
       @include breakpoint('small-') {
