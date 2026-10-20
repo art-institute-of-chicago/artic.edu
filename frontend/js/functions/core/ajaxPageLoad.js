@@ -48,6 +48,12 @@ const ajaxPageLoad = function() {
     } else {
       document.documentElement.classList.remove('s-gallery-header');
     }
+    // Check if dark mode is enabled
+    if (doc.documentElement.classList.contains('s-dark-mode')) {
+        document.documentElement.classList.add('s-dark-mode');
+    } else {
+        document.documentElement.classList.remove('s-dark-mode');
+    }
     // Check to see if we need the roadblock class
     if (doc.documentElement.classList.contains('s-roadblock-defined')) {
       let promos = doc.querySelector('.g-modal--promo');
