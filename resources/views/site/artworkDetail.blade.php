@@ -129,7 +129,7 @@
             @slot('id', 'interactive-feature-' . ($feature['model']->id ?? $loop->index))
             @slot('label', $feature['title'] ?: 'Interactive Feature')
             @slot('description', $feature['description'] ?? null)
-            <div class="o-closer-look-embed">
+            <div class="o-closer-look-embed o-closer-look-embed--fit-16x10">
                 <iframe
                     class="o-closer-look-embed__frame"
                     src="{{ $feature['embedHref'] }}"
