@@ -106,9 +106,10 @@ class InteractiveFeatureExperiencesController extends FrontController
 
         $view = 'site.experienceDetail';
 
-        $isKiosk = View::shared('isKiosk', false);
+        $isKiosk = View::shared('isKiosk', false) || request()->routeIs('interactiveFeatures.show-kiosk');
 
-        if (isset($isKiosk) && $isKiosk) {
+        if ($isKiosk) {
+            View::share('isKiosk', true);
             return view('site.experienceDetail', [
               'contrastHeader' => true,
               'experience' => $experience
