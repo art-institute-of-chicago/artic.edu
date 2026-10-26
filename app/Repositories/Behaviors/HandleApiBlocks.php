@@ -16,7 +16,7 @@ trait HandleApiBlocks
                 $relationRepository = $this->getModelRepository($relation);
                 $relatedItems = $relationRepository->get([], ['id' => $ids], [], -1);
             } catch (\Throwable $th) {
-                $relatedItems = collect();
+                $relatedItems = $block->getRelated($relation) ?? collect();
             }
             $sortedRelatedItems = array_flip($ids);
 
@@ -71,9 +71,15 @@ trait HandleApiBlocks
                     }
                 }
 
+                $name = $relatedElement->titleInBrowser ?? $relatedElement->title;
+
+                if (empty($name) && method_exists($relatedElement, 'input')) {
+                    $name = Str::headline((string) $relatedElement->type);
+                }
+
                 return [
                     'id' => $relatedElement->id,
-                    'name' => $relatedElement->titleInBrowser ?? $relatedElement->title,
+                    'name' => $name,
                     'endpointType' => $relatedElement->getMorphClass(),
                 ] + $data;
             })->toArray();
