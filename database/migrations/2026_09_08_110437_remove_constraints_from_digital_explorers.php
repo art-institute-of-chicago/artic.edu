@@ -8,14 +8,14 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('digital_explorers', function (Blueprint $table) {
-            $table->text('info_description')->change();
+            $table->text('info_description')->nullable()->change();
         });
     }
 
     public function down(): void
     {
         Schema::table('digital_explorers', function (Blueprint $table) {
-            $table->string('info_description')->change();
+            $table->string('info_description')->nullable()->change();
         });
     }
 };
