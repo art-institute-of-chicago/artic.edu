@@ -16,8 +16,9 @@ use App\Helpers\DateHelpers;
 class BaseService
 {
     public const MAX_TAGS = 3;
-    public const PER_PAGE_EXPLORE_FURTHER = 13;
+    public const PER_PAGE_EXPLORE_FURTHER = 18;
 
+    public const EXPLORE_FURTHER_CANDIDATES = 30;
     /**
      * Array with valid filters for the Explore Further section.
      */
@@ -26,6 +27,7 @@ class BaseService
         'ef-artist_ids',
         'ef-style_ids',
         'ef-place_ids',
+        'ef-gallery_ids',
         'ef-date_ids',
         'ef-color_ids',
         'ef-most-similar_ids',
@@ -131,7 +133,7 @@ class BaseService
             ->forceEndpoint('search');
 
         $active = $parameters->filter(function ($value, $key) {
-            return Str::contains($key, 'ef-');
+            return Str::contains($key, 'ef-') && !empty($value);
         })->isNotEmpty();
 
         if ($active) {
@@ -147,6 +149,7 @@ class BaseService
                     ->byArtists($parameters->get('ef-artist_ids'))
                     ->byStyles($parameters->get('ef-style_ids'))
                     ->byPlaces($parameters->get('ef-place_ids'))
+                    ->byGalleryIds($parameters->get('ef-gallery_ids'))
                     ->yearRange($beforeYear, $afterYear)
                     ->byColor($parameters->get('ef-color_ids'));
             }
@@ -195,7 +198,7 @@ class BaseService
             }
         }
 
-        $results = $query->getPaginatedModel(self::PER_PAGE_EXPLORE_FURTHER, \App\Models\Api\Artwork::SEARCH_FIELDS);
+        $results = $query->getPaginatedModel(self::EXPLORE_FURTHER_CANDIDATES, \App\Models\Api\Artwork::SEARCH_FIELDS);
 
         // Remove our own element from the collection, but only if there's more than one result
         if ($results->count() > 1) {
@@ -205,7 +208,12 @@ class BaseService
             });
         }
 
-        return $results;
+        // Rare occasion, but sometimes an object is chosen and doesn't have an image
+        return $results
+            ->filter(function ($value) {
+                return !empty($value->imageFront());
+            })
+            ->take(self::PER_PAGE_EXPLORE_FURTHER);
     }
 
     public function collectionUrl($parameters = [])
@@ -255,6 +263,9 @@ class BaseService
                         break;
                     case 'place':
                         return route('collection', ['place_ids' => $id]);
+
+                    case 'gallery':
+                        return route('collection', ['gallery_ids' => $id]);
 
                         break;
                     case 'date':

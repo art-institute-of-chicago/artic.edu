@@ -1,6 +1,6 @@
 html:has(.o-digital-explorer) {
   body {
-    background-color: $color__black--91;
+    background-color: $colors-scales-grey-91 ;
   }
 
   &:has(.kioskMode) {
@@ -68,7 +68,7 @@ html:has(.o-digital-explorer) {
 
       h2,
       p {
-        color: $color__white !important;
+        color: $colors-scales-grey-0 !important;
         font-family: $serif-font--loaded !important;
         text-align: start;
         text-transform: none;
@@ -166,7 +166,7 @@ html:has(.o-digital-explorer) {
     justify-content: center;
     padding: 2rem;
     text-align: center;
-    color: $color__white;
+    color: $colors-scales-grey-0;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -181,7 +181,7 @@ html:has(.o-digital-explorer) {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    color: $color__white;
+    color: $colors-scales-grey-0;
     opacity: 0.5;
     font-family: $sans-serif-font--loaded;
     font-size: 0.75rem;

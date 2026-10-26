@@ -2,20 +2,15 @@
 
 @section('content')
 
-<article itemscope itemtype="http://schema.org/Person">
-    @component('site.shared._schemaItemProps')
-      @slot('itemprops',$item->present()->itemprops ?? null)
-    @endcomponent
-
+<article>
 @component('components.molecules._m-header-block')
-    @slot('itemprop','name')
     {!! $item->present()->title_display ?? $item->present()->title !!}
 @endcomponent
 
     @component('components.organisms._o-artist-bio')
         @slot('item', $item)
         @slot('imageSettings', array(
-            'srcset' => array(200,400,600,1000,1500,2000),
+            'srcset' => ImageHelpers::SRCSET_WIDTHS,
             'sizes' => ImageHelpers::aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
@@ -83,7 +78,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '216px',
                           'small' => '216px',

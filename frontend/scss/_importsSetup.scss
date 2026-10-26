@@ -1,5 +1,8 @@
 $include-icons: false; // @see icons.scss!
 
+// Pull variables from the style service
+@import 'setup/styleVariables';
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ load fonts
 
 @import 'setup/fonts';
@@ -11,10 +14,6 @@ $include-icons: false; // @see icons.scss!
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ variables */
 
 @import 'setup/variables';
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ colors */
-
-@import 'setup/colors';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ functions/mixins
 

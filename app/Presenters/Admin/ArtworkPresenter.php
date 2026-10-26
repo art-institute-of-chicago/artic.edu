@@ -7,7 +7,6 @@ use App\Helpers\StringHelpers;
 use App\Helpers\DateHelpers;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use App\Libraries\DamsImageService;
 use DOMDocument;
 
 /**
@@ -64,7 +63,6 @@ class ArtworkPresenter extends BasePresenter
                     'type' => 'text',
                     'content' => $this->getFilteredDescription(),
                 ]],
-                'itemprop' => 'description',
             ]);
         }
 
@@ -267,7 +265,6 @@ class ArtworkPresenter extends BasePresenter
                     $details[] = [
                         'key' => Str::plural('Culture', count($cultureLinks)),
                         'links' => $cultureLinks,
-                        'itemprop' => 'creator',
                     ];
                 }
 
@@ -275,7 +272,6 @@ class ArtworkPresenter extends BasePresenter
                     $details[] = [
                         'key' => Str::plural('Artist', count($artistLinks)),
                         'links' => $artistLinks,
-                        'itemprop' => 'creator',
                     ];
                 }
             } else {
@@ -283,7 +279,6 @@ class ArtworkPresenter extends BasePresenter
                     $details[] = [
                         'key' => Str::plural('Artist', count($artistLinks)),
                         'links' => $artistLinks,
-                        'itemprop' => 'creator',
                     ];
                 }
 
@@ -291,7 +286,6 @@ class ArtworkPresenter extends BasePresenter
                     $details[] = [
                         'key' => Str::plural('Culture', count($cultureLinks)),
                         'links' => $cultureLinks,
-                        'itemprop' => 'creator',
                     ];
                 }
             }
@@ -311,14 +305,12 @@ class ArtworkPresenter extends BasePresenter
             $details[] = [
                 'key' => Str::plural('Place', count($this->entity->place_pivots)),
                 'value' => join(', ', $places->toArray()),
-                'itemprop' => 'locationCreated',
             ];
         } else {
             if (!empty($this->entity->place_of_origin)) {
                 $details[] = [
                     'key' => 'Origin',
                     'value' => $this->entity->place_of_origin,
-                    'itemprop' => 'locationCreated',
                 ];
             }
         }
@@ -345,7 +337,6 @@ class ArtworkPresenter extends BasePresenter
             });
             $details[] = [
                 'key' => Str::plural('Date', count($this->entity->dates)),
-                'itemprop' => 'dateCreated',
                 'links' => $dates,
             ];
         } else {
@@ -363,7 +354,6 @@ class ArtworkPresenter extends BasePresenter
                             </span>
                         </span>
                     VALUE,
-                    'itemprop' => 'dateCreated',
                     'links' => [[
                         'label' => join(' ', [($this->entity->date_qualifier_title ?? ''), $this->entity->date_block]), // @see getDateBlockAttribute
                         'href' => $generateDateRangeHref($this->entity->date_start, $this->entity->date_end),
@@ -412,10 +402,9 @@ class ArtworkPresenter extends BasePresenter
 
         foreach ($elements as $key => $element) {
             $value = $element[0] ?? null;
-            $itemprop = $element[1] ?? null;
 
             if (!empty($value)) {
-                $blocks[] = ['key' => $key, 'value' => $value, 'itemprop' => $itemprop];
+                $blocks[] = ['key' => $key, 'value' => $value];
             }
         }
 
@@ -531,24 +520,5 @@ class ArtworkPresenter extends BasePresenter
         }
 
         return $blocks;
-    }
-
-    public function buildSchemaItemProps()
-    {
-        $itemprops = [
-            'accessMode' => 'visual',
-            'alternativeHeadline' => (!empty($this->entity->alt_titles)) ? implode(', ', $this->entity->alt_titles) : null,
-            'contributor' => (!empty($this->entity->alt_artists)) ? implode(', ', $this->entity->alt_artists) : null,
-            'about' => (!empty($this->entity->subject_titles)) ? implode(', ', $this->entity->subject_titles) : null,
-            'provider' => $this->entity->department_title,
-        ];
-
-        if ($this->entity->image_id) {
-            $dams = new DamsImageService();
-            $itemprops['thumbnailUrl'] = $dams->getBaseUrl() . '2/' . $this->entity->image_id . '/full/200,/0/default.jpg';
-            $itemprops['image'] = $dams->getBaseUrl() . '2/' . $this->entity->image_id;
-        }
-
-        return $itemprops;
     }
 }

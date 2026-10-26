@@ -19,7 +19,7 @@
                 'fit' => 'fill',
                 'fill'=> 'blur',
                 'ratio' => '3:4',
-                'srcset' => array(200,400,600),
+                'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                 'sizes' => ImageHelpers::aic_imageSizes(array(
                       'xsmall' => '216px',
                       'small' => '216px',

@@ -50,7 +50,7 @@ $f-display-3: generate-font-obj((font-family: $serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -82,7 +82,7 @@ $f-display-2: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -113,7 +113,7 @@ $f-display-1: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -144,7 +144,7 @@ $f-headline: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -175,7 +175,7 @@ $f-headline-lightbox: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -205,7 +205,7 @@ $f-headline-editorial: generate-font-obj((font-family: $serif-font,
   @include font-styles($f-headline-editorial);
 
   & {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -235,7 +235,7 @@ $f-deck: generate-font-obj((font-family: $serif-font,
   @include font-styles($f-deck);
 
   & {
-    color: $color__text--tertiary;
+    color: $colors-themes-light-mode-text-tertiary;
   }
 }
 
@@ -285,7 +285,7 @@ $f-module-title-2: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -317,7 +317,7 @@ $f-module-title-1: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -348,7 +348,7 @@ $f-subheading-1: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -503,7 +503,7 @@ $f-body-emphasis: generate-font-obj((font-family: $sans-serif-font,
 %f-body b,
 .f-body b {
   font-weight: 500;
-  color: $color__black;
+  color: $colors-scales-grey-100;
 
   em,
   i {
@@ -583,7 +583,7 @@ $f-body-editorial-emphasis: generate-font-obj((font-family: $serif-font,
 %f-body-editorial b,
 .f-body-editorial b {
   font-weight: 600;
-  color: $color__text--title;
+  color: $colors-themes-light-mode-text-title;
 
   em,
   i {
@@ -612,7 +612,7 @@ $f-body-editorial-reference: generate-font-obj((font-family: $sans-serif-font,
   @include font-styles($f-body-editorial-reference);
 
   & {
-    color: $color__text--editorial;
+    color: $colors-themes-editorial-text-primary;
   }
 }
 
@@ -657,7 +657,7 @@ $f-buttons: generate-font-obj((font-family: $sans-serif-font,
   @include font-styles($f-buttons);
 
   & {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -687,7 +687,7 @@ $f-secondary: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--secondary;
+    color: $colors-themes-light-mode-text-secondary;
   }
 }
 
@@ -696,7 +696,7 @@ $f-secondary: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__link;
+    color: $colors-themes-light-mode-link-primary;
   }
 }
 
@@ -717,7 +717,7 @@ $f-secondary: generate-font-obj((font-family: $sans-serif-font,
 %f-secondary b,
 .f-secondary b {
   font-weight: 400;
-  color: $color__text;
+  color: $colors-themes-light-mode-text-primary;
 
   em,
   i {
@@ -747,7 +747,7 @@ $f-tertiary: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--secondary;
+    color: $colors-themes-light-mode-text-secondary;
   }
 }
 
@@ -764,7 +764,7 @@ a.f-secondary,
 .f-secondary:not(.dropdown__list):not(.m-search-bar__autocomplete) a {
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__text--secondary);
+    @include text-underline(1.02em, $colors-themes-light-mode-text-secondary);
   }
 
   &:active {
@@ -779,22 +779,22 @@ a.f-secondary,
 }
 
 a.f-link {
-  color: $color__link;
+  color: $colors-themes-light-mode-link-primary;
 
   &:hover,
   &:focus:hover {
-    @include text-underline(1.02em, $color__link--hover);
+    @include text-underline(1.02em, $colors-themes-light-mode-link-hover);
 
     & {
-      color: $color__link--hover;
+      color: $colors-themes-light-mode-link-hover;
     }
   }
 
   &:active:hover {
-    @include text-underline(1.02em, $color__link--active);
+    @include text-underline(1.02em, $colors-themes-light-mode-link-active);
 
     & {
-      color: $color__link--active;
+      color: $colors-themes-light-mode-link-active;
     }
   }
 }
@@ -820,7 +820,7 @@ $f-tag-2: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -850,7 +850,7 @@ $f-tag: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__link;
+    color: $colors-themes-light-mode-link-primary;
   }
 }
 
@@ -879,7 +879,7 @@ $f-caption-title: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -936,7 +936,7 @@ $f-list-7: generate-font-obj((font-family: $serif-font,
   @include font-styles($f-list-7);
 
   & {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 
   @include breakpoint('xsmall') {
@@ -968,7 +968,7 @@ $f-list-6: generate-font-obj((font-family: $serif-font,
   @include font-styles($f-list-6);
 
   & {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -999,7 +999,7 @@ $f-list-5: generate-font-obj((font-family: $serif-font,
   @include font-styles($f-list-5);
 
   & {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -1030,7 +1030,7 @@ $f-list-4: generate-font-obj((font-family: $serif-font,
   @include font-styles($f-list-4);
 
   & {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -1064,7 +1064,7 @@ $f-list-3: generate-font-obj((font-family: $serif-font,
   @include f-list-3;
 
   & {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -1088,7 +1088,7 @@ $f-list-2: generate-font-obj((font-family: $serif-font,
   @include font-styles($f-list-2);
 
   & {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -1116,7 +1116,7 @@ $f-list-1: generate-font-obj((font-family: $serif-font,
   @include font-styles($f-list-1);
 
   & {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -1147,7 +1147,7 @@ $f-list-1--dense: generate-font-obj((font-family: $serif-font,
   @include font-styles($f-list-1--dense);
 
   & {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -1179,7 +1179,7 @@ $f-quote: generate-font-obj((font-family: $serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 
@@ -1228,7 +1228,7 @@ $f-dropcap-editorial: generate-font-obj((font-family: $serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--editorial;
+    color: $colors-themes-editorial-text-primary;
   }
 }
 
@@ -1289,7 +1289,7 @@ $f-main-nav: generate-font-obj((font-family: $sans-serif-font,
 
   & {
     font-feature-settings: 'lnum'on;
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
   }
 }
 

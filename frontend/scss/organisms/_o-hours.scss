@@ -24,7 +24,7 @@
   }
 
   .o-hours__clock {
-    color: $color__text--title;
+    color: $colors-themes-light-mode-text-title;
     margin-right: 8px;
     margin-top: -2px;
   }
@@ -40,7 +40,7 @@
     }
 
     .o-hours__status {
-      color: $color__text--title;
+      color: $colors-themes-light-mode-text-title;
 
       &.o-hours__status--desktop {
         display: none;
@@ -82,7 +82,7 @@
     padding: 12px 16px;
 
     .o-hours__item__days {
-      color: $color__text--title;
+      color: $colors-themes-light-mode-text-title;
       display: inline-block;
       width: 90px;
     }

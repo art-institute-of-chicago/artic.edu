@@ -4,13 +4,14 @@ jobs:
     test:
         runs-on: ubuntu-22.04
         env:
-          NODE_OPTIONS: '--openssl-legacy-provider'
-          CI: 1
+            NODE_OPTIONS: "--openssl-legacy-provider"
+            CI: 1
+            STYLES_SERVICE_URL: ${{ secrets.STYLES_SERVICE_URL }}
         steps:
             - name: Install PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: 8.2
+                  php-version: 8.5
             - name: Install Node
               uses: actions/setup-node@v3
               with:
@@ -35,7 +36,7 @@ jobs:
                   wget https://www.princexml.com/download/prince_15.3-1_ubuntu22.04_amd64.deb -O "${TEMP_PRINCE}"
                   sudo gdebi "${TEMP_PRINCE}" --n
             - name: Checkout code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v6
             - name: Install PHP dependencies
               run: composer install --no-interaction --no-progress --no-scripts
             # Remove the closer-look dependency. We will not need it for testing
@@ -44,12 +45,12 @@ jobs:
             - name: Remove private NPM package
               run: npm uninstall closer-look --save
             - name: Migrate database
-              run: php artisan migrate --env=testing
+              run: php artisan migrate --env=ci
             - name: Generate key
-              run: php artisan key:generate --env=testing
+              run: php artisan key:generate --env=ci
             - name: Build Twill assets
-              run: php artisan twill:build --env=testing
+              run: php artisan twill:build --env=ci
             - name: Build Javascript assets
               run: npm run build:dev
             - name: Run PHPUnit
-              run: php artisan test --env=testing
+              run: php artisan test --env=ci

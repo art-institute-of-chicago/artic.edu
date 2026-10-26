@@ -16,7 +16,7 @@
   right: 0;
   top: 0;
   height: 1px;
-  background-color: $color__rules--primary;
+  background-color: $colors-themes-light-mode-rules-primary;
 }
 
 .m-date-listing .day {
@@ -40,7 +40,7 @@
 .m-date-listing__listings {
   margin-top: 20px;
   padding-top: 16px;
-  border-top: 1px solid $color__rules--primary;
+  border-top: 1px solid $colors-themes-light-mode-rules-primary;
 
   @include breakpoint('small+') {
     padding-top: 19px;
@@ -57,7 +57,7 @@
 .m-date-listing__listings-title {
   margin-top: 24px;
   padding-top: 8px;
-  border-top: 1px solid $color__rules--primary;
+  border-top: 1px solid $colors-themes-light-mode-rules-primary;
 
   @include breakpoint('small+') {
     margin-top: 20px;

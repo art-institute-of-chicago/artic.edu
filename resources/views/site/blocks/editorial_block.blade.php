@@ -111,7 +111,10 @@
             @default
                 <div class="editorial-block__tags">
                     @foreach ($tags as $tag)
-                        <a class="tag f-tag" href="{{ route('articles', ['category' => $tag->id]) }}">{{ $tag->name }}</a>
+                        @component('components.atoms._tag')
+                            @slot('href', route('articles', ['category' => $tag->id]))
+                            {{ $tag->name }}
+                        @endcomponent
                     @endforeach
                 </div>
         @endswitch
@@ -136,7 +139,7 @@
                         @slot('fullscreen', false)
                         @slot('titleFont', ($isFeatured) ? 'f-list-3' : 'f-list-1')
                         @slot('imageSettings', array(
-                            'srcset' => array(300,600,800,1200,1600),
+                            'srcset' => ImageHelpers::SRCSET_WIDTHS,
                             'sizes' => ImageHelpers::aic_imageSizes(array(
                                   'xsmall' => '58',
                                   'small' => '58',
@@ -164,7 +167,7 @@
                                 @slot('hideDescription', false)
                                 @slot('hideDuration', false)
                                 @slot('imageSettings', array(
-                                    'srcset' => array(300,600,800,1200,1600),
+                                    'srcset' => ImageHelpers::SRCSET_WIDTHS,
                                     'sizes' => ImageHelpers::aic_imageSizes(array(
                                         'xsmall' => '58',
                                         'small' => '58',
@@ -183,7 +186,7 @@
                                 @slot('fullscreen', false)
                                 @slot('titleFont', 'f-list-1')
                                 @slot('imageSettings', array(
-                                    'srcset' => array(300,600,800,1200,1600),
+                                    'srcset' => ImageHelpers::SRCSET_WIDTHS,
                                     'sizes' => ImageHelpers::aic_imageSizes(array(
                                         'xsmall' => '58',
                                         'small' => '58',
@@ -207,7 +210,7 @@
                             @slot('hideDescription', false)
                             @slot('hideDuration', false)
                             @slot('imageSettings', array(
-                                'srcset' => array(300,600,800,1200,1600),
+                                'srcset' => ImageHelpers::SRCSET_WIDTHS,
                                 'sizes' => ImageHelpers::aic_imageSizes(array(
                                     'xsmall' => '58',
                                     'small' => '58',
@@ -244,7 +247,7 @@
                         @slot('fullscreen', false)
                         @slot('titleFont', ($loop->first && $hasFeatured) ? 'f-list-3' : 'f-list-1')
                         @slot('imageSettings', array(
-                            'srcset' => array(300,600,800,1200,1600),
+                            'srcset' => ImageHelpers::SRCSET_WIDTHS,
                             'sizes' => ImageHelpers::aic_imageSizes(array(
                                 'xsmall' => '58',
                                 'small' => '58',

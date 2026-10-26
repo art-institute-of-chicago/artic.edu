@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Api\ArtistRepository;
 use App\Libraries\ExploreFurther\BaseService as ExploreArtists;
+use App\Libraries\SchemaOrg\SchemaMapper;
 
 class ArtistController extends FrontController
 {
@@ -36,6 +37,8 @@ class ArtistController extends FrontController
 
         $relatedItems = $this->repository->getRelatedItems($item);
 
+        $this->addJsonLd($item);
+
         return view('site.tagDetail', [
             'item' => $item,
             'artworks' => $artworks,
@@ -53,5 +56,36 @@ class ArtistController extends FrontController
         return [
             'type' => 'artist',
         ];
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $artistIsCorporate = static fn ($m): bool => SchemaMapper::isGroupAgent($m);
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => static fn ($m) => $artistIsCorporate($m) ? 'Organization' : 'Person',
+                'url' => SchemaMapper::canonical('artists.show', 'titleSlug'),
+                'mainEntityOfPage' => SchemaMapper::canonical('artists.show', 'titleSlug'),
+                'additionalType' => static fn ($m) => $artistIsCorporate($m) && !empty($m->ulan_id)
+                    ? 'https://vocab.getty.edu/ulan/' . $m->ulan_id
+                    : null,
+                'birthDate' => static fn ($m) => $artistIsCorporate($m) ? null : ($m->birth_date ?? null),
+                'deathDate' => static fn ($m) => $artistIsCorporate($m) ? null : ($m->death_date ?? null),
+                'birthPlace' => static fn ($m) => $artistIsCorporate($m) ? null : ($m->birth_place ?? null),
+                'nationality' => static fn ($m) => $artistIsCorporate($m) ? null : ($m->nationality ?? null),
+            ]
+        );
     }
 }

@@ -86,7 +86,7 @@
                             @slot('item', $item)
                             @slot('fullscreen', true)
                             @slot('imageSettings', array(
-                                'srcset' => array(300,600,800,1200,1600),
+                                'srcset' => ImageHelpers::SRCSET_WIDTHS,
                                 'sizes' => ImageHelpers::aic_imageSizes(array(
                                       'xsmall' => '58',
                                       'small' => '58',
@@ -126,7 +126,7 @@
                                     @slot('imageSettings', array(
                                         'fit' => 'clamp',
                                         'ratio' => '3:4',
-                                        'srcset' => array(200,400,600),
+                                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                                         'sizes' => ImageHelpers::aic_imageSizes(array(
                                               'xsmall' => '28',
                                               'small' => '12',
@@ -139,7 +139,7 @@
                                     @slot('imageSettings', array(
                                         'fit' => 'crop',
                                         'ratio' => '16:9',
-                                        'srcset' => array(200,400,600),
+                                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                                         'sizes' => ImageHelpers::aic_imageSizes(array(
                                               'xsmall' => '58',
                                               'small' => '13',
@@ -166,7 +166,7 @@
                                 @slot('imageSettings', array(
                                     'fit' => 'crop',
                                     'ratio' => '16:9',
-                                    'srcset' => array(200,400,600,1000,1500),
+                                    'srcset' => ImageHelpers::SRCSET_WIDTHS,
                                     'sizes' => ImageHelpers::aic_imageSizes(array(
                                           'xsmall' => '58',
                                           'small' => '58',
@@ -195,7 +195,7 @@
                                 @slot('imageSettings', array(
                                     'fit' => 'crop',
                                     'ratio' => '16:9',
-                                    'srcset' => array(200,400,600),
+                                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                                     'sizes' => ImageHelpers::aic_imageSizes(array(
                                           'xsmall' => '28',
                                           'small' => '28',
@@ -246,7 +246,7 @@
             @endif
 
             @if ($block['type'] === 'itemprop')
-                <div class='o-blocks' itemprop="{{ $block['itemprop'] }}">
+                <div class='o-blocks'>
                     @component('components.blocks._blocks')
                         @slot('blocks', $block['content'])
                     @endcomponent
@@ -260,7 +260,7 @@
                         <h2 class="f-module-title-1">{!! $item['key'] !!}</h2>
                     </dt>
                     @if (isset($item['links']) && $item['links'])
-                        <dd{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>
+                        <dd>
                             <span class="f-secondary">
                                 @foreach ($item['links'] as $link)
                                     @if (isset($link['href']))
@@ -273,7 +273,7 @@
                             </span>
                         </dd>
                     @else
-                        <dd{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>
+                        <dd>
                             <span class="f-secondary">{!! $item['value'] ?? '' !!}</span>
                         </dd>
                     @endif
@@ -309,7 +309,7 @@
             @endif
 
             @if ($block['type'] === 'label')
-                @component('components.atoms._label')
+                @component('components.atoms._form-label')
                   @slot('optional', $block['optional'] ?? null)
                   @slot('hint', $block['hint'] ?? null)
                   @slot('error', $block['error'] ?? null)
@@ -318,7 +318,7 @@
             @endif
 
             @if ($block['type'] === 'input' || $block['type'] === 'email' || $block['type'] === 'number' || $block['type'] === 'tel' || $block['type'] == 'hidden')
-                @component('components.atoms._input')
+                @component('components.atoms._form-input')
                     @slot('type', $block['type'] === 'input' ? 'text' : $block['type'])
                     @slot('variation', $block['variation'] ?? null)
                     @slot('pattern', $block['pattern'] ?? null)
@@ -337,7 +337,7 @@
             @endif
 
             @if ($block['type'] === 'captcha')
-                @component('components.atoms._captcha')
+                @component('components.atoms._form-captcha')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
@@ -350,7 +350,7 @@
             @endif
 
             @if ($block['type'] === 'textarea')
-                @component('components.atoms._textarea')
+                @component('components.atoms._form-textarea')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
@@ -365,7 +365,7 @@
             @endif
 
             @if ($block['type'] === 'select')
-                @component('components.atoms._select')
+                @component('components.atoms._form-select')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
@@ -380,7 +380,7 @@
             @endif
 
             @if ($block['type'] === 'checkbox')
-                @component('components.atoms._checkbox')
+                @component('components.atoms._form-checkbox')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['name'] ?? 'i_'.$loop->iteration)
@@ -397,7 +397,7 @@
             @endif
 
             @if ($block['type'] === 'radio')
-                @component('components.atoms._radio')
+                @component('components.atoms._form-radio')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['name'] ?? 'i_'.$loop->iteration)
@@ -412,7 +412,7 @@
             @endif
 
             @if ($block['type'] === 'date-select')
-                @component('components.atoms._date-select-input')
+                @component('components.atoms._form-date-select-input')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)

@@ -32,7 +32,7 @@
                         <div class="o-accordion__panel-content m-filters">
 
                             @if ($filterCategory['type'] === 'dropdown')
-                                @component('components.atoms._dropdown')
+                                @component('components.atoms._form-dropdown')
                                   @slot('prompt', $filterCategory['prompt'] ?? $filterCategory['title'])
                                   @slot('ariaTitle', 'Filter by')
                                   @slot('options', $filterCategory['list'])
@@ -66,7 +66,7 @@
                         <div class="o-accordion__panel-content m-filters">
 
                             @if ($filterCategory['type'] === 'dropdown')
-                                @component('components.atoms._dropdown')
+                                @component('components.atoms._form-dropdown')
                                   @slot('prompt', $filterCategory['prompt'] ?? $filterCategory['title'])
                                   @slot('ariaTitle', 'Filter by')
                                   @slot('options', $filterCategory['list'])

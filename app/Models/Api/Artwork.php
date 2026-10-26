@@ -26,6 +26,8 @@ class Artwork extends BaseApiModel
 
     public const RELATED_MULTIMEDIA = 100;
     public const EXTRA_IMAGES_LIMIT = 9;
+    public const NEAREST_NEIGHBORS_LIMIT = 20;
+    public const NEAREST_NEIGHBORS_MAX_LIMIT = 100;
 
     protected $showDefaultRelatedItems = true;
 
@@ -45,6 +47,8 @@ class Artwork extends BaseApiModel
     protected $presenterAdmin = 'App\Presenters\Admin\ArtworkPresenter';
 
     protected $appends = ['fullTitle'];
+
+    private $nearestNeighborsCache = null;
 
     protected static $defaultScopes = [
         'include' => ['artist_pivots']
@@ -105,6 +109,63 @@ class Artwork extends BaseApiModel
         $artist = $this->mainArtist ? $this->mainArtist->first() : null;
 
         return ($artist->title ?? '') . ($artist && $artist->title && $this->date_display ? ', ' : '') . ($this->date_display ?? '');
+    }
+
+    public function getNearestNeighborsAttribute()
+    {
+        if ($this->nearestNeighborsCache === null) {
+            $this->nearestNeighborsCache = $this->nearestNeighbors();
+        }
+
+        return $this->nearestNeighborsCache;
+    }
+
+    /**
+     * Fetch visually similar artworks via the data-aggregator nearest-neighbor endpoint.
+     */
+    public function nearestNeighbors(int $limit = self::NEAREST_NEIGHBORS_LIMIT)
+    {
+        $id = (int) $this->id;
+
+        if (empty($id)) {
+            return $this->newCollection();
+        }
+
+        $limit = min(self::NEAREST_NEIGHBORS_MAX_LIMIT, max(1, (int) $limit));
+
+        try {
+            $response = $this->getConnection()->get(
+                '/ai/v1/artworks/' . $id . '/nearest?limit=' . $limit,
+                []
+            );
+        } catch (\Exception $e) {
+            return $this->newCollection();
+        }
+
+        $items = data_get($response, 'body.items', []);
+
+        if (empty($items)) {
+            return $this->newCollection();
+        }
+
+        $distances = collect($items)
+            ->filter(fn ($item) => !empty($item->model_id))
+            ->mapWithKeys(function ($item) {
+                return [$item->model_id => $item->distance ?? null];
+            });
+
+        return static::query()
+            ->ids($distances->keys()->all())
+            ->get()
+            ->map(function ($artwork) use ($distances) {
+                $distance = $distances->get($artwork->id);
+
+                $artwork->setAttribute('distance', $distance);
+                $artwork->setAttribute('similarity_score', is_null($distance) ? null : round(1 - $distance, 4));
+
+                return $artwork;
+            })
+            ->values();
     }
 
     /**
@@ -279,12 +340,14 @@ class Artwork extends BaseApiModel
     {
         $main = $this->mainImage;
 
-        if (!empty($main)) {
+        if (!empty($main) && !$main->isEmpty()) {
             $main = $main->first()->imageFront();
             $main = array_merge($this->imageFront('hero'), [
                 'credit' => $this->getImageCopyright($main),
                 'creditUrl' => $this->getImageCopyrightUrl($main),
             ]);
+        } else {
+            $main = null;
         }
 
         return collect($this->extraImages)->map(function ($image) {

@@ -26,6 +26,7 @@ return [
 
     'hide_objects_from_tours' => env('HIDE_OBJECTS_FROM_TOURS'),
     'hide_galleries_from_tours' => env('HIDE_GALLERIES_FROM_TOURS'),
+    'hide_artist_ids_from_explore_more' => env('HIDE_ARTIST_IDS_FROM_EXPLORE_MORE') ? explode(',', env('HIDE_ARTIST_IDS_FROM_EXPLORE_MORE')) : [],
 
     'trust_hosts' => env('TRUST_HOSTS') ? explode(',', env('TRUST_HOSTS')) : [],
 
@@ -75,6 +76,44 @@ return [
             'research_center' => [
                 '#CED8EE',
             ],
-        ]
+        ],
+        'themes' => [
+            // The colors for these are found in `frontend/scss/setup/_themse.scss`
+            'ad_campaigns' => [
+                'activity',
+                'cafe',
+                'garden-bar',
+                'member-bar',
+                'membership',
+                'modern-bar',
+                'promotion',
+                'special-event',
+                'rlc',
+                'shop',
+                'shop-alternate',
+            ],
+        ],
+    ],
+
+    // Social media profile URLs, shared by the footer navigation
+    // (AppServiceProvider) and the JSON-LD Organization sameAs list
+    // (JsonLdManager).
+    'socials' => [
+        'facebook' => 'https://www.facebook.com/artic',
+        'twitter' => 'https://twitter.com/artinstitutechi',
+        'instagram' => 'https://www.instagram.com/artinstitutechi',
+        'youtube' => 'https://www.youtube.com/user/ArtInstituteChicago',
+        'pinterest' => 'https://www.pinterest.com/artinstitutechi',
+    ],
+
+    // The museum's postal address, shared by SchemaMapper::museumAddress()
+    // and the JSON-LD Organization entity (JsonLdManager).
+    'museum_address' => [
+        '@type' => 'PostalAddress',
+        'streetAddress' => '111 S Michigan Ave',
+        'addressLocality' => 'Chicago',
+        'addressRegion' => 'IL',
+        'postalCode' => '60603',
+        'addressCountry' => 'US',
     ],
 ];

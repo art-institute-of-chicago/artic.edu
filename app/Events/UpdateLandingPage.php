@@ -5,9 +5,7 @@ namespace App\Events;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Console\Command;
 use App\Models\LandingPage;
-use Illuminate\Support\Facades\Artisan;
 
 class UpdateLandingPage
 {

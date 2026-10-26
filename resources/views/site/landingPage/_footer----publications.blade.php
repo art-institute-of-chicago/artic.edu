@@ -4,7 +4,7 @@
             Publications
         </h2>
         <div class="m-links-bar__item m-links-bar__item--primary" data-filter-buttons>
-            @component('components.atoms._dropdown')
+            @component('components.atoms._form-dropdown')
                 @slot('prompt', 'Sort By')
                 @slot('ariaTitle', 'Sort By')
                 @slot('variation','dropdown--filter dropdown--filter__sort f-link')
@@ -31,7 +31,7 @@
                 </li>
             @endforeach
             <li class="m-links-bar__item m-links-bar__item--primary">
-                @component('components.atoms._dropdown')
+                @component('components.atoms._form-dropdown')
                     @slot('prompt', 'Subject Category')
                     @slot('ariaTitle', 'Filter by')
                     @slot('variation','dropdown--filter f-link')

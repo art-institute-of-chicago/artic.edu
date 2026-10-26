@@ -9,5 +9,5 @@ class InteractiveFeatureTransformer extends ApiTransformer
      *
      * @var array
      */
-    protected $availableIncludes = ['experiences'];
+    protected array $availableIncludes = ['experiences'];
 }

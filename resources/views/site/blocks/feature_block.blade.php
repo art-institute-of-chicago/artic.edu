@@ -104,7 +104,10 @@
             @if ( (isset($tags) && $tags) && $tags->count() > 0)
                 <div class="m-feature-block-editorial__tags">
                     @foreach ($tags as $tag)
-                        <a class="tag f-tag" href="{{ route('articles', ['category' => $tag->id]) }}">{{ $tag->name }}</a>
+                        @component('components.atoms._tag')
+                            @slot('href', route('articles', ['category' => $tag->id]))
+                            {{ $tag->name }}
+                        @endcomponent
                     @endforeach
                 </div>
             @endif
@@ -133,7 +136,7 @@
                                         @slot('settings', array(
                                             'fit' => 'crop',
                                             'ratio' => '16:9',
-                                            'srcset' => array(300,600,800,1200,1600),
+                                            'srcset' => ImageHelpers::SRCSET_WIDTHS,
                                             'sizes' => ImageHelpers::aic_imageSizes(array(
                                                 'xsmall' => 58,
                                                 'small' => 58,

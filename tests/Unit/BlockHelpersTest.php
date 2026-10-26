@@ -7,7 +7,6 @@ use App\Models\LandingPage;
 use App\Models\Vendor\Block;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Tests\CreatesApplication;
 
 class BlockHelpersTest extends BaseTestCase
 {

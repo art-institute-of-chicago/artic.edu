@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Experience;
 use App\Repositories\ExperienceRepository;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Str;
 
 class InteractiveFeatureExperiencesController extends FrontController
 {
@@ -102,6 +102,8 @@ class InteractiveFeatureExperiencesController extends FrontController
             $this->seo->noindex = true;
         }
 
+        $this->addJsonLd($experience);
+
         $view = 'site.experienceDetail';
 
         $isKiosk = View::shared('isKiosk', false);
@@ -126,5 +128,42 @@ class InteractiveFeatureExperiencesController extends FrontController
               'unstickyHeader' => true,
             ]);
         }
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $experienceUrl = static function ($m) {
+            $slug = method_exists($m, 'getSlug') && $m->getSlug() !== ''
+                ? $m->getSlug()
+                : ($m->slug ?? null);
+
+            if (!is_string($slug) || $slug === '') {
+                return null;
+            }
+
+            return route('interactiveFeatures.show', ['slug' => $slug]);
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'WebApplication',
+                'inLanguage' => SchemaMapper::inLanguage(),
+                'description' => SchemaMapper::text('listing_description', 'description'),
+                'url' => $experienceUrl,
+                'mainEntityOfPage' => $experienceUrl,
+                'applicationCategory' => SchemaMapper::literal('MultimediaApplication'),
+            ]
+        );
     }
 }

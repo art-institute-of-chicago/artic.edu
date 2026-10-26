@@ -46,7 +46,7 @@
                 @slot('primaryHtml')
                     @foreach ($filters as $filter)
                         <li class="m-links-bar__item m-links-bar__item--primary">
-                            @component('components.atoms._dropdown')
+                            @component('components.atoms._form-dropdown')
                               @slot('prompt', $filter['prompt'].': '.$filter['links']->firstWhere('active', true)['label'])
                               @slot('ariaTitle', 'Select decade')
                               @slot('variation','dropdown--filter f-link')
@@ -84,7 +84,7 @@
                             @slot('imageSettings', array(
                                 'fit' => 'crop',
                                 'ratio' => '16:9',
-                                'srcset' => array(150,300,600),
+                                'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                                 'sizes' => ImageHelpers::aic_imageSizes(array(
                                       'xsmall' => 58,
                                       'small' => 13,

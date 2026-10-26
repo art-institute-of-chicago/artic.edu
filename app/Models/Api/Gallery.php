@@ -3,10 +3,13 @@
 namespace App\Models\Api;
 
 use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasApiFactory;
 use App\Helpers\StringHelpers;
 
 class Gallery extends BaseApiModel
 {
+    use HasApiFactory;
+
     protected array $endpoints = [
         'collection' => '/api/v1/galleries',
         'resource' => '/api/v1/galleries/{id}',

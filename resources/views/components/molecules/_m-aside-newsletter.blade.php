@@ -7,7 +7,6 @@
         <div class="m-aside-newsletter__field__wrapper">
             <span class="m-aside-newsletter__field">
                 <label for="email{{ $rand }}" class="f-secondary">Email address</label>
-                @csrf
                 <input type="email" name="email" id="email{{ $rand }}" class="f-secondary" placeholder="{{ $placeholder ?? 'your@email.com' }}" autocomplete="email">
                 <button type="submit" class="{{ $btnFont ?? 'f-buttons' }} m-aside-newsletter__btn--submit" data-gtm-event-category="subscribe" data-gtm-event="email">Subscribe</button>
             </span>
@@ -37,7 +36,7 @@
                         <ol class="m-fieldset__fields">
                           <li class="m-fieldset__field o-blocks m-fieldset__field--group">
                           @foreach($left as $value => $label)
-                              @component('components.atoms._checkbox')
+                              @component('components.atoms._form-checkbox')
                                   @slot('checked', $value === 'OptMuseum' ? 'checked' : null)
                                   @slot('disabled', $value === 'OptMuseum' ? 'disabled' : null)
                                   @slot('id', 'subscriptions-' . $value)
@@ -54,7 +53,7 @@
                         <ol class="m-fieldset__fields">
                           <li class="m-fieldset__field o-blocks m-fieldset__field--group">
                           @foreach($right as $value => $label)
-                              @component('components.atoms._checkbox')
+                              @component('components.atoms._form-checkbox')
                                   @slot('id', 'subscriptions-' . $value)
                                   @slot('value', $value)
                                   @slot('name', 'subscriptions[' .$i .']')

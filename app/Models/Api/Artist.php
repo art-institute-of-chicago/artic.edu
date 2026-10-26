@@ -4,11 +4,13 @@ namespace App\Models\Api;
 
 use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasMediasApi;
+use Aic\Hub\Foundation\Library\Api\Models\Behaviors\HasApiFactory;
 use App\Helpers\StringHelpers;
 
 class Artist extends BaseApiModel
 {
     use HasMediasApi;
+    use HasApiFactory;
 
     protected array $endpoints = [
         'collection' => '/api/v1/artists',
@@ -35,7 +37,11 @@ class Artist extends BaseApiModel
 
     public function artworks($perPage = 20)
     {
-        return $this->artworks ?? $this->artworks = Search::query()
+        if ($this->artworks && $this->artworks->count() == $perPage) {
+            return $this->artworks;
+        }
+
+        return $this->artworks = Search::query()
             ->resources(['artworks'])
             ->forceEndpoint('search')
             ->byArtists($this->title)

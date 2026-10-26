@@ -14,12 +14,12 @@
     @component('components.molecules._m-header-block')
       Explore {{ isset($exploreTitle) && $exploreTitle ? $exploreTitle : 'Articles' }}
     @endcomponent
-  
+
     @component('components.molecules._m-links-bar')
         @slot('variation','m-links-bar--articles')
         @slot('primaryHtml')
             <li class="m-links-bar__item m-links-bar__item--primary">
-                @component('components.atoms._dropdown')
+                @component('components.atoms._form-dropdown')
                   @slot('prompt', isset($currentCategory) ? $currentCategory : 'All categories')
                   @slot('ariaTitle', 'Filter by')
                   @slot('variation','dropdown--filter f-link')
@@ -28,7 +28,7 @@
                 @endcomponent
             </li>
             <li class="m-links-bar__item m-links-bar__item--primary">
-                @component('components.atoms._dropdown')
+                @component('components.atoms._form-dropdown')
                   @slot('prompt', isset($currentType) ? $currentType : 'All types')
                   @slot('ariaTitle', 'Filter by')
                   @slot('variation','dropdown--filter f-link')
@@ -74,7 +74,7 @@
               @slot('imageSettings', array(
                 'fit' => 'crop',
                 'ratio' => '16:9',
-                'srcset' => array(200,400,600,1000),
+                'srcset' => ImageHelpers::SRCSET_WIDTHS,
                 'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                       'xsmall' => '1',
                       'small' => '2',
@@ -83,14 +83,14 @@
                       'xlarge' => '4',
                 )),
             ))
-            @endcomponent  
+            @endcomponent
           @else
             @component('components.molecules._m-listing----' . Str::slug($item->type) . '-minimal')
               @slot('item', $item)
               @slot('imageSettings', array(
                   'fit' => 'crop',
                   'ratio' => '16:9',
-                  'srcset' => array(200,400,600,1000),
+                  'srcset' => ImageHelpers::SRCSET_WIDTHS,
                   'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                         'xsmall' => '1',
                         'small' => '2',

@@ -2,11 +2,7 @@
 
 @section('content')
 
-<article class="o-article{{ ($item->articleType === 'editorial') ? ' o-article--editorial' : '' }}" itemscope itemtype="http://schema.org/BlogPosting">
-  @component('site.shared._schemaItemProps')
-    @slot('itemprops',$item->present()->itemprops ?? null)
-  @endcomponent
-
+<article class="o-article{{ ($item->articleType === 'editorial') ? ' o-article--editorial' : '' }}">
   @component('components.molecules._m-article-header')
     @slot('editorial', ($item->articleType === 'editorial'))
     @slot('headerType', $item->present()->headerType)
@@ -118,7 +114,7 @@
       <p class="print-authors type f-tag">By {{ $item->showAuthorsWithLinks() ?? null }}</p>
   @endif
 
-  <div class="o-article__body o-blocks" itemprop="articleBody">
+  <div class="o-article__body o-blocks">
 
     @php
         global $_collectedReferences;
@@ -201,11 +197,11 @@
         <ul class="m-inline-list" aria-labelledby="h-topics">
         @foreach ($item->topics as $topic)
             <li class="m-inline-list__item">
-                @if (!empty($topic['id']))
-                    <a class="tag f-tag" href="{{ route('articles', ['category' => $topic['id']]) }}">{{ $topic['name'] }}</a>
-                @else
-                    <span class="tag f-tag">{{ $topic['name'] }}</span>
-                @endif
+                @component('components.atoms._tag')
+                    @slot('tag', !empty($topic['id']) ? 'a' : 'span')
+                    @slot('href', !empty($topic['id']) ? route('articles', ['category' => $topic['id']]) : null)
+                    {{ $topic['name'] }}
+                @endcomponent
             </li>
         @endforeach
         </ul>
@@ -238,7 +234,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '13',
@@ -250,7 +246,7 @@
                 @slot('imageSettingsOnGoing', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '7',
@@ -285,7 +281,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '216px',
                           'small' => '216px',
@@ -316,7 +312,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '216px',
                           'small' => '216px',
@@ -360,7 +356,7 @@
                     @slot('imageSettings', array(
                         'fit' => ($item->type !== 'highlight' and $item->type !== 'artwork') ? 'crop' : null,
                         'ratio' => ($item->type !== 'highlight' and $item->type !== 'artwork') ? '16:9' : null,
-                        'srcset' => array(200,400,600),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                         'sizes' => ImageHelpers::aic_gridListingImageSizes(array(
                               'xsmall' => '1',
                               'small' => '2',

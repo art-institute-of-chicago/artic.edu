@@ -25,28 +25,28 @@
                 <dl>
                     @if ($item->also_known_as)
                         <dt>Also known as</dt>
-                        <dd itemprop="additionalName">{!! $item->present()->also_known_as !!}</dd>
+                        <dd>{!! $item->present()->also_known_as !!}</dd>
                     @endif
 
                     @if ($item->gender_title && config('aic.show_artist_gender'))
                         <dt>Gender</dt>
-                        <dd itemprop="gender">{!! $item->gender_title !!}</dd>
+                        <dd>{!! $item->gender_title !!}</dd>
                     @endif
 
                     @if ($item->birth_date)
                         <dt>Date of birth</dt>
-                        <dd><time datetime="{{ $item->birth_date }}" itemprop="birthDate">{{ $item->birth_date }}</time></dd>
+                        <dd><time datetime="{{ $item->birth_date }}">{{ $item->birth_date }}</time></dd>
                     @endif
 
                     @if ($item->death_date)
                         <dt>Date of death</dt>
-                        <dd><time datetime="{{ $item->death_date }}" itemprop="deathDate">{{ $item->death_date }}</time></dd>
+                        <dd><time datetime="{{ $item->death_date }}">{{ $item->death_date }}</time></dd>
                     @endif
                 </dl>
             @endif
 
             @if (gettype($item->present()->intro) === 'string' and $item->present()->intro !== "")
-                <div class="o-artist-bio__body o-blocks" itemprop="description">
+                <div class="o-artist-bio__body o-blocks">
                     {!! $item->present()->intro !!}
                 </div>
             @endif

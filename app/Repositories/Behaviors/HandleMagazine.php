@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Behaviors;
 
-use Illuminate\Support\Collection;
 use App\Models\MagazineItem;
 use App\Models\MagazineIssue;
 

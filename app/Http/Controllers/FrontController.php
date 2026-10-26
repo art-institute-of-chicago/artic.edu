@@ -6,6 +6,8 @@ use App\Helpers\GtmHelpers;
 use App\Helpers\ImageHelpers;
 use App\Http\Controllers\Helpers\Seo;
 use A17\Twill\Http\Controllers\Front\Controller as BaseController;
+use App\Libraries\SchemaOrg\JsonLdManager;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use App\Models\Api\Exhibition;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
@@ -38,6 +40,53 @@ class FrontController extends BaseController
         View::share('searchTerms', $terms);
     }
 
+    /**
+     * Collect the schema.org entity for the given model into the page @graph.
+     *
+     * The definition is resolved from the page-specific jsonLdDefinition()
+     * override merged over the shared defaults. The entity is emitted in the
+     * layout's single JSON-LD script tag via JsonLdManager::renderGraphScript(),
+     * so this method returns nothing.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return void
+     */
+    protected function addJsonLd(mixed $model): void
+    {
+        app(JsonLdManager::class)->addModelEntity($model, $this->jsonLdDefinition($model));
+    }
+
+    protected function addBreadcrumbs(array $items): void
+    {
+        app(JsonLdManager::class)->addBreadcrumbs($items);
+    }
+
+    /**
+     * Shared WebPage defaults merged under every page-specific definition.
+     * Controllers override this to provide their own entity definition; the
+     * defaults are merged first so page-specific properties win and only
+     * need to declare what differs from a plain page.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        // Thing-level defaults only. CreativeWork-only properties such as
+        // inLanguage and isPartOf are added by the controllers whose types
+        // actually support them (Person, Place, Event, ItemList, and
+        // Organization do not).
+        return [
+            '@type' => 'WebPage',
+            'name' => static fn ($m) => $m->title ?? $m->name ?? null,
+            'description' => SchemaMapper::text('description', 'list_description'),
+            'image' => SchemaMapper::heroImage(),
+            'url' => static fn () => url()->current(),
+        ];
+    }
+
     protected function loadBaseSeo()
     {
         View::share('globalSuffix', 'The Art Institute of Chicago');
@@ -52,8 +101,19 @@ class FrontController extends BaseController
             return;
         }
 
-        if (!Str::endsWith($canonicalPath, request()->path())) {
+        if (!Str::endsWith(Str::before($canonicalPath, '?'), request()->path())) {
             return redirect($canonicalPath, 301);
+        }
+        if ($canonicalQuery = parse_url($canonicalPath, PHP_URL_QUERY)) {
+            parse_str($canonicalQuery, $canonicalParams);
+
+            $matches = collect($canonicalParams)->every(function ($value, $key) {
+                return (string) request()->query($key) === (string) $value;
+            });
+
+            if (!$matches) {
+                return redirect($canonicalPath, 301);
+            }
         }
     }
 
@@ -135,6 +195,8 @@ class FrontController extends BaseController
                 return $this->getRelatedSidebarItemsData();
             case 'loadExhibitionImages':
                 return $this->loadExhibitionImages();
+            case 'csrfToken':
+                return response()->json(['token' => csrf_token()]);
             default:
                 return response()->json(['error' => 'Invalid request'], 400);
         }
@@ -203,7 +265,7 @@ class FrontController extends BaseController
                 $items = $exhibition->present()->getHistoryImagesForMediaComponent($chunk);
 
                 $imageSettings = [
-                    'srcset' => [200, 400, 600, 1000, 1500, 3000],
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_LARGE,
                     'sizes' => ImageHelpers::aic_imageSizes([
                         'xsmall' => '58',
                         'small'  => '28',

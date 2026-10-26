@@ -24,7 +24,7 @@
                         @slot('settings', array(
                             'fit' => 'crop',
                             'ratio' => '67:40',
-                            'srcset' => array(300,600,800,1200,1600),
+                            'srcset' => ImageHelpers::SRCSET_WIDTHS,
                             'sizes' => ImageHelpers::aic_imageSizes(array(
                               'xsmall' => 58,
                               'small' => 58,

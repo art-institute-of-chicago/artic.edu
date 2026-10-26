@@ -6,7 +6,9 @@ use App\Models\Event;
 use App\Models\Page;
 use App\Models\EventProgram;
 use App\Repositories\EventRepository;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -169,9 +171,30 @@ class EventsController extends FrontController
 
     protected function show($id, $slug = null)
     {
-        $item = $this->repository->published()->findOrFail((int) $id);
+        $item = $this->repository->published()->with('dateRules')->findOrFail((int) $id);
 
-        $canonicalPath = route('events.show', $item);
+        $requestedDate = request('date');
+        $occurrence = $item->occurrenceForDate($requestedDate);
+
+        if (!$item->is_recurring && $requestedDate) {
+            return redirect($item->urlForOccurrence(), 301);
+        }
+
+        if ($item->is_recurring) {
+            $occurrence = $occurrence ?? $item->canonical_occurrence;
+
+            $occurrenceEnd = $occurrence ? $occurrence->date_end ?? $occurrence->date : null;
+
+            if ($occurrenceEnd && $occurrenceEnd->isPast()) {
+                if ($nextOccurrence = $item->nextOccurrence) {
+                    return redirect($item->urlForOccurrence($nextOccurrence->date), 301);
+                }
+            }
+        }
+
+        $canonicalPath = ($item->is_recurring && $occurrence)
+            ? $item->urlForOccurrence($occurrence->date)
+            : $item->urlForOccurrence();
 
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
@@ -186,10 +209,18 @@ class EventsController extends FrontController
             $this->seo->noindex = true;
         }
 
+        $this->addJsonLd($item);
+        $this->addBreadcrumbs([
+            ['label' => 'Home', 'url' => route('home')],
+            ['label' => 'Events', 'url' => route('events')],
+            ['label' => $item->title],
+        ]);
+
         return view('site.events.detail', [
             'autoRelated' => $this->getAutoRelated($item),
             'featuredRelated' => $this->getFeatureRelated($item),
             'item' => $item,
+            'occurrence' => $occurrence,
             'contrastHeader' => $item->present()->contrastHeader,
             'canonicalUrl' => $canonicalPath,
             'pageMetaData' => $this->getPageMetaData($item),
@@ -236,9 +267,13 @@ class EventsController extends FrontController
 
     protected function setPageMetaData($item)
     {
+        $next = $item->is_recurring
+            ? ($item->occurrenceForDate(request('date')) ?? $item->canonical_occurrence)
+            : $item->nextOccurrence;
+
         return [
             'type' => 'event',
-            'date' => ($next = $item->nextOccurrence)
+            'date' => $next
                 ? $next->date->toDateString()
                 : null,
             'time' => ($next)
@@ -247,5 +282,302 @@ class EventsController extends FrontController
             'location' => $item->location,
             'registration-required' => $item->is_registration_required,
         ];
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $isRecurring = static fn ($m) => $m->relationLoaded('dateRules')
+            && collect($m->dateRules)->contains(
+                fn ($rule) => method_exists($rule, 'getRuleType') && $rule->getRuleType() === 'recurrent'
+            );
+
+        $eventDuration = static function ($m) use ($isRecurring): ?string {
+            // For recurring events the date_start/date_end window spans the
+            // whole series, so the per-occurrence duration must come from the
+            // time-of-day fields instead.
+            if (!$isRecurring($m)) {
+                $start = $m->date_start ?? null;
+                $end = $m->date_end ?? null;
+
+                if ($start instanceof \DateTimeInterface && $end instanceof \DateTimeInterface) {
+                    $interval = CarbonInterval::instance($start->diff($end));
+
+                    if ($interval->invert === 1) {
+                        return null;
+                    }
+
+                    return CarbonInterval::seconds((int) round($interval->totalSeconds))->cascade()->spec();
+                }
+            }
+
+            try {
+                $startTime = $m->start_time ?? null;
+                $endTime = $m->end_time ?? null;
+            } catch (\Throwable $e) {
+                return null;
+            }
+
+            if (!is_string($startTime) || !is_string($endTime) || $startTime === '' || $endTime === '') {
+                return null;
+            }
+
+            try {
+                $seconds = CarbonInterval::instance(new \DateInterval($endTime))->totalSeconds
+                    - CarbonInterval::instance(new \DateInterval($startTime))->totalSeconds;
+
+                if ($seconds <= 0) {
+                    return null;
+                }
+
+                return CarbonInterval::seconds((int) round($seconds))->cascade()->spec();
+            } catch (\Throwable $e) {
+                return null;
+            }
+        };
+
+        // Recurring events carry DateRule records (RRULE-backed). Emit a
+        // schema.org Schedule so the repetition is machine-readable, rather
+        // than relying on the flattened startDate/endDate window.
+        $eventSchedule = static function ($m, $mapper) {
+            // dateRules is an Eloquent relation; only read it when eager
+            // loaded (show() loads it) so factory-made models never trigger
+            // a lazy DB query.
+            if (!$m->relationLoaded('dateRules')) {
+                return null;
+            }
+
+            $rules = $m->dateRules;
+
+            if (empty($rules)) {
+                return null;
+            }
+
+            // The recurrence rule itself is the machine-readable signal;
+            // start/end dates are omitted for recurring events.
+            $schedules = [];
+
+            foreach ($rules as $rule) {
+                if (method_exists($rule, 'getRuleType') && $rule->getRuleType() !== 'recurrent') {
+                    continue;
+                }
+
+                $every = (int) ($rule->every ?? 1);
+                $type = method_exists($rule, 'getRecurringType') ? $rule->getRecurringType() : 'DAILY';
+                $repeatFrequency = match ($type) {
+                    'WEEKLY' => "P{$every}W",
+                    'MONTHLY' => "P{$every}M",
+                    default => "P{$every}D",
+                };
+
+                $schedule = [
+                    '@type' => 'Schedule',
+                    'repeatFrequency' => $repeatFrequency,
+                ];
+
+                // The per-occurrence time of day comes from the event's
+                // start/end time fields (DateInterval strings).
+                foreach (['start_time' => 'startTime', 'end_time' => 'endTime'] as $field => $prop) {
+                    $time = $m->{$field} ?? null;
+
+                    if (is_string($time) && $time !== '') {
+                        try {
+                            $schedule[$prop] = \Carbon\CarbonInterval::create($time)->format('%H:%I');
+                        } catch (\Throwable $e) {
+                            // Ignore malformed time fields.
+                        }
+                    }
+                }
+
+                if ($type === 'WEEKLY') {
+                    $days = method_exists($rule, 'getDays')
+                        ? array_values(array_filter($rule->getDays()))
+                        : [];
+
+                    // The weekday checkboxes are often unset; the RRULE then
+                    // inherits the weekday of start_date.
+                    if (empty($days) && !empty($rule->start_date)) {
+                        $days = [strtoupper(substr(\Carbon\Carbon::parse($rule->start_date)->format('D'), 0, 2))];
+                    }
+
+                    if (!empty($days)) {
+                        $schedule['byDay'] = $days;
+                    }
+                }
+
+                if ($type === 'MONTHLY' && method_exists($rule, 'getMonthlyRepeatType')) {
+                    if ($rule->getMonthlyRepeatType() === 'first_day') {
+                        $schedule['byDay'] = '1' . strtoupper(substr(\Carbon\Carbon::parse($rule->start_date)->format('D'), 0, 2));
+                    } elseif ($rule->getMonthlyRepeatType() === 'numeral' && !empty($rule->start_date)) {
+                        $schedule['byMonthDay'] = (int) \Carbon\Carbon::parse($rule->start_date)->day;
+                    }
+                }
+
+                $schedules[] = $schedule;
+            }
+
+            if (empty($schedules)) {
+                return null;
+            }
+
+            return count($schedules) === 1 ? $schedules[0] : $schedules;
+        };
+
+        $eventAudience = static function ($m) {
+            $labels = [];
+
+            try {
+                $primary = $m->audience ?? null;
+
+                if (is_numeric($primary) && isset(Event::$eventAudiences[(int) $primary])) {
+                    $labels[] = Event::$eventAudiences[(int) $primary];
+                }
+            } catch (\Throwable $e) {
+                // Ignore accessor failures; fall through to alt audiences
+            }
+
+            try {
+                $altAudiences = $m->alt_audiences ?? null;
+
+                if (is_array($altAudiences)) {
+                    foreach ($altAudiences as $audience) {
+                        $id = is_array($audience) ? ($audience['id'] ?? null) : ($audience->id ?? null);
+
+                        if (is_numeric($id) && isset(Event::$eventAudiences[(int) $id])) {
+                            $labels[] = Event::$eventAudiences[(int) $id];
+                        }
+                    }
+                }
+            } catch (\Throwable $e) {
+                // Ignore accessor failures
+            }
+
+            $labels = collect($labels)->filter()->unique()->values()->all();
+
+            if (empty($labels)) {
+                return null;
+            }
+
+            $audience = array_map(
+                static fn (string $label) => ['@type' => 'Audience', 'audienceType' => $label],
+                $labels
+            );
+
+            return count($audience) === 1 ? $audience[0] : $audience;
+        };
+
+        $eventKeywords = static function ($m) {
+            $labels = [];
+
+            try {
+                $eventType = $m->event_type ?? null;
+
+                if (is_numeric($eventType) && isset(Event::$eventTypes[(int) $eventType])) {
+                    $labels[] = Event::$eventTypes[(int) $eventType];
+                }
+            } catch (\Throwable $e) {
+                // Ignore accessor failures
+            }
+
+            try {
+                $altTypes = $m->alt_types ?? null;
+
+                if (is_array($altTypes)) {
+                    foreach ($altTypes as $type) {
+                        $id = is_array($type) ? ($type['id'] ?? null) : ($type->id ?? null);
+
+                        if (is_numeric($id) && isset(Event::$eventTypes[(int) $id])) {
+                            $labels[] = Event::$eventTypes[(int) $id];
+                        }
+                    }
+                }
+            } catch (\Throwable $e) {
+                // Ignore accessor failures
+            }
+
+            $labels = collect($labels)->filter()->unique()->values()->all();
+
+            return empty($labels) ? null : implode(', ', $labels);
+        };
+
+        $eventLocation = static function ($m, $mapper) {
+            if (!empty($m->is_virtual_event)) {
+                return [
+                    '@type' => 'VirtualLocation',
+                    'url' => $m->virtual_event_url ?? null,
+                ];
+            }
+
+            if (empty($m->location)) {
+                return null;
+            }
+
+            return [
+                '@type' => 'Place',
+                'name' => $m->location,
+                'address' => $mapper->museumAddress(),
+            ];
+        };
+
+        $eventOffers = static function ($m) {
+            $offer = ['@type' => 'Offer'];
+
+            $url = null;
+
+            if (!empty($m->rsvp_link)) {
+                $url = $m->rsvp_link;
+            } elseif (!empty($m->is_ticketed)) {
+                $url = $m->buy_tickets_link ?? null;
+            }
+
+            if (is_string($url) && $url !== '') {
+                $offer['url'] = $url;
+            }
+
+            $offer['availability'] = !empty($m->is_sold_out)
+                ? 'https://schema.org/SoldOut'
+                : 'https://schema.org/InStock';
+
+            if (!empty($m->is_free)) {
+                $offer['price'] = '0';
+                $offer['priceCurrency'] = 'USD';
+            }
+
+            return count($offer) > 1 ? $offer : null;
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'Event',
+                'inLanguage' => SchemaMapper::inLanguage(),
+                'description' => SchemaMapper::text('short_description', 'list_description'),
+                'startDate' => static fn ($m, $mapper) => $isRecurring($m) ? null : $mapper->toIso8601($m->date_start ?? null),
+                'endDate' => static fn ($m, $mapper) => $isRecurring($m) ? null : $mapper->toIso8601($m->date_end ?? null),
+                'doorTime' => 'door_time',
+                'eventSchedule' => $eventSchedule,
+                'duration' => $eventDuration,
+                'eventStatus' => SchemaMapper::literal('https://schema.org/EventScheduled'),
+                'isAccessibleForFree' => static fn ($m) => !empty($m->is_free) ? true : null,
+                'eventAttendanceMode' => static fn ($m) => !empty($m->is_virtual_event)
+                    ? 'https://schema.org/OnlineEventAttendanceMode'
+                    : 'https://schema.org/OfflineEventAttendanceMode',
+                'url' => SchemaMapper::canonical('events.show'),
+                'organizer' => SchemaMapper::orgRef(),
+                'audience' => $eventAudience,
+                'keywords' => $eventKeywords,
+                'location' => $eventLocation,
+                'offers' => $eventOffers,
+            ]
+        );
     }
 }

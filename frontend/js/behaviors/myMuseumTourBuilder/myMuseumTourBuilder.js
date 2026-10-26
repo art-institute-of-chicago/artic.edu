@@ -9,6 +9,7 @@ export default function myMuseumTourBuilder(container) {
   this.init = function () {
     const hideObjectsFromTours = JSON.parse(container.dataset.hideObjectsFromTours);
     const hideGalleriesFromTours = JSON.parse(container.dataset.hideGalleriesFromTours);
+    const iiifBaseUrl = container.dataset.iiifBaseUrl;
     let sentryDsn = container.getAttribute('data-dsn');
 
     Sentry.init({
@@ -40,6 +41,7 @@ export default function myMuseumTourBuilder(container) {
         <MyMuseumTourBuilder
           hideObjectsFromTours={hideObjectsFromTours}
           hideGalleriesFromTours={hideGalleriesFromTours}
+          iiifBaseUrl={iiifBaseUrl}
         />
         <HeaderCleanup />
       </React.Fragment>

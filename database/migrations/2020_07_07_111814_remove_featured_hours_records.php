@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use App\Models\FeaturedHour;
 
 return new class () extends Migration {
     /**

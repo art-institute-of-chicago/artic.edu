@@ -18,7 +18,7 @@
                 @slot('image', $img)
                 @slot('class', 'img-hero-desktop')
                 @slot('settings', array(
-                    'srcset' => array(300,600,1000,1500,3000),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_LARGE,
                     'sizes' => '100vw',
                 ))
             @endcomponent
@@ -26,7 +26,7 @@
                 @slot('image', !empty($imgMobile) ? $imgMobile : $img)
                 @slot('class', 'img-hero-mobile')
                 @slot('settings', array(
-                    'srcset' => array(300,600,1000,1500,3000),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_LARGE,
                     'sizes' => '100vw',
                 ))
             @endcomponent
@@ -40,7 +40,6 @@
                 @component('components.atoms._title')
                     @slot('tag', 'h1')
                     @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-headline')
-                    @slot('itemprop','name')
                     @slot('title', $title)
                     @slot('title_display', $title_display ?? null)
                     @slot('variation', 'contrast-text')

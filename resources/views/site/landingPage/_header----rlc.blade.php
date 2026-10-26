@@ -1,8 +1,4 @@
-<section class="rlc" itemscope itemtype="http://schema.org/TouristAttraction">
-    <link itemprop="additionalType" href="http://schema.org/Museum" aria-hidden="true"/>
-    <link itemprop="additionalType" href="http://schema.org/LandmarksOrHistoricalBuildings" aria-hidden="true"/>
-    <link itemprop="additionalType" href="http://schema.org/LocalBusiness" aria-hidden="true"/>
-
+<section class="rlc">
     @component('components.organisms._o-header-landing')
         @slot('headerMedia', $headerMedia)
         @slot('variation', 'rlc')

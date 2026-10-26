@@ -13,7 +13,6 @@ use App\Repositories\Behaviors\Handle3DModel;
 use App\Repositories\Api\BaseApiRepository;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
-use Illuminate\Support\Facades\DB;
 
 class ArtworkRepository extends BaseApiRepository
 {

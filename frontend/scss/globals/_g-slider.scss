@@ -27,7 +27,7 @@ $btn-close-size: 20px;
   display: none;
   position: fixed;
   z-index: map.get($zindexs, 'modal');
-  background-color: $color__white;
+  background-color: $colors-scales-grey-0;
 
   max-height: 100vh;
   overflow-y: auto;
@@ -55,8 +55,8 @@ $btn-close-size: 20px;
 
     & {
       display: none;
-      background-color: $color__link;
-      color: $color__white;
+      background-color: $colors-themes-light-mode-link-primary;
+      color: $colors-scales-grey-0;
       font-style: normal;
     }
 
@@ -71,7 +71,7 @@ $btn-close-size: 20px;
     }
 
     &.g-slider__msg--error {
-      background-color: $color__error;
+      background-color: $colors-themes-light-mode-error-primary;
     }
 
     .g-slider__msg__content {
@@ -105,11 +105,11 @@ $btn-close-size: 20px;
       padding: 0;
       border: 0 none;
       background: transparent;
-      color: $color__text--forms;
+      color: $colors-themes-light-mode-text-forms;
       cursor: pointer;
 
       &:hover {
-        color: $color__text;
+        color: $colors-themes-light-mode-text-primary;
       }
 
       .icon--close {
@@ -121,15 +121,15 @@ $btn-close-size: 20px;
 
   // TODO: Make link styles more consistent! Here, we mirror .btn color conventions.
   a {
-    color: $color__link--accent;
+    color: $colors-themes-light-mode-link-accent-primary;
 
     &:hover,
     &:focus:hover {
-      color: $color__link--accent-hover;
+      color: $colors-themes-light-mode-link-accent-hover;
     }
 
     &:active:hover {
-      color: $color__link--accent-active;
+      color: $colors-themes-light-mode-link-accent-active;
     }
   }
 }
@@ -160,7 +160,7 @@ $btn-close-size: 20px;
 
         & {
           margin-bottom: $slider-edge-spacing * 0.5;
-          color: $color__text--secondary;
+          color: $colors-themes-light-mode-text-secondary;
         }
 
         @include breakpoint('small+') {

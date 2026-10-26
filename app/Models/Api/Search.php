@@ -258,12 +258,12 @@ class Search extends BaseApiModel
 
     public function scopeByTechniques($query, $ids): ApiModelBuilderSearch
     {
-        return $this->scopeByListType($query, $ids, 'technique_ids');
+        return $this->scopeByListType($query, $ids, 'technique_titles.keyword');
     }
 
     public function scopeByThemes($query, $ids): ApiModelBuilderSearch
     {
-        return $this->scopeByListType($query, $ids, 'category_ids');
+        return $this->scopeByListType($query, $ids, 'category_titles.keyword');
     }
 
     public function scopeByArtworkType($query, $ids): ApiModelBuilderSearch
@@ -515,7 +515,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByMostSimilar($query, Artist|Artwork $item = null, $boost = false): ApiModelBuilderSearch
+    public function scopeByMostSimilar($query, Artist|Artwork|null $item = null, $boost = false): ApiModelBuilderSearch
     {
         if (empty($item)) {
             return $query;

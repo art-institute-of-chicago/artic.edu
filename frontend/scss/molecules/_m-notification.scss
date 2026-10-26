@@ -54,14 +54,14 @@
     padding-top: 16px;
     padding-right: 48px;
     padding-bottom: 20px;
-    background-color: $color__error;
+    background-color: $colors-themes-light-mode-error-primary;
     transition: all .1s linear;
   }
 }
 
 .m-notification--header {
   padding-right: 0px;
-  background-color: color.adjust($color__error, $alpha: -0.03);
+  background-color: color.adjust($colors-themes-light-mode-error-primary, $alpha: -0.03);
 
   // Wait until cookie has been confirmed
   display: none;
@@ -103,7 +103,7 @@
 
 .m-notification__text,
 .m-notification__title {
-  color: $color__text--title-contrast;
+  color: $colors-themes-light-mode-text-title-contrast;
 }
 
 .m-notification__title.f-module-title-1 {
@@ -119,7 +119,7 @@
 }
 
 .m-notification__text a {
-  color: $color__text--title-contrast;
+  color: $colors-themes-light-mode-text-title-contrast;
   text-decoration: underline;
 }
 
@@ -140,7 +140,7 @@
   border: 0 none;
   border-radius: 0;
   background: transparent;
-  color: $color__text--title-contrast;
+  color: $colors-themes-light-mode-text-title-contrast;
   cursor: pointer;
 
   // WEB-2354: Raise close button on small and xsmall
@@ -153,28 +153,28 @@
 
 
 .m-notification--secondary {
-  background-color: $color__black--90;
+  background-color: $colors-scales-grey-90;
 }
 
 .m-notification--tertiary {
-  background-color: $color__bg--primary;
+  background-color: $colors-themes-light-mode-background-primary;
 
   .m-notification__title,
   .m-notification__text,
   .m-notification__text a,
   .m-notification__close {
-    color: $color__text--secondary;
+    color: $colors-themes-light-mode-text-secondary;
   }
 }
 
 .m-notification--quaternary {
-  background-color: $color__grey--100;
+  background-color: $colors-scales-grey-52;
 }
 
 .m-notification--quinary {
   margin-top: 40px;
   padding-left: 20px;
-  border: 1px solid $color__black--10;
+  border: 1px solid $colors-scales-grey-10;
   background-color: transparent;
 
   &:first-child {
@@ -182,36 +182,36 @@
   }
 
   .m-notification__title {
-    color: $color__text;
+    color: $colors-themes-light-mode-text-primary;
   }
 
   .m-notification__text,
   .m-notification__close {
-    color: $color__text--secondary;
+    color: $colors-themes-light-mode-text-secondary;
   }
 
   .m-notification__text a {
-    color: $color__link;
+    color: $colors-themes-light-mode-link-primary;
     text-decoration: none;
 
     &:hover,
     &:focus:hover {
-      color: $color__link--hover;
+      color: $colors-themes-light-mode-link-hover;
     }
 
     &:active:hover {
-      color: $color__link--active;
+      color: $colors-themes-light-mode-link-active;
     }
   }
 }
 
 .m-notification--error {
-  background-color: $color__bg--error;
+  background-color: $colors-themes-light-mode-background-error;
 
   .m-notification__title,
   .m-notification__text,
   .m-notification__text a,
   .m-notification__close {
-    color: $color__text--error;
+    color: $colors-themes-light-mode-error-primary;
   }
 }

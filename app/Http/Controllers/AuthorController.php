@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\AuthorRepository;
+use App\Libraries\SchemaOrg\SchemaMapper;
 
 class AuthorController extends FrontController
 {
@@ -81,10 +82,35 @@ class AuthorController extends FrontController
             ],
         ];
 
+        $this->addJsonLd($item);
+
         return view('site.authorDetail', [
             'item' => $item,
             'breadcrumbs' => $breadcrumbs,
             'canonicalUrl' => $canonicalPath,
         ]);
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'Person',
+                'url' => SchemaMapper::canonical('authors.show'),
+                'mainEntityOfPage' => SchemaMapper::canonical('authors.show'),
+                'jobTitle' => 'job_title',
+            ]
+        );
     }
 }

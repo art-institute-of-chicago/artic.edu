@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
 use App\Models\Page;
-use App\Models\Event;
-use Aic\Hub\Foundation\Testing\MockApi;
 
 class CollectionLandingTest extends BaseTestCase
 {
@@ -28,14 +26,15 @@ class CollectionLandingTest extends BaseTestCase
 
     /**
      * A search with no results falls back to a predefined SEO image. This test verifies that the
-     * fallback image is rendered as a <meta itemprop="image"> tag with a fully qualified URL using
-     * the config's APP_URL.
+     * fallback image is rendered as an og:image meta tag with a fully qualified URL using
+     * the config's APP_URL (the legacy <meta itemprop="image"> microdata tag was removed in
+     * favor of JSON-LD).
      */
     public function test_collection_landing_seo_image(): void
     {
         $response = $this->get(route('collection', ['q' => 'sdflisdfkuhsdfkughsdfkughsfd']));
         $html = preg_replace('/\s+/', ' ', $response->getContent());
-        $this->assertStringContainsString('<meta itemprop="image" content="http', $html);
-        $this->assertStringContainsString('<meta itemprop="image" content="' . config('app.url'), $html);
+        $this->assertStringContainsString('<meta property="og:image" content="http', $html);
+        $this->assertStringContainsString('<meta property="og:image" content="' . config('app.url'), $html);
     }
 }

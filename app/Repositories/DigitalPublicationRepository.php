@@ -9,7 +9,6 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\DigitalPublication;
-use App\Models\DigitalPublicationArticle;
 
 class DigitalPublicationRepository extends ModuleRepository
 {
@@ -51,16 +50,5 @@ class DigitalPublicationRepository extends ModuleRepository
             'page' => $item,
             'showAll' => false,
         ];
-    }
-
-    public function getWelcomeNote($item): DigitalPublicationArticle
-    {
-        $welcomeNotes = $item->getRelated('welcome_note_section');
-
-        if (!config('aic.is_preview_mode')) {
-            $welcomeNotes = $welcomeNotes->where('published', true);
-        }
-
-        return $welcomeNotes->first();
     }
 }

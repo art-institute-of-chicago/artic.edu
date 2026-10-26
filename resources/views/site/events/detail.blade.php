@@ -2,17 +2,13 @@
 
 @section('content')
 
-<article class="o-article" itemscope itemtype="http://schema.org/VisualArtsEvent">
-  @component('site.shared._schemaItemProps')
-    @slot('itemprops',$item->present()->itemprops ?? null)
-  @endcomponent
-
+<article class="o-article">
   @component('components.molecules._m-article-header')
     @slot('editorial', false)
     @slot('headerType', $item->present()->headerType)
     @slot('title', $item->present()->title)
     @slot('title_display', $item->present()->title_display)
-    @slot('formattedDate', $item->present()->formattedNextOccurrence)
+    @slot('formattedDate', $item->present()->formattedOccurrence($occurrence ?? null))
     @slot('type', $item->is_member_exclusive ? 'Member Exclusive' : ($item->audience === \App\Models\Event::LUMINARY ? 'Luminary' : $item->present()->type))
     @slot('img', $item->imageAsArray('hero'))
     @slot('imgMobile', $item->imageAsArray('mobile_hero'))
@@ -65,7 +61,7 @@
   </div>
 
   @if ($item->description and $item->headerType !== 'super-hero')
-  <div class="o-article__intro" itemprop="description">
+  <div class="o-article__intro">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
         @slot('tag', 'div')
@@ -75,7 +71,7 @@
   @endif
 
   <div class="o-article__body o-blocks">
-    <div class='o-blocks' itemprop="description">
+    <div class='o-blocks'>
       {!! $item->renderBlocks() !!}
     </div>
 
@@ -125,7 +121,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '216px',
                           'small' => '216px',

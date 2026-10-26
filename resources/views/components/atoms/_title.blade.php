@@ -2,7 +2,6 @@
     {!! (isset($id)) ? ' id="'.$id.'"' : '' !!}
     {!! (isset($href)) ? ' href="'.$href.'"' : '' !!}
     class="title {{ $font ?? 'f-list-2' }} {{ (isset($variation)) ? ' '.$variation : '' }}"
-    {!! (isset($itemprop)) ? ' itemprop="'.$itemprop.'"' : '' !!}
     {!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}
     {!! (isset($ariaHidden)) ? ' aria-hidden="' .$ariaHidden .'"' : '' !!}
 >

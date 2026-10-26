@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Twill;
 use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\TableColumns;
-use Closure;
 
 class IlluminatedLinkController extends BaseController
 {

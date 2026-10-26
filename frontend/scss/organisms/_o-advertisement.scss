@@ -1,0 +1,86 @@
+@import '../setup/themes';
+
+.o-advertisement {
+  margin-top: $blocks-spacings-largest;
+
+  .o-advertisement__container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: $text-fonts-serif-loaded;
+    gap: $blocks-spacings-double;
+    padding: $blocks-spacings-default;
+    width: 100%;
+
+    @include breakpoint('medium+') {
+      flex-direction: row;
+      gap: $blocks-spacings-largest;
+      padding: $blocks-spacings-extra-large;
+    }
+
+    .o-advertisement__image {
+      order: 1;
+
+      @include breakpoint('medium+') {
+        flex: 1 1 50%;
+        order: 2;
+      }
+
+      img {
+        aspect-ratio: 16 / 9;
+        height: auto;
+        max-width: 100%;
+        object-fit: cover;
+
+        @include breakpoint('medium+') {
+          max-height: 225px;
+        }
+      }
+    }
+    .o-advertisement__text {
+      display: flex;
+      flex-direction: column;
+      gap: $blocks-spacings-large;
+      order: 2;
+
+      @include breakpoint('medium+') {
+        flex: 1 1 50%;
+        order: 1;
+      }
+
+      .title {
+        font-size: $text-sizes-medium;
+
+        @include breakpoint('medium+') {
+          font-size: $text-sizes-double;
+        }
+      }
+      .description {
+        font-size: calc($text-sizes-normal + 1px);
+        line-height: $text-line-heights-normal;
+
+        @include breakpoint('medium+') {
+          font-size: $text-sizes-large;
+        }
+      }
+      .button {
+        margin-top: $blocks-spacings-medium-large;
+
+        @include breakpoint('medium+') {
+          margin-top: auto;
+        }
+
+        a.btn {
+          letter-spacing: $text-letter-spacings-normal;
+          text-transform: uppercase;
+          width: 100%;
+          white-space: wrap;
+
+          @include breakpoint('medium+') {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}

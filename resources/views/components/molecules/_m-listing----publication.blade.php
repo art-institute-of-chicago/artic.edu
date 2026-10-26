@@ -66,7 +66,6 @@
                     @slot('font', (isset($variation) && $variation == 'm-listing--work') ? 'f-headline' : 'f-list-3')
                     @slot('title', $title)
                     @slot('title_display', $title_display)
-                    @slot('itemprop', 'name')
                 @endcomponent
             @endif
             <br>

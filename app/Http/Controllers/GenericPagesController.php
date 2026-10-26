@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\GenericPageRepository;
-use App\Http\Controllers\LandingPagesController;
 use App\Models\Hour;
 use App\Models\Slugs\LandingPageSlug;
+use App\Libraries\SchemaOrg\SchemaMapper;
 use Illuminate\Http\Request;
 
 class GenericPagesController extends FrontController
@@ -60,6 +60,8 @@ class GenericPagesController extends FrontController
             $addFareHarborJS = true;
         }
 
+        $this->addJsonLd($item);
+
         return view('site.genericPage.show', [
             'autoRelated' => $this->getAutoRelated($item),
             'featuredRelated' => $this->getFeatureRelated($item),
@@ -83,6 +85,10 @@ class GenericPagesController extends FrontController
         $page = $this->genericPageRepository->forSlug($idSlug);
 
         if (empty($page)) {
+            if (!is_int($idSlug)) {
+                abort(404);
+            }
+
             $page = $this->genericPageRepository->getById((int) $idSlug);
 
             if (!$page) {
@@ -91,5 +97,41 @@ class GenericPagesController extends FrontController
         }
 
         return $page;
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $genericPageUrl = static function ($m) {
+            $url = $m->url ?? null;
+
+            if (is_string($url) && $url !== '' && !str_starts_with($url, 'http')) {
+                $slug = ltrim($url, '/');
+
+                return $slug !== '' ? route('pages.slug', ['slug' => $slug]) : url($url);
+            }
+
+            return $url;
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'WebPage',
+                'inLanguage' => SchemaMapper::inLanguage(),
+                'description' => SchemaMapper::text('meta_description', 'short_description', 'listing_description', 'description'),
+                'url' => $genericPageUrl,
+                'mainEntityOfPage' => $genericPageUrl,
+            ]
+        );
     }
 }

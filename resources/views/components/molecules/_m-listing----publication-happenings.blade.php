@@ -8,7 +8,6 @@
             @component('components.atoms._title')
                 @slot('font', 'f-headline')
                 @slot('title', $title)
-                @slot('itemprop', 'name')
             @endcomponent
         @endif
         <br>

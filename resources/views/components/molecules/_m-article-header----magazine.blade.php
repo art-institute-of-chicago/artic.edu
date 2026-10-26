@@ -6,7 +6,7 @@
                     @slot('image', $image)
                     @slot('class', 'img-hero-desktop ' . ($key === 0 ? 'is-slideshow-active' : null))
                     @slot('settings', array(
-                        'srcset' => array(300,600,1000,1500,3000),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_LARGE,
                         'sizes' => '100vw',
                     ))
                 @endcomponent
@@ -14,7 +14,7 @@
                     @slot('image', $imagesMobile[$key] ?? $image)
                     @slot('class', 'img-hero-mobile ' . ($key === 0 ? 'is-slideshow-active' : null))
                     @slot('settings', array(
-                        'srcset' => array(300,600,1000,1500,3000),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_LARGE,
                         'sizes' => '100vw',
                     ))
                 @endcomponent
@@ -40,7 +40,6 @@
                 @component('components.atoms._title')
                     @slot('tag','h1')
                     @slot('font', 'f-subheading-2')
-                    @slot('itemprop','name')
                     @slot('title', $title)
                     @slot('title_display', $title_display ?? null)
                 @endcomponent

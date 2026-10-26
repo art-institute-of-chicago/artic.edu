@@ -3,7 +3,6 @@
 namespace App\Libraries;
 
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 use App\Models\ExactTargetList;
 
 class ExactTargetService

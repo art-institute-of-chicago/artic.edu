@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Twill;
 
-use App\Repositories\DigitalExplorerRepository;
-
 class DigitalExplorerController extends BaseController
 {
     protected function setUpController(): void

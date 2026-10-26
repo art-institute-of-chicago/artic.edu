@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Support\Facades\Log;
+
 class GeneratePdfsOne extends GeneratePdfs
 {
     /**
@@ -35,7 +37,11 @@ class GeneratePdfsOne extends GeneratePdfs
                 try {
                     $this->generatePdf($model);
                 } catch (\Exception $exception) {
-                    $this->error($exception->getMessage());
+                    $command = class_basename($this);
+                    $class = class_basename($modelClass);
+                    $message = "$class $model->id: {$exception->getMessage()}";
+                    Log::channel('sentry_logs')->error("$command: $message");
+                    $this->error($message);
                     return 1;
                 }
 

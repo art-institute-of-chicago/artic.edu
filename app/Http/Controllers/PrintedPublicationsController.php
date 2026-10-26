@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\PrintedPublicationRepository;
 use App\Models\CatalogCategory;
 use App\Helpers\NavHelpers;
+use App\Libraries\SchemaOrg\SchemaMapper;
 
 class PrintedPublicationsController extends BaseScopedController
 {
@@ -79,6 +80,9 @@ class PrintedPublicationsController extends BaseScopedController
         $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->listing_description);
         $this->seo->setImage($item->imageFront('listing'));
 
+        $item->isbn = $this->extractIsbn($item);
+
+        $this->addJsonLd($item);
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
             ['label' => 'Print Publications', 'href' => route('collection.publications.printed-publications')],
@@ -119,5 +123,101 @@ class PrintedPublicationsController extends BaseScopedController
                 'links' => collect($categoryLinks)
             ]
         ];
+    }
+
+    /**
+     * The schema.org definition for the given model.
+     *
+     * Shared defaults (e.g. inLanguage) come from the parent; page-specific
+     * properties defined here are merged over them.
+     *
+     * @param mixed $model The model to map.
+     *
+     * @return array<string, mixed>
+     */
+
+    protected function extractIsbn($item): ?string
+    {
+        // I would love for this to be a field but I guess we'll do this 🤷‍♂️
+        $text = '';
+
+        foreach ($item->blocks as $block) {
+            $flatten = function (mixed $value) use (&$flatten): string {
+                if (is_string($value)) {
+                    return $value;
+                }
+
+                if (is_array($value)) {
+                    return implode(' ', array_map($flatten, $value));
+                }
+
+                return '';
+            };
+
+            $text .= ' ' . $flatten($block->content ?? []);
+        }
+
+        if (preg_match('/ISBN[\s:\-]*([0-9Xx][0-9Xx\- ]{8,16})/', $text, $matches)) {
+            return preg_replace('/[^0-9Xx]/', '', $matches[1]);
+        }
+
+        return null;
+    }
+
+    protected function jsonLdDefinition(mixed $model): array
+    {
+        $optionalField = static function (string $field) {
+            return static function ($m) use ($field) {
+                $value = $m->{$field} ?? null;
+
+                if (is_numeric($value) || (is_string($value) && $value !== '')) {
+                    return (string) $value;
+                }
+
+                return null;
+            };
+        };
+
+        $bookAuthor = static function ($m) {
+            $author = $m->author ?? null;
+
+            return is_string($author) && $author !== '' ? $author : null;
+        };
+
+        $bookDatePublished = static function ($m, $mapper) {
+            // publication_date is the book's actual publication date;
+            // publish_start_date is when the web page went live and must not
+            // be used as datePublished for the book.
+            $date = $m->publication_date ?? null;
+
+            return $mapper->toDateString($date);
+        };
+
+        $publicationUrl = static function (string $routeName) {
+            return static function ($m) use ($routeName) {
+                if (empty($m->id)) {
+                    return null;
+                }
+
+                $slug = method_exists($m, 'getSlug') ? $m->getSlug() : null;
+
+                return route($routeName, ['id' => $m->id, 'slug' => $slug]);
+            };
+        };
+
+        return array_merge(
+            parent::jsonLdDefinition($model),
+            [
+                '@type' => 'Book',
+                'inLanguage' => SchemaMapper::inLanguage(),
+                'publisher' => SchemaMapper::orgRef(),
+                'author' => $bookAuthor,
+                'datePublished' => $bookDatePublished,
+                'isbn' => $optionalField('isbn'),
+                'numberOfPages' => $optionalField('number_of_pages'),
+                'url' => $publicationUrl('collection.publications.printed-publications.show'),
+                'mainEntityOfPage' => $publicationUrl('collection.publications.printed-publications.show'),
+            ]
+        );
     }
 }

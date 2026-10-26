@@ -99,10 +99,10 @@ Intended for very simple m-tables..
   th,
   td {
     padding: 15px 12px 23px;
-    border-top: 1px solid $color__rules--primary;
-    border-bottom: 1px solid $color__rules--primary;
-    border-left: 1px solid $color__rules--primary;
-    border-right: 1px solid $color__rules--primary;
+    border-top: 1px solid $colors-themes-light-mode-rules-primary;
+    border-bottom: 1px solid $colors-themes-light-mode-rules-primary;
+    border-left: 1px solid $colors-themes-light-mode-rules-primary;
+    border-right: 1px solid $colors-themes-light-mode-rules-primary;
     font-weight: normal;
     text-align: left;
     white-space: nowrap;
@@ -144,7 +144,7 @@ Intended for very simple m-tables..
 
   td[rowspan],
   td[colspan] {
-    background: $color__bg--primary;
+    background: $colors-themes-light-mode-background-primary;
     text-align: left;
     vertical-align: middle;
 
@@ -179,7 +179,7 @@ Intended for very simple m-tables..
     display: inline-block;
 
     & {
-      color: $color__text--title;
+      color: $colors-themes-light-mode-text-title;
     }
   }
 

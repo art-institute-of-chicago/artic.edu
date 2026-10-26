@@ -7,14 +7,7 @@
     $mostPopularStories = $item->loadRelated('most_popular_stories');
 @endphp
 
-<section class="stories" itemscope itemtype="http://schema.org/TouristAttraction">
-    <link itemprop="additionalType" href="http://schema.org/Museum" aria-hidden="true"/>
-    <link itemprop="additionalType" href="http://schema.org/LandmarksOrHistoricalBuildings" aria-hidden="true"/>
-    <link itemprop="additionalType" href="http://schema.org/LocalBusiness" aria-hidden="true"/>
-    @component('site.shared._schemaItemProps')
-      @slot('itemprops',$itemprops ?? null)
-    @endcomponent
-
+<section class="stories">
     <div class="stories-header" data-behavior="editorialHeader">
         <div id="stories-header__date" class="stories-header__date">
         </div>
@@ -48,7 +41,7 @@
                         @slot('hideImage', $loop->index > 0)
                         @slot('hideDescription', $loop->index > 0)
                         @slot('imageSettings', array(
-                            'srcset' => array(300,600,800,1200,1600),
+                            'srcset' => ImageHelpers::SRCSET_WIDTHS,
                             'sizes' => ImageHelpers::aic_imageSizes(array(
                                   'xsmall' => '58',
                                   'small' => '58',

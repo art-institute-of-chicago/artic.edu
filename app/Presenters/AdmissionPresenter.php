@@ -2,7 +2,6 @@
 
 namespace App\Presenters;
 
-use App\Models\Admission;
 use App\Models\Fee;
 use App\Models\FeeAge;
 use App\Models\FeeCategory;

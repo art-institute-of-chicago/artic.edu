@@ -9,6 +9,7 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class MagazineIssue extends AbstractModel
 {
@@ -18,6 +19,7 @@ class MagazineIssue extends AbstractModel
     use HasMedias;
     use HasMediasEloquent;
     use HasRelated;
+    use HasFactory;
 
     protected $presenter = 'App\Presenters\Admin\MagazineIssuePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\MagazineIssuePresenter';

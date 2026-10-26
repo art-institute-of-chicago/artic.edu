@@ -11,7 +11,6 @@ use App\Models\DigitalPublication;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Video;
 use Illuminate\Support\Facades\Cache;
-use Carbon\Carbon;
 
 /**
  * WEB-1415: Requires HasApiRelations and HasRelations.

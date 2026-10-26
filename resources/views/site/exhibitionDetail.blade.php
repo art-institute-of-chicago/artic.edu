@@ -2,11 +2,7 @@
 
 @section('content')
 
-<article class="o-article" itemscope itemtype="http://schema.org/ExhibitionEvent">
-  @component('site.shared._schemaItemProps')
-    @slot('itemprops',$item->present()->itemprops ?? null)
-  @endcomponent
-
+<article class="o-article">
   @component('components.molecules._m-article-header')
     @slot('editorial', false)
     @slot('headerType', $item->present()->headerType)
@@ -197,11 +193,11 @@
         <ul class="m-inline-list">
         @foreach ($item->topics as $topic)
             <li class="m-inline-list__item">
-                @if (!empty($topic['href']))
-                    <a class="tag f-tag" href="{{ $topic['href'] }}">{{ $topic['label'] }}</a>
-                @else
-                    <span class="tag f-tag">{{ $topic['label'] }}</span>
-                @endif
+                @component('components.atoms._tag')
+                    @slot('tag', !empty($topic['href']) ? 'a' : 'span')
+                    @slot('href', !empty($topic['href']) ? $topic['href'] : null)
+                    {{ $topic['label'] }}
+                @endcomponent
             </li>
         @endforeach
         </ul>
@@ -240,7 +236,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '216px',
                           'small' => '216px',
@@ -283,7 +279,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '13',
@@ -295,7 +291,7 @@
                 @slot('imageSettingsOnGoing', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '7',
@@ -332,7 +328,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                           'xsmall' => '216px',
                           'small' => '216px',

@@ -1,12 +1,4 @@
-<section class="videos" itemscope itemtype="http://schema.org/TouristAttraction">
-    <link itemprop="additionalType" href="http://schema.org/Museum" />
-    <link itemprop="additionalType" href="http://schema.org/LandmarksOrHistoricalBuildings" />
-    <link itemprop="additionalType" href="http://schema.org/LocalBusiness" />
-
-    @component('site.shared._schemaItemProps')
-      @slot('itemprops', $itemprops ?? null)
-    @endcomponent
-
+<section class="videos">
     @component('components.molecules._m-header-block')
         {{ $title }}
     @endcomponent
@@ -52,7 +44,7 @@
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                         'sizes' => ImageHelpers::aic_imageSizes(array(
                             'xsmall' => '216px',
                             'small' => '216px',
@@ -84,7 +76,7 @@
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
+                        'srcset' => ImageHelpers::SRCSET_WIDTHS_SMALL,
                         'sizes' => ImageHelpers::aic_imageSizes(array(
                             'xsmall' => '216px',
                             'small' => '216px',

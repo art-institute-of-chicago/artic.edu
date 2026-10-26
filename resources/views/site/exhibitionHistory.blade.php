@@ -23,7 +23,7 @@
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,300,600,1000,1500),
+                    'srcset' => ImageHelpers::SRCSET_WIDTHS,
                     'sizes' => ImageHelpers::aic_imageSizes(array(
                         'xsmall' => 58,
                         'small' => 58,
@@ -46,7 +46,7 @@
         @slot('variation', 'm-links-bar--filters')
         @slot('primaryHtml')
             <li class="m-links-bar__item m-links-bar__item--primary">
-                @component('components.atoms._dropdown')
+                @component('components.atoms._form-dropdown')
                     @slot('prompt', 'Decade: '.$decade_prompt)
                     @slot('ariaTitle', 'Select decade')
                     @slot('variation', 'dropdown--filter f-link')
@@ -55,7 +55,7 @@
                 @endcomponent
             </li>
             <li class="m-links-bar__item m-links-bar__item--primary">
-                @component('components.atoms._dropdown')
+                @component('components.atoms._form-dropdown')
                     @slot('prompt', 'Year: '. $activeYear)
                     @slot('ariaTitle', 'Select decade')
                     @slot('variation', 'dropdown--filter f-link')

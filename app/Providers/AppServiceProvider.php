@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use A17\Twill\Facades\TwillNavigation;
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use A17\Twill\Models\File;
-use A17\Twill\Facades\TwillNavigation;
 use A17\Twill\View\Components\Navigation\NavigationLink;
 use Aic\Hub\Foundation\Library\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\DamsImageService;
@@ -12,10 +12,10 @@ use App\Libraries\EmbedConverterService;
 use App\Observers\FileObserver;
 use App\Services\OAuth\GoogleOAuthService;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\AliasLoader;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -322,6 +322,7 @@ class AppServiceProvider extends ServiceProvider
                 NavigationLink::make()->forRoute('twill.general.integrations.show')->title('Integrations'),
                 NavigationLink::make()->forModule('illuminatedLinks')->title('Illuminated Links'),
                 NavigationLink::make()->forModule('shopItems')->title('Shop'),
+                NavigationLink::make()->forModule('adCampaigns')->title('Ad Management'),
             ]),
         );
     }
@@ -366,10 +367,10 @@ class AppServiceProvider extends ServiceProvider
                         'learn-adults' => '/visit/whos-visiting/college-and-university-groups-2',
                         'learn-educators' => '/learn-with-us/educators',
                         'learn-rlc' => '/ryan-learning-center',
-                        'follow-facebook' => 'https://www.facebook.com/artic',
-                        'follow-twitter' => 'https://twitter.com/artinstitutechi',
-                        'follow-instagram' => 'https://www.instagram.com/artinstitutechi/',
-                        'follow-youtube' => 'https://www.youtube.com/user/ArtInstituteChicago',
+                        'follow-facebook' => config('aic.socials.facebook'),
+                        'follow-twitter' => config('aic.socials.twitter'),
+                        'follow-instagram' => config('aic.socials.instagram'),
+                        'follow-youtube' => config('aic.socials.youtube'),
                         'legal-articles' => '/articles',
                         'legal-employment' => '/employment',
                         'legal-venue-rental' => '/venue-rental',
