@@ -111,6 +111,36 @@ class Artwork extends BaseApiModel
         return ($artist->title ?? '') . ($artist && $artist->title && $this->date_display ? ', ' : '') . ($this->date_display ?? '');
     }
 
+    public function getRelatedArtistPageAttribute()
+    {
+        $artist = null;
+
+        if ($this->mainArtist && $this->mainArtist->isNotEmpty()) {
+            $artist = $this->mainArtist->first();
+        } elseif ($this->artists && $this->artists->isNotEmpty()) {
+            $artist = $this->artists->first();
+        }
+
+        if (!$artist) {
+            return null;
+        }
+
+        $augmentedArtist = $artist->getAugmentedModel();
+        $intro = $augmentedArtist ? ($augmentedArtist->intro ?? null) : null;
+
+        if (is_string($intro) && trim($intro) !== '') {
+            return $artist;
+        }
+
+        $description = $artist->description ?? null;
+
+        if (!is_string($description) || trim($description) === '') {
+            return null;
+        }
+
+        return $artist;
+    }
+
     public function getNearestNeighborsAttribute()
     {
         if ($this->nearestNeighborsCache === null) {
@@ -215,6 +245,16 @@ class Artwork extends BaseApiModel
             ->forceEndpoint('generalSearch')
             ->multimediaForArtwork($this->id)
             ->multimediaAssets()
+            ->forPage(null, self::RELATED_MULTIMEDIA)
+            ->get(['id', 'title', 'content', 'api_model', 'is_multimedia_resource', 'is_educational_resource', 'web_url']);
+    }
+
+    public function getSoundResourcesAttribute()
+    {
+        return Asset::query()
+            ->forceEndpoint('generalSearch')
+            ->multimediaForArtwork($this->id)
+            ->assetsOfTypes(['sounds'])
             ->forPage(null, self::RELATED_MULTIMEDIA)
             ->get(['id', 'title', 'content', 'api_model', 'is_multimedia_resource', 'is_educational_resource', 'web_url']);
     }

@@ -8,12 +8,6 @@
     @endcomponent
 @endif
 
-@if ($item->assetLibrary)
-    <script type="application/json" id="assetLibrary">
-        {!! json_encode($item->assetLibrary) !!}
-    </script>
-@endif
-
 <article class="o-article{{ (empty($item->description) or $item->description === '') ? ' o-article--no-description' : '' }}" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}">
 
   {{-- Gallery-type _m-article-header never renders title --}}
@@ -32,8 +26,6 @@
     @slot('isPublicDomain', !$item->is_deaccessioned && $item->is_public_domain)
     @slot('maxZoomWindowSize', $item->max_zoom_window_size)
     @slot('prevNextObject', $prevNextObject ?? null)
-    @slot('module3d', $model3d ?? null)
-    @slot('module360', $item->assetLibrary)
     @slot('moduleMirador', $item->getMiradorManifest())
     @slot('defaultView', $item->getMiradorView())
   @endcomponent
@@ -63,14 +55,6 @@
             </ul>
         @endif
 @endif
-  </div>
-
-  <div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@medium+">
-    @if (!$item->is_deaccessioned)
-        @component('site.shared._loadRelatedSidebar')
-            @slot('item', $item)
-        @endcomponent
-    @endif
   </div>
 
   <div class="o-article__inline-header">
@@ -122,13 +106,190 @@
 
 </article>
 
-<div class="o-article__secondary-actions o-article__secondary-actions--inline-header {{ ($item->description !== null && $item->description !== '') ? ' o-article__secondary-actions--with-description' : '' }} u-show@small-">
-  @if (!$item->is_deaccessioned)
-    @component('site.shared._loadRelatedSidebar')
-        @slot('item', $item)
+@if (!$item->is_deaccessioned && collect($audioItems ?? [])->isNotEmpty())
+    @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
+        @slot('label', 'Audio')
+        @foreach ($audioItems as $audio)
+            @component('components.molecules._m-listing----sound')
+                @slot('item', (object) $audio)
+            @endcomponent
+        @endforeach
     @endcomponent
-  @endif
-</div>
+@endif
+
+@php
+    $multimediaInline = collect($multimediaInline ?? [])->filter(fn ($item) => !empty($item['model'] ?? null))->values();
+@endphp
+
+@if (!$item->is_deaccessioned && collect($interactiveFeatureEmbeds ?? [])->isNotEmpty())
+    @foreach ($interactiveFeatureEmbeds as $feature)
+        @component('components.organisms._o-related-content')
+            @slot('preventFocusScroll', true)
+            @slot('id', 'interactive-feature-' . ($feature['model']->id ?? $loop->index))
+            @slot('label', $feature['title'] ?: 'Interactive Feature')
+            @slot('description', $feature['description'] ?? null)
+            <div class="o-closer-look-embed o-closer-look-embed--fit-16x10">
+                <iframe
+                    class="o-closer-look-embed__frame"
+                    src="{{ $feature['embedHref'] }}"
+                    title="{{ $feature['title'] ?: 'Interactive feature' }}"
+                    loading="lazy"
+                    allow="fullscreen; autoplay"
+                    allowfullscreen
+                ></iframe>
+            </div>
+        @endcomponent
+    @endforeach
+@endif
+
+@if (!$item->is_deaccessioned && collect($interactiveFeatureCards ?? [])->isNotEmpty())
+    @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
+        @slot('label', 'Interactive Feature')
+        @slot('items', $interactiveFeatureCards)
+        @slot('total', $interactiveFeatureCardsTotal ?? null)
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && collect($digitalExplorerCards ?? [])->isNotEmpty())
+    @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
+        @slot('label', 'Digital Explorer')
+        @slot('items', $digitalExplorerCards)
+        @slot('total', $digitalExplorerCardsTotal ?? null)
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && $multimediaInline->isNotEmpty())
+    @foreach ($multimediaInline as $inline)
+        @php
+            $inlineModel = $inline['model'] ?? null;
+            $isVideo = ($inline['type'] ?? null) === 'videos';
+        @endphp
+        @component('components.organisms._o-related-content')
+            @slot('preventFocusScroll', true)
+            @slot('label', $inline['title'] ?? ($isVideo ? 'Video' : 'Layered Image Viewer'))
+            @slot('description', $inline['description'] ?? null)
+            @slot('variation', 'viewer')
+            @if ($isVideo)
+                @component('components.molecules._m-media')
+                    @slot('item', [
+                        'type' => 'embed',
+                        'size' => 'l',
+                        'media' => ['embed' => $inlineModel->embed, 'medias' => $inlineModel->medias],
+                        'poster' => $inlineModel->imageFront('hero') ?? ImageHelpers::youtubeItemAsArray($inlineModel),
+                        'hideCaption' => true,
+                        'fullscreen' => false,
+                    ])
+                @endcomponent
+            @else
+                @include('site.blocks.layered_image_viewer', ['block' => $inlineModel])
+            @endif
+        @endcomponent
+    @endforeach
+@endif
+
+@if (!$item->is_deaccessioned && $item->assetLibrary)
+    @php $section = $sectionHeadings['view_360'] ?? []; @endphp
+    @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
+        @slot('label', $section['title'] ?? '360° View')
+        @slot('description', $section['description'] ?? null)
+        @slot('variation', 'viewer')
+        <div class="m-media m-media--l m-media--contain">
+            <script type="application/json" id="assetLibrary-{{ $item->assetLibrary['id'] }}">
+                {!! json_encode($item->assetLibrary) !!}
+            </script>
+            <div class="m-media__img m-media--360-embed" data-behavior="fitText">
+                @component('components.molecules._m-viewer-360')
+                    @slot('type', 'standalone')
+                    @slot('title', $item->title . ' - 360')
+                    @slot('id', 'assetLibrary-' . $item->assetLibrary['id'])
+                @endcomponent
+            </div>
+        </div>
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && !empty($model3d))
+    @php $section = $sectionHeadings['view_3d'] ?? []; @endphp
+    @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
+        @slot('label', $section['title'] ?? '3D View')
+        @slot('description', $section['description'] ?? null)
+        @slot('variation', 'viewer')
+        @component('components.molecules._m-viewer-3d')
+            @slot('url', 'https://sketchfab.com/models/' . $model3d->model_id . '/embed')
+            @slot('type', 'standalone')
+            @slot('uid', $model3d->model_id)
+            @slot('cc', !$item->is_deaccessioned && $item->is_public_domain)
+            @slot('guided', $model3d->guided_tour)
+            @slot('annotations', is_array($model3d->annotation_list) ? json_encode($model3d->annotation_list) : $model3d->annotation_list)
+            @slot('hideannot', $model3d->hide_annotation)
+            @slot('hideannottitle', $model3d->hide_annotation_title)
+            @slot('title', $item->title . ' - 3D')
+        @endcomponent
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && collect($relatedContentItems ?? [])->isNotEmpty())
+    @php $section = $sectionHeadings['related_content'] ?? []; @endphp
+    @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
+        @slot('label', $section['title'] ?? 'Related Content')
+        @slot('description', $section['description'] ?? null)
+        @slot('variation', 'grid-cards')
+        @slot('items', $relatedContentItems)
+        @slot('total', $relatedContentTotal ?? null)
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && collect($publicationItems ?? [])->isNotEmpty())
+    @php $section = $sectionHeadings['publications'] ?? []; @endphp
+    @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
+        @slot('label', $section['title'] ?? 'Art Institute Publications')
+        @slot('description', $section['description'] ?? null)
+        @slot('variation', 'grid-year')
+        @slot('itemVariation', 'publications')
+        @slot('items', $publicationItems)
+        @slot('total', $publicationTotal ?? null)
+        @slot('seeAllLabel', 'Art Institute publications')
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && collect($exhibitionItems ?? [])->isNotEmpty())
+    @php $section = $sectionHeadings['exhibitions'] ?? []; @endphp
+    @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
+        @slot('label', $section['title'] ?? 'Art Institute Exhibitions')
+        @slot('description', $section['description'] ?? null)
+        @slot('variation', 'list-rows')
+        @slot('items', $exhibitionItems)
+        @slot('total', $exhibitionTotal ?? null)
+        @slot('seeAllLabel', 'Art Institute exhibitions')
+    @endcomponent
+@endif
+
+@if (!$item->is_deaccessioned && collect($educatorResourceItems ?? [])->isNotEmpty())
+    @php $section = $sectionHeadings['educator_resources'] ?? []; @endphp
+    @component('components.organisms._o-related-content')
+        @slot('preventFocusScroll', true)
+        @slot('label', $section['title'] ?? 'Educator Resources')
+        @slot('description', $section['description'] ?? null)
+        @slot('variation', 'list-rows')
+        <ul class="o-related-content__list">
+            @foreach ($educatorResourceItems as $resource)
+                @component('components.molecules._m-listing----educator-resource')
+                    @slot('item', $resource)
+                    @slot('isIndex', true)
+                    @slot('tag', 'li')
+                @endcomponent
+            @endforeach
+        </ul>
+    @endcomponent
+@endif
 
 @if (isset($exploreMoreTags) && $exploreMoreTags->isNotEmpty())
     @component('components.molecules._m-tag-dropdown')
@@ -188,6 +349,13 @@
 @endsection
 
 @section('extra_scripts')
+    <script src="{{FrontendHelpers::revAsset('scripts/videojs.js')}}"></script>
+    @if (collect($multimediaInline ?? [])->contains(fn ($inline) => ($inline['type'] ?? null) === 'blocks'))
+        <script src="{{FrontendHelpers::revAsset('scripts/layeredImageViewer.js')}}"></script>
+    @endif
+    @if (!empty($model3d))
+        <script src="{{FrontendHelpers::revAsset('scripts/blocks3D.js')}}"></script>
+    @endif
     <script src="{{FrontendHelpers::revAsset('scripts/blocks360.js')}}"></script>
     <script src="{{FrontendHelpers::revAsset('scripts/mirador.js')}}"></script>
 @endsection

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
+use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class EducatorResource extends AbstractModel
 {
+    use HasApiRelations;
     use HasBlocks;
     use HasSlug;
     use HasMedias;
@@ -94,6 +96,16 @@ class EducatorResource extends AbstractModel
     public function categories()
     {
         return $this->belongsToMany('App\Models\ResourceCategory', 'educator_resource_resource_category', 'educator_resource_id');
+    }
+
+    public function relatedArtists()
+    {
+        return $this->apiElements()->where('relation', 'relatedArtists');
+    }
+
+    public function relatedArtworks()
+    {
+        return $this->apiElements()->where('relation', 'relatedArtworks');
     }
 
     /**
