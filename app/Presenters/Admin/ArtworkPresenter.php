@@ -106,7 +106,6 @@ class ArtworkPresenter extends BasePresenter
             'type' => 'text',
             'content' => '<h2 class="sr-only">Extended information about this artwork</h2>',
         ]);
-        array_push($blocks, $this->getArtworkAccordionBlocks());
 
         array_push($blocks, [
             'type' => 'hr',
@@ -405,117 +404,6 @@ class ArtworkPresenter extends BasePresenter
 
             if (!empty($value)) {
                 $blocks[] = ['key' => $key, 'value' => $value];
-            }
-        }
-
-        return $blocks;
-    }
-
-    protected function buildMultimediaBlocks($resultsByType, $title)
-    {
-        $block = [
-            'title' => $title,
-            'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="' . StringHelpers::getUtf8Slug($title) . '"',
-            'blocks' => []
-        ];
-
-        $localBlock = [
-            'type' => 'link-list',
-            'links' => [],
-        ];
-
-        foreach ($resultsByType as $type => $medias) {
-            $localBlock['links'] = array_merge($localBlock['links'], $medias->toArray());
-        }
-
-        if (!empty($localBlock['links'])) {
-            $block['blocks'][] = $localBlock;
-        }
-
-        return $block;
-    }
-
-    protected function getArtworkAccordionBlocks()
-    {
-        $content = $this->formatDescriptionBlocks([
-            'publication_history' => 'Publication History',
-            'exhibition_history' => 'Exhibition History',
-            'provenance_text' => 'Provenance'
-        ]);
-
-        if ($this->entity->catalogue_display) {
-            $content[] = [
-                'title' => 'Catalogues Raisonnés',
-                'blocks' => [
-                    [
-                        'type' => 'text',
-                        'content' => $this->entity->catalogue_display
-                    ],
-                ],
-                'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="catalogue-raisonnes"'
-            ];
-        }
-
-        $multimediaResources = $this->entity->multimediaResources;
-        if ($multimediaResources && $multimediaResources->isNotEmpty()) {
-            $resultsByType = $multimediaResources->groupBy('api_model')->sortKeys();
-            $content[] = $this->buildMultimediaBlocks($resultsByType, 'Multimedia');
-        }
-
-        $educationalResources = $this->entity->educationalResources;
-        if ($educationalResources && $educationalResources->isNotEmpty()) {
-            $resultsByType = $educationalResources->groupBy('api_model')->sort();
-            $content[] = $this->buildMultimediaBlocks($resultsByType, 'Educational Resources');
-        }
-
-        $content = array_filter($content);
-
-        if (empty($content)) {
-            return [];
-        }
-
-        return [
-            'type' => 'accordion',
-            'content' => $content,
-            'titleFont' => 'f-module-title-2'
-        ];
-    }
-
-    protected function formatDescriptionBlocks($elements)
-    {
-        $blocks = [];
-
-        foreach ($elements as $key => $value) {
-            if (!empty($this->entity->{$key})) {
-                $block = [
-                    'title' => $value,
-                    'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="' . StringHelpers::getUtf8Slug($value) . '"',
-                    'blocks' => []
-                ];
-                $explodedKeys = explode("\n", $this->entity->{$key});
-                $blockHtml = '';
-
-                if (count($explodedKeys) < 2) {
-                    foreach ($explodedKeys as $txt) {
-                        if (!empty($txt)) {
-                            $blockHtml .= '<p>' . $txt . '</p>';
-                        }
-                    }
-                } else {
-                    $blockHtml .= '<ul>';
-
-                    foreach ($explodedKeys as $txt) {
-                        if (!empty($txt)) {
-                            $blockHtml .= '<li>' . $txt . '</li>';
-                        }
-                    }
-                    $blockHtml .= '</ul>';
-                }
-                $block['blocks'][] = [
-                    'type' => 'text',
-                    'content' => $blockHtml
-                ];
-                $blocks[] = $block;
             }
         }
 

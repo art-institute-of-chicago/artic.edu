@@ -13,3 +13,29 @@
 #footer {
   backface-visibility: hidden;
 }
+
+.o-closer-look-embed__frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.o-closer-look-embed--fit-16x10 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  background: $colors-themes-light-mode-background-primary;
+
+  .o-closer-look-embed__frame {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+.o-closer-look-embed__fallback {
+  margin-top: 15px;
+}

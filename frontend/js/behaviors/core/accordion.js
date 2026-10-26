@@ -3,6 +3,8 @@ import { googleTagManagerDataFromLink } from '../../functions/core';
 
 const accordion = function(container) {
 
+  const preventFocusScroll = container.getAttribute('data-accordion-prevent-focus-scroll') === 'true';
+
   function _findAncestor(el, cls) {
     while ((el = el.parentElement) && !el.classList.contains(cls));
     return el;
@@ -52,6 +54,18 @@ const accordion = function(container) {
     target.style.height = targetHeight + 'px';
   }
 
+  function _focusPanel(target) {
+    if (!preventFocusScroll) {
+      setFocusOnTarget(target);
+      return;
+    }
+    target.focus({ preventScroll: true });
+    if (target !== document.activeElement) {
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
+  }
+
   function _unsetAfterAnimation() {
     this.removeAttribute('style');
     this.removeEventListener('transitionend', _unsetAfterAnimation);
@@ -64,8 +78,21 @@ const accordion = function(container) {
       event.stopPropagation();
       //
       let trigger = event.target.classList.contains('o-accordion__trigger') ? event.target : event.target.parentNode;
-      let target = trigger.parentElement.nextElementSibling || trigger.nextElementSibling;
-      let validTarget = (target.classList.contains('o-accordion__panel'));
+      let target = null;
+      // Prefer an explicit `aria-controls` panel reference so triggers can live
+      // outside the panel's parent element (e.g. the related content toggle).
+      if (trigger.hasAttribute('aria-controls')) {
+        let controlledTarget = document.getElementById(trigger.getAttribute('aria-controls'));
+        if (controlledTarget && controlledTarget.classList.contains('o-accordion__panel')) {
+          target = controlledTarget;
+        }
+      }
+      // Fallback: the panel immediately following the trigger's parent (or the
+      // trigger itself).
+      if (!target) {
+        target = trigger.parentElement.nextElementSibling || trigger.nextElementSibling;
+      }
+      let validTarget = !!(target && target.classList.contains('o-accordion__panel'));
       //
       if (trigger.classList.contains('s-inactive')) {
         return;
@@ -87,7 +114,7 @@ const accordion = function(container) {
           target.style.overflow = 'hidden';
           trigger.setAttribute('aria-expanded', 'true');
           target.setAttribute('aria-hidden', 'false');
-          setTimeout(function(){ setTimeout(function(){ setFocusOnTarget(target); }, 0) }, 0)
+          setTimeout(function(){ setTimeout(function(){ _focusPanel(target); }, 0) }, 0)
           _getHeightAndSet(target);
           // If the form has some google tag manager props, tell GTM
           let googleTagManagerObject = googleTagManagerDataFromLink(trigger);

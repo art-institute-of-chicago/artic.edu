@@ -147,7 +147,7 @@ class Asset extends BaseApiModel
         }
     }
 
-    public function scopeMultimediaAssets($query): ApiModelBuilder
+    public function scopeMultimediaAssets(ApiModelBuilder $query): ApiModelBuilder
     {
         $params = [
             'resources' => ['images', 'sounds', 'texts', 'videos', 'articles', 'sites']
@@ -156,7 +156,7 @@ class Asset extends BaseApiModel
         return $query->rawQuery($params);
     }
 
-    public function scopeEducationalAssets($query): ApiModelBuilder
+    public function scopeEducationalAssets(ApiModelBuilder $query): ApiModelBuilder
     {
         $params = [
             'resources' => ['images', 'sounds', 'texts', 'videos']
@@ -165,7 +165,12 @@ class Asset extends BaseApiModel
         return $query->rawQuery($params);
     }
 
-    public function scopeMultimediaForArtwork($query, $artworkId): ApiModelBuilder
+    public function scopeAssetsOfTypes(ApiModelBuilder $query, array $types): ApiModelBuilder
+    {
+        return $query->rawQuery(['resources' => $types]);
+    }
+
+    public function scopeMultimediaForArtwork(ApiModelBuilder $query, int $artworkId): ApiModelBuilder
     {
         $params = [
             'bool' => [
@@ -244,7 +249,7 @@ class Asset extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeEducationalForArtwork($query, $artworkId): ApiModelBuilder
+    public function scopeEducationalForArtwork(ApiModelBuilder $query, int $artworkId): ApiModelBuilder
     {
         $params = [
             'bool' => [

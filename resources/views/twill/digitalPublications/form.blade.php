@@ -164,6 +164,11 @@
 
     </x-twill::formFieldset>
 
+    <x-twill::formFieldset id="related_artists" title="Artists">
+        <p>Associate one or more artists with this publication.</p>
+        <x-twill::browser name='relatedArtists' label='Artists' route-prefix='collection' module-name='artists' :max='10' />
+    </x-twill::formFieldset>
+
     @include('twill.partials.related')
 
     @include('twill.partials.meta')
