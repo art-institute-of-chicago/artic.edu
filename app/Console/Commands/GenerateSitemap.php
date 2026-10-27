@@ -14,6 +14,7 @@ use Spatie\Sitemap\Tags\Url;
 use Symfony\Component\DomCrawler\Link;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class GenerateSitemap extends Command
@@ -132,8 +133,13 @@ class GenerateSitemap extends Command
     {
         $file = $this->crawlPrefix . route('collection', [], false);
 
-        if (!$html = @file_get_contents($file)) {
-            throw new \Exception('Fetch failed: ' . $file);
+        // Cloudflare rejects requests without a user agent
+        $response = Http::withHeaders([
+            'User-Agent' => config('app.name') . ' Sitemap Generator',
+        ])->get($file);
+
+        if (!$response->successful() || !$html = $response->body()) {
+            throw new \Exception('Fetch failed: ' . $file . ' (' . $response->status() . ')');
         }
 
         $domCrawler = new DomCrawler($html, $file);
