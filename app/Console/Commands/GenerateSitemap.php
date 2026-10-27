@@ -135,7 +135,7 @@ class GenerateSitemap extends Command
 
         // Cloudflare rejects requests without a user agent
         $response = Http::withHeaders([
-            'User-Agent' => config('app.name') . ' Sitemap Generator',
+            'AIC-User-Agent' => config('app.name') . ' Sitemap Generator',
         ])->get($file);
 
         if (!$response->successful() || !$html = $response->body()) {
