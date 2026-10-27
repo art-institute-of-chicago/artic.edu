@@ -307,6 +307,10 @@ class Slide extends JsonResource
             $headline = $this->headline;
         }
 
+        $groupBackground = $this->asset_type === 'seamless'
+            ? null
+            : $this->experience->interactiveFeature->grouping_background_color;
+
         $rst = [
             'id' => $this->id,
             'type' => $this->module_type,
@@ -321,8 +325,8 @@ class Slide extends JsonResource
             'experienceId' => $this->experience->id,
             'experienceType' => 'LABEL',
             'colorCode' => $this->experience->interactiveFeature->color,
-            'bgColorCode' => $this->background_color ?: $this->experience->interactiveFeature->grouping_background_color,
-            'seamlessBackgroundColor' => $this->seamless_background_color ?: $this->background_color ?: $this->experience->interactiveFeature->grouping_background_color,
+            'bgColorCode' => $this->background_color ?: $groupBackground,
+            'seamlessBackgroundColor' => $this->seamless_background_color ?: $this->background_color ?: $groupBackground,
             'hasCustomBgColor' => !empty($this->background_color),
             'vScalePercent' => 0,
         ];
