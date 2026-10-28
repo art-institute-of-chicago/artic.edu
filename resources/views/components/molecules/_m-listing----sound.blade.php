@@ -1,17 +1,25 @@
+@php
+    $title = $item->display_title ?: $item->title;
+@endphp
 {{-- This assumes `href` is a direct link to an MP3 file --}}
 <li class="m-listing m-listing--inline m-listing--sound">
     <div class="m-listing__link">
-        @if (!empty($item->title))
+        @if (!empty($title))
             <div class="m-listing__meta--sound">
-                {!! $item->title !!}
+                {!! $title !!}
             </div>
         @endif
         <div>
             <audio
-                class="video-js vjs-fluid m-vjs-audio {{ empty($item->title) ? 'm-vjs-audio--collapse' : '' }}"
+                @class([
+                    'm-vjs-audio',
+                    'm-vjs-audio--collapse' => $title,
+                    'video-js',
+                    'vjs-fluid',
+                ])
                 {!! isset($item->transcript) ? 'data-has-transcript' : null !!}
                 data-gtm-prefix="{!! $item->gtmPrefix ?? 'audio' !!}"
-                data-gtm-title="{!! !empty($item->title) ? strip_tags($item->title) : basename($item->href) !!}"
+                data-gtm-title="{!! !empty($title) ? strip_tags($title) : basename($item->href) !!}"
                 controls
             >
                 <source src="{{ $item->href }}" type="audio/mpeg">
