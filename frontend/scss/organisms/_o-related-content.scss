@@ -127,6 +127,13 @@
       width: 200px;
     }
   }
+
+  .m-media--mirador-embed {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
 }
 
 .o-related-content--viewer {
