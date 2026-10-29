@@ -53,6 +53,10 @@
                 'label' => 'Video',
                 'value' => '/collection/articlesPublications/videos/browser'
             ],
+            [
+                'label' => 'Interactive Feature',
+                'value' => '/collection/interactiveFeatures/experiences/browser'
+            ],
         ]" />
 
     <x-twill::formFieldset id="artwork_publications" title="Publications">
@@ -162,7 +166,8 @@
     </x-twill::formFieldset>
 
     <x-twill::formFieldset id="artwork_multimedia" title="Multimedia">
-        <p>Add a block per item: interactive features, digital explorers, layered image viewers, and videos. Each item renders as an individual full-width section on the artwork page, in the order shown here.</p>
+        <p>Add a block per item: digital explorers, layered image viewers, videos, and Mirador. Each item renders as an individual full-width section on the artwork page, in the order shown here.</p>
+        <p>Interactive Features are added under Related Content.</p>
         <p><strong>Note:</strong> layered image viewer blocks are referenced live, so later edits to the original block propagate, and deleting the original simply hides this section.</p>
 
         @php $multimediaBlocks = BlockHelpers::getBlocksForEditor(['multimedia_item']); @endphp
@@ -229,6 +234,7 @@
 
     <x-twill::formFieldset id="mirador" title="Mirador">
         <p>Add a Mirador modal to the artwork page by either checking the box below to use the default manifest file or uploading your own.</p>
+        <p>This controls the Mirador icon/modal near the artwork page. To feature Mirador content in Advanced Imaging, add a Multimedia block instead.</p>
 
         @php
             $note = 'i.e. ' . config('api.public_uri') . '/api/v1/artworks/' . $item->datahub_id . '/manifest.json';
