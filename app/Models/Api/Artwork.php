@@ -157,6 +157,7 @@ class Artwork extends BaseApiModel
         return static::query()
             ->ids($distances->keys()->all())
             ->get()
+            ->reject(fn ($artwork) => $artwork->is_deaccessioned)
             ->map(function ($artwork) use ($distances) {
                 $distance = $distances->get($artwork->id);
 
