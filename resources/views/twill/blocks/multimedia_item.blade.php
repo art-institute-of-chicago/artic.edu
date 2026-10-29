@@ -53,7 +53,7 @@
 <x-twill::checkbox
     name='mirador_settings'
     label='Custom Mirador settings'
-    note='Override for mirador non are selected'
+    note='Override for mirador if none are selected'
     :default="false"
 />
 
