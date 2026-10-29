@@ -292,14 +292,47 @@ class ArtworkController extends BaseScopedController
             }
         }
 
+        $title = trim((string) $block->input('section_title'));
+        $description = trim((string) $block->input('description'));
 
+        if ($type === 'miradors') {
+            return $this->miradorSelection($block, $selected);
         }
 
         return [
             'type' => $type,
             'model' => $selected,
-            'title' => trim((string) $block->input('section_title')) ?: null,
+            'title' => $title ?: null,
+            'description' => $description ?: null,
+        ];
+    }
+    private function miradorSelection(Block $block, Mirador $mirador): ?array
+    {
+        $hasOverrides = (bool) $block->input('mirador_settings');
+        $uploaded = $hasOverrides ? $block->file('upload_manifest_file') : null;
+
+        if ($uploaded) {
+            $manifest = $uploaded;
+        } elseif ($hasOverrides && $block->input('default_manifest_url') && $mirador->object_id) {
+            $manifest = config('api.public_uri')
+                . '/api/v1/artworks/' . $mirador->object_id . '/manifest.json';
+        } else {
+            $manifest = $mirador->getMiradorManifest();
+        }
+
+        if (empty($manifest)) {
+            return null;
+        }
+
+        return [
+            'type' => 'miradors',
+            'model' => $mirador,
+            'title' => trim((string) $block->input('section_title')) ?: $mirador->title,
             'description' => trim((string) $block->input('description')) ?: null,
+            'manifest' => $manifest,
+            'defaultView' => $hasOverrides && $block->input('default_view')
+                ? $block->input('default_view')
+                : ($mirador->default_view ?: Mirador::SINGLE_VIEW),
         ];
     }
 
