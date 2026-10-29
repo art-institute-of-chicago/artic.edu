@@ -122,36 +122,6 @@
     $multimediaInline = collect($multimediaInline ?? [])->filter(fn ($item) => !empty($item['model'] ?? null))->values();
 @endphp
 
-@if (!$item->is_deaccessioned && collect($interactiveFeatureEmbeds ?? [])->isNotEmpty())
-    @foreach ($interactiveFeatureEmbeds as $feature)
-        @component('components.organisms._o-related-content')
-            @slot('preventFocusScroll', true)
-            @slot('id', 'interactive-feature-' . ($feature['model']->id ?? $loop->index))
-            @slot('label', $feature['title'] ?: 'Interactive Feature')
-            @slot('description', $feature['description'] ?? null)
-            <div class="o-closer-look-embed o-closer-look-embed--fit-16x10">
-                <iframe
-                    class="o-closer-look-embed__frame"
-                    src="{{ $feature['embedHref'] }}"
-                    title="{{ $feature['title'] ?: 'Interactive feature' }}"
-                    loading="lazy"
-                    allow="fullscreen; autoplay"
-                    allowfullscreen
-                ></iframe>
-            </div>
-        @endcomponent
-    @endforeach
-@endif
-
-@if (!$item->is_deaccessioned && collect($interactiveFeatureCards ?? [])->isNotEmpty())
-    @component('components.organisms._o-related-content')
-        @slot('preventFocusScroll', true)
-        @slot('label', 'Interactive Feature')
-        @slot('items', $interactiveFeatureCards)
-        @slot('total', $interactiveFeatureCardsTotal ?? null)
-    @endcomponent
-@endif
-
 @if (!$item->is_deaccessioned && collect($digitalExplorerCards ?? [])->isNotEmpty())
     @component('components.organisms._o-related-content')
         @slot('preventFocusScroll', true)
@@ -166,13 +136,25 @@
         @php
             $inlineModel = $inline['model'] ?? null;
             $isVideo = ($inline['type'] ?? null) === 'videos';
+            $isMirador = ($inline['type'] ?? null) === 'miradors';
         @endphp
         @component('components.organisms._o-related-content')
             @slot('preventFocusScroll', true)
-            @slot('label', $inline['title'] ?? ($isVideo ? 'Video' : 'Layered Image Viewer'))
+            @slot('label', $isMirador ? ($inline['title'] ?? ($inlineModel->title ?? 'Mirador')) : ($inline['title'] ?? ($isVideo ? 'Video' : 'Layered Image Viewer')))
             @slot('description', $inline['description'] ?? null)
             @slot('variation', 'viewer')
-            @if ($isVideo)
+            @if ($isMirador)
+                <div class="m-media m-media--l">
+                    <div class="m-media__img m-media--mirador-embed">
+                        @component('components.molecules._m-viewer-mirador')
+                            @slot('type', 'standalone')
+                            @slot('title', $inline['title'] ?? ($inlineModel->title ?? 'Mirador'))
+                            @slot('manifest', $inline['manifest'] ?? null)
+                            @slot('defaultView', $inline['defaultView'] ?? 'single')
+                        @endcomponent
+                    </div>
+                </div>
+            @elseif ($isVideo)
                 @component('components.molecules._m-media')
                     @slot('item', [
                         'type' => 'embed',
