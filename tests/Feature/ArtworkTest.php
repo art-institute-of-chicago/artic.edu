@@ -7,6 +7,7 @@ use App\Models\Api\Artwork;
 use App\Models\Article;
 use Illuminate\Foundation\Testing\WithFaker;
 use Aic\Hub\Foundation\Testing\MockApi;
+use GuzzleHttp\Psr7\Response;
 
 class ArtworkTest extends BaseTestCase
 {
@@ -48,6 +49,32 @@ class ArtworkTest extends BaseTestCase
         $response->assertSee($artwork->title);
         $response->assertSee('Edition');
         $response->assertSee($artwork->edition);
+    }
+
+    public function test_nearest_neighbors_excludes_deaccessioned_artworks(): void
+    {
+        $visible = Artwork::factory()->make(['id' => 111, 'title' => 'Visible Artwork']);
+        $deaccessioned = Artwork::factory()->make([
+            'id' => 222,
+            'title' => 'Deaccessioned Artwork',
+            'fiscal_year_deaccession' => 2020,
+        ]);
+
+        $this->addMockApiResponses([
+            new Response(200, [], json_encode(['items' => [
+                ['model_id' => 111, 'distance' => 0.1],
+                ['model_id' => 222, 'distance' => 0.2],
+            ]])),
+            new Response(200, [], json_encode(['data' => [
+                $visible->toArray(),
+                $deaccessioned->toArray(),
+            ]])),
+        ]);
+
+        $subject = Artwork::factory()->make(['id' => 1]);
+        $neighbors = $subject->nearestNeighbors();
+
+        $this->assertEquals([111], $neighbors->pluck('id')->all());
     }
 
     public function test_artwork_show_retrieves_related_media(): void
