@@ -292,21 +292,7 @@ class ArtworkController extends BaseScopedController
             }
         }
 
-        if ($type === 'miradors') {
-            $manifest = $selected->getMiradorManifest();
 
-            if (empty($manifest)) {
-                return null;
-            }
-
-            return [
-                'type' => $type,
-                'model' => $selected,
-                'title' => trim((string) $block->input('section_title')) ?: $selected->title,
-                'description' => trim((string) $block->input('description')) ?: null,
-                'manifest' => $manifest,
-                'defaultView' => $selected->default_view,
-            ];
         }
 
         return [
