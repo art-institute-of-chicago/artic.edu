@@ -86,8 +86,6 @@
         @slot('prevNextObject', $prevNextObject ?? null)
         @slot('module3d', $module3d ?? null)
         @slot('module360', $module360 ?? null)
-        @slot('moduleMirador', $moduleMirador ?? null)
-        @slot('defaultView', $defaultView ?? null)
     @endcomponent
 @else
     {{-- Default header --}}
