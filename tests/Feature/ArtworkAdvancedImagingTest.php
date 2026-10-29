@@ -45,13 +45,12 @@ class ArtworkAdvancedImagingTest extends BaseTestCase
     {
         $artwork = new Artwork();
         $artwork->datahub_id = $apiArtwork->id;
-        $artwork->title = $apiArtwork->title;
         $artwork->save();
 
         return $artwork;
     }
 
-    private function createMultimediaItemBlock(Artwork $artwork, $selected, string $title, string $description): Block
+    private function createMultimediaItemBlock(Artwork $artwork, $selected, string $title, string $description, array $extraContent = []): Block
     {
         $block = Block::firstOrNew([
             'blockable_id' => $artwork->id,
@@ -59,10 +58,10 @@ class ArtworkAdvancedImagingTest extends BaseTestCase
             'type' => 'multimedia_item',
             'position' => 1,
         ]);
-        $block->content = [
+        $block->content = array_merge([
             'section_title' => $title,
             'description' => $description,
-        ];
+        ], $extraContent);
         $block->save();
 
         $block->saveRelated([$selected], 'multimedia_item');
@@ -130,5 +129,127 @@ class ArtworkAdvancedImagingTest extends BaseTestCase
 
         $response->assertSee($showUrl, false);
         $response->assertDontSee($kioskUrl, false);
+    }
+
+    public function test_mirador_block_default_view_overrides_record(): void
+    {
+        $apiArtwork = ApiArtwork::factory()->make();
+        $this->mockArtworkApi($apiArtwork);
+
+        $artwork = $this->createArtwork($apiArtwork);
+
+        $mirador = Mirador::create(
+            [
+            'published' => true,
+            'title' => 'Mirador Viewer Title',
+            'object_id' => $apiArtwork->id,
+            'default_view' => Mirador::BOOK_VIEW,
+            ]
+        );
+
+        $this->createMultimediaItemBlock(
+            $artwork,
+            $mirador,
+            'Mirador Section Title',
+            'Mirador section description',
+            ['mirador_settings' => true, 'default_view' => Mirador::SINGLE_VIEW]
+        );
+
+        $response = $this->get(route('artworks.show', ['id' => $apiArtwork->id, 'slug' => $apiArtwork->titleSlug]));
+
+        $response->assertOk();
+        $response->assertSee('data-view="single"', false);
+    }
+
+    public function test_mirador_block_default_manifest_url_uses_selected_record_object_id(): void
+    {
+        $apiArtwork = ApiArtwork::factory()->make();
+        $this->mockArtworkApi($apiArtwork);
+
+        $artwork = $this->createArtwork($apiArtwork);
+
+        $mirador = Mirador::create(
+            [
+            'published' => true,
+            'title' => 'Mirador Viewer Title',
+            'object_id' => $apiArtwork->id,
+            'default_view' => Mirador::SINGLE_VIEW,
+            ]
+        );
+
+        $this->createMultimediaItemBlock(
+            $artwork,
+            $mirador,
+            'Mirador Section Title',
+            'Mirador section description',
+            ['mirador_settings' => true, 'default_manifest_url' => true]
+        );
+
+        $response = $this->get(route('artworks.show', ['id' => $apiArtwork->id, 'slug' => $apiArtwork->titleSlug]));
+
+        $response->assertOk();
+        $response->assertSee(
+            config('api.public_uri') . '/api/v1/artworks/' . $apiArtwork->id . '/manifest.json'
+        );
+    }
+
+    public function test_mirador_block_is_skipped_when_no_manifest(): void
+    {
+        $apiArtwork = ApiArtwork::factory()->make();
+        $this->mockArtworkApi($apiArtwork);
+
+        $artwork = $this->createArtwork($apiArtwork);
+
+        $mirador = Mirador::create(
+            [
+            'published' => true,
+            'title' => 'Mirador Viewer Title',
+            'object_id' => null,
+            'default_view' => Mirador::SINGLE_VIEW,
+            ]
+        );
+
+        $this->createMultimediaItemBlock(
+            $artwork,
+            $mirador,
+            'Manifestless Mirador Section Title',
+            'Manifestless section description'
+        );
+
+        $response = $this->get(route('artworks.show', ['id' => $apiArtwork->id, 'slug' => $apiArtwork->titleSlug]));
+
+        $response->assertOk();
+        $response->assertDontSee('Manifestless Mirador Section Title');
+    }
+
+    public function test_mirador_block_ignores_settings_when_toggle_is_off(): void
+    {
+        $apiArtwork = ApiArtwork::factory()->make();
+        $this->mockArtworkApi($apiArtwork);
+
+        $artwork = $this->createArtwork($apiArtwork);
+
+        $mirador = Mirador::create(
+            [
+            'published' => true,
+            'title' => 'Mirador Viewer Title',
+            'object_id' => $apiArtwork->id,
+            'default_view' => Mirador::BOOK_VIEW,
+            ]
+        );
+
+        $this->createMultimediaItemBlock(
+            $artwork,
+            $mirador,
+            'Mirador Section Title',
+            'Mirador section description',
+            ['default_view' => Mirador::SINGLE_VIEW]
+        );
+
+        $response = $this->get(route('artworks.show', ['id' => $apiArtwork->id, 'slug' => $apiArtwork->titleSlug]));
+
+        $response->assertOk();
+        // The record wins while the block's settings toggle is off.
+        $response->assertSee('data-view="book"', false);
     }
 }
