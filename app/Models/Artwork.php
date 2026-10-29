@@ -32,8 +32,6 @@ class Artwork extends AbstractModel
         'datahub_id',
         'meta_title',
         'meta_description',
-        'default_manifest_url',
-        'default_view',
         'artwork_website_url',
         'toggle_autorelated',
         'toggle_autopublications',
@@ -70,10 +68,9 @@ class Artwork extends AbstractModel
         ],
     ];
 
-    public $filesParams = ['image_sequence_file', 'upload_manifest_file'];
+    public $filesParams = ['image_sequence_file'];
 
     public $casts = [
-        'default_manifest_url' => 'boolean',
         'toggle_autorelated' => 'boolean',
         'toggle_autopublications' => 'boolean',
         'toggle_autoexhibitions' => 'boolean',
@@ -87,7 +84,6 @@ class Artwork extends AbstractModel
     ];
 
     public $attributes = [
-        'default_manifest_url' => false,
         'toggle_autorelated' => false,
         'toggle_autopublications' => false,
         'toggle_autoexhibitions' => false,
@@ -218,26 +214,6 @@ class Artwork extends AbstractModel
         }
 
         return null;
-    }
-
-    public function getMiradorManifest()
-    {
-        if ($this->default_manifest_url or $this->file('upload_manifest_file')) {
-            if ($this->file('upload_manifest_file')) {
-                $manifestFile = $this->file('upload_manifest_file');
-            } else {
-                $manifestFile = config('api.public_uri') . '/api/v1/artworks/' . $this->datahub_id . '/manifest.json';
-            }
-
-            return $manifestFile;
-        }
-
-        return null;
-    }
-
-    public function getMiradorView()
-    {
-        return $this->default_view;
     }
 
     public function getSemanticSearchDescriptionAttribute()
