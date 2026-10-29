@@ -26,7 +26,7 @@ class Artwork extends BaseApiModel
 
     public const RELATED_MULTIMEDIA = 100;
     public const EXTRA_IMAGES_LIMIT = 9;
-    public const NEAREST_NEIGHBORS_LIMIT = 20;
+    public const NEAREST_NEIGHBORS_LIMIT = 30;
     public const NEAREST_NEIGHBORS_MAX_LIMIT = 100;
 
     protected $showDefaultRelatedItems = true;
