@@ -232,42 +232,6 @@
         />
     </x-twill::formFieldset>
 
-    <x-twill::formFieldset id="mirador" title="Mirador">
-        <p>Add a Mirador modal to the artwork page by either checking the box below to use the default manifest file or uploading your own.</p>
-        <p>This controls the Mirador icon/modal near the artwork page. To feature Mirador content in Advanced Imaging, add a Multimedia block instead.</p>
-
-        @php
-            $note = 'i.e. ' . config('api.public_uri') . '/api/v1/artworks/' . $item->datahub_id . '/manifest.json';
-        @endphp
-        <x-twill::checkbox
-            name='default_manifest_url'
-            label='Use default manifest file.'
-            :note="$note"
-            default='false'
-        />
-        <x-twill::files
-            name='upload_manifest_file'
-            label='Alternative manifest file'
-            note='Upload a .json file'
-        />
-        <x-twill::radios
-            name='default_view'
-            label='Default View'
-            default='single'
-            :inline='true'
-            :options="[
-                [
-                    'value' => 'single',
-                    'label' => 'Single'
-                ],
-                [
-                    'value' => 'book',
-                    'label' => 'Book'
-                ]
-            ]"
-        />
-    </x-twill::formFieldset>
-
     <x-twill::formFieldset id="website" title="Artwork website">
         <p>When the work of art is itself a website, enter its information here.</p>
         <x-twill::input
