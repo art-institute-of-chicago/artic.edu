@@ -4,10 +4,6 @@
 @php
     $endpoints = [
         [
-            'label' => 'Interactive Feature',
-            'value' => '/collection/interactiveFeatures/experiences/browser'
-        ],
-        [
             'label' => 'Digital Explorer',
             'value' => '/collection/digitalExplorers/browser'
         ],
@@ -19,13 +15,17 @@
             'label' => 'Video',
             'value' => '/collection/articlesPublications/videos/browser'
         ],
+        [
+            'label' => 'Mirador',
+            'value' => '/exhibitionsEvents/miradors/browser'
+        ],
     ];
 @endphp
 
 <x-twill::browser
     name='multimedia_item'
     label='Item'
-    note='The interactive feature, digital explorer, layered image viewer, or video to show'
+    note='The item to show (digital explorer, layered image viewer, video, or Mirador)'
     :max='1'
     :endpoints="$endpoints"
 />
@@ -33,6 +33,7 @@
 <p>
     <strong>Section heading</strong><br>
     Leave these blank to use the standard heading for the item's section.
+    For Mirador, Title and Description label the viewer; leave Title blank to use the Mirador record title.
 </p>
 
 <x-twill::input
