@@ -15,6 +15,7 @@ use App\Models\DigitalExplorer;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Experience;
 use App\Models\Hour;
+use App\Models\Mirador;
 use App\Models\Video;
 use App\Models\Vendor\Block;
 use App\Libraries\SchemaOrg\SchemaMapper;
@@ -77,36 +78,31 @@ class ArtworkController extends BaseScopedController
             });
         }
 
-        $relatedContent = $this->buildRelatedContent($item);
         $publications = $this->buildSectionItems($item, 'manualPublications', 'autoPublications', 'toggle_autopublications', fn ($publication) => $publication instanceof DigitalPublicationArticle ? null : $this->normalizePublicationItem($publication));
         $exhibitions = $this->buildSectionItems($item, '', 'autoExhibitions', 'toggle_autoexhibitions', $this->normalizeExhibitionItem(...));
         $educatorResources = $this->buildSectionItems($item, 'manualEducatorResources', 'autoEducatorResources', 'toggle_autoeducator_resources', fn ($resource) => $resource);
 
-        // Curated Multimedia entries: interactive features and digital explorers
-        // render as listing cards, while layered image viewers and videos keep
-        // their inline viewer and are therefore excluded from the cards.
+        // Curated Multimedia entries: digital explorers render as listing cards,
+        // while layered image viewers, videos and Mirador viewers keep their
+        // inline viewer and are therefore excluded from the cards.
         $multimediaSelections = ($item->getAugmentedModel()?->multimediaItemBlocks() ?? collect())
             ->map(fn ($block) => $this->multimediaSelection($block))
             ->filter()
             ->values();
 
-        $multimediaInline = $multimediaSelections
-            ->whereIn('type', ['blocks', 'videos'])
-            ->values();
-
-        $interactiveFeatureEmbeds = $multimediaSelections
+        // 'experiences' selections are legacy: interactive features used to live
+        // in the multimedia browser and now render as Related Content links.
+        $legacyInteractiveFeatureItems = $multimediaSelections
             ->where('type', 'experiences')
-            ->map(fn ($selection) => $this->interactiveFeatureEmbed($selection))
-            ->filter()
-            ->values();
-
-        $embeddedExperienceIds = $interactiveFeatureEmbeds->pluck('model.id')->all();
-
-        $interactiveFeatureCards = $multimediaSelections
-            ->where('type', 'experiences')
-            ->reject(fn ($selection) => in_array($selection['model']->id ?? null, $embeddedExperienceIds, true))
             ->map(fn ($selection) => $this->multimediaCard($selection))
             ->filter()
+            ->values()
+            ->all();
+
+        $relatedContent = $this->buildRelatedContent($item, $legacyInteractiveFeatureItems);
+
+        $multimediaInline = $multimediaSelections
+            ->whereIn('type', ['blocks', 'videos', 'miradors'])
             ->values();
 
         $digitalExplorerCards = $multimediaSelections
@@ -131,9 +127,6 @@ class ArtworkController extends BaseScopedController
             'educatorResourceItems' => $educatorResources['items'],
             'educatorResourceTotal' => $educatorResources['total'],
             'multimediaInline' => $multimediaInline,
-            'interactiveFeatureEmbeds' => $interactiveFeatureEmbeds,
-            'interactiveFeatureCards' => $interactiveFeatureCards,
-            'interactiveFeatureCardsTotal' => $interactiveFeatureCards->count(),
             'digitalExplorerCards' => $digitalExplorerCards,
             'digitalExplorerCardsTotal' => $digitalExplorerCards->count(),
             'audioItems' => $item->soundResources,
@@ -181,7 +174,7 @@ class ArtworkController extends BaseScopedController
         ];
     }
 
-    private function buildRelatedContent($item): array
+    private function buildRelatedContent($item, array $extraItems = []): array
     {
         $autoRelatedEnabled = empty($item->getAugmentedModel()?->toggle_autorelated);
 
@@ -204,6 +197,8 @@ class ArtworkController extends BaseScopedController
                 return $this->normalizeRelatedContentItem($model);
             })
             ->filter()
+            ->concat($extraItems)
+            ->unique('href')
             ->values();
 
         return [
@@ -279,6 +274,7 @@ class ArtworkController extends BaseScopedController
         $type = match (true) {
             $selected instanceof DigitalExplorer => 'digitalExplorers',
             $selected instanceof Experience => 'experiences',
+            $selected instanceof Mirador => 'miradors',
             $selected instanceof Video => 'videos',
             $selected instanceof \A17\Twill\Models\Block => 'blocks',
             default => null,
@@ -294,6 +290,23 @@ class ArtworkController extends BaseScopedController
             if (!$selected) {
                 return null;
             }
+        }
+
+        if ($type === 'miradors') {
+            $manifest = $selected->getMiradorManifest();
+
+            if (empty($manifest)) {
+                return null;
+            }
+
+            return [
+                'type' => $type,
+                'model' => $selected,
+                'title' => trim((string) $block->input('section_title')) ?: $selected->title,
+                'description' => trim((string) $block->input('description')) ?: null,
+                'manifest' => $manifest,
+                'defaultView' => $selected->default_view,
+            ];
         }
 
         return [
@@ -321,25 +334,6 @@ class ArtworkController extends BaseScopedController
         }
 
         return $card;
-    }
-
-    private function interactiveFeatureEmbed(array $selection): ?array
-    {
-        $experience = $selection['model'] ?? null;
-
-        if (!$experience instanceof Experience || $experience->kiosk_only) {
-            return null;
-        }
-
-        $routeArgs = ['slug' => $experience->getSlug()];
-
-        return [
-            'model' => $experience,
-            'title' => $selection['title'] ?: $experience->title,
-            'description' => $selection['description'],
-            'href' => route('interactiveFeatures.show', $routeArgs),
-            'embedHref' => route('interactiveFeatures.show-kiosk', $routeArgs),
-        ];
     }
 
     private function itemHref($model, $fallbackKey = 'url_without_slug')
