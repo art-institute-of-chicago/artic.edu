@@ -49,3 +49,47 @@
     note='Overrides the standard section description'
     :toolbar-options="[ 'italic', 'link' ]"
 />
+
+<x-twill::checkbox
+    name='mirador_settings'
+    label='Custom Mirador settings'
+    note='Override for mirador non are selected'
+    :default="false"
+/>
+
+<x-twill::formConnectedFields
+    field-name='mirador_settings'
+    :field-values="true"
+    :render-for-blocks='true'
+    :keep-alive='true'
+>
+    @php
+        $note = 'i.e. ' . config('api.public_uri') . '/api/v1/artworks/{objectId}/manifest.json';
+    @endphp
+    <x-twill::checkbox
+        name='default_manifest_url'
+        label='Use default manifest file.'
+        :note="$note"
+        :default="false"
+    />
+    <x-twill::files
+        name='upload_manifest_file'
+        label='Alternative manifest file'
+        note='Upload a .json file'
+    />
+    <x-twill::radios
+        name='default_view'
+        label='Default View'
+        :inline='true'
+        :options="[
+            [
+                'value' => 'single',
+                'label' => 'Single'
+            ],
+            [
+                'value' => 'book',
+                'label' => 'Book'
+            ]
+        ]"
+    />
+</x-twill::formConnectedFields>
