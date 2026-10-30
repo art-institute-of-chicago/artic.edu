@@ -16,6 +16,7 @@ Schedule::command('update:cdn-ips')->hourly()->sentryMonitor();
 Schedule::command('fix:galleries')->everyMinute()->sentryMonitor();
 Schedule::command('send:confirmations')->everyTwoMinutes()->withoutOverlapping()->sentryMonitor();
 Schedule::command('exhibitions:featured')->dailyAt('00:00')->sentryMonitor();
+Schedule::command('session:garbage-collect')->hourly()->sentryMonitor();
 
 // Let production have the whole API quota
 if (App::environment('production')) {
