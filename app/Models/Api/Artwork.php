@@ -257,7 +257,7 @@ class Artwork extends BaseApiModel
             ->multimediaForArtwork($this->id)
             ->assetsOfTypes(['sounds'])
             ->forPage(null, self::RELATED_MULTIMEDIA)
-            ->get(['id', 'title', 'content', 'api_model', 'is_multimedia_resource', 'is_educational_resource', 'web_url']);
+            ->get(['id', 'title', 'display_title', 'content', 'api_model', 'is_multimedia_resource', 'is_educational_resource', 'web_url']);
     }
 
     public function getEducationalResourcesAttribute()
