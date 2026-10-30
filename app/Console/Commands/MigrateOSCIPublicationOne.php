@@ -13,6 +13,7 @@ use App\Models\DigitalPublication;
 use App\Models\DigitalPublicationArticle;
 use App\Models\Vendor\Block;
 use A17\Twill\Models\Media;
+use League\Flysystem\UnableToCheckFileExistence;
 
 class MigrateOSCIPublicationOne extends Command
 {
@@ -54,7 +55,14 @@ class MigrateOSCIPublicationOne extends Command
                 $bucket = config('aic.osci_s3_bucket');
                 $imageUrl = "s3://{$bucket}/{$img_key}";
 
-                if (!Storage::disk('osci_s3')->fileExists($img_key)) {
+                try {
+                    $exists = Storage::disk('osci_s3')->fileExists($img_key);
+                } catch (UnableToCheckFileExistence $e) {
+                    // S3 returns 403 rather than 404 for missing keys when the credentials lack s3:ListBucket
+                    $exists = false;
+                }
+
+                if (!$exists) {
                     echo "Error -- could not fetch {$imageUrl}. Has `migrate:osci-media` been run for this publication? Skipping this media\n";
                     return null;
                 }
@@ -120,7 +128,7 @@ class MigrateOSCIPublicationOne extends Command
             $width = ceil($imageData['width']);
             $height = ceil($imageData['height']);
         } else {
-            [$width, $height] = getimagesizefromstring($imageContent);
+            [$width, $height] = @getimagesizefromstring($imageContent) ?: [800, 600];
         }
 
         Storage::disk('s3')->put($imageName, $imageContent);
