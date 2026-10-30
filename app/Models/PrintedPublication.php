@@ -155,7 +155,7 @@ class PrintedPublication extends AbstractModel
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('collection.publications.printed-publications'), '/', $this->id, '-']);
+        return join([route('collection.publications.printed-publications'), '/', $this->id]);
     }
 
     public function getUrlAttribute()
