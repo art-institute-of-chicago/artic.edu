@@ -139,7 +139,7 @@ class DigitalPublication extends AbstractModel
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('collection.publications.digital-publications'), '/', $this->id, '-']);
+        return join([route('collection.publications.digital-publications'), '/', $this->id]);
     }
 
     public function getUrlAttribute()
