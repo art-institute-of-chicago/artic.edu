@@ -133,6 +133,7 @@
         @endphp
         @component('components.organisms._o-related-content')
             @slot('preventFocusScroll', true)
+            @slot('continuation', !$loop->first)
             @slot('label', $isMirador ? ($inline['title'] ?? ($inlineModel->title ?? 'Mirador')) : ($inline['title'] ?? ($isVideo ? 'Video' : 'Layered Image Viewer')))
             @slot('description', $inline['description'] ?? null)
             @slot('variation', 'viewer')
