@@ -1,0 +1,460 @@
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms/o-tabbed-tombstone
+//
+// Tabbed tombstone (artwork page).
+// - Desktop large+ : vertical tab rail + scrollable key/value & long-form panels.
+// - Below medium   : the same rail reflows into an accordion (plus/minus glyphs).
+//
+// Notes:
+// - Inactive rail labels use grey-20 (the closest legible grey to the design's
+//   #c6c3c5); the rule token (grey-10) is too light to read as text. Both are
+//   exposed below as custom properties so the colour can be swapped in one place.
+// - The panel is a fixed 585px tall at large+ (scroll area + footer), so the
+//   tombstone section keeps the same height on every tab regardless of content
+//   length and the footer does not add to the design's total height.
+
+.o-tabbed-tombstone {
+    --o-tabbed-tombstone-max-height: 585px;
+    --o-tabbed-tombstone-icon-slot: 2rem;
+    --o-tabbed-tombstone-rule: #{$colors-themes-light-mode-rules-primary};
+    --o-tabbed-tombstone-inactive: #{$colors-scales-grey-20};
+    --o-tabbed-tombstone-active: #{$colors-themes-light-mode-link-tab-active};
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: $sans-serif-font--loaded;
+    color: $colors-themes-light-mode-text-title;
+    margin-top: 60px;
+    padding-top: 60px;
+
+    // Mobile: collapse rail + content so tabs and panels interleave as one
+    // accordion (target order matches the sibling markup order).
+    &__rail,
+    &__content {
+        display: contents;
+    }
+
+    @include breakpoint('medium-') {
+        @for $i from 1 through 8 {
+            &__tab-row:nth-child(#{$i}) {
+                order: #{($i * 2) - 1};
+            }
+
+            &__panel:nth-child(#{$i}) {
+                order: #{$i * 2};
+            }
+        }
+    }
+
+    // Mobile accordion rows: each trigger sits in a wrapper that owns the
+    // hairline and the absolutely-positioned rail copy button (desktop resets
+    // these at large+).
+    &__tab-row {
+        position: relative;
+        border-bottom: 1px solid var(--o-tabbed-tombstone-rule);
+        margin-bottom: 30px;
+    }
+
+    &__tab-row:first-child {
+        border-top: 1px solid var(--o-tabbed-tombstone-rule);
+    }
+
+    // ------------------------------------------------------------------ rail / trigger
+    &__tab,
+    &__trigger {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        width: 100%;
+        margin: 0;
+        padding: 16px 0;
+        border: 0;
+        background: none;
+        color: var(--o-tabbed-tombstone-inactive);
+        font-family: $sans-serif-font--loaded;
+        font-size: 22px;
+        font-weight: 325;
+        line-height: 1;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    &__tab.is-active,
+    &__trigger.is-active,
+    &__tab[aria-selected="true"],
+    &__trigger[aria-selected="true"],
+    &__tab[aria-expanded="true"],
+    &__trigger[aria-expanded="true"] {
+        color: var(--o-tabbed-tombstone-active);
+        font-weight: 450;
+    }
+
+    &__tab-label {
+        display: block;
+    }
+
+    &__tab-icon {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        margin-top: .1em;
+        color: currentColor;
+    }
+
+    &__tab-icon .icon--plus,
+    &__tab-icon .icon--minus {
+        display: block;
+        width: 16px;
+        height: 16px;
+    }
+
+    &__tab .icon--minus,
+    &__trigger .icon--minus {
+        display: none;
+    }
+
+    &__tab[aria-expanded="true"] .icon--plus,
+    &__trigger[aria-expanded="true"] .icon--plus,
+    &__tab[aria-selected="true"] .icon--plus,
+    &__trigger[aria-selected="true"] .icon--plus,
+    &__tab.is-active .icon--plus,
+    &__trigger.is-active .icon--plus {
+        display: none;
+    }
+
+    &__tab[aria-expanded="true"] .icon--minus,
+    &__trigger[aria-expanded="true"] .icon--minus,
+    &__tab[aria-selected="true"] .icon--minus,
+    &__trigger[aria-selected="true"] .icon--minus,
+    &__tab.is-active .icon--minus,
+    &__trigger.is-active .icon--minus {
+        display: block;
+    }
+
+    // ------------------------------------------------------------------ panel
+    &__panel {
+        position: relative;
+        display: block;
+        border-bottom: 1px solid var(--o-tabbed-tombstone-rule);
+    }
+
+    &__panel[hidden] {
+        display: none;
+    }
+
+    &__panel-scroll {
+        position: relative;
+    }
+
+    // ------------------------------------------------------------------ key/value rows
+    &__rows {
+        margin: 0;
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: minmax(88px, 38%) minmax(0, 1fr);
+        column-gap: 12px;
+        padding-bottom: 25px;
+    }
+
+    &__row:last-child {
+        padding-bottom: 0;
+    }
+
+    &__label {
+        margin: 0;
+        overflow-wrap: anywhere;
+        font-family: $sans-serif-font--loaded;
+        font-size: 18px !important;
+        font-weight: 400;
+        line-height: 28px;
+        color: $colors-themes-light-mode-text-secondary;
+    }
+
+    &__value {
+        position: relative;
+        margin: 0;
+        padding-right: var(--o-tabbed-tombstone-icon-slot);
+        overflow-wrap: anywhere;
+        font-family: $sans-serif-font--loaded;
+        font-size: 18px;
+        line-height: 28px;
+        color: $colors-themes-light-mode-text-title;
+    }
+
+    // ------------------------------------------------------------------ long-form list / prose
+    &__list {
+        margin: 0;
+        padding-left: 1.25em;
+        list-style: disc;
+        font-family: $serif-font--loaded;
+        font-size: 20px;
+        line-height: 32px;
+        color: $colors-themes-light-mode-text-title;
+    }
+
+    &__list-item {
+        margin: 0;
+        list-style-type: disc;
+        list-style-position: outside;
+    }
+
+    &__prose {
+        margin: 0 0 32px;
+        font-family: $serif-font--loaded;
+        font-size: 20px;
+        line-height: 32px;
+        color: $colors-themes-light-mode-text-title;
+    }
+
+    &__prose:last-child {
+        margin-bottom: 0;
+    }
+
+    // Links are bold + underlined across light and dark panels.
+    &__value a,
+    &__list a,
+    &__prose a,
+    &__footer a,
+    &__caption a {
+        font-weight: 450;
+        text-decoration: underline;
+        color: inherit;
+    }
+
+    // ------------------------------------------------------------------ copy affordances
+    &__copy,
+    &__row-copy {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: $colors-themes-light-mode-text-title;
+        cursor: pointer;
+    }
+
+    &__copy {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        // Design size: the copy glyph is 19 x 23.3 in the Figma component.
+        width: 19px;
+        height: 24px;
+    }
+
+    // Per-row copy affordances sit inline with the row's value and are always
+    // shown (no hover reveal).
+    &__row-copy {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+    }
+
+    &__copy .icon--copy--24 {
+        display: block;
+        width: 19px;
+        height: 24px;
+    }
+
+    &__row-copy .icon--copy--24 {
+        display: block;
+        width: 10.6px;
+        height: 13.4px;
+    }
+
+    // ------------------------------------------------------------------ caption / footer
+    &__footer,
+    &__caption {
+        flex: 0 0 auto;
+        // Mobile: sink the shared caption below every accordion row (rows are
+        // ordered 1..15, panels 2..16 by the loop above).
+        order: 17;        margin-top: 24px;
+        padding-bottom: 24px;
+        font-family: $sans-serif-font--loaded;
+        font-size: 14px;
+        line-height: 1.2;
+        color: $colors-themes-light-mode-text-title;
+    }
+
+    &__footer p,
+    &__caption p {
+        margin: 0;
+    }
+
+    // ------------------------------------------------------------------ gradient / fade
+    &__panel-fade,
+    &__gradient {
+        position: relative;
+        z-index: 1;
+        display: none;
+        flex: 0 0 75px;
+        height: 75px;
+        margin-top: -75px;
+        background-image: linear-gradient(to bottom, rgba($colors-scales-grey-0, 0), $colors-scales-grey-0);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity .15s $bezier--ease-in-out;
+    }
+
+    // ------------------------------------------------------------------ desktop (large+)
+    //
+    // At large/xlarge the tombstone lives inside .o-article__body, which is
+    // inset by colspan(15) on both sides. Break out to the full page container
+    // with the grid helper's inverse form, and give the rail the same column
+    // geometry as .o-related-content__heading so the section lines up with the
+    // other artwork sections. The body is float:left with no inset at medium,
+    // so only large/xlarge need the negative margins.
+    // Below large, .o-article__body is left-aligned at colspan(38) of the 58-col
+    // grid, so pull the right edge out by the remaining 20 columns to match the
+    // full-width sections that follow it (e.g. .o-related-content).
+    @each $bp in ('xsmall', 'small', 'medium') {
+        @include breakpoint('#{$bp}') {
+            margin-right: colspan(20, $bp, 0, true);
+        }
+    }
+
+    @each $bp in ('large', 'xlarge') {
+        @include breakpoint('#{$bp}') {
+            margin-left: colspan(15, $bp, 0, true);
+            margin-right: colspan(15, $bp, 0, true);
+
+            &__rail {
+                width: colspan(13, $bp);
+                margin-right: colspan(2, $bp);
+            }
+        }
+    }
+    @include breakpoint('large+') {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        position: relative;
+        padding: 32px 0 24px;
+
+        &::before {
+            top: 0;
+        }
+
+        &::after {
+            bottom: 0;
+        }
+
+        &__rail {
+            position: static;
+            display: flex;
+            flex-direction: column;
+            flex: 0 0 auto;
+        }
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 0;
+            width: auto;
+            min-width: 0;
+            height: var(--o-tabbed-tombstone-max-height);
+        }
+
+        &__footer,
+        &__caption {
+            order: 0;
+        }
+
+        // Desktop: the rail is a static column, so the mobile row wrappers
+        // carry no rules and the panel-level copy is the only affordance.
+        &__tab-row,
+        &__tab-row:first-child {
+            border: 0;
+            position: static;
+        }
+
+        &__tab,
+        &__trigger {
+            display: block;
+            width: auto;
+            padding: 0;
+            border-bottom: 0;
+            background: none;
+            text-align: left;
+        }
+
+        &__tab-icon {
+            display: none;
+        }
+
+        &__tab-label {
+            line-height: 28px;
+            max-width: 10.5em;
+            text-wrap: balance;
+        }
+
+        &__tab.is-active &__tab-label,
+        &__trigger.is-active &__tab-label {
+            font-weight: 450;
+            color: var(--o-tabbed-tombstone-active);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+        }
+
+        &__panel {
+            position: relative;
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            height: auto;
+            min-height: 0;
+            border-bottom: 0;
+        }
+
+        &__panel[hidden] {
+            display: none;
+        }
+
+        &__panel-scroll {
+            position: relative;
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+        }
+
+        &__row {
+            grid-template-columns: 18% minmax(0, 1fr);
+            align-items: baseline;
+        }
+
+        &__panel-fade,
+        &__gradient {
+            display: block;
+        }
+
+        &__gradient {
+            opacity: 1;
+        }
+
+        &__panel-fade {
+            opacity: 0;
+        }
+
+        &.is-overflowing &__panel-fade {
+            opacity: 1;
+        }
+
+        &.is-scroll-end &__panel-fade,
+        &.is-scroll-end &__gradient {
+            opacity: 0;
+        }
+    }
+}

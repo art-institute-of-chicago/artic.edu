@@ -80,3 +80,4 @@ export { default as slideshow } from './slideshow';
 export { default as triggerShortsPlayerModal } from './triggerShortsPlayerModal';
 export { default as controlYoutubeEmbed } from './controlYoutubeEmbed';
 export { default as trackPlaylist } from './trackPlaylist';
+export { default as tabbedTombstone } from './tabbedTombstone';
