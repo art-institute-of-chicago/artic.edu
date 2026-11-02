@@ -95,11 +95,6 @@
     @component('components.blocks._blocks')
         @slot('blocks', $item->present()->blocks ?? null)
     @endcomponent
-
-    @component('components.molecules._m-article-actions')
-        @slot('variation','m-article-actions--keyline-top')
-        @slot('articleType', $item->present()->type)
-    @endcomponent
   </div>
 
 </article>
