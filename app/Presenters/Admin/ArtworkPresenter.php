@@ -100,28 +100,23 @@ class ArtworkPresenter extends BasePresenter
             'items' => $items
         ]);
 
-        array_push($blocks, $this->getArtworkDetailsBlock());
-
-        array_push($blocks, [
-            'type' => 'text',
-            'content' => '<h2 class="sr-only">Extended information about this artwork</h2>',
-        ]);
-
-        array_push($blocks, [
-            'type' => 'hr',
-        ]);
-
-        array_push($blocks, $this->entity->is_deaccessioned ? [
-            'type' => 'text',
-            'content' => '<p class="f-caption">Object information is based on information known at time of deaccession and does not reflect any subsequent changes or new research findings about the object.</p>',
-        ] : [
-            'type' => 'text',
-            'content' => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu">'
-            . (app('printservice')->isPrintMode() ? 'collections@artic.edu' : '')
-            . '</a>. Information about image downloads and licensing is <a href="/image-licensing">available here</a>.</p>',
-        ]);
+        array_push($blocks, $this->getTabbedTombstoneBlock());
 
         return array_filter($blocks);
+    }
+
+    /**
+     * The single object-information caption shared by the tabbed tombstone footer.
+     */
+    protected function getObjectInformationCaption()
+    {
+        if ($this->entity->is_deaccessioned) {
+            return '<p class="f-caption">Object information is based on information known at time of deaccession and does not reflect any subsequent changes or new research findings about the object.</p>';
+        }
+
+        return '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu">'
+            . (app('printservice')->isPrintMode() ? 'collections@artic.edu' : '')
+            . '</a>.</p>';
     }
 
     public function getOnViewDisplay()
@@ -393,6 +388,361 @@ class ArtworkPresenter extends BasePresenter
             'items' => $details,
             'id' => 'dl-artwork-details'
         ];
+    }
+
+    /**
+     * Builds the single "tabbed-tombstone" block rendered on the artwork page.
+     * Overview is always present; every other tab is omitted when it has no data.
+     */
+    public function getTabbedTombstoneBlock()
+    {
+        $tabs = [
+            $this->getTabbedTombstoneOverviewTab(),
+        ];
+
+        $longFormTabs = [
+            ['id' => 'publication-history', 'label' => 'Publication History', 'value' => $this->entity->publication_history],
+            ['id' => 'catalogues-raisonnes', 'label' => 'Catalogues Raisonnés', 'value' => $this->entity->catalogue_display],
+            ['id' => 'exhibition-history', 'label' => 'Exhibition History', 'value' => $this->entity->exhibition_history],
+            ['id' => 'provenance', 'label' => 'Provenance', 'value' => $this->entity->provenance_text],
+        ];
+
+        foreach ($longFormTabs as $longFormTab) {
+            $tab = $this->getTabbedTombstoneTextTab($longFormTab['id'], $longFormTab['label'], $longFormTab['value']);
+
+            if ($tab) {
+                $tabs[] = $tab;
+            }
+        }
+
+        $apiTab = $this->getTabbedTombstoneApiTab();
+
+        if ($apiTab) {
+            $tabs[] = $apiTab;
+        }
+
+        return [
+            'type' => 'tabbed-tombstone',
+            'tabs' => array_values(array_filter($tabs)),
+            'caption' => $this->getObjectInformationCaption(),
+        ];
+    }
+
+    protected function getTabbedTombstoneOverviewTab()
+    {
+        $detailsBlock = $this->getArtworkDetailsBlock();
+
+        $rows = [];
+
+        foreach ($detailsBlock['items'] as $item) {
+            // The IIIF manifest belongs to the API & linked data tab only.
+            if (trim($this->tabbedTombstonePlainText($item['key'])) === 'IIIF Manifest') {
+                continue;
+            }
+
+            $value = $this->formatTabbedTombstoneDetailValue($item);
+
+            if (empty($value)) {
+                continue;
+            }
+
+            $rows[] = [
+                'key' => $this->tabbedTombstonePlainText($item['key']),
+                'value' => $this->formatTabbedTombstoneOverviewValue($item, $value),
+            ];
+        }
+
+        // Department lives in the mobile status deflist, but the tabbed tombstone
+        // surfaces it on desktop too. Placed after Credit Line, before Reference Number.
+        $departmentRow = $this->getTabbedTombstoneDepartmentRow();
+
+        if ($departmentRow) {
+            $insertAt = count($rows);
+
+            foreach ($rows as $index => $row) {
+                if ($row['key'] === 'Credit Line') {
+                    $insertAt = $index + 1;
+                    break;
+                }
+            }
+
+            if ($insertAt === count($rows)) {
+                foreach ($rows as $index => $row) {
+                    if ($row['key'] === 'Reference Number') {
+                        $insertAt = $index;
+                        break;
+                    }
+                }
+            }
+
+            array_splice($rows, $insertAt, 0, [$departmentRow]);
+        }
+
+        return [
+            'id' => 'overview',
+            'label' => 'Overview',
+            'kind' => 'keyvalue',
+            'rows' => $rows,
+            'copy' => $this->getTabbedTombstoneOverviewCopy(),
+            'hasCopy' => true,
+        ];
+    }
+
+    /**
+     * Clipboard payload for the Overview tab: bare values, one per line, in the
+     * order the design specifies. Field titles are intentionally omitted.
+     */
+    protected function getTabbedTombstoneOverviewCopy()
+    {
+        $entity = $this->entity;
+
+        $lines = [
+            data_get($entity, 'artist_display'),
+            $this->tabbedTombstoneCopyLine([
+                data_get($entity, 'title'),
+                data_get($entity, 'date_display'),
+            ]),
+            data_get($entity, 'place_of_origin'),
+            data_get($entity, 'medium_display'),
+            data_get($entity, 'artwork_website_url'),
+            data_get($entity, 'edition'),
+            data_get($entity, 'inscriptions'),
+            data_get($entity, 'watermarks'),
+            data_get($entity, 'dimensions'),
+            data_get($entity, 'credit_line'),
+            data_get($entity, 'copyright_notice'),
+            $this->tabbedTombstoneCopyLine([
+                data_get($entity, 'department_title'),
+                data_get($entity, 'main_reference_number'),
+            ]),
+        ];
+
+        $lines = array_map(function ($line) {
+            return trim(preg_replace('/\s+/', ' ', $this->tabbedTombstonePlainText((string) $line)));
+        }, $lines);
+
+        return implode("\n", array_filter($lines, function ($line) {
+            return $line !== '';
+        }));
+    }
+
+    /**
+     * Joins copy values on a single line, dropping empty ones.
+     */
+    protected function tabbedTombstoneCopyLine(array $parts)
+    {
+        $parts = array_filter(array_map(function ($part) {
+            return trim((string) $part);
+        }, $parts), function ($part) {
+            return $part !== '';
+        });
+
+        return implode(', ', $parts);
+    }
+
+    /**
+     * A single line renders as prose, two or more as a bulleted list.
+     */
+    protected function getTabbedTombstoneTextTab($id, $label, $value)
+    {
+        if (empty($value)) {
+            return null;
+        }
+
+        $lines = explode("\n", $value);
+        $rows = [];
+
+        foreach ($lines as $line) {
+            if (!empty($line)) {
+                $rows[] = ['content' => $line];
+            }
+        }
+
+        if (empty($rows)) {
+            return null;
+        }
+
+        return [
+            'id' => $id,
+            'label' => $label,
+            'kind' => count($lines) < 2 ? 'prose' : 'list',
+            'rows' => $rows,
+            'copy' => '',
+            'hasCopy' => false,
+        ];
+    }
+
+    protected function getTabbedTombstoneApiTab()
+    {
+        $rows = [];
+
+        $apiUrl = $this->entity->api_link ?? null;
+
+        if (empty($apiUrl)) {
+            $apiUrl = config('api.public_uri') . '/api/v1/artworks/' . $this->entity->id;
+        }
+
+        if (!empty($apiUrl)) {
+            $rows[] = $this->formatTabbedTombstoneLinkedRow('API', $apiUrl);
+        }
+
+        if ($this->entity->is_public_domain) {
+            $manifestUrl = $this->getIiifManifestUrl();
+
+            if (!empty($manifestUrl)) {
+                $rows[] = $this->formatTabbedTombstoneLinkedRow(
+                    'IIIF Manifest',
+                    str_replace('&#8209;', '-', $manifestUrl),
+                    $manifestUrl
+                );
+            }
+        }
+
+        $ulanId = $this->getTabbedTombstoneArtistUlanId();
+
+        if (!empty($ulanId)) {
+            $rows[] = $this->formatTabbedTombstoneLinkedRow('Artist ULAN', 'https://vocab.getty.edu/ulan/' . $ulanId);
+        }
+
+        if (empty($rows)) {
+            return null;
+        }
+
+        return [
+            'id' => 'api-and-linked-data',
+            'label' => 'API and Linked Data',
+            'kind' => 'keyvalue',
+            'rows' => $rows,
+            'copy' => implode("\n", array_column($rows, 'copy')),
+            'hasCopy' => true,
+        ];
+    }
+
+    protected function formatTabbedTombstoneLinkedRow($key, $url, $display = null)
+    {
+        $displayUrl = $display ?? $url;
+        $displayUrl = str_replace('/', '/&#8203;', $displayUrl);
+
+        return [
+            'key' => $key,
+            'value' => '<a href="' . $url . '">' . $displayUrl . '</a>',
+            'kind' => 'linked',
+            'copy' => $url,
+        ];
+    }
+
+    protected function getTabbedTombstoneArtistUlanId()
+    {
+        $artists = [];
+
+        if (!empty($this->entity->artist_pivots)) {
+            foreach ($this->entity->artist_pivots as $pivot) {
+                $artists[] = $pivot;
+            }
+        }
+
+        if (!empty($this->entity->artists)) {
+            foreach ($this->entity->artists as $artist) {
+                $artists[] = $artist;
+            }
+        }
+
+        foreach ($artists as $artist) {
+            if (!empty($artist->ulan_id)) {
+                return $artist->ulan_id;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Artist rows show the API's `artist_display` (name plus nationality and
+     * dates, e.g. "Georges Seurat (French, 1859-1891)") while keeping the
+     * existing artist link.
+     */
+    protected function formatTabbedTombstoneOverviewValue($item, $value)
+    {
+        $key = $this->tabbedTombstonePlainText($item['key']);
+        $links = $item['links'] ?? [];
+        $artistDisplay = $this->entity->artist_display ?? null;
+
+        if (strpos($key, 'Artist') !== 0 || count($links) !== 1 || empty($artistDisplay) || !is_string($artistDisplay)) {
+            return $value;
+        }
+
+        $link = $links[0];
+
+        if (empty($link['label']) || strpos($artistDisplay, $link['label']) === false) {
+            return $value;
+        }
+
+        if (empty($link['href'])) {
+            return e($artistDisplay);
+        }
+
+        return '<a href="' . $link['href'] . '"'
+            . (!empty($link['gtmAttributes']) ? ' ' . $link['gtmAttributes'] : '')
+            . '>' . e($artistDisplay) . '</a>';
+    }
+
+    protected function formatTabbedTombstoneDetailValue($item)
+    {
+        if (!empty($item['links'])) {
+            $parts = [];
+
+            foreach ($item['links'] as $link) {
+                $label = $link['label'] ?? null;
+
+                if (empty($label)) {
+                    continue;
+                }
+
+                if (!empty($link['href'])) {
+                    $parts[] = '<a href="' . $link['href'] . '"'
+                        . (!empty($link['gtmAttributes']) ? ' ' . $link['gtmAttributes'] : '')
+                        . '>' . $label . '</a>';
+                } else {
+                    $parts[] = $label;
+                }
+            }
+
+            return implode(', ', $parts);
+        }
+
+        return $item['value'] ?? '';
+    }
+
+    protected function getTabbedTombstoneDepartmentRow()
+    {
+        if ($this->entity->is_deaccessioned || !$this->entity->department_id) {
+            return null;
+        }
+
+        return [
+            'key' => 'Department',
+            'value' => '<a href="' . route('departments.show', [$this->entity->department_id . '/' . StringHelpers::getUtf8Slug($this->entity->department_title)]) . '" data-gtm-event="' . $this->entity->department_title . '" data-gtm-event-category="collection-nav">' . $this->entity->department_title . '</a>',
+        ];
+    }
+
+    /**
+     * Plain, unstyled text for the clipboard: removes interactive info buttons
+     * (and their hidden tooltips), strips markup and decodes entities.
+     */
+    protected function tabbedTombstonePlainText($html)
+    {
+        if (empty($html)) {
+            return '';
+        }
+
+        $html = preg_replace('/<(button|span)\b[^>]*(?:info-button-trigger|info-button-info|s-hidden)[^>]*>.*?<\/\1>/is', '', $html);
+
+        $text = html_entity_decode(strip_tags($html), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $text = str_replace("\xC2\xA0", ' ', $text);
+        // Drop zero-width break characters added for URL wrapping.
+        $text = preg_replace('/[\x{200B}-\x{200D}\x{FEFF}]/u', '', $text);
+
+        return trim(preg_replace('/\s+/', ' ', $text));
     }
 
     protected function formatDetailBlocks($elements)
