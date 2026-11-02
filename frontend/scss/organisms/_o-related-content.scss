@@ -24,6 +24,15 @@
   background-color: $colors-themes-light-mode-rules-primary;
 }
 
+.o-related-content--continuation {
+  margin-top: $blocks-spacings-extra-large;
+  padding-top: 0;
+
+  &::before {
+    display: none;
+  }
+}
+
 .o-related-content__heading {
   width: 100%;
 
