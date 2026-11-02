@@ -65,6 +65,13 @@
                 @endcomponent
             @endif
 
+            @if ($block['type'] === 'tabbed-tombstone')
+                @component('components.organisms._o-tabbed-tombstone')
+                    @slot('tabs', $block['tabs'] ?? [])
+                    @slot('caption', $block['caption'] ?? null)
+                @endcomponent
+            @endif
+
             @if ($block['type'] === 'media')
                 @component('components.molecules._m-media')
                     @slot('variation', 'o-blocks__block')
