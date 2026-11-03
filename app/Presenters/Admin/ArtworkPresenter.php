@@ -687,33 +687,29 @@ class ArtworkPresenter extends BasePresenter
     }
 
     /**
-     * Artist rows show the API's `artist_display` (name plus nationality and
-     * dates, e.g. "Georges Seurat (French, 1859-1891)") while keeping the
-     * existing artist link.
+     * Artist rows show the API's full `artist_display` — name, nationality, dates
+     * and any additional attributions — as plain text, never as a link.
      */
     protected function formatTabbedTombstoneOverviewValue($item, $value)
     {
         $key = $this->tabbedTombstonePlainText($item['key']);
-        $links = $item['links'] ?? [];
         $artistDisplay = $this->entity->artist_display ?? null;
 
-        if (strpos($key, 'Artist') !== 0 || count($links) !== 1 || empty($artistDisplay) || !is_string($artistDisplay)) {
+        if (strpos($key, 'Artist') !== 0 || empty($artistDisplay) || !is_string($artistDisplay)) {
             return $value;
         }
 
-        $link = $links[0];
+        $lines = array_map(function ($line) {
+            return trim(strip_tags($line));
+        }, preg_split('/<br\s*\/?>/i', (string) $artistDisplay));
 
-        if (empty($link['label']) || strpos($artistDisplay, $link['label']) === false) {
+        $lines = array_values(array_filter($lines));
+
+        if (empty($lines)) {
             return $value;
         }
 
-        if (empty($link['href'])) {
-            return e($artistDisplay);
-        }
-
-        return '<a href="' . $link['href'] . '"'
-            . (!empty($link['gtmAttributes']) ? ' ' . $link['gtmAttributes'] : '')
-            . '>' . e($artistDisplay) . '</a>';
+        return implode('<br>', array_map('e', $lines));
     }
 
     protected function formatTabbedTombstoneDetailValue($item)
