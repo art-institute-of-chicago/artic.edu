@@ -319,6 +319,15 @@ const tabbedTombstone = function(container) {
   }
 
   function _init() {
+    if (window.A17 && window.A17.print) {
+      _getPanels().forEach(function(panel) {
+        panel.removeAttribute('hidden');
+        panel.classList.add(CLASS_ACTIVE);
+      });
+
+      return;
+    }
+
     const activeTab = container.querySelector(TAB_SELECTOR + '[aria-selected="true"]') || _getTabs()[0];
 
     container.classList.add(CLASS_ACTIVE);
