@@ -5,6 +5,7 @@ namespace App\Presenters\Admin;
 use App\Presenters\BasePresenter;
 use App\Helpers\StringHelpers;
 use App\Helpers\DateHelpers;
+use App\Models\Api\Artist;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use DOMDocument;
@@ -633,21 +634,39 @@ class ArtworkPresenter extends BasePresenter
 
     protected function getTabbedTombstoneArtistUlanId()
     {
-        $artists = [];
+        $artistIds = [];
 
         if (!empty($this->entity->artist_pivots)) {
             foreach ($this->entity->artist_pivots as $pivot) {
-                $artists[] = $pivot;
+                if (!empty($pivot->artist_id)) {
+                    $artistIds[] = (int) $pivot->artist_id;
+                }
             }
         }
 
         if (!empty($this->entity->artists)) {
             foreach ($this->entity->artists as $artist) {
-                $artists[] = $artist;
+                if (!empty($artist->ulan_id)) {
+                    return $artist->ulan_id;
+                }
+
+                if (!empty($artist->id)) {
+                    $artistIds[] = (int) $artist->id;
+                }
             }
         }
 
-        foreach ($artists as $artist) {
+        if (empty($artistIds)) {
+            return null;
+        }
+
+        try {
+            $artistRecords = Artist::query()->find(array_values(array_unique($artistIds)));
+        } catch (\Throwable $e) {
+            return null;
+        }
+
+        foreach ($artistRecords ?? [] as $artist) {
             if (!empty($artist->ulan_id)) {
                 return $artist->ulan_id;
             }
