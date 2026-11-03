@@ -71,6 +71,13 @@
             transition: height .25s $bezier--ease-in-out;
         }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+        &__panel {
+            transition: none;
+        }
+    }
+
     // ------------------------------------------------------------------ rail / trigger
     &__tab,
     &__trigger {

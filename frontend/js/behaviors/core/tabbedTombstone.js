@@ -8,7 +8,9 @@ const tabbedTombstone = function(container) {
   const TAB_SELECTOR = '[role="tab"]';
   const PANEL_SELECTOR = '[role="tabpanel"]';
   const SCROLL_SELECTOR = '.o-tabbed-tombstone__panel-scroll';
+  const RAIL_SELECTOR = '.o-tabbed-tombstone__rail';
   const COPY_SELECTOR = '.o-tabbed-tombstone__copy, .o-tabbed-tombstone__row-copy';
+  const PANEL_ANIMATION_MS = 250;
 
   let announcer = null;
   let copiedTimers = [];
@@ -69,7 +71,55 @@ const tabbedTombstone = function(container) {
 
   // Wires a tab: aria-selected, roving tabindex and the active classes on the
   // trigger, its panel and the wrapper (see organisms/_o-tabbed-tombstone).
-  function _setActiveTab(tab, focusTab) {
+  function _isAccordion() {
+    const rail = container.querySelector(RAIL_SELECTOR);
+    return !!rail && window.getComputedStyle(rail).display === 'contents';
+  }
+
+  function _isReducedMotion() {
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+
+  function _openPanel(panel, instant) {
+    const animate = !instant && _isAccordion() && !_isReducedMotion();
+
+    window.clearTimeout(panel.tabbedTombstoneTimer);
+    panel.removeAttribute('hidden');
+
+    if (!animate) {
+      panel.style.height = '';
+      return;
+    }
+
+    panel.style.height = '0px';
+    panel.offsetHeight;
+    panel.style.height = panel.scrollHeight + 'px';
+    panel.tabbedTombstoneTimer = window.setTimeout(function() {
+      panel.style.height = '';
+    }, PANEL_ANIMATION_MS);
+  }
+
+  function _closePanel(panel) {
+    const animate = _isAccordion() && !_isReducedMotion();
+
+    window.clearTimeout(panel.tabbedTombstoneTimer);
+
+    if (!animate) {
+      panel.style.height = '';
+      panel.setAttribute('hidden', '');
+      return;
+    }
+
+    panel.style.height = panel.scrollHeight + 'px';
+    panel.offsetHeight;
+    panel.style.height = '0px';
+    panel.tabbedTombstoneTimer = window.setTimeout(function() {
+      panel.style.height = '';
+      panel.setAttribute('hidden', '');
+    }, PANEL_ANIMATION_MS);
+  }
+
+  function _setActiveTab(tab, focusTab, instant) {
     const tabs = _getTabs();
     const panels = _getPanels();
     const panelId = tab.getAttribute('aria-controls');
@@ -85,9 +135,9 @@ const tabbedTombstone = function(container) {
       const isActive = panel.id === panelId;
       panel.classList.toggle(CLASS_ACTIVE, isActive);
       if (isActive) {
-        panel.removeAttribute('hidden');
+        _openPanel(panel, instant);
       } else {
-        panel.setAttribute('hidden', '');
+        _closePanel(panel);
       }
     });
 
@@ -189,10 +239,38 @@ const tabbedTombstone = function(container) {
     }
 
     const tab = event.target.closest(TAB_SELECTOR);
-    if (tab && container.contains(tab) && tab.getAttribute('aria-selected') !== 'true') {
-      event.preventDefault();
-      _setActiveTab(tab, false);
+    if (!tab || !container.contains(tab)) {
+      return;
     }
+
+    const isActive = tab.getAttribute('aria-selected') === 'true';
+
+    if (isActive) {
+      if (_isAccordion()) {
+        event.preventDefault();
+        _collapseTab(tab);
+      }
+      return;
+    }
+
+    event.preventDefault();
+    _setActiveTab(tab, false);
+  }
+
+  function _collapseTab(tab) {
+    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+
+    tab.setAttribute('aria-selected', 'false');
+    tab.setAttribute('tabindex', '-1');
+    tab.classList.remove(CLASS_ACTIVE);
+
+    if (panel) {
+      panel.classList.remove(CLASS_ACTIVE);
+      _closePanel(panel);
+    }
+
+    _checkOverflow();
+    triggerCustomEvent(container, 'tabbedTombstone:collapsed', { tab: tab });
   }
 
   function _handleKeydown(event) {
@@ -209,6 +287,14 @@ const tabbedTombstone = function(container) {
 
     const keyCodes = { 35: 'End', 36: 'Home', 37: 'ArrowLeft', 38: 'ArrowUp', 39: 'ArrowRight', 40: 'ArrowDown' };
     const key = event.key || keyCodes[event.keyCode] || '';
+
+    if (key === 'Enter' || key === ' ' || key === 'Spacebar') {
+      if (tab.getAttribute('aria-selected') === 'true' && _isAccordion()) {
+        event.preventDefault();
+        _collapseTab(tab);
+      }
+      return;
+    }
 
     let nextIndex = null;
     switch (key) {
@@ -286,7 +372,7 @@ const tabbedTombstone = function(container) {
     }
 
     if (activeTab) {
-      _setActiveTab(activeTab, false);
+      _setActiveTab(activeTab, false, true);
     } else {
       _checkOverflow();
     }
