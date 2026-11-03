@@ -576,6 +576,29 @@ html.s-print body {
         }
     }
 
+    .o-tabbed-tombstone {
+        &__rail,
+        &__copy,
+        &__row-copy,
+        &__panel-fade,
+        &__gradient {
+            display: none;
+        }
+
+        &__content {
+            height: auto;
+        }
+
+        &__panel,
+        &__panel[hidden] {
+            display: block;
+        }
+
+        &__panel-scroll {
+            overflow: visible;
+        }
+    }
+
     // custom tour print styles
     .aic-ct-list-item__artwork-img-container {
         float: left;
