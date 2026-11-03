@@ -70,6 +70,11 @@
             padding-bottom: 16px;
             transition: height .25s $bezier--ease-in-out;
         }
+
+        &:not(.is-active) &__tab-label {
+            color: var(--o-tabbed-tombstone-active);
+            font-weight: 325;
+        }
     }
 
     @media (prefers-reduced-motion: reduce) {
