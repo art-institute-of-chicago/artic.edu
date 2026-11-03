@@ -263,6 +263,7 @@ const tabbedTombstone = function(container) {
     tab.setAttribute('aria-selected', 'false');
     tab.setAttribute('tabindex', '-1');
     tab.classList.remove(CLASS_ACTIVE);
+    container.classList.remove(CLASS_ACTIVE);
 
     if (panel) {
       panel.classList.remove(CLASS_ACTIVE);
@@ -321,6 +322,18 @@ const tabbedTombstone = function(container) {
   }
 
   function _handleResized() {
+    const activeTab = container.querySelector(TAB_SELECTOR + '[aria-selected="true"]');
+
+    if (activeTab) {
+      _setActiveTab(activeTab, false, true);
+    } else if (!_isAccordion()) {
+      const firstTab = _getTabs()[0];
+
+      if (firstTab) {
+        _setActiveTab(firstTab, false, true);
+      }
+    }
+
     _checkOverflow();
   }
 
