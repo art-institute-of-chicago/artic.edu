@@ -14,6 +14,7 @@
 
 .o-tabbed-tombstone {
     --o-tabbed-tombstone-max-height: 585px;
+    --o-tabbed-tombstone-mobile-preview-height: 300px;
     --o-tabbed-tombstone-icon-slot: 2rem;
     --o-tabbed-tombstone-rule: #{$colors-themes-light-mode-rules-primary};
     --o-tabbed-tombstone-inactive: #{$colors-scales-grey-20};
@@ -34,7 +35,7 @@
         display: contents;
     }
 
-    @include breakpoint('medium-') {
+    @include breakpoint('small-') {
         @for $i from 1 through 8 {
             &__tab-row:nth-child(#{$i}) {
                 order: #{($i * 2) - 1};
@@ -59,7 +60,7 @@
         border-top: 1px solid var(--o-tabbed-tombstone-rule);
     }
 
-    @include breakpoint('medium-') {
+    @include breakpoint('small-') {
         &__tab-row {
             margin-bottom: 0;
         }
@@ -72,12 +73,29 @@
         }
 
         &__panel-scroll {
-            max-height: min(var(--o-tabbed-tombstone-max-height), 70vh);
-            overflow-y: auto;
+            max-height: var(--o-tabbed-tombstone-mobile-preview-height);
+            overflow: hidden;
+        }
+
+        &__panel.is-expanded &__panel-scroll {
+            max-height: none;
+        }
+
+        &__panel.is-expanded &__panel-fade {
+            opacity: 0;
+        }
+
+        &__panel.is-truncated:not(.is-expanded) &__expand {
+            display: flex;
         }
 
         &.is-active &__tab:not(.is-active) &__tab-label {
             color: var(--o-tabbed-tombstone-inactive);
+            font-weight: 400;
+        }
+
+        &:not(.is-active) &__tab-label {
+            color: var(--o-tabbed-tombstone-active);
             font-weight: 400;
         }
 
@@ -119,10 +137,37 @@
     &__tab[aria-expanded="true"],
     &__trigger[aria-expanded="true"] {
         color: var(--o-tabbed-tombstone-active);
-        font-weight: 450;
+        font-weight: 400;
     }
 
     &__tab-label {
+        display: block;
+    }
+
+    &__tab-icon {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        margin-top: .1em;
+        color: currentColor;
+    }
+
+    &__tab-icon .icon--plus,
+    &__tab-icon .icon--minus {
+        display: block;
+        width: 16px;
+        height: 16px;
+    }
+
+    &__tab-icon .icon--minus,
+    &__tab.is-active &__tab-icon .icon--plus,
+    &__trigger.is-active &__tab-icon .icon--plus {
+        display: none;
+    }
+
+    &__tab.is-active &__tab-icon .icon--minus,
+    &__trigger.is-active &__tab-icon .icon--minus {
         display: block;
     }
 
@@ -256,7 +301,7 @@
         height: 24px;
     }
 
-    @include breakpoint('medium-') {
+    @include breakpoint('small-') {
         &__copy {
             top: 16px;
         }
@@ -281,6 +326,28 @@
         display: block;
         width: 10.6px;
         height: 13.4px;
+    }
+
+    &__expand {
+        display: none;
+        align-items: center;
+        gap: 4px;
+        width: max-content;
+        margin: 16px 0 0 auto;
+        padding: 0;
+        border: 0;
+        background: none;
+        font-family: $sans-serif-font--loaded;
+        font-size: 14px;
+        line-height: 1.2;
+        color: $colors-scales-grey-medium;
+        cursor: pointer;
+    }
+
+    &__expand .icon--plus {
+        display: block;
+        width: 12px;
+        height: 12px;
     }
 
     // ------------------------------------------------------------------ caption / footer
@@ -351,14 +418,18 @@
         @include breakpoint('#{$bp}') {
             margin-left: colspan(15, $bp, 0, true);
             margin-right: colspan(15, $bp, 0, true);
+        }
+    }
 
+    @each $bp in ('medium', 'large', 'xlarge') {
+        @include breakpoint('#{$bp}') {
             &__rail {
                 width: colspan(13, $bp);
                 margin-right: colspan(2, $bp);
             }
         }
     }
-    @include breakpoint('large+') {
+    @include breakpoint('medium+') {
         display: flex;
         flex-flow: row wrap;
         align-items: flex-start;
@@ -414,6 +485,10 @@
             text-align: left;
         }
 
+        &__tab-icon {
+            display: none;
+        }
+
         &__tab-label {
             line-height: 28px;
             max-width: 10.5em;
@@ -422,7 +497,7 @@
 
         &__tab.is-active &__tab-label,
         &__trigger.is-active &__tab-label {
-            font-weight: 450;
+            font-weight: 400;
             color: var(--o-tabbed-tombstone-active);
             text-decoration-thickness: 1px;
             text-underline-offset: 4px;
@@ -528,6 +603,7 @@
 
     &__copy,
     &__row-copy,
+    &__expand,
     &__panel-fade {
         display: none !important;
     }
