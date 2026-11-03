@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
+use App\Models\Api\Artist;
 use App\Models\Api\Artwork;
 use App\Models\Article;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -293,6 +294,36 @@ class ArtworkTest extends BaseTestCase
         $response->assertSee('Georges Seurat (French, 1859-1891)', false);
     }
 
+    public function test_tabbed_tombstone_reads_ulan_id_from_the_artist_record(): void
+    {
+        $artwork = Artwork::factory()->make([
+            'artist_pivots' => [
+                (object) [
+                    'artist_id' => 40810,
+                    'artist_title' => 'Georges Seurat',
+                    'role_id' => 219,
+                    'role_title' => 'Artist',
+                ],
+            ],
+        ]);
+
+        $artist = Artist::factory()->make([
+            'id' => 40810,
+            'title' => 'Georges Seurat',
+            'ulan_id' => '5000088',
+        ]);
+
+        $this->addMockApiResponses(
+            new Response(200, [], json_encode(['data' => [$artist->toArray()]]))
+        );
+
+        $block = $artwork->presentAdmin()->getTabbedTombstoneBlock();
+        $apiTab = collect($block['tabs'])->firstWhere('id', 'api-and-linked-data');
+
+        $this->assertNotEmpty($apiTab, 'Expected an API and linked data tab');
+        $this->assertStringContainsString('https://vocab.getty.edu/ulan/5000088', $apiTab['copy']);
+    }
+
     public function test_artwork_show_tabbed_tombstone_copy_payload_has_no_zero_width_characters(): void
     {
         $artwork = Artwork::factory()->make([
@@ -341,6 +372,35 @@ class ArtworkTest extends BaseTestCase
             $this->mockApiSearchResponse(), // Search for educational resources
             $this->mockApiAiResponse(), // Nearest neighbors for artwork
         ]);
+    }
+
+    public function test_artwork_show_tabbed_tombstone_shows_every_panel_in_print_mode(): void
+    {
+        $artwork = Artwork::factory()->make([
+            'is_public_domain' => false,
+            'publication_history' => '<p>Published in 1886.</p>',
+        ]);
+        $this->mockArtworkShow($artwork);
+
+        $this->app->instance('printservice', new class () {
+            public function isPrintMode()
+            {
+                return true;
+            }
+        });
+
+        $html = $this->get(route('artworks.show', [
+            'id' => $artwork->id,
+            'slug' => $artwork->titleSlug,
+        ]))->assertOk()->getContent();
+
+        preg_match_all('/o-tabbed-tombstone__panel(?=[\s"])[^>]*>/s', $html, $panels);
+
+        $this->assertGreaterThan(1, count($panels[0]), 'Expected more than one tombstone panel');
+
+        foreach ($panels[0] as $panel) {
+            $this->assertStringNotContainsString('hidden', $panel);
+        }
     }
 
     private function getArtworkShow(Artwork $artwork)
