@@ -10,6 +10,7 @@ const tabbedTombstone = function(container) {
   const SCROLL_SELECTOR = '.o-tabbed-tombstone__panel-scroll';
   const RAIL_SELECTOR = '.o-tabbed-tombstone__rail';
   const COPY_SELECTOR = '.o-tabbed-tombstone__copy, .o-tabbed-tombstone__row-copy';
+  const EXPAND_SELECTOR = '.o-tabbed-tombstone__expand';
   const PANEL_ANIMATION_MS = 250;
 
   let announcer = null;
@@ -48,7 +49,9 @@ const tabbedTombstone = function(container) {
       container.classList.remove(CLASS_SCROLL_END);
       return;
     }
-    container.classList.toggle(CLASS_OVERFLOWING, scroll.scrollHeight > scroll.clientHeight + 1);
+    const overflowing = scroll.scrollHeight > scroll.clientHeight + 1;
+    container.classList.toggle(CLASS_OVERFLOWING, overflowing);
+    panel.classList.toggle('is-truncated', overflowing);
     container.classList.toggle(
       CLASS_SCROLL_END,
       scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 2
@@ -137,6 +140,8 @@ const tabbedTombstone = function(container) {
       if (isActive) {
         _openPanel(panel, instant);
       } else {
+        panel.classList.remove('is-expanded');
+        panel.classList.remove('is-truncated');
         _closePanel(panel);
       }
     });
@@ -238,17 +243,52 @@ const tabbedTombstone = function(container) {
       return;
     }
 
+    const expandButton = event.target.closest(EXPAND_SELECTOR);
+    if (expandButton && container.contains(expandButton)) {
+      event.preventDefault();
+      const expandPanel = expandButton.closest(PANEL_SELECTOR);
+      if (expandPanel) {
+        expandPanel.classList.add('is-expanded');
+        _checkOverflow();
+      }
+      return;
+    }
+
     const tab = event.target.closest(TAB_SELECTOR);
     if (!tab || !container.contains(tab)) {
       return;
     }
 
     if (tab.getAttribute('aria-selected') === 'true') {
+      if (_isAccordion()) {
+        event.preventDefault();
+        _collapseTab(tab);
+      }
+
       return;
     }
 
     event.preventDefault();
     _setActiveTab(tab, false);
+  }
+
+  function _collapseTab(tab) {
+    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+
+    tab.setAttribute('aria-selected', 'false');
+    tab.setAttribute('tabindex', '-1');
+    tab.classList.remove(CLASS_ACTIVE);
+    container.classList.remove(CLASS_ACTIVE);
+
+    if (panel) {
+      panel.classList.remove(CLASS_ACTIVE);
+      panel.classList.remove('is-expanded');
+      panel.classList.remove('is-truncated');
+      _closePanel(panel);
+    }
+
+    _checkOverflow();
+    triggerCustomEvent(container, 'tabbedTombstone:collapsed', { tab: tab });
   }
 
   function _handleKeydown(event) {
@@ -265,6 +305,15 @@ const tabbedTombstone = function(container) {
 
     const keyCodes = { 35: 'End', 36: 'Home', 37: 'ArrowLeft', 38: 'ArrowUp', 39: 'ArrowRight', 40: 'ArrowDown' };
     const key = event.key || keyCodes[event.keyCode] || '';
+
+    if (key === 'Enter' || key === ' ' || key === 'Spacebar') {
+      if (tab.getAttribute('aria-selected') === 'true' && _isAccordion()) {
+        event.preventDefault();
+        _collapseTab(tab);
+      }
+
+      return;
+    }
 
     let nextIndex = null;
     switch (key) {
