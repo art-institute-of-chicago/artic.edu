@@ -83,6 +83,8 @@ Usage:
                     </button>
                 @endif
 
+                <h3 class="o-tabbed-tombstone__panel-title sr-only">{{ $tab['label'] }}</h3>
+
                 <div class="o-tabbed-tombstone__panel-scroll">
                     @if ($tab['kind'] === 'keyvalue')
                         <dl class="o-tabbed-tombstone__rows">
@@ -121,7 +123,7 @@ Usage:
                 <div class="o-tabbed-tombstone__panel-fade" aria-hidden="true"></div>
 
                 @if (! empty($caption))
-                    <div class="o-tabbed-tombstone__footer u-hide@large+">
+                    <div class="o-tabbed-tombstone__footer o-tabbed-tombstone__footer--panel u-hide@large+">
                         {!! $caption !!}
                     </div>
                 @endif
