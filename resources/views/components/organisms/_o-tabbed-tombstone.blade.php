@@ -73,7 +73,7 @@ Usage:
                 role="tabpanel"
                 aria-labelledby="{{ $tabId }}"
                 data-copy="{{ $tab['copy'] ?? '' }}"
-                @if (! $isActive) hidden @endif
+                @if (! $isActive && ! $isPrint) hidden @endif
             >
                 @if ($showPanelCopy)
                     <button
