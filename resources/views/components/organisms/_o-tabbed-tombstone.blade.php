@@ -123,11 +123,17 @@ Usage:
                     @endif
                 </div>
                 <div class="o-tabbed-tombstone__panel-fade" aria-hidden="true"></div>
+
+                @if (! empty($caption))
+                    <div class="o-tabbed-tombstone__footer u-hide@large+">
+                        {!! $caption !!}
+                    </div>
+                @endif
             </div>
         @endforeach
 
         @if (! empty($caption))
-            <div class="o-tabbed-tombstone__footer">
+            <div class="o-tabbed-tombstone__footer u-hide@medium-">
                 {!! $caption !!}
             </div>
         @endif
