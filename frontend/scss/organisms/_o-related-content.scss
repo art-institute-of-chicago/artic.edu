@@ -12,6 +12,10 @@
   @include breakpoint('medium+') {
     flex-flow: row wrap;
   }
+
+  @include breakpoint('medium-') {
+    padding-top: 0;
+  }
 }
 
 .o-related-content::before {
@@ -22,6 +26,10 @@
   top: 0;
   height: 1px;
   background-color: $colors-themes-light-mode-rules-primary;
+
+  @include breakpoint('medium-') {
+    display: none;
+  }
 }
 
 .o-related-content--continuation {
