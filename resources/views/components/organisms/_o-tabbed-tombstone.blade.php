@@ -42,6 +42,10 @@ Usage:
                     tabindex="{{ $isActive ? '0' : '-1' }}"
                 >
                     <span class="o-tabbed-tombstone__tab-label">{{ $tab['label'] }}</span>
+                    <span class="o-tabbed-tombstone__tab-icon">
+                        <svg class="icon--plus"><use xlink:href="#icon--plus" /></svg>
+                        <svg class="icon--minus"><use xlink:href="#icon--minus" /></svg>
+                    </span>
                 </button>
             </div>
         @endforeach
@@ -122,8 +126,13 @@ Usage:
                 </div>
                 <div class="o-tabbed-tombstone__panel-fade" aria-hidden="true"></div>
 
+                <button type="button" class="o-tabbed-tombstone__expand" aria-label="Expand {{ $tab['label'] }}">
+                    Expand
+                    <svg class="icon--plus"><use xlink:href="#icon--plus" /></svg>
+                </button>
+
                 @if (! empty($caption))
-                    <div class="o-tabbed-tombstone__footer o-tabbed-tombstone__footer--panel u-hide@large+">
+                    <div class="o-tabbed-tombstone__footer o-tabbed-tombstone__footer--panel u-hide@medium+">
                         {!! $caption !!}
                     </div>
                 @endif
@@ -131,7 +140,7 @@ Usage:
         @endforeach
 
         @if (! empty($caption))
-            <div class="o-tabbed-tombstone__footer u-hide@medium-">
+            <div class="o-tabbed-tombstone__footer u-hide@small-">
                 {!! $caption !!}
             </div>
         @endif
