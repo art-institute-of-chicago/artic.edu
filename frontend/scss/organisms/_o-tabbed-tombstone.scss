@@ -59,6 +59,18 @@
         border-top: 1px solid var(--o-tabbed-tombstone-rule);
     }
 
+    @include breakpoint('medium-') {
+        &__tab-row {
+            margin-bottom: 0;
+        }
+
+        &__panel {
+            overflow: hidden;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            transition: height .25s $bezier--ease-in-out;
+        }
+    }
     // ------------------------------------------------------------------ rail / trigger
     &__tab,
     &__trigger {
