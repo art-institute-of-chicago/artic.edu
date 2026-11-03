@@ -264,7 +264,7 @@ class ArtworkTest extends BaseTestCase
 
         $html = $this->getArtworkShow($artwork)->assertOk()->getContent();
 
-        $this->assertSame(1, substr_count($html, 'o-tabbed-tombstone__footer'));
+        $this->assertSame(1, substr_count($html, 'o-tabbed-tombstone__footer u-hide@small-'));
         // The IIIF manifest row belongs to the API & linked data tab only.
         preg_match('/-panel-overview"(.+?)o-tabbed-tombstone__panel-fade/s', $html, $overviewPanel);
         $this->assertNotEmpty($overviewPanel[1] ?? null, 'Expected an overview panel');
@@ -274,16 +274,16 @@ class ArtworkTest extends BaseTestCase
         $this->assertSame(0, substr_count($html, 'Information about image downloads and licensing'));
     }
 
-    public function test_artwork_show_overview_artist_row_uses_artist_display(): void
+    public function test_artwork_show_overview_artist_row_uses_plain_artist_display(): void
     {
         $artwork = Artwork::factory()->make([
-            'artist_display' => 'Georges Seurat (French, 1859-1891)',
+            'artist_display' => "Adler & Sullivan, original architects; American, 1883-1896\nVinci & Kenny, reconstruction architects; American, 1970-1977",
             'artist_pivots' => [
                 (object) [
                     'artist_id' => 40810,
-                    'artist_title' => 'Georges Seurat',
+                    'artist_title' => 'Adler & Sullivan',
                     'role_id' => 219,
-                    'role_title' => 'Artist',
+                    'role_title' => 'Architect',
                 ],
             ],
         ]);
@@ -291,7 +291,14 @@ class ArtworkTest extends BaseTestCase
 
         $response = $this->getArtworkShow($artwork);
         $response->assertOk();
-        $response->assertSee('Georges Seurat (French, 1859-1891)', false);
+
+        preg_match('/<dd class="o-tabbed-tombstone__value">(.+?)<\/dd>/s', $response->getContent(), $artistValue);
+        $artistRow = $artistValue[1] ?? '';
+
+        $this->assertStringContainsString('Adler &amp; Sullivan, original architects; American, 1883-1896', $artistRow);
+        $this->assertStringContainsString('Vinci &amp; Kenny, reconstruction architects; American, 1970-1977', $artistRow);
+        $this->assertStringContainsString('<br>', $artistRow);
+        $this->assertStringNotContainsString('<a ', $artistRow);
     }
 
     public function test_tabbed_tombstone_reads_ulan_id_from_the_artist_record(): void
