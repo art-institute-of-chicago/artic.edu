@@ -550,6 +550,17 @@ class ArtworkPresenter extends BasePresenter
             return null;
         }
 
+        if (preg_match('/<(p|div|ul|ol|li|br|h[1-6])\b/i', $value)) {
+            return [
+                'id' => $id,
+                'label' => $label,
+                'kind' => 'prose',
+                'rows' => [['content' => $value]],
+                'copy' => '',
+                'hasCopy' => false,
+            ];
+        }
+
         $lines = explode("\n", $value);
         $rows = [];
 
