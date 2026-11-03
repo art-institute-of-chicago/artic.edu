@@ -157,9 +157,9 @@
 
     &__row {
         display: grid;
-        grid-template-columns: minmax(88px, 38%) minmax(0, 1fr);
-        column-gap: 12px;
-        padding-bottom: 25px;
+        grid-template-columns: 27% minmax(0, 1fr);
+        column-gap: 16px;
+        padding-bottom: 20px;
     }
 
     &__row:last-child {
@@ -173,7 +173,7 @@
         font-size: 18px !important;
         font-weight: 400;
         line-height: 28px;
-        color: $colors-themes-light-mode-text-secondary;
+        color: $colors-themes-light-mode-text-tertiary;
     }
 
     &__value {
@@ -194,7 +194,8 @@
         list-style: disc;
         font-family: $serif-font--loaded;
         font-size: 20px;
-        line-height: 32px;
+        line-height: 28px;
+        letter-spacing: .01em;
         color: $colors-themes-light-mode-text-title;
     }
 
@@ -208,7 +209,8 @@
         margin: 0 0 32px;
         font-family: $serif-font--loaded;
         font-size: 20px;
-        line-height: 32px;
+        line-height: 28px;
+        letter-spacing: .01em;
         color: $colors-themes-light-mode-text-title;
     }
 
@@ -290,7 +292,8 @@
         flex: 0 0 auto;
         // Mobile: sink the shared caption below every accordion row (rows are
         // ordered 1..15, panels 2..16 by the loop above).
-        order: 17;        margin-top: 24px;
+        order: 17;
+        margin-top: 24px;
         padding-bottom: 24px;
         font-family: $sans-serif-font--loaded;
         font-size: 14px;
@@ -380,6 +383,8 @@
         &__footer,
         &__caption {
             order: 0;
+            margin-top: 60px;
+            padding-bottom: 0;
         }
 
         // Desktop: the rail is a static column, so the mobile row wrappers
@@ -440,8 +445,14 @@
             overflow-y: auto;
         }
 
+        &__panel:has(> .o-tabbed-tombstone__copy) .o-tabbed-tombstone__panel-scroll {
+            padding-right: 16%;
+        }
+
         &__row {
-            grid-template-columns: 18% minmax(0, 1fr);
+            grid-template-columns: 20.8% minmax(0, 1fr);
+            column-gap: 40px;
+            padding-bottom: 10px;
             align-items: baseline;
         }
 
