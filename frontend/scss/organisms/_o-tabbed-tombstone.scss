@@ -71,10 +71,16 @@
             transition: height .25s $bezier--ease-in-out;
         }
 
-        &:not(.is-active) &__tab-label {
-            color: var(--o-tabbed-tombstone-active);
-            font-weight: 325;
+        &__panel-scroll {
+            max-height: min(var(--o-tabbed-tombstone-max-height), 70vh);
+            overflow-y: auto;
         }
+
+        &.is-active &__tab:not(.is-active) &__tab-label {
+            color: var(--o-tabbed-tombstone-inactive);
+            font-weight: 400;
+        }
+
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -117,45 +123,6 @@
     }
 
     &__tab-label {
-        display: block;
-    }
-
-    &__tab-icon {
-        display: inline-flex;
-        flex: 0 0 auto;
-        align-items: center;
-        justify-content: center;
-        margin-top: .1em;
-        color: currentColor;
-    }
-
-    &__tab-icon .icon--plus,
-    &__tab-icon .icon--minus {
-        display: block;
-        width: 16px;
-        height: 16px;
-    }
-
-    &__tab .icon--minus,
-    &__trigger .icon--minus {
-        display: none;
-    }
-
-    &__tab[aria-expanded="true"] .icon--plus,
-    &__trigger[aria-expanded="true"] .icon--plus,
-    &__tab[aria-selected="true"] .icon--plus,
-    &__trigger[aria-selected="true"] .icon--plus,
-    &__tab.is-active .icon--plus,
-    &__trigger.is-active .icon--plus {
-        display: none;
-    }
-
-    &__tab[aria-expanded="true"] .icon--minus,
-    &__trigger[aria-expanded="true"] .icon--minus,
-    &__tab[aria-selected="true"] .icon--minus,
-    &__trigger[aria-selected="true"] .icon--minus,
-    &__tab.is-active .icon--minus,
-    &__trigger.is-active .icon--minus {
         display: block;
     }
 
@@ -289,6 +256,12 @@
         height: 24px;
     }
 
+    @include breakpoint('medium-') {
+        &__copy {
+            top: 16px;
+        }
+    }
+
     // Per-row copy affordances sit inline with the row's value and are always
     // shown (no hover reveal).
     &__row-copy {
@@ -343,6 +316,18 @@
         pointer-events: none;
         opacity: 0;
         transition: opacity .15s $bezier--ease-in-out;
+    }
+
+    &__panel-fade {
+        display: block;
+    }
+
+    &.is-overflowing &__panel-fade {
+        opacity: 1;
+    }
+
+    &.is-scroll-end &__panel-fade {
+        opacity: 0;
     }
 
     // ------------------------------------------------------------------ desktop (large+)
@@ -427,10 +412,6 @@
             border-bottom: 0;
             background: none;
             text-align: left;
-        }
-
-        &__tab-icon {
-            display: none;
         }
 
         &__tab-label {

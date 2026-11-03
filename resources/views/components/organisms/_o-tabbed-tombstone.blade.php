@@ -42,10 +42,6 @@ Usage:
                     tabindex="{{ $isActive ? '0' : '-1' }}"
                 >
                     <span class="o-tabbed-tombstone__tab-label">{{ $tab['label'] }}</span>
-                    <span class="o-tabbed-tombstone__tab-icon">
-                        <svg class="icon--plus"><use xlink:href="#icon--plus" /></svg>
-                        <svg class="icon--minus"><use xlink:href="#icon--minus" /></svg>
-                    </span>
                 </button>
             </div>
         @endforeach
