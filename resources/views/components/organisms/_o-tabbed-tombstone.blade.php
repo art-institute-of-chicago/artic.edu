@@ -118,7 +118,7 @@ Usage:
                         </ul>
                     @else
                         @foreach ($rows as $row)
-                            <p class="o-tabbed-tombstone__prose">{!! $row['content'] ?? '' !!}</p>
+                            <div class="o-tabbed-tombstone__prose">{!! $row['content'] ?? '' !!}</div>
                         @endforeach
                     @endif
                 </div>
