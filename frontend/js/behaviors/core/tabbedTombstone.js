@@ -243,35 +243,12 @@ const tabbedTombstone = function(container) {
       return;
     }
 
-    const isActive = tab.getAttribute('aria-selected') === 'true';
-
-    if (isActive) {
-      if (_isAccordion()) {
-        event.preventDefault();
-        _collapseTab(tab);
-      }
+    if (tab.getAttribute('aria-selected') === 'true') {
       return;
     }
 
     event.preventDefault();
     _setActiveTab(tab, false);
-  }
-
-  function _collapseTab(tab) {
-    const panel = document.getElementById(tab.getAttribute('aria-controls'));
-
-    tab.setAttribute('aria-selected', 'false');
-    tab.setAttribute('tabindex', '-1');
-    tab.classList.remove(CLASS_ACTIVE);
-    container.classList.remove(CLASS_ACTIVE);
-
-    if (panel) {
-      panel.classList.remove(CLASS_ACTIVE);
-      _closePanel(panel);
-    }
-
-    _checkOverflow();
-    triggerCustomEvent(container, 'tabbedTombstone:collapsed', { tab: tab });
   }
 
   function _handleKeydown(event) {
@@ -288,14 +265,6 @@ const tabbedTombstone = function(container) {
 
     const keyCodes = { 35: 'End', 36: 'Home', 37: 'ArrowLeft', 38: 'ArrowUp', 39: 'ArrowRight', 40: 'ArrowDown' };
     const key = event.key || keyCodes[event.keyCode] || '';
-
-    if (key === 'Enter' || key === ' ' || key === 'Spacebar') {
-      if (tab.getAttribute('aria-selected') === 'true' && _isAccordion()) {
-        event.preventDefault();
-        _collapseTab(tab);
-      }
-      return;
-    }
 
     let nextIndex = null;
     switch (key) {
