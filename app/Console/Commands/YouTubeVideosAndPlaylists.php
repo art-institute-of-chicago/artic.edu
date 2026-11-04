@@ -31,33 +31,42 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
 
     /**
      * Ensure a video entry exists for every item in the uploads playlist.
+     *
+     * Existing entries are left untouched here, as they are updated in
+     * `updateVideos`. Saving a video triggers Twill's slug handling, so avoid
+     * saving videos that have not changed.
      */
     private function importUploads(): Collection
     {
         $progress = !$this->output->isDebug() ? $this->output->createProgressBar($this->youtube->uploadCount()) : null;
         $progress?->start();
+        $existingIds = Video::withoutGlobalScopes()->withTrashed()->pluck('youtube_id')->flip();
         $sourceIds = collect();
+        $deletedIds = collect();
         $fields = 'items(status,snippet(resourceId/videoId,title,description))';
         foreach ($this->youtube->uploads($fields) as $upload) {
             $videoId = $upload['snippet']['resourceId']['videoId'];
-            Video::withoutGlobalScopes()->updateOrCreate(
-                ['youtube_id' => $videoId],
-                [
+            if (!$existingIds->has($videoId)) {
+                Video::create([
                     'youtube_id' => $videoId,
                     'title' => $this->normalizeTitle($upload['snippet']['title']),
                     'description' => $upload['snippet']['description'],
-                ],
-            );
-            // Mark deleted videos as such in the db.
+                ]);
+                $existingIds->put($videoId, true);
+            }
             if (
                 $upload['snippet']['title'] == 'Deleted video'
                 && $upload['snippet']['description'] == 'This video is unavailable.'
             ) {
-                Video::withoutGlobalScopes()->where('youtube_id', $videoId)->delete();
+                $deletedIds->push($videoId);
             } else {
                 $sourceIds->push($videoId);
             }
             $progress?->advance();
+        }
+        // Mark deleted videos as such in the db.
+        if ($deletedIds->isNotEmpty()) {
+            Video::withoutGlobalScopes()->whereIn('youtube_id', $deletedIds)->delete();
         }
         $progress?->finish();
         !$this->output->isDebug() ? $this->newLine() : null;
