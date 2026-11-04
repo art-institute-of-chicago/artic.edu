@@ -25,7 +25,7 @@ abstract class AbstractYoutubeCommand extends Command
         $this->signature = Str::replace('{signature}', $this->signature, $this->signatureTemplate);
         parent::__construct();
         $this->oAuth->setApplicationName(YouTubeService::SERVICE_NAME);
-        $this->youtube = new YouTubeService($oAuth->client);
+        $this->youtube = app(YouTubeService::class, ['client' => $oAuth->client]);
         $this->youtube->setLogger($this->log(...));
     }
 
