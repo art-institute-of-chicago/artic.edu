@@ -26,10 +26,7 @@
                         $rowClass = $rowElement->getAttribute('class');
                     @endphp
                     <tr {!! !empty($rowClass) ? 'class="' . $rowClass . '"' : '' !!}>
-                        @php
-                            $rowCrawler = new Crawler(BlockHelpers::innerHTML($rowElement));
-                        @endphp
-                        @foreach ($rowCrawler->filter('td,th') as $i => $cellElement)
+                        @foreach ((new Crawler($rowElement))->children('td,th') as $i => $cellElement)
                             @php
                                 $cellStyle = $cellElement->getAttribute('style');
                             @endphp
@@ -44,9 +41,6 @@
                                 unset($cellStyle);
                             @endphp
                         @endforeach
-                        @php
-                            unset($rowCrawler);
-                        @endphp
                     </tr>
                     @php
                         unset($rowClass);
@@ -59,10 +53,7 @@
                         $rowClass = $rowElement->getAttribute('class');
                     @endphp
                     <tr {!! !empty($rowClass) ? 'class="' . $rowClass . '"' : '' !!}>
-                        @php
-                            $rowCrawler = new Crawler(BlockHelpers::innerHTML($rowElement));
-                        @endphp
-                        @foreach ($rowCrawler->filter('td,th') as $i => $cellElement)
+                        @foreach ((new Crawler($rowElement))->children('td,th') as $i => $cellElement)
                             @php
                                 $cellStyle = $cellElement->getAttribute('style');
                                 $cellRowspan = $cellElement->getAttribute('rowspan');
@@ -81,9 +72,6 @@
                                 unset($isCellHeader);
                             @endphp
                         @endforeach
-                        @php
-                            unset($rowCrawler);
-                        @endphp
                     </tr>
                 @endforeach
             </tbody>
