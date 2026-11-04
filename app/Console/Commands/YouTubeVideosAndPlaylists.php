@@ -104,7 +104,7 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                 if ($source['status']['privacyStatus'] !== 'public') {
                     // Remove private and unlisted videos
                     if (!$video->trashed()) {
-                    $video->delete();
+                        $video->delete();
                     }
                     continue;
                 } elseif ($video->trashed()) {
@@ -173,18 +173,14 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
             );
             $fields = 'items(id,snippet(resourceId/videoId,position))';
             $sourcePlaylistItems = $this->youtube->itemsInPlaylist($playlistId, $fields)->all();
-            $sourceVideoIdsByPosition = collect($sourcePlaylistItems)->pluck(
-                'snippet.resourceId.videoId',
-                'snippet.position',
-            );
-            $videoIdsToSync = Video::whereIn('youtube_id', $sourceVideoIdsByPosition->values())
+            $sourcePlaylistItemsByVideoId = collect($sourcePlaylistItems)
+                ->keyBy('snippet.resourceId.videoId');
+            $videoIdsToSync = Video::whereIn('youtube_id', $sourcePlaylistItemsByVideoId->keys())
                 ->pluck('youtube_id', 'id')
-                ->mapWithKeys(function ($youtubeId, $id) use ($sourceVideoIdsByPosition, $sourcePlaylistItems) {
-                    $sourcePlaylistItem = collect($sourcePlaylistItems)->first(function ($item) use ($youtubeId) {
-                        return $item['snippet']['resourceId']['videoId'] == $youtubeId;
-                    });
+                ->mapWithKeys(function ($youtubeId, $id) use ($sourcePlaylistItemsByVideoId) {
+                    $sourcePlaylistItem = $sourcePlaylistItemsByVideoId->get($youtubeId);
                     return [$id => [
-                        'position' => $sourceVideoIdsByPosition->flip()->get($youtubeId),
+                        'position' => $sourcePlaylistItem['snippet']['position'],
                         'youtube_id' => $sourcePlaylistItem['id'],
                     ]];
                 });
