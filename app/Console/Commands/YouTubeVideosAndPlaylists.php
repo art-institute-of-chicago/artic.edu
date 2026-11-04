@@ -90,13 +90,24 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         ')';
         foreach ($sourceIds->chunk(YouTubeService::ITEMS_PER_REQUEST) as $chunkOfSourceIds) {
             $sourceVideos = $this->youtube->videosByIds($chunkOfSourceIds, $fields);
+            $videos = Video::withoutGlobalScopes()
+                ->withTrashed()
+                ->whereIn('youtube_id', $chunkOfSourceIds)
+                ->get()
+                ->keyBy('youtube_id');
             foreach ($sourceVideos as $source) {
-                $video = Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id']);
+                $progress?->advance();
+                $video = $videos->get($source['id']);
+                if (!$video) {
+                    continue;
+                }
                 if ($source['status']['privacyStatus'] !== 'public') {
                     // Remove private and unlisted videos
+                    if (!$video->trashed()) {
                     $video->delete();
+                    }
                     continue;
-                } else {
+                } elseif ($video->trashed()) {
                     $video->restore();
                 }
                 $thumbnail = $this->highestResolutionThumbnail($source['snippet']['thumbnails']);
@@ -109,10 +120,13 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                     'thumbnail_url' => $thumbnail['url'],
                     'thumbnail_height' => $thumbnail['height'],
                     'thumbnail_width' => $thumbnail['width'],
-                    'is_captioned' => $source['contentDetails']['caption'],
+                    // The api returns the caption status as the string 'true' or 'false'
+                    'is_captioned' => filter_var($source['contentDetails']['caption'], FILTER_VALIDATE_BOOLEAN),
                     'privacy' => $source['status']['privacyStatus'],
-                ])->save();
-                $progress?->advance();
+                ]);
+                if ($video->isDirty()) {
+                    $video->save();
+                }
             }
         }
         $progress?->finish();
