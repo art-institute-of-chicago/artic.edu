@@ -71,7 +71,7 @@
       @endcomponent
     @endif
 
-    @if ($item->artist_title)
+    @if ($item->artist_title && $item->mainArtist)
       <h2 class="sr-only">Artist:</h2>
       @component('components.atoms._title')
           @slot('tag', 'a')
