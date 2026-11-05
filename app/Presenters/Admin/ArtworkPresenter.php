@@ -490,32 +490,54 @@ class ArtworkPresenter extends BasePresenter
     {
         $entity = $this->entity;
 
-        $lines = [
-            data_get($entity, 'artist_display'),
-            $this->tabbedTombstoneCopyLine([
-                data_get($entity, 'title'),
-                data_get($entity, 'date_display'),
-            ]),
-            data_get($entity, 'place_of_origin'),
-            data_get($entity, 'medium_display'),
-            data_get($entity, 'artwork_website_url'),
-            data_get($entity, 'edition'),
-            data_get($entity, 'inscriptions'),
-            data_get($entity, 'watermarks'),
-            data_get($entity, 'dimensions'),
-            data_get($entity, 'credit_line'),
-            data_get($entity, 'copyright_notice'),
-            $this->tabbedTombstoneCopyLine([
-                data_get($entity, 'department_title'),
-                data_get($entity, 'main_reference_number'),
-            ]),
-        ];
+        $lines = array_merge(
+            $this->tabbedTombstoneCopyArtistDisplayLines(),
+            [
+                $this->tabbedTombstoneCopyLine([
+                    data_get($entity, 'title'),
+                    data_get($entity, 'date_display'),
+                ]),
+                data_get($entity, 'place_of_origin'),
+                data_get($entity, 'medium_display'),
+                data_get($entity, 'artwork_website_url'),
+                data_get($entity, 'edition'),
+                data_get($entity, 'inscriptions'),
+                data_get($entity, 'watermarks'),
+                data_get($entity, 'dimensions'),
+                data_get($entity, 'credit_line'),
+                data_get($entity, 'copyright_notice'),
+                $this->tabbedTombstoneCopyLine([
+                    data_get($entity, 'department_title'),
+                    data_get($entity, 'main_reference_number'),
+                ]),
+            ]
+        );
 
         $lines = array_map(function ($line) {
             return trim(preg_replace('/\s+/', ' ', $this->tabbedTombstonePlainText((string) $line)));
         }, $lines);
 
         return implode("\n", array_filter($lines, function ($line) {
+            return $line !== '';
+        }));
+    }
+
+    /**
+     * The clipboard keeps `artist_display`'s own line breaks rather than
+     * flattening them into the single line the other values get.
+     */
+    protected function tabbedTombstoneCopyArtistDisplayLines()
+    {
+        $artistDisplay = data_get($this->entity, 'artist_display');
+
+        if (empty($artistDisplay) || !is_string($artistDisplay)) {
+            return [];
+        }
+
+        $lines = preg_split('/<br\s*\/?>|\R/i', $artistDisplay);
+        $lines = array_map([$this, 'tabbedTombstonePlainText'], $lines);
+
+        return array_values(array_filter($lines, function ($line) {
             return $line !== '';
         }));
     }
@@ -694,7 +716,7 @@ class ArtworkPresenter extends BasePresenter
 
         $lines = array_map(function ($line) {
             return trim(strip_tags($line));
-        }, preg_split('/<br\s*\/?>/i', (string) $artistDisplay));
+        }, preg_split('/<br\s*\/?>|\R/i', (string) $artistDisplay));
 
         $lines = array_values(array_filter($lines));
 
