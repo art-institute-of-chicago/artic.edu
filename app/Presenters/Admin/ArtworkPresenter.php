@@ -94,13 +94,6 @@ class ArtworkPresenter extends BasePresenter
             ];
         }
 
-        array_push($blocks, [
-            'type' => 'deflist',
-            'variation' => 'u-hide@large+ sr-show@large+',
-            'ariaOwns' => 'dl-artwork-details',
-            'items' => $items
-        ]);
-
         array_push($blocks, $this->getTabbedTombstoneBlock());
 
         return array_filter($blocks);
@@ -134,7 +127,7 @@ class ArtworkPresenter extends BasePresenter
             return $this->entity->on_loan_display;
         }
 
-        return 'Currently Off View';
+        return 'Off View';
     }
 
     private function getFilteredDescription()

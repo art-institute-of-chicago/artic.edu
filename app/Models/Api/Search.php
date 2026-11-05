@@ -23,6 +23,7 @@ class Search extends BaseApiModel
      * IF IT'S NOT HERE IT WILL BE REMOVED FROM THE RESULTS
      */
     public $typeMap = [
+        'artists' => 'App\Models\Api\Artist',
         'artworks' => 'App\Models\Api\Artwork',
         'exhibitions' => 'App\Models\Api\Exhibition',
         'agents' => 'App\Models\Api\Artist',
