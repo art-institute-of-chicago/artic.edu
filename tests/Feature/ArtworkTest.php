@@ -254,6 +254,20 @@ class ArtworkTest extends BaseTestCase
         $response->assertDontSee('Credit Line:');
     }
 
+    public function test_artwork_show_overview_copy_payload_keeps_artist_display_line_breaks(): void
+    {
+        $artwork = Artwork::factory()->make([
+            'artist_display' => "Adler & Sullivan; American, 1883-1896\nVinci & Kenny; American, 1970-1977",
+            'title' => 'Test Title',
+            'date_display' => '1884',
+        ]);
+        $this->mockArtworkShow($artwork);
+
+        $response = $this->getArtworkShow($artwork);
+        $response->assertOk();
+        $response->assertSee("Adler & Sullivan; American, 1883-1896\nVinci & Kenny; American, 1970-1977");
+    }
+
     public function test_artwork_show_tabbed_tombstone_renders_one_caption_and_keeps_iiif_in_api_tab(): void
     {
         $artwork = Artwork::factory()->make([
