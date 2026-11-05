@@ -408,8 +408,15 @@
     // Below large, .o-article__body is left-aligned at colspan(38) of the 58-col
     // grid, so pull the right edge out by the remaining 20 columns to match the
     // full-width sections that follow it (e.g. .o-related-content).
-    @each $bp in ('xsmall', 'small', 'medium') {
+    @each $bp in ('xsmall', 'small') {
         @include breakpoint('#{$bp}') {
+            margin-right: colspan(20, $bp, 0, true);
+        }
+    }
+
+    @each $bp in ('medium') {
+        @include breakpoint('#{$bp}') {
+            margin-left: colspan(15, $bp, 0, true);
             margin-right: colspan(20, $bp, 0, true);
         }
     }
