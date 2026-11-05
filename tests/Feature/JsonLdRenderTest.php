@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Aic\Hub\Foundation\Testing\FeatureTestCase as BaseTestCase;
 use Aic\Hub\Foundation\Testing\MockApi;
+use App\Models\Api\Artist;
 use App\Models\Api\Artwork;
 use App\Models\Api\Exhibition;
 use App\Models\Article;
@@ -239,10 +240,16 @@ class JsonLdRenderTest extends BaseTestCase
      */
     public function test_artwork_detail_graph_contains_visual_artwork_with_artist(): void
     {
-        $artwork = Artwork::factory()->make(['artist_title' => 'Test Artist']);
+        // Due to how the Artwork model is written, we need to add a mock
+        // response for the factory Artist before we create a factory Artwork.
+        $artist = Artist::factory()->create();
+        $this->addMockApiResponses([
+            $this->mockApiSearchResponse([$artist]), // Search for artist
+        ]);
+        $artwork = Artwork::factory()->make(['artist_title' => 'Test Artist', 'artist_id' => $artist->id]);
         $this->addMockApiResponses([
             $this->mockApiModelReponse($artwork),
-            $this->mockApiSearchResponse(), // Search for artist
+            $this->mockApiSearchResponse([$artist]), // Search for artist (again)
             $this->mockApiSearchResponse(), // Multisearch for related artworks
             $this->mockApiSearchResponse(), // Search for multimedia resources
             $this->mockApiSearchResponse(), // Search for educational resources
@@ -255,9 +262,9 @@ class JsonLdRenderTest extends BaseTestCase
         $graph = $this->jsonLdGraph($response->getContent());
         $entity = $this->graphEntity($graph, 'VisualArtwork');
 
-        $artist = $entity['artist'] ?? null;
-        $this->assertNotEmpty($artist);
-        $firstArtist = is_array($artist) ? ($artist[0] ?? $artist) : $artist;
+        $artists = $entity['artist'] ?? null;
+        $this->assertNotEmpty($artists);
+        $firstArtist = is_array($artists) ? ($artists[0] ?? $artists) : $artists;
         $this->assertSame('Person', $firstArtist['@type'] ?? null);
         $this->assertSame('Test Artist', $firstArtist['name'] ?? null);
     }
