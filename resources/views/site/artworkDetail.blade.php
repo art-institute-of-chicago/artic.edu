@@ -28,10 +28,8 @@
     @slot('prevNextObject', $prevNextObject ?? null)
   @endcomponent
 
-  <div class="o-article__primary-actions o-article__primary-actions--inline-header u-show@large+" aria-label="Additional information">
-    {{-- dupe 😢 - shows xlarge+ --}}
+  <div class="o-article__primary-actions o-article__primary-actions--inline-header" aria-label="Additional information">
     @component('components.atoms._title')
-        @slot('variation', 'u-show@large+')
         @slot('tag','h2')
         @slot('font', 'f-module-title-1')
         @slot('ariaHidden', "true")
@@ -40,9 +38,6 @@
 
     @if (!$item->is_deaccessioned)
         <ul class="list list--inline f-secondary">
-            @if ($item->department_id)
-                <li><a href="{!! route('departments.show', [$item->department_id . '/' . StringHelpers::getUtf8Slug($item->department_title)]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-category="collection-nav">{!! $item->present()->department_title !!}</a></li>
-            @endif
             @if ($item->is_on_view && $item->gallery_id)
                 <li><a href="{!! route('galleries.show', [$item->gallery_id . '/' . StringHelpers::getUtf8Slug($item->gallery_title)]) !!}" data-gtm-event="{{ $item->gallery_title }}" data-gtm-event-category="collection-nav">{!! $item->present()->gallery_title !!}</a></li>
             @endif
@@ -52,7 +47,7 @@
                 <li><a href="{!! $item->artwork_website_url !!}" data-gtm-event="artwork website" data-gtm-event-category="collection-nav">Visit artwork website</a></li>
             </ul>
         @endif
-@endif
+    @endif
   </div>
 
   <div class="o-article__inline-header">
@@ -76,16 +71,16 @@
       @endcomponent
     @endif
 
-    @if ($item->artist_display)
+    @if ($item->artist_title)
       <h2 class="sr-only">Artist:</h2>
       @component('components.atoms._title')
-          @slot('tag','p')
+          @slot('tag', 'a')
+          @slot('href', route('artists.show', ['id' => $item->mainArtist->first()->id]))
           @slot('font', 'f-secondary')
           @slot('variation', 'o-article__inline-header-display')
-          {!! $item->present()->artist_display !!}
+          {!! $item->present()->artist_title !!}
       @endcomponent
     @endif
-
   </div>
 
   <div class="o-article__body{{ (empty($item->description) or $item->description === '') ? ' o-article__body--no-description' : '' }} o-blocks">
