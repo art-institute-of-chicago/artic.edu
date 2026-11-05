@@ -11,7 +11,6 @@ const tabbedTombstone = function(container) {
   const RAIL_SELECTOR = '.o-tabbed-tombstone__rail';
   const COPY_SELECTOR = '.o-tabbed-tombstone__copy, .o-tabbed-tombstone__row-copy';
   const EXPAND_SELECTOR = '.o-tabbed-tombstone__expand';
-  const PANEL_ANIMATION_MS = 250;
 
   let announcer = null;
   let copiedTimers = [];
@@ -63,13 +62,14 @@ const tabbedTombstone = function(container) {
       window.cancelAnimationFrame(overflowFrame);
       overflowFrame = null;
     }
-    _measureOverflow();
-    if (window.requestAnimationFrame) {
-      overflowFrame = window.requestAnimationFrame(function() {
-        overflowFrame = null;
-        _measureOverflow();
-      });
+    if (!window.requestAnimationFrame) {
+      _measureOverflow();
+      return;
     }
+    overflowFrame = window.requestAnimationFrame(function() {
+      overflowFrame = null;
+      _measureOverflow();
+    });
   }
 
   // Wires a tab: aria-selected, roving tabindex and the active classes on the
@@ -79,50 +79,7 @@ const tabbedTombstone = function(container) {
     return !!rail && window.getComputedStyle(rail).display === 'contents';
   }
 
-  function _isReducedMotion() {
-    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  }
-
-  function _openPanel(panel, instant) {
-    const animate = !instant && _isAccordion() && !_isReducedMotion();
-
-    window.clearTimeout(panel.tabbedTombstoneTimer);
-    panel.removeAttribute('hidden');
-
-    if (!animate) {
-      panel.style.height = '';
-      return;
-    }
-
-    panel.style.height = '0px';
-    panel.offsetHeight;
-    panel.style.height = panel.scrollHeight + 'px';
-    panel.tabbedTombstoneTimer = window.setTimeout(function() {
-      panel.style.height = '';
-    }, PANEL_ANIMATION_MS);
-  }
-
-  function _closePanel(panel) {
-    const animate = _isAccordion() && !_isReducedMotion();
-
-    window.clearTimeout(panel.tabbedTombstoneTimer);
-
-    if (!animate) {
-      panel.style.height = '';
-      panel.setAttribute('hidden', '');
-      return;
-    }
-
-    panel.style.height = panel.scrollHeight + 'px';
-    panel.offsetHeight;
-    panel.style.height = '0px';
-    panel.tabbedTombstoneTimer = window.setTimeout(function() {
-      panel.style.height = '';
-      panel.setAttribute('hidden', '');
-    }, PANEL_ANIMATION_MS);
-  }
-
-  function _setActiveTab(tab, focusTab, instant) {
+  function _setActiveTab(tab, focusTab) {
     const tabs = _getTabs();
     const panels = _getPanels();
     const panelId = tab.getAttribute('aria-controls');
@@ -137,12 +94,10 @@ const tabbedTombstone = function(container) {
     panels.forEach(function(panel) {
       const isActive = panel.id === panelId;
       panel.classList.toggle(CLASS_ACTIVE, isActive);
-      if (isActive) {
-        _openPanel(panel, instant);
-      } else {
+
+      if (!isActive) {
         panel.classList.remove('is-expanded');
         panel.classList.remove('is-truncated');
-        _closePanel(panel);
       }
     });
 
@@ -284,7 +239,6 @@ const tabbedTombstone = function(container) {
       panel.classList.remove(CLASS_ACTIVE);
       panel.classList.remove('is-expanded');
       panel.classList.remove('is-truncated');
-      _closePanel(panel);
     }
 
     _checkOverflow();
@@ -343,12 +297,12 @@ const tabbedTombstone = function(container) {
     const activeTab = container.querySelector(TAB_SELECTOR + '[aria-selected="true"]');
 
     if (activeTab) {
-      _setActiveTab(activeTab, false, true);
+      _setActiveTab(activeTab, false);
     } else if (!_isAccordion()) {
       const firstTab = _getTabs()[0];
 
       if (firstTab) {
-        _setActiveTab(firstTab, false, true);
+        _setActiveTab(firstTab, false);
       }
     }
 
@@ -391,9 +345,11 @@ const tabbedTombstone = function(container) {
     container.addEventListener('click', _handleClick, false);
     container.addEventListener('keydown', _handleKeydown, false);
 
-    // Passive scroll listeners on every panel's scroll container keep
-    // `is-scroll-end` in sync as the user scrolls the active panel.
+    // Collapsed panels are styled by CSS, so the server-rendered `hidden`
+    // attribute has to go for the transition to run.
     _getPanels().forEach(function(panel) {
+      panel.removeAttribute('hidden');
+
       const scroll = panel.querySelector(SCROLL_SELECTOR);
       if (scroll) {
         scroll.addEventListener('scroll', _handleScroll, { passive: true });
@@ -412,7 +368,7 @@ const tabbedTombstone = function(container) {
     }
 
     if (activeTab) {
-      _setActiveTab(activeTab, false, true);
+      _setActiveTab(activeTab, false);
     } else {
       _checkOverflow();
     }

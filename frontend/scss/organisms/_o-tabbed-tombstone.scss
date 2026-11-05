@@ -5,8 +5,8 @@
 // - Below medium   : the same rail reflows into an accordion (plus/minus glyphs).
 //
 // Notes:
-// - Inactive rail labels use grey-20 (the closest legible grey to the design's
-//   #c6c3c5); the rule token (grey-10) is too light to read as text. Both are
+// - Inactive rail labels use grey-22; the rule token (grey-10) is too light
+//   to read as text. Both are
 //   exposed below as custom properties so the colour can be swapped in one place.
 // - The panel is a fixed 585px tall at large+ (scroll area + footer), so the
 //   tombstone section keeps the same height on every tab regardless of content
@@ -17,7 +17,7 @@
     --o-tabbed-tombstone-mobile-preview-height: 300px;
     --o-tabbed-tombstone-icon-slot: 2rem;
     --o-tabbed-tombstone-rule: #{$colors-themes-light-mode-rules-primary};
-    --o-tabbed-tombstone-inactive: #{$colors-scales-grey-20};
+    --o-tabbed-tombstone-inactive: #{$colors-scales-grey-22};
     --o-tabbed-tombstone-active: #{$colors-themes-light-mode-link-tab-active};
 
     position: relative;
@@ -66,10 +66,32 @@
         }
 
         &__panel {
+            max-height: 0;
+            opacity: 0;
+            visibility: hidden;
             overflow: hidden;
+            padding-top: 0;
+            padding-bottom: 0;
+            transition:
+                max-height .4s $bezier--ease-in-out,
+                opacity .3s $bezier--ease-in-out,
+                visibility 0s .4s;
+        }
+
+        &__panel.is-active {
+            max-height: 1000px;
+            opacity: 1;
+            visibility: visible;
             padding-top: 16px;
             padding-bottom: 16px;
-            transition: height .25s $bezier--ease-in-out;
+            transition:
+                max-height .4s $bezier--ease-in-out,
+                opacity .3s $bezier--ease-in-out,
+                visibility 0s;
+        }
+
+        &__panel.is-active.is-expanded {
+            max-height: none;
         }
 
         &__panel-scroll {
@@ -102,7 +124,8 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-        &__panel {
+        &__panel,
+        &__panel.is-active {
             transition: none;
         }
     }
@@ -506,6 +529,7 @@
         &__trigger.is-active &__tab-label {
             font-weight: 400;
             color: var(--o-tabbed-tombstone-active);
+            text-decoration: underline;
             text-decoration-thickness: 1px;
             text-underline-offset: 4px;
         }
@@ -520,7 +544,8 @@
             border-bottom: 0;
         }
 
-        &__panel[hidden] {
+        &__panel[hidden],
+        &__panel:not(.is-active) {
             display: none;
         }
 
@@ -579,11 +604,14 @@
     &__panel,
     &__panel[hidden] {
         display: block !important;
+        max-height: none;
         height: auto;
         min-height: 0;
         padding: 0 0 24px;
         border-bottom: 0;
         overflow: visible;
+        opacity: 1;
+        visibility: visible;
     }
 
     &__panel-scroll {
