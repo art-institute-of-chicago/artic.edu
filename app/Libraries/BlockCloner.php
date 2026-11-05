@@ -6,38 +6,14 @@ use App\Models\Vendor\Block;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-/**
- * Deep-copies a block (with its children and media attachments) onto another
- * blockable model.
- *
- * This is used by the artwork "Multimedia" browser, where selecting a layered
- * image viewer block snapshots it under the artwork: later edits to the source
- * block do not propagate, and deleting the source does not affect the artwork.
- */
+/** Deep-copies a block, its children and its media rows onto another blockable model. */
 class BlockCloner
 {
-    /**
-     * Clone the given block (including its children and media attachments) onto
-     * the given parent model.
-     *
-     * @param \App\Models\Vendor\Block         $source   The block to copy.
-     * @param \Illuminate\Database\Eloquent\Model $parent The new blockable owner.
-     * @param int|null                         $position Position of the clone within its siblings.
-     *
-     * @return \App\Models\Vendor\Block The cloned root block.
-     */
     public static function cloneTo(Block $source, Model $parent, ?int $position = null): Block
     {
         return static::cloneBlock($source, $parent, $position, null);
     }
 
-    /**
-     * Recursively delete a block, its children, and their media attachments.
-     *
-     * @param \App\Models\Vendor\Block $block The root of the subtree to delete.
-     *
-     * @return void
-     */
     public static function deleteSubtree(Block $block): void
     {
         foreach ($block->children()->get() as $child) {
@@ -52,16 +28,6 @@ class BlockCloner
         $block->delete();
     }
 
-    /**
-     * Copy a single block, then recurse into its children.
-     *
-     * @param \App\Models\Vendor\Block            $source   The block to copy.
-     * @param \Illuminate\Database\Eloquent\Model $parent   The new blockable owner.
-     * @param int|null                            $position Position within its siblings.
-     * @param int|null                            $parentId The clone's parent block id.
-     *
-     * @return \App\Models\Vendor\Block The clone.
-     */
     protected static function cloneBlock(Block $source, Model $parent, ?int $position, ?int $parentId): Block
     {
         $clone = new Block();
@@ -84,14 +50,6 @@ class BlockCloner
         return $clone;
     }
 
-    /**
-     * Duplicate the source block's mediables rows for the clone.
-     *
-     * @param \App\Models\Vendor\Block $source The block the media belongs to.
-     * @param \App\Models\Vendor\Block $clone  The clone the media is copied to.
-     *
-     * @return void
-     */
     protected static function copyMedias(Block $source, Block $clone): void
     {
         $table = config('twill.mediables_table', 'twill_mediables');
