@@ -6,3 +6,4 @@ Disallow: /artworks/recentlyViewed
 Disallow: /artworks/addRecentlyViewed
 Disallow: /ajaxData
 Disallow: /*/exploreFurther$
+Disallow: /my-museum-tour/builder
