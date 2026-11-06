@@ -31,33 +31,42 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
 
     /**
      * Ensure a video entry exists for every item in the uploads playlist.
+     *
+     * Existing entries are left untouched here, as they are updated in
+     * `updateVideos`. Saving a video triggers Twill's slug handling, so avoid
+     * saving videos that have not changed.
      */
     private function importUploads(): Collection
     {
         $progress = !$this->output->isDebug() ? $this->output->createProgressBar($this->youtube->uploadCount()) : null;
         $progress?->start();
+        $existingIds = Video::withoutGlobalScopes()->withTrashed()->pluck('youtube_id')->flip();
         $sourceIds = collect();
+        $deletedIds = collect();
         $fields = 'items(status,snippet(resourceId/videoId,title,description))';
         foreach ($this->youtube->uploads($fields) as $upload) {
             $videoId = $upload['snippet']['resourceId']['videoId'];
-            Video::withoutGlobalScopes()->updateOrCreate(
-                ['youtube_id' => $videoId],
-                [
+            if (!$existingIds->has($videoId)) {
+                Video::create([
                     'youtube_id' => $videoId,
                     'title' => $this->normalizeTitle($upload['snippet']['title']),
                     'description' => $upload['snippet']['description'],
-                ],
-            );
-            // Mark deleted videos as such in the db.
+                ]);
+                $existingIds->put($videoId, true);
+            }
             if (
                 $upload['snippet']['title'] == 'Deleted video'
                 && $upload['snippet']['description'] == 'This video is unavailable.'
             ) {
-                Video::withoutGlobalScopes()->where('youtube_id', $videoId)->delete();
+                $deletedIds->push($videoId);
             } else {
                 $sourceIds->push($videoId);
             }
             $progress?->advance();
+        }
+        // Mark deleted videos as such in the db.
+        if ($deletedIds->isNotEmpty()) {
+            Video::withoutGlobalScopes()->whereIn('youtube_id', $deletedIds)->delete();
         }
         $progress?->finish();
         !$this->output->isDebug() ? $this->newLine() : null;
@@ -81,13 +90,24 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
         ')';
         foreach ($sourceIds->chunk(YouTubeService::ITEMS_PER_REQUEST) as $chunkOfSourceIds) {
             $sourceVideos = $this->youtube->videosByIds($chunkOfSourceIds, $fields);
+            $videos = Video::withoutGlobalScopes()
+                ->withTrashed()
+                ->whereIn('youtube_id', $chunkOfSourceIds)
+                ->get()
+                ->keyBy('youtube_id');
             foreach ($sourceVideos as $source) {
-                $video = Video::withoutGlobalScopes()->firstWhere('youtube_id', $source['id']);
+                $progress?->advance();
+                $video = $videos->get($source['id']);
+                if (!$video) {
+                    continue;
+                }
                 if ($source['status']['privacyStatus'] !== 'public') {
                     // Remove private and unlisted videos
-                    $video->delete();
+                    if (!$video->trashed()) {
+                        $video->delete();
+                    }
                     continue;
-                } else {
+                } elseif ($video->trashed()) {
                     $video->restore();
                 }
                 $thumbnail = $this->highestResolutionThumbnail($source['snippet']['thumbnails']);
@@ -100,10 +120,13 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
                     'thumbnail_url' => $thumbnail['url'],
                     'thumbnail_height' => $thumbnail['height'],
                     'thumbnail_width' => $thumbnail['width'],
-                    'is_captioned' => $source['contentDetails']['caption'],
+                    // The api returns the caption status as the string 'true' or 'false'
+                    'is_captioned' => filter_var($source['contentDetails']['caption'], FILTER_VALIDATE_BOOLEAN),
                     'privacy' => $source['status']['privacyStatus'],
-                ])->save();
-                $progress?->advance();
+                ]);
+                if ($video->isDirty()) {
+                    $video->save();
+                }
             }
         }
         $progress?->finish();
@@ -150,18 +173,14 @@ class YouTubeVideosAndPlaylists extends AbstractYoutubeCommand
             );
             $fields = 'items(id,snippet(resourceId/videoId,position))';
             $sourcePlaylistItems = $this->youtube->itemsInPlaylist($playlistId, $fields)->all();
-            $sourceVideoIdsByPosition = collect($sourcePlaylistItems)->pluck(
-                'snippet.resourceId.videoId',
-                'snippet.position',
-            );
-            $videoIdsToSync = Video::whereIn('youtube_id', $sourceVideoIdsByPosition->values())
+            $sourcePlaylistItemsByVideoId = collect($sourcePlaylistItems)
+                ->keyBy('snippet.resourceId.videoId');
+            $videoIdsToSync = Video::whereIn('youtube_id', $sourcePlaylistItemsByVideoId->keys())
                 ->pluck('youtube_id', 'id')
-                ->mapWithKeys(function ($youtubeId, $id) use ($sourceVideoIdsByPosition, $sourcePlaylistItems) {
-                    $sourcePlaylistItem = collect($sourcePlaylistItems)->first(function ($item) use ($youtubeId) {
-                        return $item['snippet']['resourceId']['videoId'] == $youtubeId;
-                    });
+                ->mapWithKeys(function ($youtubeId, $id) use ($sourcePlaylistItemsByVideoId) {
+                    $sourcePlaylistItem = $sourcePlaylistItemsByVideoId->get($youtubeId);
                     return [$id => [
-                        'position' => $sourceVideoIdsByPosition->flip()->get($youtubeId),
+                        'position' => $sourcePlaylistItem['snippet']['position'],
                         'youtube_id' => $sourcePlaylistItem['id'],
                     ]];
                 });
