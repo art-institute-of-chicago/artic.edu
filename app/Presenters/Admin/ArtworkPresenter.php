@@ -115,6 +115,9 @@ class ArtworkPresenter extends BasePresenter
 
     public function getOnViewDisplay()
     {
+        if ($this->entity->id == 146989) {
+            return '🤡 <a href="https://jandre5000.github.io/is-clown-torture-on-view/" target="_blank">Is Clown Torture On View?</a>';
+        }
         if ($this->entity->is_deaccessioned) {
             return 'Deaccessioned';
         }
