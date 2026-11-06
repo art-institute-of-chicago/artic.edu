@@ -30,9 +30,11 @@
     }
 
     .title {
+      &>* {
+        display: inline;
+      }
       #on-view-status {
         bottom: 2px;
-        display: inline-block;
         font-size: 13px;
         padding-right: 5px;
         position: relative;
