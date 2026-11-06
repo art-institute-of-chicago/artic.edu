@@ -55,6 +55,7 @@ class Artwork extends AbstractModel
         'view_3d_title',
         'view_3d_description',
         'override_view_3d_title',
+        'off_view_display',
     ];
 
     public $mediasParams = [
