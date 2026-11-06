@@ -24,6 +24,13 @@
           type='textarea'
       />
     @endif
+
+    <x-twill::wysiwyg
+        name="off_view_display"
+        label="Off View Display"
+        :toolbar-options="['italic', 'link']"
+        :note='"Displayed only when artwork is not on view"'
+    />
 @stop
 
 @section('fieldsets')
