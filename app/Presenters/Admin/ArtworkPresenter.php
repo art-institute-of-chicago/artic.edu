@@ -120,14 +120,18 @@ class ArtworkPresenter extends BasePresenter
         }
 
         if ($this->entity->is_on_view) {
-            return 'On View';
+            return '<span id="on-view-status" class="s-on-view">&#11044;</span> On View';
         }
 
         if ($this->entity->on_loan_display) {
             return $this->entity->on_loan_display;
         }
 
-        return 'Off View';
+        if ($this->entity->off_view_display) {
+            return $this->entity->off_view_display;
+        }
+
+        return '<span id="on-view-status" class="s-off-view">&#11044;</span> Off View';
     }
 
     private function getFilteredDescription()
