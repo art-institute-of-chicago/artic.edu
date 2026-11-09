@@ -1,5 +1,5 @@
 @php
-    $url = isset($url) ? $url : route('playlists.show', ['playlist' => $playlist]);
+    $url = isset($url) ? $url : route('playlists.show', ['id' => $playlist]);
     $image = isset($image) ? $image : ImageHelpers::youtubeItemAsArray($playlist);
     $images = $playlist->videos()
         ->published()

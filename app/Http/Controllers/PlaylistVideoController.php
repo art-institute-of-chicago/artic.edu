@@ -168,7 +168,7 @@ class PlaylistVideoController extends FrontController
             }
 
             try {
-                return route('playlists.show', ['playlist' => $m->id]);
+                return route('playlists.show', ['id' => $m->id]);
             } catch (\Throwable $e) {
                 return null;
             }
