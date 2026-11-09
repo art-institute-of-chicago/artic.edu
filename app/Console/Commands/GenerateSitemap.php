@@ -2,10 +2,13 @@
 
 namespace App\Console\Commands;
 
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
+use App\Helpers\StringHelpers;
 use App\Models\Article;
 use App\Models\Event;
 use App\Models\Exhibition;
 use App\Models\PrintedPublication;
+use App\Models\Department;
 use App\Models\DigitalPublication;
 use App\Models\EducatorResource;
 use App\Models\Experience;
@@ -25,6 +28,7 @@ use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Symfony\Component\VarDumper\VarDumper;
 
 class GenerateSitemap extends Command
 {
@@ -177,6 +181,8 @@ class GenerateSitemap extends Command
         $this->addNativeModel($sitemap, Event::class, 'events.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
         $this->addNativeModel($sitemap, Article::class, 'articles.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
         $this->addNativeModel($sitemap, Highlight::class, 'highlights.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
+        $this->addNativeModel($sitemap, Video::class, 'videos.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
+        $this->addNativeModel($sitemap, EducatorResource::class, 'collection.resources.educator-resources.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
         $this->addNativeModel($sitemap, Experience::class, 'interactiveFeatures.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function ($entity) {
             return ['slug' => $entity->getSlug()];
         });
@@ -186,8 +192,16 @@ class GenerateSitemap extends Command
         $this->addNativeModel($sitemap, DigitalPublication::class, 'collection.publications.digital-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function ($entity) {
             return ['id' => $entity->id, 'slug' => $entity->getSlug()];
         });
-        $this->addNativeModel($sitemap, Video::class, 'videos.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
-        $this->addNativeModel($sitemap, EducatorResource::class, 'collection.resources.educator-resources.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
+        $this->addNativeModel($sitemap, Department::class, 'departments.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY, function ($entity) {
+            $apiModel = $entity->getApiModelFilledCached();
+
+            // On a 404 the API client returns the error body (a stdClass), not a model
+            if (!$apiModel instanceof BaseApiModel) {
+                return null;
+            }
+
+            return ['id' => $entity->datahub_id, 'slug' => StringHelpers::getUtf8Slug($apiModel->title)];
+        }, ['datahub_id']);
     }
 
     /**
@@ -263,6 +277,11 @@ class GenerateSitemap extends Command
                 'id' => $entity->id,
                 'slug' => $entity->slug
             ];
+
+            // Callbacks return null to skip an entity (e.g. its API record is missing)
+            if ($params === null) {
+                continue;
+            }
 
             $this->addUrl($sitemap, route($route, $params, false), $priority, $changeFrequency, $entity->updated_at);
         }
