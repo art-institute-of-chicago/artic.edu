@@ -27,12 +27,15 @@ class VideoController extends FrontController
         parent::__construct();
     }
 
-    public function show(Request $request, Video $video, $slug = null)
+    public function show(Request $request, $id, $slug = null)
     {
-        if (!$video->published || $video->privacy != 'public') {
+        $video = $this->repository->published()->find((int) $id);
+
+        if (!$video || $video->privacy != 'public') {
             abort(404);
         }
-        $canonicalPath = route('videos.show', ['video' => $video, 'slug' => $video->getSlug()]);
+
+        $canonicalPath = route('videos.show', ['id' => $video, 'slug' => $video->getSlug()]);
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }

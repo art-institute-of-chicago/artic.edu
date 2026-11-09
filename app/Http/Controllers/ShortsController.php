@@ -32,19 +32,22 @@ class ShortsController extends FrontController
                 ->first()
         ) {
             return to_route('shorts.show', [
-                'video' => $video,
+                'id' => $video,
                 'slug' => $video->getSlug(),
             ]);
         }
         abort(404);
     }
 
-    public function show(Video $video)
+    public function show($id)
     {
-        if (!($video->published && $video->is_short)) {
+        $video = $this->repository->published()->find((int) $id);
+
+        if (!$video || !$video->is_short) {
             abort(404);
         }
-        $canonicalPath = route('shorts.show', ['video' => $video]);
+
+        $canonicalPath = route('shorts.show', ['id' => $video]);
         if ($canonicalRedirect = $this->getCanonicalRedirect($canonicalPath)) {
             return $canonicalRedirect;
         }
@@ -91,8 +94,10 @@ class ShortsController extends FrontController
         ]);
     }
 
-    public function previous(Video $video)
+    public function previous($id)
     {
+        $video = $this->repository->published()->find((int) $id);
+
         $videos = $this->getPreviousVideos($video, 5);
         $dataAttributes = $videos->mapWithKeys(function ($short) {
             // Keyed by video id
@@ -114,8 +119,10 @@ class ShortsController extends FrontController
         ]);
     }
 
-    public function next(Video $video)
+    public function next($id)
     {
+        $video = $this->repository->published()->find((int) $id);
+
         $videos = $this->getNextVideos($video, 5);
         $dataAttributes = $videos->mapWithKeys(function ($short) {
             // Keyed by video id

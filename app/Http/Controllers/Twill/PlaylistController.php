@@ -85,7 +85,7 @@ class PlaylistController extends BaseController
     protected function formData($request)
     {
         return [
-            'customPermalink' => route('playlists.show', ['playlist' => $request->playlist]),
+            'customPermalink' => route('playlists.show', ['id' => $request->playlist]),
         ];
     }
 }
