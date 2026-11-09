@@ -10,8 +10,11 @@ use App\Models\DigitalPublication;
 use App\Models\Experience;
 use App\Models\GenericPage;
 use App\Models\LandingPage;
+use App\Models\Playlist;
+use App\Models\Video;
 use App\Repositories\GenericPageRepository;
 use App\Repositories\LandingPageRepository;
+use App\Repositories\PlaylistRepository;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use Symfony\Component\DomCrawler\Link;
@@ -51,6 +54,9 @@ class GenerateSitemap extends Command
         $this->info('Gathering native models...');
         $this->addNativeModels($sitemap);
 
+        $this->info('Gathering playlists pages...');
+        $this->addPlaylists($sitemap);
+
         $this->info('Gathering landing pages...');
         $this->addLandingPages($sitemap);
 
@@ -82,6 +88,27 @@ class GenerateSitemap extends Command
         $this->addRoute($sitemap, 'about.press');
         $this->addRoute($sitemap, 'about.press.archive', 0.6);
         $this->addRoute($sitemap, 'collection.resources.educator-resources');
+    }
+
+    /**
+     * Add all playlists
+     * @see App\Http\Controllers\Admin\PlaylistController
+     */
+    private function addPlaylists(&$sitemap)
+    {
+        $repository = new PlaylistRepository(new Playlist());
+
+        // Depth is included automatically alongside id
+        $pages = $repository->published();
+
+        foreach ($pages->cursor() as $page) {
+            $firstVideo = $page->videos->first();
+
+            $url = $this->crawlPrefix . route('playlists.videos.show', ['playlist' => $page->id, 'video' => $firstVideo->id, 'slug' => $firstVideo->getSlug()], false);
+
+            // Don't go through the routes on this one
+            $this->addUrl($sitemap, $url, 0.8, Url::CHANGE_FREQUENCY_WEEKLY, $page->updated_at);
+        }
     }
 
     /**
@@ -155,6 +182,7 @@ class GenerateSitemap extends Command
         $this->addNativeModel($sitemap, DigitalPublication::class, 'collection.publications.digital-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function ($entity) {
             return ['id' => $entity->id, 'slug' => $entity->getSlug()];
         });
+        $this->addNativeModel($sitemap, Video::class, 'videos.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
     }
 
     /**
