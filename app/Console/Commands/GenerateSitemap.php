@@ -8,7 +8,9 @@ use App\Models\Exhibition;
 use App\Models\PrintedPublication;
 use App\Models\DigitalPublication;
 use App\Models\GenericPage;
+use App\Models\LandingPage;
 use App\Repositories\GenericPageRepository;
+use App\Repositories\LandingPageRepository;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use Symfony\Component\DomCrawler\Link;
@@ -48,6 +50,9 @@ class GenerateSitemap extends Command
         $this->info('Gathering native models...');
         $this->addNativeModels($sitemap);
 
+        $this->info('Gathering landing pages...');
+        $this->addLandingPages($sitemap);
+
         $this->info('Gathering generic pages...');
         $this->addGenericPages($sitemap);
 
@@ -67,20 +72,42 @@ class GenerateSitemap extends Command
      */
     private function addHardcodedPages(&$sitemap)
     {
-        $this->addRoute($sitemap, 'home', 1.0);
-        $this->addUrl($sitemap, route('pages.slug', ['slug' => 'visit']), 1.0);
         $this->addRoute($sitemap, 'events', 0.9);
         $this->addRoute($sitemap, 'collection', 0.9);
-        $this->addUrl($sitemap, route('pages.slug', ['slug' => 'publications']), 1.0);
         $this->addRoute($sitemap, 'articles');
         $this->addRoute($sitemap, 'exhibitions.history', 0.6);
         $this->addRoute($sitemap, 'exhibitions', 1.0);
         $this->addRoute($sitemap, 'exhibitions.upcoming', 0.9);
         $this->addRoute($sitemap, 'about.press');
         $this->addRoute($sitemap, 'about.press.archive', 0.6);
-        $this->addRoute($sitemap, 'collection.publications.printed-publications', 0.6);
-        $this->addRoute($sitemap, 'collection.publications.digital-publications', 0.6);
         $this->addRoute($sitemap, 'collection.resources.educator-resources');
+    }
+
+    /**
+     * Add all landing pages
+     * @see App\Http\Controllers\Admin\LandingPageController
+     */
+    private function addLandingPages(&$sitemap)
+    {
+        $repository = new LandingPageRepository(new LandingPage());
+
+        // Depth is included automatically alongside id
+        $pages = $repository->defaultOrder()->published();
+
+        foreach ($pages->cursor() as $page) {
+            $url = $page->url;
+
+            if (Str::startsWith($url, 'http')) {
+                continue;
+            }
+
+            if (!Str::startsWith($url, '/')) {
+                $url = '/' . $url;
+            }
+
+            // Don't go through the routes on this one
+            $this->addUrl($sitemap, $url, 0.8, Url::CHANGE_FREQUENCY_WEEKLY, $page->updated_at);
+        }
     }
 
     /**
