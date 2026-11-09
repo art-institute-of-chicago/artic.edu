@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\Exhibition;
 use App\Models\PrintedPublication;
 use App\Models\DigitalPublication;
+use App\Models\Experience;
 use App\Models\GenericPage;
 use App\Models\LandingPage;
 use App\Repositories\GenericPageRepository;
@@ -145,6 +146,9 @@ class GenerateSitemap extends Command
     {
         $this->addNativeModel($sitemap, Event::class, 'events.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
         $this->addNativeModel($sitemap, Article::class, 'articles.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
+        $this->addNativeModel($sitemap, Experience::class, 'interactiveFeatures.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function ($entity) {
+            return ['slug' => $entity->getSlug()];
+        });
         $this->addNativeModel($sitemap, PrintedPublication::class, 'collection.publications.printed-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function ($entity) {
             return ['id' => $entity->id, 'slug' => $entity->getSlug()];
         });
