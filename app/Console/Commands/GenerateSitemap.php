@@ -248,7 +248,14 @@ class GenerateSitemap extends Command
         // `id` is always needed for retrieving slugs
         $fields = array_values(array_unique(array_merge($additionalFields, ['id', 'updated_at'])));
 
-        foreach ($class::select($fields)->cursor() as $entity) {
+        $query = $class::select($fields)
+            ->published()
+            ->when(
+                in_array(HasUnlisted::class, class_uses_recursive($class)),
+                fn ($query) => $query->notUnlisted()
+            );
+
+        foreach ($query->cursor() as $entity) {
             $params = $paramCallback ? $paramCallback($entity) : [
                 'id' => $entity->id,
                 'slug' => $entity->slug
