@@ -10,9 +10,11 @@ use App\Models\DigitalPublication;
 use App\Models\EducatorResource;
 use App\Models\Experience;
 use App\Models\GenericPage;
+use App\Models\Highlight;
 use App\Models\LandingPage;
 use App\Models\Playlist;
 use App\Models\Video;
+use App\Models\Behaviors\HasUnlisted;
 use App\Repositories\GenericPageRepository;
 use App\Repositories\LandingPageRepository;
 use App\Repositories\PlaylistRepository;
@@ -174,6 +176,7 @@ class GenerateSitemap extends Command
     {
         $this->addNativeModel($sitemap, Event::class, 'events.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
         $this->addNativeModel($sitemap, Article::class, 'articles.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
+        $this->addNativeModel($sitemap, Highlight::class, 'highlights.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
         $this->addNativeModel($sitemap, Experience::class, 'interactiveFeatures.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function ($entity) {
             return ['slug' => $entity->getSlug()];
         });
