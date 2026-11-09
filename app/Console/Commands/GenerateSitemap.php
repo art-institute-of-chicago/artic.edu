@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
 use App\Helpers\StringHelpers;
+use App\Models\Api\Gallery;
 use App\Models\Article;
 use App\Models\Event;
 use App\Models\Exhibition;
@@ -72,6 +73,9 @@ class GenerateSitemap extends Command
 
         $this->info('Gathering exhibitions...');
         $this->addExhibitions($sitemap);
+
+        $this->info('Gathering galleries...');
+        $this->addGalleries($sitemap);
 
         $this->info('Crawling links on collection landing...');
         $this->addCollection($sitemap);
@@ -254,6 +258,32 @@ class GenerateSitemap extends Command
                 'slug' => $entity->slug,
             ];
         }, ['datahub_id']);
+    }
+
+    /**
+     * Add all galleries from the API
+     * @see App\Http\Controllers\GalleryController
+     */
+    private function addGalleries(&$sitemap)
+    {
+        $page = 1;
+
+        do {
+            // The API caps `limit` at 100
+            $galleries = Gallery::query()->paginate(100, ['id', 'title', 'updated_at'], 'page', $page);
+
+            foreach ($galleries as $gallery) {
+                $this->addUrl(
+                    $sitemap,
+                    route('galleries.show', ['id' => $gallery->id, 'slug' => $gallery->titleSlug], false),
+                    0.7,
+                    Url::CHANGE_FREQUENCY_WEEKLY,
+                    $gallery->updated_at ? new \DateTime($gallery->updated_at) : null
+                );
+            }
+
+            $page++;
+        } while ($page <= $galleries->lastPage());
     }
 
     /**
