@@ -6,7 +6,7 @@ const { COLLECTION_LISTING_CSS } = require('../percyCSS');
 const SEARCH_QUERY = 'american gothic';
 
 module.exports = async function snapshotCollection(page, baseUrl) {
-  await page.goto(baseUrl + '/collection?q=' + encodeURIComponent(SEARCH_QUERY));
+  await page.goto(`${baseUrl}/collection?q=${encodeURIComponent(SEARCH_QUERY)}`);
   await page.waitForSelector('.o-collection-listing');
   await percySnapshot(page, 'Collection search', { percyCSS: COLLECTION_LISTING_CSS });
 };

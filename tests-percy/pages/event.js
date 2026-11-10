@@ -8,7 +8,7 @@ const { HOURS_WIDGET_CSS } = require('../percyCSS');
 // The fixture event's single occurrence is fixed in the past (see
 // PercyFixtureSeeder), so its rendered dates don't depend on "today".
 module.exports = async function snapshotEvent(page, baseUrl) {
-  await page.goto(baseUrl + '/events/' + eventId);
+  await page.goto(`${baseUrl}/events/${eventId}`);
   await page.waitForSelector('article.o-article');
   await percySnapshot(page, 'Event detail', { percyCSS: HOURS_WIDGET_CSS });
 };

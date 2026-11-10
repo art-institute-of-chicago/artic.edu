@@ -6,7 +6,7 @@ const { exhibitionId } = require('../fixtures');
 const { HOURS_WIDGET_CSS } = require('../percyCSS');
 
 module.exports = async function snapshotExhibition(page, baseUrl) {
-  await page.goto(baseUrl + '/exhibitions/' + exhibitionId);
+  await page.goto(`${baseUrl}/exhibitions/${exhibitionId}`);
   await page.waitForSelector('article.o-article');
   await percySnapshot(page, 'Exhibition detail', { percyCSS: HOURS_WIDGET_CSS });
 };
