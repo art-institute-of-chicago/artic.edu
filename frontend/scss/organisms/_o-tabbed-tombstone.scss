@@ -429,26 +429,19 @@
     // inset by colspan(15) on both sides. Break out to the full page container
     // with the grid helper's inverse form, and give the rail the same column
     // geometry as .o-related-content__heading so the section lines up with the
-    // other artwork sections. The body is float:left with no inset at medium,
-    // so only large/xlarge need the negative margins.
-    // Below large, .o-article__body is left-aligned at colspan(38) of the 58-col
-    // grid, so pull the right edge out by the remaining 20 columns to match the
-    // full-width sections that follow it (e.g. .o-related-content).
-    @each $bp in ('xsmall', 'small') {
+    // other artwork sections.
+    @each $bp in ('xsmall', 'small', 'medium') {
         @include breakpoint('#{$bp}') {
-            margin-right: colspan(20, $bp, 0, true);
-        }
-    }
-
-    @each $bp in ('medium') {
-        @include breakpoint('#{$bp}') {
-            margin-left: colspan(15, $bp, 0, true);
-            margin-right: colspan(20, $bp, 0, true);
+            width: 100%;
+            max-width: colspan(58, $bp);
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 
     @each $bp in ('large', 'xlarge') {
         @include breakpoint('#{$bp}') {
+            max-width: colspan(58, $bp);
             margin-left: colspan(15, $bp, 0, true);
             margin-right: colspan(15, $bp, 0, true);
         }
@@ -459,6 +452,11 @@
             &__rail {
                 width: colspan(13, $bp);
                 margin-right: colspan(2, $bp);
+            }
+
+            &__panel {
+                width: colspan(43, $bp);
+                max-width: 100%;
             }
         }
     }
