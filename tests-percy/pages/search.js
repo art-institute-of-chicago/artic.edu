@@ -10,7 +10,7 @@ const { HOURS_WIDGET_CSS } = require('../percyCSS');
 const SEARCH_QUERY = 'american gothic';
 
 module.exports = async function snapshotSearch(page, baseUrl) {
-  await page.goto(baseUrl + '/search?q=' + encodeURIComponent(SEARCH_QUERY));
+  await page.goto(`${baseUrl}/search?q=${encodeURIComponent(SEARCH_QUERY)}`);
   await page.waitForSelector('.o-search-results');
   await percySnapshot(page, 'Site search', { percyCSS: HOURS_WIDGET_CSS });
 };
