@@ -9,4 +9,13 @@ module.exports = {
   // Created by database/seeders/PercyFixtureSeeder.php; verified locally
   // that Twill's slug behavior derives this slug from the fixture title.
   genericPageSlug: 'percy-fixture-page',
+
+  // "Van Gogh's Bedrooms" (2016), closed, so its status and dates are fixed.
+  // Verified against api.artic.edu and local dev.
+  exhibitionId: 1865,
+
+  // Pinned ids created by database/seeders/PercyFixtureSeeder.php
+  // (ARTICLE_ID / EVENT_ID); keep in sync with that seeder.
+  articleId: 999001,
+  eventId: 999001,
 };
