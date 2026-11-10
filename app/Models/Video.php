@@ -214,7 +214,7 @@ class Video extends AbstractModel
     public function getUrlWithoutSlugAttribute()
     {
         // Workaround for the CMS, should be moved away from the model
-        return join([route('videos.show', ['video' => $this])]);
+        return join([route('videos.show', ['id' => $this])]);
     }
 
     public function getAdminEditUrlAttribute()
@@ -225,7 +225,7 @@ class Video extends AbstractModel
     public function getUrlAttribute()
     {
         if ($this->id) {  // Necessary for testing, should not affect production
-            return route('videos.show', ['video' => $this?->id, 'slug' => $this->getSlug()], false);
+            return route('videos.show', ['id' => $this?->id, 'slug' => $this->getSlug()], false);
         }
     }
 

@@ -18,8 +18,10 @@ class PlaylistController extends FrontController
     }
 
     // Redirect to first publisehd video in playlist
-    public function show(Playlist $playlist)
+    public function show($id)
     {
+        $playlist = $this->repository->published()->find((int) $id);
+
         $this->addJsonLd($playlist);
 
         if ($video = $playlist->videos()->published()->first()) {
@@ -122,7 +124,7 @@ class PlaylistController extends FrontController
             }
 
             try {
-                return route('playlists.show', ['playlist' => $m->id]);
+                return route('playlists.show', ['id' => $m->id]);
             } catch (\Throwable $e) {
                 return null;
             }

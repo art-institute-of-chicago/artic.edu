@@ -472,10 +472,10 @@ class SchemaMapper
 
             try {
                 if (!empty($m->is_short)) {
-                    return route('shorts.show', ['video' => $m->id]);
+                    return route('shorts.show', ['id' => $m->id]);
                 }
 
-                return route('videos.show', ['video' => $m->id, 'slug' => $slug]);
+                return route('videos.show', ['id' => $m->id, 'slug' => $slug]);
             } catch (\Throwable $e) {
                 return null;
             }

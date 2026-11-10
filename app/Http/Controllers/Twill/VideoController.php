@@ -200,7 +200,7 @@ class VideoController extends BaseController
             'baseUrl' => $baseUrl,
             'articleCategoriesList' => app(CategoryRepository::class)->listAll('name')->sort(),
             'videoCategoriesList' => app(VideoCategoryRepository::class)->listAll('name')->sort(),
-            'customPermalink' => route('videos.show', ['video' => $request->video]),
+            'customPermalink' => route('videos.show', ['id' => $request->video]),
         ];
     }
 
