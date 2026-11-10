@@ -425,18 +425,25 @@
 
     // ------------------------------------------------------------------ desktop (large+)
     //
-    // At large/xlarge the tombstone lives inside .o-article__body, which is
-    // inset by colspan(15) on both sides. Break out to the full page container
-    // with the grid helper's inverse form, and give the rail the same column
-    // geometry as .o-related-content__heading so the section lines up with the
-    // other artwork sections.
-    @each $bp in ('xsmall', 'small', 'medium') {
+    // At medium+ the tombstone lives inside .o-article__body, which is inset by
+    // colspan(15) on both sides. Break out to the full page container with the
+    // grid helper's inverse form, and give the rail the same column geometry as
+    // .o-related-content__heading so the section lines up with the other
+    // artwork sections.
+    @each $bp in ('xsmall', 'small') {
         @include breakpoint('#{$bp}') {
-            width: 100%;
+            width: 100vw;
             max-width: colspan(58, $bp);
             margin-left: 0;
             margin-right: 0;
         }
+    }
+
+    @include breakpoint('medium') {
+        width: 100vw;
+        max-width: colspan(58, medium);
+        margin-left: colspan(15, large, 0, true);
+        margin-right: 0;
     }
 
     @each $bp in ('large', 'xlarge') {
