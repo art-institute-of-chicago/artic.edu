@@ -34,7 +34,7 @@
         case 'playlist':
             $videos = $playlist->videos()->published()->get();
             $gridLinkLabel = "View all";
-            $gridLinkHref = route('playlists.show', ['playlist' => $playlist->id]);
+            $gridLinkHref = route('playlists.show', ['id' => $playlist->id]);
             break;
         case 'featured':
             $videos = $block->getRelated('videos');

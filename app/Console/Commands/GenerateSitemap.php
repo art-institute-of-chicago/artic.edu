@@ -2,13 +2,26 @@
 
 namespace App\Console\Commands;
 
+use Aic\Hub\Foundation\Library\Api\Models\BaseApiModel;
+use App\Helpers\StringHelpers;
+use App\Models\Api\Gallery;
 use App\Models\Article;
 use App\Models\Event;
 use App\Models\Exhibition;
 use App\Models\PrintedPublication;
+use App\Models\Department;
 use App\Models\DigitalPublication;
+use App\Models\EducatorResource;
+use App\Models\Experience;
 use App\Models\GenericPage;
+use App\Models\Highlight;
+use App\Models\LandingPage;
+use App\Models\Playlist;
+use App\Models\Video;
+use App\Models\Behaviors\HasUnlisted;
 use App\Repositories\GenericPageRepository;
+use App\Repositories\LandingPageRepository;
+use App\Repositories\PlaylistRepository;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use Symfony\Component\DomCrawler\Link;
@@ -16,6 +29,7 @@ use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class GenerateSitemap extends Command
 {
@@ -39,26 +53,35 @@ class GenerateSitemap extends Command
 
         $this->path = storage_path('app/sitemap.xml');
 
-        $this->warn('Generating new sitemap! Domain is ' . $this->prefix);
+        $this->warn('Generating new sitemap! Domain is ' . $this->prefix, OutputInterface::VERBOSITY_VERBOSE);
         $sitemap = Sitemap::create();
 
-        $this->info('Gathering hardcoded pages...');
+        $this->info('Gathering hardcoded pages...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addHardcodedPages($sitemap);
 
-        $this->info('Gathering native models...');
+        $this->info('Gathering native models...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addNativeModels($sitemap);
 
-        $this->info('Gathering generic pages...');
+        $this->info('Gathering playlists pages...', OutputInterface::VERBOSITY_VERBOSE);
+        $this->addPlaylists($sitemap);
+
+        $this->info('Gathering landing pages...', OutputInterface::VERBOSITY_VERBOSE);
+        $this->addLandingPages($sitemap);
+
+        $this->info('Gathering generic pages...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addGenericPages($sitemap);
 
-        $this->info('Gathering exhibitions...');
+        $this->info('Gathering exhibitions...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addExhibitions($sitemap);
 
-        $this->info('Crawling links on collection landing...');
+        $this->info('Gathering galleries...', OutputInterface::VERBOSITY_VERBOSE);
+        $this->addGalleries($sitemap);
+
+        $this->info('Crawling links on collection landing...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addCollection($sitemap);
 
         $sitemap->writeToFile($this->path);
-        $this->warn('Sitemap saved! See ' . $this->path);
+        $this->warn('Sitemap saved! See ' . $this->path, OutputInterface::VERBOSITY_VERBOSE);
     }
 
     /**
@@ -67,20 +90,63 @@ class GenerateSitemap extends Command
      */
     private function addHardcodedPages(&$sitemap)
     {
-        $this->addRoute($sitemap, 'home', 1.0);
-        $this->addUrl($sitemap, route('pages.slug', ['slug' => 'visit']), 1.0);
         $this->addRoute($sitemap, 'events', 0.9);
         $this->addRoute($sitemap, 'collection', 0.9);
-        $this->addUrl($sitemap, route('pages.slug', ['slug' => 'publications']), 1.0);
         $this->addRoute($sitemap, 'articles');
         $this->addRoute($sitemap, 'exhibitions.history', 0.6);
         $this->addRoute($sitemap, 'exhibitions', 1.0);
         $this->addRoute($sitemap, 'exhibitions.upcoming', 0.9);
         $this->addRoute($sitemap, 'about.press');
         $this->addRoute($sitemap, 'about.press.archive', 0.6);
-        $this->addRoute($sitemap, 'collection.publications.printed-publications', 0.6);
-        $this->addRoute($sitemap, 'collection.publications.digital-publications', 0.6);
         $this->addRoute($sitemap, 'collection.resources.educator-resources');
+    }
+
+    /**
+     * Add all playlists
+     * @see App\Http\Controllers\Admin\PlaylistController
+     */
+    private function addPlaylists(&$sitemap)
+    {
+        $repository = new PlaylistRepository(new Playlist());
+
+        // Depth is included automatically alongside id
+        $pages = $repository->published();
+
+        foreach ($pages->cursor() as $page) {
+            $firstVideo = $page->videos->first();
+
+            $url = $this->crawlPrefix . route('playlists.videos.show', ['playlist' => $page->id, 'video' => $firstVideo->id, 'slug' => $firstVideo->getSlug()], false);
+
+            // Don't go through the routes on this one
+            $this->addUrl($sitemap, $url, 0.8, Url::CHANGE_FREQUENCY_WEEKLY, $page->updated_at);
+        }
+    }
+
+    /**
+     * Add all landing pages
+     * @see App\Http\Controllers\Admin\LandingPageController
+     */
+    private function addLandingPages(&$sitemap)
+    {
+        $repository = new LandingPageRepository(new LandingPage());
+
+        // Depth is included automatically alongside id
+        $pages = $repository->defaultOrder()->published();
+
+        foreach ($pages->cursor() as $page) {
+            $url = $page->url;
+
+            if (Str::startsWith($url, 'http')) {
+                continue;
+            }
+
+            if (!Str::startsWith($url, '/')) {
+                $url = '/' . $url;
+            }
+
+            // Don't go through the routes on this one
+            $this->addUrl($sitemap, $url, 0.8, Url::CHANGE_FREQUENCY_WEEKLY, $page->updated_at);
+        }
     }
 
     /**
@@ -118,12 +184,28 @@ class GenerateSitemap extends Command
     {
         $this->addNativeModel($sitemap, Event::class, 'events.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
         $this->addNativeModel($sitemap, Article::class, 'articles.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
+        $this->addNativeModel($sitemap, Highlight::class, 'highlights.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
+        $this->addNativeModel($sitemap, Video::class, 'videos.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
+        $this->addNativeModel($sitemap, EducatorResource::class, 'collection.resources.educator-resources.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
+        $this->addNativeModel($sitemap, Experience::class, 'interactiveFeatures.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function ($entity) {
+            return ['slug' => $entity->getSlug()];
+        });
         $this->addNativeModel($sitemap, PrintedPublication::class, 'collection.publications.printed-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function ($entity) {
             return ['id' => $entity->id, 'slug' => $entity->getSlug()];
         });
         $this->addNativeModel($sitemap, DigitalPublication::class, 'collection.publications.digital-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function ($entity) {
             return ['id' => $entity->id, 'slug' => $entity->getSlug()];
         });
+        $this->addNativeModel($sitemap, Department::class, 'departments.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY, function ($entity) {
+            $apiModel = $entity->getApiModelFilledCached();
+
+            // On a 404 the API client returns the error body (a stdClass), not a model
+            if (!$apiModel instanceof BaseApiModel) {
+                return null;
+            }
+
+            return ['id' => $entity->datahub_id, 'slug' => StringHelpers::getUtf8Slug($apiModel->title)];
+        }, ['datahub_id']);
     }
 
     /**
@@ -179,6 +261,32 @@ class GenerateSitemap extends Command
     }
 
     /**
+     * Add all galleries from the API
+     * @see App\Http\Controllers\GalleryController
+     */
+    private function addGalleries(&$sitemap)
+    {
+        $page = 1;
+
+        do {
+            // The API caps `limit` at 100
+            $galleries = Gallery::query()->paginate(100, ['id', 'title', 'updated_at'], 'page', $page);
+
+            foreach ($galleries as $gallery) {
+                $this->addUrl(
+                    $sitemap,
+                    route('galleries.show', ['id' => $gallery->id, 'slug' => $gallery->titleSlug], false),
+                    0.7,
+                    Url::CHANGE_FREQUENCY_WEEKLY,
+                    $gallery->updated_at ? new \DateTime($gallery->updated_at) : null
+                );
+            }
+
+            $page++;
+        } while ($page <= $galleries->lastPage());
+    }
+
+    /**
      * Add a URL by module
      * Anything paginated and CMS-native of format `/resources/{id}/{slug}`
      */
@@ -187,11 +295,23 @@ class GenerateSitemap extends Command
         // `id` is always needed for retrieving slugs
         $fields = array_values(array_unique(array_merge($additionalFields, ['id', 'updated_at'])));
 
-        foreach ($class::select($fields)->cursor() as $entity) {
+        $query = $class::select($fields)
+            ->published()
+            ->when(
+                in_array(HasUnlisted::class, class_uses_recursive($class)),
+                fn ($query) => $query->notUnlisted()
+            );
+
+        foreach ($query->cursor() as $entity) {
             $params = $paramCallback ? $paramCallback($entity) : [
                 'id' => $entity->id,
                 'slug' => $entity->slug
             ];
+
+            // Callbacks return null to skip an entity (e.g. its API record is missing)
+            if ($params === null) {
+                continue;
+            }
 
             $this->addUrl($sitemap, route($route, $params, false), $priority, $changeFrequency, $entity->updated_at);
         }

@@ -296,20 +296,20 @@ Route::post('/email-subscriptions', [EmailSubscriptionsController::class, 'store
         });
         Route::get('/videos/shorts', [ShortsController::class, 'index'])
             ->name('shorts.index');
-        Route::get('/videos/shorts/{video}', [ShortsController::class, 'show'])
-            ->whereNumber('video')
+        Route::get('/videos/shorts/{id}', [ShortsController::class, 'show'])
+            ->whereNumber('id')
             ->name('shorts.show');
-        Route::get('/videos/shorts/{video}/previous', [ShortsController::class, 'previous'])
-            ->whereNumber('video')
+        Route::get('/videos/shorts/{id}/previous', [ShortsController::class, 'previous'])
+            ->whereNumber('id')
             ->name('shorts.previous');
-        Route::get('/videos/shorts/{video}/next', [ShortsController::class, 'next'])
-            ->whereNumber('video')
+        Route::get('/videos/shorts/{id}/next', [ShortsController::class, 'next'])
+            ->whereNumber('id')
             ->name('shorts.next');
-        Route::get('/videos/{video}/{slug?}', [VideoController::class, 'show'])
-            ->whereNumber('video')
+        Route::get('/videos/{id}/{slug?}', [VideoController::class, 'show'])
+            ->whereNumber('id')
             ->name('videos.show');
-        Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])
-            ->whereNumber('playlist')
+        Route::get('/playlists/{id}', [PlaylistController::class, 'show'])
+            ->whereNumber('id')
             ->name('playlists.show');
         Route::get('/playlists/{playlist}/videos/{video}/{slug?}', [PlaylistVideoController::class, 'show'])
             ->whereNumber('playlist')
