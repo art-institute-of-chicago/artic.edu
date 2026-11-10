@@ -29,7 +29,7 @@ use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use Symfony\Component\VarDumper\VarDumper;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class GenerateSitemap extends Command
 {
@@ -53,35 +53,35 @@ class GenerateSitemap extends Command
 
         $this->path = storage_path('app/sitemap.xml');
 
-        $this->warn('Generating new sitemap! Domain is ' . $this->prefix);
+        $this->warn('Generating new sitemap! Domain is ' . $this->prefix, OutputInterface::VERBOSITY_VERBOSE);
         $sitemap = Sitemap::create();
 
-        $this->info('Gathering hardcoded pages...');
+        $this->info('Gathering hardcoded pages...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addHardcodedPages($sitemap);
 
-        $this->info('Gathering native models...');
+        $this->info('Gathering native models...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addNativeModels($sitemap);
 
-        $this->info('Gathering playlists pages...');
+        $this->info('Gathering playlists pages...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addPlaylists($sitemap);
 
-        $this->info('Gathering landing pages...');
+        $this->info('Gathering landing pages...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addLandingPages($sitemap);
 
-        $this->info('Gathering generic pages...');
+        $this->info('Gathering generic pages...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addGenericPages($sitemap);
 
-        $this->info('Gathering exhibitions...');
+        $this->info('Gathering exhibitions...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addExhibitions($sitemap);
 
-        $this->info('Gathering galleries...');
+        $this->info('Gathering galleries...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addGalleries($sitemap);
 
-        $this->info('Crawling links on collection landing...');
+        $this->info('Crawling links on collection landing...', OutputInterface::VERBOSITY_VERBOSE);
         $this->addCollection($sitemap);
 
         $sitemap->writeToFile($this->path);
-        $this->warn('Sitemap saved! See ' . $this->path);
+        $this->warn('Sitemap saved! See ' . $this->path, OutputInterface::VERBOSITY_VERBOSE);
     }
 
     /**
