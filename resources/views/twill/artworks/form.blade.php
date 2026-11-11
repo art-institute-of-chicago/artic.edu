@@ -29,7 +29,7 @@
         name="off_view_display"
         label="Off View Display"
         :toolbar-options="['italic', 'link']"
-        :note='"Displayed only when artwork is not on view"'
+        :note='"This field overrides the Off View message"'
     />
 @stop
 
