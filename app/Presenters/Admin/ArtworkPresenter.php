@@ -120,20 +120,20 @@ class ArtworkPresenter extends BasePresenter
         }
 
         if ($this->entity->is_on_view) {
-            return '<span id="on-view-status" class="s-on-view">&#11044;</span> On View';
+            return '<span id="on-view-status" class="s-on-view">&#11044;</span>On View';
         }
 
         $offViewPip = '<span id="on-view-status" class="s-off-view">&#11044;</span>';
 
         if ($this->entity->on_loan_display) {
-            return $offViewPip . ' ' . $this->entity->on_loan_display;
+            return $offViewPip . $this->entity->on_loan_display;
         }
 
         if ($this->entity->off_view_display) {
-            return $offViewPip . ' ' . $this->entity->off_view_display;
+            return $offViewPip . $this->entity->off_view_display;
         }
 
-        return $offViewPip . ' Off View';
+        return $offViewPip . 'Off View';
     }
 
     private function getFilteredDescription()
