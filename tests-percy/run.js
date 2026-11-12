@@ -5,6 +5,10 @@ const snapshots = [
   require('./pages/artwork'),
   require('./pages/collection'),
   require('./pages/genericPage'),
+  require('./pages/exhibition'),
+  require('./pages/article'),
+  require('./pages/search'),
+  require('./pages/event'),
 ];
 
 // No default: local dev domains vary per developer's aic-docker setup
