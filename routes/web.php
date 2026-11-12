@@ -83,9 +83,9 @@ Route::post('/email-subscriptions', [EmailSubscriptionsController::class, 'store
 // Group: Excludes the 'sessionless' middleware group (see bootstrap/app.php) so no
 // Set-Cookie header is sent. The CSRF token embedded in the shared layout is
 // refreshed client-side (see refreshCsrfToken.js).
-// Route::middleware('cache.headers:public;max_age=120')
-//     ->withoutMiddleware('sessionless')
-//     ->group(function () {
+Route::middleware('cache.headers:public;max_age=120')
+    ->withoutMiddleware('sessionless')
+    ->group(function () {
 
         Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots-txt');
 
@@ -463,4 +463,4 @@ Route::post('/email-subscriptions', [EmailSubscriptionsController::class, 'store
             // Excludes 'api/' and 'up' so they don't get treated as web routes
             Route::get('{slug}', [GenericPagesController::class, 'show'])->where('slug', '^(?!api/|up$).*')->name('pages.slug');
         });
-    // });
+    });
