@@ -73,6 +73,7 @@ jobs:
             - Do not comment on style, naming, speculative risks, security, JavaScript, or Twill CMS code.
             - If you have no high-confidence findings, return an empty array for review_comments.
             - Do not wrap the JSON in a code block or add any text outside the JSON object.
+            - Do not summarize individual lines changes.
 
             Use the following guidance in your code review:
 
