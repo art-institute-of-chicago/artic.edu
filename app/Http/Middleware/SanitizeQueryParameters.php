@@ -18,6 +18,7 @@ class SanitizeQueryParameters
         'q',
         'page',
         'nocache',
+        'print',
         // Checking to see if these are used by marketing
         'utm',
         'utm_campaign',
