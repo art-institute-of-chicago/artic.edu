@@ -76,7 +76,9 @@
 
         <div class="o-related-content__main">
             <div class="o-related-content__meta">
-                <span class="o-related-content__count f-secondary">{{ $total }} total</span>
+                <span class="o-related-content__count f-secondary">
+                    @if ($total > $limit) {{ $total }} total @endif
+                </span>
 
                 @if ($capped)
                     <button type="button" class="o-related-content__toggle f-link o-accordion__trigger" aria-expanded="false" aria-controls="{{ $id }}-panel" {!! $gtmAttributes !!}>
