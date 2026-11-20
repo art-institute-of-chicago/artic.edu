@@ -151,12 +151,14 @@
       float: none;
       margin-top: 0;
       margin-left: colspan(15, large);
+      width: colspan(28, large);
     }
 
     @include breakpoint('large') {
       float: none;
       margin-top: 0;
       margin-left: colspan(15, large);
+      width: colspan(28, large);
     }
 
     @include breakpoint('xlarge') {
