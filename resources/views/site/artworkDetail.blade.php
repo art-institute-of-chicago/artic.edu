@@ -97,6 +97,7 @@
 @if (!$item->is_deaccessioned && collect($audioItems ?? [])->isNotEmpty())
     @component('components.organisms._o-related-content')
         @slot('preventFocusScroll', true)
+        @slot('className', 'o-related-content--artwork')
         @slot('label', 'Audio')
         @foreach ($audioItems as $audio)
             @component('components.molecules._m-listing----sound')
@@ -113,6 +114,7 @@
 @if (!$item->is_deaccessioned && collect($digitalExplorerCards ?? [])->isNotEmpty())
     @component('components.organisms._o-related-content')
         @slot('preventFocusScroll', true)
+        @slot('className', 'o-related-content--artwork')
         @slot('label', 'Digital Explorer')
         @slot('items', $digitalExplorerCards)
         @slot('total', $digitalExplorerCardsTotal ?? null)
@@ -128,6 +130,7 @@
         @endphp
         @component('components.organisms._o-related-content')
             @slot('preventFocusScroll', true)
+            @slot('className', 'o-related-content--artwork')
             @slot('continuation', !$loop->first)
             @slot('label', $isMirador ? ($inline['title'] ?? ($inlineModel->title ?? 'Mirador')) : ($inline['title'] ?? ($isVideo ? 'Video' : 'Layered Image Viewer')))
             @slot('description', $inline['description'] ?? null)
@@ -165,6 +168,7 @@
     @php $section = $sectionHeadings['view_360'] ?? []; @endphp
     @component('components.organisms._o-related-content')
         @slot('preventFocusScroll', true)
+        @slot('className', 'o-related-content--artwork')
         @slot('label', $section['title'] ?? '360° View')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'viewer')
@@ -187,6 +191,7 @@
     @php $section = $sectionHeadings['view_3d'] ?? []; @endphp
     @component('components.organisms._o-related-content')
         @slot('preventFocusScroll', true)
+        @slot('className', 'o-related-content--artwork')
         @slot('label', $section['title'] ?? '3D View')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'viewer')
@@ -208,6 +213,7 @@
     @php $section = $sectionHeadings['related_content'] ?? []; @endphp
     @component('components.organisms._o-related-content')
         @slot('preventFocusScroll', true)
+        @slot('className', 'o-related-content--artwork')
         @slot('label', $section['title'] ?? 'Related Content')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'grid-cards')
@@ -220,6 +226,7 @@
     @php $section = $sectionHeadings['publications'] ?? []; @endphp
     @component('components.organisms._o-related-content')
         @slot('preventFocusScroll', true)
+        @slot('className', 'o-related-content--artwork')
         @slot('label', $section['title'] ?? 'Art Institute Publications')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'grid-year')
@@ -234,6 +241,7 @@
     @php $section = $sectionHeadings['exhibitions'] ?? []; @endphp
     @component('components.organisms._o-related-content')
         @slot('preventFocusScroll', true)
+        @slot('className', 'o-related-content--artwork')
         @slot('label', $section['title'] ?? 'Art Institute Exhibitions')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'list-rows')
@@ -247,6 +255,7 @@
     @php $section = $sectionHeadings['educator_resources'] ?? []; @endphp
     @component('components.organisms._o-related-content')
         @slot('preventFocusScroll', true)
+        @slot('className', 'o-related-content--artwork')
         @slot('label', $section['title'] ?? 'Educator Resources')
         @slot('description', $section['description'] ?? null)
         @slot('variation', 'list-rows')
