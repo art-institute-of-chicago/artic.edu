@@ -55,7 +55,7 @@
       padding-left: $blocks-spacings-double;
 
       a {
-        color: $colors-scales-grey-81;
+        color: $colors-scales-grey-medium;
         font-weight: $text-weights-regular;
       }
     }
@@ -128,7 +128,7 @@
       }
     }
     a.o-article__inline-header-display:first-of-type {
-      color: $colors-scales-grey-81;
+      color: $colors-scales-grey-medium;
       display: block;
       font-size: $text-sizes-medium;
       font-weight: $text-weights-regular;
@@ -151,7 +151,7 @@
       float: none;
       margin-top: 0;
       margin-left: colspan(15, large);
-      width: colspan(28, large);
+      width: colspan(28, medium);
     }
 
     @include breakpoint('large') {

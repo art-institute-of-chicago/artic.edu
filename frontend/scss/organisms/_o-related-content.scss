@@ -41,6 +41,25 @@
   }
 }
 
+.o-related-content--artwork::before {
+  background-color: $colors-scales-grey-light;
+}
+
+.o-related-content--artwork .o-related-content__item-eyebrow,
+.o-related-content--artwork .o-related-content__toggle svg {
+  color: $colors-scales-grey-medium;
+}
+
+.o-related-content--artwork .o-related-content__item-img {
+  background-color: $colors-scales-grey-lightest;
+}
+
+@include breakpoint('small-') {
+  .o-related-content--artwork:not(.o-related-content--continuation) + .o-related-content--artwork:not(.o-related-content--continuation)::before {
+    display: block;
+  }
+}
+
 .o-related-content__heading {
   width: 100%;
 
@@ -290,12 +309,8 @@
 .o-related-content--grid-cards .o-related-content__list,
 .o-related-content--grid-year .o-related-content__list {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap:$blocks-spacings-extra-large;
-
-  @include breakpoint('small') {
-    grid-template-columns: repeat(2, 1fr);
-  }
 
   @include breakpoint('medium+') {
     grid-template-columns: repeat(3, 1fr);
@@ -363,6 +378,10 @@
   margin-top: $blocks-spacings-default;
   padding-top: $blocks-spacings-default;
   border-top: 1px solid $colors-themes-light-mode-rules-tertiary;
+
+  @include breakpoint('small-') {
+    border-top: 0 none;
+  }
 }
 
 .o-related-content--list-rows .o-related-content__item--row {
@@ -371,7 +390,11 @@
   align-items: baseline;
   margin-top: $blocks-spacings-default;
   padding-top: $blocks-spacings-default;
-  border-top: 1px solid $colors-themes-light-mode-rules-tertiary;
+
+  @include breakpoint('medium+') {
+    margin-top: $blocks-spacings-extra-large;
+    padding-top: 0;
+  }
 }
 
 .o-related-content--list-rows .o-related-content__item--row:first-child {
@@ -425,8 +448,11 @@
 
 .o-related-content--list-rows .o-related-content__panel .o-related-content__list > .o-related-content__item--row:first-child {
   margin-top: $blocks-spacings-default;
-  padding-top: $blocks-spacings-default;
-  border-top: 1px solid $colors-themes-light-mode-rules-tertiary;
+  padding-top: 0;
+
+  @include breakpoint('medium+') {
+    margin-top: $blocks-spacings-extra-large;
+  }
 }
 
 .o-related-content .m-listing--educator-resource__index {

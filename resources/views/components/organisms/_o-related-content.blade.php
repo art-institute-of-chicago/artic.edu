@@ -16,6 +16,7 @@
     $description = $description ?? null;
     $preventFocusScroll = $preventFocusScroll ?? false;
     $continuation = $continuation ?? false;
+    $className = !empty($className) ? ' ' . $className : '';
     $capped = $items->count() > $limit;
     $itemVariation = $itemVariation ?? null;
 
@@ -51,7 +52,7 @@
 @endphp
 
 @if ($hasRawContent)
-    <section class="o-related-content o-related-content--{{ $rawVariation }}{{ $continuation ? ' o-related-content--continuation' : '' }}" aria-labelledby="{{ $id }}-title">
+    <section class="o-related-content o-related-content--{{ $rawVariation }}{{ $continuation ? ' o-related-content--continuation' : '' }}{{ $className }}" aria-labelledby="{{ $id }}-title">
         <div class="o-related-content__heading">
             <h2 id="{{ $id }}-title" class="o-related-content__label f-module-title-2">{{ $label }}</h2>
 
@@ -65,7 +66,7 @@
         </div>
     </section>
 @elseif ($items->isNotEmpty())
-    <section class="o-related-content o-related-content--{{ $variationKey }}{{ $continuation ? ' o-related-content--continuation' : '' }}"{!! $capped ? ' data-behavior="accordion"' . ($preventFocusScroll ? ' data-accordion-prevent-focus-scroll="true"' : '') : '' !!} aria-labelledby="{{ $id }}-title">
+    <section class="o-related-content o-related-content--{{ $variationKey }}{{ $continuation ? ' o-related-content--continuation' : '' }}{{ $className }}"{!! $capped ? ' data-behavior="accordion"' . ($preventFocusScroll ? ' data-accordion-prevent-focus-scroll="true"' : '') : '' !!} aria-labelledby="{{ $id }}-title">
         <div class="o-related-content__heading">
             <h2 id="{{ $id }}-title" class="o-related-content__label f-module-title-2">{{ $label }}</h2>
 
