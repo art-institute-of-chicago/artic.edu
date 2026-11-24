@@ -76,20 +76,22 @@
         </div>
 
         <div class="o-related-content__main">
-            <div class="o-related-content__meta">
-                <span class="o-related-content__count f-secondary">
-                    @if ($total > $limit) {{ $total }} total @endif
-                </span>
+            @if ($capped || $total > $limit)
+                <div class="o-related-content__meta">
+                    <span class="o-related-content__count f-secondary">
+                        @if ($total > $limit) {{ $total }} total @endif
+                    </span>
 
-                @if ($capped)
-                    <button type="button" class="o-related-content__toggle f-link o-accordion__trigger" aria-expanded="false" aria-controls="{{ $id }}-panel" {!! $gtmAttributes !!}>
-                        <span class="o-related-content__toggle-label o-related-content__toggle-label--open">See all {{ $seeAllLabel }}</span>
-                        <span class="o-related-content__toggle-label o-related-content__toggle-label--close">Show less</span>
-                        <svg class="icon--plus" aria-hidden="true"><use xlink:href="#icon--plus"></use></svg>
-                        <svg class="icon--minus" aria-hidden="true"><use xlink:href="#icon--minus"></use></svg>
-                    </button>
-                @endif
-            </div>
+                    @if ($capped)
+                        <button type="button" class="o-related-content__toggle f-link o-accordion__trigger" aria-expanded="false" aria-controls="{{ $id }}-panel" {!! $gtmAttributes !!}>
+                            <span class="o-related-content__toggle-label o-related-content__toggle-label--open">See all {{ $seeAllLabel }}</span>
+                            <span class="o-related-content__toggle-label o-related-content__toggle-label--close">Show less</span>
+                            <svg class="icon--plus" aria-hidden="true"><use xlink:href="#icon--plus"></use></svg>
+                            <svg class="icon--minus" aria-hidden="true"><use xlink:href="#icon--minus"></use></svg>
+                        </button>
+                    @endif
+                </div>
+            @endif
 
             <ul id="{{ $id }}-list" class="o-related-content__list">
                 @foreach ($mainItems as $relatedItem)

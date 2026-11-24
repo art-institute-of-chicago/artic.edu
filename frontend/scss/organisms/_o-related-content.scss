@@ -55,8 +55,12 @@
 }
 
 @include breakpoint('small-') {
-  .o-related-content--artwork:not(.o-related-content--continuation) + .o-related-content--artwork:not(.o-related-content--continuation)::before {
-    display: block;
+  .o-related-content--artwork:not(.o-related-content--continuation) + .o-related-content--artwork:not(.o-related-content--continuation) {
+    padding-top: $blocks-spacings-double;
+
+    &::before {
+      display: block;
+    }
   }
 }
 
@@ -84,9 +88,7 @@
   margin: 0 0 30px 0;
 
   @include breakpoint('small-') {
-    &:has(+.o-related-content__description) {
-      margin: 0 0 10px 0;
-    }
+    margin: 0 0 $blocks-spacings-default 0;
   }
 }
 
@@ -209,7 +211,7 @@
   margin-bottom: 30px;
 
   @include breakpoint('small-') {
-    margin-bottom: 15px;
+    margin-bottom: $blocks-spacings-small;
   }
 }
 
